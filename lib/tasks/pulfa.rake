@@ -88,7 +88,7 @@ namespace :pulfa do
     @logger ||= Logger.new(STDOUT)
   end
 
-  def index_collection(name:)    
+  def index_collection(name:)
     dir = pulfa_root.join(name)
     ENV['REPOSITORY_ID'] = name.split('/').first
 
