@@ -1,24 +1,57 @@
-# README
+# Princeton University Finding Aids (PULFA)
+## 3.0 Prototype with ArcLight
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an experimental implementation of ArcLight being tested as a candidate for replacing the current PULFA 2.0 application.
 
-Things you may want to cover:
+### Installation
+```bash
+git clone
+bundle install
+bundle exec rake solr_wrapper
+bundle exec rails s
+```
 
-* Ruby version
+Now, please visit the new installation at [http://localhost:3000]()
 
-* System dependencies
+### Configuration
+By default, PULFA 3.0 uses Solr over the port 8983 (deployed using `solr_wrapper`) for the index.  PULFA 3.0 also feature the following ArcLight repositories:
 
-* Configuration
+- mudd
+- mss
+- cotsen
+- eng
+- rarebooks
+- ga
+- lae
 
-* Database creation
+Please see [the ArcLight documentation](https://github.com/sul-dlss/arclight/wiki/Indexing-EAD-in-ArcLight#repository-configuration) for further information regarding repositories in ArcLight.
 
-* Database initialization
+### Indexing documents into PULFA 3.0
 
-* How to run the test suite
+#### Retrieving the EAD-XML Documents
+Documents are available from Princeton University Library staff, and should be populated into the `eads/pulfa` directory, yielding a structure similar to the following:
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+% ll eads/pulfa/eads
+[...] cotsen
+[...] eng
+[...] ga
+[...] lae
+[...] mss
+[...] mudd
+[...] rarebooks
+```
 
-* Deployment instructions
+#### Indexing Directories
+One indexes directories of PULFA EAD Documents by passing the parent directory name to the Rake Task `pulfa:index:collection`:
 
-* ...
+```ruby
+bundle exec rake pulfa:index:collection[cotsen]
+```
+
+#### Indexing Documents
+One indexes single PULFA EAD Documents by passing the relative file path and repository name to the Rake Task `pulfa:index:document`:
+
+```ruby
+bundle exec rake pulfa:index:document[eads/pulfa/eads/mudd/univarchives/AC123.EAD.xml,mudd]
+```

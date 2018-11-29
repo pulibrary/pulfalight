@@ -1,42 +1,105 @@
-nlm:
-  name: 'National Library of Medicine. History of Medicine Division'
-  description: 'NLM’s History of Medicine Division collects, preserves, makes available, and interprets for diverse audiences one of the world’s richest collections of historical material related to human health and disease.'
-  building: 'Building 38, Room 1E-21'
-  address1: '8600 Rockville Pike'
+mudd:
+  name: 'Seeley G. Mudd Manuscript Library'
+  description: 'The Seeley G. Mudd Manuscript Library, a division of the Department of Rare Books and Special Collections, is a state-of-the-art repository constructed in 1976 to house the Princeton University Archives and a highly regarded collection of 20th-century public policy papers.'
+  building: 'Seeley G. Mudd Manuscript Library'
+  address1: '65 Olden Street'
   address2: ''
-  city: 'Bethesda'
-  state: 'MD'
-  zip: '20894'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08540'
   country: 'USA'
-  phone: ''
-  contact_info: 'hmdref@nlm.nih.gov'
-  thumbnail_url: "https://collections.nlm.nih.gov/pageturnerserver/ajaxp?theurl=http://localhost:8080/fedora/get/nlm:nlmuid-101421040-img/THUMB"
-  google_request_url: 'https://docs.google.com/a/stanford.edu/forms/d/e/1FAIpQLSeOamhY_IcFw4sPnz0ddwWWkrPaHbM5wp7JVbOLOL_mIusEyw/viewform'
-  google_request_mappings: "document_url=entry.1980510262&collection_name=entry.619150170&collection_creator=entry.14428541&eadid=entry.996397105&containers=entry.1125277048&title=entry.862815208"
-sul-spec:
-  name: 'Stanford University Libraries. Special Collections and University Archives'
-  visit_note: 'Special Collections and University Archives materials are stored offsite and must be paged 36 hours in advance.'
-  description: 'The Special Collections and University Archives Department of Stanford University Libraries is committed to acquiring, preserving, and providing access to primary source materials that support the research needs of the Stanford community and beyond. There are three distinct divisions in our department: Manuscripts, Rare Books and University Archives. We welcome all students, scholars and members of the general public to the Field Reading Room. Learn more about using and accessing our collections.'
-  building: 'Green Library'
-  address1: '557 Escondido Mall'
+  phone: '609-258-6345'
+  contact_info: 'rbsc@princeton.edu'
+  thumbnail_url: ""
+  google_request_url: ''
+  google_request_mappings: ""
+mss:
+  name: 'Manuscripts Division'
+  description: 'Department of Rare Books and Special Collections'
+  building: 'Firestone Library'
+  address1: 'One Washington Road'
   address2: ''
-  city: 'Stanford'
-  state: 'CA'
-  zip: '94305'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08540'
   country: 'USA'
-  phone: '(650) 725-1022'
-  contact_info: 'specialcollections@stanford.edu'
-  thumbnail_url: 'https://library.stanford.edu/sites/default/files/styles/150x150/public/collection/image/Collections-Super-Enlight.jpg'
-umich-bhl:
-  name: 'University of Michigan. Bentley Historical Library'
-  description: 'The Bentley Historical Library collects the materials for and promotes the study of the histories of two great, intertwined institutions, the State of Michigan and the University of Michigan. The Library is open without fee to the public, and we welcome researchers regardless of academic or professional affiliation.'
-  building: ''
-  address1: '1150 Beal Ave'
+  phone: '609-258-3184'
+  contact_info: 'rbsc@princeton.edu'
+  thumbnail_url: ""
+  google_request_url: ''
+  google_request_mappings: ""
+cotsen:
+  name: "Cotsen Children's Library"
+  description: 'Department of Rare Books and Special Collections'
+  building: 'Firestone Library'
+  address1: 'One Washington Road'
   address2: ''
-  city: 'Ann Arbor'
-  state: 'MI'
-  zip: '48109-2113'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08540'
   country: 'USA'
-  phone: ''
-  contact_info: 'bentley.ref@umich.edu'
-  thumbnail_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Bhlexterior.jpg/150px-Bhlexterior.jpg'
+  phone: '609-258-3184'
+  contact_info: 'rbsc@princeton.edu'
+  thumbnail_url: ""
+  google_request_url: ''
+  google_request_mappings: ""
+eng:
+  name: "Engineering Library"
+  description: 'The Engineering Library is located in Friend Center and supports the research and education mission of the School of Engineering and Applied Science and its affiliated programs and centers. The Library is part of the Collection Development Department of the Princeton University Library System and works closely with other library units and divisions to serve the needs of over 140 faculty, over 1200 undergraduate students and over 500 graduate students.'
+  building: 'Friend Center'
+  address1: ''
+  address2: ''
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08544'
+  country: 'USA'
+  phone: '609-258-3200'
+  contact_info: 'englib@princeton.edu'
+  thumbnail_url: ""
+  google_request_url: ''
+  google_request_mappings: ""
+rarebooks:
+  name: "Rare Book Division"
+  description: 'Department of Rare Books and Special Collections'
+  building: 'Firestone Library'
+  address1: 'One Washington Road'
+  address2: ''
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08540'
+  country: 'USA'
+  phone: '609-258-3184'
+  contact_info: 'rbsc@princeton.edu'
+  thumbnail_url: ""
+  google_request_url: ''
+  google_request_mappings: ""
+ga:
+  name: "Graphic Arts Collection"
+  description: 'Department of Rare Books and Special Collections'
+  building: 'Firestone Library'
+  address1: 'One Washington Road'
+  address2: ''
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08540'
+  country: 'USA'
+  phone: '609-258-3184'
+  contact_info: 'rbsc@princeton.edu'
+  thumbnail_url: ""
+  google_request_url: ''
+  google_request_mappings: ""
+lae:
+  name: "Latin American Ephemera Collection"
+  description: 'The Latin American Ephemera Collection contains thousands of digitized pamphlets, brochures, flyers, posters, placards and other printed items created since around the last quarter of the 20th century by a wide variety of social activists, non-governmental organizations, government agencies, political parties, public policy think tanks, and other types of organizations across Latin America, in order to publicize their views, positions, agendas, policies, events, and activities. The vast majority are rare, hard-to-find primary sources unavailable elsewhere.'
+  building: 'Firestone Library'
+  address1: 'Firestone Library B-14-P'
+  address2: 'One Washington Road'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08540'
+  country: 'USA'
+  phone: '609-258-3193'
+  contact_info: 'facosta@princeton.edu'
+  thumbnail_url: ""
+  google_request_url: ''
+  google_request_mappings: ""

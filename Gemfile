@@ -38,6 +38,7 @@ group :development, :test do
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-rails-console'
+  gem 'pry-byebug'
 end
 
 group :development do
