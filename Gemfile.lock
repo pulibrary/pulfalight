@@ -54,6 +54,8 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    airbrussh (1.3.1)
+      sshkit (>= 1.6.1, != 1.7.0)
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -81,6 +83,22 @@ GEM
       sass (>= 3.5.2)
     builder (3.2.3)
     byebug (10.0.2)
+    capistrano (3.11.0)
+      airbrussh (>= 1.0.0)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
+    capistrano-bundler (1.4.0)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-passenger (0.2.0)
+      capistrano (~> 3.0)
+    capistrano-rails (1.4.0)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rails-console (2.3.0)
+      capistrano (>= 3.5.0, < 4.0.0)
+      sshkit-interactive (~> 0.3.0)
     capybara (3.11.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -162,6 +180,9 @@ GEM
     msgpack (1.2.4)
     multi_json (1.13.1)
     multipart-post (2.0.0)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (5.0.2)
     nio4r (2.3.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
@@ -173,6 +194,7 @@ GEM
       nokogiri (>= 1.4.2)
       solrizer (~> 3.3)
     orm_adapter (0.5.0)
+    pg (0.21.0)
     popper_js (1.14.5)
     public_suffix (3.0.3)
     puma (3.12.0)
@@ -264,7 +286,11 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.13)
+    sshkit (1.18.0)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
+    sshkit-interactive (0.3.0)
+      sshkit (~> 1.12)
     stomp (1.4.6)
     tether-rails (1.4.0)
       rails (>= 3.1)
@@ -305,6 +331,10 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.0)
   byebug
+  capistrano
+  capistrano-passenger
+  capistrano-rails
+  capistrano-rails-console
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
@@ -313,6 +343,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  pg (~> 0.20)
   popper_js
   puma (~> 3.11)
   rails (~> 5.2.1)
@@ -322,15 +353,11 @@ DEPENDENCIES
   solr_wrapper (>= 0.3)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
   turbolinks (~> 5)
   twitter-typeahead-rails (= 0.11.1.pre.corejavascript)
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
-
-RUBY VERSION
-   ruby 2.4.4p296
 
 BUNDLED WITH
    1.16.4

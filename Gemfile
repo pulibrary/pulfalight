@@ -1,12 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.4.4'
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -39,6 +35,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails'
+  gem 'capistrano-rails-console'
 end
 
 group :development do
@@ -58,14 +57,16 @@ group :test do
   gem 'chromedriver-helper'
 end
 
+group :production, :test do
+  gem 'pg', '~> 0.20'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'arclight', github: 'sul-dlss/arclight'
 gem 'blacklight_range_limit', '7.0.0.rc2'
-group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
-end
+gem 'solr_wrapper', '>= 0.3'
 
 gem 'rsolr', '>= 1.0', '< 3'
 gem 'bootstrap', '~> 4.0'
@@ -74,3 +75,4 @@ gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'jquery-rails'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
+gem 'capistrano'

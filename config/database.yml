@@ -1,25 +1,28 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
-default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+# Use PostgreSQL for persistence in all environments
+development: &default
+  adapter: postgresql
+  database: pulfa3_development
+  encoding: utf8
+  min_messages: warning
+  pool: <%= Integer(ENV.fetch("DB_POOL", 30)) %>
+  reaping_frequency: <%= Integer(ENV.fetch("DB_REAPING_FREQUENCY", 10)) %>
   timeout: 5000
 
-development:
-  <<: *default
-  database: db/development.sqlite3
-
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  host: <%= ENV["PULFA3_DB_HOST"] %>
+  database: pulfa3_test
+  username: <%= ENV["PULFA3_DB_USERNAME"] %>
+  password: <%= ENV["PULFA3_DB_PASSWORD"] %>
 
-production:
+production: &deploy
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  host: <%= ENV["PULFA3_DB_HOST"] %>
+  database: <%= ENV["PULFA3_DB"] %>
+  username: <%= ENV["PULFA3_DB_USERNAME"] %>
+  password: <%= ENV["PULFA3_DB_PASSWORD"] %>
+  pool: 40
+
+staging:
+  <<: *deploy

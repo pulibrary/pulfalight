@@ -13,9 +13,15 @@
 development:
   adapter: solr
   url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8983/solr/blacklight-core" %>
+
 test: &test
   adapter: solr
-  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:#{ENV['TEST_JETTY_PORT'] || 8983}/solr/blacklight-core" %>
-production:
+  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:#{ENV['TEST_JETTY_PORT'] || 8984}/solr/blacklight-core-test" %>
+
+production: &production
+  adapter: solr
+  url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8983/solr/blacklight-core" %>
+
+staging:
   adapter: solr
   url: <%= ENV['SOLR_URL'] || "http://127.0.0.1:8983/solr/blacklight-core" %>
