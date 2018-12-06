@@ -40,3 +40,29 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'vendor/bundle', 'public/u
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+namespace :pulfa do
+  namespace :index do
+    task :set do
+      on roles(:app) do
+        within release_path do
+          with rails_env: fetch(:rails_env) do
+            execute :rake, 'pulfa:index:set'
+          end
+        end
+      end
+    end
+  end
+end
+
+namespace :deploy do
+  after :published do
+    on roles(:app) do
+      within release_path do
+        FileUtils.ln_s '/var/opt/eads/pulfa', "#{release_path}/pulfa"
+      end
+    end
+  end
+end
+
+after 'deploy:finished', 'pulfa:index:set'

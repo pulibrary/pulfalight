@@ -1,3 +1,4 @@
+require 'csv'
 require_relative '../pulfa'
 
 namespace :pulfa do
@@ -21,16 +22,22 @@ namespace :pulfa do
       indexer.update(ENV['FILE'])
     end
 
-    desc 'Delete the index of all EADs'
+    desc 'Delete all Solr documents in the index'
     task :delete do
       delete_by_query('<delete><query>*:*</query></delete>')
     end
 
-    desc 'Index a collection'
+    desc 'Index a collection of EAD Documents'
     task :collection, [:collection_name] => :environment do |t, args|
       index_collection(name: args.collection_name)
     end
 
+    desc 'Index a set of EAD Documents specified in the configuration'
+    task :set do
+      index_set
+    end
+
+    desc 'Index a single EAD Document'
     task :document, [:file_path, :repo] => :environment do |t, args|
       index_document(relative_path: args.file_path, repo: args.repo)
     end
@@ -66,6 +73,19 @@ namespace :pulfa do
       rescue StandardError => arclight_error
         logger.error "Failed to index #{file_path}: #{arclight_error}"
       end
+    end
+  end
+
+  def configured_index_set
+    rows = CSV.read(Rails.root.join("index_set.csv"))
+    rows[1..-1]
+  end
+
+  def index_set
+    configured_index_set.each do |row|
+      relative_path = row.first
+      repo = row.last
+      index_document(relative_path: relative_path, repo: repo)
     end
   end
 
