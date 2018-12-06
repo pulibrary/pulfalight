@@ -56,10 +56,10 @@ namespace :pulfa do
 end
 
 namespace :deploy do
-  after :published do
+  after :published, :link_eads do
     on roles(:app) do
       within release_path do
-        FileUtils.ln_s '/var/opt/eads/pulfa', "#{release_path}/pulfa"
+        FileUtils.ln_s '/var/opt/eads/pulfa', "#{release_path}/pulfa", force: true
       end
     end
   end
