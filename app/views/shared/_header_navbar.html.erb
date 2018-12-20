@@ -7,13 +7,6 @@
         </a>
         <%=link_to t('arclight.masthead_heading').html_safe, main_app.root_path, :class => "site-title" %>
       </div>
-      <div class="pull-right menu--level-1 col-xs-12 col-sm-6">
-        <ul>
-
-
-
-        </ul>
-      </div>
     </div>
   </div>
   <% unless params[:action] == 'error' || params[:action] == 'generate' %>
@@ -22,7 +15,6 @@
         <div id="search-navbar" class="col-xs-12 search-navbar" role="search">
           <%= render_search_bar %>
         </div>
-
       </nav>
     </div>
   <% end %>

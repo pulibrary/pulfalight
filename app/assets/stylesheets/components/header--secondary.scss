@@ -15,43 +15,48 @@
 }
 
 // Bookmarks and Course Reserves
-.header__secondary .navbar-right {
-  z-index: 2;
-  display: inline-block;
-  padding-right: 0;
-  margin-top: -46px;
-  width: 70%;
-  float: right;
+.header__secondary {
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
 
-  @media (min-width: $bp-medium) {
-    width: 30%;
-    padding-right: 1em;
-    margin-top: 0;
-  }
+    .navbar-right {
+	z-index: 2;
+	display: inline-block;
+	padding-right: 0;
+	margin-top: -46px;
+	width: 70%;
+	float: right;
 
-  .navbar-nav {
-    float: right;
-    margin: 0;
-  }
+	@media (min-width: $bp-medium) {
+	    width: 30%;
+	    padding-right: 1em;
+	    margin-top: 0;
+	}
 
-  li a {
-    background: transparent;
-    padding: 1em;
-    margin: 0;
-    color: darken($blue, 3);
+	.navbar-nav {
+	    float: right;
+	    margin: 0;
+	}
 
-    &:hover,
-    &:focus,
-    &:active {
-      text-decoration: underline;
+	li a {
+	    background: transparent;
+	    padding: 1em;
+	    margin: 0;
+	    color: darken($blue, 3);
+
+	    &:hover,
+	    &:focus,
+	    &:active {
+		text-decoration: underline;
+	    }
+
+	    &:last-child {
+		padding-right: 0;
+
+		@media (min-width: $bp-small) {
+		    padding-right: 1em;
+		}
+	    }
+	}
     }
-
-    &:last-child {
-      padding-right: 0;
-
-      @media (min-width: $bp-small) {
-        padding-right: 1em;
-      }
-    }
-  }
 }
