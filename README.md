@@ -3,15 +3,22 @@
 
 This is an experimental implementation of ArcLight being tested as a candidate for replacing the current PULFA 2.0 application.
 
-### Installation
-```bash
-git clone
+### Initial setup
+```sh
+git clone https://github.com/pulibrary/pulfa3-light.git
+cd pulfa3-light
 bundle install
-bundle exec rake solr_wrapper
-bundle exec rails s
 ```
 
-Now, please visit the new installation at [http://localhost:3000]()
+Remember you'll need to run `bundle install` and `yarn install` on an ongoing basis as dependencies are updated.
+
+#### Setup server
+1. For development:
+   - `rake pulfa:development`
+   - Now, please visit the new installation at [http://localhost:3000](http://localhost:3000)
+2. For test:
+   - `rake pulfa:test`
+   - In a separate terminal, please run: `bundle exec rspec`
 
 ### Configuration
 By default, PULFA 3.0 uses Solr over the port 8983 (deployed using `solr_wrapper`) for the index.  PULFA 3.0 also feature the following ArcLight repositories:
@@ -26,7 +33,9 @@ By default, PULFA 3.0 uses Solr over the port 8983 (deployed using `solr_wrapper
 
 Please see [the ArcLight documentation](https://github.com/sul-dlss/arclight/wiki/Indexing-EAD-in-ArcLight#repository-configuration) for further information regarding repositories in ArcLight.
 
-### Indexing documents into PULFA 3.0
+
+
+### Indexing documents into PULFA ArcLight
 
 #### Retrieving the EAD-XML Documents
 Documents are available from Princeton University Library staff, and should be populated into the `eads/pulfa` directory, yielding a structure similar to the following:

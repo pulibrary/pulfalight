@@ -39,6 +39,7 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-rails-console'
   gem 'pry-byebug'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :development do

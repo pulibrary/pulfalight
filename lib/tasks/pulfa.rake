@@ -56,10 +56,23 @@ namespace :pulfa do
       solr.with_collection(name: "pulfa-core-dev", dir: Rails.root.join("solr", "conf").to_s) do
         puts "Setup solr"
         puts "Solr running at http://localhost:8983/solr/pulfa-core-dev/, ^C to exit"
-        Rake::Task['pulfa:index:delete'].invoke
-        Rake::Task['pulfa:seed'].invoke
         begin
           system "bundle exec rails s #{args[:rails_server_args]}"
+        rescue Interrupt
+          puts "\nShutting down..."
+        end
+      end
+    end
+  end
+
+  desc 'Run Solr and Arclight for testing'
+  task :test do |_t, args|
+    SolrWrapper.wrap(managed: true, verbose: true, port: 8984, instance_dir: "tmp/pulfa-core-test", persist: false, download_dir: "tmp") do |solr|
+      solr.with_collection(name: "pulfa-core-test", dir: Rails.root.join("solr", "conf").to_s) do
+        puts "Setup solr"
+        puts "Solr running at http://localhost:8984/solr/pulfa-core-test/, ^C to exit"
+        begin
+          sleep
         rescue Interrupt
           puts "\nShutting down..."
         end
