@@ -67,7 +67,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'arclight', github: 'sul-dlss/arclight'
 gem 'blacklight_range_limit', '7.0.0.rc2'
-gem 'solr_wrapper', '>= 0.3'
+gem 'solr_wrapper', '~> 2.1'
 
 gem 'rsolr', '>= 1.0', '< 3'
 gem 'bootstrap', '~> 4.0'

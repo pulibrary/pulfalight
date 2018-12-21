@@ -50,6 +50,40 @@ namespace :pulfa do
     end
   end
 
+  desc 'Run Solr and Arclight for interactive development'
+  task :development, %i[rails_server_args] do |_t, args|
+    SolrWrapper.wrap(managed: true, verbose: true, port: 8983, instance_dir: "tmp/pulfa-core-dev", persist: false, download_dir: "tmp") do |solr|
+      solr.with_collection(name: "pulfa-core-dev", dir: Rails.root.join("solr", "conf").to_s) do
+        puts "Setup solr"
+        puts "Solr running at http://localhost:8983/solr/pulfa-core-dev/, ^C to exit"
+        Rake::Task['pulfa:index:delete'].invoke
+        Rake::Task['pulfa:seed'].invoke
+        begin
+          system "bundle exec rails s #{args[:rails_server_args]}"
+        rescue Interrupt
+          puts "\nShutting down..."
+        end
+      end
+    end
+  end
+
+  desc 'Seed fixture data to Solr'
+  task :seed do
+    puts 'Seeding index with data from spec/fixtures/ead...'
+    Dir.glob('spec/fixtures/ead/*.xml').each do |file|
+      system("FILE=#{file} rake arclight:index") # no REPOSITORY_ID
+    end
+    Dir.glob('spec/fixtures/ead/*').each do |dir|
+      next unless File.directory?(dir)
+      system("REPOSITORY_ID=#{File.basename(dir)} " \
+             'REPOSITORY_FILE=config/repositories.yml ' \
+             "DIR=#{dir} " \
+             'rake arclight:index_dir')
+    end
+  end
+
+  #### Methods
+
   def logger
     @logger ||= Logger.new(STDOUT)
   end

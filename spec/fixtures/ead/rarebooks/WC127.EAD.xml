@@ -1,0 +1,262 @@
+<ead audience="external" xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd">
+    <eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b"
+        repositoryencoding="iso15511" scriptencoding="iso15924">
+        <eadid countrycode="US" mainagencycode="US-NjP"
+            url="http://arks.princeton.edu/ark:/88435/05741r721" urn="ark:/88435/05741r721"
+            >WC127</eadid>
+        <filedesc>
+            <titlestmt>
+                <titleproper>Wanted Outlaw Posters Collection, <date normal="1911/1915"
+                        type="inclusive">1911-1915</date>: Finding Aid</titleproper>
+            </titlestmt>
+            <publicationstmt id="rbscAddress">
+                <publisher>Princeton University Library. Department of Rare Books and Special
+                    Collections.</publisher>
+                <address>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                </address>
+                <date normal="2007" type="publication">2007</date>
+            </publicationstmt>
+        </filedesc>
+        <profiledesc>
+            <creation>Machine-readable finding aid encoded in EAD 2002 by Techbook and Cristela
+                García-Spitz on <date normal="2007-10-19">19 October 2007</date>. </creation>
+            <langusage>
+                <language langcode="eng"/>
+            </langusage>
+            <descrules>Finding aid content adheres to that prescribed by <emph render="italic">
+                    Describing Archives: A Content Standard. </emph>
+            </descrules>
+        </profiledesc>
+        <revisiondesc>
+            <change>
+                <date normal="2012-05-02">2012-05-02T13:19:07.91-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+        </revisiondesc>
+    </eadheader>
+    <archdesc level="collection" relatedencoding="marc21" type="findingaid">
+        <did>
+            <unitid countrycode="US" repositorycode="US-NjP" type="collection">WC127</unitid>
+            <repository id="rarebooks">
+                <address>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                </address></repository>
+            <unittitle>Wanted Outlaws Posters Collection</unittitle>
+            <unitdate normal="1911/1915" type="inclusive">1911-1915</unitdate>
+            <physdesc>
+                <extent unit="footage">1.5 linear feet</extent>
+                <extent unit="boxes">1 box</extent>
+            </physdesc>
+            <origination>
+                <corpname altrender="Wanted Outlaws Posters"
+                    authfilenumber="http://viaf.org/viaf/137283825" role="col" source="viaf"
+                    >Princeton University. Library. Dept. of Rare Books and Special
+                    Collections.</corpname>
+            </origination>
+            <langmaterial>
+                <language langcode="eng"/>
+            </langmaterial>
+            <abstract>The Wanted Outlaws Posters Collection contains 10 wanted posters for horse
+                theft, larceny, counterfeiting, and murder from Colorado, Idaho, Montana, South
+                Dakota, Utah, and Wyoming. </abstract>
+            <physloc type="code">wa</physloc>
+        </did>
+        <descgrp id="dacs3">
+            <scopecontent>
+                <p>This collection contains 10 wanted posters for horse theft, larceny,
+                    counterfeiting, and murder from Colorado, Idaho, Montana, South Dakota, Utah,
+                    and Wyoming. According to records, all but Frank De Challis were eventually
+                    captured.</p>
+            </scopecontent>
+        </descgrp>
+        <descgrp id="dacs4">
+            <accessrestrict type="open">
+                <p>Collection is open for research use.</p>
+            </accessrestrict>
+            <userestrict>
+                <p>Single photocopies may be made for research purposes. No further photoduplication
+                    of copies of material in the collection can be made when Princeton University
+                    Library does not own the original. Permission to publish material from the
+                    collection must be requested from the Associate University Librarian for Rare
+                    Books and Special Collections. The library has no information on the status of
+                    literary rights in the collection and researchers are responsible for
+                    determining any questions of copyright.</p>
+            </userestrict>
+        </descgrp>
+        <descgrp id="dacs6">
+            <altformavail>
+                <p>Digital images of the collection are available at: <extref
+                        xlink:href="http://libweb.princeton.edu/libraries/firestone/rbsc/aids/WC127/"
+                        xlink:type="simple"
+                        >http://libweb.princeton.edu/libraries/firestone/rbsc/aids/WC127/</extref>.</p>
+            </altformavail>
+        </descgrp>
+        <descgrp id="dacs7">
+            <prefercite>
+                <p>Identification of specific item; Date (if known); Wanted Outlaws Posters
+                    Collection, Box and Folder Number; Department of Rare Books and Special
+                    Collections, Princeton University Library.</p>
+            </prefercite>
+        </descgrp>
+        <dao xlink:href="bioghist-images/WC127.jpg"
+            xlink:title="J. C. D. Pratt, December 1912, Bannock County, Idaho. Wanted for felony, embezzlement and horse stealing."
+            xlink:type="simple"/>
+        <controlaccess>
+            <subject source="lcsh">Outlaws -- West (U.S.) -- History -- 20th century --
+                Sources.</subject>
+            <genreform source="aat">Posters -- West (U.S.)</genreform>
+            <subject authfilenumber="t55" encodinganalog="690" rules="local" source="local">Western
+                Americana</subject>
+        </controlaccess>
+        <dsc type="combined">
+            <c id="WC127_c001" level="item">
+                <did>
+                    <unitid type="itemnumber">1</unitid>
+                    <container type="box">1</container>
+                    <unittitle>B. Berger, alias Leo Botrick, Salt Lake City, Utah</unittitle>
+                    <unitdate normal="1915-07-31">1915 July 31</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="items">1 item</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Wanted for grand larceny.</p>
+                </scopecontent>
+            </c>
+            <c id="WC127_c002" level="item">
+                <did>
+                    <unitid type="itemnumber">2</unitid>
+                    <container type="box">1</container>
+                    <unittitle>Chester Cantrel, Wibaux County, Montana</unittitle>
+                    <unitdate normal="1915/1915">1915</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="items">1 item</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Wanted for theft of blue serge suit.</p>
+                </scopecontent>
+            </c>
+            <c id="WC127_c003" level="item">
+                <did>
+                    <unitid type="itemnumber">3</unitid>
+                    <container type="box">1</container>
+                    <unittitle>Frank De Challis, Digarris, Denver, Colorado</unittitle>
+                    <unitdate>undated</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="items">1 item</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Wanted for counterfeit money and jumping bond.</p>
+                </scopecontent>
+            </c>
+            <c id="WC127_c004" level="item">
+                <did>
+                    <unitid type="itemnumber">4</unitid>
+                    <container type="box">1</container>
+                    <unittitle>Clifford Hunt, attached to Clyde Douglas, Fort Collins,
+                        Colorado</unittitle>
+                    <unitdate normal="1915-01">1915 January</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="items">1 item</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Both wanted for horse stealing</p>
+                </scopecontent>
+            </c>
+            <c id="WC127_c005" level="item">
+                <did>
+                    <unitid type="itemnumber">5</unitid>
+                    <container type="box">1</container>
+                    <unittitle>Mel B. Jowell, also known as Mal Louell, Big Timber,
+                        Montana</unittitle>
+                    <unitdate normal="1911-11">1911 November</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="items">1 item</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Wanted for murder.</p>
+                </scopecontent>
+            </c>
+            <c id="WC127_c006" level="item">
+                <did>
+                    <unitid type="itemnumber">6</unitid>
+                    <container type="box">1</container>
+                    <unittitle>W. W. McCracken, Belle Fourche, South Dakota</unittitle>
+                    <unitdate normal="1913-08">1913 August</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="items">1 item</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Wanted for larceny of horses.</p>
+                </scopecontent>
+            </c>
+            <c id="WC127_c007" level="item">
+                <did>
+                    <unitid type="itemnumber">7</unitid>
+                    <container type="box">1</container>
+                    <unittitle>John McGuire, Davis County, Utah</unittitle>
+                    <unitdate normal="1915-07">1915 July</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="items">1 item</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Escaped from Convict Camp.</p>
+                </scopecontent>
+            </c>
+            <c id="WC127_c008" level="item">
+                <did>
+                    <unitid type="itemnumber">8</unitid>
+                    <container type="box">1</container>
+                    <unittitle>J. C. D. Pratt, Bannock County, Idaho</unittitle>
+                    <unitdate normal="1912-12">1912 December</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="items">1 item</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Wanted for felony, embezzlement and horse stealing.</p>
+                </scopecontent>
+            </c>
+            <c id="WC127_c009" level="item">
+                <did>
+                    <unitid type="itemnumber">9</unitid>
+                    <container type="box">1</container>
+                    <unittitle>Noah T. Richardson, J. H. Burke, and E. Baxtrum, Rawlins,
+                        Wyoming</unittitle>
+                    <unitdate normal="1912-10">1912 October</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="items">1 item</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Escaped convicts.</p>
+                </scopecontent>
+            </c>
+            <c id="WC127_c010" level="item">
+                <did>
+                    <unitid type="itemnumber">10</unitid>
+                    <container type="box">1</container>
+                    <unittitle>Joe M. Romo, Dillon, Montana</unittitle>
+                    <unitdate normal="1915-04">1915 April</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="items">1 item</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Wanted for murder, ms. note sighting on notice.</p>
+                </scopecontent>
+            </c>
+        </dsc>
+    </archdesc>
+</ead>
