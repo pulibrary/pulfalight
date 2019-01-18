@@ -6,6 +6,9 @@ jobs:
       - image: circleci/ruby:2.6.0-node-browsers
         environment:
           RAILS_ENV: test
+          PULFA3_DB_HOST: localhost
+          PULFA3_DB_USERNAME: pulfa3
+          PULFA3_DB_PASSWORD: ""
       - image: postgres:10
         environment:
           POSTGRES_USER: pulfa3
