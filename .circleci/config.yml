@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  build:
+    # Primary command image where all commands run
+    docker:
+      - image: circleci/ruby:2.6.0-node-browsers
+        environment:
+          RAILS_ENV: test
+    working_directory: ~/pulfa3-light
+    steps:
+      - checkout
+      - run:
+          name: Set Timezone to EST/EDT
+          command: echo 'America/New_York' = /etc/timezone
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - pulfa3-light-{{ checksum "Gemfile.lock" }}
+            - pulfa3-light-
+      - run:
+          name: Install dependencies
+          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - save_cache:
+          key: pulfa3-light-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
+      - run:
+          name: Start Solr test instance
+          command: bundle exec rake server:test
+          background: true
+      - run: bin/jetty_wait
+      - run:
+          name: Run RSpec
+          command: bundle exec rspec spec
+
