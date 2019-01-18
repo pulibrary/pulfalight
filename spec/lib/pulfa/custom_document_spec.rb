@@ -2,7 +2,6 @@
 require 'rails_helper'
 
 describe Pulfa::CustomDocument do
-  # subject(:document) { described_class.new() }
   subject(:document) do
     described_class.from_xml(ead_document)
   end
@@ -22,9 +21,9 @@ describe Pulfa::CustomDocument do
     end
     it 'adds the normalized title and dates into the Solr Document' do
       expect(solr_document).to include 'normalized_title_ssm'
-      expect(solr_document['normalized_title_ssm']).to eq ['normalized title']
+      expect(solr_document['normalized_title_ssm']).to eq ['1884-2017']
       expect(solr_document).to include 'normalized_date_ssm'
-      expect(solr_document['normalized_date_ssm']).to eq ['normalized date']
+      expect(solr_document['normalized_date_ssm']).to eq ['1884-2017']
     end
   end
 
@@ -44,8 +43,10 @@ describe Pulfa::CustomDocument do
   describe '#digital_objects' do
     let(:output) { document.digital_objects }
     it 'generates the JSON Object for digital objects and adds them into the Solr Document' do
-      expect(output).to include 'prefix'
-      expect(output['prefix']).to eq ['test']
+      expect(output).not_to be_empty
+      first_value = JSON.parse(output.first)
+      expect(first_value).to include("href" => "https://wayback.archive-it.org/5151/*/http://www.princeton.edu/engineering/")
+      expect(first_value).to include("label" => "https://wayback.archive-it.org/5151/*/http://www.princeton.edu/engineering/")
     end
   end
 
