@@ -38,8 +38,10 @@ group :development, :test do
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-rails-console'
+  gem 'coveralls'
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.8'
+  gem 'simplecov'
 end
 
 group :development do

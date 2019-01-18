@@ -7,6 +7,19 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+# Support for coverage analysis
+if ENV.fetch("COVERAGE", false)
+  require "simplecov"
+
+  if ENV["CIRCLE_ARTIFACTS"]
+    dir = File.join(ENV["CIRCLE_ARTIFACTS"], "coverage")
+    SimpleCov.coverage_dir(dir)
+  end
+
+  SimpleCov.start "rails"
+end
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
