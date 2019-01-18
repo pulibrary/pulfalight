@@ -1,0 +1,23 @@
+require: rubocop-rspec
+inherit_gem:
+  bixby: bixby_default.yml
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.3
+  Exclude:
+    - 'bin/*'
+    - 'config/deploy.rb'
+    - 'vendor/**/*'
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'spec/support/**/*'
+    - 'tmp/**/*'
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/lib/pulfa/custom_component_spec.rb'
+    - 'lib/tasks/pulfa.rake'
+    - 'app/controllers/catalog_controller.rb'
+Metrics/MethodLength:
+  Exclude:
+    - 'lib/tasks/pulfa.rake'
+

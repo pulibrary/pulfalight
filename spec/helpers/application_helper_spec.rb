@@ -1,8 +1,8 @@
 
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe ApplicationHelper do
-
   describe "repository_thumbnail" do
     let(:repository) { instance_double(Arclight::Repository) }
 
@@ -22,7 +22,7 @@ describe ApplicationHelper do
 
       it 'generates the image markup for the default repository thumbnail' do
         expect(helper.repository_thumbnail(repository)).to include "<img alt=\"Seeley G. Mudd Manuscript Library\" class=\"img-fluid\" src=\""
-        expect(helper.repository_thumbnail(repository)).to match /\/assets\/logo\-.+?\.png/
+        expect(helper.repository_thumbnail(repository)).to match(/\/assets\/logo\-.+?\.png/)
       end
     end
   end

@@ -2,19 +2,15 @@
 
 module Pulfa
   class CustomDocument < Arclight::CustomDocument
-
     class NormalizedTitle < Arclight::NormalizedTitle
       private
 
-      # This overrides the Arclight::NormalizedTitle#normalize in order to ensure that titles without parsed dates are handled without raising a Arclight::Exceptions::TitleNotFound
-      def normalize
-
-        result = [title, date].compact.join(', ')
-        if result.blank?
-          result = title
+        # This overrides the Arclight::NormalizedTitle#normalize in order to ensure that titles without parsed dates are handled without raising a Arclight::Exceptions::TitleNotFound
+        def normalize
+          result = [title, date].compact.join(', ')
+          result = title if result.blank?
+          result
         end
-        result
-      end
     end
 
     def initialize
@@ -51,7 +47,7 @@ module Pulfa
         label = element.attributes['title'].try(:value) || element.xpath('daodesc/p').try(:text)
         href = (element.attributes['href'] || element.attributes['xlink:href']).try(:value)
 
-        return if static_asset?(href)
+        next if static_asset?(href)
         Arclight::DigitalObject.new(label: label, href: href).to_json
       end
       @digital_objects[prefix] = values.compact

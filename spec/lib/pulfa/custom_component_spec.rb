@@ -1,9 +1,10 @@
 
+# frozen_string_literal: true
 require 'rails_helper'
 
 describe Pulfa::CustomComponent do
   let(:custom_component) do
-    described_class.from_xml( file_fixture('ead/alphaomegaalpha.xml') )
+    described_class.from_xml(file_fixture('ead/alphaomegaalpha.xml'))
   end
 
   let(:solr_doc) do
@@ -30,16 +31,15 @@ describe Pulfa::CustomComponent do
     custom_component.add_normalized_title(solr_doc)
   end
 
-  describe '#add_normalized_title' do    
+  describe '#add_normalized_title' do
     it 'tries to append the date range to the title' do
-
       expect(solr_doc['normalized_title_ssm']).to eq ['test title, 1902-1976, bulk 1912-1986']
       expect(solr_doc['normalized_date_ssm']).to eq ['1902-1976, bulk 1912-1986']
     end
 
     context 'when there are no dates in the document' do
       let(:custom_component) do
-        described_class.from_xml( file_fixture('ead/alphaomegaalpha.xml') )
+        described_class.from_xml(file_fixture('ead/alphaomegaalpha.xml'))
       end
 
       let(:solr_doc) do

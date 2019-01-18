@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -33,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'bixby'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capistrano-passenger'
@@ -46,8 +48,8 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -72,11 +74,11 @@ gem 'arclight', github: 'sul-dlss/arclight'
 gem 'blacklight_range_limit', '7.0.0.rc2'
 gem 'solr_wrapper', '~> 2.1'
 
-gem 'rsolr', '>= 1.0', '< 3'
 gem 'bootstrap', '~> 4.0'
-gem 'popper_js'
-gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
-gem 'jquery-rails'
+gem 'capistrano'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
-gem 'capistrano'
+gem 'jquery-rails'
+gem 'popper_js'
+gem 'rsolr', '>= 1.0', '< 3'
+gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'

@@ -1,5 +1,5 @@
+# frozen_string_literal: true
 module ApplicationHelper
-
   def repository_thumbnail(repository)
     image_tag repository_thumbnail_url(repository), alt: repository.name, class: 'img-fluid'
   end

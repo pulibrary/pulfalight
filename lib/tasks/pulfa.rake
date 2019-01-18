@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'csv'
 require_relative '../pulfa'
 
@@ -28,7 +29,7 @@ namespace :pulfa do
     end
 
     desc 'Index a collection of EAD Documents'
-    task :collection, [:collection_name] => :environment do |t, args|
+    task :collection, [:collection_name] => :environment do |_t, args|
       index_collection(name: args.collection_name)
     end
 
@@ -38,7 +39,7 @@ namespace :pulfa do
     end
 
     desc 'Index a single EAD Document'
-    task :document, [:file_path, :repo] => :environment do |t, args|
+    task :document, [:file_path, :repo] => :environment do |_t, args|
       index_document(relative_path: args.file_path, repo: args.repo)
     end
   end
@@ -66,7 +67,7 @@ namespace :pulfa do
   end
 
   desc 'Run Solr and Arclight for testing'
-  task :test do |_t, args|
+  task :test do |_t, _args|
     SolrWrapper.wrap(managed: true, verbose: true, port: 8984, instance_dir: "tmp/pulfa-core-test", persist: false, download_dir: "tmp") do |solr|
       solr.with_collection(name: "pulfa-core-test", dir: Rails.root.join("solr", "conf").to_s) do
         puts "Setup solr"
@@ -101,7 +102,7 @@ namespace :pulfa do
     @logger ||= Logger.new(STDOUT)
   end
 
-  def index_collection(name:)    
+  def index_collection(name:)
     dir = pulfa_root.join(name)
     ENV['REPOSITORY_ID'] = name.split('/').first
 

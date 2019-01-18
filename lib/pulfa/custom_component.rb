@@ -1,21 +1,18 @@
+# frozen_string_literal: true
 module Pulfa
   class CustomComponent < Arclight::CustomComponent
     class NormalizedTitle < Arclight::NormalizedTitle
       private
 
-      def normalize
-
-        result = [title, date].compact.join(', ')
-        # raise Arclight::Exceptions::TitleNotFound if result.blank?
-        if result.blank?
-          result = title
+        def normalize
+          result = [title, date].compact.join(', ')
+          # raise Arclight::Exceptions::TitleNotFound if result.blank?
+          result = title if result.blank?
+          result
         end
-        result
-      end
     end
 
     def add_normalized_title(solr_doc)
-
       dates = Arclight::NormalizedDate.new(unitdate_inclusive.first, unitdate_bulk.first, unitdate_other.first).to_s
 
       begin

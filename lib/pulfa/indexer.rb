@@ -1,7 +1,7 @@
+# frozen_string_literal: true
 module Pulfa
   class Indexer < Arclight::Indexer
     def normalize_title(data)
-
       Pulfa::CustomDocument::NormalizedTitle.new(
         data[:title],
         Arclight::NormalizedDate.new(
