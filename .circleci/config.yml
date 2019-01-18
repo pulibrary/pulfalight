@@ -25,6 +25,9 @@ jobs:
           paths:
             - ./vendor/bundle
       - run:
+          name: Run Rubocop
+          command: bundle exec rubocop
+      - run:
           name: Start Solr test instance
           command: bundle exec rake server:test
           background: true
