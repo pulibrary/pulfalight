@@ -17,7 +17,11 @@ Metrics/BlockLength:
     - 'spec/lib/pulfa/custom_component_spec.rb'
     - 'lib/tasks/pulfa.rake'
     - 'app/controllers/catalog_controller.rb'
+    - 'spec/lib/pulfa/custom_document_spec.rb'
 Metrics/MethodLength:
   Exclude:
     - 'lib/tasks/pulfa.rake'
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/lib/pulfa/custom_document_spec.rb'
 
