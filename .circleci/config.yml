@@ -6,6 +6,12 @@ jobs:
       - image: circleci/ruby:2.6.0-node-browsers
         environment:
           RAILS_ENV: test
+      - image: postgres:10
+        environment:
+          POSTGRES_USER: pulfa3
+          POSTGRES_DB: pulfa3_test
+          POSTGRES_PASSWORD: ""
+
     working_directory: ~/pulfa3-light
     steps:
       - checkout
@@ -17,6 +23,7 @@ jobs:
           keys:
             - pulfa3-light-{{ checksum "Gemfile.lock" }}
             - pulfa3-light-
+      - run: sudo apt update && sudo apt install postgresql-client
       - run:
           name: Install dependencies
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
@@ -24,6 +31,12 @@ jobs:
           key: pulfa3-light-{{ checksum "Gemfile.lock" }}
           paths:
             - ./vendor/bundle
+      - run:
+          name: Wait for PostgreSQL
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bundle exec rake db:setup
       - run:
           name: Run Rubocop
           command: bundle exec rubocop
