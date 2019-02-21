@@ -14,7 +14,32 @@ describe Pulfa::CustomDocument do
   let(:solr_document) do
     {}
   end
-
+  #   describe '.new' do
+  #     let(:data) do
+  #       {
+  #         title: 'test title',
+  #         unitdate_inclusive: 'inclusive date',
+  #         unitdate_bulk: 'bulk date',
+  #         unitdate_other: 'other date'
+  #       }
+  #     end
+  #     let(:normalized_date) do
+  #       Arclight::NormalizedDate.new(
+  #         data[:unitdate_inclusive],
+  #         data[:unitdate_bulk],
+  #         data[:unitdate_other]
+  #       )
+  #     end
+  #     subject(:normalized_title) {
+  #       Pulfa::CustomDocument::NormalizedTitle.new(
+  #         data[:title],
+  #         normalized_date.to_s
+  #       )
+  #     }
+  #     it 'constructs a new normalized title' do
+  #       expect(normalized_title).to eq normalized_title
+  #     end
+  #   end
   describe '#add_normalized_title' do
     before do
       document.add_normalized_title(solr_document)

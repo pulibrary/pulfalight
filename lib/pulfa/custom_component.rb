@@ -13,16 +13,18 @@ module Pulfa
     end
 
     def add_normalized_title(solr_doc)
-      dates = Arclight::NormalizedDate.new(unitdate_inclusive.first, unitdate_bulk.first, unitdate_other.first).to_s
+      normalized_date = Arclight::NormalizedDate.new(unitdate_inclusive.first, unitdate_bulk.first, unitdate_other.first)
+      date_values = normalized_date.to_s
 
-      begin
-        title = NormalizedTitle.new(solr_doc['title_ssm'].try(:first), dates).to_s
-      rescue
-        title = solr_doc['title_ssm']
-      end
-      solr_doc['normalized_title_ssm'] = [title]
-      solr_doc['normalized_date_ssm'] = [dates]
-      title
+      titles = solr_doc['title_ssm']
+      first_title = titles.try(:first)
+      normalized_title = NormalizedTitle.new(first_title, date_values)
+      title_value = normalized_title.to_s
+
+      solr_doc['normalized_title_ssm'] = [title_value]
+      solr_doc['normalized_date_ssm'] = [date_values]
+
+      title_value
     end
   end
 end
