@@ -42,6 +42,19 @@ namespace :pulfa do
     task :document, [:file_path, :repo] => :environment do |_t, args|
       index_document(relative_path: args.file_path, repo: args.repo)
     end
+
+    desc 'Index test fixtures'
+    task :fixtures => :environment do |_t, args|
+      index_collection(name: 'eng', root_path: fixtures_path)
+      index_collection(name: 'lae', root_path: fixtures_path)
+      index_collection(name: 'mss', root_path: fixtures_path)
+      index_collection(name: 'mudd', root_path: fixtures_path)
+      index_collection(name: 'rarebooks', root_path: fixtures_path)
+    end
+  end
+
+  def fixtures_path
+    Rails.root.join('spec', 'fixtures', 'files', 'ead')
   end
 
   desc 'Index the EAD XML Documents from PULFA 2.0'
@@ -102,8 +115,12 @@ namespace :pulfa do
     @logger ||= Logger.new(STDOUT)
   end
 
-  def index_collection(name:)
-    dir = pulfa_root.join(name)
+  # Index a collection using its name
+  # @param name [String]
+  # @param root_path [Pathname]
+  def index_collection(name:, root_path: nil)
+    root_path ||= pulfa_root
+    dir = root_path.join(name)
     ENV['REPOSITORY_ID'] = name.split('/').first
 
     Dir.glob(File.join(dir, '**', '*.xml')).each do |file_path|
@@ -156,10 +173,14 @@ namespace :pulfa do
     end
   end
 
+  # Generate the path for the EAD directory
+  # @return [Pathname]
   def pulfa_root
     @pulfa_root ||= Rails.root.join('eads', 'pulfa', 'eads')
   end
 
+  # Construct the directory for the root directory
+  # @return [Dir]
   def pulfa_dir
     @pulfa_dir ||= Dir.new(pulfa_root)
   end

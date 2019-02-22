@@ -14,32 +14,7 @@ describe Pulfa::CustomDocument do
   let(:solr_document) do
     {}
   end
-  #   describe '.new' do
-  #     let(:data) do
-  #       {
-  #         title: 'test title',
-  #         unitdate_inclusive: 'inclusive date',
-  #         unitdate_bulk: 'bulk date',
-  #         unitdate_other: 'other date'
-  #       }
-  #     end
-  #     let(:normalized_date) do
-  #       Arclight::NormalizedDate.new(
-  #         data[:unitdate_inclusive],
-  #         data[:unitdate_bulk],
-  #         data[:unitdate_other]
-  #       )
-  #     end
-  #     subject(:normalized_title) {
-  #       Pulfa::CustomDocument::NormalizedTitle.new(
-  #         data[:title],
-  #         normalized_date.to_s
-  #       )
-  #     }
-  #     it 'constructs a new normalized title' do
-  #       expect(normalized_title).to eq normalized_title
-  #     end
-  #   end
+
   describe '#add_normalized_title' do
     before do
       document.add_normalized_title(solr_document)
@@ -78,6 +53,13 @@ describe Pulfa::CustomDocument do
   describe '#online_content?' do
     it 'determines whether or not the Document contains links to online content' do
       expect(document.online_content?).to be true
+    end
+  end
+
+  describe '#unitdate_for_range' do
+    it 'generates a single date string for a range of values' do
+      expect(document.unitdate_for_range).to be_a Pulfa::YearRange
+      expect(document.unitdate_for_range.to_s).to eq '1884-2017'
     end
   end
 end

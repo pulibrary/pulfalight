@@ -2,9 +2,9 @@
 module Pulfa
   class Indexer < Arclight::Indexer
     def normalize_title(data)
-      Pulfa::CustomDocument::NormalizedTitle.new(
+      Pulfa::NormalizedTitle.new(
         data[:title],
-        Arclight::NormalizedDate.new(
+        Pulfa::NormalizedDate.new(
           data[:unitdate_inclusive],
           data[:unitdate_bulk],
           data[:unitdate_other]
