@@ -1,4 +1,8 @@
 # frozen_string_literal: true
+
+require_relative 'normalized_title'
+require_relative 'normalized_date'
+
 module Pulfa
   class Indexer < Arclight::Indexer
     def normalize_title(data)

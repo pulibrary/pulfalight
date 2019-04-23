@@ -1,9 +1,13 @@
-
 # frozen_string_literal: true
+
+require_relative 'indexing_behavior'
+require_relative 'year_range'
+require_relative 'normalized_date'
+
 module Pulfa
   module IndexingBehavior
     def add_normalized_title(solr_doc)
-      normalized_date = Pulfa::NormalizedDate.new(unitdate_inclusive.first, unitdate_bulk.first, unitdate_other.first)
+      normalized_date = NormalizedDate.new(unitdate_inclusive.first, unitdate_bulk.first, unitdate_other.first)
       date_values = normalized_date.to_s
 
       titles = solr_doc['title_ssm']
@@ -20,7 +24,7 @@ module Pulfa
     # A mixin intended to share indexing behavior between
     # the CustomDocument and CustomComponent classes
     def unitdate_for_range
-      range = Pulfa::YearRange.new
+      range = YearRange.new
       return range if normal_unit_dates.blank?
       range << range.parse_ranges(normal_unit_dates)
       range

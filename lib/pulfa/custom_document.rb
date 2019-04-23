@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require_relative 'indexing_behavior'
 
 module Pulfa
   class CustomDocument < Arclight::CustomDocument

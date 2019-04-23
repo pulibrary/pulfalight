@@ -20,6 +20,7 @@ namespace :pulfa do
       raise 'Please specify your EAD document, ex. FILE=<path/to/ead.xml>' unless ENV['FILE']
       indexer = load_indexer
       print "Loading #{ENV['FILE']} into index...\n"
+      print "Document will be loaded into the #{ENV['REPOSITORY_ID']} repository...\n" if ENV['REPOSITORY_ID']
       indexer.update(ENV['FILE'])
     end
 
@@ -51,6 +52,7 @@ namespace :pulfa do
       index_collection(name: 'mudd', root_path: fixtures_path)
       index_collection(name: 'rarebooks', root_path: fixtures_path)
     end
+
   end
 
   def fixtures_path
@@ -122,6 +124,7 @@ namespace :pulfa do
     root_path ||= pulfa_root
     dir = root_path.join(name)
     ENV['REPOSITORY_ID'] = name.split('/').first
+    raise StandardError unless ENV['REPOSITORY_ID']
 
     Dir.glob(File.join(dir, '**', '*.xml')).each do |file_path|
       ENV['FILE'] = file_path
