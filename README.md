@@ -1,24 +1,48 @@
-# README
+# Plantain
+This is an implementation of ArcLight being implemented as a replacement for the
+ Princeton University Finding Aids (PULFA) service.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Initial setup
+```sh
+git clone https://github.com/pulibrary/plantain.git
+cd plantain
+bundle install
+```
 
-Things you may want to cover:
+Remember you'll need to run `bundle install` and `yarn install` (or `npm 
+install`) on an ongoing basis as dependencies are updated.
 
-* Ruby version
+#### Setup server
+1. For development:
+   - `rake plantain:development`
+   - Now, please visit the new installation at
+     [http://localhost:3000](http://localhost:3000)
+2. For testing:
+   - `rake plantain:test`
+   - In a separate terminal, please run: `bundle exec rspec`
 
-* System dependencies
+### Configuration
+By default, Plantain uses Solr over the port 8983 (deployed using
+`solr_wrapper`) for the index.
 
-* Configuration
+Please see [the ArcLight 
+documentation](https://github.com/projectblacklight/arclight/wiki/Indexing-EAD-in-ArcLight#repository-configuration)
+for information regarding the configuration of repositories in ArcLight.
 
-* Database creation
+### Indexing documents into Plantain
 
-* Database initialization
+#### Retrieving the EAD-XML Documents
+Documents are available from Princeton University Library staff, and should be
+populated into the `eads/pulfa` directory, yielding a structure similar to the
+following:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```bash
+% ll eads/pulfa/eads
+[...] cotsen
+[...] eng
+[...] ga
+[...] lae
+[...] mss
+[...] mudd
+[...] rarebooks
+```
