@@ -75,3 +75,5 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'pg'
+
+gem 'blacklight-locale_picker'
