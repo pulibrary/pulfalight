@@ -2,13 +2,13 @@
 
 namespace :plantain do
   namespace :index do
-    desc 'Delete all Solr documents in the index'
+    desc "Delete all Solr documents in the index"
     task :delete do
-      delete_by_query('<delete><query>*:*</query></delete>')
+      delete_by_query("<delete><query>*:*</query></delete>")
     end
   end
 
-  desc 'Run Solr and Arclight for interactive development'
+  desc "Run Solr and Arclight for interactive development"
   task :development, %i[rails_server_args] do |_t, args|
     SolrWrapper.wrap(managed: true, verbose: true, port: 8983, instance_dir: "tmp/plantain-core-dev", persist: false, download_dir: "tmp") do |solr|
       solr.with_collection(name: "plantain-core-dev", dir: Rails.root.join("solr", "conf").to_s) do
@@ -23,7 +23,7 @@ namespace :plantain do
     end
   end
 
-  desc 'Run Solr and Arclight for testing'
+  desc "Run Solr and Arclight for testing"
   task :test do |_t, _args|
     SolrWrapper.wrap(managed: true, verbose: true, port: 8984, instance_dir: "tmp/plantain-core-test", persist: false, download_dir: "tmp") do |solr|
       solr.with_collection(name: "plantain-core-test", dir: Rails.root.join("solr", "conf").to_s) do
@@ -38,18 +38,18 @@ namespace :plantain do
     end
   end
 
-  desc 'Seed fixture data to Solr'
+  desc "Seed fixture data to Solr"
   task :seed do
-    puts 'Seeding index with data from spec/fixtures/ead...'
-    Dir.glob('spec/fixtures/ead/*.xml').each do |file|
+    puts "Seeding index with data from spec/fixtures/ead..."
+    Dir.glob("spec/fixtures/ead/*.xml").each do |file|
       system("FILE=#{file} rake arclight:index") # no REPOSITORY_ID
     end
-    Dir.glob('spec/fixtures/ead/*').each do |dir|
+    Dir.glob("spec/fixtures/ead/*").each do |dir|
       next unless File.directory?(dir)
       system("REPOSITORY_ID=#{File.basename(dir)} " \
-             'REPOSITORY_FILE=config/repositories.yml ' \
+             "REPOSITORY_FILE=config/repositories.yml " \
              "DIR=#{dir} " \
-             'rake arclight:index_dir')
+             "rake arclight:index_dir")
     end
   end
 
@@ -60,7 +60,7 @@ namespace :plantain do
   end
 
   def delete_by_query(query)
-    blacklight_connection.update(data: query, headers: { 'Content-Type' => 'text/xml' })
+    blacklight_connection.update(data: query, headers: { "Content-Type" => "text/xml" })
     blacklight_connection.commit
   end
 end
