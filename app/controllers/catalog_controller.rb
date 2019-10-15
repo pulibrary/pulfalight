@@ -38,28 +38,28 @@ class CatalogController < ApplicationController
     # }
 
     # solr field configuration for search results/index views
-    config.index.title_field = 'normalized_title_ssm'
-    config.index.display_type_field = 'level_ssm'
+    config.index.title_field = "normalized_title_ssm"
+    config.index.display_type_field = "level_ssm"
     # config.index.thumbnail_field = 'thumbnail_path_ss'
 
     # solr field configuration for document/show views
     # config.show.title_field = 'title_display'
-    config.show.display_type_field = 'level_ssm'
+    config.show.display_type_field = "level_ssm"
     # config.show.thumbnail_field = 'thumbnail_path_ss'
 
-    config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
+    config.add_results_document_tool(:bookmark, partial: "bookmark_control", if: :render_bookmarks_control?)
 
     config.add_results_collection_tool(:sort_widget)
     config.add_results_collection_tool(:per_page_widget)
     config.add_results_collection_tool(:view_type_group)
 
-    config.add_show_tools_partial(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
+    config.add_show_tools_partial(:bookmark, partial: "bookmark_control", if: :render_bookmarks_control?)
     config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params)
     config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params)
     config.add_show_tools_partial(:citation)
 
-    config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
-    config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
+    config.add_nav_action(:bookmark, partial: "blacklight/nav/bookmark", if: :render_bookmarks_control?)
+    config.add_nav_action(:search_history, partial: "blacklight/nav/search_history")
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
@@ -85,16 +85,16 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'collection_sim', label: 'Collection', limit: 10
-    config.add_facet_field 'creator_ssim', label: 'Creator', limit: 10
-    config.add_facet_field 'creators_ssim', label: 'Creator', show: false
-    config.add_facet_field 'date_range_sim', label: 'Date range', range: true
-    config.add_facet_field 'level_sim', label: 'Level', limit: 10
-    config.add_facet_field 'names_ssim', label: 'Names', limit: 10
-    config.add_facet_field 'repository_sim', label: 'Repository', limit: 10
-    config.add_facet_field 'geogname_sim', label: 'Place', limit: 10
-    config.add_facet_field 'places_ssim', label: 'Places', show: false
-    config.add_facet_field 'access_subjects_ssim', label: 'Subject', limit: 10
+    config.add_facet_field "collection_sim", label: "Collection", limit: 10
+    config.add_facet_field "creator_ssim", label: "Creator", limit: 10
+    config.add_facet_field "creators_ssim", label: "Creator", show: false
+    config.add_facet_field "date_range_sim", label: "Date range", range: true
+    config.add_facet_field "level_sim", label: "Level", limit: 10
+    config.add_facet_field "names_ssim", label: "Names", limit: 10
+    config.add_facet_field "repository_sim", label: "Repository", limit: 10
+    config.add_facet_field "geogname_sim", label: "Place", limit: 10
+    config.add_facet_field "places_ssim", label: "Places", show: false
+    config.add_facet_field "access_subjects_ssim", label: "Subject", limit: 10
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
@@ -103,19 +103,19 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field 'unitid_ssm', label: 'Unit ID'
-    config.add_index_field 'repository_ssm', label: 'Repository'
-    config.add_index_field 'normalized_date_ssm', label: 'Date'
-    config.add_index_field 'creator_ssm', label: 'Creator'
-    config.add_index_field 'language_ssm', label: 'Language'
-    config.add_index_field 'scopecontent_ssm', label: 'Scope Content'
-    config.add_index_field 'extent_ssm', label: 'Physical Description'
-    config.add_index_field 'accessrestrict_ssm', label: 'Conditions Governing Access'
-    config.add_index_field 'collection_ssm', label: 'Collection Title'
-    config.add_index_field 'geogname_ssm', label: 'Place'
+    config.add_index_field "unitid_ssm", label: "Unit ID"
+    config.add_index_field "repository_ssm", label: "Repository"
+    config.add_index_field "normalized_date_ssm", label: "Date"
+    config.add_index_field "creator_ssm", label: "Creator"
+    config.add_index_field "language_ssm", label: "Language"
+    config.add_index_field "scopecontent_ssm", label: "Scope Content"
+    config.add_index_field "extent_ssm", label: "Physical Description"
+    config.add_index_field "accessrestrict_ssm", label: "Conditions Governing Access"
+    config.add_index_field "collection_ssm", label: "Collection Title"
+    config.add_index_field "geogname_ssm", label: "Place"
 
-    config.add_facet_field 'has_online_content_ssim', label: 'Access', query: {
-      online: { label: 'Online access', fq: 'has_online_content_ssim:true' }
+    config.add_facet_field "has_online_content_ssim", label: "Access", query: {
+      online: { label: "Online access", fq: "has_online_content_ssim:true" }
     }
 
     # solr fields to be displayed in the show (single result) view
@@ -138,48 +138,48 @@ class CatalogController < ApplicationController
     # This one uses all the defaults set by the solr request handler. Which
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
-    config.add_search_field 'all_fields', label: 'All Fields' do |field|
+    config.add_search_field "all_fields", label: "All Fields" do |field|
       field.include_in_simple_select = true
     end
 
-    config.add_search_field 'within_collection' do |field|
+    config.add_search_field "within_collection" do |field|
       field.include_in_simple_select = false
       field.solr_parameters = {
-        fq: '-level_sim:Collection'
+        fq: "-level_sim:Collection"
       }
     end
 
     # Field-based searches. We have registered handlers in the Solr configuration
     # so we have Blacklight use the `qt` parameter to invoke them
-    config.add_search_field 'keyword', label: 'Keyword' do |field|
-      field.qt = 'search' # default
+    config.add_search_field "keyword", label: "Keyword" do |field|
+      field.qt = "search" # default
     end
-    config.add_search_field 'name', label: 'Name' do |field|
-      field.qt = 'search'
+    config.add_search_field "name", label: "Name" do |field|
+      field.qt = "search"
       field.solr_parameters = {
-        qf:  '${qf_name}',
-        pf:  '${pf_name}'
+        qf:  "${qf_name}",
+        pf:  "${pf_name}"
       }
     end
-    config.add_search_field 'place', label: 'Place' do |field|
-      field.qt = 'search'
+    config.add_search_field "place", label: "Place" do |field|
+      field.qt = "search"
       field.solr_parameters = {
-        qf:  '${qf_place}',
-        pf:  '${pf_place}'
+        qf:  "${qf_place}",
+        pf:  "${pf_place}"
       }
     end
-    config.add_search_field 'subject', label: 'Subject' do |field|
-      field.qt = 'search'
+    config.add_search_field "subject", label: "Subject" do |field|
+      field.qt = "search"
       field.solr_parameters = {
-        qf:  '${qf_subject}',
-        pf:  '${pf_subject}'
+        qf:  "${qf_subject}",
+        pf:  "${pf_subject}"
       }
     end
-    config.add_search_field 'title', label: 'Title' do |field|
-      field.qt = 'search'
+    config.add_search_field "title", label: "Title" do |field|
+      field.qt = "search"
       field.solr_parameters = {
-        qf:  '${qf_title}',
-        pf:  '${pf_title}'
+        qf:  "${qf_title}",
+        pf:  "${pf_title}"
       }
     end
 
@@ -187,13 +187,13 @@ class CatalogController < ApplicationController
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc
     # except in the relevancy case).
-    config.add_sort_field 'score desc, title_sort asc', label: 'relevance'
-    config.add_sort_field 'date_sort asc', label: 'date (ascending)'
-    config.add_sort_field 'date_sort desc', label: 'date (descending)'
-    config.add_sort_field 'creator_sort asc', label: 'creator (A-Z)'
-    config.add_sort_field 'creator_sort desc', label: 'creator (Z-A)'
-    config.add_sort_field 'title_sort asc', label: 'title (A-Z)'
-    config.add_sort_field 'title_sort desc', label: 'title (Z-A)'
+    config.add_sort_field "score desc, title_sort asc", label: "relevance"
+    config.add_sort_field "date_sort asc", label: "date (ascending)"
+    config.add_sort_field "date_sort desc", label: "date (descending)"
+    config.add_sort_field "creator_sort asc", label: "creator (A-Z)"
+    config.add_sort_field "creator_sort desc", label: "creator (Z-A)"
+    config.add_sort_field "title_sort asc", label: "title (A-Z)"
+    config.add_sort_field "title_sort desc", label: "title (Z-A)"
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
@@ -201,7 +201,7 @@ class CatalogController < ApplicationController
 
     # Configuration for autocomplete suggestor
     config.autocomplete_enabled = true
-    config.autocomplete_path = 'suggest'
+    config.autocomplete_path = "suggest"
 
     ##
     # Arclight Configurations
@@ -217,7 +217,7 @@ class CatalogController < ApplicationController
     # Configuration for index actions
     config.index.document_actions << :containers
     config.index.document_actions << :online_content_label
-    config.add_results_document_tool :arclight_bookmark_control, partial: 'arclight_bookmark_control'
+    config.add_results_document_tool :arclight_bookmark_control, partial: "arclight_bookmark_control"
     config.index.document_actions.delete(:bookmark)
 
     config.show.metadata_partials = %i[
@@ -252,49 +252,49 @@ class CatalogController < ApplicationController
     # ===========================
 
     # Collection Show Page - Summary Section
-    config.add_summary_field 'creators_ssim', label: 'Creator', link_to_facet: true
-    config.add_summary_field 'abstract_ssm', label: 'Abstract', helper_method: :paragraph_separator
-    config.add_summary_field 'extent_ssm', label: 'Extent'
-    config.add_summary_field 'language_ssm', label: 'Language'
-    config.add_summary_field 'prefercite_ssm', label: 'Preferred citation'
+    config.add_summary_field "creators_ssim", label: "Creator", link_to_facet: true
+    config.add_summary_field "abstract_ssm", label: "Abstract", helper_method: :paragraph_separator
+    config.add_summary_field "extent_ssm", label: "Extent"
+    config.add_summary_field "language_ssm", label: "Language"
+    config.add_summary_field "prefercite_ssm", label: "Preferred citation"
 
     # Collection Show Page - Background Section
-    config.add_background_field 'scopecontent_ssm', label: 'Scope and Content', helper_method: :paragraph_separator
-    config.add_background_field 'bioghist_ssm', label: 'Biographical / Historical', helper_method: :paragraph_separator
-    config.add_background_field 'acqinfo_ssm', label: 'Acquisition information', helper_method: :paragraph_separator
-    config.add_background_field 'appraisal_ssm', label: 'Appraisal information', helper_method: :paragraph_separator
-    config.add_background_field 'custodhist_ssm', label: 'Custodial history', helper_method: :paragraph_separator
-    config.add_background_field 'processinfo_ssm', label: 'Processing information', helper_method: :paragraph_separator
-    config.add_background_field 'arrangement_ssm', label: 'Arrangement', helper_method: :paragraph_separator
-    config.add_background_field 'accruals_ssm', label: 'Accruals', helper_method: :paragraph_separator
-    config.add_background_field 'phystech_ssm', label: 'Physical / technical requirements', helper_method: :paragraph_separator
-    config.add_background_field 'physloc_ssm', label: 'Physical location', helper_method: :paragraph_separator
-    config.add_background_field 'descrules_ssm', label: 'Rules or conventions', helper_method: :paragraph_separator
+    config.add_background_field "scopecontent_ssm", label: "Scope and Content", helper_method: :paragraph_separator
+    config.add_background_field "bioghist_ssm", label: "Biographical / Historical", helper_method: :paragraph_separator
+    config.add_background_field "acqinfo_ssm", label: "Acquisition information", helper_method: :paragraph_separator
+    config.add_background_field "appraisal_ssm", label: "Appraisal information", helper_method: :paragraph_separator
+    config.add_background_field "custodhist_ssm", label: "Custodial history", helper_method: :paragraph_separator
+    config.add_background_field "processinfo_ssm", label: "Processing information", helper_method: :paragraph_separator
+    config.add_background_field "arrangement_ssm", label: "Arrangement", helper_method: :paragraph_separator
+    config.add_background_field "accruals_ssm", label: "Accruals", helper_method: :paragraph_separator
+    config.add_background_field "phystech_ssm", label: "Physical / technical requirements", helper_method: :paragraph_separator
+    config.add_background_field "physloc_ssm", label: "Physical location", helper_method: :paragraph_separator
+    config.add_background_field "descrules_ssm", label: "Rules or conventions", helper_method: :paragraph_separator
 
     # Collection Show Page - Related Section
-    config.add_related_field 'relatedmaterial_ssm', label: 'Related material', helper_method: :paragraph_separator
-    config.add_related_field 'separatedmaterial_ssm', label: 'Separated material', helper_method: :paragraph_separator
-    config.add_related_field 'otherfindaid_ssm', label: 'Other finding aids', helper_method: :paragraph_separator
-    config.add_related_field 'altformavail_ssm', label: 'Alternative form available', helper_method: :paragraph_separator
-    config.add_related_field 'originalsloc_ssm', label: 'Location of originals', helper_method: :paragraph_separator
+    config.add_related_field "relatedmaterial_ssm", label: "Related material", helper_method: :paragraph_separator
+    config.add_related_field "separatedmaterial_ssm", label: "Separated material", helper_method: :paragraph_separator
+    config.add_related_field "otherfindaid_ssm", label: "Other finding aids", helper_method: :paragraph_separator
+    config.add_related_field "altformavail_ssm", label: "Alternative form available", helper_method: :paragraph_separator
+    config.add_related_field "originalsloc_ssm", label: "Location of originals", helper_method: :paragraph_separator
 
     # Collection Show Page - Indexed Terms Section
-    config.add_indexed_terms_field 'access_subjects_ssim', label: 'Subjects', link_to_facet: true, separator_options: {
-      words_connector: '<br/>',
-      two_words_connector: '<br/>',
-      last_word_connector: '<br/>'
+    config.add_indexed_terms_field "access_subjects_ssim", label: "Subjects", link_to_facet: true, separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
     }
 
-    config.add_indexed_terms_field 'names_coll_ssim', label: 'Names', separator_options: {
-      words_connector: '<br/>',
-      two_words_connector: '<br/>',
-      last_word_connector: '<br/>'
+    config.add_indexed_terms_field "names_coll_ssim", label: "Names", separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
     }, helper_method: :link_to_name_facet
 
-    config.add_indexed_terms_field 'places_ssim', label: 'Places', link_to_facet: true, separator_options: {
-      words_connector: '<br/>',
-      two_words_connector: '<br/>',
-      last_word_connector: '<br/>'
+    config.add_indexed_terms_field "places_ssim", label: "Places", link_to_facet: true, separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
     }
 
     # ==========================
@@ -302,42 +302,42 @@ class CatalogController < ApplicationController
     # ==========================
 
     # Component Show Page - Metadata Section
-    config.add_component_field 'containers', label: 'Containers', accessor: 'containers', separator_options: {
-      words_connector: ', ',
-      two_words_connector: ', ',
-      last_word_connector: ', '
+    config.add_component_field "containers", label: "Containers", accessor: "containers", separator_options: {
+      words_connector: ", ",
+      two_words_connector: ", ",
+      last_word_connector: ", "
     }, if: lambda { |_context, _field_config, document|
       document.containers.present?
     }
-    config.add_component_field 'abstract_ssm', label: 'Abstract', helper_method: :paragraph_separator
-    config.add_component_field 'extent_ssm', label: 'Extent'
-    config.add_component_field 'scopecontent_ssm', label: 'Scope and Content', helper_method: :paragraph_separator
-    config.add_component_field 'acqinfo_ssm', label: 'Acquisition information', helper_method: :paragraph_separator
-    config.add_component_field 'appraisal_ssm', label: 'Appraisal information', helper_method: :paragraph_separator
-    config.add_component_field 'custodhist_ssm', label: 'Custodial history', helper_method: :paragraph_separator
-    config.add_component_field 'processinfo_ssm', label: 'Processing information', helper_method: :paragraph_separator
-    config.add_component_field 'arrangement_ssm', label: 'Arrangement', helper_method: :paragraph_separator
-    config.add_component_field 'accruals_ssm', label: 'Accruals', helper_method: :paragraph_separator
-    config.add_component_field 'phystech_ssm', label: 'Physical / technical requirements', helper_method: :paragraph_separator
-    config.add_component_field 'physloc_ssm', label: 'Physical location', helper_method: :paragraph_separator
+    config.add_component_field "abstract_ssm", label: "Abstract", helper_method: :paragraph_separator
+    config.add_component_field "extent_ssm", label: "Extent"
+    config.add_component_field "scopecontent_ssm", label: "Scope and Content", helper_method: :paragraph_separator
+    config.add_component_field "acqinfo_ssm", label: "Acquisition information", helper_method: :paragraph_separator
+    config.add_component_field "appraisal_ssm", label: "Appraisal information", helper_method: :paragraph_separator
+    config.add_component_field "custodhist_ssm", label: "Custodial history", helper_method: :paragraph_separator
+    config.add_component_field "processinfo_ssm", label: "Processing information", helper_method: :paragraph_separator
+    config.add_component_field "arrangement_ssm", label: "Arrangement", helper_method: :paragraph_separator
+    config.add_component_field "accruals_ssm", label: "Accruals", helper_method: :paragraph_separator
+    config.add_component_field "phystech_ssm", label: "Physical / technical requirements", helper_method: :paragraph_separator
+    config.add_component_field "physloc_ssm", label: "Physical location", helper_method: :paragraph_separator
 
     # Component Show Page - Indexed Terms Section
-    config.add_component_indexed_terms_field 'access_subjects_ssim', label: 'Subjects', link_to_facet: true, separator_options: {
-      words_connector: '<br/>',
-      two_words_connector: '<br/>',
-      last_word_connector: '<br/>'
+    config.add_component_indexed_terms_field "access_subjects_ssim", label: "Subjects", link_to_facet: true, separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
     }
 
-    config.add_component_indexed_terms_field 'names_ssim', label: 'Names', separator_options: {
-      words_connector: '<br/>',
-      two_words_connector: '<br/>',
-      last_word_connector: '<br/>'
+    config.add_component_indexed_terms_field "names_ssim", label: "Names", separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
     }, helper_method: :link_to_name_facet
 
-    config.add_component_indexed_terms_field 'places_ssim', label: 'Places', link_to_facet: true, separator_options: {
-      words_connector: '<br/>',
-      two_words_connector: '<br/>',
-      last_word_connector: '<br/>'
+    config.add_component_indexed_terms_field "places_ssim", label: "Places", link_to_facet: true, separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
     }
 
     # =================
@@ -345,24 +345,24 @@ class CatalogController < ApplicationController
     # =================
 
     # Collection Show Page Access Tab - Terms and Conditions Section
-    config.add_terms_field 'accessrestrict_ssm', label: 'Restrictions', helper_method: :paragraph_separator
-    config.add_terms_field 'userestrict_ssm', label: 'Terms of Access', helper_method: :paragraph_separator
+    config.add_terms_field "accessrestrict_ssm", label: "Restrictions", helper_method: :paragraph_separator
+    config.add_terms_field "userestrict_ssm", label: "Terms of Access", helper_method: :paragraph_separator
 
     # Component Show Page Access Tab - Terms and Condition Section
-    config.add_component_terms_field 'accessrestrict_ssm', label: 'Restrictions', helper_method: :paragraph_separator
-    config.add_component_terms_field 'userestrict_ssm', label: 'Terms of Access', helper_method: :paragraph_separator
-    config.add_component_terms_field 'parent_access_restrict_ssm', label: 'Parent Restrictions', helper_method: :paragraph_separator
-    config.add_component_terms_field 'parent_access_terms_ssm', label: 'Parent Terms of Access', helper_method: :paragraph_separator
+    config.add_component_terms_field "accessrestrict_ssm", label: "Restrictions", helper_method: :paragraph_separator
+    config.add_component_terms_field "userestrict_ssm", label: "Terms of Access", helper_method: :paragraph_separator
+    config.add_component_terms_field "parent_access_restrict_ssm", label: "Parent Restrictions", helper_method: :paragraph_separator
+    config.add_component_terms_field "parent_access_terms_ssm", label: "Parent Terms of Access", helper_method: :paragraph_separator
 
     # Collection and Component Show Page Access Tab - In Person Section
-    config.add_in_person_field 'repository_ssm', if: :repository_config_present, label: 'Location of this collection', helper_method: :context_access_tab_repository
-    config.add_in_person_field 'id', if: :before_you_visit_note_present, label: 'Before you visit', helper_method: :context_access_tab_visit_note # Using ID because we know it will always exist
+    config.add_in_person_field "repository_ssm", if: :repository_config_present, label: "Location of this collection", helper_method: :context_access_tab_repository
+    config.add_in_person_field "id", if: :before_you_visit_note_present, label: "Before you visit", helper_method: :context_access_tab_visit_note # Using ID because we know it will always exist
 
     # Collection and Component Show Page Access Tab - How to Cite Section
-    config.add_cite_field 'prefercite_ssm', label: 'Preferred citation'
+    config.add_cite_field "prefercite_ssm", label: "Preferred citation"
 
     # Collection and Component Show Page Access Tab - Contact Section
-    config.add_contact_field 'repository_ssm', if: :repository_config_present, label: 'Contact', helper_method: :access_repository_contact
+    config.add_contact_field "repository_ssm", if: :repository_config_present, label: "Contact", helper_method: :access_repository_contact
 
     # Remove unused show document actions
     %i[citation email sms].each do |action|
