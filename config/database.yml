@@ -18,10 +18,13 @@ test:
   username: <%= ENV["PLANTAIN_DB_USERNAME"] %>
   password: <%= ENV["PLANTAIN_DB_PASSWORD"] %>
 
-production:
+production: &deploy
   <<: *default
   host: <%= ENV["PLANTAIN_DB_HOST"] %>
   database: <%= ENV["PLANTAIN_DB"] %>
   username: <%= ENV["PLANTAIN_DB_USERNAME"] %>
   password: <%= ENV["PLANTAIN_DB_PASSWORD"] %>
   pool: 40
+
+staging:
+  <<: *deploy
