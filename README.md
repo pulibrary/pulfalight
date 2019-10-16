@@ -13,7 +13,7 @@ bundle exec rake db:setup db:migrate
 ```
 
 #### Node.js Support
-Remember you'll need to run `bundle install` and `yarn install` (or `npm 
+Remember you'll need to run `bundle install` and `yarn install` (or `npm
 install`) on an ongoing basis as dependencies are updated.  Please note that the
 oldest version of Node.js supported is 10.16.0.
 
@@ -32,7 +32,7 @@ oldest version of Node.js supported is 10.16.0.
 By default, Plantain uses Solr over the port 8983 (deployed using
 `solr_wrapper`) for the index.
 
-Please see [the ArcLight 
+Please see [the ArcLight
 documentation](https://github.com/projectblacklight/arclight/wiki/Indexing-EAD-in-ArcLight#repository-configuration)
 for information regarding the configuration of repositories in ArcLight.
 
@@ -88,5 +88,13 @@ export PULFA_USERNAME=[the PULFA subversion username]
 svn checkout $PULFA_SERVER_URL --username $PULFA_USERNAME eads/pulfa/
 ```
 
-One should now have access to the EAD files from within the local development 
+One should now have access to the EAD files from within the local development
 environment.
+
+#### Indexing the PULFA Documents into the Plantain Server Environment
+One may also index the Documents remotely on the staging server by invoking the
+follow Capistrano task:
+
+```bash
+bundle exec cap staging plantain:index_pulfa
+```
