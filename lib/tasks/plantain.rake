@@ -55,12 +55,12 @@ namespace :plantain do
       system("FILE=#{file} rake arclight:index") # no REPOSITORY_ID
     end
 
-    Dir.glob('spec/fixtures/ead/*').each do |dir|
+    Dir.glob("spec/fixtures/ead/*").each do |dir|
       next unless File.directory?(dir)
 
       repository_id = File.basename(dir)
       system("REPOSITORY_ID=#{repository_id} " \
-             'REPOSITORY_FILE=config/repositories.yml ' \
+             "REPOSITORY_FILE=config/repositories.yml " \
              "DIR=#{dir} " \
              "rake arclight:index_dir")
     end
@@ -84,11 +84,9 @@ namespace :plantain do
   # Retrieve the URL for the Blacklight Solr core
   # @return [String]
   def blacklight_url
-    begin
-      blacklight_connection.base_uri
-    rescue StandardError
-      ENV['SOLR_URL'] || 'http://127.0.0.1:8983/solr/blacklight-core'
-    end
+    blacklight_connection.base_uri
+  rescue StandardError
+    ENV["SOLR_URL"] || "http://127.0.0.1:8983/solr/blacklight-core"
   end
 
   # Delete a set of Solr Documents using a query
@@ -111,7 +109,7 @@ namespace :plantain do
   # Retrieve the file path for the ArcLight core Traject configuration
   # @return [String]
   def arclight_config_path
-    pathname = Arclight::Engine.root.join('lib', 'arclight', 'traject', 'ead2_config.rb')
+    pathname = Arclight::Engine.root.join("lib", "arclight", "traject", "ead2_config.rb")
     pathname.to_s
   end
 
@@ -131,7 +129,7 @@ namespace :plantain do
     xml_doc = Nokogiri::XML(file)
     xml_doc.remove_namespaces!
     solr_document = indexer.map_record(xml_doc)
-    query_by_id(id: solr_document['id'])
+    query_by_id(id: solr_document["id"])
   end
 
   # Determines whether or not an EAD-XML Document has already been indexed in
@@ -149,7 +147,7 @@ namespace :plantain do
   # @param [String] relative_path
   def index_document(relative_path:)
     file_path = File.absolute_path(relative_path)
-    ENV['FILE'] = file_path
+    ENV["FILE"] = file_path
 
     logger.info "Indexing #{file_path}..."
     begin
@@ -158,7 +156,7 @@ namespace :plantain do
         return
       end
 
-      Rake::Task['arclight:index'].invoke
+      Rake::Task["arclight:index"].invoke
     rescue StandardError => arclight_error
       logger.error "Failed to index #{file_path}: #{arclight_error}"
     end
@@ -167,7 +165,7 @@ namespace :plantain do
   # Generate the path for the EAD directory
   # @return [Pathname]
   def pulfa_root
-    @pulfa_root ||= Rails.root.join('eads', 'pulfa')
+    @pulfa_root ||= Rails.root.join("eads", "pulfa")
   end
 
   # Index a directory of PULFA EAD-XML Document into Solr
@@ -176,7 +174,7 @@ namespace :plantain do
   def index_collection(name:, root_path: nil)
     root_path ||= pulfa_root
     dir = root_path.join(name)
-    glob_pattern = File.join(dir, '**', '*.xml')
+    glob_pattern = File.join(dir, "**", "*.xml")
 
     Dir.glob(glob_pattern).each do |file_path|
       index_document(relative_path: file_path)
