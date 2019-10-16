@@ -2,12 +2,8 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.4.4"
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 5.2.1"
-# Use sqlite3 as the database for Active Record
-gem "sqlite3"
 # Use Puma as the app server
 gem "puma", "~> 3.11"
 # Use SCSS for stylesheets
@@ -48,6 +44,9 @@ group :development do
   gem "pry-byebug"
   gem "web-console", ">= 3.3.0"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-passenger", require: false
+  gem "capistrano-rails", "~> 1.4", require: false
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
 end
@@ -67,7 +66,6 @@ gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
 gem "blacklight_range_limit", "~> 7.1"
 group :development, :test do
   gem "bixby"
-  gem "solr_wrapper", ">= 0.3"
 end
 
 gem "bootstrap", "~> 4.0"
@@ -77,6 +75,5 @@ gem "jquery-rails"
 gem "pg"
 gem "popper_js"
 gem "rsolr", ">= 1.0", "< 3"
+gem "solr_wrapper", "~> 2.1"
 gem "twitter-typeahead-rails", "0.11.1.pre.corejavascript"
-
-gem "blacklight-locale_picker"
