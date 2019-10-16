@@ -37,7 +37,7 @@ populated into the `eads/pulfa` directory, yielding a structure similar to the
 following:
 
 ```bash
-% ll eads/pulfa/eads
+% ll eads/pulfa
 [...] cotsen
 [...] eng
 [...] ga
