@@ -40,3 +40,33 @@ set :linked_dirs, fetch(:linked_dirs, []).push("log", "vendor/bundle", "public/u
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+set :pulfa_dir_path, fetch(:pulfa_dir_path, '/var/opt/pulfa')
+set :pulfa_collections, fetch(:pulfa_collections, %w{cotsen ea eng ga lae mss mudd rarebooks})
+
+namespace :plantain do
+  desc 'Symbolically links the SVN repository directory within the app.'
+  task :link_pulfa do
+    target = release_path.join('eads')
+    source = fetch(:pulfa_dir_path)
+    on roles(:app) do
+      execute :ln, '-s', source, target
+    end
+  end
+
+  desc 'Indexes the PULFA EAD files'
+  task :index_pulfa do
+    collections = fetch(:pulfa_collections)
+    on roles(:app) do
+      within release_path do
+        with :rails_env => fetch(:rails_env) do
+          collections.each do |collection|
+            rake "plantain:index:collection[#{collection}]"
+          end
+        end
+      end
+    end
+  end
+end
+
+after 'deploy:finished', 'plantain:link_pulfa'
