@@ -55,12 +55,9 @@ end
 group :test do
   # Adds support for Capybara
   gem "capybara", ">= 2.15"
-  gem "webdrivers" 
-  gem "selenium-webdriver"
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem "chromedriver-helper"
   gem "coveralls", require: false
   gem "simplecov", require: false
+  gem "webdrivers"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

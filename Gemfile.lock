@@ -433,11 +433,7 @@ DEPENDENCIES
   rsolr (>= 1.0, < 3)
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
-<<<<<<< HEAD
-=======
-  selenium-webdriver
   simplecov
->>>>>>> Add coveralls; simplecov; spec-rails
   solr_wrapper (~> 2.1)
   spring
   spring-watcher-listen (~> 2.0.0)
