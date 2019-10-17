@@ -1,6 +1,10 @@
 version: 2
 jobs:
   build:
+    working_directory: ~/plantain
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     # Primary command image where all commands run
     docker:
       - image: circleci/ruby:2.4.4-node-browsers
@@ -16,9 +20,10 @@ jobs:
           POSTGRES_PASSWORD: ""
       - image: solr:7.1-alpine
         command: bin/solr -cloud -noprompt -f -p 8984
-    working_directory: ~/plantain
+
     steps:
       - checkout
+      - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
       - run:
           name: Set Timezone to EST/EDT
           command: echo 'America/New_York' = /etc/timezone
@@ -39,9 +44,27 @@ jobs:
           key: plantain-{{ checksum "Gemfile.lock" }}
           paths:
             - ./vendor/bundle
+      # project database settings
       - run:
           name: Wait for PostgreSQL
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:migrate
+      - run: bundle exec rake db:migrate RAILS_ENV=test
+      # Test
       - run:
-          name: Database setup
-          command: bundle exec rake db:setup
+          name: Run rubocop
+          command: bundle exec rake rubocop
+      - run:
+          name: Run Rspec
+          command: bundle exec rspec
+      # Save artifacts
+      - store_artifacts:
+          path: /tmp/circleci-artifacts
+      - store_artifacts:
+          path: /tmp/circleci-test-results
+
+      
+
+      

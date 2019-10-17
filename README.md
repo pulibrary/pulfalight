@@ -1,4 +1,6 @@
 # Plantain
+[![Coverage Status](https://coveralls.io/repos/github/pulibrary/plantain/badge.svg?branch=master)](https://coveralls.io/github/pulibrary/plantain?branch=master)
+
 This is an implementation of ArcLight being implemented as a replacement for the
  Princeton University Finding Aids (PULFA) service.
 
