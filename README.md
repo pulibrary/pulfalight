@@ -9,6 +9,7 @@ This is an implementation of ArcLight being implemented as a replacement for the
 git clone https://github.com/pulibrary/plantain.git
 cd plantain
 bundle install
+bundle exec rake db:setup db:migrate
 ```
 
 #### Node.js Support
