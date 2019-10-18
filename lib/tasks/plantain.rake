@@ -19,13 +19,13 @@ namespace :plantain do
   end
 
   desc "Run Solr and Arclight for interactive development"
-  task :development, %i[rails_server_args] do |_t, args|
+  task :development do
     SolrWrapper.wrap(managed: true, verbose: true, port: 8983, instance_dir: "tmp/plantain-core-dev", persist: false, download_dir: "tmp") do |solr|
       solr.with_collection(name: "plantain-core-dev", dir: Rails.root.join("solr", "conf").to_s) do
         puts "Setup solr"
         puts "Solr running at http://localhost:8983/solr/plantain-core-dev/, ^C to exit"
         begin
-          system "bundle exec rails s #{args[:rails_server_args]}"
+          sleep
         rescue Interrupt
           puts "\nShutting down..."
         end

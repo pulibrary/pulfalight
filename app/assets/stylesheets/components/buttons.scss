@@ -1,0 +1,17 @@
+@import "variables/colors";
+
+.btn-primary {
+  color: $white;
+  background-color: $blue;
+  border-color: $blue;
+
+  &:hover {
+    background-color: $st-tropaz;
+    border-color: $dark-st-tropaz;
+  }
+
+  &:not(:disabled):not(.disabled):active {
+    background-color: $dark-st-tropaz;
+    border-color: $bay-of-many;
+  }
+}

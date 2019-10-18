@@ -1,0 +1,35 @@
+@import 'variables/colors';
+
+header {
+  .lux-library-header[data-v-22f7d1b2] {
+    background-color: $black-pul;
+
+    .lux-header-content {
+      width: 992px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 15px;
+      padding-right: 15px;
+
+      .lux-app-name[data-v-22f7d1b2]:not(:empty) {
+        padding-top: 4px;
+      }
+    }
+  }
+  .header__secondary {
+    background-color: $light-gray;
+    nav {
+      .row {
+        .search-navbar {
+          padding: 0 1rem;
+          width: 100%;
+
+          /** This should be a separate component */
+          .search-query-form {
+            padding: 1.125em 0;
+          }
+        }
+      }
+    }
+  }
+}
