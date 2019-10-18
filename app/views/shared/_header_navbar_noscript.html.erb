@@ -1,0 +1,18 @@
+<header role="banner">
+  <div class="branding">
+    <div class="container">
+      <h2><a href="https://library.princeton.edu" title="Princeton University Library - Home" class="site-logo">
+          <%= image_tag "library_full_logo.svg", class: "logo-svg", alt: "Princeton University Library" %></a></h2>
+    </div>
+  </div>
+
+  <% unless params[:action] == 'error' || params[:action] == 'generate' %>
+    <div class="header__secondary">
+      <nav class="container" role="navigation">
+        <div id="search-navbar" class="col-xs-12 search-navbar" role="search">
+          <%= render_search_bar %>
+        </div>
+      </nav>
+    </div>
+  <% end %>
+</header>

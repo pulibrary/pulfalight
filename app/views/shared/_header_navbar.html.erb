@@ -1,0 +1,14 @@
+<header class="lux">
+  <library-header app-name="<%= application_name %>" app-url="<%= root_path %>"></library-header>
+  <% unless params[:action] == 'error' || params[:action] == 'generate' %>
+    <div class="header__secondary">
+      <nav class="container" role="navigation">
+        <div class="row">
+          <div id="search-navbar" class="search-navbar" role="search">
+            <%= render_search_bar %>
+          </div>
+        </div>
+      </nav>
+    </div>
+  <% end %>
+</header>

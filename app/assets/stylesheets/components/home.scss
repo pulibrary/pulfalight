@@ -1,0 +1,25 @@
+
+.home {
+  text-align: center;
+
+  &-text {
+    padding: 3.85rem;
+
+    h2 {
+      margin-bottom: 1.85rem;
+    }
+  }
+
+  &-browse {
+    margin-top: 0.35rem;
+    margin-bottom: 1.85rem;
+
+    .row {
+      display: flex;
+
+      .btn {
+        margin-bottom: 1.35rem;
+      }
+    }
+  }
+}

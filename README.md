@@ -11,16 +11,20 @@ cd plantain
 bundle install
 ```
 
+#### Node.js Support
 Remember you'll need to run `bundle install` and `yarn install` (or `npm 
-install`) on an ongoing basis as dependencies are updated.
+install`) on an ongoing basis as dependencies are updated.  Please note that the
+oldest version of Node.js supported is 10.16.0.
 
 #### Setup server
 1. For development:
-   - `rake plantain:development`
+   - `bundle exec rake plantain:development`
+   - In a separate terminal, please run: `bundle exec foreman start`
+   - _Or, should you need to debug the Webpack build, please run `bundle exec webpack-dev-server` instead, and then run `bundle exec rails server` in another terminal_
    - Now, please visit the new installation at
      [http://localhost:3000](http://localhost:3000)
 2. For testing:
-   - `rake plantain:test`
+   - `bundle exec rake plantain:test`
    - In a separate terminal, please run: `bundle exec rspec`
 
 ### Configuration
