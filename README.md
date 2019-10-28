@@ -53,3 +53,24 @@ following:
 [...] mudd
 [...] rarebooks
 ```
+
+##### Retrieving the Documents from SVN
+In order to download the EAD documents from Princeton University Library
+servers, one will need to please request both the server name, as well as the
+credentials for retrieving the documents from ITIMS staff. Once these have been
+obtained, one must still ensure that one has SVN installed locally:
+
+*In a macOS Environment:*
+```
+brew install svn
+```
+
+Then, please download the files with the following:
+```
+export PULFA_SERVER_URL=[the PULFA subversion URL]
+export PULFA_USERNAME=[the PULFA subversion username]
+svn checkout $PULFA_SERVER_URL --username $PULFA_USERNAME eads/pulfa/
+```
+
+One should now have access to the EAD files from within the local development 
+environment.
