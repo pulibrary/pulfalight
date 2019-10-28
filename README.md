@@ -8,6 +8,7 @@ This is an implementation of ArcLight being implemented as a replacement for the
 ```sh
 git clone https://github.com/pulibrary/plantain.git
 cd plantain
+yarn install
 bundle install
 bundle exec rake db:setup db:migrate
 ```
