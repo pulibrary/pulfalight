@@ -53,3 +53,40 @@ following:
 [...] mudd
 [...] rarebooks
 ```
+
+##### Retrieving the Documents from SVN
+
+One must ensure that SVN is installed locally:
+
+*In a macOS Environment:*
+```
+brew install svn
+```
+
+###### Using `lpass` for authentication [LastPass](https://lastpass.com)
+
+*In a macOS Environment:*
+```
+brew install lpass
+```
+
+Then please invoke the following:
+```
+lpass login username@domain.edu
+bundle exec rake pulfa:checkout
+```
+
+###### Manually Retrieving the Documents (without `lpass`)
+In order to download the EAD documents from Princeton University Library
+servers, one will need to please retrieve the server name, as well as the
+credentials for retrieving the documents from LastPass. Then, please download
+the files with the following:
+
+```
+export PULFA_SERVER_URL=[the PULFA subversion URL]
+export PULFA_USERNAME=[the PULFA subversion username]
+svn checkout $PULFA_SERVER_URL --username $PULFA_USERNAME eads/pulfa/
+```
+
+One should now have access to the EAD files from within the local development 
+environment.
