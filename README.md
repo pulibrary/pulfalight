@@ -56,7 +56,6 @@ following:
 
 ##### Retrieving the Documents from SVN
 
-_Installing Subversion (SVN)_
 One must ensure that SVN is installed locally:
 
 *In a macOS Environment:*
@@ -64,22 +63,16 @@ One must ensure that SVN is installed locally:
 brew install svn
 ```
 
-###### Using `lpass`
-
-_Installing `lpass` for authentication [LastPass](https://lastpass.com)_
+###### Using `lpass` for authentication [LastPass](https://lastpass.com)
 
 *In a macOS Environment:*
 ```
 brew install lpass
 ```
 
-_Authenticating on LastPass_
+Then please invoke the following:
 ```
 lpass login username@domain.edu
-```
-
-_Downloading the files over SVN_
-```
 bundle exec rake pulfa:checkout
 ```
 
