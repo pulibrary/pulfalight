@@ -71,6 +71,7 @@ end
 gem "bootstrap", "~> 4.0"
 gem "devise"
 gem "devise-guests", "~> 0.6"
+gem "honeybadger", "~> 4.0"
 gem "jquery-rails"
 gem "pg"
 gem "popper_js"
