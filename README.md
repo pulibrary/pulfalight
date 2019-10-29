@@ -55,17 +55,40 @@ following:
 ```
 
 ##### Retrieving the Documents from SVN
-In order to download the EAD documents from Princeton University Library
-servers, one will need to please request both the server name, as well as the
-credentials for retrieving the documents from ITIMS staff. Once these have been
-obtained, one must still ensure that one has SVN installed locally:
+
+_Installing Subversion (SVN)_
+One must ensure that SVN is installed locally:
 
 *In a macOS Environment:*
 ```
 brew install svn
 ```
 
-Then, please download the files with the following:
+###### Using `lpass`
+
+_Installing `lpass` for authentication [LastPass](https://lastpass.com)_
+
+*In a macOS Environment:*
+```
+brew install lpass
+```
+
+_Authenticating on LastPass_
+```
+lpass login username@domain.edu
+```
+
+_Downloading the files over SVN_
+```
+bundle exec rake pulfa:checkout
+```
+
+###### Manually Retrieving the Documents (without `lpass`)
+In order to download the EAD documents from Princeton University Library
+servers, one will need to please retrieve the server name, as well as the
+credentials for retrieving the documents from LastPass. Then, please download
+the files with the following:
+
 ```
 export PULFA_SERVER_URL=[the PULFA subversion URL]
 export PULFA_USERNAME=[the PULFA subversion username]
