@@ -228,6 +228,8 @@ GEM
     pry-byebug (3.6.0)
       byebug (~> 10.0)
       pry (~> 0.10)
+    pry-rails (0.3.6)
+      pry (>= 0.10.4)
     public_suffix (4.0.1)
     puma (3.12.0)
     rack (2.0.7)
@@ -435,6 +437,7 @@ DEPENDENCIES
   pg
   popper_js
   pry-byebug
+  pry-rails
   puma (~> 3.11)
   rails (~> 5.2.1)
   rsolr (>= 1.0, < 3)
