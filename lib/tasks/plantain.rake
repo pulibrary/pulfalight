@@ -156,7 +156,11 @@ namespace :plantain do
         return
       end
 
-      Rake::Task["arclight:index"].invoke
+      solr_url = blacklight_url
+      elapsed_time = Benchmark.realtime {
+        `bundle exec traject -u #{solr_url} -i xml -c #{arclight_config_path} #{file_path}`
+      }
+      print "Indexed #{ENV['FILE']} (in #{elapsed_time.round(3)} secs).\n"
     rescue StandardError => arclight_error
       logger.error "Failed to index #{file_path}: #{arclight_error}"
     end
