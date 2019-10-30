@@ -156,7 +156,8 @@ namespace :plantain do
         return
       end
 
-      Rake::Task["arclight:index"].invoke
+      system("rake arclight:index FILE=#{file_path}")
+      # Rake::Task["arclight:index"].invoke
     rescue StandardError => arclight_error
       logger.error "Failed to index #{file_path}: #{arclight_error}"
     end
