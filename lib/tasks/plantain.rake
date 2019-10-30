@@ -172,6 +172,12 @@ namespace :plantain do
     @pulfa_root ||= Rails.root.join("eads", "pulfa")
   end
 
+  class EADArray < Array
+    def put(context)
+      push(context.output_hash)
+    end
+  end
+
   # Index a directory of PULFA EAD-XML Document into Solr
   # Note: This assumes that the documents have been checked out into eads/pulfa
   # @param [String] relative_path
@@ -179,9 +185,21 @@ namespace :plantain do
     root_path ||= pulfa_root
     dir = root_path.join(name)
     glob_pattern = File.join(dir, "**", "*.xml")
-
-    Dir.glob(glob_pattern).each do |file_path|
-      index_document(relative_path: file_path)
+    file_paths = Dir.glob(glob_pattern)
+    puts "Loading the EAD Documents from #{dir}..."
+    xml_documents = file_paths.map do |file_path|
+      doc_string = File.open(file_path)
+      document = Nokogiri::XML.parse(doc_string)
+      document.remove_namespaces!
+      document
     end
+    solr_documents = EADArray.new
+    puts "Transforming the Documents for Solr..."
+    indexer.process_with(xml_documents, solr_documents)
+
+    puts "Requesting a batch Solr update..."
+    blacklight_connection.add solr_documents
+    blacklight_connection.commit
+    puts "Successfully indexed the EADs for #{name}"
   end
 end
