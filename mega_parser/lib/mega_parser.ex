@@ -38,9 +38,15 @@ defmodule MegaParser do
       creator_persname_ssm: ~x"./archdesc/did/origination/persname/text()"ls,
       creator_corpname_ssm: ~x"./archdesc/did/origination/corpname/text()"ls,
       creator_famname_ssm: ~x"./archdesc/did/origination/famname/text()"ls,
-      persname_sim: ~x"//persname/text()"ls
+      persname_sim: ~x"//persname/text()"ls,
+      access_terms_ssm: ~x"./archdesc/userestrict/*[local-name()!='head']/text()"ls,
+      acqinfo_ssim: ~x"./archdesc/descgrp/acqinfo/*[local-name()!='head']/descendant-or-self::text()"s,
+      access_subjects_ssim: ~x"./archdesc/controlaccess"e |> transform_by(&access_subjects/1),
+      extent_ssm: ~x"./archdesc/did/physdesc/extent/text()"ls,
+      genreform_sim: ~x"./archdesc/controlaccess/genreform/text()"ls,
     )
     |> process_parent_record
+
   end
 
   defp process_parent_record(record) do
@@ -49,6 +55,9 @@ defmodule MegaParser do
     |> Map.put(:title_teim, record.title_ssm)
     |> Map.put(:unitid_teim, record.unitid_ssm)
     |> Map.put(:geogname_sim, record.geogname_ssm)
+    |> Map.put(:places_sim, record.geogname_ssm)
+    |> Map.put(:places_ssim, record.geogname_ssm)
+    |> Map.put(:places_ssm, record.geogname_ssm)
     |> Map.put(:creator_sim, record.creator_ssm)
     |> Map.put(:creator_ssim, record.creator_ssm)
     |> Map.put(:creator_sort, Enum.join(record.creator_ssm, ", "))
@@ -57,11 +66,21 @@ defmodule MegaParser do
     |> Map.put(:creator_corpname_sim, record.creator_corpname_ssm)
     |> Map.put(:creator_famname_ssim, record.creator_famname_ssm)
     |> Map.put(:creators_ssim, record[:creator_persname_ssm] ++ record[:creator_corpname_ssm] ++ record[:creator_famname_ssm])
-# to_field "creators_ssim" do |_record, accumulator, context|
-#   accumulator.concat context.output_hash["creator_persname_ssm"] if context.output_hash["creator_persname_ssm"]
-#   accumulator.concat context.output_hash["creator_corpname_ssm"] if context.output_hash["creator_corpname_ssm"]
-#   accumulator.concat context.output_hash["creator_famname_ssm"] if context.output_hash["creator_famname_ssm"]
-# end
+    |> Map.put(:acqinfo_ssm, record[:acqinfo_ssim])
+    |> Map.put(:access_subjects_ssm, record[:access_subjects_ssim])
+    |> Map.put(:extent_teim, record[:extent_ssm])
+    |> Map.put(:genreform_ssm, record[:genreform_sim])
+  end
+
+
+  defp access_subjects(node) do
+    ["subject", "function", "occupation", "genreform"]
+    |> Enum.flat_map(&extract_field(node, &1))
+  end
+
+  defp extract_field(node, field) do
+    node
+    |> xpath(~x"//#{field}/text()"ls)
   end
 
   defp extract_level(level_xpath) do
@@ -117,37 +136,6 @@ end
 #   accumulator << context.clipboard[:repository]
 # end
 #
-#
-# to_field "creators_ssim" do |_record, accumulator, context|
-#   accumulator.concat context.output_hash["creator_persname_ssm"] if context.output_hash["creator_persname_ssm"]
-#   accumulator.concat context.output_hash["creator_corpname_ssm"] if context.output_hash["creator_corpname_ssm"]
-#   accumulator.concat context.output_hash["creator_famname_ssm"] if context.output_hash["creator_famname_ssm"]
-# end
-#
-# to_field "places_sim", extract_xpath("/ead/archdesc/controlaccess/geogname")
-# to_field "places_ssim", extract_xpath("/ead/archdesc/controlaccess/geogname")
-# to_field "places_ssm", extract_xpath("/ead/archdesc/controlaccess/geogname")
-#
-# to_field "access_terms_ssm", extract_xpath('/ead/archdesc/userestrict/*[local-name()!="head"]')
-#
-# to_field "acqinfo_ssim", extract_xpath('/ead/archdesc/acqinfo/*[local-name()!="head"]')
-# to_field "acqinfo_ssim", extract_xpath('/ead/archdesc/descgrp/acqinfo/*[local-name()!="head"]')
-# to_field "acqinfo_ssm" do |_record, accumulator, context|
-#   accumulator.concat(context.output_hash.fetch("acqinfo_ssim", []))
-# end
-#
-# to_field "access_subjects_ssim", extract_xpath("/ead/archdesc/controlaccess", to_text: false) do |_record, accumulator|
-#   accumulator.map! do |element|
-#     %w[subject function occupation genreform].map do |selector|
-#       element.xpath(".//#{selector}").map(&:text)
-#     end
-#   end.flatten!
-# end
-#
-# to_field "access_subjects_ssm" do |_record, accumulator, context|
-#   accumulator.concat Array.wrap(context.output_hash["access_subjects_ssim"])
-# end
-#
 # to_field "has_online_content_ssim", extract_xpath(".//dao") do |_record, accumulator|
 #   accumulator.replace([accumulator.any?])
 # end
@@ -160,11 +148,6 @@ end
 #     Arclight::DigitalObject.new(label: label, href: href).to_json
 #   end
 # end
-#
-# to_field "extent_ssm", extract_xpath("/ead/archdesc/did/physdesc/extent")
-# to_field "extent_teim", extract_xpath("/ead/archdesc/did/physdesc/extent")
-# to_field "genreform_sim", extract_xpath("/ead/archdesc/controlaccess/genreform")
-# to_field "genreform_ssm", extract_xpath("/ead/archdesc/controlaccess/genreform")
 #
 # to_field "date_range_sim", extract_xpath("/ead/archdesc/did/unitdate/@normal", to_text: false) do |_record, accumulator|
 #   range = Plantain::YearRange.new
