@@ -16,10 +16,9 @@ Metrics/BlockLength:
   Exclude:
     - 'lib/tasks/plantain.rake'
     - 'app/controllers/catalog_controller.rb'
+    - 'spec/jobs/index_job_spec.rb'
 Metrics/MethodLength:
   Exclude:
     - 'lib/tasks/plantain.rake'
-    - 'app/controllers/catalog_controller.rb'
-    - 'spec/jobs/index_job_spec.rb'
 Style/StringLiterals:
   EnforcedStyle: double_quotes
