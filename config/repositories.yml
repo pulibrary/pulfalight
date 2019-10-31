@@ -1,3 +1,27 @@
+wa:
+  name: 'Western Americana Collection'
+  description: 'Western Americana Collection'
+  building: 'Seeley G. Mudd Library'
+  address1: 'Princeton University Library. Special Collections'
+  address2: 'Manuscripts Division'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08544'
+  country: 'USA'
+  phone: ''
+  contact_info: '@princeton.edu'
+  request_types:
+    aeon_external_request_endpoint:
+      request_url: 'https://lib-aeon.princeton.edu/aeon/testweb/Aeon.dll'
+      request_mappings:
+        url_params:
+          Action: 10
+          Type: 200
+        static:
+          SystemId: foo
+          ItemInfo1: foo
+        accessor:
+          ItemTitle: collection_name
 nlm:
   name: 'National Library of Medicine. History of Medicine Division'
   description: 'NLM’s History of Medicine Division collects, preserves, makes available, and interprets for diverse audiences one of the world’s richest collections of historical material related to human health and disease.'
