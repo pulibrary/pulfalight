@@ -146,39 +146,18 @@ namespace :plantain do
     doc.present?
   end
 
-  # Index an EAD-XML Document into Solr
-  # @param [String] relative_path
-  def index_document(relative_path:)
-    file_path = File.absolute_path(relative_path)
-    ENV["FILE"] = file_path
-
-    logger.info "Indexing #{file_path}..."
-    begin
-      if indexed?(file_path: file_path)
-        logger.info "Already indexed #{file_path}"
-        return
-      end
-
-      solr_url = blacklight_url
-      elapsed_time = Benchmark.realtime do
-        `bundle exec traject -u #{solr_url} -i xml -c #{arclight_config_path} #{file_path}`
-      end
-      print "Indexed #{ENV['FILE']} (in #{elapsed_time.round(3)} secs).\n"
-    rescue StandardError => arclight_error
-      logger.error "Failed to index #{file_path}: #{arclight_error}"
-    end
-  end
-
   # Generate the path for the EAD directory
   # @return [Pathname]
   def pulfa_root
     @pulfa_root ||= Rails.root.join("eads", "pulfa")
   end
 
-  class EADArray < Array
-    def put(context)
-      push(context.output_hash)
-    end
+  # Index an EAD-XML Document into Solr
+  # @param [String] relative_path
+  def index_document(relative_path:, root_path: nil)
+    root_path ||= pulfa_root
+    ead_file_path = root_path.join(relative_path)
+    IndexJob.perform_now([ead_file_path])
   end
 
   # Index a directory of PULFA EAD-XML Document into Solr
