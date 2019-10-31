@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative "../../app/jobs/application_job"
+require_relative "../../app/jobs/index_job"
+
 namespace :plantain do
   namespace :index do
     desc "Delete all Solr documents in the index"
@@ -186,20 +189,9 @@ namespace :plantain do
     dir = root_path.join(name)
     glob_pattern = File.join(dir, "**", "*.xml")
     file_paths = Dir.glob(glob_pattern)
-    puts "Loading the EAD Documents from #{dir}..."
-    xml_documents = file_paths.map do |file_path|
-      doc_string = File.open(file_path)
-      document = Nokogiri::XML.parse(doc_string)
-      document.remove_namespaces!
-      document
-    end
-    solr_documents = EADArray.new
-    puts "Transforming the Documents for Solr..."
-    indexer.process_with(xml_documents, solr_documents)
 
-    puts "Requesting a batch Solr update..."
-    blacklight_connection.add solr_documents
-    blacklight_connection.commit
-    puts "Successfully indexed the EADs for #{name}"
+    file_paths.each_slice(1) do |file_path_subset|
+      IndexJob.perform_now(file_path_subset)
+    end
   end
 end
