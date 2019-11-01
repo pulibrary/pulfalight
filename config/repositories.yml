@@ -10,45 +10,6 @@ wa:
   country: 'USA'
   phone: ''
   contact_info: '@princeton.edu'
-  request_types:
-    aeon_external_request_endpoint:
-      request_url: 'https://lib-aeon.princeton.edu/aeon/testweb/Aeon.dll'
-=begin
-      {name: "Request", value: "32101037692462"}
-      1: {name: "ItemSubTitle_32101037692462", value: "Boyd, Alice: Correspondence, 4 ALsS to Cosmo Monkhouse"}
-      2: {name: "ItemTitle_32101037692462", value: "William Bell Scott Collection"}
-      3: {name: "ItemAuthor_32101037692462", value: ""}
-      4: {name: "ItemDate_32101037692462", value: "1890-1891"}
-      5: {name: "ReferenceNumber_32101037692462", value: "C0959_c001"}
-      6: {name: "CallNumber_32101037692462", value: "C0959"}
-      7: {name: "ItemNumber_32101037692462", value: "32101037692462"}
-      8: {name: "ItemVolume_32101037692462", value: "Box1"}
-      9: {name: "Location_32101037692462", value: "mss"}
-      10: {name: "ItemInfo1_32101037692462", value: "Collection is open for research use."}
-      11: {name: "ItemInfo2_32101037692462", value: "0.2 linear feet | 1 half-size archival box"}
-      12: {name: "ItemInfo3_32101037692462", value: " 1"}
-      13: {name: "ItemInfo4_32101037692462", value: ","}
-      14: {name: "ItemInfo5_32101037692462", value: "https://findingaids.princeton.edu/collections/C0959"}
-=end
-      request_mappings:
-        static:
-          Notes: ''
-          scheduledDate: ''
-          AeonForm: 'EADRequest'
-          RequestType: 'Loan'
-          GroupingIdentifier: 'ItemVolume'
-          GroupingOption_ReferenceNumber: 'Concatenate'
-          GroupingOption_ItemNumber: 'Concatenate'
-          GroupingOption_ItemDate: 'FirstValue'
-          GroupingOption_CallNumber: 'FirstValue'
-          GroupingOption_ItemVolume: 'FirstValue'
-          GroupingOption_ItemInfo1: 'FirstValue'
-          GroupingOption_Location: 'FirstValue'
-        accessor:
-          DocumentType: document_type
-          Site: site
-          Location: location
-          ItemTitle: title
 nlm:
   name: 'National Library of Medicine. History of Medicine Division'
   description: 'NLM’s History of Medicine Division collects, preserves, makes available, and interprets for diverse audiences one of the world’s richest collections of historical material related to human health and disease.'
