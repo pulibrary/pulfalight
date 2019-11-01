@@ -71,7 +71,9 @@ end
 # Top level document
 # ==================
 
-to_field "id", extract_xpath("/ead/eadheader/eadid"), strip, tr(".", "-")
+# rubocop:disable Performance/StringReplacement
+to_field "id", extract_xpath("/ead/eadheader/eadid"), strip, gsub(".", "-")
+# rubocop:enable Performance/StringReplacement
 to_field "title_filing_si", extract_xpath('/ead/eadheader/filedesc/titlestmt/titleproper[@type="filing"]')
 to_field "title_ssm", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "title_teim", extract_xpath("/ead/archdesc/did/unittitle")
