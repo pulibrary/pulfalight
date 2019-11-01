@@ -397,4 +397,9 @@ class CatalogController < ApplicationController
     config.view.compact
     config.view.compact.partials = %i[arclight_index_compact]
   end
+
+  # This overrides Arclight::FieldConfigHelpers#item_requestable?
+  def item_requestable?(_, _options)
+    true
+  end
 end
