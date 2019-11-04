@@ -6,13 +6,80 @@ defmodule MegaParser do
   """
 
   def parse(file) when is_binary(file) do
-    file
+    parsed_file = file
+                  |> SweetXml.parse
+    parent_record = parent_record(parsed_file)
+    components = components(parsed_file, parent_record)
+    parent_record
+    |> Map.put(:components, components)
+  end
+
+  defp components(parsed_file, parent_record) do
+    parsed_file
+    |> SweetXml.xpath(
+      ~x"//c | //c01 | //c02 | //c03 | //c04 | //c05"l,
+      ref_ssi: ~x"./@id"s,
+      has_online_content_ssim: ~x".//dao"le |> transform_by(fn(x) -> [length(x) > 0] end),
+      geogname_sim: ~x"./controlaccess/geogname/text()"ls,
+      containers_ssim: ~x"./did/container"le |> transform_by(&container_string/1),
+      level_ssm: ~x"."e |> transform_by(&extract_level/1)
+    )
+    # |> insert_sort
+    |> Enum.map(&process_component(&1,parent_record))
+  end
+
+  defp insert_sort(components) when is_list(components) do
+    components
+    |> Enum.map(&insert_sort(&1, components))
+  end
+  defp insert_sort(component, components) do
+    component
+    |> Map.put(:sort_ii, List.index_of(components, component))
+  end
+
+
+  # to_field "level_ssm" do |record, accumulator|
+  #   level = record.attribute("level")&.value
+  #   other_level = record.attribute("otherlevel")&.value
+  #   accumulator << Arclight::LevelLabel.new(level, other_level).to_s
+  # end
+
+  defp container_string(containers) when is_list(containers) do
+    containers
+    |> Enum.map(&container_string/1)
+  end
+  require IEx
+  defp container_string(%{type: type, text: text}) do
+    "#{type} #{text}" |> String.trim
+  end
+  defp container_string(container) do
+    type = container |> SweetXml.xpath(~x"./@type"s)
+    text = container |> SweetXml.xpath(~x"./text()"s)
+    %{
+      type: type,
+      text: text
+    }
+    |> container_string
+  end
+
+  defp process_component(component, parent_record) do
+    component
+    |> Map.put(:id, "#{parent_record.id}#{component.ref_ssi}")
+    |> Map.put(:ead_ssi, parent_record.ead_ssi)
+    |> Map.put(:geogname_ssm, component.geogname_sim)
+    |> Map.put(:collection_unitid_ssm, parent_record.unitid_ssm)
+    |> Map.put(:level_sim, component.level_ssm)
+  end
+
+
+  defp parent_record(parsed_file) do
+    parsed_file
     |> SweetXml.xpath(
       ~x"/ead[last()]",
-      id: ~x"./eadheader/eadid/text()"s,
+      id: ~x"./eadheader/eadid/text()"s |> transform_by(fn(x) -> x |> String.trim |> String.replace(".","-") end),
       title_filing_si: ~x"./eadheader/filedesc/titlestmt/titleproper[@type='filing']/text()"s,
-      title_ssm: ~x"./archdesc/did/unittitle/text()"ls,
-      ead_ssi: ~x"./eadheader/eadid/text()"s,
+      title_ssm: ~x"./archdesc/did/unittitle/text()"ls |> transform_by(fn(x) -> x |> Enum.map(&String.trim/1) end),
+      ead_ssi: ~x"./eadheader/eadid/text()"s |> transform_by(&String.trim/1),
       unitdate_ssm: ~x"./archdesc/did/unitdate/text()"ls,
       unitdate_bulk_ssim: ~x"./archdesc/did/unitdate[@type='bulk']/text()"ls,
       unitdate_inclusive_ssm: ~x"./archdesc/did/unitdate[@type='inclusive']/text()"ls,
@@ -70,6 +137,7 @@ defmodule MegaParser do
     |> xpath(~x"//#{field}/text()"ls)
   end
 
+  require IEx
   defp extract_level(level_xpath) do
     level = level_xpath |> xpath(~x"./@level"s)
     otherlevel = level_xpath |> xpath(~x"./@otherlevel"s)
@@ -81,7 +149,8 @@ defmodule MegaParser do
   defp extract_level("subseries", _), do: ["Subseries", "Collection"]
 
   defp extract_level("otherlevel", otherlevel),
-    do: [otherlevel |> String.capitalize(), "Collection"]
+    do: otherlevel |> String.capitalize()
+  defp extract_level(level, _), do: level |> String.capitalize
 end
 
 # to_field "normalized_title_ssm" do |_record, accumulator, context|
