@@ -5,20 +5,7 @@ defmodule MegaParser do
   Documentation for MegaParser.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> MegaParser.hello
-      :world
-
-  """
-  def file do
-    File.read!("/Users/tpendragon/Projects/plantain/MC057.EAD.xml")
-  end
-
-  def parse do
+  def parse(file) when is_binary(file) do
     file
     |> SweetXml.xpath(
       ~x"/ead[last()]",
