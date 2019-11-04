@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   devise_for :users
   concern :exportable, Blacklight::Routes::Exportable.new
 
+  require "sidekiq/web"
+  mount Sidekiq::Web => "/sidekiq"
+
   resources :solr_documents, only: [:show], path: "/catalog", controller: "catalog" do
     concerns :exportable
   end

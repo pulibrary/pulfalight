@@ -69,4 +69,20 @@ namespace :plantain do
   end
 end
 
+namespace :sidekiq do
+  task :quiet do
+    on roles(:worker) do
+      puts capture("kill -USR1 $(sudo initctl status plantain-workers | grep /running | awk '{print $NF}') || :")
+    end
+  end
+  task :restart do
+    on roles(:worker) do
+      execute :sudo, :service, "plantain-workers", :restart
+    end
+  end
+end
+
+after 'deploy:reverted', 'sidekiq:restart'
+after 'deploy:starting', 'sidekiq:quiet'
+after 'deploy:published', 'sidekiq:restart'
 after 'deploy:finished', 'plantain:link_pulfa'

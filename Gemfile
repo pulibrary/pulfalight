@@ -60,15 +60,12 @@ group :test do
   gem "webdrivers"
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
-gem "blacklight_range_limit", "~> 7.1"
 group :development, :test do
   gem "bixby"
 end
 
+gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
+gem "blacklight_range_limit", "~> 7.1"
 gem "bootstrap", "~> 4.0"
 gem "devise"
 gem "devise-guests", "~> 0.6"
@@ -77,6 +74,9 @@ gem "jquery-rails"
 gem "pg"
 gem "popper_js"
 gem "rsolr", ">= 1.0", "< 3"
+gem "sidekiq"
 gem "solr_wrapper", "~> 2.1"
 gem "twitter-typeahead-rails", "0.11.1.pre.corejavascript"
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "webpacker", "~> 4.0"
