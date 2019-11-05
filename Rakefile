@@ -6,6 +6,7 @@ require_relative "config/application"
 
 require "rubocop/rake_task" if Rails.env.development? || Rails.env.test?
 require "solr_wrapper/rake_task" unless Rails.env.production?
+require File.expand_path("../config/environment", __FILE__)
 
 Rails.application.load_tasks
 
