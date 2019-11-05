@@ -95,7 +95,7 @@ defmodule MegaParser do
       persname_sim: ~x"//persname/text()"ls,
       access_terms_ssm: ~x"./archdesc/userestrict/*[local-name()!='head']/text()"ls,
       acqinfo_ssim: ~x"./archdesc/descgrp/acqinfo/*[local-name()!='head']/descendant-or-self::text()"s,
-      # access_subjects_ssim: ~x"./archdesc/controlaccess"e |> transform_by(&access_subjects/1),
+      access_subjects_ssim: ~x"./archdesc/controlaccess/*[self::subject or self::function or self::occupation or self::genreform]/text()"ls,
       extent_ssm: ~x"./archdesc/did/physdesc/extent/text()"ls,
       genreform_sim: ~x"./archdesc/controlaccess/genreform/text()"ls,
     )
@@ -121,23 +121,11 @@ defmodule MegaParser do
     |> Map.put(:creator_famname_ssim, record.creator_famname_ssm)
     |> Map.put(:creators_ssim, record[:creator_persname_ssm] ++ record[:creator_corpname_ssm] ++ record[:creator_famname_ssm])
     |> Map.put(:acqinfo_ssm, record[:acqinfo_ssim])
-    # |> Map.put(:access_subjects_ssm, record[:access_subjects_ssim])
+    |> Map.put(:access_subjects_ssm, record[:access_subjects_ssim])
     |> Map.put(:extent_teim, record[:extent_ssm])
     |> Map.put(:genreform_ssm, record[:genreform_sim])
   end
 
-
-  defp access_subjects(node) do
-    ["subject", "function", "occupation", "genreform"]
-    |> Enum.flat_map(&extract_field(node, &1))
-  end
-
-  defp extract_field(node, field) do
-    node
-    |> xpath(~x"//#{field}/text()"ls)
-  end
-
-  require IEx
   defp extract_level(level_xpath) do
     level = level_xpath |> xpath(~x"./@level"s)
     otherlevel = level_xpath |> xpath(~x"./@otherlevel"s)
