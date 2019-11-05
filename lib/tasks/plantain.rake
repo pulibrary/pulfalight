@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require_relative "../../app/jobs/application_job"
-require_relative "../../app/jobs/index_job"
-
 namespace :plantain do
   namespace :index do
     desc "Delete all Solr documents in the index"
