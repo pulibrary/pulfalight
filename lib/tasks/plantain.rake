@@ -143,33 +143,18 @@ namespace :plantain do
     doc.present?
   end
 
-  # Index an EAD-XML Document into Solr
-  # @param [String] relative_path
-  def index_document(relative_path:)
-    file_path = File.absolute_path(relative_path)
-    ENV["FILE"] = file_path
-
-    logger.info "Indexing #{file_path}..."
-    begin
-      if indexed?(file_path: file_path)
-        logger.info "Already indexed #{file_path}"
-        return
-      end
-
-      solr_url = blacklight_url
-      elapsed_time = Benchmark.realtime do
-        `bundle exec traject -u #{solr_url} -i xml -c #{arclight_config_path} #{file_path}`
-      end
-      print "Indexed #{ENV['FILE']} (in #{elapsed_time.round(3)} secs).\n"
-    rescue StandardError => arclight_error
-      logger.error "Failed to index #{file_path}: #{arclight_error}"
-    end
-  end
-
   # Generate the path for the EAD directory
   # @return [Pathname]
   def pulfa_root
     @pulfa_root ||= Rails.root.join("eads", "pulfa")
+  end
+
+  # Index an EAD-XML Document into Solr
+  # @param [String] relative_path
+  def index_document(relative_path:, root_path: nil)
+    root_path ||= pulfa_root
+    ead_file_path = File.join(root_path, relative_path)
+    IndexJob.perform_later([ead_file_path])
   end
 
   # Index a directory of PULFA EAD-XML Document into Solr
@@ -179,9 +164,10 @@ namespace :plantain do
     root_path ||= pulfa_root
     dir = root_path.join(name)
     glob_pattern = File.join(dir, "**", "*.xml")
+    file_paths = Dir.glob(glob_pattern)
 
-    Dir.glob(glob_pattern).each do |file_path|
-      index_document(relative_path: file_path)
+    file_paths.each_slice(1) do |file_path_subset|
+      IndexJob.perform_later(file_path_subset)
     end
   end
 end

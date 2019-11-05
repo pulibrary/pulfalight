@@ -91,11 +91,15 @@ end
 
 # Keep the original top-level archdesc/@level for Level facet in addition to 'Collection'
 to_field "level_sim" do |record, accumulator|
-  level = record.at_xpath("/ead/archdesc").attribute("level")&.value
-  other_level = record.at_xpath("/ead/archdesc").attribute("otherlevel")&.value
+  archdesc = record.at_xpath("/ead/archdesc")
+  unless archdesc.nil?
 
-  accumulator << Arclight::LevelLabel.new(level, other_level).to_s
-  accumulator << "Collection" unless level == "collection"
+    level = archdesc.attribute("level")&.value
+    other_level = archdesc.attribute("otherlevel")&.value
+
+    accumulator << Arclight::LevelLabel.new(level, other_level).to_s
+    accumulator << "Collection" unless level == "collection"
+  end
 end
 
 to_field "unitid_ssm", extract_xpath("/ead/archdesc/did/unitid")
@@ -108,8 +112,12 @@ to_field "normalized_title_ssm" do |_record, accumulator, context|
     context.output_hash["unitdate_bulk_ssim"],
     context.output_hash["unitdate_other_ssim"]
   ).to_s
-  title = context.output_hash["title_ssm"].first
-  accumulator << Plantain::NormalizedTitle.new(title, dates).to_s
+
+  titles = context.output_hash["title_ssm"]
+  unless titles.blank?
+    title = titles.first
+    accumulator << Plantain::NormalizedTitle.new(title, dates).to_s
+  end
 end
 
 to_field "normalized_date_ssm" do |_record, accumulator, context|
@@ -277,7 +285,9 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
   end
 
   to_field "ead_ssi" do |_record, accumulator, context|
-    accumulator << context.clipboard[:parent].output_hash["ead_ssi"].first
+    parent = context.clipboard[:parent]
+    ead_ids = parent.output_hash["ead_ssi"]
+    accumulator << ead_ids.first unless parent.nil? || ead_ids.blank?
   end
 
   to_field "title_filing_si", extract_xpath("./did/unittitle"), first_only
@@ -311,17 +321,22 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
   end
 
   to_field "parent_ssm" do |record, accumulator, context|
-    accumulator << context.clipboard[:parent].output_hash["id"].first
-    accumulator.concat NokogiriXpathExtensions.new.is_component(record.ancestors).reverse.map { |n| n.attribute("id")&.value }
+    parent = context.clipboard[:parent]
+    ids = parent.output_hash["id"]
+    unless parent.nil? || ids.blank?
+      accumulator << ids.first
+      accumulator.concat NokogiriXpathExtensions.new.is_component(record.ancestors).reverse.map { |n| n.attribute("id")&.value }
+    end
   end
 
   to_field "parent_ssi" do |_record, accumulator, context|
-    accumulator << context.output_hash["parent_ssm"].last
+    accumulator << context.output_hash["parent_ssm"].last unless context.output_hash["parent_ssm"].blank?
   end
 
   to_field "parent_unittitles_ssm" do |_rec, accumulator, context|
     # top level document
-    accumulator.concat context.clipboard[:parent].output_hash["normalized_title_ssm"]
+    parent = context.clipboard[:parent]
+    accumulator.concat context.clipboard[:parent].output_hash["normalized_title_ssm"] unless parent.nil? || parent.output_hash["normalized_title_ssm"].blank?
     parent_ssm = context.output_hash["parent_ssm"]
     components = context.clipboard[:parent].output_hash["components"]
 
@@ -333,7 +348,7 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
   end
 
   to_field "parent_unittitles_teim" do |_record, accumulator, context|
-    accumulator.concat context.output_hash["parent_unittitles_ssm"]
+    accumulator.concat context.output_hash["parent_unittitles_ssm"] unless context.output_hash["parent_unittitles_ssm"].blank?
   end
 
   to_field "parent_levels_ssm" do |_record, accumulator, context|
@@ -358,13 +373,22 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
     accumulator << context.clipboard[:parent].clipboard[:repository]
   end
   to_field "collection_ssm" do |_record, accumulator, context|
-    accumulator.concat context.clipboard[:parent].output_hash["normalized_title_ssm"]
+    parent = context.clipboard[:parent]
+    normalized_title = parent.output_hash["normalized_title_ssm"]
+
+    accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
   end
   to_field "collection_sim" do |_record, accumulator, context|
-    accumulator.concat context.clipboard[:parent].output_hash["normalized_title_ssm"]
+    parent = context.clipboard[:parent]
+    normalized_title = parent.output_hash["normalized_title_ssm"]
+
+    accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
   end
   to_field "collection_ssi" do |_record, accumulator, context|
-    accumulator.concat context.clipboard[:parent].output_hash["normalized_title_ssm"]
+    parent = context.clipboard[:parent]
+    normalized_title = parent.output_hash["normalized_title_ssm"]
+
+    accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
   end
 
   to_field "extent_ssm", extract_xpath("./did/physdesc/extent")
