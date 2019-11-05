@@ -50,43 +50,24 @@ defmodule MegaParserTest do
 
     nested_component = Enum.find(components, fn(x) -> x.ref_ssi == "aspace_32ad9025a3a286358baeae91b5d7696e" end)
     assert nested_component != nil
+    assert nested_component.component_level_isim == [2]
   end
 
-  # describe 'large component list' do
-  #   let(:fixture_path) do
-  #     Arclight::Engine.root.join('spec', 'fixtures', 'ead', 'sample', 'large-components-list.xml')
-  #   end
-  #
-  #   it 'selects the components' do
-  #     expect(result['components'].length).to eq 404
-  #   end
-  #
-  #   it 'indexes top-level daos' do
-  #     expect(result['digital_objects_ssm']).to eq(
-  #       [
-  #         JSON.generate(
-  #           label: '1st Street Arcade San Francisco',
-  #           href: 'https://purl.stanford.edu/yy901zw2656'
-  #         )
-  #       ]
-  #     )
-  #   end
-  #
-  #   context 'when nested component' do
-  #     let(:nested_component) { result['components'].find { |c| c['id'] == ['lc0100aspace_32ad9025a3a286358baeae91b5d7696e'] } }
-  #
-  #     it 'correctly determines component level' do
-  #       expect(nested_component['component_level_isim']).to eq [2]
-  #     end
-  #
-  #     it 'parent' do
-  #       expect(nested_component['parent_ssim']).to eq %w[lc0100 aspace_327a75c226d44aa1a769edb4d2f13c6e]
-  #       expect(nested_component['parent_ssi']).to eq ['aspace_327a75c226d44aa1a769edb4d2f13c6e']
-  #     end
-  #
-  #     it 'parent_unittitles' do
-  #       expect(nested_component['parent_unittitles_ssm']).to eq ['Large collection sample, 1843-1872', 'File 1']
-  #     end
-  #   end
-  # end
+    # context 'when nested component' do
+    #   let(:nested_component) { result['components'].find { |c| c['id'] == ['lc0100aspace_32ad9025a3a286358baeae91b5d7696e'] } }
+    #
+    #   it 'correctly determines component level' do
+    #     expect(nested_component['component_level_isim']).to eq [2]
+    #   end
+    #
+    #   it 'parent' do
+    #     expect(nested_component['parent_ssim']).to eq %w[lc0100 aspace_327a75c226d44aa1a769edb4d2f13c6e]
+    #     expect(nested_component['parent_ssi']).to eq ['aspace_327a75c226d44aa1a769edb4d2f13c6e']
+    #   end
+    #
+    #   it 'parent_unittitles' do
+    #     expect(nested_component['parent_unittitles_ssm']).to eq ['Large collection sample, 1843-1872', 'File 1']
+    #   end
+    # end
+    #
 end

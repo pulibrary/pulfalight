@@ -14,18 +14,25 @@ defmodule MegaParser do
     |> Map.put(:components, components)
   end
 
+  require IEx
   defp components(parsed_file, parent_record) do
+    IEx.pry
     parsed_file
     |> SweetXml.xpath(
-      ~x"//c | //c01 | //c02 | //c03 | //c04 | //c05"l,
+      ~x"//c"l,
       ref_ssi: ~x"./@id"s,
       has_online_content_ssim: ~x".//dao"le |> transform_by(fn(x) -> [length(x) > 0] end),
       geogname_sim: ~x"./controlaccess/geogname/text()"ls,
       containers_ssim: ~x"./did/container"le |> transform_by(&container_string/1),
-      level_ssm: ~x"."e |> transform_by(&extract_level/1)
+      level_ssm: ~x"."e |> transform_by(&extract_level/1),
+      component_level_isim: ~x"ancestor-or-self::*"l |> transform_by(&length/1)
     )
     |> insert_sort
     |> Enum.map(&process_component(&1,parent_record))
+  end
+
+  defp count_ancestors(elements) do
+    [length(elements)]
   end
 
   defp insert_sort(components) when is_list(components) do
@@ -36,13 +43,6 @@ defmodule MegaParser do
     component
     |> Map.put(:sort_ii, Enum.find_index(components, fn(x) -> x == component end))
   end
-
-
-  # to_field "level_ssm" do |record, accumulator|
-  #   level = record.attribute("level")&.value
-  #   other_level = record.attribute("otherlevel")&.value
-  #   accumulator << Arclight::LevelLabel.new(level, other_level).to_s
-  # end
 
   defp container_string(containers) when is_list(containers) do
     containers
