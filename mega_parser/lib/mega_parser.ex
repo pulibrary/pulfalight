@@ -14,12 +14,10 @@ defmodule MegaParser do
     |> Map.put(:components, components)
   end
 
-  require IEx
   defp components(parsed_file, parent_record) do
-    IEx.pry
     parsed_file
     |> SweetXml.xpath(
-      ~x"//c"l,
+      ~x"//c | //c01"l,
       ref_ssi: ~x"./@id"s,
       has_online_content_ssim: ~x".//dao"le |> transform_by(fn(x) -> [length(x) > 0] end),
       geogname_sim: ~x"./controlaccess/geogname/text()"ls,
