@@ -41,7 +41,7 @@ defmodule MegaParser do
   defp convert_component(component, parent_record) do
     %{
       ref_ssi: component |> Meeseeks.attr("id"),
-      has_online_content_ssim: [component |> Meeseeks.all(xpath(".//dao")) > 0],
+      has_online_content_ssim: [component |> Meeseeks.one(xpath(".//dao")) != nil],
       geogname_sim: component |> extract_text("./controllaccess/geogname"),
       level_ssm: component |> extract_level,
       component_level_isim: [
@@ -126,12 +126,7 @@ defmodule MegaParser do
         |> Meeseeks.one(xpath("./eadheader/eadid"))
         |> Meeseeks.text()
         |> String.replace(".", "-"),
-      title_filing_si:
-        ead
-        |> Meeseeks.all(
-          xpath("./eadheader/filedesc/titlestmt/titleproper[@type='filing']/text()")
-        )
-        |> Enum.map(&Meeseeks.text/1),
+      title_filing_si: ead |> extract_text("./eadheader/filedesc/titlestmt/titleproper[@type='filing']"),
       title_ssm:
         ead |> Meeseeks.all(xpath("./archdesc/did/unittitle")) |> Enum.map(&Meeseeks.text/1),
       ead_ssi: ead |> Meeseeks.one(xpath("./eadheader/eadid")) |> Meeseeks.text(),
