@@ -1,0 +1,14 @@
+defaults: &defaults
+  external_universal_viewer_url: "https://figgy.princeton.edu/viewer"
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+
+staging:
+  <<: *defaults
