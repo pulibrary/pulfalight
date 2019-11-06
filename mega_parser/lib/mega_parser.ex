@@ -109,6 +109,7 @@ defmodule MegaParser do
     |> Map.put(:geogname_ssm, component.geogname_sim)
     |> Map.put(:collection_unitid_ssm, parent_record.unitid_ssm)
     |> Map.put(:level_sim, component.level_ssm)
+    |> Map.put(:parent_ssi, component.parent_ssim |> Enum.slice(-1..-1))
   end
 
   defp extract_text(ead, xpath) do
@@ -156,8 +157,29 @@ defmodule MegaParser do
     |> process_parent_record
   end
 
+
+# to_field "normalized_title_ssm" do |_record, accumulator, context|
+#   dates = Plantain::NormalizedDate.new(
+#     context.output_hash["unitdate_inclusive_ssm"],
+#     context.output_hash["unitdate_bulk_ssim"],
+#     context.output_hash["unitdate_other_ssim"]
+#   ).to_s
+#   title = context.output_hash["title_ssm"].first
+#   accumulator << Plantain::NormalizedTitle.new(title, dates).to_s
+# end
+  
+  defp normalized_title(record) do
+    dates = [
+      record.unitdate_inclusive_ssm,
+      record.unitdate_bulk_ssim,
+      record.unitdate_other_ssim
+    ]
+    record.title_ssm
+  end
+
   defp process_parent_record(record) do
     record
+    |> Map.put(:normalized_title_ssm, normalized_title(record))
     |> Map.put(:level_ssm, "collection")
     |> Map.put(:title_teim, record.title_ssm)
     |> Map.put(:unitid_teim, record.unitid_ssm)

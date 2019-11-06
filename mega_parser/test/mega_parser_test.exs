@@ -9,6 +9,7 @@ defmodule MegaParserTest do
     assert output.ead_ssi == "a0011.xml"
     assert output.title_ssm == ["Stanford University student life photograph album"]
     assert output.level_sim == ["Collection"]
+    assert output.normalized_title_ssm == ["Stanford University student life photograph album, circa 1900-1906"]
     %{components: components} = output
     first_component = hd(components)
     assert first_component.ref_ssi == "aspace_ref6_lx4"
@@ -53,23 +54,7 @@ defmodule MegaParserTest do
     assert nested_component != nil
     assert nested_component.component_level_isim == [2]
     assert nested_component.parent_ssim == ["lc0100", "aspace_327a75c226d44aa1a769edb4d2f13c6e"]
+    assert nested_component.parent_ssi == ["aspace_327a75c226d44aa1a769edb4d2f13c6e"]
+    # assert nested_component.parent_unittitles_ssm == ["Large collection sample, 1843-1872", "File 1"]
   end
-
-    # context 'when nested component' do
-    #   let(:nested_component) { result['components'].find { |c| c['id'] == ['lc0100aspace_32ad9025a3a286358baeae91b5d7696e'] } }
-    #
-    #   it 'correctly determines component level' do
-    #     expect(nested_component['component_level_isim']).to eq [2]
-    #   end
-    #
-    #   it 'parent' do
-    #     expect(nested_component['parent_ssim']).to eq %w[lc0100 aspace_327a75c226d44aa1a769edb4d2f13c6e]
-    #     expect(nested_component['parent_ssi']).to eq ['aspace_327a75c226d44aa1a769edb4d2f13c6e']
-    #   end
-    #
-    #   it 'parent_unittitles' do
-    #     expect(nested_component['parent_unittitles_ssm']).to eq ['Large collection sample, 1843-1872', 'File 1']
-    #   end
-    # end
-    #
 end
