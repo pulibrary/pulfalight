@@ -8,6 +8,7 @@ defmodule MegaParserTest do
     assert output.id == "a0011-xml"
     assert output.ead_ssi == "a0011.xml"
     assert output.title_ssm == ["Stanford University student life photograph album"]
+    assert output.level_sim == ["Collection"]
     %{components: components} = output
     first_component = hd(components)
     assert first_component.ref_ssi == "aspace_ref6_lx4"
@@ -37,7 +38,7 @@ defmodule MegaParserTest do
 
     other_level_component = Enum.find(components, fn(x) -> x.ref_ssi == "aspace_e6db65d47e891d61d69c2798c68a8f02" end)
     assert other_level_component.level_ssm == "Binder"
-    assert other_level_component.sort_ii == 1
+    assert other_level_component.sort_ii == 2
   end
 
   require IEx
@@ -51,6 +52,7 @@ defmodule MegaParserTest do
     nested_component = Enum.find(components, fn(x) -> x.ref_ssi == "aspace_32ad9025a3a286358baeae91b5d7696e" end)
     assert nested_component != nil
     assert nested_component.component_level_isim == [2]
+    assert nested_component.parent_ssim == ["lc0100", "aspace_327a75c226d44aa1a769edb4d2f13c6e"]
   end
 
     # context 'when nested component' do

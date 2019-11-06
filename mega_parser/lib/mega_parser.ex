@@ -1,58 +1,100 @@
 defmodule MegaParser do
-  import SweetXml
+  import Meeseeks.XPath
+
+  defmodule Selector.Component do
+    use Meeseeks.Selector
+
+    defstruct value: ""
+
+    def match(_selector, %{tag: "c"}, _document, _context), do: true
+    def match(_selector, %{tag: "c0" <> <<_digit::bytes-size(1)>>}, _document, _context), do: true
+    def match(_selector, %{tag: "c10"}, _document, _context), do: true
+    def match(_selector, %{tag: "c11"}, _document, _context), do: true
+    def match(_selector, %{tag: "c12"}, _document, _context), do: true
+    def match(_selector, _node, _document, _context), do: false
+  end
 
   @moduledoc """
   Documentation for MegaParser.
   """
 
   def parse(file) when is_binary(file) do
-    parsed_file = file
-                  |> SweetXml.parse
+    parsed_file =
+      file
+      |> Meeseeks.parse(:xml)
+
     parent_record = parent_record(parsed_file)
     components = components(parsed_file, parent_record)
+
     parent_record
     |> Map.put(:components, components)
   end
 
   defp components(parsed_file, parent_record) do
     parsed_file
-    |> SweetXml.xpath(
-      ~x"//c | //c01"l,
-      ref_ssi: ~x"./@id"s,
-      has_online_content_ssim: ~x".//dao"le |> transform_by(fn(x) -> [length(x) > 0] end),
-      geogname_sim: ~x"./controlaccess/geogname/text()"ls,
-      containers_ssim: ~x"./did/container"le |> transform_by(&container_string/1),
-      level_ssm: ~x"."e |> transform_by(&extract_level/1),
-      component_level_isim: ~x"ancestor-or-self::*"l |> transform_by(&length/1)
-    )
+    |> Meeseeks.all(%Selector.Component{})
+    |> Enum.map(&convert_component(&1, parent_record))
     |> insert_sort
-    |> Enum.map(&process_component(&1,parent_record))
+    |> Enum.map(&process_component(&1, parent_record))
   end
 
-  defp count_ancestors(elements) do
-    [length(elements)]
+  defp convert_component(component, parent_record) do
+    %{
+      ref_ssi: component |> Meeseeks.attr("id"),
+      has_online_content_ssim: [component |> Meeseeks.all(xpath(".//dao")) > 0],
+      geogname_sim: component |> extract_text("./controllaccess/geogname"),
+      level_ssm: component |> extract_level,
+      component_level_isim: [
+        component
+        |> Meeseeks.all(%Meeseeks.Selector.Element{
+          combinator: %Meeseeks.Selector.Combinator.AncestorsOrSelf{
+            selector: %Selector.Component{}
+          }
+        })
+        |> length
+      ],
+      containers_ssim: component |> Meeseeks.all(xpath("./did/container")) |> container_string,
+      parent_ssim: component |> get_parents(parent_record)
+    }
+  end
+
+  def get_parents(component, parent_record) do
+    parent_ids =
+      component
+      |> Meeseeks.all(%Meeseeks.Selector.Element{
+        combinator: %Meeseeks.Selector.Combinator.Ancestors{
+          selector: %Selector.Component{}
+        }
+      })
+      |> Enum.map(&Meeseeks.attr(&1, "id"))
+      |> Enum.reverse
+      |> Enum.drop(1)
+    [parent_record.id] ++ parent_ids
   end
 
   defp insert_sort(components) when is_list(components) do
     components
     |> Enum.map(&insert_sort(&1, components))
   end
+
   defp insert_sort(component, components) do
     component
-    |> Map.put(:sort_ii, Enum.find_index(components, fn(x) -> x == component end))
+    |> Map.put(:sort_ii, Enum.find_index(components, fn x -> x == component end))
   end
 
   defp container_string(containers) when is_list(containers) do
     containers
     |> Enum.map(&container_string/1)
   end
-  require IEx
+
   defp container_string(%{type: type, text: text}) do
-    "#{type} #{text}" |> String.trim
+    "#{type} #{text}" |> String.trim()
   end
-  defp container_string(container) do
-    type = container |> SweetXml.xpath(~x"./@type"s)
-    text = container |> SweetXml.xpath(~x"./text()"s)
+
+  defp container_string(container = %{}) do
+    type = container |> Meeseeks.attr("type")
+    text = container |> Meeseeks.text()
+
     %{
       type: type,
       text: text
@@ -69,36 +111,54 @@ defmodule MegaParser do
     |> Map.put(:level_sim, component.level_ssm)
   end
 
+  defp extract_text(ead, xpath) do
+    ead |> Meeseeks.all(xpath(xpath)) |> Enum.map(&Meeseeks.text/1)
+  end
 
   defp parent_record(parsed_file) do
-    parsed_file
-    |> SweetXml.xpath(
-      ~x"/ead[last()]",
-      id: ~x"./eadheader/eadid/text()"s |> transform_by(fn(x) -> x |> String.trim |> String.replace(".","-") end),
-      title_filing_si: ~x"./eadheader/filedesc/titlestmt/titleproper[@type='filing']/text()"s,
-      title_ssm: ~x"./archdesc/did/unittitle/text()"ls |> transform_by(fn(x) -> x |> Enum.map(&String.trim/1) end),
-      ead_ssi: ~x"./eadheader/eadid/text()"s |> transform_by(&String.trim/1),
-      unitdate_ssm: ~x"./archdesc/did/unitdate/text()"ls,
-      unitdate_bulk_ssim: ~x"./archdesc/did/unitdate[@type='bulk']/text()"ls,
-      unitdate_inclusive_ssm: ~x"./archdesc/did/unitdate[@type='inclusive']/text()"ls,
-      unitdate_other_ssim: ~x"./archdesc/did/unitdate[not(@type)]"ls,
-      level_sim: ~x"./archdesc"e |> transform_by(&extract_level/1),
-      unitid_ssm: ~x"./archdesc/did/unitid/text()"ls,
-      collection_unitid_ssm: ~x"./archdesc/did/unitid/text()"ls,
-      geogname_ssm: ~x"./archdesc/controlaccess/geogname/text()"ls,
-      creator_ssm: ~x"./archdesc/did/origination/*/text()"ls,
-      creator_persname_ssm: ~x"./archdesc/did/origination/persname/text()"ls,
-      creator_corpname_ssm: ~x"./archdesc/did/origination/corpname/text()"ls,
-      creator_famname_ssm: ~x"./archdesc/did/origination/famname/text()"ls,
-      persname_sim: ~x"//persname/text()"ls,
-      access_terms_ssm: ~x"./archdesc/userestrict/*[local-name()!='head']/text()"ls,
-      acqinfo_ssim: ~x"./archdesc/descgrp/acqinfo/*[local-name()!='head']/descendant-or-self::text()"s,
-      access_subjects_ssim: ~x"./archdesc/controlaccess/*[self::subject or self::function or self::occupation or self::genreform]/text()"ls,
-      extent_ssm: ~x"./archdesc/did/physdesc/extent/text()"ls,
-      genreform_sim: ~x"./archdesc/controlaccess/genreform/text()"ls,
-    )
-    |> process_parent_record
+    ead =
+      parsed_file
+      |> Meeseeks.one(xpath("/ead"))
 
+    %{
+      id:
+        ead
+        |> Meeseeks.one(xpath("./eadheader/eadid"))
+        |> Meeseeks.text()
+        |> String.replace(".", "-"),
+      title_filing_si:
+        ead
+        |> Meeseeks.all(
+          xpath("./eadheader/filedesc/titlestmt/titleproper[@type='filing']/text()")
+        )
+        |> Enum.map(&Meeseeks.text/1),
+      title_ssm:
+        ead |> Meeseeks.all(xpath("./archdesc/did/unittitle")) |> Enum.map(&Meeseeks.text/1),
+      ead_ssi: ead |> Meeseeks.one(xpath("./eadheader/eadid")) |> Meeseeks.text(),
+      unitdate_ssm: ead |> extract_text("./archdesc/did/unitdate"),
+      unitdate_bulk_ssim: ead |> extract_text("./archdesc/did/unitdate[@type='bulk']"),
+      unitdate_inclusive_ssm: ead |> extract_text("./archdesc/did/unitdate[@type='inclusive']"),
+      unitdate_other_ssim: ead |> extract_text("./archdesc/did/unitdate[not(@type)]"),
+      unitid_ssm: ead |> extract_text("./archdesc/did/unitid"),
+      geogname_ssm: ead |> extract_text("./archdesc/controlaccess/geogname"),
+      creator_ssm: ead |> extract_text("./archdesc/did/origination"),
+      creator_persname_ssm: ead |> extract_text("./archdesc/did/origination/persname"),
+      creator_corpname_ssm: ead |> extract_text("./archdesc/did/origination/corpname"),
+      creator_famname_ssm: ead |> extract_text("./archdesc/did/origination/famname"),
+      persname_sim: ead |> extract_text("//persname"),
+      access_terms_ssm: ead |> extract_text("./archdesc/userestrict/*[local-name()!='head']"),
+      acqinfo_ssim: ead |> extract_text("./archdesc/descgrp/acqinfo/*[local-name()!='head']"),
+      collection_unitid_ssm: ead |> extract_text("./archdesc/did/unitid"),
+      access_subjects_ssim:
+        ead
+        |> extract_text(
+          "./archdesc/controlaccess/*[self::subject or self::function or self::occupation or self::genreform]"
+        ),
+      extent_ssm: ead |> extract_text("./archdesc/did/physdesc/extent"),
+      genreform_sim: ead |> extract_text("./archdesc/controlaccess/genreform"),
+      level_sim: ead |> Meeseeks.one(xpath("./archdesc")) |> extract_level
+    }
+    |> process_parent_record
   end
 
   defp process_parent_record(record) do
@@ -117,16 +177,20 @@ defmodule MegaParser do
     |> Map.put(:creator_corpname_ssim, record.creator_corpname_ssm)
     |> Map.put(:creator_corpname_sim, record.creator_corpname_ssm)
     |> Map.put(:creator_famname_ssim, record.creator_famname_ssm)
-    |> Map.put(:creators_ssim, record[:creator_persname_ssm] ++ record[:creator_corpname_ssm] ++ record[:creator_famname_ssm])
+    |> Map.put(
+      :creators_ssim,
+      record[:creator_persname_ssm] ++
+        record[:creator_corpname_ssm] ++ record[:creator_famname_ssm]
+    )
     |> Map.put(:acqinfo_ssm, record[:acqinfo_ssim])
     |> Map.put(:access_subjects_ssm, record[:access_subjects_ssim])
     |> Map.put(:extent_teim, record[:extent_ssm])
     |> Map.put(:genreform_ssm, record[:genreform_sim])
   end
 
-  defp extract_level(level_xpath) do
-    level = level_xpath |> xpath(~x"./@level"s)
-    otherlevel = level_xpath |> xpath(~x"./@otherlevel"s)
+  defp extract_level(level_node) do
+    level = level_node |> Meeseeks.attr("level")
+    otherlevel = level_node |> Meeseeks.attr("otherlevel")
     extract_level(level, otherlevel)
   end
 
@@ -134,9 +198,12 @@ defmodule MegaParser do
   defp extract_level("recordgrp", _), do: ["Record Group", "Collection"]
   defp extract_level("subseries", _), do: ["Subseries", "Collection"]
 
+  defp extract_level("otherlevel", nil), do: []
+
   defp extract_level("otherlevel", otherlevel),
     do: otherlevel |> String.capitalize()
-  defp extract_level(level, _), do: level |> String.capitalize
+
+  defp extract_level(level, _), do: level |> String.capitalize()
 end
 
 # to_field "normalized_title_ssm" do |_record, accumulator, context|
