@@ -152,21 +152,25 @@ defmodule MegaParser do
         ),
       extent_ssm: ead |> extract_text("./archdesc/did/physdesc/extent"),
       genreform_sim: ead |> extract_text("./archdesc/controlaccess/genreform"),
-      level_sim: ead |> Meeseeks.one(xpath("./archdesc")) |> extract_level
+      level_sim: ead |> Meeseeks.one(xpath("./archdesc")) |> extract_level,
+      date_range_sim: ead |> Meeseeks.one(xpath("./did/unitdate")) |> Meeseeks.attr("normal") |> MegaParser.YearRange.parse_range
     }
     |> process_parent_record
   end
 
-
-require IEx
   defp normalized_title(record) do
-    record.title_ssm ++ [MegaParser.NormalizedDate.to_string(record.unitdate_inclusive_ssm, record.unitdate_bulk_ssim |> Enum.at(0), record.unitdate_other_ssim |> Enum.at(0))] |> Enum.join(", ")
+    record.title_ssm ++ normalized_date(record) |> Enum.join(", ")
+  end
+
+  def normalized_date(record) do
+    [MegaParser.NormalizedDate.to_string(record.unitdate_inclusive_ssm, record.unitdate_bulk_ssim |> Enum.at(0), record.unitdate_other_ssim |> Enum.at(0))]
   end
 
   defp process_parent_record(record) do
     record
     |> Map.put(:normalized_title_ssm, [normalized_title(record)])
-    |> Map.put(:level_ssm, "collection")
+    |> Map.put(:normalized_date_ssm, normalized_date(record))
+    |> Map.put(:level_ssm, ["collection"])
     |> Map.put(:title_teim, record.title_ssm)
     |> Map.put(:unitid_teim, record.unitid_ssm)
     |> Map.put(:geogname_sim, record.geogname_ssm)

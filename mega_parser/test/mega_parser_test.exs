@@ -8,8 +8,16 @@ defmodule MegaParserTest do
     assert output.id == "a0011-xml"
     assert output.ead_ssi == "a0011.xml"
     assert output.title_ssm == ["Stanford University student life photograph album"]
+    assert output.title_teim == output.title_ssm
     assert output.level_sim == ["Collection"]
+    assert output.level_ssm == ["collection"]
     assert output.normalized_title_ssm == ["Stanford University student life photograph album, circa 1900-1906"]
+    assert output.normalized_date_ssm == ["circa 1900-1906"]
+    assert output.unitdate_bulk_ssim == []
+    assert output.unitdate_inclusive_ssm == ["circa 1900-1906"]
+    assert output.unitdate_other_ssim == []
+    assert output.date_range_sim == [1900, 1901, 1902, 1903, 1904, 1905, 1906]
+
     %{components: components} = output
     first_component = hd(components)
     assert first_component.ref_ssi == "aspace_ref6_lx4"
