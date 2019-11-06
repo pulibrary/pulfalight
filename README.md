@@ -38,6 +38,9 @@ for information regarding the configuration of repositories in ArcLight.
 
 ### Indexing documents into Plantain
 
+Documents are indexed from the EADs which are stored in a subversion
+repository.
+
 #### Retrieving the EAD-XML Documents
 Documents are available from Princeton University Library staff, and should be
 populated into the `eads/pulfa` directory, yielding a structure similar to the
@@ -90,6 +93,22 @@ svn checkout $PULFA_SERVER_URL --username $PULFA_USERNAME eads/pulfa/
 
 One should now have access to the EAD files from within the local development
 environment.
+
+#### Indexing into a Development environment
+
+Start sidekiq in a terminal window that you keep open:
+
+`$ bundle exec sidekiq`
+
+Use the rake tasks to index either a single document or a collection, e.g.:
+
+`$ bundle exec rake plantain:index:document["mss/TC071.EAD.xml"]`
+`$ bundle exec rake plantain:index:collection["mss"]`
+
+Once the jobs are finished processing by sidekiq you'll need to either wait 5 minutes for the soft commit to occur or manually issue a solr commit:
+
+`$ bin/rails c`
+`> Blacklight.default_index.connection.commit`
 
 #### Indexing the PULFA Documents into the Plantain Server Environment
 One may also index the Documents remotely on the staging server by invoking the
