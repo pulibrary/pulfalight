@@ -19,6 +19,7 @@ defmodule MegaParser.YearRangeTest do
     assert YearRange.to_string([1999, 2000]) == "1999-2000"
     assert YearRange.to_string((1900..2000) |> Enum.to_list) == "1900-2000"
     assert YearRange.to_string([1999, 2001, 2003]) == "1999, 2001, 2003"
+    assert YearRange.to_string([1999, 2001]) == "1999, 2001"
     assert YearRange.to_string(["1998/1999", "2001/2002"]) == "1998-1999, 2001-2002"
   end
 end

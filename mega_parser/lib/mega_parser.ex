@@ -158,28 +158,14 @@ defmodule MegaParser do
   end
 
 
-# to_field "normalized_title_ssm" do |_record, accumulator, context|
-#   dates = Plantain::NormalizedDate.new(
-#     context.output_hash["unitdate_inclusive_ssm"],
-#     context.output_hash["unitdate_bulk_ssim"],
-#     context.output_hash["unitdate_other_ssim"]
-#   ).to_s
-#   title = context.output_hash["title_ssm"].first
-#   accumulator << Plantain::NormalizedTitle.new(title, dates).to_s
-# end
-  
+require IEx
   defp normalized_title(record) do
-    dates = [
-      record.unitdate_inclusive_ssm,
-      record.unitdate_bulk_ssim,
-      record.unitdate_other_ssim
-    ]
-    record.title_ssm
+    record.title_ssm ++ [MegaParser.NormalizedDate.to_string(record.unitdate_inclusive_ssm, record.unitdate_bulk_ssim |> Enum.at(0), record.unitdate_other_ssim |> Enum.at(0))] |> Enum.join(", ")
   end
 
   defp process_parent_record(record) do
     record
-    |> Map.put(:normalized_title_ssm, normalized_title(record))
+    |> Map.put(:normalized_title_ssm, [normalized_title(record)])
     |> Map.put(:level_ssm, "collection")
     |> Map.put(:title_teim, record.title_ssm)
     |> Map.put(:unitid_teim, record.unitid_ssm)
