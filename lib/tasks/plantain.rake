@@ -8,12 +8,12 @@ namespace :plantain do
     end
 
     desc "Index a single EAD file into Solr"
-    task :document, [:file] do |_t, args|
+    task :document, [:file] => :environment do |_t, args|
       index_document(relative_path: args[:file])
     end
 
     desc "Index a directory of PULFA EAD files into Solr"
-    task :collection, [:collection] do |_t, args|
+    task :collection, [:collection] => :environment do |_t, args|
       index_collection(name: args[:collection])
     end
   end
