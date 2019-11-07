@@ -15,7 +15,9 @@ defmodule MegaParser.SaxParser do
 
 
   def handle_tag(state, tag = {"c", _attributes}), do: state |> add_component(tag)
-  def handle_tag(state, tag = {"c01", _attributes}), do: state |> add_component(tag)
+  def handle_tag(state, tag = {"c0" <> <<_digit::bytes-size(1)>>, _attributes}), do: state |> add_component(tag)
+  def handle_tag(state, tag = {"c11", _attributes}), do: state |> add_component(tag)
+  def handle_tag(state, tag = {"c12", _attributes}), do: state |> add_component(tag)
   defp add_component(state, tag = {name, attrs}) do
     id = attrs |> List.keyfind("id", 0, {:notfound, nil}) |> elem(1)
     state
