@@ -20,10 +20,17 @@ defmodule MegaParser.SaxParser do
   def handle_tag(state, tag = {"c12", _attributes}), do: state |> add_component(tag)
   defp add_component(state, tag = {name, attrs}) do
     id = attrs |> List.keyfind("id", 0, {:notfound, nil}) |> elem(1)
+    level = attrs |> extract_attr("level")
+    otherlevel = attrs |> extract_attr("otherlevel")
     state
-    |> Map.put(:current_component, %{id: id})
+    |> Map.put(:current_component, %{id: id, level: level, other_level: otherlevel})
   end
   def handle_tag(state, tag = {"archdesc", _attributes}), do: state |> add_level(tag)
+  def handle_tag(state, tag = {"unitdate", attrs}) do
+    normal = attrs |> extract_attr("normal")
+    state
+    |> put_in([:document, :unitdate_normal], normal)
+  end
   defp add_level(state, tag = {name, attrs}) do
     level = attrs |> extract_attr("level")
     otherlevel = attrs |> extract_attr("otherlevel")
@@ -124,7 +131,9 @@ defmodule MegaParser.SaxParser do
 
   defp add_unitdate(state, "bulk", chars), do: state |> add_doc_property(:unitdate_bulk, chars)
   defp add_unitdate(state, "inclusive", chars), do: state |> add_doc_property(:unitdate_inclusive, chars)
-  defp add_unitdate(state, nil, chars), do: state |> add_doc_property(:unitdate_other, chars)
+  defp add_unitdate(state, nil, chars) do
+    state |> add_doc_property(:unitdate_other, chars)
+  end
   defp add_unitdate(state, _type, _chars), do: state
 
   defp add_doc_property(state, property, chars) do

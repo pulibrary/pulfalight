@@ -43,7 +43,9 @@ defmodule MegaParser do
       id: component |> Meeseeks.attr("id"),
       has_online_content: [component |> Meeseeks.one(xpath(".//dao")) != nil],
       geogname: component |> extract_text("./controllaccess/geogname"),
-      level: component |> extract_level,
+
+      level: component |> Meeseeks.attr("level"),
+      other_level: component |> Meeseeks.attr("otherlevel"),
       component_level: [
         component
         |> Meeseeks.all(%Meeseeks.Selector.Element{
@@ -63,7 +65,7 @@ defmodule MegaParser do
     |> Map.put(:id, "#{parent_record.id}#{component.id}")
     |> Map.put(:ref_ssi, component.id)
     |> Map.put(:ead_ssi, parent_record.ead_ssi)
-    |> put_multiple([:level_ssm, :level_sim], component.level)
+    |> put_multiple([:level_ssm, :level_sim], extract_level(component.level, component.other_level))
     |> put_multiple([:geogname_ssm, :geogname_sim], component.geogname)
     |> Map.put(:component_level_isim, component.component_level)
     |> Map.put(:parent_ssim, component.parent_ids)
@@ -122,11 +124,16 @@ defmodule MegaParser do
   end
 
   def parse(file, :sax) do
-    File.stream!(file)
-    |> Saxy.parse_stream(MegaParser.SaxParser, [])
-    |> elem(1)
-    |> Map.get(:document)
-    |> convert_standard_parent
+    parent_record = File.stream!(file)
+                    |> Saxy.parse_stream(MegaParser.SaxParser, [])
+                    |> elem(1)
+                    |> Map.get(:document)
+
+    parent_converted = parent_record |> convert_standard_parent
+    components_converted = parent_record |> Map.get(:components) |> Enum.map(&convert_standard_component(&1, parent_converted))
+
+    parent_converted
+    |> Map.put(:components, components_converted)
   end
 
   defp convert_standard_parent(document) do
@@ -139,9 +146,9 @@ defmodule MegaParser do
     |> Map.put(:unitid_ssm, document[:unitid])
     |> Map.put(:normalized_title_ssm, [normalized_title(document)])
     |> Map.put(:normalized_date_ssm, normalized_date(document))
-    |> Map.put(:unitdate_bulk_ssim, document[:unitdate_bulk])
+    |> Map.put(:unitdate_bulk_ssim, document[:unitdate_bulk] || [])
     |> Map.put(:unitdate_inclusive_ssm, document[:unitdate_inclusive])
-    |> Map.put(:unitdate_other_ssim, document[:unitdate_other])
+    |> Map.put(:unitdate_other_ssim, document[:unitdate_other] || [])
     |> Map.put(:date_range_sim, document[:unitdate_normal] |> MegaParser.YearRange.parse_range)
   end
 
@@ -196,7 +203,7 @@ defmodule MegaParser do
   end
 
   def normalized_date(record) do
-    [MegaParser.NormalizedDate.to_string(record.unitdate_inclusive, record.unitdate_bulk |> Enum.at(0), record.unitdate_other |> Enum.at(0))]
+    [MegaParser.NormalizedDate.to_string(record[:unitdate_inclusive], (record[:unitdate_bulk] || []) |> Enum.at(0), (record[:unitdate_other] || []) |> Enum.at(0))]
   end
 
   # defp process_parent_record(record) do
