@@ -1,16 +1,4 @@
 defmodule MegaParser.SaxParser do
-  defmodule Document do
-    defstruct id: nil, children: []
-  end
-
-  defmodule Element do
-    defstruct text: "", parent_element: nil
-  end
-
-  defmodule ParseContainer do
-    defstruct document: nil, current_element: nil, parent_element: nil, accumulator: []
-  end
-
   @behaviour Saxy.Handler
   def handle_event(:start_document, prolog, state) do
     IO.inspect("Start parsing document")
@@ -21,20 +9,35 @@ defmodule MegaParser.SaxParser do
     {:ok, state}
   end
 
-  def handle_event(:start_element, tag = {"c", _attributes}, state), do: {:ok, state |> add_component(tag)}
-  def handle_event(:start_element, tag = {"c01", _attributes}, state), do: {:ok, state |> add_component(tag)}
+  def handle_event(:start_element, tag = {name, attributes}, state) do
+    {:ok, state |> append_tag(tag) |> handle_tag(tag)}
+  end
+
+
+  def handle_tag(state, tag = {"c", _attributes}), do: state |> add_component(tag)
+  def handle_tag(state, tag = {"c01", _attributes}), do: state |> add_component(tag)
   defp add_component(state, tag = {name, attrs}) do
     id = attrs |> List.keyfind("id", 0, {:notfound, nil}) |> elem(1)
     state
     |> Map.put(:current_component, %{id: id})
+  end
+  def handle_tag(state, tag = {"archdesc", _attributes}), do: state |> add_level(tag)
+  defp add_level(state, tag = {name, attrs}) do
+    level = attrs |> extract_attr("level")
+    otherlevel = attrs |> extract_attr("otherlevel")
+    state
+    |> put_in([:document, :level], MegaParser.extract_level(level, otherlevel))
+  end
+  def handle_tag(state, _tag), do: state
+
+  defp append_tag(state, tag) do
+    state
     |> Map.put(:tag_stack, [tag | state.tag_stack])
   end
-  def handle_event(:start_element, {name, attributes}, state) do
-    state =
-      state
-      |> Map.put(:tag_stack, [{name, attributes} | state.tag_stack])
 
-    {:ok, state}
+
+  defp extract_attr(attrs, attr) do
+    attrs |> List.keyfind(attr, 0, {:notfound, nil}) |> elem(1)
   end
 
   def handle_event(:end_element, "c", state = %{tag_stack: [hd | tail], current_component: component = %{}}) do

@@ -119,6 +119,23 @@ defmodule MegaParser do
   def parse(file, :sax) do
     File.stream!(file)
     |> Saxy.parse_stream(MegaParser.SaxParser, [])
+    |> elem(1)
+    |> Map.get(:document)
+    |> convert_standard
+  end
+
+  defp convert_standard(document) do
+    %{}
+    |> Map.put(:id, document.id |> String.replace(".", "-"))
+    |> Map.put(:ead_ssi, document.id)
+    |> put_multiple([:title_ssm, :title_teim], document.title)
+    |> put_multiple([:level_sim], document.level)
+    |> Map.put(:level_ssm, ["collection"])
+  end
+
+  defp put_multiple(map, keys, value) do
+    keys
+    |> Enum.reduce(map, fn(key, map) -> map |> Map.put(key, value) end)
   end
 
   defp parent_record(parsed_file) do
@@ -200,22 +217,22 @@ defmodule MegaParser do
     |> Map.put(:genreform_ssm, record[:genreform_sim])
   end
 
-  defp extract_level(level_node) do
+  def extract_level(level_node) do
     level = level_node |> Meeseeks.attr("level")
     otherlevel = level_node |> Meeseeks.attr("otherlevel")
     extract_level(level, otherlevel)
   end
 
-  defp extract_level("collection", _), do: ["Collection"]
-  defp extract_level("recordgrp", _), do: ["Record Group", "Collection"]
-  defp extract_level("subseries", _), do: ["Subseries", "Collection"]
+  def extract_level("collection", _), do: ["Collection"]
+  def extract_level("recordgrp", _), do: ["Record Group", "Collection"]
+  def extract_level("subseries", _), do: ["Subseries", "Collection"]
 
-  defp extract_level("otherlevel", nil), do: []
+  def extract_level("otherlevel", nil), do: []
 
-  defp extract_level("otherlevel", otherlevel),
+  def extract_level("otherlevel", otherlevel),
     do: otherlevel |> String.capitalize()
 
-  defp extract_level(level, _), do: level |> String.capitalize()
+  def extract_level(level, _), do: level |> String.capitalize()
 end
 
 # to_field "normalized_title_ssm" do |_record, accumulator, context|
