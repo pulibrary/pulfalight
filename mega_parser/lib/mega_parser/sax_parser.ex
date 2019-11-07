@@ -63,8 +63,6 @@ defmodule MegaParser.SaxParser do
     {:ok, state}
   end
 
-  require IEx
-
   def handle_event(
         :characters,
         chars,
