@@ -1,6 +1,9 @@
 file = File.read!("test/fixtures/MC057.xml")
 Benchee.run(%{
-  "pleasenobreak"    => fn -> 
+  "Meeseeks"    => fn -> 
     MegaParser.parse(file)
   end,
+  "Sax"        => fn ->
+    MegaParser.parse("test/fixtures/MC057.xml", :sax)
+  end
 })

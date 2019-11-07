@@ -8,6 +8,7 @@
   "meeseeks": {:hex, :meeseeks, "0.14.0", "c88bdabcfaf7c2158468c19fe3053f9f4f32222970bf1007a54415f9390ef7e6", [:mix], [{:meeseeks_html5ever, "~> 0.12.1", [hex: :meeseeks_html5ever, repo: "hexpm", optional: false]}], "hexpm"},
   "meeseeks_html5ever": {:hex, :meeseeks_html5ever, "0.12.1", "718fab10d05b83204524a518b2b88caa37ba6a6e02f82e80d6a7bc47552fb54a", [:mix], [{:rustler, "~> 0.21.0", [hex: :rustler, repo: "hexpm", optional: false]}], "hexpm"},
   "rustler": {:hex, :rustler, "0.21.0", "68cc4fc015d0b9541865ea78e78e9ef2dd91ee4be80bf543fd15791102a45aca", [:mix], [{:toml, "~> 0.5.2", [hex: :toml, repo: "hexpm", optional: false]}], "hexpm"},
+  "saxy": {:hex, :saxy, "0.10.0", "38879f46a595862c22114792c71379355ecfcfa0f713b1cfcc59e1d4127f1f55", [:mix], [], "hexpm"},
   "sweet_xml": {:hex, :sweet_xml, "0.6.6", "fc3e91ec5dd7c787b6195757fbcf0abc670cee1e4172687b45183032221b66b8", [:mix], [], "hexpm"},
   "toml": {:hex, :toml, "0.5.2", "e471388a8726d1ce51a6b32f864b8228a1eb8edc907a0edf2bb50eab9321b526", [:mix], [], "hexpm"},
 }

@@ -116,6 +116,11 @@ defmodule MegaParser do
     ead |> Meeseeks.all(xpath(xpath)) |> Enum.map(&Meeseeks.text/1)
   end
 
+  def parse(file, :sax) do
+    File.stream!(file)
+    |> Saxy.parse_stream(MegaParser.SaxParser, [])
+  end
+
   defp parent_record(parsed_file) do
     ead =
       parsed_file
