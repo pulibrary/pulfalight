@@ -2,6 +2,7 @@
 ENV["RACK_ENV"] = "test"
 require "coveralls"
 require "simplecov"
+require "pry"
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
   [
