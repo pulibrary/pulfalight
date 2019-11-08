@@ -1,7 +1,6 @@
 defmodule MegaParser.SaxParser do
   @behaviour Saxy.Handler
   def handle_event(:start_document, prolog, state) do
-    IO.inspect("Start parsing document")
     {:ok, %{tag_stack: [], document: %{}}}
   end
 
