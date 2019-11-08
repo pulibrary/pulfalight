@@ -55,6 +55,20 @@ defmodule MegaParser.SaxParserTest do
     assert output.access_subjects_ssim == ["Photoprints.", "Cyanotypes."]
     assert output.access_subjects_ssm == output.access_subjects_ssim
     assert output.has_online_content_ssim == [true]
+    # TODO: Make this do something.
+    assert output.digital_objects_ssm == []
+
+    assert output.extent_ssm == ["1.25 Linear Feet", "(1 volume)"]
+    assert output.extent_teim == output.extent_ssm
+    assert output.genreform_ssm == ["Photoprints.", "Cyanotypes."]
+    assert output.genreform_sim == output.genreform_ssm
+    assert output.date_range_sim == [1900, 1901, 1902, 1903, 1904, 1905, 1906]
+    assert output.altformavail_teim == [
+      "The entire album has been digitized and is available online here: http://purl.stanford.edu/kc844kt2526"
+    ]
+    assert output.altformavail_heading_ssm == [
+      "Existence and Location of Copies"
+    ]
 
     %{components: components} = output
     first_component = hd(components)

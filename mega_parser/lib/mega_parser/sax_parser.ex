@@ -35,7 +35,8 @@ defmodule MegaParser.SaxParser do
     "origination",
     "otherfindaid",
     "persname",
-    "physdesc/extent",
+    "physdesc",
+    "extent",
     "physloc",
     "phystech",
     "prefercite",
@@ -66,6 +67,33 @@ defmodule MegaParser.SaxParser do
     "c11",
     "c12"
   ]
+
+  @searchable_notes_fields [
+    "accessrestrict",
+    "accruals",
+    "altformavail",
+    "appraisal",
+    "arrangement",
+    "bibliography",
+    "bioghist",
+    "custodhist",
+    "fileplan",
+    "note",
+    "odd",
+    "originalsloc",
+    "otherfindaid",
+    "phystech",
+    "prefercite",
+    "processinfo",
+    "relatedmaterial",
+    "scopecontent",
+    "separatedmaterial",
+    "userestrict",
+  ]
+
+  def searchable_notes_fields do
+    @searchable_notes_fields
+  end
 
   def handle_event(:start_document, prolog, state) do
     {:ok, %{tag_stack: [], document: %{}, component_counter: 0}}
@@ -410,7 +438,12 @@ defmodule MegaParser.SaxParser do
           ]
         }
       ) when access_tag in ["subject", "function", "occupation", "genreform"] do
-    {:ok, state |> add_doc_property(:access_subjects, chars)}
+        {
+          :ok,
+          state
+          |> add_doc_property(:access_subjects, chars)
+          |> add_doc_property(:"#{access_tag}", chars)
+        }
   end
 
   def handle_event(
@@ -482,6 +515,58 @@ defmodule MegaParser.SaxParser do
           :ok,
           state
           |> add_doc_property(:acqinfo, chars)
+        }
+  end
+
+  def handle_event(
+        :characters,
+        chars,
+        state = %{
+          tag_stack: [
+            {"extent", _attrs},
+            {"physdesc", _},
+            {"did", _} | _extra
+          ]
+        }
+      ) do
+        {
+          :ok,
+          state
+          |> add_doc_property(:extent, chars)
+        }
+  end
+
+  def handle_event(
+        :characters,
+        chars,
+        state = %{
+          tag_stack: [
+            {field, _attrs},
+            {"archdesc", _} | _extra
+          ]
+        }
+      ) when field in @searchable_notes_fields do
+        {
+          :ok,
+          state
+          |> add_doc_property(:"#{field}", chars)
+        }
+  end
+  def handle_event(
+        :characters,
+        chars,
+        state = %{
+          tag_stack: [
+            {"head", _},
+            {field, _attrs},
+            {"archdesc", _} | _extra
+          ]
+        }
+      ) when field in @searchable_notes_fields do
+        {
+          :ok,
+          state
+          |> add_doc_property(:"#{field}_heading", chars)
         }
   end
 
