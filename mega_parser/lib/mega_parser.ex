@@ -99,16 +99,16 @@ defmodule MegaParser do
     |> Map.put(:sort_ii, Enum.find_index(components, fn x -> x == component end))
   end
 
-  defp container_string(containers) when is_list(containers) do
+  def container_string(containers) when is_list(containers) do
     containers
     |> Enum.map(&container_string/1)
   end
 
-  defp container_string(%{type: type, text: text}) do
+  def container_string(%{type: type, text: text}) do
     "#{type} #{text}" |> String.trim()
   end
 
-  defp container_string(container = %{}) do
+  def container_string(container = %{}) do
     type = container |> Meeseeks.attr("type")
     text = container |> Meeseeks.text()
 

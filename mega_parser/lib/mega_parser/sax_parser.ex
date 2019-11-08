@@ -150,6 +150,25 @@ defmodule MegaParser.SaxParser do
     {:ok, state}
   end
 
+  # Extract UnitID
+  def handle_event(
+        :characters,
+        chars,
+        state = %{
+          tag_stack: [
+            {"unitid", _},
+            {"did", _},
+            {"archdesc", _} | _extra
+          ]
+        }
+      ) do
+    state =
+      state
+      |> add_doc_property(:unitid, chars)
+
+    {:ok, state}
+  end
+
   # Extract UnitDate
   def handle_event(
         :characters,
@@ -164,6 +183,22 @@ defmodule MegaParser.SaxParser do
       ) do
         type = attrs |> List.keyfind("type", 0, {:notfound, nil}) |> elem(1)
         {:ok, state |> add_doc_property(:unitdate, chars) |> add_unitdate(type, chars)}
+  end
+
+  # Extract Containers
+  def handle_event(
+        :characters,
+        chars,
+        state = %{
+          tag_stack: [
+            {"container", attrs},
+            {"did", _} | _extra
+          ],
+          current_component: %{}
+        }
+      ) do
+        type = attrs |> List.keyfind("type", 0, {:notfound, nil}) |> elem(1)
+        {:ok, state |> add_component_property(:containers, MegaParser.container_string(%{type: type, text: chars}))}
   end
 
   def handle_event(
