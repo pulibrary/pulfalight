@@ -52,10 +52,10 @@ defmodule MegaParser.SaxParser do
   end
 
   defp parent_unittitles(stack = %{component_stack: component_stack}) do
-    [MegaParser.normalized_title(stack.document) | Enum.map(component_stack, fn(x) -> MegaParser.normalized_title(x) |> Enum.at(0) end)]
+    [stack.document.normalized_title | Enum.map(component_stack, fn(x) -> x.normalized_title end)]
   end
   defp parent_unittitles(stack) do
-    [MegaParser.normalized_title(stack.document)]
+    [stack.document.normalized_title]
   end
 
   def handle_tag(state, tag = {"archdesc", _attributes}), do: state |> add_level(tag)
@@ -86,6 +86,14 @@ defmodule MegaParser.SaxParser do
     attrs |> List.keyfind(attr, 0, {:notfound, nil}) |> elem(1)
   end
 
+
+  require IEx
+  def handle_event(:end_element, "did", state = %{tag_stack: [hd | tail = [{"archdesc", _} | _rest]]}) do
+    state =
+      state
+      |> put_in([:document, :normalized_title], (MegaParser.normalized_title(state.document)) || nil)
+    {:ok, state |> Map.put(:tag_stack, tail)}
+  end
   def handle_event(:end_element, "c", state = %{tag_stack: [hd | tail], current_component: component = %{}}) do
     {:ok, state |> Map.put(:tag_stack, tail) |> end_component(component)}
   end
@@ -157,6 +165,9 @@ defmodule MegaParser.SaxParser do
     state =
       state
       |> add_component_property(:title, chars)
+    state =
+      state
+      |> put_in([:current_component, :normalized_title], (MegaParser.normalized_title(state.current_component) |> Enum.at(0)) || nil)
     {:ok, state}
   end
   def handle_event(
