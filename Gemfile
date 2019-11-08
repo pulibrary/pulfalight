@@ -66,6 +66,7 @@ gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
 gem "blacklight_range_limit", "~> 7.1"
 group :development, :test do
   gem "bixby"
+  gem "benchmark-ips"
 end
 
 gem "bootstrap", "~> 4.0"
