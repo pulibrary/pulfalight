@@ -70,13 +70,21 @@ defmodule MegaParser do
     |> put_multiple([:title_ssm, :title_teim], document.title)
     |> put_multiple([:level_sim], document.level)
     |> Map.put(:level_ssm, ["collection"])
-    |> Map.put(:unitid_ssm, document[:unitid])
-    |> Map.put(:normalized_title_ssm, [normalized_title(document)])
+    |> put_multiple([:unitid_ssm, :unitid_teim, :collection_unitid_ssm], document[:unitid])
+    |> put_multiple([:normalized_title_ssm, :collection_ssm, :collection_sim, :collection_ssi, :collection_title_tesim], [normalized_title(document)])
     |> Map.put(:normalized_date_ssm, normalized_date(document))
+    |> Map.put(:unitdate_ssm, document[:unitdate_inclusive] || document[:unitdate_bulk] || document[:unitdate_other])
     |> Map.put(:unitdate_bulk_ssim, document[:unitdate_bulk] || [])
     |> Map.put(:unitdate_inclusive_ssm, document[:unitdate_inclusive])
     |> Map.put(:unitdate_other_ssim, document[:unitdate_other] || [])
     |> Map.put(:date_range_sim, document[:unitdate_normal] |> MegaParser.YearRange.parse_range)
+    |> put_multiple([:geogname_ssm, :geogname_sim, :places_sim, :places_ssim, :places_ssm], document[:geogname] || [])
+    |> put_multiple([:creator_ssm, :creator_sim, :creator_ssim, :creators_ssim], document[:creator] || [])
+    |> Map.put(:creator_sort, (document[:creator] || []) |> Enum.join(", "))
+    |> put_multiple([:creator_corpname_ssm, :creator_corpname_sim, :creator_corpname_ssim], document[:creator_corpname] || [])
+    |> put_multiple([:creator_persname_ssm, :creator_persname_sim, :creator_persname_ssim], document[:creator_persname] || [])
+    |> put_multiple([:creator_famname_ssm, :creator_famname_sim, :creator_famname_ssim], document[:creator_famname] || [])
+    |> put_multiple([:persname_sim], document[:all_persname] || [])
   end
 
   defp put_multiple(map, keys, value) do

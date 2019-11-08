@@ -1,7 +1,6 @@
 defmodule MegaParser.SaxParserTest do
   use ExUnit.Case
   doctest MegaParser.SaxParser
-  alias MegaParser.SaxParser
 
   test "parse a0011" do
     output = MegaParser.parse("test/fixtures/a0011.xml", :sax)
@@ -12,11 +11,41 @@ defmodule MegaParser.SaxParserTest do
     assert output.level_sim == ["Collection"]
     assert output.level_ssm == ["collection"]
     assert output.normalized_title_ssm == ["Stanford University student life photograph album, circa 1900-1906"]
+    assert output.collection_ssm == output.normalized_title_ssm
+    assert output.collection_sim == output.normalized_title_ssm
+    assert output.collection_ssi == output.normalized_title_ssm
+    assert output.collection_title_tesim == output.normalized_title_ssm
+    # Do something about repository
     assert output.normalized_date_ssm == ["circa 1900-1906"]
+    assert output.unitdate_ssm == ["circa 1900-1906"]
     assert output.unitdate_bulk_ssim == []
     assert output.unitdate_inclusive_ssm == ["circa 1900-1906"]
     assert output.unitdate_other_ssim == []
     assert output.date_range_sim == [1900, 1901, 1902, 1903, 1904, 1905, 1906]
+    assert output.unitid_ssm == ["A0011"]
+    assert output.unitid_teim == ["A0011"]
+    assert output.collection_unitid_ssm == ["A0011"]
+    assert output.geogname_ssm == ["Yosemite National Park (Calif.)"]
+    assert output.geogname_sim == ["Yosemite National Park (Calif.)"]
+    assert output.places_sim == output.geogname_ssm
+    assert output.places_ssim == output.geogname_ssm
+    assert output.places_ssm == output.geogname_ssm
+    assert output.creator_ssm == ["Stanford University"]
+    assert output.creator_sim == output.creator_ssm
+    assert output.creator_ssim == output.creator_ssm
+    assert output.creator_sort == "Stanford University"
+    assert output.creator_corpname_ssm == ["Stanford University"]
+    assert output.creator_corpname_sim == output.creator_corpname_ssm
+    assert output.creator_corpname_ssim == output.creator_corpname_ssm
+    assert output.creator_persname_ssm == []
+    assert output.creator_persname_sim == output.creator_persname_ssm
+    assert output.creator_persname_ssim == output.creator_persname_ssm
+    assert output.creator_famname_ssm == []
+    assert output.creator_famname_sim == output.creator_famname_ssm
+    assert output.creator_famname_ssim == output.creator_famname_ssm
+    assert output.creators_ssim == ["Stanford University"]
+
+    assert output.persname_sim == ["Stanford, Leland"]
 
     %{components: components} = output
     first_component = hd(components)

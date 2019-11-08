@@ -386,6 +386,57 @@ defmodule MegaParser.SaxParser do
       ) do
     {:ok, state |> add_component_property(:geogname, chars)}
   end
+  def handle_event(
+        :characters,
+        chars,
+        state = %{
+          tag_stack: [
+            {"geogname", _attrs},
+            {"controlaccess", _} | _extra
+          ]
+        }
+      ) do
+    {:ok, state |> add_doc_property(:geogname, chars)}
+  end
+
+  def handle_event(
+        :characters,
+        chars,
+        state = %{
+          tag_stack: [
+            {creator_type, _attrs},
+            {"origination", _},
+            {"did", _} | _extra
+          ]
+        }
+      ) do
+        if(creator_type == "persname") do
+          state =
+            state
+            |> add_doc_property(:all_persname, chars)
+        end
+        {
+          :ok,
+          state
+          |> add_doc_property(:creator, chars)
+          |> add_doc_property(:"creator_#{creator_type}", chars)
+        }
+  end
+  def handle_event(
+        :characters,
+        chars,
+        state = %{
+          tag_stack: [
+            {"persname", _attrs} | _extra
+          ]
+        }
+      ) do
+        {
+          :ok,
+          state
+          |> add_doc_property(:all_persname, chars)
+        }
+  end
 
   defp add_unitdate(state, "bulk", chars), do: state |> add_doc_property(:unitdate_bulk, chars)
 
