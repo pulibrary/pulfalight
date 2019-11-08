@@ -102,8 +102,8 @@ defmodule MegaParser do
 
   def apply_note_field(key, map, document) do
     map
-    |> Map.put(:"#{key}_teim", document[:"#{key}"])
-    |> Map.put(:"#{key}_heading_ssm", document[:"#{key}_heading"])
+    |> Map.put(:"#{key}_teim", document[:"#{key}"] || [])
+    |> Map.put(:"#{key}_heading_ssm", document[:"#{key}_heading"] || [])
   end
 
   defp put_multiple(map, keys, value) do
