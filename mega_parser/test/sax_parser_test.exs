@@ -52,6 +52,9 @@ defmodule MegaParser.SaxParserTest do
       "Restrictions also apply to digital representations of the original materials. Use of digital files is restricted to research and educational purposes."
     ]
     assert output.acqinfo_ssim == []
+    assert output.access_subjects_ssim == ["Photoprints.", "Cyanotypes."]
+    assert output.access_subjects_ssm == output.access_subjects_ssim
+    assert output.has_online_content_ssim == [true]
 
     %{components: components} = output
     first_component = hd(components)

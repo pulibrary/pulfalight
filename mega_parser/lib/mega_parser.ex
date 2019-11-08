@@ -87,6 +87,8 @@ defmodule MegaParser do
     |> put_multiple([:persname_sim], document[:all_persname] || [])
     |> put_multiple([:access_terms_ssm], document[:userestrict] || [])
     |> put_multiple([:acqinfo_ssm, :acqinfo_ssim], document[:acqinfo] || [])
+    |> put_multiple([:access_subjects_ssim, :access_subjects_ssm], document[:access_subjects] || [])
+    |> Map.put(:has_online_content_ssim, document[:has_online_content])
   end
 
   defp put_multiple(map, keys, value) do

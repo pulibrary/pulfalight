@@ -162,6 +162,7 @@ defmodule MegaParser.SaxParser do
   def handle_tag(state = %{current_component: %{}}, tag = {"dao", _attrs}) do
     state
     |> put_in([:current_component, :has_online_content], [true])
+    |> put_in([:document, :has_online_content], [true])
   end
 
   defp add_level(state, tag = {name, attrs}) do
@@ -397,6 +398,19 @@ defmodule MegaParser.SaxParser do
         }
       ) do
     {:ok, state |> add_doc_property(:geogname, chars)}
+  end
+
+  def handle_event(
+        :characters,
+        chars,
+        state = %{
+          tag_stack: [
+            {access_tag, _attrs},
+            {"controlaccess", _} | _extra
+          ]
+        }
+      ) when access_tag in ["subject", "function", "occupation", "genreform"] do
+    {:ok, state |> add_doc_property(:access_subjects, chars)}
   end
 
   def handle_event(
