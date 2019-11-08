@@ -85,6 +85,8 @@ defmodule MegaParser do
     |> put_multiple([:creator_persname_ssm, :creator_persname_sim, :creator_persname_ssim], document[:creator_persname] || [])
     |> put_multiple([:creator_famname_ssm, :creator_famname_sim, :creator_famname_ssim], document[:creator_famname] || [])
     |> put_multiple([:persname_sim], document[:all_persname] || [])
+    |> put_multiple([:access_terms_ssm], document[:userestrict] || [])
+    |> put_multiple([:acqinfo_ssm, :acqinfo_ssim], document[:acqinfo] || [])
   end
 
   defp put_multiple(map, keys, value) do

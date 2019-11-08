@@ -47,6 +47,12 @@ defmodule MegaParser.SaxParserTest do
 
     assert output.persname_sim == ["Stanford, Leland"]
 
+    assert output.access_terms_ssm == [
+      "All requests to reproduce, publish, quote from, or otherwise use collection materials must be submitted in writing to the Head of Special Collections and University Archives, Stanford University Libraries, Stanford, California 94304-6064. Consent is given on behalf of Special Collections as the owner of the physical items and is not intended to include or imply permission from the copyright owner. Such permission must be obtained from the copyright owner, heir(s) or assigns. See: http://library.stanford.edu/depts/spc/pubserv/permissions.html.",
+      "Restrictions also apply to digital representations of the original materials. Use of digital files is restricted to research and educational purposes."
+    ]
+    assert output.acqinfo_ssim == []
+
     %{components: components} = output
     first_component = hd(components)
     assert first_component.ref_ssi == "aspace_ref6_lx4"
@@ -64,6 +70,8 @@ defmodule MegaParser.SaxParserTest do
 
   test "parse alphaomegaalpha.xml" do
     output = MegaParser.parse("test/fixtures/alphaomegaalpha.xml", :sax)
+    assert output.acqinfo_ssim == ["Donated by Alpha Omega Alpha."]
+    assert output.acqinfo_ssm == output.acqinfo_ssim
     %{components: components} = output
 
     level_component = Enum.find(components, fn(x) -> x.ref_ssi == "aspace_a951375d104030369a993ff943f61a77" end)

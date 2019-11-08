@@ -438,6 +438,39 @@ defmodule MegaParser.SaxParser do
         }
   end
 
+  def handle_event(
+        :characters,
+        chars,
+        state = %{
+          tag_stack: [
+            {"userestrict", _attrs},
+            {"archdesc", _} | _extra
+          ]
+        }
+      ) do
+        {
+          :ok,
+          state
+          |> add_doc_property(:userestrict, chars)
+        }
+  end
+
+  def handle_event(
+        :characters,
+        chars,
+        state = %{
+          tag_stack: [
+            {"acqinfo", _attrs} | _extra
+          ]
+        }
+      ) do
+        {
+          :ok,
+          state
+          |> add_doc_property(:acqinfo, chars)
+        }
+  end
+
   defp add_unitdate(state, "bulk", chars), do: state |> add_doc_property(:unitdate_bulk, chars)
 
   defp add_unitdate(state, "inclusive", chars),
