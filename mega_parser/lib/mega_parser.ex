@@ -9,8 +9,8 @@ defmodule MegaParser do
   end
 
   def parse(file, :sax) do
-    parent_record = File.stream!(file)
-                    |> Saxy.parse_stream(MegaParser.SaxParser, [])
+    parent_record = File.read!(file)
+                    |> Saxy.parse_string(MegaParser.SaxParser, [])
                     |> elem(1)
                     |> Map.get(:document)
 
