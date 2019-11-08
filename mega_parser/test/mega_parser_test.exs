@@ -32,7 +32,6 @@ defmodule MegaParserTest do
     assert container_component.containers_ssim == ["box 1"]
   end
 
-
   test "parse alphaomegaalpha.xml" do
     file = File.read!("test/fixtures/alphaomegaalpha.xml")
     output = MegaParser.parse(file)
@@ -50,7 +49,6 @@ defmodule MegaParserTest do
     assert other_level_component.sort_ii == 2
   end
 
-  require IEx
   test "large component list" do
     file = File.read!("test/fixtures/large-components-list.xml")
     output = MegaParser.parse(file)

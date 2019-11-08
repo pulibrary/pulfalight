@@ -73,6 +73,10 @@ defmodule MegaParser do
     |> Map.put(:has_online_content_ssim, component[:has_online_content])
     |> Map.put(:collection_unitid_ssm, parent_record.unitid_ssm)
     |> Map.put(:containers_ssim, component[:containers])
+    |> Map.put(:parent_unittitles_ssm, component[:parent_unittitles])
+    |> Map.put(:normalized_title_ssm, normalized_title(component))
+    |> Map.put(:normalized_date_ssm, normalized_date(component))
+    |> Map.put(:sort_ii, component[:sort])
   end
 
   def get_parents(component, parent_record) do
@@ -130,7 +134,10 @@ defmodule MegaParser do
                     |> Map.get(:document)
 
     parent_converted = parent_record |> convert_standard_parent
-    components_converted = parent_record |> Map.get(:components) |> Enum.map(&convert_standard_component(&1, parent_converted))
+    components_converted = 
+      parent_record
+      |> Map.get(:components)
+      |> Enum.map(&convert_standard_component(&1, parent_converted))
 
     parent_converted
     |> Map.put(:components, components_converted)
@@ -198,9 +205,12 @@ defmodule MegaParser do
     |> convert_standard_parent
   end
 
-  defp normalized_title(record) do
-    record.title ++ normalized_date(record) |> Enum.join(", ")
+  def normalized_title(record) do
+    normalized_title(record[:title], normalized_date(record))
   end
+  def normalized_title(title, nil), do: title
+  def normalized_title(title, [nil]), do: title
+  def normalized_title(title, date), do: [title | date] |> Enum.join(", ")
 
   def normalized_date(record) do
     [MegaParser.NormalizedDate.to_string(record[:unitdate_inclusive], (record[:unitdate_bulk] || []) |> Enum.at(0), (record[:unitdate_other] || []) |> Enum.at(0))]

@@ -1,7 +1,7 @@
 defmodule MegaParser.SaxParser do
   @behaviour Saxy.Handler
   def handle_event(:start_document, prolog, state) do
-    {:ok, %{tag_stack: [], document: %{}}}
+    {:ok, %{tag_stack: [], document: %{}, component_counter: 0}}
   end
 
   def handle_event(:end_document, _data, state) do
@@ -22,10 +22,12 @@ defmodule MegaParser.SaxParser do
       state
       |> Map.put(:component_stack, [current_component | (state[:component_stack] || [])])
     Map.put(state, :current_component, build_component(state, tag))
+    |> Map.put(:component_counter, state.component_counter + 1)
   end
   defp add_component(state, tag = {name, attrs}) do
     state
     |> Map.put(:current_component, build_component(state, tag))
+    |> Map.put(:component_counter, state.component_counter + 1)
   end
 
   defp build_component(state, tag = {name, attrs}) do
@@ -34,7 +36,8 @@ defmodule MegaParser.SaxParser do
     otherlevel = attrs |> extract_attr("otherlevel")
     component_level = state |> component_level
     parent_ids = state |> parent_ids
-    %{id: id, level: level, other_level: otherlevel, component_level: [component_level], parent_ids: parent_ids}
+    parent_unittitles = state |> parent_unittitles
+    %{id: id, level: level, other_level: otherlevel, component_level: [component_level], parent_ids: parent_ids, parent_unittitles: parent_unittitles, sort: state.component_counter}
   end
   defp component_level(%{tag_stack: stack}) do
     stack
@@ -47,6 +50,14 @@ defmodule MegaParser.SaxParser do
   defp parent_ids(stack) do
     [stack.document.id]
   end
+
+  defp parent_unittitles(stack = %{component_stack: component_stack}) do
+    [MegaParser.normalized_title(stack.document) | Enum.map(component_stack, fn(x) -> MegaParser.normalized_title(x) |> Enum.at(0) end)]
+  end
+  defp parent_unittitles(stack) do
+    [MegaParser.normalized_title(stack.document)]
+  end
+
   def handle_tag(state, tag = {"archdesc", _attributes}), do: state |> add_level(tag)
   def handle_tag(state, tag = {"unitdate", attrs}) do
     normal = attrs |> extract_attr("normal")
@@ -138,18 +149,31 @@ defmodule MegaParser.SaxParser do
         state = %{
           tag_stack: [
             {"unittitle", _},
-            {"did", _},
-            {"archdesc", _} | _extra
+            {"did", _} | _rest
+          ],
+          current_component: %{}
+        }
+      ) do
+    state =
+      state
+      |> add_component_property(:title, chars)
+    {:ok, state}
+  end
+  def handle_event(
+        :characters,
+        chars,
+        state = %{
+          tag_stack: [
+            {"unittitle", _},
+            {"did", _} | _rest
           ]
         }
       ) do
     state =
       state
       |> add_doc_property(:title, chars)
-
     {:ok, state}
   end
-
   # Extract UnitID
   def handle_event(
         :characters,
@@ -224,12 +248,12 @@ defmodule MegaParser.SaxParser do
 
   defp add_doc_property(state, property, chars) do
     state
-    |> put_in([:document, property], [chars |> clean_string | state.document[property] || []])
+    |> put_in([:document, property], (state.document[property] || []) ++ [chars |> clean_string])
   end
 
   defp add_component_property(state, property, chars) do
     state
-    |> put_in([:current_component, property], [chars |> clean_string | state.document[property] || []])
+    |> put_in([:current_component, property], (state.current_component[property] || []) ++ [(chars |> clean_string)])
   end
 
   def handle_event(:characters, chars, state) do

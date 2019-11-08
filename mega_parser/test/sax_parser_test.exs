@@ -3,7 +3,6 @@ defmodule MegaParser.SaxParserTest do
   doctest MegaParser.SaxParser
   alias MegaParser.SaxParser
 
-  require IEx
   test "parse a0011" do
     output = MegaParser.parse("test/fixtures/a0011.xml", :sax)
     assert output.id == "a0011-xml"
@@ -35,8 +34,7 @@ defmodule MegaParser.SaxParserTest do
 
 
   test "parse alphaomegaalpha.xml" do
-    file = File.read!("test/fixtures/alphaomegaalpha.xml")
-    output = MegaParser.parse(file)
+    output = MegaParser.parse("test/fixtures/alphaomegaalpha.xml", :sax)
     %{components: components} = output
 
     level_component = Enum.find(components, fn(x) -> x.ref_ssi == "aspace_a951375d104030369a993ff943f61a77" end)
@@ -51,7 +49,6 @@ defmodule MegaParser.SaxParserTest do
     assert other_level_component.sort_ii == 2
   end
 
-  require IEx
   test "large component list" do
     output = MegaParser.parse("test/fixtures/large-components-list.xml", :sax)
     %{components: components} = output
@@ -60,9 +57,10 @@ defmodule MegaParser.SaxParserTest do
 
     nested_component = Enum.find(components, fn(x) -> x.ref_ssi == "aspace_32ad9025a3a286358baeae91b5d7696e" end)
     assert nested_component != nil
+    assert nested_component.normalized_title_ssm == ["Item AA191"]
     assert nested_component.component_level_isim == [2]
     assert nested_component.parent_ssim == ["lc0100", "aspace_327a75c226d44aa1a769edb4d2f13c6e"]
     assert nested_component.parent_ssi == ["aspace_327a75c226d44aa1a769edb4d2f13c6e"]
-    # assert nested_component.parent_unittitles_ssm == ["Large collection sample, 1843-1872", "File 1"]
+    assert nested_component.parent_unittitles_ssm == ["Large collection sample, 1843-1872", "File 1"]
   end
 end
