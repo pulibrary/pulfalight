@@ -42,7 +42,7 @@ defmodule MegaParser do
     %{
       id: component |> Meeseeks.attr("id"),
       has_online_content: [component |> Meeseeks.one(xpath(".//dao")) != nil],
-      geogname: component |> extract_text("./controllaccess/geogname"),
+      geogname: component |> extract_text("./controlaccess/geogname"),
 
       level: component |> Meeseeks.attr("level"),
       other_level: component |> Meeseeks.attr("otherlevel"),
@@ -66,13 +66,13 @@ defmodule MegaParser do
     |> Map.put(:ref_ssi, component.id)
     |> Map.put(:ead_ssi, parent_record.ead_ssi)
     |> put_multiple([:level_ssm, :level_sim], extract_level(component.level, component.other_level))
-    |> put_multiple([:geogname_ssm, :geogname_sim], component.geogname)
+    |> put_multiple([:geogname_ssm, :geogname_sim], component[:geogname] || [])
     |> Map.put(:component_level_isim, component.component_level)
     |> Map.put(:parent_ssim, component.parent_ids)
     |> Map.put(:parent_ssi, component.parent_ids |> Enum.slice(-1..-1))
-    |> Map.put(:has_online_content_ssim, component.has_online_content)
+    |> Map.put(:has_online_content_ssim, component[:has_online_content])
     |> Map.put(:collection_unitid_ssm, parent_record.unitid_ssm)
-    |> Map.put(:containers_ssim, component.containers)
+    |> Map.put(:containers_ssim, component[:containers])
   end
 
   def get_parents(component, parent_record) do

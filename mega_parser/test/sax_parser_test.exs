@@ -53,8 +53,7 @@ defmodule MegaParser.SaxParserTest do
 
   require IEx
   test "large component list" do
-    file = File.read!("test/fixtures/large-components-list.xml")
-    output = MegaParser.parse(file)
+    output = MegaParser.parse("test/fixtures/large-components-list.xml", :sax)
     %{components: components} = output
 
     assert length(components) == 404
