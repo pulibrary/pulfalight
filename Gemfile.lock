@@ -121,7 +121,7 @@ GEM
       simplecov (>= 0.7)
       term-ansicolor
       thor
-    crass (1.0.4)
+    crass (1.0.5)
     deprecation (1.0.0)
       activesupport
     devise (4.5.0)
@@ -186,7 +186,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
-    loofah (2.3.0)
+    loofah (2.3.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -214,7 +214,7 @@ GEM
     net-ssh (5.2.0)
     netrc (0.11.0)
     nio4r (2.5.2)
-    nokogiri (1.10.4)
+    nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     parallel (1.18.0)
