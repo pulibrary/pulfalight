@@ -1,5 +1,11 @@
 <header class="lux">
-  <library-header app-name="<%= application_name %>" app-url="<%= root_path %>"></library-header>
+  <library-header app-name="<%= application_name %>" app-url="<%= root_path %>">
+    <div class="pull-right menu--level-1 col-xs-12 col-sm-6">
+      <ul>
+        <%= render partial: 'shared/header_account_dropdown' %>
+      </ul>
+    </div>
+  </library-header>
   <% unless params[:action] == 'error' || params[:action] == 'generate' %>
     <div class="header__secondary">
       <nav class="container" role="navigation">

@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     concerns :searchable
     concerns :range_searchable
   end
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }, skip: [:passwords, :registration]
+  devise_scope :user do
+    delete 'sign_out', to: 'devise/sessions#destroy', as: :destroy_user_session
+    get 'users/auth/cas', to: 'users/omniauth_authorize#passthru', defaults: { provider: :cas }, as: "new_user_session"
+  end
   concern :exportable, Blacklight::Routes::Exportable.new
 
   require "sidekiq/web"

@@ -32,4 +32,60 @@ header {
       }
     }
   }
+
+  .menu--level-1,
+  .logo__pul {
+    height: 52px;
+    position: relative;
+    z-index: 10;
+    text-align: right; 
+
+    @media (min-width: 645px) {
+      width: 50%;
+    }
+  }
+
+  .logo__pul a {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block; // float: left;
+    height: 38px;
+
+    img {
+      height: 35px;
+      vertical-align: middle;
+    }
+
+    &.site-title {
+      vertical-align: middle;
+      margin-left: 1rem;
+      border-left: 1px solid darken($gray, 50%);
+      height: 35px;
+      padding-left: 1rem;
+      color: white;
+      font-size: 1.6em;
+      line-height: 35px;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      &:focus,
+      &:active {
+        color: $orange;
+      }
+    }
+  }
+
+  .menu--level-1>ul {
+    display: inline-block;
+
+    @media (min-width: 645px) {
+      margin-top: 0;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
 }
