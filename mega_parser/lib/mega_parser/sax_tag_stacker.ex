@@ -75,7 +75,7 @@ defmodule MegaParser.SaxTagStacker do
         {:ok, initial_state()}
       end
 
-      def handle_event(:end_document, _data, state), do: {:ok, state}
+      def handle_event(:end_document, _data, state), do: {:ok, state |> final_cleanup}
 
       def handle_event(:start_element, {name, _attributes}, state) when name not in @whitelist do
         {:ok, state}

@@ -159,6 +159,7 @@ defmodule MegaParser.SaxParser do
       )
       when tag in @components do
     state
+    |> Map.put(:current_component, reverse_fields(component))
     |> end_component(component)
   end
 
@@ -446,14 +447,19 @@ defmodule MegaParser.SaxParser do
 
   defp add_doc_property(state, property, chars) do
     state
-    |> put_in([:document, property], (state.document[property] || []) ++ [chars |> clean_string])
+    |> put_in([:document, property],
+      [(chars |> clean_string) | (state.document[property] || [])]
+      # (state.document[property] || []) ++ [chars |> clean_string]
+    )
   end
 
   defp add_component_property(state, property, chars) do
     state
     |> put_in(
       [:current_component, property],
-      (state.current_component[property] || []) ++ [chars |> clean_string]
+
+      [(chars |> clean_string) | (state.current_component[property] || [])]
+      # (state.current_component[property] || []) ++ [chars |> clean_string]
     )
   end
 
@@ -462,5 +468,24 @@ defmodule MegaParser.SaxParser do
     |> String.replace("\n", "")
     |> String.replace(~r/\s+/, " ")
     |> String.trim()
+  end
+
+  defp final_cleanup(state = %{document: document}) do
+    state
+    |> Map.put(:document, reverse_fields(document))
+  end
+
+  defp reverse_fields(document) do
+    document
+    |> Enum.reduce(%{}, &reverse_values/2)
+  end
+
+  defp reverse_values({key, values}, map) when is_list(values) do
+    map
+    |> Map.put(key, Enum.reverse(values))
+  end
+  defp reverse_values({key, values}, map) do
+    map
+    |> Map.put(key, values)
   end
 end
