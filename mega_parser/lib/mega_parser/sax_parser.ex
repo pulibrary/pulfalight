@@ -47,20 +47,22 @@ defmodule MegaParser.SaxParser do
 
   def handle_tag_start(state, tag = {"archdesc", _attributes}), do: state |> add_level(tag)
 
-  def handle_tag_start(state, tag = {"unitdate", attrs}) do
+  def handle_tag_start(state, {"unitdate", attrs}) do
     normal = attrs |> extract_attr("normal")
 
     state
     |> put_in([:document, :unitdate_normal], normal)
   end
 
-  def handle_tag_start(state = %{current_component: %{}}, tag = {"dao", _attrs}) do
+  def handle_tag_start(state = %{current_component: %{}}, {"dao", _attrs}) do
     state
     |> put_in([:current_component, :has_online_content], [true])
     |> put_in([:document, :has_online_content], [true])
   end
 
-  defp add_component(state = %{current_component: current_component = %{}}, tag = {name, attrs}) do
+  def handle_tag_start(state, _tag), do: state
+
+  defp add_component(state = %{current_component: current_component = %{}}, tag = {_name, _attrs}) do
     state =
       state
       |> Map.put(:component_stack, [current_component | state[:component_stack] || []])
@@ -69,13 +71,13 @@ defmodule MegaParser.SaxParser do
     |> Map.put(:component_counter, state.component_counter + 1)
   end
 
-  defp add_component(state, tag = {name, attrs}) do
+  defp add_component(state, tag = {_name, _attrs}) do
     state
     |> Map.put(:current_component, build_component(state, tag))
     |> Map.put(:component_counter, state.component_counter + 1)
   end
 
-  defp build_component(state, tag = {name, attrs}) do
+  defp build_component(state, {_name, attrs}) do
     id = attrs |> List.keyfind("id", 0, {:notfound, nil}) |> elem(1)
     level = attrs |> extract_attr("level")
     otherlevel = attrs |> extract_attr("otherlevel")
@@ -119,15 +121,13 @@ defmodule MegaParser.SaxParser do
     [stack.document.normalized_title]
   end
 
-  defp add_level(state, tag = {name, attrs}) do
+  defp add_level(state, {_name, attrs}) do
     level = attrs |> extract_attr("level")
     otherlevel = attrs |> extract_attr("otherlevel")
 
     state
     |> put_in([:document, :level], MegaParser.extract_level(level, otherlevel))
   end
-
-  def handle_tag_start(state, _tag), do: state
 
   defp append_tag(state, tag) do
     state
@@ -140,7 +140,7 @@ defmodule MegaParser.SaxParser do
 
   def drop_tag_stack(state = %{tag_stack: []}), do: state
 
-  def drop_tag_stack(state = %{tag_stack: [hd | tail]}) do
+  def drop_tag_stack(state = %{tag_stack: [_hd | tail]}) do
     state
     |> Map.put(:tag_stack, tail)
   end
@@ -343,9 +343,7 @@ defmodule MegaParser.SaxParser do
         chars
       ) do
     if(creator_type == "persname") do
-      state =
-        state
-        |> add_doc_property(:all_persname, chars)
+      state = state |> add_doc_property(:all_persname, chars)
     end
 
     state
@@ -433,7 +431,7 @@ defmodule MegaParser.SaxParser do
     |> add_doc_property(:"#{field}_heading", chars)
   end
 
-  def handle_text(state, chars), do: state
+  def handle_text(state, _chars), do: state
 
   defp add_unitdate(state, "bulk", chars), do: state |> add_doc_property(:unitdate_bulk, chars)
 
@@ -457,10 +455,6 @@ defmodule MegaParser.SaxParser do
       [:current_component, property],
       (state.current_component[property] || []) ++ [chars |> clean_string]
     )
-  end
-
-  def handle_event(:characters, chars, state) do
-    {:ok, state}
   end
 
   defp clean_string(string) do
