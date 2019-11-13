@@ -78,6 +78,6 @@ gem "sidekiq"
 gem "solr_wrapper", "~> 2.1"
 gem "twitter-typeahead-rails", "0.11.1.pre.corejavascript"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "omniauth-cas"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "webpacker", "~> 4.0"
-gem 'omniauth-cas'
