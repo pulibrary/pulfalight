@@ -1,73 +1,5 @@
 defmodule MegaParser.SaxParser do
-  @behaviour Saxy.Handler
-  # A whitelist is added so that extra descriptive tags won't get indexed and the characters will get picked up.
-  @whitelist [
-    "abstract",
-    "accessrestrict",
-    "accruals",
-    "acqinfo",
-    "altformavail",
-    "appraisal",
-    "archdesc",
-    "arrangement",
-    "bibliography",
-    "bioghist",
-    "controlaccess",
-    "corpname",
-    "custodhist",
-    "dao",
-    "descgrp",
-    "did",
-    "ead",
-    "eadheader",
-    "eadid",
-    "famname",
-    "filedesc",
-    "fileplan",
-    "genreform",
-    "geogname",
-    "head",
-    "langmaterial",
-    "materialspec",
-    "note",
-    "odd",
-    "originalsloc",
-    "origination",
-    "otherfindaid",
-    "persname",
-    "physdesc",
-    "extent",
-    "physloc",
-    "phystech",
-    "prefercite",
-    "processinfo",
-    "prodescrules",
-    "relatedmaterial",
-    "scopecontent",
-    "separatedmaterial",
-    "titleproper",
-    "titlestmt",
-    "unitdate",
-    "unitdate/@normal",
-    "unitid",
-    "unittitle",
-    "userestrict",
-    "container",
-    "c",
-    "c01",
-    "c02",
-    "c03",
-    "c04",
-    "c05",
-    "c06",
-    "c07",
-    "c08",
-    "c09",
-    "c10",
-    "c11",
-    "c12"
-  ]
-
+  use MegaParser.SaxTagStacker
   @searchable_notes_fields [
     "accessrestrict",
     "accruals",
@@ -88,36 +20,35 @@ defmodule MegaParser.SaxParser do
     "relatedmaterial",
     "scopecontent",
     "separatedmaterial",
-    "userestrict",
+    "userestrict"
   ]
+
+  @components ["c"] ++ (for n <- (1..12), do: n |> Integer.to_string |> String.pad_leading(2, "0") |> (fn(x) -> "c" <> x end).())
 
   def searchable_notes_fields do
     @searchable_notes_fields
   end
 
-  def handle_event(:start_document, prolog, state) do
-    {:ok, %{tag_stack: [], document: %{}, component_counter: 0}}
+  def initial_state do
+    %{tag_stack: [], document: %{}, component_counter: 0}
   end
 
-  def handle_event(:end_document, _data, state) do
-    {:ok, state}
+  def handle_tag_start(state, tag = {name, _attributes}) when name in @components, do: state |> add_component(tag)
+
+  def handle_tag_start(state, tag = {"archdesc", _attributes}), do: state |> add_level(tag)
+
+  def handle_tag_start(state, tag = {"unitdate", attrs}) do
+    normal = attrs |> extract_attr("normal")
+
+    state
+    |> put_in([:document, :unitdate_normal], normal)
   end
 
-  def handle_event(:start_element, {name, attributes}, state) when name not in @whitelist do
-    {:ok, state}
+  def handle_tag_start(state = %{current_component: %{}}, tag = {"dao", _attrs}) do
+    state
+    |> put_in([:current_component, :has_online_content], [true])
+    |> put_in([:document, :has_online_content], [true])
   end
-
-  def handle_event(:start_element, tag = {name, attributes}, state) do
-    {:ok, state |> append_tag(tag) |> handle_tag(tag)}
-  end
-
-  def handle_tag(state, tag = {"c", _attributes}), do: state |> add_component(tag)
-
-  def handle_tag(state, tag = {"c0" <> <<_digit::bytes-size(1)>>, _attributes}),
-    do: state |> add_component(tag)
-
-  def handle_tag(state, tag = {"c11", _attributes}), do: state |> add_component(tag)
-  def handle_tag(state, tag = {"c12", _attributes}), do: state |> add_component(tag)
 
   defp add_component(state = %{current_component: current_component = %{}}, tag = {name, attrs}) do
     state =
@@ -155,7 +86,7 @@ defmodule MegaParser.SaxParser do
 
   defp component_level(%{tag_stack: stack}) do
     stack
-    |> Enum.filter(fn x -> elem(x, 0) in ["c", "c01"] end)
+    |> Enum.filter(fn x -> elem(x, 0) in @components end)
     |> length
   end
 
@@ -178,21 +109,6 @@ defmodule MegaParser.SaxParser do
     [stack.document.normalized_title]
   end
 
-  def handle_tag(state, tag = {"archdesc", _attributes}), do: state |> add_level(tag)
-
-  def handle_tag(state, tag = {"unitdate", attrs}) do
-    normal = attrs |> extract_attr("normal")
-
-    state
-    |> put_in([:document, :unitdate_normal], normal)
-  end
-
-  def handle_tag(state = %{current_component: %{}}, tag = {"dao", _attrs}) do
-    state
-    |> put_in([:current_component, :has_online_content], [true])
-    |> put_in([:document, :has_online_content], [true])
-  end
-
   defp add_level(state, tag = {name, attrs}) do
     level = attrs |> extract_attr("level")
     otherlevel = attrs |> extract_attr("otherlevel")
@@ -201,7 +117,7 @@ defmodule MegaParser.SaxParser do
     |> put_in([:document, :level], MegaParser.extract_level(level, otherlevel))
   end
 
-  def handle_tag(state, _tag), do: state
+  def handle_tag_start(state, _tag), do: state
 
   defp append_tag(state, tag) do
     state
@@ -212,42 +128,30 @@ defmodule MegaParser.SaxParser do
     attrs |> List.keyfind(attr, 0, {:notfound, nil}) |> elem(1)
   end
 
-  require IEx
+  def drop_tag_stack(state = %{tag_stack: []}), do: state
 
-  def handle_event(:end_element, name, state) when name not in @whitelist do
-    {:ok, state}
+  def drop_tag_stack(state = %{tag_stack: [hd | tail]}) do
+    state
+    |> Map.put(:tag_stack, tail)
   end
 
-  def handle_event(
-        :end_element,
-        "did",
-        state = %{tag_stack: [hd | tail = [{"archdesc", _} | _rest]]}
+  def handle_tag_end(
+        state = %{tag_stack: [{"archdesc", _} | _rest]},
+        "did"
       ) do
-    state =
-      state
-      |> put_in(
-        [:document, :normalized_title],
-        MegaParser.normalized_title(state.document) || nil
-      )
-
-    {:ok, state |> Map.put(:tag_stack, tail)}
+    state
+    |> put_in([:document, :normalized_title], MegaParser.normalized_title(state.document) || nil)
   end
 
-  def handle_event(
-        :end_element,
-        "c",
-        state = %{tag_stack: [hd | tail], current_component: component = %{}}
-      ) do
-    {:ok, state |> Map.put(:tag_stack, tail) |> end_component(component)}
+  def handle_tag_end(
+        state = %{current_component: component = %{}},
+        tag
+      ) when tag in @components do
+    state
+    |> end_component(component)
   end
 
-  def handle_event(
-        :end_element,
-        "c01",
-        state = %{tag_stack: [hd | tail], current_component: component = %{}}
-      ) do
-    {:ok, state |> Map.put(:tag_stack, tail) |> end_component(component)}
-  end
+  def handle_tag_end(state, _tag), do: state
 
   defp end_component(state = %{component_stack: [hd | rest]}, component) do
     state
@@ -263,23 +167,14 @@ defmodule MegaParser.SaxParser do
     |> put_in([:document, :components], [component | state.document[:components] || []])
   end
 
-  def handle_event(:end_element, name, state = %{tag_stack: [hd | tail]}) do
-    {:ok, state |> Map.put(:tag_stack, tail)}
-  end
-
   ## Extract ead ID
-  def handle_event(:characters, chars, state = %{tag_stack: [{"eadid", _} | _extra]}) do
-    state =
-      state
-      |> put_in([:document, :id], chars |> clean_string)
-
-    {:ok, state}
+  def handle_text(state = %{tag_stack: [{"eadid", _} | _extra]}, chars) do
+    state
+    |> put_in([:document, :id], chars |> clean_string)
   end
 
   # Extract Filing Title
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {"titleproper", attrs},
@@ -287,288 +182,245 @@ defmodule MegaParser.SaxParser do
             {"filedesc", _},
             {"eadheader", _} | _extra
           ]
-        }
+        },
+        chars
       ) do
-    state =
-      case attrs |> List.keyfind("type", 0) do
-        {"type", "filing"} ->
-          state
-          |> add_doc_property(:title_filing, chars)
+    case attrs |> List.keyfind("type", 0) do
+      {"type", "filing"} ->
+        state
+        |> add_doc_property(:title_filing, chars)
 
-        nil ->
-          state
-      end
-
-    {:ok, state}
+      nil ->
+        state
+    end
   end
 
   # Extract Title
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {"unittitle", _},
             {"did", _} | _rest
           ],
           current_component: %{}
-        }
+        },
+        chars
       ) do
-    state =
-      state
-      |> add_component_property(:title, chars)
+    state = add_component_property(state, :title, chars)
 
-    state =
-      state
-      |> put_in(
-        [:current_component, :normalized_title],
-        MegaParser.normalized_title(state.current_component) |> Enum.at(0) || nil
-      )
-
-    {:ok, state}
+    state
+    |> put_in(
+      [:current_component, :normalized_title],
+      MegaParser.normalized_title(state.current_component) |> Enum.at(0) || nil
+    )
   end
 
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {"unittitle", _},
             {"did", _} | _rest
           ]
-        }
+        },
+        chars
       ) do
-    state =
       state
       |> add_doc_property(:title, chars)
-
-    {:ok, state}
   end
 
   # Extract UnitID
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {"unitid", _},
             {"did", _},
             {"archdesc", _} | _extra
           ]
-        }
+        },
+    chars
       ) do
-    state =
       state
       |> add_doc_property(:unitid, chars)
-
-    {:ok, state}
   end
 
   # Extract UnitDate
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {"unitdate", attrs},
             {"did", _},
             {"archdesc", _} | _extra
           ]
-        }
+        },
+        chars
       ) do
     type = attrs |> List.keyfind("type", 0, {:notfound, nil}) |> elem(1)
-    {:ok, state |> add_doc_property(:unitdate, chars) |> add_unitdate(type, chars)}
+        state
+        |> add_doc_property(:unitdate, chars)
+        |> add_unitdate(type, chars)
   end
 
   # Extract Containers
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {"container", attrs},
             {"did", _} | _extra
           ],
           current_component: %{}
-        }
+        },
+        chars
       ) do
     type = attrs |> List.keyfind("type", 0, {:notfound, nil}) |> elem(1)
-
-    {:ok,
-     state
-     |> add_component_property(
-       :containers,
-       MegaParser.container_string(%{type: type, text: chars})
-     )}
+        state
+        |> add_component_property(
+          :containers,
+          MegaParser.container_string(%{type: type, text: chars})
+        )
   end
 
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {"geogname", _attrs},
             {"controlaccess", _} | _extra
           ],
           current_component: %{}
-        }
+        },
+        chars
       ) do
-    {:ok, state |> add_component_property(:geogname, chars)}
+    state |> add_component_property(:geogname, chars)
   end
-  def handle_event(
-        :characters,
-        chars,
+
+  def handle_text(
         state = %{
           tag_stack: [
             {"geogname", _attrs},
             {"controlaccess", _} | _extra
           ]
-        }
+        },
+        chars
       ) do
-    {:ok, state |> add_doc_property(:geogname, chars)}
+    state |> add_doc_property(:geogname, chars)
   end
 
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {access_tag, _attrs},
             {"controlaccess", _} | _extra
           ]
-        }
-      ) when access_tag in ["subject", "function", "occupation", "genreform"] do
-        {
-          :ok,
-          state
-          |> add_doc_property(:access_subjects, chars)
-          |> add_doc_property(:"#{access_tag}", chars)
-        }
+        },
+        chars
+  )
+      when access_tag in ["subject", "function", "occupation", "genreform"] do
+      state
+      |> add_doc_property(:access_subjects, chars)
+      |> add_doc_property(:"#{access_tag}", chars)
   end
 
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {creator_type, _attrs},
             {"origination", _},
             {"did", _} | _extra
           ]
-        }
+        },
+        chars
       ) do
-        if(creator_type == "persname") do
-          state =
-            state
-            |> add_doc_property(:all_persname, chars)
-        end
-        {
-          :ok,
-          state
-          |> add_doc_property(:creator, chars)
-          |> add_doc_property(:"creator_#{creator_type}", chars)
-        }
+    if(creator_type == "persname") do
+      state =
+        state
+        |> add_doc_property(:all_persname, chars)
+    end
+
+      state
+      |> add_doc_property(:creator, chars)
+      |> add_doc_property(:"creator_#{creator_type}", chars)
   end
-  def handle_event(
-        :characters,
-        chars,
+
+  def handle_text(
         state = %{
           tag_stack: [
             {"persname", _attrs} | _extra
           ]
-        }
+        },
+        chars
       ) do
-        {
-          :ok,
-          state
-          |> add_doc_property(:all_persname, chars)
-        }
+      state
+      |> add_doc_property(:all_persname, chars)
   end
 
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {"userestrict", _attrs},
             {"archdesc", _} | _extra
           ]
-        }
+        },
+        chars
       ) do
-        {
-          :ok,
-          state
-          |> add_doc_property(:userestrict, chars)
-        }
+      state
+      |> add_doc_property(:userestrict, chars)
   end
 
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {"acqinfo", _attrs} | _extra
           ]
-        }
+        },
+        chars
       ) do
-        {
-          :ok,
-          state
-          |> add_doc_property(:acqinfo, chars)
-        }
+      state
+      |> add_doc_property(:acqinfo, chars)
   end
 
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {"extent", _attrs},
             {"physdesc", _},
             {"did", _} | _extra
           ]
-        }
+        },
+        chars
       ) do
-        {
-          :ok,
-          state
-          |> add_doc_property(:extent, chars)
-        }
+      state
+      |> add_doc_property(:extent, chars)
   end
 
-  def handle_event(
-        :characters,
-        chars,
+  def handle_text(
         state = %{
           tag_stack: [
             {field, _attrs},
             {"archdesc", _} | _extra
           ]
-        }
-      ) when field in @searchable_notes_fields do
-        {
-          :ok,
-          state
-          |> add_doc_property(:"#{field}", chars)
-        }
+        },
+        chars
+  )
+      when field in @searchable_notes_fields do
+      state
+      |> add_doc_property(:"#{field}", chars)
   end
-  def handle_event(
-        :characters,
-        chars,
+
+  def handle_text(
         state = %{
           tag_stack: [
             {"head", _},
             {field, _attrs},
             {"archdesc", _} | _extra
           ]
-        }
-      ) when field in @searchable_notes_fields do
-        {
-          :ok,
-          state
-          |> add_doc_property(:"#{field}_heading", chars)
-        }
+        },
+        chars
+  )
+      when field in @searchable_notes_fields do
+      state
+      |> add_doc_property(:"#{field}_heading", chars)
   end
+
+  def handle_text(state, chars), do: state
 
   defp add_unitdate(state, "bulk", chars), do: state |> add_doc_property(:unitdate_bulk, chars)
 
