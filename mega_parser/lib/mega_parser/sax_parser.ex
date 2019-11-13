@@ -1,5 +1,6 @@
 defmodule MegaParser.SaxParser do
   use MegaParser.SaxTagStacker
+
   @searchable_notes_fields [
     "accessrestrict",
     "accruals",
@@ -23,7 +24,15 @@ defmodule MegaParser.SaxParser do
     "userestrict"
   ]
 
-  @components ["c"] ++ (for n <- (1..12), do: n |> Integer.to_string |> String.pad_leading(2, "0") |> (fn(x) -> "c" <> x end).())
+  @components ["c"] ++
+                for(
+                  n <- 1..12,
+                  do:
+                    n
+                    |> Integer.to_string()
+                    |> String.pad_leading(2, "0")
+                    |> (fn x -> "c" <> x end).()
+                )
 
   def searchable_notes_fields do
     @searchable_notes_fields
@@ -33,7 +42,8 @@ defmodule MegaParser.SaxParser do
     %{tag_stack: [], document: %{}, component_counter: 0}
   end
 
-  def handle_tag_start(state, tag = {name, _attributes}) when name in @components, do: state |> add_component(tag)
+  def handle_tag_start(state, tag = {name, _attributes}) when name in @components,
+    do: state |> add_component(tag)
 
   def handle_tag_start(state, tag = {"archdesc", _attributes}), do: state |> add_level(tag)
 
@@ -146,7 +156,8 @@ defmodule MegaParser.SaxParser do
   def handle_tag_end(
         state = %{current_component: component = %{}},
         tag
-      ) when tag in @components do
+      )
+      when tag in @components do
     state
     |> end_component(component)
   end
@@ -224,8 +235,8 @@ defmodule MegaParser.SaxParser do
         },
         chars
       ) do
-      state
-      |> add_doc_property(:title, chars)
+    state
+    |> add_doc_property(:title, chars)
   end
 
   # Extract UnitID
@@ -237,10 +248,10 @@ defmodule MegaParser.SaxParser do
             {"archdesc", _} | _extra
           ]
         },
-    chars
+        chars
       ) do
-      state
-      |> add_doc_property(:unitid, chars)
+    state
+    |> add_doc_property(:unitid, chars)
   end
 
   # Extract UnitDate
@@ -255,9 +266,10 @@ defmodule MegaParser.SaxParser do
         chars
       ) do
     type = attrs |> List.keyfind("type", 0, {:notfound, nil}) |> elem(1)
-        state
-        |> add_doc_property(:unitdate, chars)
-        |> add_unitdate(type, chars)
+
+    state
+    |> add_doc_property(:unitdate, chars)
+    |> add_unitdate(type, chars)
   end
 
   # Extract Containers
@@ -272,11 +284,12 @@ defmodule MegaParser.SaxParser do
         chars
       ) do
     type = attrs |> List.keyfind("type", 0, {:notfound, nil}) |> elem(1)
-        state
-        |> add_component_property(
-          :containers,
-          MegaParser.container_string(%{type: type, text: chars})
-        )
+
+    state
+    |> add_component_property(
+      :containers,
+      MegaParser.container_string(%{type: type, text: chars})
+    )
   end
 
   def handle_text(
@@ -312,11 +325,11 @@ defmodule MegaParser.SaxParser do
           ]
         },
         chars
-  )
+      )
       when access_tag in ["subject", "function", "occupation", "genreform"] do
-      state
-      |> add_doc_property(:access_subjects, chars)
-      |> add_doc_property(:"#{access_tag}", chars)
+    state
+    |> add_doc_property(:access_subjects, chars)
+    |> add_doc_property(:"#{access_tag}", chars)
   end
 
   def handle_text(
@@ -335,9 +348,9 @@ defmodule MegaParser.SaxParser do
         |> add_doc_property(:all_persname, chars)
     end
 
-      state
-      |> add_doc_property(:creator, chars)
-      |> add_doc_property(:"creator_#{creator_type}", chars)
+    state
+    |> add_doc_property(:creator, chars)
+    |> add_doc_property(:"creator_#{creator_type}", chars)
   end
 
   def handle_text(
@@ -348,8 +361,8 @@ defmodule MegaParser.SaxParser do
         },
         chars
       ) do
-      state
-      |> add_doc_property(:all_persname, chars)
+    state
+    |> add_doc_property(:all_persname, chars)
   end
 
   def handle_text(
@@ -361,8 +374,8 @@ defmodule MegaParser.SaxParser do
         },
         chars
       ) do
-      state
-      |> add_doc_property(:userestrict, chars)
+    state
+    |> add_doc_property(:userestrict, chars)
   end
 
   def handle_text(
@@ -373,8 +386,8 @@ defmodule MegaParser.SaxParser do
         },
         chars
       ) do
-      state
-      |> add_doc_property(:acqinfo, chars)
+    state
+    |> add_doc_property(:acqinfo, chars)
   end
 
   def handle_text(
@@ -387,8 +400,8 @@ defmodule MegaParser.SaxParser do
         },
         chars
       ) do
-      state
-      |> add_doc_property(:extent, chars)
+    state
+    |> add_doc_property(:extent, chars)
   end
 
   def handle_text(
@@ -399,10 +412,10 @@ defmodule MegaParser.SaxParser do
           ]
         },
         chars
-  )
+      )
       when field in @searchable_notes_fields do
-      state
-      |> add_doc_property(:"#{field}", chars)
+    state
+    |> add_doc_property(:"#{field}", chars)
   end
 
   def handle_text(
@@ -414,10 +427,10 @@ defmodule MegaParser.SaxParser do
           ]
         },
         chars
-  )
+      )
       when field in @searchable_notes_fields do
-      state
-      |> add_doc_property(:"#{field}_heading", chars)
+    state
+    |> add_doc_property(:"#{field}_heading", chars)
   end
 
   def handle_text(state, chars), do: state
