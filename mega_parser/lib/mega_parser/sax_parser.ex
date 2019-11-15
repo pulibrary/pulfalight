@@ -465,9 +465,29 @@ defmodule MegaParser.SaxParser do
 
   defp clean_string(string) do
     string
-    |> String.replace("\n", "")
-    |> String.replace(~r/\s+/, " ")
+    # |> String.replace("\n", "")
+    |> remove_whitespace
     |> String.trim()
+  end
+
+  defp remove_whitespace(string) do
+    string
+    |> remove_whitespace([])
+  end
+  defp remove_whitespace("", acc) do
+    acc
+    |> Enum.reverse
+    |> Enum.join("")
+  end
+  defp remove_whitespace(" " <> string, acc = [" " | _extra]) do
+    remove_whitespace(string, acc)
+  end
+  defp remove_whitespace("\n" <> string, acc) do
+    remove_whitespace(string, acc)
+  end
+  defp remove_whitespace(<<digit::bytes-size(1)>> <> string, acc) do
+    acc = [digit | acc]
+    remove_whitespace(string, acc)
   end
 
   defp final_cleanup(state = %{document: document}) do
