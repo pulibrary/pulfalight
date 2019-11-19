@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   concern :exportable, Blacklight::Routes::Exportable.new
 
   require "sidekiq/web"
-  mount Sidekiq::Web => "/sidekiq"
+  authenticate :user do
+    mount Sidekiq::Web => "/sidekiq"
+  end
 
   resources :solr_documents, only: [:show], path: "/catalog", controller: "catalog" do
     concerns :exportable
