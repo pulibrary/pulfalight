@@ -32,4 +32,153 @@ header {
       }
     }
   }
+
+  .menu--level-1,
+  .logo__pul {
+    position: relative;
+    z-index: 1001;
+    text-align: right;
+
+    @media (min-width: 645px) {
+      width: 50%;
+    }
+  }
+
+  .logo__pul a {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    height: 38px;
+
+    img {
+      height: 35px;
+      vertical-align: middle;
+    }
+
+    &.site-title {
+      vertical-align: middle;
+      margin-left: 1rem;
+      border-left: 1px solid darken($gray, 50%);
+      height: 35px;
+      padding-left: 1rem;
+      color: white;
+      font-size: 1.6em;
+      line-height: 35px;
+
+      &:hover {
+        text-decoration: none;
+      }
+
+      &:focus,
+      &:active {
+        color: $orange;
+      }
+    }
+  }
+
+  .menu--level-1 > ul {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-align: center;
+    float: right;
+    @mixin vertical-align($position: relative) {
+      position: $position;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      transform: translateY(-75%);
+    }
+
+    > li > a,
+    .btn-account {
+      border: none;
+      background: none;
+      color: $gray;
+      font-size: 0.75em;
+      vertical-align: middle;
+    }
+
+    > li > a {
+      display: block;
+      letter-spacing: 0.03em;
+      padding: 3px 6px;
+    }
+
+    > li {
+      float: left;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  // Style account dropdown menu
+  .account-dropdown {
+    a {
+      color: black;
+      text-decoration: none;
+    }
+
+    li:not(.dropdown-partial) {
+      padding: 0.5rem 1rem;
+    }
+
+    .dropdown-partial {
+      padding: 0;
+    }
+
+    li:hover {
+      background-color: #f5f5f5;
+    }
+
+    .badge-secondary {
+      background-color: inherit;
+      color: inherit;
+      font-size: inherit;
+      font-weight:inherit;
+
+      &:before {
+        content: "(";
+      }
+
+      &:after {
+        content: ")";
+      }
+    }
+  }
+
+  ul.dropdown-menu {
+    z-index: 999;
+    font-size: 14px;
+    padding: 5px 0;
+    > li {
+    padding: 0 14px;
+      a {
+        color: $black;
+        text-decoration: none;
+      }
+      &:hover {
+        background-color: #f5f5f5;
+      }
+    }
+    > li.active {
+      background-color: $blue;
+      a {
+        color: $white;
+      }
+    }
+  }
+
+  .dropdown-toggle a:hover {
+    text-decoration: none;
+  }
+
+  .dropdown-toggle a {
+    color: $dark-gray;
+  }
+
 }
