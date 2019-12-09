@@ -239,7 +239,7 @@ GEM
     pry-rails (0.3.6)
       pry (>= 0.10.4)
     public_suffix (4.0.1)
-    puma (3.12.0)
+    puma (3.12.2)
     rack (2.0.7)
     rack-protection (2.0.7)
       rack
@@ -455,7 +455,7 @@ DEPENDENCIES
   popper_js
   pry-byebug
   pry-rails
-  puma (~> 3.11)
+  puma (~> 3.12)
   rails (~> 5.2.1)
   rsolr (>= 1.0, < 3)
   rspec-rails (~> 3.0)
