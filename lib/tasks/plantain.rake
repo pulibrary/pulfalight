@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-namespace :plantain do
+namespace :pulfalight do
   namespace :index do
     desc "Delete all Solr documents in the index"
     task :delete do
@@ -20,10 +20,10 @@ namespace :plantain do
 
   desc "Run Solr and Arclight for interactive development"
   task :development do
-    SolrWrapper.wrap(managed: true, verbose: true, port: 8983, instance_dir: "tmp/plantain-core-dev", persist: false, download_dir: "tmp") do |solr|
-      solr.with_collection(name: "plantain-core-dev", dir: solr_conf_dir, persist: true) do
+    SolrWrapper.wrap(managed: true, verbose: true, port: 8983, instance_dir: "tmp/pulfalight-core-dev", persist: false, download_dir: "tmp") do |solr|
+      solr.with_collection(name: "pulfalight-core-dev", dir: solr_conf_dir, persist: true) do
         puts "Setup solr"
-        puts "Solr running at http://localhost:8983/solr/plantain-core-dev/, ^C to exit"
+        puts "Solr running at http://localhost:8983/solr/pulfalight-core-dev/, ^C to exit"
         begin
           sleep
         rescue Interrupt
@@ -35,10 +35,10 @@ namespace :plantain do
 
   desc "Run Solr and Arclight for testing"
   task :test do |_t, _args|
-    SolrWrapper.wrap(managed: true, verbose: true, port: 8984, instance_dir: "tmp/plantain-core-test", persist: false, download_dir: "tmp") do |solr|
-      solr.with_collection(name: "plantain-core-test", dir: solr_conf_dir) do
+    SolrWrapper.wrap(managed: true, verbose: true, port: 8984, instance_dir: "tmp/pulfalight-core-test", persist: false, download_dir: "tmp") do |solr|
+      solr.with_collection(name: "pulfalight-core-test", dir: solr_conf_dir) do
         puts "Setup solr"
-        puts "Solr running at http://localhost:8984/solr/plantain-core-test/, ^C to exit"
+        puts "Solr running at http://localhost:8984/solr/pulfalight-core-test/, ^C to exit"
         begin
           sleep
         rescue Interrupt
@@ -109,7 +109,7 @@ namespace :plantain do
   # Retrieve the file path for the ArcLight core Traject configuration
   # @return [String]
   def arclight_config_path
-    pathname = Rails.root.join("lib", "plantain", "traject", "ead2_config.rb")
+    pathname = Rails.root.join("lib", "pulfalight", "traject", "ead2_config.rb")
     pathname.to_s
   end
 

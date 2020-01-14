@@ -1,13 +1,13 @@
-# Plantain
-[![Coverage Status](https://coveralls.io/repos/github/pulibrary/plantain/badge.svg?branch=master)](https://coveralls.io/github/pulibrary/plantain?branch=master)
+# PULFAlight
+[![Coverage Status](https://coveralls.io/repos/github/pulibrary/pulfalight/badge.svg?branch=master)](https://coveralls.io/github/pulibrary/pulfalight?branch=master)
 
 This is an implementation of ArcLight being implemented as a replacement for the
  Princeton University Finding Aids (PULFA) service.
 
 ### Initial setup
 ```sh
-git clone https://github.com/pulibrary/plantain.git
-cd plantain
+git clone https://github.com/pulibrary/pulfalight.git
+cd pulfalight
 bundle install
 yarn install
 bundle exec rake db:setup db:migrate
@@ -20,13 +20,13 @@ oldest version of Node.js supported is 10.16.0.
 
 #### Setup server
 1. For development:
-   - `bundle exec rake plantain:development`
+   - `bundle exec rake pulfalight:development`
    - In a separate terminal, please run: `bundle exec foreman start`
    - _Or, should you need to debug the Webpack build, please run `bundle exec webpack-dev-server` instead, and then run `bundle exec rails server` in another terminal_
    - Now, please visit the new installation at
      [http://localhost:3000](http://localhost:3000)
 2. For testing:
-   - `bundle exec rake plantain:test`
+   - `bundle exec rake pulfalight:test`
    - In a separate terminal, please run: `bundle exec rspec`
 
 ### Configuration
@@ -103,8 +103,8 @@ Start sidekiq in a terminal window that you keep open:
 
 Use the rake tasks to index either a single document or a collection, e.g.:
 
-`$ bundle exec rake plantain:index:document["mss/TC071.EAD.xml"]`
-`$ bundle exec rake plantain:index:collection["mss"]`
+`$ bundle exec rake pulfalight:index:document["mss/TC071.EAD.xml"]`
+`$ bundle exec rake pulfalight:index:collection["mss"]`
 
 Once the jobs are finished processing by sidekiq you'll need to either wait 5 minutes for the soft commit to occur or manually issue a solr commit:
 
@@ -116,5 +116,5 @@ One may also index the Documents remotely on the staging server by invoking the
 follow Capistrano task:
 
 ```bash
-bundle exec cap staging plantain:index_pulfa
+bundle exec cap staging pulfalight:index_pulfa
 ```
