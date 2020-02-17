@@ -58,5 +58,56 @@ describe "EAD 2 traject indexing", type: :feature do
         )
       end
     end
+
+    it "gets the title tesim" do
+      expect(result["title_teim"]).to include(
+        "Harold B. Hoskins Papers"
+      )
+      expect(result["title_teim"]).to eq(
+        result["title_ssm"]
+      )
+    end
+
+    it "asserts that title filing si field is missing" do
+      expect(result["title_filing_si"]).to be_nil
+    end
+
+    context "YearRange normalizer tests" do
+      let(:years) { result["normalized_date_ssm"][0].split("-") }
+      let(:beginning) { years[0].to_i }
+      let(:ending) { years[1].to_i }
+
+      it "asserts YearRange normalizer works, that normalized_date_ssm contains start and end in date_range_sim field" do
+        expect(result["normalized_date_ssm"][0]).to include(
+          beginning.to_s,
+          ending.to_s
+        )
+      end
+
+      it "asserts YearRange normalizer works, the # of yrs in date_range_sim array correct, equal to difference between beginning and ending" do
+        expect(result["date_range_sim"].length).to equal(
+          ending - beginning + 1
+        )
+      end
+
+      it "asserts YearRange normalizer works, date_range_sim contains a random year between begin and end" do
+        expect(result["date_range_sim"]).to include(
+          rand(beginning..ending)
+        )
+      end
+    end
+
+    it "gets the normalized date" do
+      expect(result["normalized_date_ssm"]).to eq(
+        ["1822-1982"]
+      )
+    end
+
+    it "tests normalized title includes title ssm and normalized date" do
+      expect(result["normalized_title_ssm"][0]).to include(
+        result["title_ssm"][0],
+        result["normalized_date_ssm"][0]
+      )
+    end
   end
 end
