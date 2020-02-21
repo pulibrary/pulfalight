@@ -17,7 +17,8 @@ jobs:
         environment:
           POSTGRES_USER: plantain
           POSTGRES_DB: plantain_test
-          POSTGRES_PASSWORD: ""
+          # POSTGRES_PASSWORD: ""
+          POSTGRES_HOST_AUTH_METHOD: trust
       - image: solr:7.1-alpine
         command: bin/solr -cloud -noprompt -f -p 8984
 
@@ -48,7 +49,7 @@ jobs:
       - run:
           name: Wait for PostgreSQL
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
-      
+
       - run: bundle exec rake db:create
       - run: bundle exec rake db:migrate
       - run: bundle exec rake db:migrate RAILS_ENV=test
@@ -64,7 +65,3 @@ jobs:
           path: /tmp/circleci-artifacts
       - store_artifacts:
           path: /tmp/circleci-test-results
-
-      
-
-      
