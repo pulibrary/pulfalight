@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test:
     working_directory: ~/plantain
     environment:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
@@ -21,9 +21,21 @@ jobs:
           POSTGRES_HOST_AUTH_METHOD: trust
       - image: solr:7.1-alpine
         command: bin/solr -cloud -noprompt -f -p 8984
-
-    steps:
+    steps: &test_steps
       - checkout
+      - run:
+          name: Install node@8.17.0 (need right version for `yarn`)
+          command: |
+            set +e
+            touch $BASH_ENV
+            curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+            echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
+            echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+            echo 'nvm install v8.17.0' >> $BASH_ENV
+            echo 'nvm alias default v8.17.0' >> $BASH_ENV
+      - run:
+          name: Check current version of node
+          command: node -v
       - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
       - run:
           name: Set Timezone to EST/EDT
@@ -36,8 +48,8 @@ jobs:
       - run:
           name: Update bundler
           command: |
-            echo 'export BUNDLER_VERSION=2.0.2' >> $BASH_ENV
-            gem install bundler -v 2.0.2
+            echo 'export BUNDLER_VERSION=2.1.4' >> $BASH_ENV
+            gem install bundler -v 2.1.4
       - run:
           name: Install dependencies
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
@@ -65,3 +77,31 @@ jobs:
           path: /tmp/circleci-artifacts
       - store_artifacts:
           path: /tmp/circleci-test-results
+  test_2_6:
+    working_directory: ~/plantain
+    environment:
+      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+    # Primary command image where all commands run
+    docker:
+      - image: circleci/ruby:2.6-node-browsers
+        environment:
+          RAILS_ENV: test
+          PLANTAIN_DB_HOST: localhost
+          PLANTAIN_DB_USERNAME: plantain
+          PLANTAIN_DB_PASSWORD: ""
+      - image: postgres:10
+        environment:
+          POSTGRES_USER: plantain
+          POSTGRES_DB: plantain_test
+          # POSTGRES_PASSWORD: ""
+          POSTGRES_HOST_AUTH_METHOD: trust
+      - image: solr:7.1-alpine
+        command: bin/solr -cloud -noprompt -f -p 8984
+    steps: *test_steps
+workflows:
+  version: 2
+  build_accept_deploy:
+    jobs:
+      - test
+      - test_2_6
