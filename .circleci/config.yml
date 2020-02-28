@@ -7,7 +7,7 @@ jobs:
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     # Primary command image where all commands run
     docker:
-      - image: circleci/ruby:2.4.4-node-browsers
+      - image: circleci/ruby:2.6-node-browsers
         environment:
           RAILS_ENV: test
           PLANTAIN_DB_HOST: localhost
@@ -77,31 +77,8 @@ jobs:
           path: /tmp/circleci-artifacts
       - store_artifacts:
           path: /tmp/circleci-test-results
-  test_2_6:
-    working_directory: ~/plantain
-    environment:
-      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
-      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
-    # Primary command image where all commands run
-    docker:
-      - image: circleci/ruby:2.6-node-browsers
-        environment:
-          RAILS_ENV: test
-          PLANTAIN_DB_HOST: localhost
-          PLANTAIN_DB_USERNAME: plantain
-          PLANTAIN_DB_PASSWORD: ""
-      - image: postgres:10
-        environment:
-          POSTGRES_USER: plantain
-          POSTGRES_DB: plantain_test
-          # POSTGRES_PASSWORD: ""
-          POSTGRES_HOST_AUTH_METHOD: trust
-      - image: solr:7.1-alpine
-        command: bin/solr -cloud -noprompt -f -p 8984
-    steps: *test_steps
 workflows:
   version: 2
   build_accept_deploy:
     jobs:
       - test
-      - test_2_6

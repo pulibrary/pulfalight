@@ -157,29 +157,29 @@ class CatalogController < ApplicationController
     config.add_search_field "name", label: "Name" do |field|
       field.qt = "search"
       field.solr_parameters = {
-        qf:  "${qf_name}",
-        pf:  "${pf_name}"
+        qf: "${qf_name}",
+        pf: "${pf_name}"
       }
     end
     config.add_search_field "place", label: "Place" do |field|
       field.qt = "search"
       field.solr_parameters = {
-        qf:  "${qf_place}",
-        pf:  "${pf_place}"
+        qf: "${qf_place}",
+        pf: "${pf_place}"
       }
     end
     config.add_search_field "subject", label: "Subject" do |field|
       field.qt = "search"
       field.solr_parameters = {
-        qf:  "${qf_subject}",
-        pf:  "${pf_subject}"
+        qf: "${qf_subject}",
+        pf: "${pf_subject}"
       }
     end
     config.add_search_field "title", label: "Title" do |field|
       field.qt = "search"
       field.solr_parameters = {
-        qf:  "${qf_title}",
-        pf:  "${pf_title}"
+        qf: "${qf_title}",
+        pf: "${pf_title}"
       }
     end
 
