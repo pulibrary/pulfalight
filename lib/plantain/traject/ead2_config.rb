@@ -62,9 +62,11 @@ end
 each_record do |_record, context|
   next unless settings["repository"]
 
-  context.clipboard[:repository] = Arclight::Repository.find_by(
+  repository = Arclight::Repository.find_by(
     slug: settings["repository"]
-  ).name
+  )
+
+  context.clipboard[:repository] = repository.name unless repository.nil?
 end
 
 # ==================
