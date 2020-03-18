@@ -1,4 +1,4 @@
-request_url: 'https://lib-aeon.princeton.edu/aeon/testweb/Aeon.dll'
+request_url: 'https://lib-aeon.princeton.edu/aeon/Aeon.dll'
 request_mappings:
   static:
     Notes: ''

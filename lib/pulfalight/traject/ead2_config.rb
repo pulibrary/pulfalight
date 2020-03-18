@@ -57,6 +57,7 @@ settings do
   provide "solr_writer.commit_on_close", "true"
   provide "repository", ENV["REPOSITORY_ID"]
   provide "logger", Logger.new($stderr)
+  provide "parser_class_name", "::PulfaDocumentParser"
 end
 
 each_record do |_record, context|
@@ -517,7 +518,90 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
     to_field "#{selector}_ssm", extract_xpath("./did/#{selector}", to_text: false)
   end
   to_field "did_note_ssm", extract_xpath("./did/note")
+  to_field "volume_ssm", extract_xpath("./did/unitid[@type='itemnumber']")
+
+  # For cases where the <component> doesn't contain this within the <did>, look within the parent
+  to_field "volume_ssm" do |record, accumulator|
+    ptr_target = record.at_xpath("./container/ptr/@target")
+    xpath1 = "//dsc[@type='othertype']/c[@id='#{ptr_target}']/did/container/@type"
+    accumulator << extract_xpath(xpath1)
+    xpath2 = "//dsc[@type='othertype']/c[@id='#{ptr_target}']/ead:did/ead:container"
+    accumulator << extract_xpath(xpath2)
+  end
+
+  # For cases where the parent is referenced using @parent
+  to_field "volume_ssm" do |record, accumulator|
+    parent_id = record.xpath("./@parent")
+    xpath3 = "//dsc[@type='othertype']/c[@id='#{parent_id}']/did/container/@type"
+    accumulator << extract_xpath(xpath3)
+    xpath4 = "//ead:dsc[@type='othertype']/ead:c[@id='#{parent_id}']/ead:did/ead:container"
+  end
+
+  # For cases where there is a container code in the @type
+  to_field "volume_ssm" do |record, accumulator|
+    type_value = record.xpath("./@type")
+    accumulator << PulfaDocumentParser.container_code_to_label(type_value)
+  end
 end
+
+class PulfaDocumentParser
+  def self.container_codes
+    {
+      'album' => 'Album',
+      'box' => 'Box',
+      'carton' => 'Carton',
+      'case' => 'Case',
+      'letterbook' => 'Letterbook',
+      'notebook' => 'Notebook',
+      'oversize' => 'Oversize',
+      'package' => 'Package',
+      'portfolio' => 'Portfolio',
+      'scrapbook' => 'Scrapbook',
+      'tube' => 'Tube',
+      'volume' => 'Volume',
+      'cabinet' => 'Cabinet',
+      'drawer' => 'Drawer',
+      'ovflat_box' => 'OF Box',
+      'ovflat_volume' => 'OF Volume',
+      'ovflat_item' => 'OF Item',
+      'ovtall_box' => 'OT Box',
+      'ovtall_volume' => 'OT Volume',
+      'ovtall_item' => 'OT Item',
+      'ovlong_box' => 'OL Box',
+      'ovlong_volume' => 'OL Volume',
+      'ovlong_item' => 'OL Item',
+      'ovopen_box' => 'OO Box',
+      'ovopen_volume' => 'OO Volume',
+      'ovopen_item' => 'OO Item',
+      'sr_box' => 'SR Box',
+      'sr_volume' => 'SR Volume',
+      'sr_item' => 'SR Item',
+      'ov_folder' => 'Oversize Folder',
+      'binder' => 'Binder',
+      'cassette' => 'Cassette',
+      'cd' =>'CD',
+      'column' => 'Column',
+      'dvd' => 'DVD',
+      'file' => 'File',
+      'folder' => 'Folder',
+      'folders' => 'Folders',
+      'folio' => 'Folio',
+      'issue' => 'Issue',
+      'item' => 'Item',
+      'leaf' => 'Leaf',
+      'map' => 'Map',
+      'page' => 'Page',
+      'reel' => 'Reel',
+      'tape' => 'Tape',
+      'ovfolder' => 'Oversize Folder'
+    }
+  end
+
+  def self.container_code_to_label(type)
+    container_codes[type]
+  end
+end
+
 # rubocop:enable Metrics/BlockLength
 
 each_record do |_record, context|

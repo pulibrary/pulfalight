@@ -45,6 +45,7 @@ module Plantain
 
         def request_id
           # Generate the request ID here
+          SecureRandom.hex(14)
         end
 
         def request_mappings
@@ -55,23 +56,28 @@ module Plantain
 
         def default_dynamic_fields
           {
+            "Request" => request_id,
             "CallNumber_#{request_id}" => @document.parent_ids,
-
             "ItemTitle_#{request_id}" => @document.title,
+            "ItemTitle" => @document.title,
             # "ItemSubTitle_#{request_id}" => @document.sub_title,
+            "ItemSubTitle_#{request_id}" => @document.title,
             "ItemAuthor_#{request_id}" => @document.collection_creator,
             "ItemDate_#{request_id}" => @document.normalized_date,
             "ItemNumber_#{request_id}" => request_id,
-            # "ItemVolume_#{request_id}" => @document.volume,
-
-            "ItemInfo1_#{request_id}" => @document.acqinfo,
-            "ItemInfo2_#{request_id}" => @document.extent,
-            "ItemInfo3_#{request_id}" => 1, # Is this the number of items being requested?
+            "ItemVolume_#{request_id}" => @document.volume, # Example: "Box23"
+            "ItemInfo1_#{request_id}" => @document.acqinfo, # Example: "Restrictions May Appli. Check Finding Aid."
+            "ItemInfo2_#{request_id}" => @document.extent, # Example: "262.4 linear feet | 648 boxes and 5 oversize folders"
+            "ItemInfo3_#{request_id}" => 1, # This is the unit with or without a label (1 or Reel 5)
             "ItemInfo4_#{request_id}" => ",", # I am uncertain as to where this is generated
             "ItemInfo5_#{request_id}" => solr_document_url(@document, host: host),
-
-            "Location_#{request_id}" => @document.repository,
-            "ReferenceNumber_#{request_id}" => @document.eadid
+            "Location_#{request_id}" => @document.repository, # Example: Mudd
+            "Location" => @document.repository, # Example: Mudd,
+            "ReferenceNumber_#{request_id}" => @document.eadid,
+            "DocumentType": "Manuscript",
+            "Site": "MUDD",
+            "Location": "mudd",
+            "SubmitButton": "Submit Request"
           }
         end
 
