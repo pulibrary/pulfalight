@@ -57,6 +57,9 @@ jobs:
           key: plantain-{{ checksum "Gemfile.lock" }}
           paths:
             - ./vendor/bundle
+      - run:
+          name: Install NPM Dependencies via Yarn
+          command: yarn install --frozen-lockfile
       # project database settings
       - run:
           name: Wait for PostgreSQL
