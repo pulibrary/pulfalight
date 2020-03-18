@@ -13,13 +13,13 @@ jobs:
           PLANTAIN_DB_HOST: localhost
           PLANTAIN_DB_USERNAME: plantain
           PLANTAIN_DB_PASSWORD: ""
-      - image: postgres:10
+      - image: circleci/postgres:10
         environment:
           POSTGRES_USER: plantain
           POSTGRES_DB: plantain_test
           # POSTGRES_PASSWORD: ""
           POSTGRES_HOST_AUTH_METHOD: trust
-      - image: solr:7.1-alpine
+      - image: solr:8.4.1
         command: bin/solr -cloud -noprompt -f -p 8984
     steps: &test_steps
       - checkout
