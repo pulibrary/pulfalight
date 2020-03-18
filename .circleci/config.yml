@@ -13,7 +13,7 @@ jobs:
           PLANTAIN_DB_HOST: localhost
           PLANTAIN_DB_USERNAME: plantain
           PLANTAIN_DB_PASSWORD: ""
-      - image: postgres:10
+      - image: circleci/postgres:10
         environment:
           POSTGRES_USER: plantain
           POSTGRES_DB: plantain_test
