@@ -12,7 +12,11 @@ namespace :plantain do
 
     desc "Index a single EAD file into Solr"
     task :document, [:file] => :environment do |_t, args|
-      index_document(relative_path: args[:file])
+      parent_path = File.expand_path('..', args[:file])
+      repository_id = File.basename(parent_path)
+      ENV['REPOSITORY_ID'] = repository_id
+      ENV['REPOSITORY_FILE'] = 'config/repositories.yml'
+      index_document(relative_path: args[:file], root_path: Rails.root)
     end
 
     desc "Index a directory of PULFA EAD files into Solr"

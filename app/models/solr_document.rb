@@ -25,4 +25,8 @@ class SolrDocument
   def acqinfo
     fetch(:acqinfo_ssm)
   end
+
+  def volume
+    fetch(:volume_ssm)
+  end
 end
