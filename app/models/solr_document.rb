@@ -22,11 +22,23 @@ class SolrDocument
     fetch(:title_ssm)
   end
 
+  def subtitle
+    fetch(:subtitle_ssm, [])
+  end
+
   def acqinfo
-    fetch(:acqinfo_ssm)
+    fetch(:acqinfo_ssm, [])
   end
 
   def volume
-    fetch(:volume_ssm)
+    fetch(:volume_ssm, [])
+  end
+
+  def location_note
+    fetch(:location_note_ssm, [])
+  end
+
+  def location_code
+    fetch(:location_code_ssm, [])
   end
 end

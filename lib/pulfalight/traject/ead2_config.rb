@@ -80,6 +80,8 @@ to_field "id", extract_xpath("/ead/eadheader/eadid"), strip, gsub(".", "-")
 to_field "title_filing_si", extract_xpath('/ead/eadheader/filedesc/titlestmt/titleproper[@type="filing"]')
 to_field "title_ssm", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "title_teim", extract_xpath("/ead/archdesc/did/unittitle")
+to_field "subtitle_ssm", extract_xpath("/ead/archdesc/did/unittitle")
+to_field "subtitle_teim", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "ead_ssi", extract_xpath("/ead/eadheader/eadid")
 
 to_field "unitdate_ssm", extract_xpath("/ead/archdesc/did/unitdate")
@@ -294,6 +296,8 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
   to_field "title_filing_si", extract_xpath("./did/unittitle"), first_only
   to_field "title_ssm", extract_xpath("./did/unittitle")
   to_field "title_teim", extract_xpath("./did/unittitle")
+  to_field "subtitle_ssm", extract_xpath("./did/unittitle")
+  to_field "subtitle_teim", extract_xpath("./did/unittitle")
 
   to_field "unitdate_bulk_ssim", extract_xpath('./did/unitdate[@type="bulk"]')
   to_field "unitdate_inclusive_ssm", extract_xpath('./did/unitdate[@type="inclusive"]')
@@ -517,30 +521,63 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
   DID_SEARCHABLE_NOTES_FIELDS.map do |selector|
     to_field "#{selector}_ssm", extract_xpath("./did/#{selector}", to_text: false)
   end
+
   to_field "did_note_ssm", extract_xpath("./did/note")
-  to_field "volume_ssm", extract_xpath("./did/unitid[@type='itemnumber']")
 
-  # For cases where the <component> doesn't contain this within the <did>, look within the parent
   to_field "volume_ssm" do |record, accumulator|
-    ptr_target = record.at_xpath("./container/ptr/@target")
-    xpath1 = "//dsc[@type='othertype']/c[@id='#{ptr_target}']/did/container/@type"
-    accumulator << extract_xpath(xpath1)
-    xpath2 = "//dsc[@type='othertype']/c[@id='#{ptr_target}']/ead:did/ead:container"
-    accumulator << extract_xpath(xpath2)
+    record.xpath('./c').each do |parent_c_element|
+      parent_c_element.xpath('./c').each do |c_element|
+        target_id = c_element.at_xpath("./did/container/ptr/@target")
+        xpath1 = "//dsc[@type='othertype']/c[@id='#{target_id}']/did/container"
+        physical_component = c_element.at_xpath(xpath1)
+        if physical_component
+          accumulator << "#{physical_component['type']}#{physical_component}"
+        end
+
+        container_id = c_element.at_xpath("./did/container/@parent")
+        xpath2 = "//dsc[@type='othertype']/c[@id='#{container_id}']/did/container"
+        physical_component = c_element.at_xpath(xpath2)
+        if physical_component
+          accumulator << "#{physical_component['type']}#{physical_component}"
+        end
+      end
+    end
   end
 
-  # For cases where the parent is referenced using @parent
-  to_field "volume_ssm" do |record, accumulator|
-    parent_id = record.xpath("./@parent")
-    xpath3 = "//dsc[@type='othertype']/c[@id='#{parent_id}']/did/container/@type"
-    accumulator << extract_xpath(xpath3)
-    xpath4 = "//ead:dsc[@type='othertype']/ead:c[@id='#{parent_id}']/ead:did/ead:container"
+  ## Location note
+  to_field "location_note_ssm" do |record, accumulator|
+    record.xpath('./c').each do |parent_c_element|
+      parent_c_element.xpath('./c').each do |c_element|
+        target_id = c_element.at_xpath("./did/container/ptr/@target")
+        xpath1 = "//dsc[@type='othertype']/c[@id='#{target_id}']/did/physloc[@type='text']"
+        accumulator << extract_xpath(xpath1)
+
+        container_id = record.at_xpath("./did/container/@parent")
+        xpath2 = "//dsc[@type='othertype']/c[@id='#{container_id}']/did/physloc[@type='text']"
+        accumulator << extract_xpath(xpath2)
+
+        xpath4 = "//archdesc/did/physloc[@type='text']"
+        accumulator << extract_xpath(xpath4)
+      end
+    end
   end
 
-  # For cases where there is a container code in the @type
-  to_field "volume_ssm" do |record, accumulator|
-    type_value = record.xpath("./@type")
-    accumulator << PulfaDocumentParser.container_code_to_label(type_value)
+  ## Location code
+  to_field "location_code_ssm" do |record, accumulator|
+    record.xpath('./c').each do |parent_c_element|
+      parent_c_element.xpath('./c').each do |c_element|
+        target_id = c_element.at_xpath("./did/container/ptr/@target")
+        xpath1 = "//dsc[@type='othertype']/c[@id='#{target_id}']/did/physloc[@type='code']"
+        accumulator << extract_xpath(xpath1)
+
+        container_id = c_element.at_xpath("./did/container/@parent")
+        xpath2 = "//dsc[@type='othertype']/c[@id='#{container_id}']/did/physloc[@type='code']"
+        accumulator << extract_xpath(xpath2)
+
+        xpath4 = "//archdesc/did/physloc[@type='code']"
+        accumulator << extract_xpath(xpath4)
+      end
+    end
   end
 end
 
