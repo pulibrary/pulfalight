@@ -525,29 +525,25 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
   to_field "did_note_ssm", extract_xpath("./did/note")
 
   to_field "volume_ssm" do |record, accumulator|
-    record.xpath('./c').each do |parent_c_element|
-      parent_c_element.xpath('./c').each do |c_element|
+    record.xpath("./c").each do |parent_c_element|
+      parent_c_element.xpath("./c").each do |c_element|
         target_id = c_element.at_xpath("./did/container/ptr/@target")
         xpath1 = "//dsc[@type='othertype']/c[@id='#{target_id}']/did/container"
         physical_component = c_element.at_xpath(xpath1)
-        if physical_component
-          accumulator << "#{physical_component['type']}#{physical_component}"
-        end
+        accumulator << "#{physical_component['type']}#{physical_component}" if physical_component
 
         container_id = c_element.at_xpath("./did/container/@parent")
         xpath2 = "//dsc[@type='othertype']/c[@id='#{container_id}']/did/container"
         physical_component = c_element.at_xpath(xpath2)
-        if physical_component
-          accumulator << "#{physical_component['type']}#{physical_component}"
-        end
+        accumulator << "#{physical_component['type']}#{physical_component}" if physical_component
       end
     end
   end
 
   ## Location note
   to_field "location_note_ssm" do |record, accumulator|
-    record.xpath('./c').each do |parent_c_element|
-      parent_c_element.xpath('./c').each do |c_element|
+    record.xpath("./c").each do |parent_c_element|
+      parent_c_element.xpath("./c").each do |c_element|
         target_id = c_element.at_xpath("./did/container/ptr/@target")
         xpath1 = "//dsc[@type='othertype']/c[@id='#{target_id}']/did/physloc[@type='text']"
         accumulator << extract_xpath(xpath1)
@@ -564,8 +560,8 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
 
   ## Location code
   to_field "location_code_ssm" do |record, accumulator|
-    record.xpath('./c').each do |parent_c_element|
-      parent_c_element.xpath('./c').each do |c_element|
+    record.xpath("./c").each do |parent_c_element|
+      parent_c_element.xpath("./c").each do |c_element|
         target_id = c_element.at_xpath("./did/container/ptr/@target")
         xpath1 = "//dsc[@type='othertype']/c[@id='#{target_id}']/did/physloc[@type='code']"
         accumulator << extract_xpath(xpath1)
@@ -584,53 +580,53 @@ end
 class PulfaDocumentParser
   def self.container_codes
     {
-      'album' => 'Album',
-      'box' => 'Box',
-      'carton' => 'Carton',
-      'case' => 'Case',
-      'letterbook' => 'Letterbook',
-      'notebook' => 'Notebook',
-      'oversize' => 'Oversize',
-      'package' => 'Package',
-      'portfolio' => 'Portfolio',
-      'scrapbook' => 'Scrapbook',
-      'tube' => 'Tube',
-      'volume' => 'Volume',
-      'cabinet' => 'Cabinet',
-      'drawer' => 'Drawer',
-      'ovflat_box' => 'OF Box',
-      'ovflat_volume' => 'OF Volume',
-      'ovflat_item' => 'OF Item',
-      'ovtall_box' => 'OT Box',
-      'ovtall_volume' => 'OT Volume',
-      'ovtall_item' => 'OT Item',
-      'ovlong_box' => 'OL Box',
-      'ovlong_volume' => 'OL Volume',
-      'ovlong_item' => 'OL Item',
-      'ovopen_box' => 'OO Box',
-      'ovopen_volume' => 'OO Volume',
-      'ovopen_item' => 'OO Item',
-      'sr_box' => 'SR Box',
-      'sr_volume' => 'SR Volume',
-      'sr_item' => 'SR Item',
-      'ov_folder' => 'Oversize Folder',
-      'binder' => 'Binder',
-      'cassette' => 'Cassette',
-      'cd' =>'CD',
-      'column' => 'Column',
-      'dvd' => 'DVD',
-      'file' => 'File',
-      'folder' => 'Folder',
-      'folders' => 'Folders',
-      'folio' => 'Folio',
-      'issue' => 'Issue',
-      'item' => 'Item',
-      'leaf' => 'Leaf',
-      'map' => 'Map',
-      'page' => 'Page',
-      'reel' => 'Reel',
-      'tape' => 'Tape',
-      'ovfolder' => 'Oversize Folder'
+      "album" => "Album",
+      "box" => "Box",
+      "carton" => "Carton",
+      "case" => "Case",
+      "letterbook" => "Letterbook",
+      "notebook" => "Notebook",
+      "oversize" => "Oversize",
+      "package" => "Package",
+      "portfolio" => "Portfolio",
+      "scrapbook" => "Scrapbook",
+      "tube" => "Tube",
+      "volume" => "Volume",
+      "cabinet" => "Cabinet",
+      "drawer" => "Drawer",
+      "ovflat_box" => "OF Box",
+      "ovflat_volume" => "OF Volume",
+      "ovflat_item" => "OF Item",
+      "ovtall_box" => "OT Box",
+      "ovtall_volume" => "OT Volume",
+      "ovtall_item" => "OT Item",
+      "ovlong_box" => "OL Box",
+      "ovlong_volume" => "OL Volume",
+      "ovlong_item" => "OL Item",
+      "ovopen_box" => "OO Box",
+      "ovopen_volume" => "OO Volume",
+      "ovopen_item" => "OO Item",
+      "sr_box" => "SR Box",
+      "sr_volume" => "SR Volume",
+      "sr_item" => "SR Item",
+      "ov_folder" => "Oversize Folder",
+      "binder" => "Binder",
+      "cassette" => "Cassette",
+      "cd" => "CD",
+      "column" => "Column",
+      "dvd" => "DVD",
+      "file" => "File",
+      "folder" => "Folder",
+      "folders" => "Folders",
+      "folio" => "Folio",
+      "issue" => "Issue",
+      "item" => "Item",
+      "leaf" => "Leaf",
+      "map" => "Map",
+      "page" => "Page",
+      "reel" => "Reel",
+      "tape" => "Tape",
+      "ovfolder" => "Oversize Folder"
     }
   end
 
