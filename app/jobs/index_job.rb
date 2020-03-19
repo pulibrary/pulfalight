@@ -59,6 +59,7 @@ class IndexJob < ApplicationJob
 
     logger.info("Requesting a batch Solr update...")
     blacklight_connection.add(solr_documents)
+    blacklight_connection.commit
     logger.info("Successfully indexed the EADs for #{file_paths.join(', ')}")
   end
 end
