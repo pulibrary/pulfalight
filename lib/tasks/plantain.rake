@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require Rails.root.join("app","jobs","application_job")
-require Rails.root.join("app","jobs","index_job")
+require Rails.root.join("app", "jobs", "application_job")
+require Rails.root.join("app", "jobs", "index_job")
 
 namespace :plantain do
   namespace :index do
@@ -12,10 +12,10 @@ namespace :plantain do
 
     desc "Index a single EAD file into Solr"
     task :document, [:file] => :environment do |_t, args|
-      parent_path = File.expand_path('..', args[:file])
+      parent_path = File.expand_path("..", args[:file])
       repository_id = File.basename(parent_path)
-      ENV['REPOSITORY_ID'] = repository_id
-      ENV['REPOSITORY_FILE'] = 'config/repositories.yml'
+      ENV["REPOSITORY_ID"] = repository_id
+      ENV["REPOSITORY_FILE"] = "config/repositories.yml"
       index_document(relative_path: args[:file], root_path: Rails.root)
     end
 
@@ -59,10 +59,10 @@ namespace :plantain do
   task :seed do
     puts "Seeding index with data from spec/fixtures/ead..."
     Dir.glob("eads/**/*.xml").each do |file|
-      parent_path = File.expand_path('..', file)
+      parent_path = File.expand_path("..", file)
       repository_id = File.basename(parent_path)
-      ENV['REPOSITORY_ID'] = repository_id
-      ENV['REPOSITORY_FILE'] = 'config/repositories.yml'
+      ENV["REPOSITORY_ID"] = repository_id
+      ENV["REPOSITORY_FILE"] = "config/repositories.yml"
 
       index_document(relative_path: file, root_path: Rails.root)
     end
