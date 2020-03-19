@@ -24,7 +24,7 @@ jobs:
     steps: &test_steps
       - checkout
       - run:
-          name: Install node@8.17.0 (need right version for `yarn`)
+          name: Install node@lts/dubnium (need right version for `yarn`)
           command: |
             set +e
             touch $BASH_ENV
