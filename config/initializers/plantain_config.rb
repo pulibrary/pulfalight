@@ -7,9 +7,7 @@ module Plantain
   private
 
     def config_yaml
-      # This invocation will change in ruby 2.6 to
-      # YAML.safe_load(yaml, aliases: true)[Rails.env]
-      YAML.safe_load(yaml, [], [], true)[Rails.env]
+      YAML.safe_load(yaml, aliases: true)[Rails.env]
     end
 
     def yaml
