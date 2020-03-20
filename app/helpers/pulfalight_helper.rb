@@ -2,7 +2,6 @@
 module PulfalightHelper
 
   # This overrides the context navigation helper functionality
-  # foo
   def generic_context_navigation(document, original_parents: document.parent_ids, component_level: 1)
     content_tag(
       :div,
@@ -26,7 +25,7 @@ module PulfalightHelper
       :'document-navigator',
       '',
       id: 'document-navigator',
-      '@document': document.to_json
+      ':root': document.to_json
     )
   end
 end

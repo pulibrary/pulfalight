@@ -115,6 +115,8 @@ class CatalogController < ApplicationController
     config.add_index_field "accessrestrict_ssm", label: "Conditions Governing Access"
     config.add_index_field "collection_ssm", label: "Collection Title"
     config.add_index_field "geogname_ssm", label: "Place"
+    config.add_index_field "parent_ssm", label: "Parents"
+    config.add_index_field "ead_ssi", label: "EAD ID"
 
     config.add_facet_field "has_online_content_ssim", label: "Access", query: {
       online: { label: "Online access", fq: "has_online_content_ssim:true" }

@@ -2,29 +2,32 @@
 class PulfaDocument {
   constructor(solrDocument) {
     this.solrDocument = solrDocument
-    this.parentIds = solrDocument.parent_ids
 
     this.mapSolrDocumentFields()
 
-    /*
-    this.children = []
-    this.buildChildren()
-
-    this.parents = []
-    this.buildParents()
-
-    this.previousSiblings = []
-    this.nextSiblings = []
-    this.buildSiblings()
-    */
+    this._children = []
+    this._parents = []
+    this._previousSiblings = []
+    this._nextSiblings = []
+    this._siblings = []
   }
 
   mapSolrDocumentFields() {
     // This maps the Solr Document fields to properties
     this.id = this.solrDocument.id
-    this.title = this.solrDocument['title_ssm']
+    this.eadId = this.solrDocument['ead_ssi']
+    this.titles = this.solrDocument['title_ssm']
+    this.title = this.titles.shift()
     this.abstract = this.solrDocument['abstract_ssm']
     this.parentIds = this.solrDocument['parent_ssm']
+  }
+
+  previousTrees() {
+    return []
+  }
+
+  nextTrees() {
+    return []
   }
 
   get queryUrlBase() {
@@ -38,8 +41,11 @@ class PulfaDocument {
   }
 
   buildDocumentQuery(id) {
-
-    return `${this.queryDocumentUrl}${id}`
+    let queryId = id
+    if (queryId != this.eadId) {
+      queryId = `${this.eadId}${id}`
+    }
+    return `${this.queryDocumentUrl}${queryId}`
   }
 
   get queryChildDocumentUrl() {
@@ -48,83 +54,128 @@ class PulfaDocument {
   }
 
   buildChildDocumentQuery(id) {
+    let queryId = id
+    if (queryId != this.eadId) {
+      queryId = `${this.eadId}${id}`
+    }
 
-    return `${this.queryChildDocumentUrl}${id}`
+    return `${this.queryChildDocumentUrl}${queryId}`
   }
 
   async buildChildren() {
-    const childQueryUrl = this.buildChildDocumentQuery(this.id)
-    const childDocuments = await fetch(childQueryUrl).foo()
-
-    for (childDocument of childDocuments) {
-
-      const childDocument = await fetch(queryUrl).then( response => response.json() ).then( solrDocument => new PulfaDocument(solrDocument) )
-      this.children.push(childDocument)
+    if (this._children.length > 0) {
+      return
     }
+
+    const childQueryUrl = this.buildChildDocumentQuery(this.id)
+    const solrData = await fetch(childQueryUrl).then( response => response.json() ).then( solrDocument => solrDocument['data'] )
+    this._children = PulfaDocument.buildPulfaDocuments(solrData)
   }
 
-  get children() {
+  async children() {
     await this.buildChildren()
-    return this.children
+    return this._children
+  }
+
+  static buildPulfaDocuments(solrData) {
+    return solrData.map( data => {
+      const doc = { id: data.id }
+      for (const key in data['attributes']) {
+        const attributes = data['attributes'][key]
+        doc[key] = attributes['value']
+      }
+
+      const pulfaDoc = new PulfaDocument(doc)
+      return pulfaDoc
+    })
+  }
+
+  static buildPulfaDocument(solrData) {
+    const solrDocuments = PulfaDocument.buildPulfaDocuments(solrData)
+
+    return solrDocuments.shift()
   }
 
   async buildParents() {
-    for (parentId of this.parentIds) {
+    if (this._parents.length > 0) {
+      return
+    }
+
+    for (const parentId of this.parentIds) {
       const queryUrl = this.buildDocumentQuery(parentId)
 
-      const parentDocument = await fetch(queryUrl).then( response => response.json() ).then( solrDocument => new PulfaDocument(solrDocument) )
-      this.parents.push(parentDocument)
+      const solrData = await fetch(queryUrl).then( response => response.json() ).then( solrDocument => solrDocument['data'] )
+      const pulfaDocument = PulfaDocument.buildPulfaDocument(solrData)
+      this._parents.push(pulfaDocument)
     }
+
+    return this._parents
   }
 
-  get parents() {
+  async parents() {
     await this.buildParents()
-    return this.parents
+    return this._parents
   }
 
-  /**
-   *
-   */
   async buildSiblings() {
-    const lastParent = this.parents[-1]
-    const children = lastParent.children
+    if (this.siblings.length > 0) {
+      return
+    }
 
-    for (child of children) {
-      if (this.previousSiblings[-1] && this.previousSiblings[-1].id === this.id) {
-        this.nextSiblings.push(child)
+    const lastParent = this._parents[this._parents.length - 1]
+    const children = await lastParent.children()
+
+    for (const child of children) {
+      const lastSibling = this._previousSibling[this._previousSibling.length - 1]
+      if (lastSibling && lastSibling.id === this.id) {
+        this._nextSiblings.push(child)
       } else {
-        this.previousSiblings.push(child)
+        this._previousSiblings.push(child)
       }
 
       // Remove this node from the set of ordered, previous sibling nodes
-      if (this.previousSiblings.length > 1) {
-        this.previousSiblings.pop()
+      if (this._previousSiblings.length > 1) {
+        this._previousSiblings.pop()
       }
+
+      this._siblings = this._previousSiblings + this._nextSiblings
     }
   }
 
-  get children() {
-    await this.buildChildren()
-    return this.children
+  async siblings() {
+    await this.buildSiblings()
+    return this._siblings
   }
 
+  async previousSiblings() {
+    await this.buildSiblings()
+    return this._previousSiblings
+  }
+
+  async nextSiblings() {
+    await this.buildSiblings()
+    return this._nextSiblings
+  }
 }
 
 class DocumentTree {
-  construction(root) {
+  constructor(root) {
     this.root = root
-    this.parents = []
-    this.parentTrees = []
 
-    this.build()
+    this.parents = []
+
+    this.parentTrees = []
+    this.previousTrees = []
+    this.nextTrees = []
+
+    this.previousSiblings = []
+    this.nextSiblings = []
   }
 
-  build() {
-    this.parents = this.roots.parents
-    for (parent of this.parents) {
-      const parentTree = new DocumentTree(parent)
-      this.parentTrees.push(parentTree)
-    }
+  async build() {
+    this.parents = await this.root.parents()
+    this.previousSiblings = await this.root.previousSiblings()
+    this.nextSiblings = await this.root.nextSiblings()
   }
 }
 
@@ -132,5 +183,9 @@ export default class DocumentNavigator {
   constructor(solrDocument) {
     this.document = new PulfaDocument(solrDocument)
     this.tree = new DocumentTree(this.document)
+  }
+
+  async build() {
+    await this.tree.build()
   }
 }

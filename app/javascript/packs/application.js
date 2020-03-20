@@ -23,7 +23,7 @@ import system from 'lux-design-system'
 import "lux-design-system/dist/system/system.css"
 import "lux-design-system/dist/system/tokens/tokens.scss"
 
-import DocumentNavigator from '../document-navigator'
+import DocumentNavigator from '../components/DocumentNavigator'
 
 Vue.use(system)
 
@@ -37,10 +37,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   var navigatorElement = document.getElementById("document-navigator")
   if (navigatorElement) {
-    const documentData = navigatorElement.getAttribute('data-document')
-    const solrDocument = JSON.parse(documentData)
-    // new CollectionNavigator(solrDocument)
-
-    new Vue({ el: navigatorElement })
+    new Vue({
+      el: navigatorElement,
+      components: {
+        'document-navigator': DocumentNavigator
+      }
+    })
   }
 })

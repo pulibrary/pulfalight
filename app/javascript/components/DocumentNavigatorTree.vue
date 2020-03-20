@@ -1,4 +1,3 @@
-
 <template>
   <div class="document-navigator-tree">
     <div v-for="siblingTree of this.tree.previousTrees">
@@ -6,15 +5,15 @@
     </div>
 
     <div v-if="this.expanded">
-      <div v-for="sibling of this.tree.previousSiblings()">
+      <div v-for="sibling of this.tree.previousSiblings">
         <document-navigator-item :pulfa-document="sibling" />
       </div>
     </div>
 
-    <document-navigator-item :pulfa-document="this.tree.root" />
+    <document-navigator-item :pulfa-document="tree.root" />
 
     <div v-if="this.expanded">
-      <div v-for="sibling of this.tree.nextSiblings()">
+      <div v-for="sibling of tree.nextSiblings">
         <document-navigator-item :pulfa-document="sibling" />
       </div>
     </div>
@@ -27,16 +26,12 @@
 </template>
 
 <script>
-/**
-
-
-**/
+import DocumentNavigatorItem from './DocumentNavigatorItem'
 
 export default {
   name: 'DocumentNavigator',
   components: {
-    'document-navigator-tree', DocumentNavigatorTree,
-    'document-navigator-item', DocumentNavigatorItem
+    'document-navigator-item': DocumentNavigatorItem
   },
   props: {
     tree: {
@@ -47,6 +42,9 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  mounted() {
+    this.tree.build()
   }
 }
 

@@ -1,22 +1,17 @@
-
 <template>
   <div class="document-navigator">
-
-    <document-navigator-tree :tree="this.tree" />
-
+    <document-navigator-tree :tree="this.navigator.tree" :expanded="true" />
   </div>
 </template>
 
 <script>
-/**
-
-
-**/
+import DocumentNavigatorTree from './DocumentNavigatorTree'
+import Navigator from '../document-navigator'
 
 export default {
   name: 'DocumentNavigator',
   components: {
-    'document-navigator-tree', DocumentNavigatorTree
+    'document-navigator-tree': DocumentNavigatorTree
   },
   props: {
     root: {
@@ -25,7 +20,7 @@ export default {
     }
   },
   computed: {
-    tree () {
+    navigator () {
       const solrDocument = this.root
       return new Navigator(solrDocument)
     }
