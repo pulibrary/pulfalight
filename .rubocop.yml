@@ -22,7 +22,7 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Exclude:
     - 'lib/tasks/plantain.rake'
-Metrics/ExampleLength:
+RSpec/ExampleLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
 Style/StringLiterals:
