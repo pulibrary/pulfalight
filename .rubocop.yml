@@ -14,10 +14,9 @@ AllCops:
     - 'tmp/**/*'
 Metrics/BlockLength:
   Exclude:
+    - 'spec/**/*'
     - 'lib/tasks/plantain.rake'
     - 'app/controllers/catalog_controller.rb'
-    - 'spec/jobs/index_job_spec.rb'
-    - 'spec/features/traject/ead2_indexing_spec.rb'
     - 'config/routes.rb'
 Metrics/MethodLength:
   Exclude:
