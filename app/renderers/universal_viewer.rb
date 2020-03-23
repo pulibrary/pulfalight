@@ -1,22 +1,31 @@
 # frozen_string_literal: true
 class UniversalViewer
+  IIIF_MANIFEST_ROLE = "https://iiif.io/api/presentation"
+
+  attr_reader :document
   def initialize(document)
     @document = document
   end
 
   def to_partial_path
-    "viewers/_universal_viewer"
+    if digital_object.role&.starts_with? IIIF_MANIFEST_ROLE
+      "viewers/_universal_viewer"
+    else
+      "viewers/_simple_link"
+    end
   end
 
   def url
-    "#{base_url}#?manifest=#{manifest_url}"
+    "#{base_url}#?manifest=#{href}"
   end
 
   def base_url
     Plantain.config[:external_universal_viewer_url]
   end
 
-  def manifest_url
-    @document.digital_objects.first.href
+  def digital_object
+    document.digital_objects.first
   end
+  delegate :href, to: :digital_object
+  delegate :label, to: :digital_object
 end
