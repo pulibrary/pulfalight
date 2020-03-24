@@ -14,9 +14,11 @@ class PulfaDocument {
 
   mapSolrDocumentFields() {
     // This maps the Solr Document fields to properties
+    console.log(this.solrDocument)
+
     this.id = this.solrDocument.id
     this.eadId = this.solrDocument['ead_ssi']
-    this.titles = this.solrDocument['title_ssm']
+    this.titles = this.solrDocument['normalized_title_ssm']
     this.title = this.titles.shift()
     this.abstract = this.solrDocument['abstract_ssm']
     this.parentIds = this.solrDocument['parent_ssm']
@@ -82,10 +84,25 @@ class PulfaDocument {
       const doc = { id: data.id }
       for (const key in data['attributes']) {
         const attributes = data['attributes'][key]
-        doc[key] = attributes['value']
+        const nestedAttributes = attributes['attributes']
+        doc[key] = nestedAttributes['value']
       }
 
-      const pulfaDoc = new PulfaDocument(doc)
+      let pulfaClass
+      const types = data['type']
+      const type = types.shift()
+      switch (type) {
+        case 'collection':
+          pulfaClass = PulfaCollection
+          break
+        case 'Series':
+          pulfaClass = PulfaSeries
+          break
+        default:
+          pulfaClass = PulfaDocument
+      }
+
+      const pulfaDoc = new pulfaClass(doc)
       return pulfaDoc
     })
   }
@@ -158,6 +175,30 @@ class PulfaDocument {
   }
 }
 
+class PulfaCollection extends PulfaDocument {
+
+  mapSolrDocumentFields() {
+    // This maps the Solr Document fields to properties
+    this.id = this.solrDocument.id
+    this.eadId = this.solrDocument['ead_ssi']
+    this.title = this.solrDocument['normalized_title_ssm']
+    this.abstract = this.solrDocument['abstract_ssm']
+    this.parentIds = this.solrDocument['parent_ssm']
+  }
+}
+
+class PulfaSeries extends PulfaDocument {
+
+  mapSolrDocumentFields() {
+    // This maps the Solr Document fields to properties
+    this.id = this.solrDocument.id
+    this.eadId = this.solrDocument['ead_ssi']
+    this.title = this.solrDocument['normalized_title_ssm']
+    this.abstract = this.solrDocument['abstract_ssm']
+    this.parentIds = this.solrDocument['parent_ssm']
+  }
+}
+
 class DocumentTree {
   constructor(root) {
     this.root = root
@@ -174,6 +215,8 @@ class DocumentTree {
 
   async build() {
     this.parents = await this.root.parents()
+    console.log(this.root._parents)
+    console.log(this.parents)
     this.previousSiblings = await this.root.previousSiblings()
     this.nextSiblings = await this.root.nextSiblings()
   }
@@ -181,7 +224,12 @@ class DocumentTree {
 
 export default class DocumentNavigator {
   constructor(solrDocument) {
-    this.document = new PulfaDocument(solrDocument)
+    if (solrDocument instanceof PulfaDocument) {
+      this.document = solrDocument
+    } else {
+      this.document = new PulfaDocument(solrDocument)
+    }
+
     this.tree = new DocumentTree(this.document)
   }
 

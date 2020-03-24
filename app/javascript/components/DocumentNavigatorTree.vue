@@ -1,32 +1,33 @@
 <template>
-  <div class="document-navigator-tree">
-    <div v-for="siblingTree of this.tree.previousTrees">
-      <document-navigator-tree :tree="siblingTree" :expanded="false" />
+  <ul class="document-navigator-tree">
+    <ul v-if="!this.fetching">
+      <li v-for="parent in parents">
+        <document-navigator-item :pulfa-document="parent" />
+      </li>
+    </ul>
+
+    <div v-if="!this.fetching">
+      <document-navigator-item :pulfa-document="root" />
+
+      <ul v-if="!this.fetching">
+        <li v-for="child in children">
+          <document-navigator-item :pulfa-document="parent" />
+        </li>
+      </ul>
     </div>
 
-    <div v-if="this.expanded">
-      <div v-for="sibling of this.tree.previousSiblings">
-        <document-navigator-item :pulfa-document="sibling" />
-      </div>
-    </div>
+    <ul v-if="!this.fetching">
+      <li v-for="child in children">
+        <document-navigator-item :pulfa-document="child" />
+      </li>
+    </ul>
 
-    <document-navigator-item :pulfa-document="tree.root" />
-
-    <div v-if="this.expanded">
-      <div v-for="sibling of tree.nextSiblings">
-        <document-navigator-item :pulfa-document="sibling" />
-      </div>
-    </div>
-
-    <div v-for="siblingTree of this.tree.nextTrees">
-      <document-navigator-tree :tree="siblingTree" :expanded="false" />
-    </div>
-
-  </div>
+  </ul>
 </template>
 
 <script>
 import DocumentNavigatorItem from './DocumentNavigatorItem'
+import Navigator from '../document-navigator'
 
 export default {
   name: 'DocumentNavigator',
@@ -43,9 +44,56 @@ export default {
       default: false
     }
   },
+  data: function() {
+    return {
+      fetching: false,
+      parents: [],
+      children: []
+    }
+  },
+  computed: {
+    root: function () {
+      return this.tree.root
+    },
+
+    parentTrees: function () {
+      // This might be best restructured in the low-level API
+      return this.parents.map( parent => {
+        const nav = new Navigator(parent)
+        return nav.tree
+      })
+    }
+  },
+  methods: {
+    fetchParents: function () {
+      this.fetching = true
+      const request = this.tree.root.parents()
+      request.then( docs => {
+        this.fetching = false
+        this.parents = docs
+      }).catch( error => {
+        this.fetching = false
+        console.error(`Failed to request the collection: ${error.message}`)
+      })
+    },
+    fetchChildren: function () {
+      this.fetching = true
+      const request = this.tree.root.children()
+      request.then( docs => {
+        this.fetching = false
+        this.children = docs
+      }).catch( error => {
+        this.fetching = false
+        console.error(`Failed to request the collection: ${error.message}`)
+      })
+    },
+
+  },
   mounted() {
     this.tree.build()
-  }
+    this.fetchParents()
+    this.fetchChildren()
+  },
 }
 
 </script>
