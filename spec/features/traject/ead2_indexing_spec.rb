@@ -52,8 +52,28 @@ describe "EAD 2 traject indexing", type: :feature do
           [
             JSON.generate(
               label: "https://figgy.princeton.edu/concern/scanned_resources/3359153c-82da-4078-ae51-e301f4c5e38b/manifest",
-              href: "https://figgy.princeton.edu/concern/scanned_resources/3359153c-82da-4078-ae51-e301f4c5e38b/manifest"
+              href: "https://figgy.princeton.edu/concern/scanned_resources/3359153c-82da-4078-ae51-e301f4c5e38b/manifest",
+              role: "https://iiif.io/api/presentation/2.1/"
             )
+          ]
+        )
+      end
+    end
+
+    context "when <dao> has no role" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+      end
+      let(:component) { result["components"].find { |c| c["id"] == ["WC064WC064_c11"] } }
+
+      it "gets the digital objects with role: null" do
+        json = JSON.generate(
+          label: "http://arks.princeton.edu/ark:/88435/vh53wv96d",
+          href: "http://arks.princeton.edu/ark:/88435/vh53wv96d"
+        ).slice(0..-2) + ",\"role\":null}"
+        expect(component["digital_objects_ssm"]).to eq(
+          [
+            json
           ]
         )
       end
