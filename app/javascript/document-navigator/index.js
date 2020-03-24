@@ -2,26 +2,40 @@
 class PulfaDocument {
   constructor(solrDocument) {
     this.solrDocument = solrDocument
+    if (!this.solrDocument) {
+      console.error('Trying to build a Document from null')
+    }
+
+    this.parentIds = []
 
     this.mapSolrDocumentFields()
 
     this._children = []
     this._parents = []
+    this._parentTrees = []
     this._previousSiblings = []
     this._nextSiblings = []
     this._siblings = []
+    this.fetching = false
+    this.fetchingTrees = false
   }
 
   mapSolrDocumentFields() {
     // This maps the Solr Document fields to properties
     console.log(this.solrDocument)
-
     this.id = this.solrDocument.id
     this.eadId = this.solrDocument['ead_ssi']
+    console.log(this.solrDocument)
     this.titles = this.solrDocument['normalized_title_ssm']
-    this.title = this.titles.shift()
+    if (this.titles instanceof Array) {
+      this.title = this.titles.shift()
+    } else {
+      this.title = this.titles
+    }
     this.abstract = this.solrDocument['abstract_ssm']
-    this.parentIds = this.solrDocument['parent_ssm']
+    if (this.solrDocument['parent_ssm']) {
+      this.parentIds = this.solrDocument['parent_ssm']
+    }
   }
 
   previousTrees() {
@@ -57,9 +71,6 @@ class PulfaDocument {
 
   buildChildDocumentQuery(id) {
     let queryId = id
-    if (queryId != this.eadId) {
-      queryId = `${this.eadId}${id}`
-    }
 
     return `${this.queryChildDocumentUrl}${queryId}`
   }
@@ -77,6 +88,28 @@ class PulfaDocument {
   async children() {
     await this.buildChildren()
     return this._children
+  }
+
+  async buildChildTrees() {
+    if (this.fetchingTrees) {
+      return
+    }
+    this.fetchingTrees = true
+
+    this._childTrees = []
+    const childQueryUrl = this.buildChildDocumentQuery(this.id)
+    const solrData = await fetch(childQueryUrl).then( response => response.json() ).then( solrDocument => solrDocument['data'] )
+    this._children = PulfaDocument.buildPulfaDocuments(solrData)
+    this._childTrees = this._children.map( child => new DocumentTree(child) )
+
+    this.fetchingTrees = false
+
+    return this._childTrees
+  }
+
+  async childTrees() {
+    await this.buildChildTrees()
+    return this._childTrees
   }
 
   static buildPulfaDocuments(solrData) {
@@ -120,6 +153,8 @@ class PulfaDocument {
     this.fetching = true
 
     this._parents = []
+    console.log(this)
+    console.log(this.parentIds)
     for (const parentId of this.parentIds) {
       const queryUrl = this.buildDocumentQuery(parentId)
 
@@ -138,16 +173,49 @@ class PulfaDocument {
     return this._parents
   }
 
+  async buildParentTrees() {
+    if (this.fetchingTrees) {
+      return
+    }
+    this.fetchingTrees = true
+
+    this._parentTrees = []
+    for (const parentId of this.parentIds) {
+      const queryUrl = this.buildDocumentQuery(parentId)
+
+      const solrData = await fetch(queryUrl).then( response => response.json() ).then( solrDocument => solrDocument['data'] )
+      const pulfaDocument = PulfaDocument.buildPulfaDocument(solrData)
+      const pulfaTree = new DocumentTree(pulfaDocument)
+      this._parentTrees.push(pulfaTree)
+    }
+
+    this.fetchingTrees = false
+
+    return this._parentTrees
+  }
+
+  async parentTrees() {
+    await this.buildParentTrees()
+    return this._parentTrees
+  }
+
   async buildSiblings() {
-    if (this.siblings.length > 0) {
+    if (this.fetching) {
       return
     }
 
+    this._previousSiblings = []
+    this._nextSiblings = []
+
     const lastParent = this._parents[this._parents.length - 1]
+    if (!lastParent) {
+      return
+    }
+    this.fetching = true
     const children = await lastParent.children()
 
     for (const child of children) {
-      const lastSibling = this._previousSibling[this._previousSibling.length - 1]
+      const lastSibling = this._previousSiblings[this._previousSiblings.length - 1]
       if (lastSibling && lastSibling.id === this.id) {
         this._nextSiblings.push(child)
       } else {
@@ -161,6 +229,8 @@ class PulfaDocument {
 
       this._siblings = this._previousSiblings + this._nextSiblings
     }
+
+    this.fetching = false
   }
 
   async siblings() {
@@ -187,7 +257,9 @@ class PulfaCollection extends PulfaDocument {
     this.eadId = this.solrDocument['ead_ssi']
     this.title = this.solrDocument['normalized_title_ssm']
     this.abstract = this.solrDocument['abstract_ssm']
-    this.parentIds = this.solrDocument['parent_ssm']
+    if (this.solrDocument['parent_ssm']) {
+      this.parentIds = this.solrDocument['parent_ssm']
+    }
   }
 }
 
@@ -199,7 +271,10 @@ class PulfaSeries extends PulfaDocument {
     this.eadId = this.solrDocument['ead_ssi']
     this.title = this.solrDocument['normalized_title_ssm']
     this.abstract = this.solrDocument['abstract_ssm']
-    this.parentIds = this.solrDocument['parent_ssm']
+    if (this.solrDocument['parent_ssm']) {
+      const parentId = this.solrDocument['parent_ssm']
+      this.parentIds = [parentId]
+    }
   }
 }
 

@@ -29,7 +29,6 @@
               <div class="responsive-truncate">
                 <p>{{this.pulfaDocument.abstract}}</p>
               </div>
-              <a class="responsiveTruncatorToggle" href="#">view more ▶</a>
             </div>
           </div>
         </div>
