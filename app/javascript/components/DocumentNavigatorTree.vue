@@ -21,7 +21,6 @@
         <document-navigator-item :pulfa-document="child" />
       </li>
     </ul>
-
   </ul>
 </template>
 
@@ -76,6 +75,7 @@ export default {
         console.error(`Failed to request the collection: ${error.message}`)
       })
     },
+
     fetchChildren: function () {
       this.fetching = true
       const request = this.tree.root.children()

@@ -114,10 +114,12 @@ class PulfaDocument {
   }
 
   async buildParents() {
-    if (this._parents.length > 0) {
+    if (this.fetching) {
       return
     }
+    this.fetching = true
 
+    this._parents = []
     for (const parentId of this.parentIds) {
       const queryUrl = this.buildDocumentQuery(parentId)
 
@@ -125,6 +127,8 @@ class PulfaDocument {
       const pulfaDocument = PulfaDocument.buildPulfaDocument(solrData)
       this._parents.push(pulfaDocument)
     }
+
+    this.fetching = false
 
     return this._parents
   }
