@@ -22,10 +22,8 @@ class PulfaDocument {
 
   mapSolrDocumentFields() {
     // This maps the Solr Document fields to properties
-    console.log(this.solrDocument)
     this.id = this.solrDocument.id
     this.eadId = this.solrDocument['ead_ssi']
-    console.log(this.solrDocument)
     this.titles = this.solrDocument['normalized_title_ssm']
     if (this.titles instanceof Array) {
       this.title = this.titles.shift()
@@ -153,9 +151,8 @@ class PulfaDocument {
     this.fetching = true
 
     this._parents = []
-    console.log(this)
-    console.log(this.parentIds)
-    for (const parentId of this.parentIds) {
+    const parentId = this.parentIds.pop()
+    if (parentId) {
       const queryUrl = this.buildDocumentQuery(parentId)
 
       const solrData = await fetch(queryUrl).then( response => response.json() ).then( solrDocument => solrDocument['data'] )
@@ -171,32 +168,6 @@ class PulfaDocument {
   async parents() {
     await this.buildParents()
     return this._parents
-  }
-
-  async buildParentTrees() {
-    if (this.fetchingTrees) {
-      return
-    }
-    this.fetchingTrees = true
-
-    this._parentTrees = []
-    for (const parentId of this.parentIds) {
-      const queryUrl = this.buildDocumentQuery(parentId)
-
-      const solrData = await fetch(queryUrl).then( response => response.json() ).then( solrDocument => solrDocument['data'] )
-      const pulfaDocument = PulfaDocument.buildPulfaDocument(solrData)
-      const pulfaTree = new DocumentTree(pulfaDocument)
-      this._parentTrees.push(pulfaTree)
-    }
-
-    this.fetchingTrees = false
-
-    return this._parentTrees
-  }
-
-  async parentTrees() {
-    await this.buildParentTrees()
-    return this._parentTrees
   }
 
   async buildSiblings() {
@@ -264,7 +235,6 @@ class PulfaCollection extends PulfaDocument {
 }
 
 class PulfaSeries extends PulfaDocument {
-
   mapSolrDocumentFields() {
     // This maps the Solr Document fields to properties
     this.id = this.solrDocument.id
@@ -279,12 +249,16 @@ class PulfaSeries extends PulfaDocument {
 }
 
 class DocumentTree {
-  constructor(root) {
+  constructor(root, selectedChild) {
     this.root = root
+    this.selectedChild = selectedChild
 
     this.parents = []
+    this.fetchingTrees = false
+    this._parentTrees = []
+    this.children = []
+    this._childTrees = []
 
-    this.parentTrees = []
     this.previousTrees = []
     this.nextTrees = []
 
@@ -292,12 +266,71 @@ class DocumentTree {
     this.nextSiblings = []
   }
 
+  async buildParentTrees() {
+    if (this.fetchingTrees) {
+      return
+    }
+    this.fetchingTrees = true
+
+    this._parentTrees = []
+
+    const pulfaDocuments = await this.root.parents()
+    const pulfaDocument = pulfaDocuments.pop()
+    if (pulfaDocument) {
+
+      const pulfaTree = new DocumentTree(pulfaDocument, this.root)
+      this._parentTrees.push(pulfaTree)
+    }
+
+    this.fetchingTrees = false
+
+    return this._parentTrees
+  }
+
+  async parentTrees() {
+    await this.buildParentTrees()
+    return this._parentTrees
+  }
+
+  async buildChildTrees() {
+    if (this.fetchingTrees) {
+      return
+    }
+    this.fetchingTrees = true
+    this._childTrees = []
+
+    const children = await this.root.children()
+    this._childTrees = children.map( child => new DocumentTree(child, this.selectedChild) )
+
+    this.fetchingTrees = false
+
+    return this._childTrees
+  }
+
+  async childTrees() {
+    await this.buildChildTrees()
+    return this._childTrees
+  }
+
   async build() {
     this.parents = await this.root.parents()
-    console.log(this.root._parents)
-    console.log(this.parents)
-    this.previousSiblings = await this.root.previousSiblings()
-    this.nextSiblings = await this.root.nextSiblings()
+    this.parentTrees = await this.parentTrees()
+    this.lastParentTree = this.parentTrees.pop()
+
+    if (this.lastParentTree) {
+      await this.lastParentTree.build()
+      if (this.lastParentTree.lastParentTree) {
+        this.lastParentTree = this.lastParentTree.lastParentTree
+      }
+    }
+
+    // Siblings do not have parents
+    //this.previousSiblings = await this.root.previousSiblings()
+    //this.nextSiblings = await this.root.nextSiblings()
+
+    // Children do not have siblings, nor parents
+    //this.children = await this.root.children()
+    this.childTrees = await this.childTrees()
   }
 }
 
@@ -314,5 +347,6 @@ export default class DocumentNavigator {
 
   async build() {
     await this.tree.build()
+    return this
   }
 }

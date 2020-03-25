@@ -1,27 +1,11 @@
 <template>
-
     <ul class="document-navigator-tree">
-      <div v-if="!this.fetching">
-        <li v-for="parentTree in parentTrees">
-          <document-navigator-tree :tree="parentTree" />
-        </li>
-      </div>
 
       <li v-if="!this.fetching">
-        <div class="row">
-          <div class="col-auto">
-            <a class="al-toggle-view-children " aria-label="View" href="#">
-              <span class="blacklight-icons">+</span>
-            </a>
-          </div>
-
-          <div class="col-auto">
-            <document-navigator-item :pulfa-document="root" />
-          </div>
-        </div>
+        <document-navigator-item :pulfa-document="root" :selected="isSelected(root)"/>
       </li>
 
-      <ul v-if="!this.fetching && expanded">
+      <ul v-if="!this.fetching">
         <li v-for="childTree in childTrees">
           <document-navigator-tree :tree="childTree" />
         </li>
@@ -44,6 +28,10 @@ export default {
       type: Object,
       default: null
     },
+    selected: {
+      type: Boolean,
+      default: false
+    },
     expanded: {
       type: Boolean,
       default: false
@@ -64,76 +52,23 @@ export default {
     }
   },
   methods: {
-    fetchParents: function () {
-      this.fetching = true
-      const request = this.tree.root.parents()
+    isSelected: function(pulfaDocument) {
+      if (this.tree.selectedChild) {
+        return pulfaDocument.id == this.tree.selectedChild.id
+      }
 
-      request.then( docs => {
-        this.fetching = false
-
-        // Only use the most recent parent
-        const lastParent = docs.pop()
-        this.parents = [lastParent]
-      }).catch( error => {
-        this.fetching = false
-        console.error(`Failed to request the collection: ${error.message}`)
-      })
-    },
-
-    fetchParentTrees: function () {
-      this.fetching = true
-      const request = this.tree.root.parentTrees()
-
-      request.then( docs => {
-        console.log(this.tree)
-        console.log(docs)
-        this.fetching = false
-
-        const lastParent = docs.pop()
-        if (lastParent) {
-          this.parentTrees = [lastParent]
-        }
-      }).catch( error => {
-        this.fetching = false
-        console.error(`Failed to request the collection: ${error.message}`)
-      })
-    },
-
-    fetchChildren: function () {
-      this.fetching = true
-      const request = this.tree.root.children()
-      request.then( docs => {
-        this.fetching = false
-        this.children = docs
-      }).catch( error => {
-        this.fetching = false
-        console.error(`Failed to request the collection: ${error.message}`)
-      })
-    },
-
-    fetchChildTrees: function () {
-      this.fetching = true
-
-      const request = this.tree.root.childTrees()
-      request.then( docs => {
-        this.fetching = false
-        this.childTrees = docs
-      }).catch( error => {
-        this.fetching = false
-        console.error(`Failed to request the collection: ${error.message}`)
-      })
+      return false
     },
 
   },
-  mounted() {
-    this.tree.build()
-    //this.fetchParents()
-    this.fetchParentTrees()
-    //this.fetchChildren()
-    this.fetchChildTrees()
-  },
+  mounted: function () {
+    this.childTrees = this.tree.childTrees
+  }
 }
 
 </script>
 <style lang="scss" scoped>
+  .selected {
+    background-color: rgb(252, 248, 227);
+  }
 </style>

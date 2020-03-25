@@ -1,7 +1,9 @@
 <template>
-  <div class="document-navigator">
-    <document-navigator-tree :tree="this.navigator.tree" :expanded="true" />
+
+  <div v-if="!fetching && tree" class="document-navigator">
+    <document-navigator-tree :tree="tree" :expanded="true" />
   </div>
+
 </template>
 
 <script>
@@ -14,16 +16,35 @@ export default {
     'document-navigator-tree': DocumentNavigatorTree
   },
   props: {
-    root: {
+    document: {
       type: Object,
       default: null
     }
   },
-  computed: {
-    navigator () {
-      const solrDocument = this.root
-      return new Navigator(solrDocument)
+  data: function () {
+    return {
+      tree: null,
+      fetching: false
     }
+  },
+  computed: {
+    navigator() {
+      return new Navigator(this.document)
+    }
+  },
+  mounted() {
+    this.fetching = true
+    const request = this.navigator.build()
+
+    request.then(built => {
+      this.fetching = false
+
+      if (built.tree.lastParentTree) {
+        this.tree = built.tree.lastParentTree
+      } else {
+        this.tree = built.tree
+      }
+    })
   }
 }
 
