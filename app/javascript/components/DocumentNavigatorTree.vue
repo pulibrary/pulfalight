@@ -1,13 +1,13 @@
 <template>
     <ul class="document-navigator-tree">
 
-      <li v-if="!this.fetching">
-        <document-navigator-item :pulfa-document="root" :selected="isSelected(root)"/>
+      <li v-if="!fetching">
+        <document-navigator-item :pulfa-document="root" :selected="isSelected(root)" :expanded="expandedState" v-on:expand-children="updateExpanded" />
       </li>
 
-      <ul v-if="!this.fetching">
+      <ul v-if="!fetching && expandedState">
         <li v-for="childTree in childTrees">
-          <document-navigator-tree :tree="childTree" />
+          <document-navigator-tree :tree="childTree" :expanded="false" />
         </li>
       </ul>
 
@@ -43,7 +43,8 @@ export default {
       parents: [],
       parentTrees: [],
       children: [],
-      childTrees: []
+      childTrees: [],
+      expandedState: this.expanded
     }
   },
   computed: {
@@ -59,6 +60,9 @@ export default {
 
       return false
     },
+    updateExpanded: function (updatedState) {
+      this.expandedState = updatedState
+    }
 
   },
   mounted: function () {

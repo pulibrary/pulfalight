@@ -34,6 +34,7 @@ class PulfaDocument {
     if (this.solrDocument['parent_ssm']) {
       this.parentIds = this.solrDocument['parent_ssm']
     }
+    this.type = this.solrDocument['type']
   }
 
   previousTrees() {
@@ -231,6 +232,7 @@ class PulfaCollection extends PulfaDocument {
     if (this.solrDocument['parent_ssm']) {
       this.parentIds = this.solrDocument['parent_ssm']
     }
+    this.type = this.solrDocument['type']
   }
 }
 
@@ -245,6 +247,7 @@ class PulfaSeries extends PulfaDocument {
       const parentId = this.solrDocument['parent_ssm']
       this.parentIds = [parentId]
     }
+    this.type = this.solrDocument['type']
   }
 }
 

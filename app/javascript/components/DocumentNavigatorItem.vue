@@ -3,7 +3,7 @@
     <div class="row">
 
       <div class="col-sm-1">
-        <expand-children-button />
+        <expand-children-button :expanded="expandedState" v-on:expand-children="updateExpanded" />
       </div>
 
       <div class="col-sm-1">
@@ -55,14 +55,30 @@ export default {
       type: Object,
       default: null
     },
+    expanded: {
+      type: Boolean,
+      default: false
+    },
     selected : {
       type: Boolean,
       default: false
     }
   },
+  data: function () {
+    return {
+      expandedState: this.expanded
+    }
+  },
   computed: {
     catalogUrl: function () {
       return `/catalog/${this.pulfaDocument.id}`
+    }
+  },
+  methods: {
+    updateExpanded: function (updatedState) {
+      this.expandedState = updatedState
+      // This is necessary for the parent component
+      this.$emit('expand-children', this.expandedState)
     }
   }
 }
