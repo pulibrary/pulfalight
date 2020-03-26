@@ -107,7 +107,7 @@ to_field "unitid_teim", extract_xpath("/ead/archdesc/did/unitid")
 to_field "collection_unitid_ssm", extract_xpath("/ead/archdesc/did/unitid")
 
 to_field "normalized_title_ssm" do |_record, accumulator, context|
-  dates = Plantain::NormalizedDate.new(
+  dates = Pulfalight::NormalizedDate.new(
     context.output_hash["unitdate_inclusive_ssm"],
     context.output_hash["unitdate_bulk_ssim"],
     context.output_hash["unitdate_other_ssim"]
@@ -116,12 +116,12 @@ to_field "normalized_title_ssm" do |_record, accumulator, context|
   titles = context.output_hash["title_ssm"]
   unless titles.blank?
     title = titles.first
-    accumulator << Plantain::NormalizedTitle.new(title, dates).to_s
+    accumulator << Pulfalight::NormalizedTitle.new(title, dates).to_s
   end
 end
 
 to_field "normalized_date_ssm" do |_record, accumulator, context|
-  accumulator << Plantain::NormalizedDate.new(
+  accumulator << Pulfalight::NormalizedDate.new(
     context.output_hash["unitdate_inclusive_ssm"],
     context.output_hash["unitdate_bulk_ssim"],
     context.output_hash["unitdate_other_ssim"]
@@ -219,7 +219,7 @@ to_field "genreform_sim", extract_xpath("/ead/archdesc/controlaccess/genreform")
 to_field "genreform_ssm", extract_xpath("/ead/archdesc/controlaccess/genreform")
 
 to_field "date_range_sim", extract_xpath("/ead/archdesc/did/unitdate/@normal", to_text: false) do |_record, accumulator|
-  range = Plantain::YearRange.new
+  range = Pulfalight::YearRange.new
   next range.years if accumulator.blank?
 
   ranges = accumulator.map(&:to_s)
@@ -297,17 +297,17 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
   to_field "unitdate_other_ssim", extract_xpath("./did/unitdate[not(@type)]")
 
   to_field "normalized_title_ssm" do |_record, accumulator, context|
-    dates = Plantain::NormalizedDate.new(
+    dates = Pulfalight::NormalizedDate.new(
       context.output_hash["unitdate_inclusive_ssm"],
       context.output_hash["unitdate_bulk_ssim"],
       context.output_hash["unitdate_other_ssim"]
     ).to_s
     title = context.output_hash["title_ssm"]&.first
-    accumulator << Plantain::NormalizedTitle.new(title, dates).to_s
+    accumulator << Pulfalight::NormalizedTitle.new(title, dates).to_s
   end
 
   to_field "normalized_date_ssm" do |_record, accumulator, context|
-    accumulator << Plantain::NormalizedDate.new(
+    accumulator << Pulfalight::NormalizedDate.new(
       context.output_hash["unitdate_inclusive_ssm"],
       context.output_hash["unitdate_bulk_ssim"],
       context.output_hash["unitdate_other_ssim"]
@@ -462,7 +462,7 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
   end
 
   to_field "date_range_sim", extract_xpath("./did/unitdate/@normal", to_text: false) do |_record, accumulator|
-    range = Plantain::YearRange.new
+    range = Pulfalight::YearRange.new
     next range.years if accumulator.blank?
 
     ranges = accumulator.map(&:to_s)

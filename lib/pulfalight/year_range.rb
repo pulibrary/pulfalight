@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Plantain
+module Pulfalight
   # Class for modeling ranges in years parsed from encoded dates in EAD Documents
   class YearRange < Arclight::YearRange
     # Parses an array of dates from a string extracted from an EAD Document

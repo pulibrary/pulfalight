@@ -1,7 +1,7 @@
 development: &default
   <<: *default
   adapter: postgresql
-  database: plantain_development
+  database: pulfalight_development
   encoding: utf8
   min_messages: warning
   pool: <%= Integer(ENV.fetch("DB_POOL", 30)) %>
@@ -13,17 +13,17 @@ development: &default
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  host: <%= ENV["PLANTAIN_DB_HOST"] %>
-  database: plantain_test
-  username: <%= ENV["PLANTAIN_DB_USERNAME"] %>
-  password: <%= ENV["PLANTAIN_DB_PASSWORD"] %>
+  host: <%= ENV["PULFALIGHT_DB_HOST"] %>
+  database: pulfalight_test
+  username: <%= ENV["PULFALIGHT_DB_USERNAME"] %>
+  password: <%= ENV["PULFALIGHT_DB_PASSWORD"] %>
 
 production: &deploy
   <<: *default
-  host: <%= ENV["PLANTAIN_DB_HOST"] %>
-  database: <%= ENV["PLANTAIN_DB"] %>
-  username: <%= ENV["PLANTAIN_DB_USERNAME"] %>
-  password: <%= ENV["PLANTAIN_DB_PASSWORD"] %>
+  host: <%= ENV["PULFALIGHT_DB_HOST"] %>
+  database: <%= ENV["PULFALIGHT_DB"] %>
+  username: <%= ENV["PULFALIGHT_DB_USERNAME"] %>
+  password: <%= ENV["PULFALIGHT_DB_PASSWORD"] %>
   pool: 40
 
 staging:

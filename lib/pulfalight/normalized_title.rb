@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Plantain
+module Pulfalight
   # Class for normalizing document titles from a set of title and date values extracted from the EAD Document
   class NormalizedTitle < Arclight::NormalizedTitle
     private

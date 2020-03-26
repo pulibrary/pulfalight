@@ -20,7 +20,7 @@ class UniversalViewer
   end
 
   def base_url
-    Plantain.config[:external_universal_viewer_url]
+    Pulfalight.config[:external_universal_viewer_url]
   end
 
   def digital_object
