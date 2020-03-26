@@ -11,7 +11,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   let(:indexer) do
     Traject::Indexer::NokogiriIndexer.new.tap do |i|
-      i.load_config_file(Rails.root.join("lib", "plantain", "traject", "ead2_config.rb"))
+      i.load_config_file(Rails.root.join("lib", "pulfalight", "traject", "ead2_config.rb"))
     end
   end
 

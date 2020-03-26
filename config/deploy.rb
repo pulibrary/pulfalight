@@ -1,8 +1,8 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11"
 
-set :application, "plantain"
-set :repo_url, "https://github.com/pulibrary/plantain.git"
+set :application, "pulfalight"
+set :repo_url, "https://github.com/pulibrary/pulfalight.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -10,7 +10,7 @@ set :branch, ENV["BRANCH"] || "master"
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, "/var/www/my_app_name"
-set :deploy_to, "/opt/plantain"
+set :deploy_to, "/opt/pulfalight"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -44,7 +44,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push("log", "vendor/bundle", "public/u
 set :pulfa_dir_path, fetch(:pulfa_dir_path, '/var/opt/pulfa')
 set :pulfa_collections, fetch(:pulfa_collections, %w{cotsen ea eng ga lae mss mudd rarebooks})
 
-namespace :plantain do
+namespace :pulfalight do
   desc 'Symbolically links the SVN repository directory within the app.'
   task :link_pulfa do
     target = release_path.join('eads')
@@ -61,7 +61,7 @@ namespace :plantain do
       within release_path do
         with :rails_env => fetch(:rails_env) do
           collections.each do |collection|
-            rake "plantain:index:collection[#{collection}]"
+            rake "pulfalight:index:collection[#{collection}]"
           end
         end
       end
@@ -72,12 +72,12 @@ end
 namespace :sidekiq do
   task :quiet do
     on roles(:worker) do
-      puts capture("kill -USR1 $(sudo initctl status plantain-workers | grep /running | awk '{print $NF}') || :")
+      puts capture("kill -USR1 $(sudo initctl status pulfalight-workers | grep /running | awk '{print $NF}') || :")
     end
   end
   task :restart do
     on roles(:worker) do
-      execute :sudo, :service, "plantain-workers", :restart
+      execute :sudo, :service, "pulfalight-workers", :restart
     end
   end
 end
@@ -85,4 +85,4 @@ end
 after 'deploy:reverted', 'sidekiq:restart'
 after 'deploy:starting', 'sidekiq:quiet'
 after 'deploy:published', 'sidekiq:restart'
-after 'deploy:finished', 'plantain:link_pulfa'
+after 'deploy:finished', 'pulfalight:link_pulfa'

@@ -15,7 +15,7 @@ class IndexJob < ApplicationJob
   # Retrieve the file path for the ArcLight core Traject configuration
   # @return [String]
   def arclight_config_path
-    pathname = Rails.root.join("lib", "plantain", "traject", "ead2_config.rb")
+    pathname = Rails.root.join("lib", "pulfalight", "traject", "ead2_config.rb")
     pathname.to_s
   end
 

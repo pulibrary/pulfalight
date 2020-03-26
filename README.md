@@ -1,13 +1,12 @@
-# Plantain
-[![Coverage Status](https://coveralls.io/repos/github/pulibrary/plantain/badge.svg?branch=master)](https://coveralls.io/github/pulibrary/plantain?branch=master)
+# Pulfalight
+[![Coverage
+Status](https://coveralls.io/repos/github/pulibrary/pulfalight/badge.svg?branch=master)](https://coveralls.io/github/pulibrary/pulfalight?branch=master)
 
 This is an implementation of ArcLight being implemented as a replacement for the
  Princeton University Finding Aids (PULFA) service.
 
 ### Initial setup
 ```sh
-git clone https://github.com/pulibrary/plantain.git
-cd plantain
 bundle install
 yarn install
 bundle exec rake db:setup db:migrate
@@ -20,24 +19,24 @@ oldest version of Node.js supported is 10.16.0.
 
 #### Setup server
 1. For development:
-   - `bundle exec rake plantain:development`
+   - `bundle exec rake pulfalight:development`
    - In a separate terminal, please run: `bundle exec foreman start`
    - _Or, should you need to debug the Webpack build, please run `bundle exec webpack-dev-server` instead, and then run `bundle exec rails server` in another terminal_
    - Now, please visit the new installation at
      [http://localhost:3000](http://localhost:3000)
 2. For testing:
-   - `bundle exec rake plantain:test`
+   - `bundle exec rake pulfalight:test`
    - In a separate terminal, please run: `bundle exec rspec`
 
 ### Configuration
-By default, Plantain uses Solr over the port 8983 (deployed using
+By default, Pulfalight uses Solr over the port 8983 (deployed using
 `solr_wrapper`) for the index.
 
 Please see [the ArcLight
 documentation](https://github.com/projectblacklight/arclight/wiki/Indexing-EAD-in-ArcLight#repository-configuration)
 for information regarding the configuration of repositories in ArcLight.
 
-### Indexing documents into Plantain
+### Indexing documents into Pulfalight
 
 Documents are indexed from the EADs which are stored in a subversion
 repository.
@@ -103,18 +102,18 @@ Start sidekiq in a terminal window that you keep open:
 
 Use the rake tasks to index either a single document or a collection, e.g.:
 
-`$ bundle exec rake plantain:index:document["mss/TC071.EAD.xml"]`
-`$ bundle exec rake plantain:index:collection["mss"]`
+`$ bundle exec rake pulfalight:index:document["mss/TC071.EAD.xml"]`
+`$ bundle exec rake pulfalight:index:collection["mss"]`
 
 Once the jobs are finished processing by sidekiq you'll need to either wait 5 minutes for the soft commit to occur or manually issue a solr commit:
 
 `$ bin/rails c`
 `> Blacklight.default_index.connection.commit`
 
-#### Indexing the PULFA Documents into the Plantain Server Environment
+#### Indexing the PULFA Documents into the Pulfalight Server Environment
 One may also index the Documents remotely on the staging server by invoking the
 follow Capistrano task:
 
 ```bash
-bundle exec cap staging plantain:index_pulfa
+bundle exec cap staging pulfalight:index_pulfa
 ```

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Plantain
+module Pulfalight
   # Class for normalizing dates from year strings extracted from the EAD
   class NormalizedDate < Arclight::NormalizedDate
     # Constructor
