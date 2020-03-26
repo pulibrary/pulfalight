@@ -15,12 +15,12 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
-    - 'lib/tasks/plantain.rake'
+    - 'lib/tasks/**/*'
     - 'app/controllers/catalog_controller.rb'
     - 'config/routes.rb'
 Metrics/MethodLength:
   Exclude:
-    - 'lib/tasks/plantain.rake'
+    - 'lib/tasks/pulfalight.rake'
 RSpec/ExampleLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
