@@ -1,9 +1,19 @@
 <template>
-
-  <div v-if="!fetching && tree" class="document-navigator">
-    <document-navigator-tree :tree="tree" :expanded="true" />
+  <div v-if="tree">
+    <template v-if="fetching">
+      <div class="al-hierarchy-placeholder">
+        <h3 class="col-md-9"></h3>
+        <p class="col-md-6"></p>
+        <p class="col-md-12"></p>
+        <p class="col-md-3"></p>
+      </div>
+    </template>
+    <template v-else>
+      <div class="document-navigator">
+        <document-navigator-tree :tree="tree" :expanded="true" />
+      </div>
+    </template>
   </div>
-
 </template>
 
 <script>

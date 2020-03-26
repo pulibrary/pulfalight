@@ -3,7 +3,10 @@
     <div class="row">
 
       <div class="col-sm-1">
-        <expand-children-button :expanded="expandedState" v-on:expand-children="updateExpanded" />
+        <expand-children-button
+          v-if="hasChildren"
+          :expanded="expandedState"
+          v-on:expand-children="updateExpanded" />
       </div>
 
       <div class="col-sm-1">
@@ -16,12 +19,8 @@
         </div>
       </div>
 
-      <div class="col-sm-2">
-        <div class="my-w-25 w-md-100 order-12 order-md-1">
-          <div class="d-flex justify-content-end">
-            <online-content-icon />
-          </div>
-        </div>
+      <div v-if="hasOnlineContent" class="col-sm-2">
+        <online-content-icon />
       </div>
     </div>
 
@@ -55,6 +54,10 @@ export default {
       type: Object,
       default: null
     },
+    hasChildren: {
+      type: Boolean,
+      default: false
+    },
     expanded: {
       type: Boolean,
       default: false
@@ -72,6 +75,9 @@ export default {
   computed: {
     catalogUrl: function () {
       return `/catalog/${this.pulfaDocument.id}`
+    },
+    hasOnlineContent: function () {
+      return this.pulfaDocument.hasOnlineContent
     }
   },
   methods: {

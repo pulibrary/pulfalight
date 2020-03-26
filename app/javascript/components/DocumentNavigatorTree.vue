@@ -1,17 +1,31 @@
 <template>
-    <ul class="document-navigator-tree">
+  <ul class="document-navigator-tree">
+    <template v-if="fetching">
+      <div class="al-hierarchy-placeholder">
+        <h3 class="col-md-9"></h3>
+        <p class="col-md-6"></p>
+        <p class="col-md-12"></p>
+        <p class="col-md-3"></p>
+      </div>
+    </template>
 
-      <li v-if="!fetching">
-        <document-navigator-item :pulfa-document="root" :selected="isSelected(root)" :expanded="expandedState" v-on:expand-children="updateExpanded" />
+    <template v-else>
+      <li>
+        <document-navigator-item
+          :pulfa-document="root"
+          :selected="isSelected(root)"
+          :has-children="childTrees.length > 0"
+          :expanded="expandedState"
+          v-on:expand-children="updateExpanded" />
       </li>
+    </template>
 
-      <ul v-if="!fetching && expandedState">
-        <li v-for="childTree in childTrees">
-          <document-navigator-tree :tree="childTree" :expanded="false" />
-        </li>
-      </ul>
-
+    <ul v-if="!fetching && expandedState">
+      <li v-for="childTree in childTrees">
+        <document-navigator-tree :tree="childTree" :expanded="true" />
+      </li>
     </ul>
+  </ul>
 </template>
 
 <script>
@@ -63,10 +77,10 @@ export default {
     updateExpanded: function (updatedState) {
       this.expandedState = updatedState
     }
-
   },
   mounted: function () {
     this.childTrees = this.tree.childTrees
+    console.log(this.tree.selectedChild)
   }
 }
 

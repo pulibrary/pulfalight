@@ -20,38 +20,44 @@ class PulfaDocument {
     this.fetchingTrees = false
   }
 
-  mapSolrDocumentFields() {
-    // This maps the Solr Document fields to properties
-    this.id = this.solrDocument.id
-    this.eadId = this.solrDocument['ead_ssi']
+  mapSolrTitles() {
     this.titles = this.solrDocument['normalized_title_ssm']
     if (this.titles instanceof Array) {
       this.title = this.titles.shift()
     } else {
       this.title = this.titles
     }
-    this.abstract = this.solrDocument['abstract_ssm']
+  }
+
+  mapSolrParents() {
     if (this.solrDocument['parent_ssm']) {
-      this.parentIds = this.solrDocument['parent_ssm']
+      if (this.solrDocument['parent_ssm'] instanceof Array) {
+        this.parentIds = this.solrDocument['parent_ssm']
+      } else {
+        this.parentIds = this.solrDocument['parent_ssm'].split(" and ")
+      }
     }
+  }
+
+  mapSolrDocumentFields() {
+    this.id = this.solrDocument.id
+    this.eadId = this.solrDocument['ead_ssi']
+    this.mapSolrTitles()
+    this.abstract = this.solrDocument['abstract_ssm']
+    this.mapSolrParents()
     this.type = this.solrDocument['type']
-  }
-
-  previousTrees() {
-    return []
-  }
-
-  nextTrees() {
-    return []
+    let onlineContentValues = false
+    if (this.solrDocument['has_online_content_ssim']) {
+      onlineContentValues = this.solrDocument['has_online_content_ssim'].map( v => v == 'true' )
+      this.hasOnlineContent = onlineContentValues.shift()
+    }
   }
 
   get queryUrlBase() {
-
     return '/catalog.json';
   }
 
   get queryDocumentUrl() {
-
     return `${this.queryUrlBase}?q=id:`
   }
 
@@ -64,23 +70,29 @@ class PulfaDocument {
   }
 
   get queryChildDocumentUrl() {
-
-    return `${this.queryUrlBase}?q=parent_ssm:`
+    return `${this.queryUrlBase}?per_page=1000000&q=tree_parent_ssim:`
   }
 
   buildChildDocumentQuery(id) {
     let queryId = id
+    // Children do not have the EAD ID prefixed
+    if (queryId !== this.eadId) {
+      queryId = queryId.replace(this.eadId, '')
+    }
 
     return `${this.queryChildDocumentUrl}${queryId}`
   }
 
   async buildChildren() {
-    if (this._children.length > 0) {
+    if (this.fetching) {
       return
     }
+    this.fetching = true
+    this._children = []
 
     const childQueryUrl = this.buildChildDocumentQuery(this.id)
     const solrData = await fetch(childQueryUrl).then( response => response.json() ).then( solrDocument => solrDocument['data'] )
+    this.fetching = false
     this._children = PulfaDocument.buildPulfaDocuments(solrData)
   }
 
@@ -89,32 +101,11 @@ class PulfaDocument {
     return this._children
   }
 
-  async buildChildTrees() {
-    if (this.fetchingTrees) {
-      return
-    }
-    this.fetchingTrees = true
-
-    this._childTrees = []
-    const childQueryUrl = this.buildChildDocumentQuery(this.id)
-    const solrData = await fetch(childQueryUrl).then( response => response.json() ).then( solrDocument => solrDocument['data'] )
-    this._children = PulfaDocument.buildPulfaDocuments(solrData)
-    this._childTrees = this._children.map( child => new DocumentTree(child) )
-
-    this.fetchingTrees = false
-
-    return this._childTrees
-  }
-
-  async childTrees() {
-    await this.buildChildTrees()
-    return this._childTrees
-  }
-
   static buildPulfaDocuments(solrData) {
     return solrData.map( data => {
       const doc = { id: data.id }
       for (const key in data['attributes']) {
+
         const attributes = data['attributes'][key]
         const nestedAttributes = attributes['attributes']
         doc[key] = nestedAttributes['value']
@@ -152,8 +143,10 @@ class PulfaDocument {
     this.fetching = true
 
     this._parents = []
-    const parentId = this.parentIds.pop()
-    if (parentId) {
+
+    //const parentId = this.parentIds.pop()
+    //if (parentId) {
+    for (const parentId of this.parentIds) {
       const queryUrl = this.buildDocumentQuery(parentId)
 
       const solrData = await fetch(queryUrl).then( response => response.json() ).then( solrDocument => solrDocument['data'] )
@@ -171,6 +164,9 @@ class PulfaDocument {
     return this._parents
   }
 
+  /**
+   * Should this still be in place?
+   */
   async buildSiblings() {
     if (this.fetching) {
       return
@@ -222,39 +218,43 @@ class PulfaDocument {
 }
 
 class PulfaCollection extends PulfaDocument {
-
-  mapSolrDocumentFields() {
-    // This maps the Solr Document fields to properties
-    this.id = this.solrDocument.id
-    this.eadId = this.solrDocument['ead_ssi']
+  mapSolrTitles() {
     this.title = this.solrDocument['normalized_title_ssm']
-    this.abstract = this.solrDocument['abstract_ssm']
+  }
+
+  mapSolrParents() {
     if (this.solrDocument['parent_ssm']) {
-      this.parentIds = this.solrDocument['parent_ssm']
+      if (this.solrDocument['parent_ssm'] instanceof Array) {
+        this.parentIds = this.solrDocument['parent_ssm']
+      } else {
+        this.parentIds = this.solrDocument['parent_ssm'].split(" and ")
+      }
     }
-    this.type = this.solrDocument['type']
   }
 }
 
 class PulfaSeries extends PulfaDocument {
-  mapSolrDocumentFields() {
-    // This maps the Solr Document fields to properties
-    this.id = this.solrDocument.id
-    this.eadId = this.solrDocument['ead_ssi']
+  mapSolrTitles() {
     this.title = this.solrDocument['normalized_title_ssm']
-    this.abstract = this.solrDocument['abstract_ssm']
+  }
+
+  mapSolrParents() {
     if (this.solrDocument['parent_ssm']) {
-      const parentId = this.solrDocument['parent_ssm']
-      this.parentIds = [parentId]
+      if (this.solrDocument['parent_ssm'] instanceof Array) {
+        this.parentIds = this.solrDocument['parent_ssm']
+      } else {
+        this.parentIds = this.solrDocument['parent_ssm'].split(" and ")
+      }
     }
-    this.type = this.solrDocument['type']
   }
 }
 
 class DocumentTree {
   constructor(root, selectedChild) {
     this.root = root
-    this.selectedChild = selectedChild
+    this.selectedChild = selectedChild ? selectedChild : this.root
+
+    this.built = false
 
     this.parents = []
     this.fetchingTrees = false
@@ -280,8 +280,7 @@ class DocumentTree {
     const pulfaDocuments = await this.root.parents()
     const pulfaDocument = pulfaDocuments.pop()
     if (pulfaDocument) {
-
-      const pulfaTree = new DocumentTree(pulfaDocument, this.root)
+      const pulfaTree = new DocumentTree(pulfaDocument, this.selectedChild)
       this._parentTrees.push(pulfaTree)
     }
 
@@ -303,7 +302,7 @@ class DocumentTree {
     this._childTrees = []
 
     const children = await this.root.children()
-    this._childTrees = children.map( child => new DocumentTree(child, this.selectedChild) )
+    this._childTrees = children.map( child => new ChildDocumentTree(child, this.selectedChild) )
 
     this.fetchingTrees = false
 
@@ -316,6 +315,10 @@ class DocumentTree {
   }
 
   async build() {
+    if (this.built) {
+      return
+    }
+
     this.parents = await this.root.parents()
     this.parentTrees = await this.parentTrees()
     this.lastParentTree = this.parentTrees.pop()
@@ -327,13 +330,28 @@ class DocumentTree {
       }
     }
 
-    // Siblings do not have parents
-    //this.previousSiblings = await this.root.previousSiblings()
-    //this.nextSiblings = await this.root.nextSiblings()
-
-    // Children do not have siblings, nor parents
-    //this.children = await this.root.children()
     this.childTrees = await this.childTrees()
+    for (const childTree of this.childTrees) {
+      await childTree.build()
+    }
+
+    this.built = true
+  }
+}
+
+class ChildDocumentTree extends DocumentTree {
+  async build() {
+    if (this.built) {
+      return
+    }
+
+    this.childTrees = await this.childTrees()
+    // This is disabled to prevent unnecessary recursion
+    for (const childTree of this.childTrees) {
+      //await childTree.build()
+    }
+
+    this.built = true
   }
 }
 
