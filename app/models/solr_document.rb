@@ -17,4 +17,12 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  def navigation_tree
+    values = fetch(:navigation_tree_tesim, [])
+    return [] if values.empty?
+
+    serialized = values.first
+    JSON.parse(serialized)
+  end
 end
