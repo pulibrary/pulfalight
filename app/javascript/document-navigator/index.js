@@ -341,7 +341,7 @@ export default class DocumentNavigator {
     if (solrDocument instanceof PulfaDocument) {
       this.document = solrDocument
     } else {
-      finder = new PulfaDocumentFinder(navigationTree)
+      const finder = new PulfaDocumentFinder(navigationTree)
       this.document = new PulfaDocument(solrDocument, finder)
     }
 

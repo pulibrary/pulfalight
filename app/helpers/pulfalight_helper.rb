@@ -7,7 +7,7 @@ module PulfalightHelper
       :'document-navigator',
       '',
       id: 'document-navigator',
-      ':document': document.navigation_tree.to_json
+      ':navigation-tree': document.navigation_tree.to_json
     )
   end
 end

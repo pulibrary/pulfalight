@@ -57,6 +57,14 @@ class IndexJob < ApplicationJob
     collection_id = collection_ids.first
     components = solr_document['components']
 
+    # Empty the components
+    solr_document['components'] = nil
+
+    # Set the children to empty
+    solr_document['children'] = []
+    tree['root'] = solr_document
+    tree[collection_id] = tree['root']
+
     components.each do |component|
       logger.info "Processing #{component['id']}"
 
@@ -67,28 +75,24 @@ class IndexJob < ApplicationJob
       component_id = component_ids.first
 
       if parent_id == collection_id
-        tree[component_id] = component
+        tree[collection_id]['children'] << component
+
+        parent_document = solr_document.clone
+        parent_document['children'] = []
+        component['parents'] = [parent_document]
       else
-        if tree.key?(parent_id)
-          parent_component = tree[parent_id]
-        else
-          parent_components = components.select { |c| c['id'].first == parent_id }
-          if parent_components.empty?
-            logger.warn "Failed to find the parent component #{parent_id} for #{component['id']}"
-            next
-          end
+        # This assumes that the document is being parsed in order
+        parent_document = tree[parent_id]
+        tree[parent_id]['children'] = tree[parent_id]['children'] || []
+        tree[parent_id]['children'] << component
 
-          parent_component = parent_components.first
-
-          children = parent_component['children'] || []
-          children << component
-          tree[parent_id] = parent_component
-        end
+        parent_document = tree[parent_id].clone
+        parent_document['children'] = []
+        parent_document['parents'] = []
+        component['parents'] = [parent_document]
       end
+      tree[component_id] = component
     end
-
-    solr_document['components'] = nil
-    tree['root'] = solr_document.to_json
 
     tree
   end
@@ -104,7 +108,8 @@ class IndexJob < ApplicationJob
 
     solr_documents.each do |solr_document|
       # Index the string-serialized tree of the documents
-      tree = build_navigation_tree(solr_document)
+      tree_solr_document = solr_document.clone
+      tree = build_navigation_tree(tree_solr_document)
       solr_document['navigation_tree_tesim'] = tree.to_json
     end
 
