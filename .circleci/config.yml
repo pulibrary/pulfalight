@@ -13,7 +13,7 @@ jobs:
           PULFALIGHT_DB_HOST: localhost
           PULFALIGHT_DB_USERNAME: pulfalight
           PULFALIGHT_DB_PASSWORD: ""
-      - image: circleci/postgres:10
+      - image: postgres:10.6-alpine
         environment:
           POSTGRES_USER: pulfalight
           POSTGRES_DB: pulfalight_test
