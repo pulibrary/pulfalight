@@ -62,11 +62,11 @@ end
 each_record do |_record, context|
   next unless settings["repository"]
 
-  repository = Arclight::Repository.find_by(
+  repository = context.clipboard[:repository] = Arclight::Repository.find_by(
     slug: settings["repository"]
   )
-
-  context.clipboard[:repository] = repository.name unless repository.nil?
+  return unless repository
+  repository.name
 end
 
 # ==================
@@ -259,17 +259,20 @@ to_field "descrules_ssm", extract_xpath("/ead/eadheader/profiledesc/descrules")
 
 # rubocop:disable Metrics/BlockLength
 compose "components", ->(record, accumulator, _context) { accumulator.concat record.xpath("//*[is_component(.)]", NokogiriXpathExtensions.new) } do
+
   to_field "ref_ssi" do |record, accumulator, context|
     accumulator << if record.attribute("id").blank?
                      strategy = Arclight::MissingIdStrategy.selected
                      hexdigest = strategy.new(record).to_hexdigest
                      parent_id = context.clipboard[:parent].output_hash["id"].first
+
                      logger.warn("MISSING ID WARNING") do
                        [
                          "A component in #{parent_id} did not have an ID so one was minted using the #{strategy} strategy.",
                          "The ID of this document will be #{parent_id}#{hexdigest}."
                        ].join(" ")
                      end
+
                      record["id"] = hexdigest
                      hexdigest
                    else
@@ -326,6 +329,21 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
     unless parent.nil? || ids.blank?
       accumulator << ids.first
       accumulator.concat NokogiriXpathExtensions.new.is_component(record.ancestors).reverse.map { |n| n.attribute("id")&.value }
+    end
+  end
+
+  to_field "tree_parent_ssim" do |record, accumulator, context|
+    extensions = NokogiriXpathExtensions.new
+    parent_components = extensions.is_component(record.ancestors).reverse
+    parent_id_attribs = parent_components.map { |n| n.attribute("id") }
+    parent_ids = parent_id_attribs.map(&:value)
+
+    if parent_ids.empty?
+      parent = context.clipboard[:parent]
+      ids = parent.output_hash["id"]
+      accumulator << ids.first
+    else
+      accumulator.concat(parent_ids)
     end
   end
 

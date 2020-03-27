@@ -63,9 +63,6 @@ class PulfaDocument {
 
   buildDocumentQuery(id) {
     let queryId = id
-    if (queryId != this.eadId) {
-      queryId = `${this.eadId}${id}`
-    }
     return `${this.queryDocumentUrl}${queryId}`
   }
 
@@ -75,11 +72,6 @@ class PulfaDocument {
 
   buildChildDocumentQuery(id) {
     let queryId = id
-    // Children do not have the EAD ID prefixed
-    if (queryId !== this.eadId) {
-      queryId = queryId.replace(this.eadId, '')
-    }
-
     return `${this.queryChildDocumentUrl}${queryId}`
   }
 

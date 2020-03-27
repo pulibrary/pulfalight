@@ -50,6 +50,49 @@ class IndexJob < ApplicationJob
     Rails.logger || Logger.new(STDOUT)
   end
 
+  def build_navigation_tree(solr_document)
+    tree = {}
+
+    collection_ids = solr_document['id']
+    collection_id = collection_ids.first
+    components = solr_document['components']
+
+    components.each do |component|
+      logger.info "Processing #{component['id']}"
+
+      parent_ids = component['parent_ssi']
+      parent_id = parent_ids.first
+
+      component_ids = component['id']
+      component_id = component_ids.first
+
+      if parent_id == collection_id
+        tree[component_id] = component
+      else
+        if tree.key?(parent_id)
+          parent_component = tree[parent_id]
+        else
+          parent_components = components.select { |c| c['id'].first == parent_id }
+          if parent_components.empty?
+            logger.warn "Failed to find the parent component #{parent_id} for #{component['id']}"
+            next
+          end
+
+          parent_component = parent_components.first
+
+          children = parent_component['children'] || []
+          children << component
+          tree[parent_id] = parent_component
+        end
+      end
+    end
+
+    solr_document['components'] = nil
+    tree['root'] = solr_document.to_json
+
+    tree
+  end
+
   def perform(file_paths)
     @file_paths = file_paths
     solr_documents = EADArray.new
@@ -58,6 +101,13 @@ class IndexJob < ApplicationJob
     indexer.process_with(xml_documents, solr_documents)
 
     logger.info("Requesting a batch Solr update...")
+
+    solr_documents.each do |solr_document|
+      # Index the string-serialized tree of the documents
+      tree = build_navigation_tree(solr_document)
+      solr_document['navigation_tree_tesim'] = tree.to_json
+    end
+
     blacklight_connection.add(solr_documents)
     logger.info("Successfully indexed the EADs for #{file_paths.join(', ')}")
   end
