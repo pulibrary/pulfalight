@@ -83,8 +83,6 @@ class PulfaDocumentSolrFinder extends PulfaDocumentFinder {
 
     this._parents = []
 
-    //const parentId = this.parentIds.pop()
-    //if (parentId) {
     for (const parentId of this.parentIds) {
       const queryUrl = this.buildDocumentQuery(parentId)
 
@@ -111,13 +109,16 @@ class PulfaDocument {
       const doc = data
 
       let pulfaClass
-      const types = data['level_ssm']
-      const type = types.shift()
-      switch (type) {
+      let types = data['level_ssm']
+      if (!types || types.length < 1) {
+        types = data['level_sim']
+      }
+      const type = types.shift() || ""
+      switch (type.toLowerCase()) {
         case 'collection':
           pulfaClass = PulfaCollection
           break
-        case 'Series':
+        case 'series':
           pulfaClass = PulfaSeries
           break
         default:
@@ -158,6 +159,11 @@ class PulfaDocument {
 
   mapSolrTitles() {
     this.titles = this.solrDocument['normalized_title_ssm']
+
+    if (!this.titles || this.titles.length < 1) {
+      this.titles = this.solrDocument['title_ssm']
+    }
+
     if (this.titles instanceof Array) {
       this.title = this.titles.shift()
     } else {
@@ -175,9 +181,25 @@ class PulfaDocument {
     }
   }
 
+  mapSolrId() {
+    let ids = this.solrDocument.id || []
+
+    if (ids.length < 1) {
+      ids = this.solrDocument['ref_ssi']
+    }
+
+    if (ids instanceof Array) {
+      this.id = ids.shift()
+    } else {
+      this.id = ids
+    }
+  }
+
   mapSolrDocumentFields() {
-    const ids = this.solrDocument.id
-    this.id = ids.shift()
+    this.mapSolrId()
+    if (!this.id) {
+      throw "Could not parse the following Solr Document:"
+    }
     this.eadId = this.solrDocument['ead_ssi']
     this.mapSolrTitles()
     this.abstracts = this.solrDocument['abstract_ssm']
@@ -205,6 +227,20 @@ class PulfaDocument {
 }
 
 class PulfaCollection extends PulfaDocument {
+  mapSolrId() {
+    let ids = this.solrDocument.id || []
+
+    if (ids.length < 1) {
+      ids = this.solrDocument['ead_ssi']
+    }
+
+    if (ids instanceof Array) {
+      this.id = ids.shift()
+    } else {
+      this.id = ids
+    }
+  }
+
   mapSolrParents() {
     if (this.solrDocument['parent_ssm']) {
       if (this.solrDocument['parent_ssm'] instanceof Array) {

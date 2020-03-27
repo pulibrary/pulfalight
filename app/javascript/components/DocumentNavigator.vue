@@ -26,6 +26,10 @@ export default {
     'document-navigator-tree': DocumentNavigatorTree
   },
   props: {
+    currentDocument: {
+      type: Object,
+      default: null
+    },
     navigationTree: {
       type: Object,
       default: null
@@ -39,7 +43,7 @@ export default {
   },
   computed: {
     navigator() {
-      return new Navigator(this.navigationTree.root, this.navigationTree)
+      return new Navigator(this.currentDocument, this.navigationTree)
     }
   },
   mounted() {
