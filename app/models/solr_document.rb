@@ -42,7 +42,7 @@ class SolrDocument
 
   def navigation_tree
     values = collection_document.fetch(:navigation_tree_tesim, [])
-    return [] if values.empty?
+    return {} if values.empty?
 
     serialized = values.first
     JSON.parse(serialized)
