@@ -279,10 +279,7 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
   end
 
   to_field "id" do |_record, accumulator, context|
-    accumulator << [
-      context.clipboard[:parent].output_hash["id"],
-      context.output_hash["ref_ssi"]
-    ].join("")
+    accumulator.concat context.output_hash["ref_ssi"]
   end
 
   to_field "ead_ssi" do |_record, accumulator, context|

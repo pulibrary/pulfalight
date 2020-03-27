@@ -31,6 +31,10 @@ describe "EAD 2 traject indexing", type: :feature do
     records.first
   end
 
+  let(:fixture_path) do
+    Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC221.EAD.xml")
+  end
+
   before do
     ENV["REPOSITORY_ID"] = nil
   end
@@ -39,13 +43,17 @@ describe "EAD 2 traject indexing", type: :feature do
     ENV["REPOSITORY_ID"] = nil
   end
 
-  describe "digital objects" do
-    let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC221.EAD.xml")
+  describe "solr fields" do
+    it "id" do
+      expect(result["id"].first).to eq "MC221"
+      component_ids = result["components"].map { |component| component["id"].first }
+      expect(component_ids).to include "MC221_c0094"
     end
+  end
 
+  describe "digital objects" do
     context "when <dao> is child of the <did> in a <c0x> component" do
-      let(:component) { result["components"].find { |c| c["id"] == ["MC221MC221_c0094"] } }
+      let(:component) { result["components"].find { |c| c["id"] == ["MC221_c0094"] } }
 
       it "gets the digital objects" do
         expect(component["digital_objects_ssm"]).to eq(
@@ -64,7 +72,7 @@ describe "EAD 2 traject indexing", type: :feature do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
       end
-      let(:component) { result["components"].find { |c| c["id"] == ["WC064WC064_c11"] } }
+      let(:component) { result["components"].find { |c| c["id"] == ["WC064_c11"] } }
 
       it "gets the digital objects with role: null" do
         json = JSON.generate(
