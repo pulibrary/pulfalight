@@ -18,8 +18,30 @@ class SolrDocument
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
 
+  def collection?
+    level_values = fetch(:level_ssm)
+    return false if level_values.empty?
+
+    level_values.first == 'collection'
+  end
+
+  def collection_document
+    return self if collection?
+
+    ead_id = fetch(:ead_ssi, "")
+    return self unless ead_id
+
+    response = Blacklight.default_index.search(q: "id:#{ead_id}", fl:'*')
+    response_values = response['response']
+    solr_documents = response_values['docs']
+    return self if solr_documents.empty?
+
+    solr_document = solr_documents.last
+    self.class.new(solr_document)
+  end
+
   def navigation_tree
-    values = fetch(:navigation_tree_tesim, [])
+    values = collection_document.fetch(:navigation_tree_tesim, [])
     return [] if values.empty?
 
     serialized = values.first

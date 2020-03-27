@@ -80,7 +80,6 @@ export default {
   },
   mounted: function () {
     this.childTrees = this.tree.childTrees
-    console.log(this.tree.selectedChild)
   }
 }
 

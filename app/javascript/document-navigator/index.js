@@ -1,6 +1,5 @@
 
 class PulfaDocumentFinder {
-
   constructor(tree) {
     this.tree = tree
   }
@@ -14,10 +13,18 @@ class PulfaDocumentFinder {
   }
 
   findParents(id) {
+    if (!this.tree[id].hasOwnProperty('parents')) {
+      return []
+    }
+
     return PulfaDocument.buildPulfaDocuments(this.tree[id]['parents'], this)
   }
 
   findChildren(id) {
+    if (!this.tree[id].hasOwnProperty('children')) {
+      return []
+    }
+
     return PulfaDocument.buildPulfaDocuments(this.tree[id]['children'], this)
   }
 }
@@ -99,17 +106,12 @@ class PulfaDocumentSolrFinder extends PulfaDocumentFinder {
 
 class PulfaDocument {
   static buildPulfaDocuments(solrData, finder) {
-    return solrData.map( data => {
-      const doc = { id: data.id }
-      for (const key in data['attributes']) {
 
-        const attributes = data['attributes'][key]
-        const nestedAttributes = attributes['attributes']
-        doc[key] = nestedAttributes['value']
-      }
+    return solrData.map( data => {
+      const doc = data
 
       let pulfaClass
-      const types = data['type']
+      const types = data['level_ssm']
       const type = types.shift()
       switch (type) {
         case 'collection':
@@ -174,10 +176,14 @@ class PulfaDocument {
   }
 
   mapSolrDocumentFields() {
-    this.id = this.solrDocument.id
+    const ids = this.solrDocument.id
+    this.id = ids.shift()
     this.eadId = this.solrDocument['ead_ssi']
     this.mapSolrTitles()
-    this.abstract = this.solrDocument['abstract_ssm']
+    this.abstracts = this.solrDocument['abstract_ssm']
+    if (this.abstracts) {
+      this.abstract = this.abstracts.shift()
+    }
     this.mapSolrParents()
     this.type = this.solrDocument['type']
     let onlineContentValues = false
@@ -199,15 +205,12 @@ class PulfaDocument {
 }
 
 class PulfaCollection extends PulfaDocument {
-  mapSolrTitles() {
-    this.title = this.solrDocument['normalized_title_ssm']
-  }
-
   mapSolrParents() {
     if (this.solrDocument['parent_ssm']) {
       if (this.solrDocument['parent_ssm'] instanceof Array) {
         this.parentIds = this.solrDocument['parent_ssm']
       } else {
+        // This is deprecated by the Solr Caching approach
         this.parentIds = this.solrDocument['parent_ssm'].split(" and ")
       }
     }
@@ -215,15 +218,12 @@ class PulfaCollection extends PulfaDocument {
 }
 
 class PulfaSeries extends PulfaDocument {
-  mapSolrTitles() {
-    this.title = this.solrDocument['normalized_title_ssm']
-  }
-
   mapSolrParents() {
     if (this.solrDocument['parent_ssm']) {
       if (this.solrDocument['parent_ssm'] instanceof Array) {
         this.parentIds = this.solrDocument['parent_ssm']
       } else {
+        // This is deprecated by the Solr Caching approach
         this.parentIds = this.solrDocument['parent_ssm'].split(" and ")
       }
     }
