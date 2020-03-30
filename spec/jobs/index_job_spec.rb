@@ -33,7 +33,8 @@ describe IndexJob do
       "id" => ["WC127"],
       "level_ssm" => ["collection"],
       "title_ssm" => ["Wanted Outlaws Posters Collection"],
-      "unitid_ssm" => ["WC127"]
+      "unitid_ssm" => ["WC127"],
+      "components" => []
     }
   end
   let(:solr_documents) do
