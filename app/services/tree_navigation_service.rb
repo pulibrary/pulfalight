@@ -34,18 +34,16 @@ class TreeNavigationService
 
         parent_document = solr_document.clone
         parent_document["children"] = []
-        component["parents"] = [parent_document]
       else
         # This assumes that the document is being parsed in order
-        parent_document = tree[parent_id]
         tree[parent_id]["children"] = tree[parent_id]["children"] || []
         tree[parent_id]["children"] << component
 
         parent_document = tree[parent_id].clone
         parent_document["children"] = []
         parent_document["parents"] = []
-        component["parents"] = [parent_document]
       end
+      component["parents"] = [parent_document]
       tree[component_id] = component
     end
 

@@ -12,6 +12,9 @@ AllCops:
     - 'node_modules/**/*'
     - 'spec/support/**/*'
     - 'tmp/**/*'
+Metrics/AbcSize:
+  Exclude:
+    - 'app/services/tree_navigation_service.rb'
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
@@ -21,8 +24,10 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Exclude:
     - 'lib/tasks/pulfalight.rake'
-RSpec/ExampleLength:
+Metrics/ExampleLength:
   Exclude:
+    - 'lib/tasks/plantain.rake'
+    - 'app/services/tree_navigation_service.rb'
     - 'spec/features/traject/ead2_indexing_spec.rb'
 Style/StringLiterals:
   EnforcedStyle: double_quotes
