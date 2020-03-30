@@ -24,6 +24,7 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Exclude:
     - 'lib/tasks/pulfalight.rake'
+    - 'app/services/tree_navigation_service.rb'
 Metrics/ExampleLength:
   Exclude:
     - 'lib/tasks/plantain.rake'
