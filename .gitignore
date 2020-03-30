@@ -33,7 +33,6 @@
 /config/master.key
 
 /coverage/
-.coveralls.yml
 /public/packs
 /public/packs-test
 /node_modules
