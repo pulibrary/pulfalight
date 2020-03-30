@@ -22,7 +22,7 @@ class SolrDocument
     level_values = fetch(:level_ssm)
     return false if level_values.empty?
 
-    level_values.first == 'collection'
+    level_values.first == "collection"
   end
 
   def collection_document
@@ -31,9 +31,9 @@ class SolrDocument
     ead_id = fetch(:ead_ssi, "")
     return self unless ead_id
 
-    response = Blacklight.default_index.search(q: "id:#{ead_id}", fl:'*')
-    response_values = response['response']
-    solr_documents = response_values['docs']
+    response = Blacklight.default_index.search(q: "id:#{ead_id}", fl: "*")
+    response_values = response["response"]
+    solr_documents = response_values["docs"]
     return self if solr_documents.empty?
 
     solr_document = solr_documents.last
@@ -41,7 +41,9 @@ class SolrDocument
   end
 
   def navigation_tree
-    values = collection_document.fetch(:navigation_tree_tesim, [])
+    values = fetch(:navigation_tree_tesim, [])
+    # Try and retrieve the values from the collection
+    values = collection_document.fetch(:navigation_tree_tesim, []) if values.empty?
     return {} if values.empty?
 
     serialized = values.first
