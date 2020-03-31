@@ -258,7 +258,7 @@ to_field "descrules_ssm", extract_xpath("/ead/eadheader/profiledesc/descrules")
 # =============================
 
 # rubocop:disable Metrics/BlockLength
-compose "components", ->(record, accumulator, _context) { accumulator.concat record.xpath("//*[is_component(.)]", NokogiriXpathExtensions.new) } do
+compose "components", ->(record, accumulator, _context) { accumulator.concat record.xpath("//dsc[@type='combined']//*[is_component(.)]", NokogiriXpathExtensions.new) } do
   to_field "ref_ssi" do |record, accumulator, context|
     accumulator << if record.attribute("id").blank?
                      strategy = Arclight::MissingIdStrategy.selected
