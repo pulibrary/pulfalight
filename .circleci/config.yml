@@ -66,6 +66,20 @@ jobs:
     steps:
       - attach_workspace:
           at: '~/pulfalight'
+
+      - run:
+          name: Update bundler
+          command: |
+            echo 'export BUNDLER_VERSION=2.1.4' >> $BASH_ENV
+            gem install bundler -v 2.1.4
+      - run:
+          name: Install dependencies
+          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - save_cache:
+          key: pulfalight-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
+
       # Lint
       - run:
           name: Run rubocop
@@ -96,6 +110,19 @@ jobs:
       - run:
           name: Wait for PostgreSQL
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Update bundler
+          command: |
+            echo 'export BUNDLER_VERSION=2.1.4' >> $BASH_ENV
+            gem install bundler -v 2.1.4
+      - run:
+          name: Install dependencies
+          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - save_cache:
+          key: pulfalight-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
 
       - run: bundle exec rake db:create
       - run: bundle exec rake db:migrate
@@ -129,6 +156,13 @@ jobs:
     steps:
       - attach_workspace:
           at: '~/pulfalight'
+
+      - run:
+          name: Update bundler
+          command: |
+            echo 'export BUNDLER_VERSION=2.1.4' >> $BASH_ENV
+            gem install bundler -v 2.1.4
+
       # Analyze coverage report
       - run: gem install simplecov -v '~> 0.16.0'
       - run: gem install activesupport -v 5.1.6.2
