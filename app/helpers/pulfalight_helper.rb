@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module PlantainHelper
+module PulfalightHelper
   # Retrieves the current year
   # @return [Integer]
   def current_year
@@ -8,7 +8,7 @@ module PlantainHelper
   end
 
   def aeon_external_request_class
-    Plantain::Requests::AeonExternalRequest
+    Pulfalight::Requests::AeonExternalRequest
   end
 
   # This needs to parse the config/aeon.yml file

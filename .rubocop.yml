@@ -14,7 +14,7 @@ AllCops:
     - 'tmp/**/*'
 Metrics/AbcSize:
   Exclude:
-    - 'app/models/plantain/requests/aeon_external_request.rb'
+    - 'app/models/pulfalight/requests/aeon_external_request.rb'
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
@@ -26,11 +26,11 @@ Metrics/MethodLength:
     - 'lib/tasks/pulfalight.rake'
     - 'app/models/pulfalight/requests/aeon_external_request.rb'
     - 'lib/pulfalight/traject/ead2_config.rb'
-Metrics/ExampleLength:
+RSpec/ExampleLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
 RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/models/user_spec.rb'
+Style/StringLiterals:
+  EnforcedStyle: double_quotes

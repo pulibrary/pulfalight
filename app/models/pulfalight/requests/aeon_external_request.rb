@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Plantain
+module Pulfalight
   module Requests
     class AeonExternalRequest < Arclight::Requests::AeonExternalRequest
       include Rails.application.routes.url_helpers
