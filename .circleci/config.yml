@@ -68,18 +68,23 @@ jobs:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:migrate
       - run: bundle exec rake db:migrate RAILS_ENV=test
-      # Test
+      # Lint
       - run:
           name: Run rubocop
           command: bundle exec rake rubocop
+      # Test
       - run:
           name: Run Rspec
           command: bundle exec rspec
+      # Analyze coverage report
+      - run:
+          name: Merge and check coverage
+          command: |
+            RAILS_ENV=test ruby ./scripts/combine_coverage.rb
       # Save artifacts
       - store_artifacts:
-          path: /tmp/circleci-artifacts
-      - store_artifacts:
-          path: /tmp/circleci-test-results
+          path: ~/pulfalight/coverage
+          destination: coverage
 workflows:
   version: 2
   build_accept_deploy:
