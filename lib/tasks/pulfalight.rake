@@ -185,7 +185,7 @@ namespace :pulfalight do
   def index_document(relative_path:, root_path: nil)
     root_path ||= pulfa_root
     ead_file_path = File.join(root_path, relative_path)
-    IndexJob.perform_later([ead_file_path])
+    IndexJob.perform_now([ead_file_path])
   end
 
   # Index a directory of PULFA EAD-XML Document into Solr
@@ -198,7 +198,7 @@ namespace :pulfalight do
     file_paths = Dir.glob(glob_pattern)
 
     file_paths.each_slice(1) do |file_path_subset|
-      IndexJob.perform_later(file_path_subset)
+      IndexJob.perform_now(file_path_subset)
     end
   end
 
