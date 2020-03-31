@@ -51,6 +51,16 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  describe "container indexing" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "C0002.xml")
+    end
+    it "doesn't index them as components" do
+      components = result["components"]
+      expect(components.group_by { |x| x["id"].first }["C0002_i1"]).to be_blank
+    end
+  end
+
   describe "digital objects" do
     context "when <dao> is child of the <did> in a <c0x> component" do
       let(:component) { result["components"].find { |c| c["id"] == ["MC221_c0094"] } }
