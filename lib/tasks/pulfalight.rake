@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require Rails.root.join("app", "jobs", "application_job")
+require Rails.root.join("app", "jobs", "index_job")
+
 namespace :pulfalight do
   namespace :index do
     desc "Delete all Solr documents in the index"
@@ -9,7 +12,12 @@ namespace :pulfalight do
 
     desc "Index a single EAD file into Solr"
     task :document, [:file] => :environment do |_t, args|
-      index_document(relative_path: args[:file])
+      parent_path = File.expand_path("..", args[:file])
+      repository_id = File.basename(parent_path)
+      ENV["REPOSITORY_ID"] = repository_id
+      ENV["REPOSITORY_FILE"] = "config/repositories.yml"
+
+      index_document(relative_path: args[:file], root_path: Rails.root)
     end
 
     desc "Index a directory of PULFA EAD files into Solr"
@@ -29,6 +37,18 @@ namespace :pulfalight do
           response = Faraday.get url_for_file(file)
           File.open(File.join(solr_dir, "conf", file), "wb") { |f| f.write(response.body) }
         end
+      end
+    end
+
+    desc "Index Princeton University Library Finding Aids (PULFA) into Solr"
+    task :pulfa do
+      Dir.glob("eads/**/*.xml").each do |file|
+        parent_path = File.expand_path("..", file)
+        repository_id = File.basename(parent_path)
+        ENV["REPOSITORY_ID"] = repository_id
+        ENV["REPOSITORY_FILE"] = "config/repositories.yml"
+
+        index_document(relative_path: file, root_path: Rails.root)
       end
     end
   end
@@ -66,18 +86,14 @@ namespace :pulfalight do
   desc "Seed fixture data to Solr"
   task :seed do
     puts "Seeding index with data from spec/fixtures/ead..."
-    Dir.glob("spec/fixtures/ead/*.xml").each do |file|
-      system("FILE=#{file} rake arclight:index") # no REPOSITORY_ID
-    end
 
-    Dir.glob("spec/fixtures/ead/*").each do |dir|
-      next unless File.directory?(dir)
+    Dir.glob("spec/fixtures/ead/**/*.xml").each do |file|
+      parent_path = File.expand_path("..", file)
+      repository_id = File.basename(parent_path)
+      ENV["REPOSITORY_ID"] = repository_id
+      ENV["REPOSITORY_FILE"] = "config/repositories.yml"
 
-      repository_id = File.basename(dir)
-      system("REPOSITORY_ID=#{repository_id} " \
-             "REPOSITORY_FILE=config/repositories.yml " \
-             "DIR=#{dir} " \
-             "rake arclight:index_dir")
+      index_document(relative_path: file, root_path: Rails.root)
     end
   end
 
