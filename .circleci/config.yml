@@ -1,27 +1,13 @@
 version: 2
 jobs:
-  test:
+  build:
     working_directory: ~/pulfalight
-    environment:
-      CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
-      CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
     # Primary command image where all commands run
     docker:
       - image: circleci/ruby:2.6-node-browsers
         environment:
           RAILS_ENV: test
-          PULFALIGHT_DB_HOST: localhost
-          PULFALIGHT_DB_USERNAME: pulfalight
-          PULFALIGHT_DB_PASSWORD: ""
-      - image: postgres:10.6-alpine
-        environment:
-          POSTGRES_USER: pulfalight
-          POSTGRES_DB: pulfalight_test
-          # POSTGRES_PASSWORD: ""
-          POSTGRES_HOST_AUTH_METHOD: trust
-      - image: solr:8.4.1
-        command: bin/solr -cloud -noprompt -f -p 8984
-    steps: &test_steps
+    steps:
       - checkout
       - run:
           name: Install node@lts/dubnium (need right version for `yarn`)
@@ -36,7 +22,6 @@ jobs:
       - run:
           name: Check current version of node
           command: node -v
-      - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
       - run:
           name: Set Timezone to EST/EDT
           command: echo 'America/New_York' = /etc/timezone
@@ -60,28 +45,147 @@ jobs:
       - run:
           name: Install NPM Dependencies via Yarn
           command: yarn install --frozen-lockfile
+      # Store yarn / webpacker cache
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: pulfalight-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run: NODE_ENV=test bundle exec rails webpacker:compile
+      - persist_to_workspace:
+          root: '~/pulfalight'
+          paths: '*'
+
+  rubocop:
+    working_directory: ~/pulfalight
+    # Primary command image where all commands run
+    docker:
+      - image: circleci/ruby:2.6-node-browsers
+        environment:
+          RAILS_ENV: test
+    steps:
+      - attach_workspace:
+          at: '~/pulfalight'
+
+      - run:
+          name: Update bundler
+          command: |
+            echo 'export BUNDLER_VERSION=2.1.4' >> $BASH_ENV
+            gem install bundler -v 2.1.4
+      - run:
+          name: Install dependencies
+          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - save_cache:
+          key: pulfalight-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
+
+      # Lint
+      - run:
+          name: Run rubocop
+          command: bundle exec rake rubocop
+
+  test:
+    working_directory: ~/pulfalight
+    # Primary command image where all commands run
+    docker:
+      - image: circleci/ruby:2.6-node-browsers
+        environment:
+          RAILS_ENV: test
+          PULFALIGHT_DB_HOST: localhost
+          PULFALIGHT_DB_USERNAME: pulfalight
+          PULFALIGHT_DB_PASSWORD: ""
+      - image: postgres:10.6-alpine
+        environment:
+          POSTGRES_USER: pulfalight
+          POSTGRES_DB: pulfalight_test
+          # POSTGRES_PASSWORD: ""
+          POSTGRES_HOST_AUTH_METHOD: trust
+      - image: solr:8.4.1
+        command: bin/solr -cloud -noprompt -f -p 8984
+    steps:
+      - attach_workspace:
+          at: '~/pulfalight'
       # project database settings
       - run:
           name: Wait for PostgreSQL
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Update bundler
+          command: |
+            echo 'export BUNDLER_VERSION=2.1.4' >> $BASH_ENV
+            gem install bundler -v 2.1.4
+      - run:
+          name: Install dependencies
+          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - save_cache:
+          key: pulfalight-{{ checksum "Gemfile.lock" }}
+          paths:
+            - ./vendor/bundle
 
       - run: bundle exec rake db:create
       - run: bundle exec rake db:migrate
       - run: bundle exec rake db:migrate RAILS_ENV=test
       # Test
       - run:
-          name: Run rubocop
-          command: bundle exec rake rubocop
-      - run:
           name: Run Rspec
           command: bundle exec rspec
+      - run:
+          name: Stash Coverage Results
+          command: |
+            mkdir coverage_results
+            cp -R coverage/.resultset.json coverage_results/.resultset-${CIRCLE_NODE_INDEX}.json
+      - persist_to_workspace:
+          root: '~/pulfalight'
+          paths: 'coverage_results'
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+
+  coverage_report:
+    working_directory: ~/pulfalight
+    # Primary command image where all commands run
+    docker:
+      - image: circleci/ruby:2.6-node-browsers
+        environment:
+          RAILS_ENV: test
+    steps:
+      - attach_workspace:
+          at: '~/pulfalight'
+
+      - run:
+          name: Update bundler
+          command: |
+            echo 'export BUNDLER_VERSION=2.1.4' >> $BASH_ENV
+            gem install bundler -v 2.1.4
+
+      # Analyze coverage report
+      - run: gem install simplecov -v '~> 0.16.0'
+      - run: gem install activesupport -v 5.1.6.2
+      - run:
+          name: Merge and check coverage
+          command: |
+            RAILS_ENV=test ruby ./scripts/combine_coverage.rb
       # Save artifacts
       - store_artifacts:
-          path: /tmp/circleci-artifacts
-      - store_artifacts:
-          path: /tmp/circleci-test-results
+          path: ~/pulfalight/coverage
+          destination: coverage
+
 workflows:
   version: 2
   build_accept_deploy:
     jobs:
-      - test
+      - build
+      - test:
+          requires:
+            - build
+      - rubocop:
+          requires:
+            - build
+      - coverage_report:
+          requires:
+            - test

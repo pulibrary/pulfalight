@@ -11,12 +11,24 @@ RSpec.describe User do
   end
 
   describe ".from_omniauth" do
+    let(:retrieved_user) { instance_double(described_class) }
+    # This models User::ActiveRecord_Relation
+    let(:relation) { double }
+
+    before do
+      allow(relation).to receive(:first_or_create).and_yield(retrieved_user)
+      allow(described_class).to receive(:where).and_return(relation)
+      allow(retrieved_user).to receive(:uid=)
+      allow(retrieved_user).to receive(:provider=)
+      allow(retrieved_user).to receive(:email=)
+    end
+
     it "creates a user" do
       token = double("token", provider: "cas", uid: "test")
-      user = described_class.from_omniauth(token)
-      expect(user).to be_persisted
-      expect(user.provider).to eq "cas"
-      expect(user.uid).to eq "test"
+      described_class.from_omniauth(token)
+      expect(retrieved_user).to have_received(:uid=)
+      expect(retrieved_user).to have_received(:provider=)
+      expect(retrieved_user).to have_received(:email=)
     end
   end
 end
