@@ -39,6 +39,18 @@ namespace :pulfalight do
         end
       end
     end
+
+    desc "Index Princeton University Library Finding Aids (PULFA) into Solr"
+    task :pulfa do
+      Dir.glob("eads/**/*.xml").each do |file|
+        parent_path = File.expand_path("..", file)
+        repository_id = File.basename(parent_path)
+        ENV["REPOSITORY_ID"] = repository_id
+        ENV["REPOSITORY_FILE"] = "config/repositories.yml"
+
+        index_document(relative_path: file, root_path: Rails.root)
+      end
+    end
   end
 
   desc "Run Solr and Arclight for interactive development"
@@ -75,7 +87,7 @@ namespace :pulfalight do
   task :seed do
     puts "Seeding index with data from spec/fixtures/ead..."
 
-    Dir.glob("eads/**/*.xml").each do |file|
+    Dir.glob("spec/fixtures/ead/**/*.xml").each do |file|
       parent_path = File.expand_path("..", file)
       repository_id = File.basename(parent_path)
       ENV["REPOSITORY_ID"] = repository_id
