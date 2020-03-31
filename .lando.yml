@@ -1,0 +1,19 @@
+name: pulfalight
+services:
+  pulfalight_test_solr:
+    type: solr:8.4
+    portforward: true
+    core: pulfalight-core-test
+    config:
+      dir: "solr/conf"
+  pulfalight_development_solr:
+    type: solr:8.4
+    portforward: true
+    core: pulfalight-core-dev
+    config:
+      dir: "solr/conf"
+proxy:
+  pulfalight_test_solr:
+    - pulfalight.test.solr.lndo.site:8983
+  pulfalight_development_solr:
+    - pulfalight.dev.solr.lndo.site:8983
