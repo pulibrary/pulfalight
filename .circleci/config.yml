@@ -45,6 +45,16 @@ jobs:
       - run:
           name: Install NPM Dependencies via Yarn
           command: yarn install --frozen-lockfile
+      # Store yarn / webpacker cache
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: pulfalight-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+      - run: NODE_ENV=test bundle exec rails webpacker:compile
+      - persist_to_workspace:
+          root: '~/pulfalight'
+          paths: '*'
 
   rubocop:
     working_directory: ~/pulfalight
