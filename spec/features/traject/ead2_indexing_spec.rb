@@ -57,6 +57,7 @@ describe "EAD 2 traject indexing", type: :feature do
     end
     it "doesn't index them as components" do
       components = result["components"]
+      expect(components.length).to eq 10
       expect(components.group_by { |x| x["id"].first }["C0002_i1"]).to be_blank
     end
   end
