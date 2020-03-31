@@ -29,6 +29,12 @@ oldest version of Node.js supported is 10.16.0.
    - `bundle exec rake pulfalight:test`
    - In a separate terminal, please run: `bundle exec rspec`
 
+#### With Lando
+
+1. Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
+2. `lando start` will bring up the Solr Test & Development servers.
+3. Either `bundle exec foreman start` or `bundle exec rspec` depending on if you're in dev or testing.
+
 ### Configuration
 By default, Pulfalight uses Solr over the port 8983 (deployed using
 `solr_wrapper`) for the index.
