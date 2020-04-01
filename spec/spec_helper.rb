@@ -12,4 +12,6 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
 )
 
 SimpleCov.coverage_dir(File.join(ENV["CIRCLE_ARTIFACTS"], "coverage")) if ENV["CIRCLE_ARTIFACTS"]
-SimpleCov.start
+SimpleCov.start do
+  add_filter "/config/lando_env.rb"
+end
