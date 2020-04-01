@@ -5,14 +5,6 @@ class CatalogController < ApplicationController
   include Arclight::Catalog
   include Arclight::FieldConfigHelpers
 
-  # This will be unnecessary once Blacklight is upgraded
-  def raw
-    raise(ActionController::RoutingError, "Not Found") unless blacklight_config.raw_endpoint.enabled
-
-    _, @document = search_service.fetch(params[:id])
-    render json: @document
-  end
-
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
