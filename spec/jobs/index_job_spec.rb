@@ -9,12 +9,12 @@ describe IndexJob do
       let(:traject_hash) do
         { foo: :bar }
       end
-      let(:traject_context) { instance_double(Traject::Context) }
+      let(:traject_context) { instance_double(Traject::Indexer::Context) }
 
-      it "appends the hash generated from a Traject::Context object" do
+      it "appends the hash generated from a Traject::Indexer::Context object" do
         allow(traject_context).to receive(:output_hash).and_return(traject_hash)
 
-        ead_array.push(traject_context)
+        ead_array.put(traject_context)
         expect(ead_array.last).to eq(traject_hash)
       end
     end

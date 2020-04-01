@@ -210,7 +210,8 @@ to_field "digital_objects_ssm", extract_xpath("/ead/archdesc/did/dao|/ead/archde
     label = dao.attributes["title"]&.value ||
             dao.xpath("daodesc/p")&.text
     href = (dao.attributes["href"] || dao.attributes["xlink:href"])&.value
-    Arclight::DigitalObject.new(label: label, href: href).to_json
+    role = (dao.attributes["role"] || dao.attributes["xlink:role"])&.value
+    Arclight::DigitalObject.new(label: label, href: href, role: role).to_json
   end
 end
 
@@ -448,7 +449,8 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
       label = dao.attributes["title"]&.value ||
               dao.xpath("daodesc/p")&.text
       href = (dao.attributes["href"] || dao.attributes["xlink:href"])&.value
-      Arclight::DigitalObject.new(label: label, href: href).to_json
+      role = (dao.attributes["role"] || dao.attributes["xlink:role"])&.value
+      Arclight::DigitalObject.new(label: label, href: href, role: role).to_json
     end
   end
 
