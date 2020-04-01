@@ -60,6 +60,11 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(components.length).to eq 10
       expect(components.group_by { |x| x["id"].first }["C0002_i1"]).to be_blank
     end
+    it "doesn't leave empty arrays around" do
+      component = result.as_json["components"][1]
+
+      expect(component["scopecontent_ssm"]).to eq ["Contains 14 AMs letters."]
+    end
   end
 
   describe "digital objects" do
