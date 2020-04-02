@@ -285,7 +285,57 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
       accumulator << output
       context.clipboard[:parent] = previous_parent
     end
+
+    # Retrieve the @otherlevel components within the dsc[2]
+    linked_components = record.xpath("../../dsc[@type='othertype']/c[@level='otherlevel'][@id='#{component_id}']")
+    linked_components.each do |linked_component|
+      output = map_record(linked_component)
+      accumulator << output
+    end
   end
+
+  to_field "box_number_ssi" do |record, accumulator|
+    unitid_element = record.at_xpath("./did/container[@type='box']")
+    accumulator << unitid_element.text.to_i
+  end
+  to_field "box_number_ssm" do |_record, accumulator|
+    box_numbers = context.output_hash["box_ssi"]
+
+    accumulator.concat box_numbers.map(&:to_s)
+  end
+
+  to_field "barcode_ssi" do |record, accumulator|
+    unitid_element = record.at_xpath("./did/unitid[@type='barcode']")
+    accumulator << unitid_element.text.to_i
+  end
+  to_field "barcode_ssm" do |_record, accumulator|
+    barcodes = context.output_hash["barcode_ssi"]
+
+    accumulator.concat barcodes.map(&:to_s)
+  end
+
+  to_field "physical_location_code_ssm" do |record, accumulator|
+    unitid_element = record.at_xpath("./did/physloc[@type='code']")
+    accumulator << unitid_element.text
+  end
+
+  to_field "physical_location_ssm" do |_record, accumulator|
+    location_code = context.output_hash["location_code_ssm"]
+    next unless location_code
+
+    location = PhysicalLocationResolver.resolve(location_code)
+    accumulator << location
+  end
+
+  to_field "containers_ssim" do |record, accumulator|
+    record.xpath("./did/container").each do |node|
+      # Avoid indexing cases where this is the in the dsc[2]
+      next if node.attribute("type") == "box"
+
+      accumulator << [node.attribute("type"), node.text].join(" ").strip
+    end
+  end
+
   to_field "ref_ssm" do |_record, accumulator, context|
     accumulator.concat context.output_hash["ref_ssi"]
   end

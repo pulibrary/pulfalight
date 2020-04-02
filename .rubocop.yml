@@ -21,6 +21,7 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Exclude:
     - 'lib/tasks/pulfalight.rake'
+    - 'app/services/code_resolver.rb'
 RSpec/ExampleLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
