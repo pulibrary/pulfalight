@@ -18,6 +18,7 @@ require "arclight/traject/nokogiri_namespaceless_reader"
 require_relative "../normalized_title"
 require_relative "../normalized_date"
 require_relative "../year_range"
+require Rails.root.join("app", "services", "code_resolver")
 extend TrajectPlus::Macros
 # rubocop:enable Style/MixinUsage
 
@@ -252,6 +253,218 @@ to_field "language_ssm", extract_xpath("/ead/archdesc/did/langmaterial")
 
 to_field "descrules_ssm", extract_xpath("/ead/eadheader/profiledesc/descrules")
 
+compose "physical_holdings", lambda { |record, accumulator, _context|
+  elements = record.xpath("//dsc[@type='othertype']/*[is_component(.)]", NokogiriXpathExtensions.new)
+  accumulator.concat(elements)
+} do
+
+  to_field "box_number_ssi" do |record, accumulator|
+    unitid_element = record.at_xpath("./did/container[@type='box']")
+    accumulator << unitid_element&.text&.to_i
+  end
+  to_field "box_number_ssm" do |_record, accumulator, context|
+    box_numbers = context.output_hash.fetch("box_number_ssi", [])
+
+    accumulator.concat box_numbers.map(&:to_s)
+  end
+
+  to_field "barcode_ssi" do |record, accumulator|
+    unitid_element = record.at_xpath("./did/unitid[@type='barcode']")
+    accumulator << unitid_element&.text&.to_i
+  end
+  to_field "barcode_ssm" do |_record, accumulator, context|
+    barcodes = context.output_hash.fetch("barcode_ssi", [])
+
+    accumulator.concat barcodes.map(&:to_s)
+  end
+
+  to_field "physical_location_code_ssm" do |record, accumulator|
+    unitid_element = record.at_xpath("./did/physloc[@type='code']")
+    accumulator << unitid_element&.text
+  end
+
+  to_field "physical_location_ssm" do |_record, accumulator, context|
+    location_codes = context.output_hash.fetch("physical_location_code_ssm", [])
+    location_code = location_codes.first
+    next unless location_code
+
+    location = Pulfalight::PhysicalLocationResolver.resolve(location_code)
+    accumulator << location
+  end
+
+  # This is for indexing components
+  to_field "ref_ssi" do |record, accumulator, context|
+    accumulator << if record.attribute("id").blank?
+                     strategy = Arclight::MissingIdStrategy.selected
+                     hexdigest = strategy.new(record).to_hexdigest
+                     parent_id = context.clipboard[:parent].output_hash["id"].first
+                     logger.warn("MISSING ID WARNING") do
+                       [
+                         "A component in #{parent_id} did not have an ID so one was minted using the #{strategy} strategy.",
+                         "The ID of this document will be #{parent_id}#{hexdigest}."
+                       ].join(" ")
+                     end
+                     record["id"] = hexdigest
+                     hexdigest
+                   else
+                     record.attribute("id")&.value&.strip&.gsub(".", "-")
+                   end
+  end
+
+  to_field "ref_ssm" do |_record, accumulator, context|
+    accumulator.concat context.output_hash["ref_ssi"]
+  end
+
+  to_field "id" do |_record, accumulator, context|
+    accumulator.concat context.output_hash["ref_ssi"]
+  end
+
+  to_field "containers_ssim" do |record, accumulator|
+    record.xpath("./did/container").each do |node|
+      accumulator << [node.attribute("type"), node.text].join(" ").strip
+    end
+  end
+
+  to_field "title_filing_si", extract_xpath("./did/unittitle"), first_only
+  to_field "title_ssm", extract_xpath("./did/unittitle")
+  to_field "title_teim", extract_xpath("./did/unittitle")
+
+  to_field "unitdate_bulk_ssim", extract_xpath('./did/unitdate[@type="bulk"]')
+  to_field "unitdate_inclusive_ssm", extract_xpath('./did/unitdate[@type="inclusive"]')
+  to_field "unitdate_other_ssim", extract_xpath("./did/unitdate[not(@type)]")
+
+  to_field "normalized_title_ssm" do |_record, accumulator, context|
+    dates = Pulfalight::NormalizedDate.new(
+      context.output_hash["unitdate_inclusive_ssm"],
+      context.output_hash["unitdate_bulk_ssim"],
+      context.output_hash["unitdate_other_ssim"]
+    ).to_s
+    title = context.output_hash["title_ssm"]&.first
+    accumulator << Pulfalight::NormalizedTitle.new(title, dates).to_s
+  end
+
+  to_field "normalized_date_ssm" do |_record, accumulator, context|
+    accumulator << Pulfalight::NormalizedDate.new(
+      context.output_hash["unitdate_inclusive_ssm"],
+      context.output_hash["unitdate_bulk_ssim"],
+      context.output_hash["unitdate_other_ssim"]
+    ).to_s
+  end
+
+  to_field "component_level_isim" do |record, accumulator|
+    accumulator << 1 + NokogiriXpathExtensions.new.is_component(record.ancestors).count
+  end
+
+  to_field "unitid_ssm", extract_xpath("./did/unitid")
+
+  to_field "extent_ssm", extract_xpath("./did/physdesc/extent")
+  to_field "extent_teim", extract_xpath("./did/physdesc/extent")
+
+  to_field "creator_ssm", extract_xpath("./did/origination")
+  to_field "creator_ssim", extract_xpath("./did/origination")
+  to_field "creators_ssim", extract_xpath("./did/origination")
+  to_field "creator_sort" do |record, accumulator|
+    accumulator << record.xpath("./did/origination").map(&:text).join(", ")
+  end
+  to_field "collection_creator_ssm" do |_record, accumulator, context|
+    parent = context.clipboard[:parent]
+    next unless parent
+
+    accumulator.concat Array.wrap(parent.output_hash["creator_ssm"])
+  end
+  to_field "has_online_content_ssim", extract_xpath(".//dao") do |_record, accumulator|
+    accumulator.replace([accumulator.any?])
+  end
+  to_field "child_component_count_isim" do |record, accumulator|
+    accumulator << NokogiriXpathExtensions.new.is_component(record.children).count
+  end
+
+  to_field "ref_ssm" do |record, accumulator|
+    accumulator << record.attribute("id")
+  end
+
+  to_field "level_ssm" do |record, accumulator|
+    level = record.attribute("level")&.value
+    other_level = record.attribute("otherlevel")&.value
+    accumulator << Arclight::LevelLabel.new(level, other_level).to_s
+  end
+
+  to_field "level_sim" do |_record, accumulator, context|
+    next unless context.output_hash["level_ssm"]
+
+    accumulator.concat context.output_hash["level_ssm"]&.map(&:capitalize)
+  end
+
+  to_field "sort_ii" do |_record, accumulator, context|
+    accumulator.replace([context.position])
+  end
+
+  to_field "date_range_sim", extract_xpath("./did/unitdate/@normal", to_text: false) do |_record, accumulator|
+    range = Pulfalight::YearRange.new
+    next range.years if accumulator.blank?
+
+    ranges = accumulator.map(&:to_s)
+    range << range.parse_ranges(ranges)
+    accumulator.replace range.years
+  end
+
+  NAME_ELEMENTS.map do |selector|
+    to_field "names_ssim", extract_xpath("./controlaccess/#{selector}")
+    to_field "#{selector}_ssm", extract_xpath(".//#{selector}")
+  end
+
+  to_field "geogname_sim", extract_xpath("./controlaccess/geogname")
+  to_field "geogname_ssm", extract_xpath("./controlaccess/geogname")
+  to_field "places_ssim", extract_xpath("./controlaccess/geogname")
+
+  to_field "access_subjects_ssim", extract_xpath("./controlaccess", to_text: false) do |_record, accumulator|
+    accumulator.map! do |element|
+      %w[subject function occupation genreform].map do |selector|
+        element.xpath(".//#{selector}").map(&:text)
+      end
+    end.flatten!
+  end
+
+  to_field "access_subjects_ssm" do |_record, accumulator, context|
+    accumulator.concat(context.output_hash.fetch("access_subjects_ssim", []))
+  end
+
+  to_field "acqinfo_ssim", extract_xpath('/ead/archdesc/acqinfo/*[local-name()!="head"]')
+  to_field "acqinfo_ssim", extract_xpath('/ead/archdesc/descgrp/acqinfo/*[local-name()!="head"]')
+  to_field "acqinfo_ssim", extract_xpath('./acqinfo/*[local-name()!="head"]')
+  to_field "acqinfo_ssim", extract_xpath('./descgrp/acqinfo/*[local-name()!="head"]')
+  to_field "acqinfo_ssm" do |_record, accumulator, context|
+    accumulator.concat(context.output_hash.fetch("acqinfo_ssim", []))
+  end
+
+  to_field "language_ssm", extract_xpath("./did/langmaterial")
+  to_field "containers_ssim" do |record, accumulator|
+    record.xpath("./did/container").each do |node|
+      accumulator << [node.attribute("type"), node.text].join(" ").strip
+    end
+  end
+
+  SEARCHABLE_NOTES_FIELDS.map do |selector|
+    to_field "#{selector}_ssm", extract_xpath("./#{selector}/*[local-name()!='head']")
+    to_field "#{selector}_heading_ssm", extract_xpath("./#{selector}/head")
+    to_field "#{selector}_teim", extract_xpath("./#{selector}/*[local-name()!='head']")
+  end
+  DID_SEARCHABLE_NOTES_FIELDS.map do |selector|
+    to_field "#{selector}_ssm", extract_xpath("./did/#{selector}")
+  end
+  to_field "did_note_ssm", extract_xpath("./did/note")
+
+  # Retrieve only the top-level of components which are linked to this physical location
+  to_field "components" do |record, accumulator, _context|
+    parent_id = record.attribute("id")
+    elements = record.xpath("../../dsc[@type='combined']/*[is_component(.)]/did/container[@parent='#{parent_id}']/../..", NokogiriXpathExtensions.new)
+    elements.each do |element|
+      output = map_record(element)
+      accumulator << output
+    end
+  end
+end
+
 # =============================
 # Each component child document
 # <c> <c01> <c12>
@@ -276,6 +489,15 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
                      record.attribute("id")&.value&.strip&.gsub(".", "-")
                    end
   end
+
+  to_field "ref_ssm" do |_record, accumulator, context|
+    accumulator.concat context.output_hash["ref_ssi"]
+  end
+
+  to_field "id" do |_record, accumulator, context|
+    accumulator.concat context.output_hash["ref_ssi"]
+  end
+
   to_field "components" do |record, accumulator, context|
     child_components = record.xpath("./*[is_component(.)]", NokogiriXpathExtensions.new)
     child_components.each do |child_component|
@@ -285,63 +507,12 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
       accumulator << output
       context.clipboard[:parent] = previous_parent
     end
-
-    # Retrieve the @otherlevel components within the dsc[2]
-    linked_components = record.xpath("../../dsc[@type='othertype']/c[@level='otherlevel'][@id='#{component_id}']")
-    linked_components.each do |linked_component|
-      output = map_record(linked_component)
-      accumulator << output
-    end
-  end
-
-  to_field "box_number_ssi" do |record, accumulator|
-    unitid_element = record.at_xpath("./did/container[@type='box']")
-    accumulator << unitid_element.text.to_i
-  end
-  to_field "box_number_ssm" do |_record, accumulator|
-    box_numbers = context.output_hash["box_ssi"]
-
-    accumulator.concat box_numbers.map(&:to_s)
-  end
-
-  to_field "barcode_ssi" do |record, accumulator|
-    unitid_element = record.at_xpath("./did/unitid[@type='barcode']")
-    accumulator << unitid_element.text.to_i
-  end
-  to_field "barcode_ssm" do |_record, accumulator|
-    barcodes = context.output_hash["barcode_ssi"]
-
-    accumulator.concat barcodes.map(&:to_s)
-  end
-
-  to_field "physical_location_code_ssm" do |record, accumulator|
-    unitid_element = record.at_xpath("./did/physloc[@type='code']")
-    accumulator << unitid_element.text
-  end
-
-  to_field "physical_location_ssm" do |_record, accumulator|
-    location_code = context.output_hash["location_code_ssm"]
-    next unless location_code
-
-    location = PhysicalLocationResolver.resolve(location_code)
-    accumulator << location
   end
 
   to_field "containers_ssim" do |record, accumulator|
     record.xpath("./did/container").each do |node|
-      # Avoid indexing cases where this is the in the dsc[2]
-      next if node.attribute("type") == "box"
-
       accumulator << [node.attribute("type"), node.text].join(" ").strip
     end
-  end
-
-  to_field "ref_ssm" do |_record, accumulator, context|
-    accumulator.concat context.output_hash["ref_ssi"]
-  end
-
-  to_field "id" do |_record, accumulator, context|
-    accumulator.concat context.output_hash["ref_ssi"]
   end
 
   to_field "ead_ssi" do |_record, accumulator, context|

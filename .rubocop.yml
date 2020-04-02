@@ -18,6 +18,7 @@ Metrics/BlockLength:
     - 'lib/tasks/**/*'
     - 'app/controllers/catalog_controller.rb'
     - 'config/routes.rb'
+    - 'lib/pulfalight/traject/ead2_config.rb'
 Metrics/MethodLength:
   Exclude:
     - 'lib/tasks/pulfalight.rake'

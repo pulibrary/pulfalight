@@ -6,7 +6,7 @@ module Pulfalight
       {}
     end
 
-    def self.translate_code(code)
+    def self.translate(code)
       codes[code]
     end
 

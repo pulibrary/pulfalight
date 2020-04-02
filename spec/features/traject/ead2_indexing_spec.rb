@@ -44,10 +44,6 @@ describe "EAD 2 traject indexing", type: :feature do
   end
 
   context "with nested components in a collection" do
-    let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC221.EAD.xml")
-    end
-
     it "indexes child components for the collection components" do
       components = result["components"]
       parent_components = components.select { |c| c["components"] }
@@ -59,6 +55,36 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(child_component).to include("id" => ["MC221_c0002"])
       expect(child_component).to include("component_level_isim" => [2])
       expect(child_component).to include("level_ssm" => ["File"])
+    end
+  end
+
+  context "with linked descriptions (dsc[2] elements) in a collection" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "C0002.xml")
+    end
+
+    it "indexes linked description information for the collection components" do
+      result
+      expect(result).to include("physical_holdings")
+      physical_holdings = result["physical_holdings"]
+      expect(physical_holdings).not_to be_empty
+
+      physical_holding = physical_holdings.first
+      expect(physical_holding["id"]).to eq(["C0002_i1"])
+      expect(physical_holding["barcode_ssi"]).to eq([32_101_040_679_134])
+      expect(physical_holding["barcode_ssm"]).to eq(["32101040679134"])
+      expect(physical_holding["box_number_ssi"]).to eq([1])
+      expect(physical_holding["box_number_ssm"]).to eq(["1"])
+      expect(physical_holding["physical_location_code_ssm"]).to eq(["mss"])
+      expect(physical_holding["physical_location_ssm"]).to eq(["RBSC"])
+
+      linked_components = physical_holding["components"]
+      expect(linked_components).not_to be_empty
+      linked_component = linked_components.first
+
+      expect(linked_component).to include("id" => ["C0002_c001"])
+      expect(linked_component).to include("component_level_isim" => [1])
+      expect(linked_component).to include("level_ssm" => ["File"])
     end
   end
 
