@@ -15,3 +15,9 @@ SimpleCov.coverage_dir(File.join(ENV["CIRCLE_ARTIFACTS"], "coverage")) if ENV["C
 SimpleCov.start do
   add_filter "/config/lando_env.rb"
 end
+
+RSpec.configure do |config|
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
+  end
+end

@@ -4,6 +4,7 @@ class CatalogController < ApplicationController
   include Blacklight::Catalog
   include Arclight::Catalog
   include Arclight::FieldConfigHelpers
+  include BlacklightRangeLimit::ControllerOverride
 
   # This should be unnecessary with an update ArcLight or Blacklight upstream
   def raw
