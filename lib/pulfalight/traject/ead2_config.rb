@@ -325,7 +325,7 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
     ids = parent.output_hash["id"]
     unless parent.nil? || ids.blank?
       accumulator << ids.first
-      accumulator.concat NokogiriXpathExtensions.new.is_component(record.ancestors).reverse.map { |n| n.attribute("id")&.value }
+      accumulator.concat NokogiriXpathExtensions.new.is_component(record.ancestors).reverse.map { |n| n.attribute("id")&.value&.strip&.gsub(".", "-") }
     end
   end
 

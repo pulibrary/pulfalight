@@ -67,6 +67,17 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  describe "child indexing" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "C1588.EAD.xml")
+    end
+    it "indexes deep children without periods" do
+      components = result.as_json["components"]
+
+      expect(components[2]["parent_ssm"]).to eq ["C1588", "C1588_c1", "C1588-1_c2"]
+    end
+  end
+
   describe "digital objects" do
     context "when <dao> is child of the <did> in a <c0x> component" do
       let(:component) { result["components"].find { |c| c["id"] == ["MC221_c0094"] } }
