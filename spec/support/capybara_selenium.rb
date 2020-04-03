@@ -5,8 +5,7 @@ require "selenium-webdriver"
 
 Capybara.register_driver(:selenium) do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    # chromeOptions: { args: %w[headless disable-gpu disable-setuid-sandbox window-size=7680,4320] }
-    chromeOptions: { args: %w[headless disable-gpu disable-setuid-sandbox window-size=17680,4320] }
+    chromeOptions: { args: %w[headless disable-gpu disable-setuid-sandbox] }
   )
   browser_options = ::Selenium::WebDriver::Chrome::Options.new
   browser_options.args << "--headless"
@@ -20,7 +19,6 @@ Capybara.register_driver(:selenium) do |app|
                                  desired_capabilities: capabilities,
                                  http_client: http_client,
                                  options: browser_options)
-
 end
 
 Capybara.javascript_driver = :selenium
