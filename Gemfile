@@ -55,7 +55,6 @@ end
 
 group :test do
   gem "capybara", ">= 3.18"
-  gem "coveralls", require: false
   gem "simplecov", require: false
   gem "webdrivers"
 end
