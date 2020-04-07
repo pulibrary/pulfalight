@@ -24,5 +24,7 @@ module Pulfalight
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
     end
+
+    config.robots = OpenStruct.new(config_for(:robots))
   end
 end

@@ -82,6 +82,14 @@ namespace :sidekiq do
   end
 end
 
+task :robots_txt do
+  on roles(:app) do
+    within release_path do
+      execute :rake, 'pulfalight:robots_txt'
+    end
+  end
+end
+
 after 'deploy:reverted', 'sidekiq:restart'
 after 'deploy:starting', 'sidekiq:quiet'
 after 'deploy:published', 'sidekiq:restart'

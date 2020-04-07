@@ -2,6 +2,7 @@
 
 require Rails.root.join("app", "jobs", "application_job")
 require Rails.root.join("app", "jobs", "index_job")
+require Rails.root.join("app", "services", "robots_generator_service")
 
 namespace :pulfalight do
   namespace :index do
@@ -95,6 +96,17 @@ namespace :pulfalight do
 
       index_document(relative_path: file, root_path: Rails.root)
     end
+  end
+
+  desc "Generate a robots.txt file"
+  task :robots_txt do |_t, args|
+    file_path = args[:file_path] || Rails.root.join("public", "robots.txt")
+    robots = RobotsGeneratorService.new(path: file_path, disallowed_paths: Rails.configuration.robots.disallowed_paths)
+    robots.insert_group(user_agent: "*")
+    robots.insert_crawl_delay(10)
+    robots.insert_sitemap(Rails.configuration.robots.sitemap_url)
+    robots.generate
+    robots.write
   end
 
   # Utility methods

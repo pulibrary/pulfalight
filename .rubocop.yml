@@ -24,6 +24,7 @@ Metrics/MethodLength:
 RSpec/ExampleLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
+    - 'spec/services/robots_generator_service_spec.rb'
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 RSpec/VerifiedDoubles:
