@@ -17,4 +17,34 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  def child_tree
+    @child_tree ||=
+      begin
+        grouped_components = collection_components.group_by { |x| x["parent_ssm"].last }
+        top_level = grouped_components[collection_id]
+        map_children(grouped_components, top_level)
+      end
+  end
+
+  def map_children(all_components, sub_group)
+    sub_group.map do |node|
+      if all_components[node["id"]].present?
+        { id: node["id"], title: node["title_ssm"].first, children: map_children(all_components, all_components[node["id"]]) }
+      else
+        { id: node["id"], title: node["title_ssm"].first }
+      end
+    end
+  end
+
+  def collection_components
+    @components ||=
+      begin
+        Blacklight.default_index.find(collection_id, fl: "title_ssm, id, component_level_isim, parent_ssm, components, [child]")["response"]["docs"][0]["components"]
+      end
+  end
+
+  def collection_id
+    fetch("parent_ssm", [id]).first
+  end
 end

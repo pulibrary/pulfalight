@@ -1,0 +1,14 @@
+<ul>
+  <% tree.each do |parent_node| %>
+    <li>
+      <% if document.id == parent_node[:id] %>
+        <%= parent_node[:title] %>
+      <% else %>
+        <%= link_to parent_node[:title], solr_document_path(id: parent_node[:id]) %>
+      <% end %>
+    </li>
+    <% if parent_node[:children].present? %>
+      <%= render partial: "table_of_contents", locals: { tree: parent_node[:children], document: document } %>
+    <% end %>
+  <% end %>
+</ul>

@@ -1,0 +1,21 @@
+<% parents = Arclight::Parents.from_solr_document(document).as_parents %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render partial: "table_of_contents", locals: { tree: document.child_tree, document: document} %>
+  </div>
+  <div class="col-md-9">
+    <% if blacklight_config.show.component_metadata_partials.present? %>
+      <dl class="al-metadata-section breadcrumb-item breadcrumb-item-<%= parents.length + 3 %>">
+        <% blacklight_config.show.component_metadata_partials.each do |metadata| %>
+          <% doc_presenter = show_presenter(document).with_field_group(metadata) %>
+          <% generic_document_fields(metadata).each do |field_name, field| %>
+            <% if generic_should_render_field?(metadata, document, field) %>
+              <dt class="blacklight-<%= field_name.parameterize %>"><%= generic_render_document_field_label(metadata, document, field: field_name) %></dt>
+              <dd class="blacklight-<%= field_name.parameterize %>"><%= doc_presenter.field_value field %></dd>
+            <% end %>
+          <% end %>
+        <% end %>
+      </dl>
+    <% end %>
+  </div>
+</div>
