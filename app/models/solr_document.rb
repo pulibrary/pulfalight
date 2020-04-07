@@ -40,7 +40,7 @@ class SolrDocument
   def collection_components
     @components ||=
       begin
-        Blacklight.default_index.find(collection_id, fl: "title_ssm, id, component_level_isim, parent_ssm, components, [child]")["response"]["docs"][0]["components"]
+        Blacklight.default_index.find(collection_id, fl: "title_ssm, id, component_level_isim, parent_ssm, components, [child limit=1000000]")["response"]["docs"][0]["components"]
       end
   end
 
