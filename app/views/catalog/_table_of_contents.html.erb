@@ -1,21 +1,7 @@
-<ul class="list-group">
-  <% tree.each do |parent_node| %>
-    <li id="toc<%= parent_node[:id] %>" class="list-group-item panel panel-default">
-      <% if parent_node[:children].present? %>
-        <a href="#toc<%= parent_node[:id] %>children" data-toggle="collapse" data-parent="#toc<%= document.id %>" class="collapsed">
-          <%= blacklight_icon :plus, aria_hidden: true %>
-        </a>
-      <% end %>
-      <% if document.id == parent_node[:id] || document.fetch(:parent_ssm, []).include?(parent_node[:id]) %>
-        <%= parent_node[:title] %>
-      <% else %>
-        <%= link_to parent_node[:title], "#{solr_document_path(id: parent_node[:id])}" %>
-      <% end %>
-      <% if parent_node[:children].present? %>
-        <div class="panel-collapse collapse <%= "show" if document.fetch(:parent_ssm, []).include?(parent_node[:id]) %>" id="toc<%= parent_node[:id] %>children">
-          <%= render partial: "table_of_contents", locals: { tree: parent_node[:children], document: document } %>
-        </div>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<div class="table-of-contents">
+  <nav id="menu">
+    <ul>
+      <%= render partial: "catalog/table_of_contents_node", collection: tree, as: :parent_node, locals: { document: document } %>
+    </ul>
+  </nav>
+</div>

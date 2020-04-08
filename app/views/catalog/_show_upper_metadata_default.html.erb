@@ -1,9 +1,7 @@
 <% parents = Arclight::Parents.from_solr_document(document).as_parents %>
 <div class="row">
-  <div class="table-of-contents col-md-3">
-    <%= render partial: "table_of_contents", locals: { tree: document.child_tree, document: document} %>
-  </div>
-  <div class="col-md-9">
+  <%= render partial: "table_of_contents", locals: { tree: document.child_tree, document: document} %>
+  <div class="col-md-12">
     <% if blacklight_config.show.component_metadata_partials.present? %>
       <dl class="al-metadata-section breadcrumb-item breadcrumb-item-<%= parents.length + 3 %>">
         <% blacklight_config.show.component_metadata_partials.each do |metadata| %>

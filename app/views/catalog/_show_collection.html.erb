@@ -11,10 +11,8 @@
       <% end %>
     <% end %>    
     <div class="row">
-      <div class="col-md-3 table-of-contents">
-        <%= render partial: "table_of_contents", locals: { tree: document.child_tree, document: document} %>
-      </div>
-      <div class="col-md-9">
+      <%= render partial: "table_of_contents", locals: { tree: document.child_tree, document: document} %>
+      <div class="col-md-12">
         <%= render 'collection_context' %>
       </div>
     </div>

@@ -1,0 +1,10 @@
+<li id="<%= parent_node[:id] %>" class="<%= "Selected" if document.id == parent_node[:id] %>">
+  <%= link_to "#{solr_document_path(id: parent_node[:id])}" do %>
+    <%= parent_node[:title] %>
+  <% end %>
+  <% if parent_node[:children].present? %>
+    <ul>
+      <%= render partial: "table_of_contents_node", collection: parent_node[:children], as: :parent_node, locals: { document: document } %>
+    </ul>
+  <% end %>
+</li>

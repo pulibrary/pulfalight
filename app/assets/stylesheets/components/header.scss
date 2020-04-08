@@ -182,3 +182,29 @@ header {
   }
 
 }
+
+@media (min-width: 700px) {
+  a#menulink {
+    display: none;
+  }
+}
+a#menulink {
+	width: 28px;
+	height: 18px;
+	margin: 2px;
+}
+a#menulink:before,
+a#menulink:after {
+	content: '';
+	display: block;
+	background: #fff;
+	height: 2px;
+  width: 100%;
+}
+a#menulink span {
+	background: #fff;
+	display: block;
+	height: 2px;
+	margin: 6px 0;
+  width: 100%;
+}

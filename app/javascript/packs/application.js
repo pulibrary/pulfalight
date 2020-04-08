@@ -22,14 +22,29 @@ import Vue from 'vue/dist/vue.esm'
 import system from 'lux-design-system'
 import "lux-design-system/dist/system/system.css"
 import "lux-design-system/dist/system/tokens/tokens.scss"
+import Mmenu from 'mmenu-js'
+import "mmenu-js/dist/mmenu.css"
+import "mmenu-js/dist/mmenu.polyfills.js"
 
 Vue.use(system)
 
 document.addEventListener("DOMContentLoaded", () => {
+  new Mmenu( document.querySelector( '#menu' ), {
+    "slidingSubmenus": false,
+    "extensions": [
+      "multiline"
+    ],
+    "sidebar": {
+      "collapsed": "(min-width: 550px)",
+      "expanded": "(min-width: 700px)"
+    }
+  });
+
   var elements = document.getElementsByClassName("lux")
   for (var i = 0; i < elements.length; i++) {
     new Vue({
       el: elements[i]
     })
   }
+
 })
