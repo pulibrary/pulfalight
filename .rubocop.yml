@@ -12,6 +12,9 @@ AllCops:
     - 'node_modules/**/*'
     - 'spec/support/**/*'
     - 'tmp/**/*'
+Metrics/AbcSize:
+  Exclude:
+    - 'app/models/pulfalight/requests/aeon_external_request.rb'
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
@@ -19,10 +22,15 @@ Metrics/BlockLength:
     - 'app/controllers/catalog_controller.rb'
     - 'config/routes.rb'
     - 'lib/pulfalight/traject/ead2_config.rb'
+Metrics/ClassLength:
+  Exclude:
+    - 'app/controllers/catalog_controller.rb'
+    - 'app/models/solr_document.rb'
 Metrics/MethodLength:
   Exclude:
     - 'lib/tasks/pulfalight.rake'
     - 'app/services/code_resolver.rb'
+    - 'app/models/pulfalight/requests/aeon_external_request.rb'
 RSpec/ExampleLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'

@@ -47,6 +47,10 @@ class CatalogController < ApplicationController
     #  # q: '{!term f=id v=$id}'
     # }
 
+    config.default_document_solr_params = {
+      fl: "*,[child]"
+    }
+
     # solr field configuration for search results/index views
     config.index.title_field = "normalized_title_ssm"
     config.index.display_type_field = "level_ssm"
@@ -406,5 +410,13 @@ class CatalogController < ApplicationController
     # Compact index view
     config.view.compact
     config.view.compact.partials = %i[arclight_index_compact]
+  end
+
+  def item_requestable?(_, options)
+    document = options[:document]
+    request_config_present("", document)
+    return false if document.collection?
+
+    true
   end
 end

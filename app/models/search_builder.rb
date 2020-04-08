@@ -11,4 +11,10 @@ class SearchBuilder < Blacklight::SearchBuilder
   #   def add_custom_data_to_query(solr_parameters)
   #     solr_parameters[:custom] = blacklight_params[:user_value]
   #   end
+  #
+  # self.default_processor_chain += [:add_child_doc_transformer]
+
+  def add_child_doc_transformer(solr_parameters)
+    solr_parameters[:fl] = "*,[child]"
+  end
 end

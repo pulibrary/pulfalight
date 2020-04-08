@@ -11,7 +11,7 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "lux-design-system": "^2.16.3",
+    "lux-design-system": "https://github.com/pulibrary/lux.git#request-cart",
     "serialize-javascript": "^2.1.1",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",

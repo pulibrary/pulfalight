@@ -4449,6 +4449,11 @@ lodash.memoize@^4.1.2:
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
 
+lodash.merge@^4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
+  integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
+
 lodash.template@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.template/-/lodash.template-4.5.0.tgz#f976195cf3f347d0d5f52483569fe8031ccce8ab"
@@ -4514,10 +4519,9 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-lux-design-system@^2.16.3:
+"lux-design-system@https://github.com/pulibrary/lux.git#request-cart":
   version "2.16.3"
-  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-2.16.3.tgz#355e4eb232b3eec541fe7d7e709cb41f97097cac"
-  integrity sha512-E7Pn+8AL0PHKnT4A9exJMnzUsXDvTXD5bE0OW7Q9WpwZQbSmd9CIyYVxiNoUpN7RjYXg1GdIISw31L1U0dvfJg==
+  resolved "https://github.com/pulibrary/lux.git#8f3361c7163d0f5972723bf9127c338c166593cb"
   dependencies:
     lodash "^4.17.11"
     mini-css-extract-plugin "^0.4.5"
@@ -4532,8 +4536,10 @@ lux-design-system@^2.16.3:
     vue-lodash "^2.0.0"
     vue-meta "^1.5.6"
     vue-router "^3.0.2"
+    vue2-storage "^5.0.0"
     vuedraggable "^2.16.0"
     vuex "^3.0.1"
+    vuex-persist "^2.2.0"
     webfontloader "^1.6.28"
 
 make-dir@^2.0.0:
@@ -7698,6 +7704,13 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
+vue2-storage@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/vue2-storage/-/vue2-storage-5.0.0.tgz#1f95bd58a7671ad05fcc88ab8f3e2dc4fb414e69"
+  integrity sha512-HDrQ7Q8TfquaCpHnf5rLJmFLgwt9VvDyvu7xJm6I+m63IKIq+hqUZscn6vG0A56mFGcTArP+2Lzfezf5vrukPg==
+  dependencies:
+    object-assign "^4.1.1"
+
 vue@^2.5.0, vue@^2.5.18, vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
@@ -7709,6 +7722,14 @@ vuedraggable@^2.16.0:
   integrity sha512-PgHCjUpxEAEZJq36ys49HfQmXglattf/7ofOzUrW2/rRdG7tu6fK84ir14t1jYv4kdXewTEa2ieKEAhhEMdwkQ==
   dependencies:
     sortablejs "^1.10.1"
+
+vuex-persist@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/vuex-persist/-/vuex-persist-2.2.0.tgz#4acec75562896b045c43d319690b93d6bc1b2bbc"
+  integrity sha512-o/qbBeMcKZZqMvCXc7kfIew/5cjHxlP1f53rx5YYp3r2tk2kxXYK/UZumxKn7OXywlurl2r0mgkuBzH6nIWFjw==
+  dependencies:
+    flatted "^2.0.0"
+    lodash.merge "^4.6.2"
 
 vuex@^3.0.1:
   version "3.1.1"

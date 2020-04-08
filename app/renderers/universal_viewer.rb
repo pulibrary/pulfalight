@@ -8,7 +8,7 @@ class UniversalViewer
   end
 
   def to_partial_path
-    if digital_object.role&.starts_with? IIIF_MANIFEST_ROLE
+    if digital_object_role&.starts_with?(IIIF_MANIFEST_ROLE)
       "viewers/_universal_viewer"
     else
       "viewers/_simple_link"
@@ -28,4 +28,12 @@ class UniversalViewer
   end
   delegate :href, to: :digital_object
   delegate :label, to: :digital_object
+
+  private
+
+    def digital_object_role
+      return unless digital_object
+
+      digital_object.role
+    end
 end
