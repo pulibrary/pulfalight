@@ -33,9 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
   if(menu !== null) {
     new Mmenu( document.querySelector( '#menu' ), {
       "slidingSubmenus": false,
+      "counters": true,
+      "offCanvas": false,
       "extensions": [
         "multiline"
       ],
+      "navbar": {
+        "add": false
+      },
       "sidebar": {
         "collapsed": "(min-width: 550px)",
         "expanded": "(min-width: 700px)"
