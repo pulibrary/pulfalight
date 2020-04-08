@@ -2,8 +2,8 @@
   <div class='mr-4 al-show-actions-box-request flex-md-fill'>
     <div class="lux">
       <add-to-cart-button
-        callnumber=<%= document.callnumber %>
-        title=<%= document.title %>
+        callnumber="<%= document.callnumber %>"
+        title="<%= document.title %>"
         :unitid=<%= document.unitid_attributes.to_json %>
         :physloc=<%= document.physloc_attributes.to_json %>
         :containers=<%= document.container_attributes.to_json %>>

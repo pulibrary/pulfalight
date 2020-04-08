@@ -13,6 +13,13 @@ class CatalogController < ApplicationController
     render json: @document
   end
 
+  # This override is used to ensure that collections cannot be requested
+  def item_requestable?(_, options)
+    document = options[:document]
+    request_config_present("", document)
+    !document.collection?
+  end
+
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
@@ -410,13 +417,5 @@ class CatalogController < ApplicationController
     # Compact index view
     config.view.compact
     config.view.compact.partials = %i[arclight_index_compact]
-  end
-
-  def item_requestable?(_, options)
-    document = options[:document]
-    request_config_present("", document)
-    return false if document.collection?
-
-    true
   end
 end

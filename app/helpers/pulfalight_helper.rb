@@ -15,12 +15,41 @@ module PulfalightHelper
       document.repository_config.request_config_present?
   end
 
-  # Is this need?
+  # Is this needed?
   def document
     @document
   end
 
   def aeon_external_request
     document.build_external_request(presenter: show_presenter(document))
+  end
+
+  # @override
+  def normalize_id(id)
+    Arclight::NormalizedId.new(id).to_s
+  rescue Arclight::Exceptions::IDNotFound
+    SecureRandom.hex(14)
+  end
+
+  ##
+  # @override
+  # @param [SolrDocument]
+  def document_parents(document)
+    Pulfalight::Parents.from_solr_document(document).as_parents
+  end
+
+  ##
+  # @override
+  # @param [SolrDocument]
+  def parents_to_links(document)
+    breadcrumb_links = []
+
+    breadcrumb_links << build_repository_link(document)
+
+    breadcrumb_links << document_parents(document).map do |parent|
+      link_to parent.label, solr_document_path(parent.global_id)
+    end
+
+    safe_join(breadcrumb_links, aria_hidden_breadcrumb_separator)
   end
 end

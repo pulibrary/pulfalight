@@ -188,6 +188,7 @@ class SolrDocument
       values = fetch(:unitid_ssm, [])
       values.first
     end
+    alias callnumber unitid
 
     # This is based off of the example
     def unitid_attributes
@@ -207,11 +208,6 @@ class SolrDocument
         type: "code",
         value: physloc_code
       }
-    end
-
-    def callnumber
-      values = fetch(:call_number_ssm, [])
-      values.first
     end
   end
 end

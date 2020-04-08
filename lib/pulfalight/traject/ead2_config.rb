@@ -292,6 +292,11 @@ compose "physical_holdings", lambda { |record, accumulator, _context|
     accumulator << location
   end
 
+  to_field "physical_location_note_ssm" do |record, accumulator|
+    unitid_element = record.at_xpath("./did/physloc[@type='text']")
+    accumulator << unitid_element&.text
+  end
+
   # This is for indexing components
   to_field "ref_ssi" do |record, accumulator, context|
     accumulator << if record.attribute("id").blank?
