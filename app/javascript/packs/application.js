@@ -29,16 +29,19 @@ import "mmenu-js/dist/mmenu.polyfills.js"
 Vue.use(system)
 
 document.addEventListener("DOMContentLoaded", () => {
-  new Mmenu( document.querySelector( '#menu' ), {
-    "slidingSubmenus": false,
-    "extensions": [
-      "multiline"
-    ],
-    "sidebar": {
-      "collapsed": "(min-width: 550px)",
-      "expanded": "(min-width: 700px)"
-    }
-  });
+  const menu = document.querySelector('#menu')
+  if(menu !== null) {
+    new Mmenu( document.querySelector( '#menu' ), {
+      "slidingSubmenus": false,
+      "extensions": [
+        "multiline"
+      ],
+      "sidebar": {
+        "collapsed": "(min-width: 550px)",
+        "expanded": "(min-width: 700px)"
+      }
+    });
+  }
 
   var elements = document.getElementsByClassName("lux")
   for (var i = 0; i < elements.length; i++) {
