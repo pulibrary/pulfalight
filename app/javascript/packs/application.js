@@ -33,13 +33,3 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   }
 })
-
-document.addEventListener("ajaxComplete", (event) => {
-  console.log(event)
-  var elements = document.getElementsByClassName("lux")
-  for (var i = 0; i < elements.length; i++) {
-    new Vue({
-      el: elements[i]
-    })
-  }
-})
