@@ -292,7 +292,7 @@ compose "physical_holdings", lambda { |record, accumulator, _context|
     accumulator << location
   end
 
-  to_field "physical_location_note_ssm" do |record, accumulator|
+  to_field "physical_location_notes_ssm" do |record, accumulator|
     unitid_element = record.at_xpath("./did/physloc[@type='text']")
     accumulator << unitid_element&.text
   end

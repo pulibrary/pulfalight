@@ -3,7 +3,7 @@
   <h3 class="index_title document-title-heading col-md-8">
     <% if document.containers.present? %>
       <span class="document-title-containers">
-        <%= document.containers.join(', ') %>:
+        <%= document.container_titles.join(', ') %>:
       </span>
     <% end %>
     <% if document.children? %>
@@ -29,10 +29,18 @@
   </h3>
 
   <div class="al-hierarchy-side-content float-right col">
-    <% if requestable && document.repository_config %>
-      <% document.available_request_types.each do |request_type| %>
-        <%= render partial: "arclight/requests/#{request_type}", locals: { document: document } %>
-      <% end %>
+
+    <% if requestable %>
+      <div class="lux">
+        <add-to-cart-button
+          callnumber="<%= document.callnumber %>"
+          title="<%= document.title %>"
+          :unitid=<%= document.unitid_attributes.to_json %>
+          :physloc=<%= document.physloc_attributes.to_json %>
+          :containers=<%= document.container_attributes.to_json %>>
+          <%= t('request.cart', type: document.level.downcase) %>
+        </add-to-cart-button>
+      </div>
     <% end %>
   </div>
 </div>

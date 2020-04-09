@@ -25,6 +25,10 @@ class SolrDocument
     @repository_config ||= Arclight::Repository.find_by(name: repository)
   end
 
+  def extent
+    super.first
+  end
+
   def self.aeon_external_request_class
     Pulfalight::Requests::AeonExternalRequest
   end
@@ -56,10 +60,11 @@ class SolrDocument
 
   def collection_solr_document
     @collection_solr_document ||= begin
-                                    ead_id = fetch(:_root_, "")
-                                    return if ead_id.empty?
+                                    parent_id = fetch(:_root_, "")
+                                    parent_id = fetch(:ead_ssi, "") if parent_id.empty?
+                                    return if parent_id.empty?
 
-                                    solr_response = Blacklight.default_index.find(ead_id, fl: "*,[child]")
+                                    solr_response = Blacklight.default_index.find(parent_id, fl: "*,[child]")
                                     response = solr_response["response"]
                                     docs = response["docs"]
                                     docs.last
@@ -91,21 +96,13 @@ class SolrDocument
   end
 
   def volume
-    values = fetch(:volume_ssm, [])
-    values.first
+    return unless physical_holding.box_number
+
+    "Box#{physical_holding.box_number}"
   end
 
   def eadid
     values = fetch(:eadid_ssm, [])
-    values.first
-  end
-
-  def location_notes
-    fetch(:location_note_ssm, [])
-  end
-
-  def location_code
-    values = fetch(:location_code_ssm, [])
     values.first
   end
 
@@ -116,6 +113,10 @@ class SolrDocument
 
   def containers
     @containers ||= build_containers
+  end
+
+  def container_titles
+    @container_titles ||= containers.map(&:title)
   end
 
   # These are used to bind data to the Vue component for requests
@@ -167,6 +168,14 @@ class SolrDocument
     physical_holding&.unitid_attributes
   end
 
+  def physloc_notes
+    physical_holding&.physloc_notes
+  end
+
+  def physloc_code
+    physical_holding&.physloc_code
+  end
+
   def physloc_attributes
     physical_holding&.physloc_attributes
   end
@@ -184,6 +193,10 @@ class SolrDocument
       values.first
     end
 
+    def box_number
+      fetch(:box_number_ssi, nil)
+    end
+
     def unitid
       values = fetch(:unitid_ssm, [])
       values.first
@@ -196,6 +209,10 @@ class SolrDocument
         type: "barcode",
         value: unitid
       }
+    end
+
+    def physloc_notes
+      fetch(:physical_location_notes_ssm, [])
     end
 
     def physloc_code

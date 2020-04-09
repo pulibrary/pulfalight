@@ -1,5 +1,11 @@
 <% if item_requestable?('', { document: document }) %>
   <div class='mr-4 al-show-actions-box-request flex-md-fill'>
+    <% document.available_request_types.each do |request_type| %>
+      <%= render partial: "arclight/requests/#{request_type}", locals: { document: document } %>
+    <% end %>
+  </div>
+
+  <div class='mr-4 al-show-actions-box-request flex-md-fill'>
     <div class="lux">
       <add-to-cart-button
         callnumber="<%= document.callnumber %>"
@@ -7,13 +13,8 @@
         :unitid=<%= document.unitid_attributes.to_json %>
         :physloc=<%= document.physloc_attributes.to_json %>
         :containers=<%= document.container_attributes.to_json %>>
-        Add <%= document.title %> to Cart
+        <%= t('request.cart', type: document.level.downcase) %>
       </add-to-cart-button>
     </div>
-  </div>
-  <div class='mr-4 al-show-actions-box-request flex-md-fill'>
-    <% document.available_request_types.each do |request_type| %>
-      <%= render partial: "arclight/requests/#{request_type}", locals: { document: document } %>
-    <% end %>
   </div>
 <% end %>

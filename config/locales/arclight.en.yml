@@ -1,0 +1,4 @@
+en:
+  arclight:
+    request:
+      container: "Request this %{type}"
