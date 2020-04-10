@@ -34,6 +34,7 @@ Metrics/MethodLength:
 RSpec/ExampleLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
+    - 'spec/models/pulfalight/requests/aeon_external_request_spec.rb'
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 RSpec/VerifiedDoubles:

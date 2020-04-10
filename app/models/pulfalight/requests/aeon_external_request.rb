@@ -5,10 +5,13 @@ module Pulfalight
     class AeonExternalRequest < Arclight::Requests::AeonExternalRequest
       include Rails.application.routes.url_helpers
 
+      def self.config_file_path
+        "config/aeon.yml"
+      end
+
       def config
         @config ||= begin
-                      yaml_file_path = "config/aeon.yml"
-                      yaml_file = File.read(yaml_file_path)
+                      yaml_file = File.read(self.class.config_file_path)
                       YAML.safe_load(yaml_file)
                     end
       end
@@ -67,7 +70,7 @@ module Pulfalight
             "ItemVolume_#{request_id}" => @document.volume, # Example: "Box23"
             "ItemInfo1_#{request_id}" => @document.acqinfo, # Example: "Restrictions May Appli. Check Finding Aid."
             "ItemInfo2_#{request_id}" => @document.extent, # Example: "262.4 linear feet | 648 boxes and 5 oversize folders"
-            "ItemInfo3_#{request_id}" => 1, # This is the unit with or without a label (1 or Reel 5)
+            "ItemInfo3_#{request_id}" => @document.container_titles.first, # This is the unit with or without a label (1 or Reel 5)
             "ItemInfo4_#{request_id}" => @document.physloc_notes.join(","), # I am uncertain as to where this is generated
             "ItemInfo5_#{request_id}" => solr_document_url(@document, host: host),
             "Location_#{request_id}" => @document.physloc_code, # Example: mudd

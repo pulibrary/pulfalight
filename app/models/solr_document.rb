@@ -164,6 +164,10 @@ class SolrDocument
     physical_holding&.barcode
   end
 
+  def box_number
+    physical_holding&.box_number
+  end
+
   def unitid_attributes
     physical_holding&.unitid_attributes
   end
