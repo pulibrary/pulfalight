@@ -6,14 +6,10 @@ module PulfalightHelper
     DateTime.current.year
   end
 
-  def repository_config_present(_, document)
+  def repository_config_present?(_, document)
     document.repository_config.present?
   end
-
-  def request_config_present(var, document)
-    repository_config_present(var, document) &&
-      document.repository_config.request_config_present?
-  end
+  alias request_config_present? repository_config_present?
 
   # Is this needed?
   def document
