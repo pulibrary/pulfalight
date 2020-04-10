@@ -87,7 +87,8 @@ namespace :pulfalight do
   task :seed do
     puts "Seeding index with data from spec/fixtures/ead..."
 
-    Dir.glob("spec/fixtures/ead/**/*.xml").each do |file|
+    # Dir.glob("spec/fixtures/ead/**/*.xml").each do |file|
+    Dir.glob("spec/fixtures/ead/C0002.xml").each do |file|
       parent_path = File.expand_path("..", file)
       repository_id = File.basename(parent_path)
       ENV["REPOSITORY_ID"] = repository_id
@@ -185,7 +186,7 @@ namespace :pulfalight do
   def index_document(relative_path:, root_path: nil)
     root_path ||= pulfa_root
     ead_file_path = File.join(root_path, relative_path)
-    IndexJob.perform_later([ead_file_path])
+    IndexJob.perform_now([ead_file_path])
   end
 
   # Index a directory of PULFA EAD-XML Document into Solr
