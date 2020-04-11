@@ -31,7 +31,8 @@ module PulfalightHelper
   # @override
   # @param [SolrDocument]
   def document_parents(document)
-    Pulfalight::Parents.from_solr_document(document).as_parents
+    parents = Pulfalight::Parents.from_solr_document(document)
+    parents.as_parents
   end
 
   ##

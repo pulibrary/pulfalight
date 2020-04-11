@@ -1,0 +1,21 @@
+{
+          "ref_ssm":["C0002_c001",
+                      "[]"],
+                              "id":"C0002_c001",
+                                      "containers_ssim":["folder 1",
+                                                  "folder 1"],
+                                                          "ead_ssi":"C0002",
+                                                                  "title_ssm":["Letters to Maria Brown and Others, 1798-1814"],
+                                                                          "normalized_title_ssm":["Letters to Maria Brown and Others, 1798-1814, 1798-1814"],
+                                                                                  "normalized_date_ssm":["1798-1814"],
+                                                                                          "component_level_isim":[1],
+                                                                                                  "parent_ssm":["C0002"],
+                                                                                                          "parent_unittitles_ssm":["Penelope Pennington Collection, 1798-1827"],
+                                                                                                                  "collection_unitid_ssm":["C0002"],
+                                                                                                                          "collection_ssm":["Penelope Pennington Collection, 1798-1827"],
+                                                                                                                                  "extent_ssm":["1 folder"],
+                                                                                                                                          "has_online_content_ssim":["false"],
+                                                                                                                                                  "child_component_count_isim":[0],
+                                                                                                                                                          "level_ssm":["File"],
+                                                                                                                                                                  "scopecontent_ssm":["Contains 5 AMs letters."]
+                                                                                                                                                                          }

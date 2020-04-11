@@ -6,6 +6,7 @@ include BuildSolrDocument
 describe PulfalightHelper, type: :helper do
   let(:solr_response) { instance_double(Blacklight::Solr::Response) }
   let(:search_service) { instance_double(Blacklight::SearchService) }
+  let(:fixture_file_path) { Rails.root.join("spec", "fixtures", "C0002.json") }
 
   describe "#current_year" do
     let(:output) { helper.current_year }
@@ -77,6 +78,48 @@ describe PulfalightHelper, type: :helper do
       it "generates a random string" do
         expect(output).not_to be_empty
       end
+    end
+  end
+
+  describe "#document_parents" do
+    let(:fixture_file_path) { Rails.root.join("spec", "fixtures", "C0002_c001.json") }
+    let(:document) { build_solr_document(fixture_file_path, solr_response) }
+    let(:output) { helper.document_parents(document) }
+    it "builds the Parent objects Solr Document" do
+      expect(output).not_to be_empty
+      expect(output.first).to be_a(Arclight::Parent)
+    end
+  end
+
+  describe "#parents_to_links" do
+    let(:fixture_file_path) { Rails.root.join("spec", "fixtures", "C0002_c001.json") }
+    let(:document) { build_solr_document(fixture_file_path, solr_response) }
+    let(:output) { helper.parents_to_links(document) }
+    it "builds the URLs for the parent Solr Documents" do
+      expect(output).not_to be_empty
+      expect(output).to include("<span></span><span aria-hidden=\"true\"> » </span><a href=\"/catalog/")
+      expect(output).to include("\">Penelope Pennington Collection, 1798-1827</a>")
+    end
+  end
+
+  describe "#overridden_document_parents" do
+    let(:fixture_file_path) { Rails.root.join("spec", "fixtures", "C0002_c001.json") }
+    let(:document) { build_solr_document(fixture_file_path, solr_response) }
+    let(:output) { helper.overridden_document_parents(document) }
+    it "builds the Parent objects Solr Document" do
+      expect(output).not_to be_empty
+      expect(output.first).to be_a(Arclight::Parent)
+    end
+  end
+
+  describe "#overridden_parents_to_links" do
+    let(:fixture_file_path) { Rails.root.join("spec", "fixtures", "C0002_c001.json") }
+    let(:document) { build_solr_document(fixture_file_path, solr_response) }
+    let(:output) { helper.overridden_parents_to_links(document) }
+    it "builds the URLs for the parent Solr Documents" do
+      expect(output).not_to be_empty
+      expect(output).to include("<span></span><span aria-hidden=\"true\"> » </span><a href=\"/catalog/")
+      expect(output).to include("\">Penelope Pennington Collection, 1798-1827</a>")
     end
   end
 end
