@@ -113,7 +113,6 @@ describe "EAD 2 traject indexing", type: :feature do
   end
 
   describe "digital objects" do
-
     context "when <dao> is child of the <did> in a <c0x> component" do
       let(:component) { result["components"].find { |c| c["id"] == ["MC221_c0094"] } }
 
@@ -130,26 +129,24 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
-=begin
-    context "when <dao> has no role" do
-      let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
-      end
-      let(:component) { result["components"].find { |c| c["id"] == ["WC064_c11"] } }
-
-      it "gets the digital objects with role: null" do
-        json = JSON.generate(
-          label: "http://arks.princeton.edu/ark:/88435/vh53wv96d",
-          href: "http://arks.princeton.edu/ark:/88435/vh53wv96d"
-        ).slice(0..-2) + ",\"role\":null}"
-        expect(component["digital_objects_ssm"]).to eq(
-          [
-            json
-          ]
-        )
-      end
-    end
-=end
+    #     context "when <dao> has no role" do
+    #       let(:fixture_path) do
+    #         Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+    #       end
+    #       let(:component) { result["components"].find { |c| c["id"] == ["WC064_c11"] } }
+    #
+    #       it "gets the digital objects with role: null" do
+    #         json = JSON.generate(
+    #           label: "http://arks.princeton.edu/ark:/88435/vh53wv96d",
+    #           href: "http://arks.princeton.edu/ark:/88435/vh53wv96d"
+    #         ).slice(0..-2) + ",\"role\":null}"
+    #         expect(component["digital_objects_ssm"]).to eq(
+    #           [
+    #             json
+    #           ]
+    #         )
+    #       end
+    #     end
 
     it "gets the title tesim" do
       expect(result["title_teim"]).to include(

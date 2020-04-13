@@ -459,15 +459,15 @@ compose "physical_holdings", lambda { |record, accumulator, _context|
   end
   to_field "did_note_ssm", extract_xpath("./did/note")
 
-  # Retrieve only the top-level of components which are linked to this physical location
-  to_field "components" do |record, accumulator, _context|
-    parent_id = record.attribute("id")
-    elements = record.xpath("../../dsc[@type='combined']/*[is_component(.)]/did/container[@parent='#{parent_id}']/../..", NokogiriXpathExtensions.new)
-    elements.each do |element|
-      output = map_record(element)
-      accumulator << output
-    end
-  end
+  #   # Retrieve only the top-level of components which are linked to this physical location
+  #   to_field "components" do |record, accumulator, _context|
+  #     parent_id = record.attribute("id")
+  #     elements = record.xpath("../../dsc[@type='combined']/*[is_component(.)]/did/container[@parent='#{parent_id}']/../..", NokogiriXpathExtensions.new)
+  #     elements.each do |element|
+  #       output = map_record(element)
+  #       accumulator << output
+  #     end
+  #   end
 end
 
 # =============================

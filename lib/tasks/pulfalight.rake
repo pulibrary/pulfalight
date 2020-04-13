@@ -88,7 +88,8 @@ namespace :pulfalight do
     puts "Seeding index with data from spec/fixtures/ead..."
 
     # Dir.glob("spec/fixtures/ead/**/*.xml").each do |file|
-    Dir.glob("spec/fixtures/ead/C0002.xml").each do |file|
+    # Dir.glob("spec/fixtures/ead/C0002.xml").each do |file|
+    Dir.glob("spec/fixtures/ead/mss/WC064.EAD.xml").each do |file|
       parent_path = File.expand_path("..", file)
       repository_id = File.basename(parent_path)
       ENV["REPOSITORY_ID"] = repository_id

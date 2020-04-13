@@ -20,9 +20,14 @@ module PulfalightHelper
     document.build_external_request(presenter: show_presenter(document))
   end
 
+  # I would prefer that this be implemented as a static method
+  def normalized_id_class
+    Arclight::NormalizedId
+  end
+
   # @override
   def normalize_id(id)
-    Arclight::NormalizedId.new(id).to_s
+    normalized_id_class.new(id).to_s
   rescue Arclight::Exceptions::IDNotFound
     SecureRandom.hex(14)
   end

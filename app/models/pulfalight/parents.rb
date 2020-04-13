@@ -2,8 +2,12 @@
 
 module Pulfalight
   class Parents < Arclight::Parents
+    def self.normalized_id_class
+      Arclight::NormalizedId
+    end
+
     def eadid
-      Arclight::NormalizedId.new(@eadid).to_s
+      self.class.normalized_id_class.new(@eadid).to_s
     rescue Arclight::Exceptions::IDNotFound
       SecureRandom.hex(14)
     end

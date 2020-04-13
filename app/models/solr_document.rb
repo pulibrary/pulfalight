@@ -1,4 +1,7 @@
 # frozen_string_literal: true
+
+require Rails.root.join("lib", "arclight", "digital_object")
+
 class SolrDocument
   include Blacklight::Solr::Document
   include Arclight::SolrDocument
@@ -65,9 +68,14 @@ class SolrDocument
                                     return if parent_id.empty?
 
                                     solr_response = Blacklight.default_index.find(parent_id, fl: "*,[child]")
+                                    # index = Blacklight.default_index
+                                    # client = Blacklight.default_index.connection
+                                    # client.get('select', params: { q: "id:#{parent_id}", fl: "*,[child]" })
                                     response = solr_response["response"]
                                     docs = response["docs"]
                                     docs.last
+                                  rescue Blacklight::Exceptions::RecordNotFound
+                                    nil
                                   end
   end
 
@@ -90,13 +98,26 @@ class SolrDocument
     values.first
   end
 
+  def self.digital_object_class
+    Arclight::DigitalObject
+  end
+
+  def digital_objects
+    digital_objects_field = fetch("digital_objects_ssm", []).reject(&:empty?)
+    return [] if digital_objects_field.blank?
+
+    digital_objects_field.map do |object|
+      self.class.digital_object_class.from_json(object)
+    end
+  end
+
   def acqinfo
     values = fetch(:acqinfo_ssm, [])
     values.first
   end
 
   def volume
-    return unless physical_holding.box_number
+    return unless physical_holding&.box_number
 
     "Box#{physical_holding.box_number}"
   end
@@ -173,7 +194,7 @@ class SolrDocument
   end
 
   def physloc_notes
-    physical_holding&.physloc_notes
+    physical_holding&.physloc_notes || []
   end
 
   def physloc_code

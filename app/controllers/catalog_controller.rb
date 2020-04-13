@@ -20,6 +20,10 @@ class CatalogController < ApplicationController
     !document.collection?
   end
 
+  def repository_config_present?
+    @document.repository_config.present?
+  end
+
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
