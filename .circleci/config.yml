@@ -49,6 +49,7 @@ jobs:
           name: Build LUX for running the tests
           command: |
             cd node_modules/lux-design-system
+            yarn install
             yarn build:system
       # Store yarn / webpacker cache
       - save_cache:
@@ -125,6 +126,7 @@ jobs:
           name: Build LUX for running the tests
           command: |
             cd node_modules/lux-design-system
+            yarn install
             yarn build:system
       - run:
           name: Install dependencies
@@ -176,6 +178,7 @@ jobs:
           name: Build LUX for running the tests
           command: |
             cd node_modules/lux-design-system
+            yarn install
             yarn build:system
 
       # Analyze coverage report
