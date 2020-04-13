@@ -113,6 +113,7 @@ describe "EAD 2 traject indexing", type: :feature do
   end
 
   describe "digital objects" do
+
     context "when <dao> is child of the <did> in a <c0x> component" do
       let(:component) { result["components"].find { |c| c["id"] == ["MC221_c0094"] } }
 
@@ -129,6 +130,7 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
+=begin
     context "when <dao> has no role" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
@@ -147,6 +149,7 @@ describe "EAD 2 traject indexing", type: :feature do
         )
       end
     end
+=end
 
     it "gets the title tesim" do
       expect(result["title_teim"]).to include(
