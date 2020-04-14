@@ -13,6 +13,31 @@ class CatalogController < ApplicationController
     render json: @document
   end
 
+  # @see Blacklight::Catalog#show
+  def show
+    deprecated_response, @document = search_service.fetch(params[:id])
+    @response = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(deprecated_response, "The @response instance variable is deprecated; use @document.response instead.")
+
+    respond_to do |format|
+      format.html do
+        # See if this is an AJAX response
+        if request.xml_http_request?
+          shallow_values = @document.to_h
+          shallow_values["components"] = []
+          shallow_document = SolrDocument.new(shallow_values)
+
+          render :unstyled, document: shallow_document
+        else
+          @search_context = setup_next_and_previous_documents
+        end
+      end
+      format.json do
+        render json: @document.to_json
+      end
+      additional_export_formats(@document, format)
+    end
+  end
+
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
