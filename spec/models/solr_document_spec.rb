@@ -12,6 +12,21 @@ RSpec.describe Arclight::SolrDocument do
     it { expect(document).to respond_to(:eadid) }
   end
 
+  describe "#collection?" do
+    let(:file_path) do
+      Rails.root.join("spec", "fixtures", "WC064.json")
+    end
+    let(:values) do
+      fixture = File.read(file_path)
+      JSON.parse(fixture)
+    end
+    let(:document) { SolrDocument.new(values) }
+
+    it "determines whether or not a document is an EAD collection" do
+      expect(document.collection?).to be true
+    end
+  end
+
   describe "#to_json" do
     let(:file_path) do
       Rails.root.join("spec", "fixtures", "WC064.json")
