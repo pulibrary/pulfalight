@@ -22,11 +22,10 @@ class CatalogController < ApplicationController
       format.html do
         if request.xml_http_request?
           # If a component (rather than an entire collection) is requested, this ensures that the component has no child nodes
-          minimal_values = @document.to_h
-          minimal_values["components"] = [] unless @document.collection?
-          minimal_document = SolrDocument.new(minimal_values)
+          minimal_attributes = @document.attributes
+          minimal_attributes["components"] = [] unless @document.collection?
 
-          render :minimal, locals: { document: minimal_document }
+          render "catalog/_minimal", locals: { attributes: minimal_attributes }
         else
           @search_context = setup_next_and_previous_documents
         end
