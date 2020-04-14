@@ -2,6 +2,97 @@
 class SolrDocument
   include Blacklight::Solr::Document
   include Arclight::SolrDocument
+  include ActiveModel::Serialization
+
+  COLLECTION_LEVEL = "collection"
+
+  def components
+    fetch(:components, [])
+  end
+
+  def component_documents
+    components.map { |component_values| self.class.new(component_values) }
+  end
+
+  def component_attributes
+    component_documents.map(&:attributes)
+  end
+
+  def level
+    values = fetch(:level_ssm, [])
+    values.first
+  end
+
+  def collection?
+    return false if level.nil?
+
+    level == self.class::COLLECTION_LEVEL
+  end
+
+  def id
+    Array.wrap(super).first
+  end
+
+  def refs
+    fetch("ref_ssm", [])
+  end
+
+  def ead
+    fetch("ead_ssi", [])
+  end
+
+  def title
+    fetch("title_ssm", [])
+  end
+
+  def places
+    fetch("places_ssm", [])
+  end
+
+  def access_subjects
+    fetch("access_subjects_ssm", [])
+  end
+
+  def acqinfo
+    fetch("acqinfo_ssm", [])
+  end
+
+  def scopecontent
+    fetch("scopecontent_ssm", [])
+  end
+
+  def parent
+    fetch("parent_ssm", [])
+  end
+
+  def abstract
+    fetch("abstract_ssm", [])
+  end
+
+  def collection
+    fetch("collection_ssm", [])
+  end
+
+  def names
+    fetch("names_ssim", [])
+  end
+
+  def corpname
+    fetch("corpname_ssm", [])
+  end
+
+  def geogname
+    fetch("geogname_ssm", [])
+  end
+
+  def attributes
+    default_attributes = {}
+    merged = default_attributes.merge(blacklight_attributes)
+    merged = merged.merge(arclight_attributes)
+    merged = merged.merge(pulfalight_attributes)
+    merged
+  end
+  delegate :to_json, to: :attributes
 
   # self.unique_key = 'id'
 
@@ -17,4 +108,48 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  private
+
+    def pulfalight_attributes
+      {
+        components: component_attributes,
+        containers: containers,
+        refs: refs,
+        ead: ead,
+        title: title,
+        collection: collection,
+        names: names,
+        corpname: corpname,
+        geogname: geogname,
+        places: places,
+        access_subjects: access_subjects,
+        acqinfo: acqinfo,
+        scopecontent: scopecontent
+      }
+    end
+
+    def arclight_attributes
+      {
+        level: level,
+        component_level: component_level,
+        reference: reference,
+        creator: creator,
+        abstract: abstract,
+        extent: extent,
+        repository: repository,
+        unitid: unitid,
+        eadid: eadid,
+        parent: parent,
+        parent_levels: parent_levels,
+        parent_labels: parent_labels,
+        parent_ids: parent_ids
+      }
+    end
+
+    def blacklight_attributes
+      {
+        id: id
+      }
+    end
 end
