@@ -3,6 +3,30 @@ class SolrDocument
   include Blacklight::Solr::Document
   include Arclight::SolrDocument
 
+  def self.digital_object_class
+    Pulfalight::DigitalObject
+  end
+
+  def digital_objects
+    values = fetch("digital_objects_ssm", [])
+    digital_objects_field = values.reject(&:empty?)
+    return [] if digital_objects_field.blank?
+
+    digital_objects_field.map do |object|
+      self.class.digital_object_class.from_json(object)
+    end
+  end
+
+  def direct_digital_objects
+    values = fetch("direct_digital_objects_ssm", [])
+    direct_digital_objects_field = values.reject(&:empty?)
+    return [] if direct_digital_objects_field.blank?
+
+    direct_digital_objects_field.map do |object|
+      self.class.digital_object_class.from_json(object)
+    end
+  end
+
   # self.unique_key = 'id'
 
   # Email uses the semantic field mappings below to generate the body of an email.

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Add a role attribute to this class
-class Arclight::DigitalObject
+class Pulfalight::DigitalObject < Arclight::DigitalObject
   attr_reader :role
   def initialize(label:, href:, role:)
     @label = label.present? ? label : href
