@@ -286,8 +286,10 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
 
   to_field "ead_ssi" do |_record, accumulator, context|
     parent = context.clipboard[:parent]
+    next unless parent
+
     ead_ids = parent.output_hash["ead_ssi"]
-    accumulator << ead_ids.first unless parent.nil? || ead_ids.blank?
+    accumulator << ead_ids.first unless ead_ids.blank?
   end
 
   to_field "title_filing_si", extract_xpath("./did/unittitle"), first_only
@@ -322,8 +324,10 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
 
   to_field "parent_ssm" do |record, accumulator, context|
     parent = context.clipboard[:parent]
+    next unless parent
+
     ids = parent.output_hash["id"]
-    unless parent.nil? || ids.blank?
+    unless ids.blank?
       accumulator << ids.first
       accumulator.concat NokogiriXpathExtensions.new.is_component(record.ancestors).reverse.map { |n| n.attribute("id")&.value&.strip&.gsub(".", "-") }
     end
@@ -336,9 +340,11 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
   to_field "parent_unittitles_ssm" do |_rec, accumulator, context|
     # top level document
     parent = context.clipboard[:parent]
-    accumulator.concat context.clipboard[:parent].output_hash["normalized_title_ssm"] unless parent.nil? || parent.output_hash["normalized_title_ssm"].blank?
+    next unless parent
+
+    accumulator.concat parent.output_hash["normalized_title_ssm"] unless parent.output_hash["normalized_title_ssm"].blank?
     parent_ssm = context.output_hash["parent_ssm"]
-    components = context.clipboard[:parent].output_hash["components"]
+    components = parent.output_hash["components"]
 
     # other components
     if parent_ssm && components
@@ -353,39 +359,57 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
 
   to_field "parent_levels_ssm" do |_record, accumulator, context|
     ## Top level document
-    accumulator.concat context.clipboard[:parent].output_hash["level_ssm"]
+    parent = context.clipboard[:parent]
+    next unless parent
+
+    accumulator.concat parent.output_hash["level_ssm"]
     ## Other components
     context.output_hash["parent_ssm"]&.drop(1)&.each do |id|
       accumulator.concat Array
-        .wrap(context.clipboard[:parent].output_hash["components"])
+        .wrap(parent.output_hash["components"])
         .select { |c| c["ref_ssi"] == [id] }.map { |c| c["level_ssm"] }.flatten
     end
   end
 
   to_field "unitid_ssm", extract_xpath("./did/unitid")
   to_field "collection_unitid_ssm" do |_record, accumulator, context|
-    accumulator.concat Array.wrap(context.clipboard[:parent].output_hash["unitid_ssm"])
+    parent = context.clipboard[:parent]
+    next unless parent
+
+    accumulator.concat Array.wrap(parent.output_hash["unitid_ssm"])
   end
   to_field "repository_ssm" do |_record, accumulator, context|
-    accumulator << context.clipboard[:parent].clipboard[:repository]
+    parent = context.clipboard[:parent]
+    next unless parent
+
+    accumulator << parent.clipboard[:repository]
   end
   to_field "repository_sim" do |_record, accumulator, context|
-    accumulator << context.clipboard[:parent].clipboard[:repository]
+    parent = context.clipboard[:parent]
+    next unless parent
+
+    accumulator << parent.clipboard[:repository]
   end
   to_field "collection_ssm" do |_record, accumulator, context|
     parent = context.clipboard[:parent]
+    next unless parent
+
     normalized_title = parent.output_hash["normalized_title_ssm"]
 
     accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
   end
   to_field "collection_sim" do |_record, accumulator, context|
     parent = context.clipboard[:parent]
+    next unless parent
+
     normalized_title = parent.output_hash["normalized_title_ssm"]
 
     accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
   end
   to_field "collection_ssi" do |_record, accumulator, context|
     parent = context.clipboard[:parent]
+    next unless parent
+
     normalized_title = parent.output_hash["normalized_title_ssm"]
 
     accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
@@ -401,7 +425,10 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
     accumulator << record.xpath("./did/origination").map(&:text).join(", ")
   end
   to_field "collection_creator_ssm" do |_record, accumulator, context|
-    accumulator.concat Array.wrap(context.clipboard[:parent].output_hash["creator_ssm"])
+    parent = context.clipboard[:parent]
+    next unless parent
+
+    accumulator.concat Array.wrap(parent.output_hash["creator_ssm"])
   end
   to_field "has_online_content_ssim", extract_xpath(".//dao") do |_record, accumulator|
     accumulator.replace([accumulator.any?])
@@ -517,6 +544,17 @@ compose "components", ->(record, accumulator, _context) { accumulator.concat rec
     to_field "#{selector}_ssm", extract_xpath("./did/#{selector}")
   end
   to_field "did_note_ssm", extract_xpath("./did/note")
+
+  to_field "components" do |record, accumulator, context|
+    child_components = record.xpath("./*[is_component(.)]", NokogiriXpathExtensions.new)
+    child_components.each do |child_component|
+      previous_parent = context.clipboard[:parent]
+      context.clipboard[:parent] = record
+      output = map_record(child_component)
+      accumulator << output
+      context.clipboard[:parent] = previous_parent
+    end
+  end
 end
 # rubocop:enable Metrics/BlockLength
 
