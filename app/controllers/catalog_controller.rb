@@ -10,7 +10,7 @@ class CatalogController < ApplicationController
     raise(ActionController::RoutingError, "Not Found") unless blacklight_config.raw_endpoint.enabled
 
     _, @document = search_service.fetch(params[:id])
-    render json: @document
+    render json: @document.to_json
   end
 
   configure_blacklight do |config|
@@ -46,6 +46,10 @@ class CatalogController < ApplicationController
     #  # rows: 1,
     #  # q: '{!term f=id v=$id}'
     # }
+
+    config.default_document_solr_params = {
+      fl: "*,[child]"
+    }
 
     # solr field configuration for search results/index views
     config.index.title_field = "normalized_title_ssm"
