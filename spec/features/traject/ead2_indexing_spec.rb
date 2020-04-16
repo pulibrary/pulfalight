@@ -67,48 +67,66 @@ describe "EAD 2 traject indexing", type: :feature do
   end
 
   describe "container indexing" do
-    context "when indexing a collection with deeply nested components" do
-      let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "ead", "C0614.EAD.xml")
-      end
-
-      it "indexes the nested components" do
-        components = result["components"]
-        child_component_trees = components.select { |c| c["components"] && !c["components"].empty? }
-        child_component_tree = child_component_trees.first
-        expect(child_component_tree).to include("id")
-        expect(child_component_tree["id"]).to include("C0614_c00001")
-        nested_component_trees = child_component_tree["components"]
-        expect(nested_component_trees).not_to be_empty
-        nested_component_tree = nested_component_trees.first
-        expect(nested_component_tree).to include("id")
-        expect(nested_component_tree["id"]).to include("C0614_c00002")
-      end
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "C0614.EAD.xml")
     end
 
-    it "doesn't index them as top-level components" do
+    it "indexes the containers as nested documents" do
+      root_component = result["components"].last
+      parent_components = root_component["components"].last
+      components = parent_components["components"]
+      component_with_containers = components.select { |c| c.key?("containers") }
+      expect(component_with_containers).not_to be_empty
+      component = component_with_containers.first
+      containers = component["containers"]
+      expect(containers).not_to be_empty
+      container = containers.first
+      expect(container).to include("type_ssim" => ["folder"])
+      expect(container).to include("parent_ssim" => ["C0614_i1"])
+    end
+  end
+
+  context "when indexing a collection with deeply nested components" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "C0614.EAD.xml")
+    end
+
+    it "indexes the nested components" do
       components = result["components"]
-      expect(components.length).to eq 1
-      expect(components.group_by { |x| x["id"].first }["C0002_i1"]).to be_blank
+      child_component_trees = components.select { |c| c["components"] && !c["components"].empty? }
+      child_component_tree = child_component_trees.first
+      expect(child_component_tree).to include("id")
+      expect(child_component_tree["id"]).to include("C0614_c00001")
+      nested_component_trees = child_component_tree["components"]
+      expect(nested_component_trees).not_to be_empty
+      nested_component_tree = nested_component_trees.first
+      expect(nested_component_tree).to include("id")
+      expect(nested_component_tree["id"]).to include("C0614_c00002")
     end
+  end
 
-    it "doesn't leave empty arrays around" do
-      component = result.as_json["components"].first
+  it "doesn't index them as top-level components" do
+    components = result["components"]
+    expect(components.length).to eq 1
+    expect(components.group_by { |x| x["id"].first }["C0002_i1"]).to be_blank
+  end
 
-      expect(component["scopecontent_ssm"]).not_to be_empty
-      expect(component["scopecontent_ssm"].length).to eq(1)
-      expect(component["scopecontent_ssm"].first).not_to be_empty
-    end
+  it "doesn't leave empty arrays around" do
+    component = result.as_json["components"].first
 
-    it "indexes deep children without periods" do
-      components = result.as_json["components"]
-      component = components.first
+    expect(component["scopecontent_ssm"]).not_to be_empty
+    expect(component["scopecontent_ssm"].length).to eq(1)
+    expect(component["scopecontent_ssm"].first).not_to be_empty
+  end
 
-      expect(component["parent_ssm"]).to eq ["MC221"]
+  it "indexes deep children without periods" do
+    components = result.as_json["components"]
+    component = components.first
 
-      child_component = component["components"].last
-      expect(child_component["parent_ssm"]).to eq ["MC221", "MC221_c0001"]
-    end
+    expect(component["parent_ssm"]).to eq ["MC221"]
+
+    child_component = component["components"].last
+    expect(child_component["parent_ssm"]).to eq ["MC221", "MC221_c0001"]
   end
 
   describe "digital objects" do
