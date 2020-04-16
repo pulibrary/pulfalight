@@ -32,7 +32,7 @@ describe "EAD 2 traject indexing", type: :feature do
   end
 
   let(:fixture_path) do
-    Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC221.EAD.xml")
+    Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC221_pruned.EAD.xml")
   end
 
   before do
@@ -47,15 +47,26 @@ describe "EAD 2 traject indexing", type: :feature do
     it "id" do
       expect(result["id"].first).to eq "MC221"
       component_ids = result["components"].map { |component| component["id"].first }
-      expect(component_ids).to include "MC221_c0094"
+      expect(component_ids).to include "MC221_c0001"
+    end
+  end
+
+  describe "repository indexing" do
+    context "when a Repository model has been persisted before the collection is indexed" do
+      let(:repository_name) { "Test Repository" }
+      let(:repository) { Arclight::Repository.create(name: repository_name) }
+      before do
+        ENV["REPOSITORY_FILE"] = Rails.root.join("spec", "fixtures", "repositories.yml").to_s
+        ENV["REPOSITORY_ID"] = "nlm"
+      end
+      it "retrieves an existing Repository model and indexes this into Solr" do
+        expect(result).to include("repository_ssm" => ["National Library of Medicine. History of Medicine Division"])
+        expect(result).to include("repository_sim" => ["National Library of Medicine. History of Medicine Division"])
+      end
     end
   end
 
   describe "container indexing" do
-    let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "C0002.xml")
-    end
-
     context "when indexing a collection with deeply nested components" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "ead", "C0614.EAD.xml")
@@ -75,32 +86,36 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
-    it "doesn't index them as components" do
+    it "doesn't index them as top-level components" do
       components = result["components"]
-      expect(components.length).to eq 10
+      expect(components.length).to eq 1
       expect(components.group_by { |x| x["id"].first }["C0002_i1"]).to be_blank
     end
+
     it "doesn't leave empty arrays around" do
-      component = result.as_json["components"][1]
+      component = result.as_json["components"].first
 
-      expect(component["scopecontent_ssm"]).to eq ["Contains 14 AMs letters."]
+      expect(component["scopecontent_ssm"]).not_to be_empty
+      expect(component["scopecontent_ssm"].length).to eq(1)
+      expect(component["scopecontent_ssm"].first).not_to be_empty
     end
-  end
 
-  describe "child indexing" do
-    let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mss", "C1588.EAD.xml")
-    end
     it "indexes deep children without periods" do
       components = result.as_json["components"]
+      component = components.first
 
-      expect(components[2]["parent_ssm"]).to eq ["C1588", "C1588_c1", "C1588-1_c2"]
+      expect(component["parent_ssm"]).to eq ["MC221"]
+
+      child_component = component["components"].last
+      expect(child_component["parent_ssm"]).to eq ["MC221", "MC221_c0001"]
     end
   end
 
   describe "digital objects" do
     context "when <dao> is child of the <did> in a <c0x> component" do
-      let(:component) { result["components"].find { |c| c["id"] == ["MC221_c0094"] } }
+      let(:root_component) { result["components"].last }
+      let(:parent_component) { root_component["components"].last }
+      let(:component) { parent_component["components"].find { |c| c["id"] == ["MC221_c0094"] } }
 
       it "gets the digital objects" do
         expect(component["digital_objects_ssm"]).to eq(
@@ -117,14 +132,14 @@ describe "EAD 2 traject indexing", type: :feature do
 
     context "when <dao> has no role" do
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+        Rails.root.join("spec", "fixtures", "ead", "mss", "WC064_pruned.EAD.xml")
       end
-      let(:component) { result["components"].find { |c| c["id"] == ["WC064_c11"] } }
+      let(:component) { result["components"].find { |c| c["id"] == ["WC064_c1"] } }
 
       it "gets the digital objects with role: null" do
         json = JSON.generate(
-          label: "http://arks.princeton.edu/ark:/88435/vh53wv96d",
-          href: "http://arks.princeton.edu/ark:/88435/vh53wv96d"
+          label: "http://arks.princeton.edu/ark:/88435/m039k5139",
+          href: "http://arks.princeton.edu/ark:/88435/m039k5139"
         ).slice(0..-2) + ",\"role\":null}"
         expect(component["digital_objects_ssm"]).to eq(
           [
