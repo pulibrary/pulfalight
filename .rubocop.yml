@@ -12,15 +12,30 @@ AllCops:
     - 'node_modules/**/*'
     - 'spec/support/**/*'
     - 'tmp/**/*'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'lib/pulfalight/traject/ead2_component_config.rb'
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'lib/tasks/**/*'
     - 'app/controllers/catalog_controller.rb'
     - 'config/routes.rb'
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'lib/pulfalight/traject/ead2_component_config.rb'
 Metrics/MethodLength:
   Exclude:
     - 'lib/tasks/pulfalight.rake'
+    - 'lib/pulfalight/traject/ead2_component_config.rb'
+Metrics/ModuleLength:
+  Exclude:
+    - 'lib/pulfalight/traject/ead2_component_config.rb'
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'lib/pulfalight/traject/ead2_component_config.rb'
+
 RSpec/ExampleLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
