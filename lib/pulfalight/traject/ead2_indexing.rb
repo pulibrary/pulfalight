@@ -66,6 +66,14 @@ module Pulfalight
       end
     end
 
+    def build_container_indexer(context)
+      config_file_path = Rails.root.join("lib", "pulfalight", "traject", "ead2_container_config.rb")
+      indexer_settings = { parent: context }
+      Traject::Indexer::NokogiriIndexer.new(indexer_settings).tap do |i|
+        i.load_config_file(config_file_path)
+      end
+    end
+
     ##
     # Used for evaluating xpath components to find
     class NokogiriXpathExtensions

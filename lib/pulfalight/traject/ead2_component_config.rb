@@ -294,6 +294,13 @@ to_field "containers_ssim" do |record, accumulator|
     accumulator << [node.attribute("type"), node.text].join(" ").strip
   end
 end
+to_field "containers" do |record, accumulator, context|
+  record.xpath("./did/container").each do |node|
+    container_indexer = build_container_indexer(context)
+    output = container_indexer.map_record(node)
+    accumulator << output
+  end
+end
 
 Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
   to_field "#{selector}_ssm", extract_xpath("./#{selector}/*[local-name()!='head']")
