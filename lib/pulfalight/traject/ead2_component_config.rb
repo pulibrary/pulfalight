@@ -353,8 +353,13 @@ module ComponentIndexer
     to_field "did_note_ssm", extract_xpath("./did/note")
 
     # This should be implemented recursively
-    to_field "components" do |record, accumulator, context|
-      # @todo
+    to_field "components" do |record, accumulator|
+      child_components = record.xpath("./*[is_component(.)]", NokogiriXpathExtensions.new)
+      child_components.each do |child_component|
+        component_indexer = build_component_indexer
+        output = component_indexer.map_record(child_component)
+        accumulator << output
+      end
     end
   end
 end
