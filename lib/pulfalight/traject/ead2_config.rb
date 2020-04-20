@@ -253,9 +253,11 @@ to_field "language_ssm", extract_xpath("/ead/archdesc/did/langmaterial")
 to_field "descrules_ssm", extract_xpath("/ead/eadheader/profiledesc/descrules")
 
 module IndexerExtensions
-  def build_component_indexer
+  def build_component_indexer(parent)
     config_file_path = Rails.root.join("lib", "pulfalight", "traject", "ead2_component_config.rb")
-    Traject::Indexer::NokogiriIndexer.new.tap do |i|
+    # This is a work-around
+    indexer_settings = { parent: parent }
+    Traject::Indexer::NokogiriIndexer.new(indexer_settings).tap do |i|
       i.load_config_file(config_file_path)
     end
   end
@@ -280,11 +282,11 @@ end
 # record.xpath("/ead/archdesc/dsc[@type='combined']/*[is_component(.)]", NokogiriXpathExtensions.new)
 
 # The routines for indexing components
-to_field "components" do |record, accumulator|
+to_field "components" do |record, accumulator, context|
   # child_components = record.xpath("/ead/archdesc/dsc[@type='combined']/*[is_component(.)]", NokogiriXpathExtensions.new)
   child_components = record.xpath("/ead/archdesc/dsc[@type='combined']//*[is_component(.)]", NokogiriXpathExtensions.new)
   child_components.each do |child_component|
-    component_indexer = build_component_indexer
+    component_indexer = build_component_indexer(context)
     output = component_indexer.map_record(child_component)
     accumulator << output
   end

@@ -92,7 +92,7 @@ module ComponentIndexer
     end
 
     to_field "ead_ssi" do |_record, accumulator, context|
-      parent = context.clipboard[:parent]
+      parent = context.clipboard[:parent] || settings[:parent]
       next unless parent
 
       ead_ids = parent.output_hash["ead_ssi"]
@@ -130,7 +130,7 @@ module ComponentIndexer
     end
 
     to_field "parent_ssm" do |record, accumulator, context|
-      parent = context.clipboard[:parent]
+      parent = context.clipboard[:parent] || settings[:parent]
       next unless parent
 
       ids = parent.output_hash["id"]
@@ -146,7 +146,7 @@ module ComponentIndexer
 
     to_field "parent_unittitles_ssm" do |_rec, accumulator, context|
       # top level document
-      parent = context.clipboard[:parent]
+      parent = context.clipboard[:parent] || settings[:parent]
       next unless parent
 
       accumulator.concat parent.output_hash["normalized_title_ssm"] unless parent.output_hash["normalized_title_ssm"].blank?
@@ -166,7 +166,7 @@ module ComponentIndexer
 
     to_field "parent_levels_ssm" do |_record, accumulator, context|
       ## Top level document
-      parent = context.clipboard[:parent]
+      parent = context.clipboard[:parent] || settings[:parent]
       next unless parent
 
       accumulator.concat parent.output_hash["level_ssm"]
@@ -180,25 +180,25 @@ module ComponentIndexer
 
     to_field "unitid_ssm", extract_xpath("./did/unitid")
     to_field "collection_unitid_ssm" do |_record, accumulator, context|
-      parent = context.clipboard[:parent]
+      parent = context.clipboard[:parent] || settings[:parent]
       next unless parent
 
       accumulator.concat Array.wrap(parent.output_hash["unitid_ssm"])
     end
     to_field "repository_ssm" do |_record, accumulator, context|
-      parent = context.clipboard[:parent]
+      parent = context.clipboard[:parent] || settings[:parent]
       next unless parent
 
       accumulator << parent.clipboard[:repository]
     end
     to_field "repository_sim" do |_record, accumulator, context|
-      parent = context.clipboard[:parent]
+      parent = context.clipboard[:parent] || settings[:parent]
       next unless parent
 
       accumulator << parent.clipboard[:repository]
     end
     to_field "collection_ssm" do |_record, accumulator, context|
-      parent = context.clipboard[:parent]
+      parent = context.clipboard[:parent] || settings[:parent]
       next unless parent
 
       normalized_title = parent.output_hash["normalized_title_ssm"]
@@ -206,7 +206,7 @@ module ComponentIndexer
       accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
     end
     to_field "collection_sim" do |_record, accumulator, context|
-      parent = context.clipboard[:parent]
+      parent = context.clipboard[:parent] || settings[:parent]
       next unless parent
 
       normalized_title = parent.output_hash["normalized_title_ssm"]
@@ -214,7 +214,7 @@ module ComponentIndexer
       accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
     end
     to_field "collection_ssi" do |_record, accumulator, context|
-      parent = context.clipboard[:parent]
+      parent = context.clipboard[:parent] || settings[:parent]
       next unless parent
 
       normalized_title = parent.output_hash["normalized_title_ssm"]
@@ -232,7 +232,7 @@ module ComponentIndexer
       accumulator << record.xpath("./did/origination").map(&:text).join(", ")
     end
     to_field "collection_creator_ssm" do |_record, accumulator, context|
-      parent = context.clipboard[:parent]
+      parent = context.clipboard[:parent] || settings[:parent]
       next unless parent
 
       accumulator.concat Array.wrap(parent.output_hash["creator_ssm"])
@@ -353,10 +353,10 @@ module ComponentIndexer
     to_field "did_note_ssm", extract_xpath("./did/note")
 
     # This should be implemented recursively
-    to_field "components" do |record, accumulator|
+    to_field "components" do |record, accumulator, context|
       child_components = record.xpath("./*[is_component(.)]", NokogiriXpathExtensions.new)
       child_components.each do |child_component|
-        component_indexer = build_component_indexer
+        component_indexer = build_component_indexer(context)
         output = component_indexer.map_record(child_component)
         accumulator << output
       end
