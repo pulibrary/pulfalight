@@ -95,14 +95,15 @@ jobs:
           PULFALIGHT_DB_HOST: localhost
           PULFALIGHT_DB_USERNAME: pulfalight
           PULFALIGHT_DB_PASSWORD: ""
+          SOLR_URL: http://localhost:8983/solr/pulfalight-core-test
       - image: postgres:10.6-alpine
         environment:
           POSTGRES_USER: pulfalight
           POSTGRES_DB: pulfalight_test
           # POSTGRES_PASSWORD: ""
           POSTGRES_HOST_AUTH_METHOD: trust
-      - image: solr:8.4.1
-        command: bin/solr -cloud -noprompt -f -p 8984
+      - image: jrgriffiniii/pulfalight-solr:latest
+        command: solr-precreate pulfalight-core-test /opt/solr/server/solr/configsets/pulfalight
     steps:
       - attach_workspace:
           at: '~/pulfalight'
