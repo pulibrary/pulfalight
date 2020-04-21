@@ -21,53 +21,9 @@ require_relative "../year_range"
 extend TrajectPlus::Macros
 # rubocop:enable Style/MixinUsage
 
-NAME_ELEMENTS = %w[corpname famname name persname].freeze
-
-SEARCHABLE_NOTES_FIELDS = %w[
-  accessrestrict
-  accruals
-  altformavail
-  appraisal
-  arrangement
-  bibliography
-  bioghist
-  custodhist
-  fileplan
-  note
-  odd
-  originalsloc
-  otherfindaid
-  phystech
-  prefercite
-  processinfo
-  relatedmaterial
-  scopecontent
-  separatedmaterial
-  userestrict
-].freeze
-
-DID_SEARCHABLE_NOTES_FIELDS = %w[
-  abstract
-  materialspec
-  physloc
-].freeze
-
-settings do
-  provide "reader_class_name", "Arclight::Traject::NokogiriNamespacelessReader"
-  provide "solr_writer.commit_on_close", "true"
-  provide "repository", ENV["REPOSITORY_ID"]
-  provide "logger", Logger.new($stderr)
-end
-
-each_record do |_record, context|
-  next unless settings["repository"]
-
-  repository = Arclight::Repository.find_by(
-    slug: settings["repository"]
-  )
-
-  context.clipboard[:repository] = repository.name unless repository.nil?
-end
+require Rails.root.join("lib", "pulfalight", "traject", "ead2_indexing")
+self.class.include Pulfalight::Ead2Indexing
+configure_before
 
 # ==================
 # Top level document
@@ -252,35 +208,6 @@ to_field "language_ssm", extract_xpath("/ead/archdesc/did/langmaterial")
 
 to_field "descrules_ssm", extract_xpath("/ead/eadheader/profiledesc/descrules")
 
-module IndexerExtensions
-  def build_component_indexer(parent)
-    config_file_path = Rails.root.join("lib", "pulfalight", "traject", "ead2_component_config.rb")
-    # This is a work-around
-    indexer_settings = { parent: parent }
-    Traject::Indexer::NokogiriIndexer.new(indexer_settings).tap do |i|
-      i.load_config_file(config_file_path)
-    end
-  end
-end
-self.class.include(IndexerExtensions)
-
-##
-# Used for evaluating xpath components to find
-class NokogiriXpathExtensions
-  # rubocop:disable Naming/PredicateName, Style/FormatString
-  def is_component(node_set)
-    node_set.find_all do |node|
-      component_elements = (1..12).map { |i| "c#{'%02d' % i}" }
-      component_elements.push "c"
-      component_elements.include? node.name
-    end
-  end
-  # rubocop:enable Naming/PredicateName, Style/FormatString
-end
-
-# This might be the better approach, if we are to take a tree-driven parsing approach rather than iterating through all
-# record.xpath("/ead/archdesc/dsc[@type='combined']/*[is_component(.)]", NokogiriXpathExtensions.new)
-
 # The routines for indexing components
 to_field "components" do |record, accumulator, context|
   # child_components = record.xpath("/ead/archdesc/dsc[@type='combined']/*[is_component(.)]", NokogiriXpathExtensions.new)
@@ -294,7 +221,4 @@ end
 
 # rubocop:enable Metrics/BlockLength
 
-# This needs to be moved into another Module
-each_record do |_record, context|
-  context.output_hash["components"] &&= context.output_hash["components"].select { |c| c.keys.any? }
-end
+configure_after

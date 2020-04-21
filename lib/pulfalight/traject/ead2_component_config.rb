@@ -8,55 +8,7 @@ require "traject_plus/macros"
 require "arclight/missing_id_strategy"
 extend TrajectPlus::Macros
 # rubocop:enable Style/MixinUsage
-
-NAME_ELEMENTS = %w[corpname famname name persname].freeze
-
-SEARCHABLE_NOTES_FIELDS = %w[
-  accessrestrict
-  accruals
-  altformavail
-  appraisal
-  arrangement
-  bibliography
-  bioghist
-  custodhist
-  fileplan
-  note
-  odd
-  originalsloc
-  otherfindaid
-  phystech
-  prefercite
-  processinfo
-  relatedmaterial
-  scopecontent
-  separatedmaterial
-  userestrict
-].freeze
-
-DID_SEARCHABLE_NOTES_FIELDS = %w[
-  abstract
-  materialspec
-  physloc
-].freeze
-
-# This needs to be moved into another Module
-settings do
-  provide "reader_class_name", "Arclight::Traject::NokogiriNamespacelessReader"
-  provide "solr_writer.commit_on_close", "true"
-  provide "repository", ENV["REPOSITORY_ID"]
-  provide "logger", Logger.new($stderr)
-end
-
-each_record do |_record, context|
-  next unless settings["repository"]
-
-  repository = Arclight::Repository.find_by(
-    slug: settings["repository"]
-  )
-
-  context.clipboard[:repository] = repository.name unless repository.nil?
-end
+require Rails.root.join("lib", "pulfalight", "traject", "ead2_indexing")
 
 # =============================
 # Each component child document
@@ -65,7 +17,11 @@ end
 
 # Module for providing recursion over components
 module ComponentIndexer
+  self.class.include(Pulfalight::Ead2Indexing)
+
   def add_component_indexing_steps
+    configure_before
+
     to_field "ref_ssi" do |record, accumulator, context|
       accumulator << if record.attribute("id").blank?
                        strategy = Arclight::MissingIdStrategy.selected
@@ -306,7 +262,7 @@ module ComponentIndexer
       accumulator.replace range.years
     end
 
-    NAME_ELEMENTS.map do |selector|
+    Pulfalight::Ead2Indexing::NAME_ELEMENTS.map do |selector|
       to_field "names_ssim", extract_xpath("./controlaccess/#{selector}")
       to_field "#{selector}_ssm", extract_xpath(".//#{selector}")
     end
@@ -342,12 +298,12 @@ module ComponentIndexer
       end
     end
 
-    SEARCHABLE_NOTES_FIELDS.map do |selector|
+    Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
       to_field "#{selector}_ssm", extract_xpath("./#{selector}/*[local-name()!='head']")
       to_field "#{selector}_heading_ssm", extract_xpath("./#{selector}/head")
       to_field "#{selector}_teim", extract_xpath("./#{selector}/*[local-name()!='head']")
     end
-    DID_SEARCHABLE_NOTES_FIELDS.map do |selector|
+    Pulfalight::Ead2Indexing::DID_SEARCHABLE_NOTES_FIELDS.map do |selector|
       to_field "#{selector}_ssm", extract_xpath("./did/#{selector}")
     end
     to_field "did_note_ssm", extract_xpath("./did/note")
@@ -361,17 +317,14 @@ module ComponentIndexer
         accumulator << output
       end
     end
+
+    configure_after
   end
 end
 
 # Build the steps
 self.class.include(ComponentIndexer)
 add_component_indexing_steps
-
-# This needs to be moved into another Module
-each_record do |_record, context|
-  context.output_hash["components"] &&= context.output_hash["components"].select { |c| c.keys.any? }
-end
 
 ##
 # Used for evaluating xpath components to find
