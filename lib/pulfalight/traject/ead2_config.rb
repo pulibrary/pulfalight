@@ -210,7 +210,6 @@ to_field "descrules_ssm", extract_xpath("/ead/eadheader/profiledesc/descrules")
 
 # The routines for indexing components
 to_field "components" do |record, accumulator, context|
-  # child_components = record.xpath("/ead/archdesc/dsc[@type='combined']/*[is_component(.)]", NokogiriXpathExtensions.new)
   child_components = record.xpath("/ead/archdesc/dsc[@type='combined']//*[is_component(.)]", NokogiriXpathExtensions.new)
   child_components.each do |child_component|
     component_indexer = build_component_indexer(context)
