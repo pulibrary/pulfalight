@@ -51,6 +51,21 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  describe "repository indexing" do
+    context "when a Repository model has been persisted before the collection is indexed" do
+      let(:repository_name) { "Test Repository" }
+      let(:repository) { Arclight::Repository.create(name: repository_name) }
+      before do
+        ENV["REPOSITORY_FILE"] = Rails.root.join("spec", "fixtures", "repositories.yml").to_s
+        ENV["REPOSITORY_ID"] = "nlm"
+      end
+      it "retrieves an existing Repository model and indexes this into Solr" do
+        expect(result).to include("repository_ssm" => ["National Library of Medicine. History of Medicine Division"])
+        expect(result).to include("repository_sim" => ["National Library of Medicine. History of Medicine Division"])
+      end
+    end
+  end
+
   describe "container indexing" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "ead", "C0002.xml")
