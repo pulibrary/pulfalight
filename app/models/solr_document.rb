@@ -6,6 +6,17 @@ class SolrDocument
 
   COLLECTION_LEVEL = "collection"
 
+  # The attributes which are rendered by the JSON serialization
+  # @return [Array<Symbol>]
+  def self.json_attributes
+    [
+      :id,
+      :unittitle,
+      :has_digital_content,
+      :components
+    ]
+  end
+
   def components
     fetch(:components, [])
   end
@@ -44,6 +55,7 @@ class SolrDocument
   def title
     fetch("title_ssm", [])
   end
+  alias unittitle title
 
   def places
     fetch("places_ssm", [])
@@ -85,12 +97,20 @@ class SolrDocument
     fetch("geogname_ssm", [])
   end
 
+  def has_online_content
+    fetch("has_online_content_ssim", [])
+  end
+
+  def has_digital_content?
+    has_online_content.present?
+  end
+
   def attributes
     default_attributes = {}
     merged = default_attributes.merge(blacklight_attributes)
     merged = merged.merge(arclight_attributes)
     merged = merged.merge(pulfalight_attributes)
-    merged
+    merged.select { |u, _v| self.class.json_attributes.include?(u) }
   end
   delegate :to_json, to: :attributes
 
@@ -113,11 +133,13 @@ class SolrDocument
 
     def pulfalight_attributes
       {
+        has_digital_content: has_digital_content?,
         components: component_attributes,
         containers: containers,
         refs: refs,
         ead: ead,
         title: title,
+        unittitle: title,
         collection: collection,
         names: names,
         corpname: corpname,

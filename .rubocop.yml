@@ -27,6 +27,9 @@ Metrics/MethodLength:
     - 'lib/tasks/pulfalight.rake'
     - 'app/models/solr_document.rb'
     - 'app/controllers/catalog_controller.rb'
+Naming/PredicateName:
+  Exclude:
+    - 'app/models/solr_document.rb'
 RSpec/ExampleLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
