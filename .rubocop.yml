@@ -16,6 +16,7 @@ AllCops:
 Metrics/AbcSize:
   Exclude:
     - 'lib/pulfalight/traject/ead2_component_config.rb'
+    - 'lib/pulfalight/traject/ead2_physical_holding_config.rb'
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
@@ -29,6 +30,8 @@ Metrics/MethodLength:
   Exclude:
     - 'lib/tasks/pulfalight.rake'
     - 'lib/pulfalight/traject/ead2_component_config.rb'
+    - 'app/services/code_resolver.rb'
+    - 'lib/pulfalight/traject/ead2_physical_holding_config.rb'
 Metrics/ModuleLength:
   Exclude:
     - 'lib/pulfalight/traject/ead2_component_config.rb'

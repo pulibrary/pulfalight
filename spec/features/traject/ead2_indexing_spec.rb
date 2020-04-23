@@ -102,6 +102,27 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  describe "physical holding indexing" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "C0002.xml")
+    end
+
+    context "when indexing a collection with deeply nested components" do
+      it "indexes the nested components" do
+        expect(result).to include("physical_holdings")
+        expect(result["physical_holdings"]).not_to be_empty
+        physical_holdings = result["physical_holdings"]
+        physical_holding = physical_holdings.first
+        expect(physical_holding).to include("box_number_ssi" => [1])
+        expect(physical_holding).to include("box_number_ssm" => ["1"])
+        expect(physical_holding).to include("barcode_ssi" => [32_101_040_679_134])
+        expect(physical_holding).to include("barcode_ssm" => ["32101040679134"])
+        expect(physical_holding).to include("physical_location_code_ssm" => ["mss"])
+        expect(physical_holding).to include("physical_location_ssm" => ["RBSC"])
+      end
+    end
+  end
+
   describe "child indexing" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "ead", "mss", "C1588.EAD.xml")

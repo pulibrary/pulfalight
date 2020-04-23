@@ -218,6 +218,16 @@ to_field "components" do |record, accumulator, context|
   end
 end
 
+to_field "physical_holdings" do |record, accumulator, context|
+  # This is not the proper XPath
+  components = record.xpath("/ead/archdesc/dsc[@type='othertype']//*[is_component(.)]", NokogiriXpathExtensions.new)
+  components.each do |component|
+    component_indexer = build_physical_holding_indexer(context)
+    output = component_indexer.map_record(component)
+    accumulator << output
+  end
+end
+
 # rubocop:enable Metrics/BlockLength
 
 configure_after

@@ -67,6 +67,15 @@ module Pulfalight
       end
     end
 
+    def build_physical_holding_indexer(parent)
+      config_file_path = Rails.root.join("lib", "pulfalight", "traject", "ead2_physical_holding_config.rb")
+      # This is a work-around
+      indexer_settings = { parent: parent }
+      Traject::Indexer::NokogiriIndexer.new(indexer_settings).tap do |i|
+        i.load_config_file(config_file_path)
+      end
+    end
+
     ##
     # Used for evaluating xpath components to find
     class NokogiriXpathExtensions
