@@ -306,7 +306,7 @@ end
 to_field "did_note_ssm", extract_xpath("./did/note")
 
 to_field "components" do |record, accumulator, _context|
-  child_components = record.xpath("./*[is_component(.)]", NokogiriXpathExtensions.new)
+  child_components = record.xpath("./*[is_component(.)][@level != 'otherlevel']", NokogiriXpathExtensions.new)
   child_components.each do |child_component|
     root_context = settings[:parent]
     component_indexer = build_component_indexer(root_context)
