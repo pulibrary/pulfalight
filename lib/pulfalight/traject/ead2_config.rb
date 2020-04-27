@@ -211,9 +211,9 @@ to_field "descrules_ssm", extract_xpath("/ead/eadheader/profiledesc/descrules")
 
 to_field "components" do |record, accumulator, context|
   xpath = if record.is_a?(Nokogiri::XML::Document)
-            "/ead/archdesc/dsc[@type='combined']/*[is_component(.)]"
+            "/ead/archdesc/dsc[@type='combined']/*[is_component(.)][@level != 'otherlevel']"
           else
-            "./*[is_component(.)]"
+            "./*[is_component(.)][@level != 'otherlevel']"
           end
   child_components = record.xpath(xpath, Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new)
   child_components.each do |child_component|
