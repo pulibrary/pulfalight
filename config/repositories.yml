@@ -118,6 +118,20 @@ selectors:
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
   visit_note: ""
 
+selectors:
+  name: 'General Collections'
+  description: "General Collections are teaching and research collections acquired by Princeton University Library subject selectors. The collections cover a wide range of topics related to Princeton University Library's collecting areas."
+  building: 'Firestone Library'
+  address1: 'General Collections'
+  address2: 'One Washington Road'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08544'
+  country: 'USA'
+  phone: '(609) 258-1470'
+  contact_info: 'refdesk [at] princeton [dot] edu'
+  thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+
 univarchives:
   name: 'Princeton University Archives'
   building: 'Seeley G. Mudd Manuscript Library'
