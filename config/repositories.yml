@@ -11,6 +11,7 @@ cotsen:
   phone: '(609) 258-1148'
   contact_info: 'aimmel [at] princeton [dot] edu'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+  visit_note: ""
 
 eng:
   name: "Engineering Library"
@@ -25,6 +26,7 @@ eng:
   phone: '(609) 258-3200'
   contact_info: 'englib [at] princeton [dot] edu'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/eng.jpg"
+  visit_note: ""
 
 ga:
   name: "Graphic Arts Collection"
@@ -39,6 +41,7 @@ ga:
   phone: '(609) 258-3184'
   contact_info: 'rbsc [at] princeton [dot] edu'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+  visit_note: ""
 
 lae:
   name: 'Latin American Ephemera Collections'
@@ -53,6 +56,7 @@ lae:
   phone: '(609) 258-5964'
   contact_info: 'refdesk [at] princeton [dot] edu'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+  visit_note: ""
 
 mss:
   name: 'Manuscripts Division'
@@ -67,6 +71,7 @@ mss:
   phone: '(609) 258-3184'
   contact_info: 'rbsc [at] princeton [dot] edu'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+  visit_note: ""
 
 publicpolicy:
   name: 'Public Policy Papers'
@@ -81,6 +86,7 @@ publicpolicy:
   phone: '(609) 258-6345'
   contact_info: 'mudd [at] princeton [dot] edu'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/publicpolicy.jpg"
+  visit_note: ""
 
 rarebooks:
   name: 'Rare Book Division'
@@ -95,6 +101,7 @@ rarebooks:
   phone: '(609) 258-3184'
   contact_info: 'rbsc [at] princeton [dot] edu'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+  visit_note: ""
 
 selectors:
   name: 'General Collections'
@@ -109,6 +116,7 @@ selectors:
   phone: '(609) 258-1470'
   contact_info: 'refdesk [at] princeton [dot] edu'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+  visit_note: ""
 
 univarchives:
   name: 'Princeton University Archives'
@@ -122,3 +130,4 @@ univarchives:
   phone: '(609) 258-6345'
   contact_info: 'mudd [at] princeton [dot] edu'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/univarchives.jpg"
+  visit_note: ""
