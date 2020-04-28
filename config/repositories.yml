@@ -1,42 +1,124 @@
-nlm:
-  name: 'National Library of Medicine. History of Medicine Division'
-  description: 'NLM’s History of Medicine Division collects, preserves, makes available, and interprets for diverse audiences one of the world’s richest collections of historical material related to human health and disease.'
-  building: 'Building 38, Room 1E-21'
-  address1: '8600 Rockville Pike'
+cotsen:
+  name: "Cotsen Children's Library"
+  description: "The Cotsen Children's Library is a very special library within the Department of Rare Books and Special Collections at Princeton University Library. Our international research collection of illustrated children's books, manuscripts, original artwork, prints, and educational toys from the 15th century to the present day is the benefaction of Lloyd E. Cotsen '50. The Cotsen Children's Library also has a public face, serving as a resource for children, families, and educators in the greater Princeton area."
+  building: 'Firestone Library'
+  address1: 'One Washington Road'
   address2: ''
-  city: 'Bethesda'
-  state: 'MD'
-  zip: '20894'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08544'
   country: 'USA'
-  phone: ''
-  contact_info: 'hmdref@nlm.nih.gov'
-  thumbnail_url: "https://collections.nlm.nih.gov/pageturnerserver/ajaxp?theurl=http://localhost:8080/fedora/get/nlm:nlmuid-101421040-img/THUMB"
-  google_request_url: 'https://docs.google.com/a/stanford.edu/forms/d/e/1FAIpQLSeOamhY_IcFw4sPnz0ddwWWkrPaHbM5wp7JVbOLOL_mIusEyw/viewform'
-  google_request_mappings: "document_url=entry.1980510262&collection_name=entry.619150170&collection_creator=entry.14428541&eadid=entry.996397105&containers=entry.1125277048&title=entry.862815208"
-sul-spec:
-  name: 'Stanford University Libraries. Special Collections and University Archives'
-  visit_note: 'Special Collections and University Archives materials are stored offsite and must be paged 36 hours in advance.'
-  description: 'The Special Collections and University Archives Department of Stanford University Libraries is committed to acquiring, preserving, and providing access to primary source materials that support the research needs of the Stanford community and beyond. There are three distinct divisions in our department: Manuscripts, Rare Books and University Archives. We welcome all students, scholars and members of the general public to the Field Reading Room. Learn more about using and accessing our collections.'
-  building: 'Green Library'
-  address1: '557 Escondido Mall'
+  phone: '(609) 258-1148'
+  contact_info: 'aimmel [at] princeton [dot] edu'
+  thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+
+eng:
+  name: "Engineering Library"
+  description: 'Includes finding aids for collections of technical reports created by various engineering departments and programs at Princeton University from 1947 to 1998, which are housed at the Engineering Library.'
+  building: 'Engineering Library'
+  address1: 'Engineering Library'
+  address2: 'Friend Center for Engineering Education'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08540'
+  country: 'USA'
+  phone: '(609) 258-3200'
+  contact_info: 'englib [at] princeton [dot] edu'
+  thumbnail_url: "https://findingaids.princeton.edu/repositories/eng.jpg"
+
+ga:
+  name: "Graphic Arts Collection"
+  description: "Housed in Firestone Library, the Graphic Arts Collection within the Department of Rare Books and Special Collections includes original prints, drawings, photographs, illustrated books, and printed ephemera from all parts of the world, along with a substantial reference collection on the history of printing and printed books."
+  building: 'Firestone Library'
+  address1: 'One Washington Road'
   address2: ''
-  city: 'Stanford'
-  state: 'CA'
-  zip: '94305'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08544'
   country: 'USA'
-  phone: '(650) 725-1022'
-  contact_info: 'specialcollections@stanford.edu'
-  thumbnail_url: 'https://library.stanford.edu/sites/default/files/styles/150x150/public/collection/image/Collections-Super-Enlight.jpg'
-umich-bhl:
-  name: 'University of Michigan. Bentley Historical Library'
-  description: 'The Bentley Historical Library collects the materials for and promotes the study of the histories of two great, intertwined institutions, the State of Michigan and the University of Michigan. The Library is open without fee to the public, and we welcome researchers regardless of academic or professional affiliation.'
-  building: ''
-  address1: '1150 Beal Ave'
+  phone: '(609) 258-3184'
+  contact_info: 'rbsc [at] princeton [dot] edu'
+  thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+
+general:
+  name: 'General Collections'
+  description: "General Collections are teaching and research collections acquired by Princeton University Library subject selectors. The collections cover a wide range of topics related to Princeton University Library's collecting areas."
+  building: 'Firestone Library'
+  address1: 'General Collections'
+  address2: 'One Washington Road'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08544'
+  country: 'USA'
+  phone: '(609) 258-1470'
+  contact_info: 'refdesk [at] princeton [dot] edu'
+  thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+
+lae:
+  name: 'Latin American Ephemera Collections'
+  description: "The Princeton University Library has developed numerous collections of Latin American ephemera that are unique in their depth and scope. Privileging the popular voices of the region, the collections document numerous political and social movements, and a wide variety of key socioeconomic and cultural developments."
+  building: 'Firestone Library'
+  address1: 'One Washington Road'
   address2: ''
-  city: 'Ann Arbor'
-  state: 'MI'
-  zip: '48109-2113'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08544'
   country: 'USA'
-  phone: ''
-  contact_info: 'bentley.ref@umich.edu'
-  thumbnail_url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Bhlexterior.jpg/150px-Bhlexterior.jpg'
+  phone: '(609) 258-5964'
+  contact_info: 'refdesk [at] princeton [dot] edu'
+  thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+
+mss:
+  name: 'Manuscripts Division'
+  description: 'Housed in Firestone Library, the Manuscripts Division of the Department of Special Collections includes material documenting 5000 years of recorded history and all parts of the world, with strengths in Western Europe, the Near East, the United States, and Latin America.'
+  building: 'Firestone Library'
+  address1: 'One Washington Road'
+  address2: ''
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08544'
+  country: 'USA'
+  phone: '(609) 258-3184'
+  contact_info: 'rbsc [at] princeton [dot] edu'
+  thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+
+publicpolicy:
+  name: 'Public Policy Papers'
+  description: "Housed at the Seeley G. Mudd Manuscript Library, the Public Policy Papers include important collections representing individuals and organizations in the areas of 20th-century American foreign policy, jurisprudence, journalism, public policy formation, and economic development."
+  building: 'Seeley G. Mudd Manuscript Library'
+  address1: 'Seeley G. Mudd Manuscript Library'
+  address2: '65 Olden Street'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08540'
+  country: 'USA'
+  phone: '(609) 258-6345'
+  contact_info: 'mudd [at] princeton [dot] edu'
+  thumbnail_url: "https://findingaids.princeton.edu/repositories/publicpolicy.jpg"
+
+rarebooks:
+  name: 'Rare Book Division'
+  description: "Housed in Firestone Library, the Rare Book Division of the Department of Special Collections includes printed books, pamphlets, and broadsides, published in early modern Europe as well as 18th and 19th century imprints from the Americas and Europe."
+  building: 'Firestone Library'
+  address1: 'One Washington Road'
+  address2: ''
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08544'
+  country: 'USA'
+  phone: '(609) 258-3184'
+  contact_info: 'rbsc [at] princeton [dot] edu'
+  thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+
+univarchives:
+  name: 'Princeton University Archives'
+  building: 'Seeley G. Mudd Manuscript Library'
+  address1: 'Seeley G. Mudd Manuscript Library'
+  address2: '65 Olden Street'
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08540'
+  country: 'USA'
+  phone: '(609) 258-6345'
+  contact_info: 'mudd [at] princeton [dot] edu'
+  thumbnail_url: "https://findingaids.princeton.edu/repositories/univarchives.jpg"
