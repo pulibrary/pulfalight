@@ -11,9 +11,10 @@ describe "EAD 2 traject indexing", type: :feature do
 
   let(:settings) do
     {
-      "repository" => "publicpolicy"
+      repository: "publicpolicy"
     }
   end
+
   let(:indexer) do
     Traject::Indexer::NokogiriIndexer.new(settings).tap do |i|
       i.load_config_file(Rails.root.join("lib", "pulfalight", "traject", "ead2_config.rb"))
@@ -119,7 +120,7 @@ describe "EAD 2 traject indexing", type: :feature do
     context "when <dao> has no role" do
       let(:settings) do
         {
-          "repository" => "mss"
+          repository: "mss"
         }
       end
       let(:fixture_path) do
