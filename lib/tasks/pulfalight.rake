@@ -12,18 +12,13 @@ namespace :pulfalight do
     end
 
     desc "Index a single EAD file into Solr"
-    task :document, [:file] => :environment do |_t, args|
-      parent_path = File.expand_path("..", args[:file])
-      repository_id = File.basename(parent_path)
-      ENV["REPOSITORY_ID"] = repository_id
-      ENV["REPOSITORY_FILE"] = "config/repositories.yml"
-
-      index_document(relative_path: args[:file], root_path: Rails.root)
+    task :file, [:file] => :environment do |_t, args|
+      index_file(relative_path: args[:file], root_path: Rails.root)
     end
 
     desc "Index a directory of PULFA EAD files into Solr"
-    task :collection, [:collection] => :environment do |_t, args|
-      index_collection(name: args[:collection])
+    task :directory, [:directory] => :environment do |_t, args|
+      index_directory(name: args[:directory])
     end
 
     namespace :configs do
@@ -44,12 +39,7 @@ namespace :pulfalight do
     desc "Index Princeton University Library Finding Aids (PULFA) into Solr"
     task :pulfa do
       Dir.glob("eads/**/*.xml").each do |file|
-        parent_path = File.expand_path("..", file)
-        repository_id = File.basename(parent_path)
-        ENV["REPOSITORY_ID"] = repository_id
-        ENV["REPOSITORY_FILE"] = "config/repositories.yml"
-
-        index_document(relative_path: file, root_path: Rails.root)
+        index_file(relative_path: file, root_path: Rails.root)
       end
     end
   end
@@ -89,12 +79,7 @@ namespace :pulfalight do
     puts "Seeding index with data from spec/fixtures/ead..."
 
     Dir.glob("spec/fixtures/ead/**/*.xml").each do |file|
-      parent_path = File.expand_path("..", file)
-      repository_id = File.basename(parent_path)
-      ENV["REPOSITORY_ID"] = repository_id
-      ENV["REPOSITORY_FILE"] = "config/repositories.yml"
-
-      index_document(relative_path: file, root_path: Rails.root)
+      index_file(relative_path: file, root_path: Rails.root)
     end
   end
 
@@ -192,25 +177,38 @@ namespace :pulfalight do
     @pulfa_root ||= Rails.root.join("eads", "pulfa")
   end
 
+  # Resolves the repository based upon the file path of a PULFA EAD file
+  # @return [String]
+  def resolve_repository_id(file_path)
+    parent_path = File.expand_path("..", file_path)
+    File.basename(parent_path)
+  end
+
   # Index an EAD-XML Document into Solr
   # @param [String] relative_path
-  def index_document(relative_path:, root_path: nil)
+  def index_file(relative_path:, root_path: nil)
     root_path ||= pulfa_root
-    ead_file_path = File.join(root_path, relative_path)
-    IndexJob.perform_later([ead_file_path])
+    ead_file_path = if File.exist?(relative_path)
+                      relative_path
+                    else
+                      File.join(root_path, relative_path)
+                    end
+    repository_id = resolve_repository_id(ead_file_path)
+
+    IndexJob.perform_later(file_paths: [ead_file_path], repository_id: repository_id)
   end
 
   # Index a directory of PULFA EAD-XML Document into Solr
   # Note: This assumes that the documents have been checked out into eads/pulfa
   # @param [String] relative_path
-  def index_collection(name:, root_path: nil)
+  def index_directory(name:, root_path: nil)
     root_path ||= pulfa_root
     dir = root_path.join(name)
     glob_pattern = File.join(dir, "**", "*.xml")
     file_paths = Dir.glob(glob_pattern)
 
-    file_paths.each_slice(1) do |file_path_subset|
-      IndexJob.perform_later(file_path_subset)
+    file_paths.each do |file_path|
+      index_file(relative_path: file_path, root_path: root_path)
     end
   end
 

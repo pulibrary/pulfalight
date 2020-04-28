@@ -78,7 +78,7 @@ describe IndexJob do
       allow(default_index).to receive(:connection).and_return(connection)
       allow(Blacklight).to receive(:default_index).and_return(default_index)
 
-      described_class.perform_now(file_paths)
+      described_class.perform_now(file_paths: file_paths)
     end
 
     it "transforms the EAD files into Solr Documents and indexed them" do
