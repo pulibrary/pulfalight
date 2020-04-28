@@ -4,32 +4,65 @@ require "rails_helper"
 
 describe "controller requests", type: :request do
   let(:solr_response) { instance_double(Blacklight::Solr::Response) }
-  let(:fixture_file_path) { Rails.root.join("spec", "fixtures", "WC064.json") }
-  let(:fixture_json) { File.read(fixture_file_path) }
+  let(:settings) do
+    {
+      repository: "mss"
+    }
+  end
+  let(:indexer) do
+    Traject::Indexer::NokogiriIndexer.new(settings).tap do |i|
+      i.load_config_file(Rails.root.join("lib", "pulfalight", "traject", "ead2_config.rb"))
+    end
+  end
+  let(:fixture_path) do
+    Rails.root.join("spec", "fixtures", "ead", "mss", "C1588.EAD.xml")
+  end
+  let(:fixture_file) do
+    File.read(fixture_path)
+  end
+  let(:nokogiri_reader) do
+    Arclight::Traject::NokogiriNamespacelessReader.new(fixture_file.to_s, indexer.settings)
+  end
+  let(:records) do
+    nokogiri_reader.to_a
+  end
+  let(:record) do
+    records.first
+  end
+  let(:solr_values) do
+    indexer.map_record(record)
+  end
   let(:document) do
-    json = JSON.parse(fixture_json)
-    SolrDocument.new(json, solr_response)
+    parent = SolrDocument.new(solr_values, solr_response)
+    child_values = parent["components"].find { |c| c["id"].first == "C1588_c15" }
+    SolrDocument.new(child_values, solr_response)
   end
   let(:search_service) { instance_double(Blacklight::SearchService) }
+  let(:document_id) { "C1588_c15" }
 
   before do
     allow(solr_response).to receive(:more_like).and_return([])
     allow(search_service).to receive(:fetch).and_return([solr_response, document])
     allow(Blacklight::SearchService).to receive(:new).and_return(search_service)
-    get "/catalog/#{document.id}"
+    get "/catalog/#{document_id}"
   end
 
   context "when requesting to view a component" do
-    let(:fixture_file_path) { Rails.root.join("spec", "fixtures", "WC064_c1.json") }
-
     it "renders containers within component" do
       expect(response).to render_template(:show)
       expect(response.body).to include("Containers:")
-      expect(response.body).to include("Folder h0001")
+      expect(response.body).to include("Folder 11")
     end
   end
 
   context "when requesting a JSON serialization of the Document" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064_pruned.EAD.xml")
+    end
+    let(:document) do
+      SolrDocument.new(solr_values, solr_response)
+    end
+
     before do
       get("/catalog/#{document.id}", params: { format: :json })
     end
@@ -42,6 +75,13 @@ describe "controller requests", type: :request do
   end
 
   context "when an AJAX request is transmitted for a collection document" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064_pruned.EAD.xml")
+    end
+    let(:document) do
+      SolrDocument.new(solr_values, solr_response)
+    end
+
     before do
       allow(solr_response).to receive(:more_like).and_return([])
       allow(search_service).to receive(:fetch).and_return([solr_response, document])
@@ -76,7 +116,12 @@ describe "controller requests", type: :request do
     end
 
     context "when requesting a component with child component nodes" do
-      let(:fixture_file_path) { Rails.root.join("spec", "fixtures", "WC064_c1.json") }
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "ead", "mss", "WC064_pruned.EAD.xml")
+      end
+      let(:document) do
+        SolrDocument.new(solr_values, solr_response)
+      end
 
       it "renders a minimal HTML template in the response without child components" do
         expect(response.body).to include("<div id=\"document-minimal-#{document.id}\"")
@@ -89,8 +134,36 @@ describe "controller requests", type: :request do
         component_field_element = component_field_elements.first
         component_tree_element = component_field_element.parent
         child_component_elements = component_tree_element.css(".document-minimal-field-value")
-        expect(child_component_elements).to be_empty
+        expect(child_component_elements).not_to be_empty
+        expect(child_component_elements.first.text).to eq("WC064_c1")
       end
+    end
+  end
+
+  it "renders containers within component" do
+    expect(response).to render_template(:show)
+    expect(response.body).to include("Containers:")
+    expect(response.body).to include("Folder 11")
+  end
+
+  context "when the collection repository has citation formatting configured" do
+    let(:settings) do
+      {
+        repository: "publicpolicy"
+      }
+    end
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC221.EAD.xml")
+    end
+    let(:document_id) { Array.wrap(document.id).first }
+    let(:document) do
+      SolrDocument.new(solr_values, solr_response)
+    end
+
+    it "renders the preferred citation for the collection" do
+      expect(response).to render_template(:show)
+      expect(response.body).to include("PREFERRED CITATION:")
+      expect(response.body).to include("Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections, Princeton University Library")
     end
   end
 end

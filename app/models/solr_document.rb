@@ -52,6 +52,10 @@ class SolrDocument
     fetch("ead_ssi", [])
   end
 
+  def eadid
+    Array.wrap(super).first
+  end
+
   def title
     fetch("title_ssm", [])
   end

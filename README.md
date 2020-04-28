@@ -126,3 +126,10 @@ follow Capistrano task:
 ```bash
 bundle exec cap staging pulfalight:index_pulfa
 ```
+
+### Citation Formatting
+
+Citations are generated for collections and components, and rendered on the
+show page for either of these resources. The default formatted repository
+sources may be found and updated within the appropriate [configuration
+file](./config/citations.yml).
