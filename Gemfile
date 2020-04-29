@@ -54,15 +54,14 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara
-  gem "capybara", ">= 2.15"
-  gem "coveralls", require: false
+  gem "capybara", ">= 3.18"
   gem "simplecov", require: false
   gem "webdrivers"
 end
 
 group :development, :test do
   gem "bixby"
+  gem "database_cleaner"
 end
 
 gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
