@@ -22,7 +22,7 @@ class IndexJob < ApplicationJob
   # Construct a Traject indexer object for building Solr Documents from EADs
   # @return [Traject::Indexer::NokogiriIndexer]
   def indexer
-    indexer = Traject::Indexer::NokogiriIndexer.new
+    indexer = Traject::Indexer::NokogiriIndexer.new(repository: @repository_id)
     indexer.tap do |i|
       i.load_config_file(arclight_config_path)
     end
@@ -50,8 +50,9 @@ class IndexJob < ApplicationJob
     Rails.logger || Logger.new(STDOUT)
   end
 
-  def perform(file_paths)
+  def perform(file_paths:, repository_id: nil)
     @file_paths = file_paths
+    @repository_id = repository_id
     solr_documents = EADArray.new
 
     logger.info("Transforming the Documents for Solr...")

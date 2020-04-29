@@ -73,11 +73,11 @@ One must ensure that SVN is installed locally:
 brew install svn
 ```
 
-###### Using `lpass` for authentication [LastPass](https://lastpass.com)
+###### Using `lastpass-cli` for authentication [LastPass](https://lastpass.com)
 
 *In a macOS Environment:*
 ```
-brew install lpass
+brew install lastpass-cli
 ```
 
 Then please invoke the following:
@@ -107,14 +107,16 @@ Start sidekiq in a terminal window that you keep open:
 
 `$ bundle exec sidekiq`
 
-Use the rake tasks to index either a single document or a collection, e.g.:
+Use the rake tasks to index either a single file or a directory, e.g.:
 
-`$ bundle exec rake pulfalight:index:document["mss/TC071.EAD.xml"]`
-`$ bundle exec rake pulfalight:index:collection["mss"]`
+`$ bundle exec rake pulfalight:index:file["mss/TC071.EAD.xml"]`
+
+`$ bundle exec rake pulfalight:index:directory["mss"]`
 
 Once the jobs are finished processing by sidekiq you'll need to either wait 5 minutes for the soft commit to occur or manually issue a solr commit:
 
 `$ bin/rails c`
+
 `> Blacklight.default_index.connection.commit`
 
 #### Indexing the PULFA Documents into the Pulfalight Server Environment
