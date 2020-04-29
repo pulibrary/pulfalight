@@ -13,6 +13,30 @@ class CatalogController < ApplicationController
     render json: @document.to_json
   end
 
+  # @see Blacklight::Catalog#show
+  def show
+    deprecated_response, @document = search_service.fetch(params[:id])
+    @response = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(deprecated_response, "The @response instance variable is deprecated; use @document.response instead.")
+
+    respond_to do |format|
+      format.html do
+        if request.xml_http_request?
+          # If a component (rather than an entire collection) is requested, this ensures that the component has no child nodes
+          minimal_attributes = @document.attributes
+          minimal_attributes["components"] = [] unless @document.collection?
+
+          render "catalog/_minimal", locals: { attributes: minimal_attributes }
+        else
+          @search_context = setup_next_and_previous_documents
+        end
+      end
+      format.json do
+        render json: @document.to_json
+      end
+      additional_export_formats(@document, format)
+    end
+  end
+
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository

@@ -1,0 +1,15 @@
+<div id="document-minimal-<%= attributes[:id] %>" class="document-minimal">
+  <!-- Implement the unstyled HTML here for the AJAX response -->
+  <% attributes.each_pair do |field, values| %>
+    <div class="document-minimal-field">
+      <span class="document-minimal-field-name"><%= field %></span>
+      <% Array.wrap(values).each do |value| %>
+        <% if field == :components %>
+          <%= render 'catalog/minimal', attributes: value %>
+        <% else %>
+          <span class="document-minimal-field-value"><%= value %></span>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
