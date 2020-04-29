@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Initialize the range limit interface
-  console.log('trace')
   $('.blacklight-date_range_sim').data('plot-config', {
         selection: { color: '#C0FF83' },
         colors: ['#ffffff'],
