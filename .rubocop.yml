@@ -16,6 +16,7 @@ AllCops:
 Metrics/AbcSize:
   Exclude:
     - 'lib/pulfalight/traject/ead2_component_config.rb'
+    - 'lib/pulfalight/traject/ead2_container_config.rb'
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
@@ -32,6 +33,7 @@ Metrics/MethodLength:
     - 'app/models/solr_document.rb'
     - 'app/controllers/catalog_controller.rb'
     - 'lib/pulfalight/traject/ead2_component_config.rb'
+    - 'lib/pulfalight/traject/ead2_container_config.rb'
 Naming/PredicateName:
   Exclude:
     - 'app/models/solr_document.rb'

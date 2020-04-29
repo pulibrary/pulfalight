@@ -11,7 +11,7 @@ describe "faceted searches", type: :feature, js: true do
     end
 
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC221.EAD.xml")
+      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC221_pruned.EAD.xml")
     end
 
     let(:fixture_file) do
@@ -33,7 +33,6 @@ describe "faceted searches", type: :feature, js: true do
     let(:result) do
       indexer.map_record(record)
     end
-
     before do
       result
       Blacklight.default_index.connection.add(result)
@@ -47,17 +46,19 @@ describe "faceted searches", type: :feature, js: true do
       Blacklight.default_index.connection.commit
     end
 
-    it "renders a histogram plot" do
-      expect(page).to have_css("#facet-date_range_sim .chart_js", visible: false)
-    end
+    context "with a document indexed" do
+      it "renders a histogram plot" do
+        expect(page).to have_css("#facet-date_range_sim .chart_js", visible: false)
+      end
 
-    it "renders the number of dated search result items" do
-      expect(page).to have_css("#facet-date_range_sim #range_date_range_sim_begin", visible: false)
-      expect(page).to have_css("#facet-date_range_sim #range_date_range_sim_end", visible: false)
-    end
+      it "renders the number of dated search result items" do
+        expect(page).to have_css("#facet-date_range_sim #range_date_range_sim_begin", visible: false)
+        expect(page).to have_css("#facet-date_range_sim #range_date_range_sim_end", visible: false)
+      end
 
-    it "renders the number of undated search result items" do
-      expect(page).to have_css("#facet-date_range_sim .missing", text: /Unknown/, visible: false)
+      it "renders the number of undated search result items" do
+        expect(page).to have_css("#facet-date_range_sim .missing", text: /Unknown/, visible: false)
+      end
     end
   end
 end
