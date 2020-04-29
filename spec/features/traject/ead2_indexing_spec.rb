@@ -81,6 +81,9 @@ describe "EAD 2 traject indexing", type: :feature do
       containers = component["containers"]
       expect(containers).not_to be_empty
       container = containers.first
+      expect(container).to include("id")
+      expect(container["id"].first).to include("al_")
+      expect(container["id"].first.length).to eq(43)
       expect(container).to include("type_ssim" => ["folder"])
       expect(container).to include("parent_ssim" => ["C0614_i1"])
     end
