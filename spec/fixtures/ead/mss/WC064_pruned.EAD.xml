@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:isbn:1-931666-22-9     http://www.loc.gov/ead/ead.xsd"
+    audience="external">
+    <eadheader repositoryencoding="iso15511" countryencoding="iso3166-1" dateencoding="iso8601"
+        langencoding="iso639-2b" scriptencoding="iso15924">
+        <eadid url="http://arks.princeton.edu/ark:/88435/pn89d9197" urn="ark:/88435/pn89d9197"
+            countrycode="US" mainagencycode="US-NjP">WC064</eadid>
+        <filedesc>
+            <titlestmt>
+                <titleproper>Princeton University Library Collection of Western Americana
+                    Photographs, <date type="inclusive" normal="1840/1998">1840-1998</date>: Finding
+                    Aid </titleproper>
+            </titlestmt>
+            <publicationstmt id="rbscAddress">
+                <publisher>Princeton University Library. Special Collections.</publisher>
+                <address>
+                    <addressline>Manuscripts Division</addressline>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                    <addressline>Phone: (609) 258-3184</addressline>
+                    <addressline>Fax: (609) 258-2324</addressline>
+                    <addressline>rbsc@princeton.edu</addressline>
+                    <addressline>http://www.princeton.edu/~rbsc</addressline>
+                </address>
+                <date normal="2015">Published in 2015.</date>
+            </publicationstmt>
+        </filedesc>
+        <profiledesc>
+            <creation>This finding aid was produced using the Archivists' Toolkit <date
+                    normal="2012-03-29">2012-03-29T13:43-0400</date>
+            </creation>
+            <langusage>
+                <language langcode="eng"/>
+            </langusage>
+            <descrules>Finding aid content adheres to that prescribed by <emph render="italic"
+                    >Describing Archives: A Content Standard.</emph>
+            </descrules>
+        </profiledesc>
+        <revisiondesc>
+            <change>
+                <date normal="2014-09-25">2014-09-25T09:47:09.614-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2014-09-25">2014-09-25T12:26:36.086-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2014-09-25">2014-09-25T12:36:54.051-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2014-10-03">2014-10-03T12:47:47.711-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2014-10-03">2014-10-03T14:33:37.208-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2014-10-03">2014-10-03T15:58:50.352-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+        </revisiondesc>
+    </eadheader>
+    <archdesc level="collection" relatedencoding="marc21" type="findingaid">
+        <did>
+            <unitid countrycode="US" repositorycode="US-NjP" type="collection">WC064</unitid>
+            <repository id="mss">
+                <corpname source="viaf" authfilenumber="http://viaf.org/viaf/168350386">Princeton University Library. Special Collections.</corpname>
+                <subarea>Manuscripts Division</subarea>
+                <address>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                </address>
+            </repository>
+            <unittitle>Princeton University Library Collection of Western Americana
+                Photographs</unittitle>
+            <unitdate normal="1870/1915" type="bulk">1870-1915</unitdate>
+            <unitdate normal="1840/1998" type="inclusive">1840-1998</unitdate>
+            <physdesc>
+                <extent unit="footage">123 linear feet</extent>
+                <extent>143 boxes</extent>
+            </physdesc>
+            <origination>
+                <corpname source="viaf" authfilenumber="http://viaf.org/viaf/168350386" role="cre"
+                    >Princeton University Library. Special Collections.</corpname>
+            </origination>
+            <langmaterial>
+                <language langcode="eng"/>
+            </langmaterial>
+            <abstract>An open collection of more than 5,000 Western Americana photographs,
+                consisting mostly of documentary photographs of the Trans-Mississippi West from the
+                late 1860s to early 1900s. Subjects include American Indians (especially studio
+                portraits), natural wonders, cities, towns, buildings, and economic activities
+                (mining, railroads, logging, and agriculture). Some photographs relate to the
+                indigenous populations of Mexico and Central America. The dimensions, physical
+                formats, and photographic processes of the photographs vary widely. Many of the
+                photographs in this collection are available in the Princeton University Digital
+                Library.</abstract>
+            <physloc type="code">mss</physloc>
+            <physloc type="code">hsvm</physloc>
+            <physloc type="text">Boxes H4 and H5 (Lummis glass plate negatives) and H6 (California
+                Gold Rush daguerreotype) are stored in special vault facilities.</physloc>
+        </did>
+        <descgrp id="dacs3">
+            <scopecontent>
+                <p>Started in the 1970s, this is an open collection of more than 5,000 photographs
+                    consisting mostly of documentary photographs of the Trans-Mississippi West from
+                    the late 1860s to early 1900s. Subjects include American Indians (especially
+                    studio portraits), natural wonders, cities, towns, buildings, and economic
+                    activities (mining, railroads, logging, and agriculture). Some photographs
+                    relate to the indigenous populations of Mexico and Central America. The
+                    dimensions, physical formats, and photographic processes of the photographs vary
+                    widely. </p>
+                <p> Photographers represented include Charles Milton Bell, John Nicholas Choate,
+                    John K. Hillers, Charles Fletcher Lummis, Eadweard Muybridge, Frank A. Rinehart,
+                    Bernard Gurney Randall, Carlton E. Watkins, Orloff R. Westmann, Ben Wittick, and
+                    many others; as well as photographers whose work was marketed commercially by
+                    the Keystone View Company, Underwood &amp; Underwood, and other firms. The
+                    collection also includes the work of some contemporary photographers, such as
+                    Ulli Steltzer and Kenji Kawano.</p>
+                <p>For earlier accessions, photographs that are identified with the letter "S" are
+                    small prints, many of which are stereographic photographs; those identified with
+                    the letters "M" and "L" are mostly albumen prints, and the latter are oversize;
+                    photographs with the letter "H" include tintypes, ambrotypes, daguerreotypes,
+                    and lantern slides; and photographs marked with "X" include mammoth prints as
+                    well as gelatin silver prints.</p>
+            </scopecontent>
+            <arrangement>
+                <p>Photographs are arranged by size and format.</p>
+            </arrangement>
+        </descgrp>
+        <descgrp id="dacs4">
+            <accessrestrict type="open">
+                <p>This collection is open to researchers.</p>
+            </accessrestrict>
+            <userestrict>
+                <p>Single photocopies may be made for research purposes. No further photoduplication
+                    of copies of material in the collection can be made when Princeton University
+                    Library does not own the original. Inquiries regarding publishing material from
+                    the collection should be directed to RBSC Public Services staff at
+                    rbsc@princeton.edu. The library has no information on the status of literary
+                    rights in the collection and researchers are responsible for determining any
+                    questions of copyright.</p>
+            </userestrict>
+        </descgrp>
+        <descgrp id="dacs5">
+            <acqinfo>
+                <p>This is an open collection that continually grows from gifts and purchases.</p>
+            </acqinfo>
+            <appraisal>
+                <p>No material was separated during processing.</p>
+            </appraisal>
+        </descgrp>
+        <descgrp id="dacs6">
+            <altformavail>
+                <p>Many of the items in this collection are available in digital format at the
+                    Princeton University Digital Library: <extref
+                        xlink:href="http://pudl.princeton.edu/collections/pudl0017"
+                        xlink:type="simple">http://pudl.princeton.edu/collections/pudl0017</extref>
+                </p>
+            </altformavail>
+        </descgrp>
+        <descgrp id="dacs7">
+            <prefercite>
+                <p>Identification of specific item; Date (if known); Princeton University Library
+                    Collection of Western Americana photographs, Box and Folder Number; Special Collections, Princeton University Library.</p>
+            </prefercite>
+            <processinfo type="processing">
+                <p>This collection was processed and described by <name role="processor">Heather
+                        Shannon</name> in <date normal="2006" type="processed">2006</date>. Finding
+                    aid created by <name role="author">Faith Charlton</name> in <date normal="2014"
+                        type="processed">2014</date>. Finding aid updated periodically with new
+                    accessions by <name role="author">Faith Charlton</name>, <name role="author"
+                        >Kelly Bolding</name>, and <name role="author">Chloe Pfendler</name>.</p>
+            </processinfo>
+        </descgrp>
+        
+
+        <controlaccess>
+            <persname source="viaf" authfilenumber="http://viaf.org/viaf/77918802">Bell, C. M.
+                (Charles Milton), approximately 1849-1893.</persname>
+            <persname source="viaf" authfilenumber="http://viaf.org/viaf/6577700">Choate, J. N.
+                (John N.), 1848-1902.</persname>
+            <persname source="viaf" authfilenumber="http://viaf.org/viaf/15073717">Hillers, John K.,
+                1843-1925.</persname>
+            <persname source="viaf" authfilenumber="http://viaf.org/viaf/66548614">Lummis, Charles
+                Fletcher, 1859-1928.</persname>
+            <persname source="viaf" authfilenumber="http://viaf.org/viaf/2538199">Muybridge,
+                Eadweard, 1830-1904.</persname>
+            <persname source="viaf" authfilenumber="http://viaf.org/viaf/48687314">Randall, B.
+                G.</persname>
+            <persname source="viaf" authfilenumber="http://viaf.org/viaf/47041392">Rinehart, F. A.
+                (Frank A.)</persname>
+            <persname source="viaf" authfilenumber="http://viaf.org/viaf/1291849">Steltzer,
+                Ulli</persname>
+            <persname source="viaf" authfilenumber="http://viaf.org/viaf/15045696">Watkins, Carleton
+                E., 1829-1916.</persname>
+            <persname rules="dacs" source="uncontrolled">Westmann, Orloff R.</persname>
+            <persname source="viaf" authfilenumber="http://viaf.org/viaf/6492355">Wittick, Ben,
+                1845-1903</persname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/265466200">Keystone view
+                company.</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/141799646">Underwood &amp;
+                Underwood.</corpname>
+            <subject source="lcsh">Indians of Central America -- Photographs.</subject>
+            <subject source="lcsh">Indians of Mexico -- Photographs.</subject>
+            <subject source="lcsh">Indians of North America -- Photographs.</subject>
+            <subject source="lcsh">Indians of South America -- Photographs.</subject>
+            <geogname source="lcsh">West (U.S.) -- Photographs.</geogname>
+            <genreform source="aat">Photographs.</genreform>
+            <subject source="local" rules="local" encodinganalog="690" authfilenumber="t55">Western
+                Americana</subject>
+        </controlaccess>
+        <dsc type="combined">
+            <c level="item" id="WC064_c1">
+                <did>
+                    <unitid type="accessionnumber">WA 1984-753</unitid>
+                    <unittitle>American Indian man wearing traditional clothing with three white
+                        children</unittitle>
+                    <unitdate type="inclusive" normal="1850/1860">1850-1860</unitdate>
+                    <container type="folder" parent="WC064_i1">H0001</container>
+                    <physdesc>
+                        <dimensions>10 x 7 cm.</dimensions>
+                        <extent type="computed">1 item</extent>
+                    </physdesc>
+                    <dao xlink:href="http://arks.princeton.edu/ark:/88435/m039k5139"
+                        xlink:type="simple"/>
+                </did>
+                <scopecontent>
+                    <p>Cataloger supplied title.</p>
+                </scopecontent>
+                <controlaccess>
+                    <subject source="lcsh">Clothing</subject>
+                    <subject source="lcsh">Indians of North America</subject>
+                    <genreform source="aat">Tintypes</genreform>
+                    <genreform source="aat">Group portraits</genreform>
+                    <genreform source="aat">Portrait photographs</genreform>
+                    <genreform source="aat">Vintage prints</genreform>
+                </controlaccess>
+            </c>
+            <c level="item" id="WC064_c2">
+                <did>
+                    <unittitle>Studio portrait of an American Indian girl wearing bead
+                        necklaces</unittitle>
+                    <unitdate type="inclusive" normal="1850/1860">1850-1860</unitdate>
+                    <container type="folder" parent="WC064_i1">H0002</container>
+                    <physdesc>
+                        <dimensions>8 x 7 cm.</dimensions>
+                        <extent type="computed">1 item</extent>
+                    </physdesc>
+                    <dao xlink:href="http://arks.princeton.edu/ark:/88435/bk128b126"
+                        xlink:type="simple"/>
+                </did>
+                <scopecontent>
+                    <p>Cataloger supplied title. Tintype in original paper case.</p>
+                </scopecontent>
+                <controlaccess>
+                    <subject source="lcsh">Clothing</subject>
+                    <subject source="lcsh">Children</subject>
+                    <subject source="lcsh">Indians of North America</subject>
+                    <genreform source="aat">Tintypes</genreform>
+                    <genreform source="aat">Portrait photographs</genreform>
+                    <genreform source="aat">Vintage prints</genreform>
+                </controlaccess>
+            </c>
+        </dsc>
+    </archdesc>
+</ead>
