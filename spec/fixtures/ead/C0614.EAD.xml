@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd" audience="external">
+    <eadheader scriptencoding="iso15924" repositoryencoding="iso15511" countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b">
+        <eadid countrycode="US" mainagencycode="US-NjP" url="http://arks.princeton.edu/ark:/88435/b2773v70p" urn="ark:/88435/b2773v70p">C0614</eadid>
+        <filedesc>
+            <titlestmt>
+                <titleproper>Blair and Lee Family Papers, <date normal="1640/1946" type="inclusive">1640-1946</date> (bulk <date normal="1812/1920" type="bulk">1812-1920</date>): Finding Aid</titleproper>
+            </titlestmt>
+            <publicationstmt id="rbscAddress">
+                <publisher>Princeton University Library. Special Collections.</publisher>
+                <address>
+                    <addressline>Manuscripts Division</addressline>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                    <addressline>Phone: (609) 258-3184</addressline>
+                    <addressline>Fax: (609) 258-2324</addressline>
+                    <addressline>rbsc@princeton.edu</addressline>
+                    <addressline>http://www.princeton.edu/~rbsc</addressline>
+                </address>
+                <date type="publication" normal="2002/2002">2002</date>
+            </publicationstmt>
+        </filedesc>
+        <profiledesc>
+            <creation>Machine-readable finding aid encoded in EAD 2002 by Techbooks, Cristela
+                García-Spitz, and Diann Benti on <date normal="2007-03-31">March 31, 2007</date>.
+                Created from MARC record via MarcEdit and XSL stylesheets in 2007. </creation>
+            <langusage>
+                <language langcode="eng"/>
+            </langusage>
+            <descrules>Finding aid content adheres to that prescribed by <emph render="italic">Describing Archives: A Content Standard.</emph>
+            </descrules>
+        </profiledesc>
+        <revisiondesc>
+            <change>
+                <date normal="2012-05-02">2012-05-02T14:43:51.737-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2012-10-23">2012-10-23T10:16:35.201-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2018-03-14">2018-03-14T16:05:12.045-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+        </revisiondesc>
+    </eadheader>
+    <archdesc type="findingaid" level="collection" relatedencoding="marc21">
+        <did>
+            <unitid type="collection" countrycode="US" repositorycode="US-NjP">C0614</unitid>
+            <repository id="mss">
+                <corpname source="viaf" authfilenumber="http://viaf.org/viaf/168350386">Princeton University Library. Special Collections.</corpname>
+                <subarea>Manuscripts Division</subarea>
+                <address>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                </address>
+            </repository>
+            <unittitle>Blair and Lee Family Papers</unittitle>
+            <unitdate normal="1640/1946" type="inclusive">1640-1946</unitdate>
+            <unitdate normal="1812/1920" type="bulk">1812-1920</unitdate>
+            <physdesc>
+                <extent unit="footage">253 linear feet</extent>
+                <extent type="computed" unit="box">477 boxes</extent>
+            </physdesc>
+            <origination>
+                <famname source="lcsh" role="cre" authfilenumber="http://id.loc.gov/authorities/subjects/sh85014749">Blair
+                        family.<ptr target="C0614_b1"/>
+                </famname>
+            </origination>
+            <langmaterial>
+                <language langcode="eng"/>
+            </langmaterial>
+            <abstract>The collection consists of the personal and family papers of five members of
+                the Blair and Lee families of Maryland, Washington, D.C., and Virginia -- Francis
+                Preston Blair (1791-1876); his daughter, Elizabeth Blair Lee (1818-1906); her
+                husband, Samuel Phillips Lee (1812-1897); their son, Blair Lee (1857-1944, Princeton
+                Class of 1880); and his cousin, Andrew Alexander Blair (1848-1932) -- reflecting
+                their various political, journalistic, naval, family, business, legal, and domestic
+                interests.</abstract>
+            <physloc type="code">mss</physloc>
+            <physloc type="code">hsvm</physloc>
+            <physloc type="text">This collection is stored onsite at Firestone Library. Box 15,
+                folder 13; box 143, folder 4; and box 226, folder 11 are stored in special vault
+                facilities.</physloc>
+        </did>
+        <bioghist id="C0614_b1">
+            <p>
+                <emph render="bold">Biography of Francis Preston Blair</emph>
+            </p>
+            <p>Francis Preston Blair (1791-1876), journalist and politician, was born in Abingdon,
+                Virginia, and raised in Kentucky. His grandfather, John Blair, held the first chair
+                in theology at Princeton University. He graduated from Transylvania University in
+                1811 and married Eliza Violet Gist (1733-1877) a year later. Blair was admitted to
+                the bar in 1817 but never practiced law. He became interested in Kentucky politics
+                joining the New Court party and aiding his political ally, Amos Kendall, in editing
+                the <emph render="italic">Argus of Western America</emph> and the <emph render="italic">Patriot</emph> in Frankfort. Blair became an advocate of Andrew
+                Jackson, and on the advice of Kendall, Jackson called him to Washington in 1830 to
+                become editor of the <emph render="italic">Globe</emph>, which became the official
+                newspaper of the administration. A loyal Jacksonian, Blair was a confidential member
+                of the Kitchen Cabinet and served Jackson faithfully from 1830 through 1837. The
+                    <emph render="italic">Globe</emph> continued to be a powerful voice through the
+                Van Buren administration (1837-1841). Blair was forced to resign in 1845 by the new
+                president, James K. Polk.</p>
+            <p>Retiring to his country estate, Silver Spring, in Maryland, Blair continued to
+                exercise political power and influence, often through his sons, Francis "Frank"
+                Preston (1821-1875) and Montgomery (1813-1883).</p>
+            <p>
+                <emph render="bold">Biography of Samuel Phillips Lee</emph>
+            </p>
+            <p>Samuel Phillips Lee (1812-1897), an officer in the United States Navy, was born in
+                Fairfax, Virginia, the son of Francis Lightfoot Lee, grandson of Richard Henry Lee,
+                and great nephew of Francis Lightfoot Lee, both signers of the Declaration of
+                Independence. In 1825 he was appointed a midshipman and proceeded to work his way
+                through the ranks, becoming a rear-admiral in 1870. When commanding the <emph render="italic">Dolphin</emph> in 1851, Lee was employed in coastal survey duty
+                making deep-sea soundings, testing currents, and searching for shallow ocean spots.
+                His report of this work, <emph render="italic">The Cruise of the Dolphin</emph>
+                (1854), was of considerable help to Matthew F. Maury, the oceanographer. During the
+                Civil War, Lee remained loyal to the Union and participated in the Charleston
+                blockade, the attack on New Orleans, and the battle of Vicksburg, and commanded both
+                the North Atlantic Blockading Squadron and the Mississippi Squadron. After the war,
+                he served at various posts, and his last command was as head of the North Atlantic
+                fleet (1870-1872). In 1873 he retired from the navy.</p>
+            <p>While a young officer, Lee courted Elizabeth Blair Lee (1818-1906), the only daughter
+                of Francis Preston Blair (1791-1876). After a lengthy courtship, Elizabeth Blair and
+                Samuel Phillips Lee were married in 1843. Their only child, (Francis Preston) Blair
+                Lee, was born in 1857. The family lived in Washington and at Silver Spring,
+                Maryland, the country estate of Francis Preston Blair. After his retirement from the
+                navy, Lee ran the day-to-day activities of the farm, and it was there that he died
+                in 1897.</p>
+            <p>
+                <emph render="bold">Biography of Elizabeth Blair Lee</emph>
+            </p>
+            <p>Elizabeth Blair Lee (1818-1906), the only daughter of Francis Preston Blair and Eliza
+                Violet Gist Blair, grew up in Washington, D.C., and Silver Spring, Maryland,
+                immersed in the politics of the day. A favorite of Andrew Jackson, "Lizzie" lived in
+                the White House for a time to please him. After she married Samuel Phillips Lee, a
+                naval officer, in 1843, she often wrote to him keeping him up to date not only on
+                family matters but also on local and national politics. She actively gathered this
+                information through the comments of her father, editor of the Democratic organ, the
+                    <emph render="italic">Globe</emph>, and her brothers, Montgomery Blair,
+                postmaster general under Lincoln, and Francis "Frank" Preston Blair, Jr., a general
+                in the Civil War. Her political role also included serving as her father's
+                amanuensis and sometime ghostwriter of his speeches.</p>
+            <p>Aside from being an avid follower of the political scene, Elizabeth Blair Lee spent
+                much of her time raising her only child, (Francis Preston) Blair Lee, born in 1857;
+                meeting the obligations of a large extended family; and participating in the busy
+                social scene in Washington and Maryland. She also served for many years as a
+                director of the Washington City Orphan Asylum. In 1906, Elizabeth Blair Lee died at
+                Silver Spring where she had lived with her son and his family.</p>
+            <p>
+                <emph render="bold">Biography of Andrew Alexander Blair</emph>
+            </p>
+            <p>Andrew Alexander Blair (1848-1932), son of Francis "Frank" Preston Blair, Jr., and
+                grandson of Francis Preston Blair (1791-1876), graduated from the U.S. Naval Academy
+                at Annapolis, Maryland, in 1866, being the youngest graduate to complete the full
+                course up until that time. He served in the navy for two years and then resigned
+                because of illness. Blair then became an analytical chemist and was a founding
+                member of the firm of Booth, Garrett and Blair. He was well-known in his field,
+                publishing many papers and reports.</p>
+            <p>
+                <emph render="bold">Biography of Blair Lee</emph>
+            </p>
+            <p>Blair Lee (1857-1944), lawyer, legislator and social reformer, was born in Silver
+                Spring, Maryland, the only child of Samuel Phillips Lee and Elizabeth Blair. He was
+                educated at Princeton University (Class of 1880), where he was a founding member and
+                president of the Ivy Club, and at Columbian (now George Washington) Law School
+                earning a law degree in 1883. A practicing attorney in Washington, D.C., and
+                Maryland, Lee also participated in Democratic politics, an interest which had been
+                nurtured by his mother and grandfather, Francis Preston Blair (1791-1876). He was
+                twice elected to the Maryland State Senate (1905 and 1909), and among his
+                accomplishments there was the passage of legislation establishing the primary law
+                for party nominations and the creation of the Maryland State Roads Commission.
+                Although narrowly defeated in 1911 in a race for governor of Maryland, Lee was
+                elected to the United States Senate in 1913, the first senator elected under the
+                17th Amendment, in a special election following the death of Isidor Rayner. While in
+                the United States Senate, he was active in passing legislation such as the Farm Loan
+                Law, the amending of the Federal Reserve Law, and the Hay-Wadsworth Bill. A delegate
+                to eight Democratic national conventions, he worked actively for the election of
+                William Jennings Bryan (1896 and 1900) and Woodrow Wilson (1912 and 1916).</p>
+            <p>In 1891 he married Anne Clymer Brooke and, after her death (1903), helped raise their
+                sons, Edward Brooke Lee (1892-1984, Princeton Class 1916) and Phillips Blair Lee
+                (1895-1983, Princeton Class of 1918). Lee's interests included social reform and
+                philanthropy, and he was active in the National Junior Republic, National Mary
+                Washington Memorial Association, and the Washington City Orphan Asylum. He also
+                participated in fraternal groups such as the Society of the Cincinnati in the State
+                of Virginia, the Princeton Class of 1880 and the Ivy Club, and the K.F.R.
+                Society.</p>
+        </bioghist>
+        <descgrp id="dacs3">
+            <scopecontent>
+                <p>The collection consists of the personal and family papers of five members of the
+                    Blair and Lee families of Maryland, Washington, D.C., and Virginia -- Francis
+                    Preston Blair (1791-1876); his daughter, Elizabeth Blair Lee (1818-1906); her
+                    husband, Samuel Phillips Lee (1812-1897); their son, Blair Lee (1857-1944,
+                    Princeton Class of 1880); and his cousin, Andrew Alexander Blair (1848-1932) --
+                    reflecting their various political, journalistic, naval, family, business,
+                    legal, and domestic interests. While the collection largely pertains to these
+                    five family members, their papers also contain a significant amount of
+                    correspondence, documents, and writings of other members of the Blair and Lee
+                    families. Among other topics, materials in this collection document the
+                    families' involvement in American politics spanning from the Jacksonian Era
+                    through World War I.</p>
+                <p>The Blair family papers consist primarily of papers of politician and journalist
+                    Francis Preston Blair (1791-1876), including writings and lectures, documents,
+                    family correspondence, articles and other materials related to his editorship of
+                    the <emph render="italic">Globe</emph>, estate records, and correspondence with
+                    prominent political figures, including many involved with the administration of
+                    Andrew Jackson. The papers of his daughter, Elizabeth Blair Lee, document the
+                    political and social lives of the Blair and Lee families, as well as her work
+                    with the Washington City Orphan Asylum. The papers of Blair's grandson, Andrew
+                    Alexander Blair, contain additional family correspondence and span his time at
+                    the United States Naval Academy prior to becoming a chemist.</p>
+                <p>The Lee family papers include the papers of Samuel Phillips Lee, which document
+                    his service in the United States Navy, including his involvement in the U.S.
+                    Coast Survey, as well as the management of the Silver Spring Farm, real estate
+                    ventures, and family and domestic life. The papers of his son, the lawyer and
+                    politician Blair Lee, relate to his life as a student, work as a lawyer and
+                    United States senator during World War I and the administration of Woodrow
+                    Wilson, service in various organizations, and personal and family life.</p>
+            </scopecontent>
+        </descgrp>
+        <descgrp id="dacs4">
+            <accessrestrict type="open">
+                <p>The collection is open for research.</p>
+            </accessrestrict>
+            <accessrestrict type="curatorreview">
+                <p>Researchers may be required to use surrogates of collection items stored in
+                    special vault facilities. Consult curator for access to originals.</p>
+            </accessrestrict>
+            <userestrict>
+            <p>Single photocopies may be made for research purposes. No further photoduplication of
+               copies of material in the collection can be made when Princeton University Library
+               does not own the original. Inquiries regarding publishing material from the
+               collection should be directed to RBSC Public Services staff at rbsc@princeton.edu.
+               The library has no information on the status of literary rights in the collection and
+               researchers are responsible for determining any questions of copyright.</p>
+         </userestrict>
+        </descgrp>
+        <descgrp id="dacs5">
+            <acqinfo>
+                <p>The papers were originally deposited at Princeton University Library on August 1,
+                    1942, and later gifted to the university by P. Blair Lee (Class of 1918) and E.
+                    Brooke Lee (Class of 1916) in 1965-1969 (AM 21313).</p>
+            </acqinfo>
+            <appraisal>
+                <p>No materials were separated during 2017 processing.</p>
+            </appraisal>
+        </descgrp>
+        <descgrp id="dacs6">
+            <relatedmaterial>
+                <p> For additional Blair family papers, assembled by other members of the Blair
+                    family, refer to:</p>
+                <p>
+               <extref xmlns:xlin="http://www.w3.org/1999/xlink" xmlns:xli="http://www.w3.org/1999/xlink" xli:type="simple" xlink:href="https://findingaids.princeton.edu/collections/C1569">Blair
+                        Family Papers (Princeton University Library, C1569)</extref>
+                </p>
+                <p>
+               <extref xmlns:xlin="http://www.w3.org/1999/xlink" xmlns:xli="http://www.w3.org/1999/xlink" xli:type="simple" xlink:href="http://hdl.loc.gov/loc.mss/eadmss.ms998026">Blair Family Papers
+                        (Library of Congress, MSS12930)</extref>
+                </p>
+            </relatedmaterial>
+        </descgrp>
+        <descgrp id="dacs7">
+            <prefercite>
+                <p>Identification of specific item; Date (if known); Blair and Lee Family Papers,
+                    Box and Folder Number; Special Collections,
+                    Princeton University Library.</p>
+            </prefercite>
+            <processinfo type="processing">
+                <p>The collection was initially arranged by a Mrs. Larrabee, whose work was
+                    completed by Caroline W. Hiatt in 1948.</p>
+                <p>The collection was later processed by <name role="processor">Judith Golden</name>
+                    in <date type="processed" normal="1992/1992">1992</date>. Finding aid written by
+                        <name role="author">Judith Golden</name> in <date type="processed" normal="1992/1992">1992</date>.</p>
+                <p>Portions of the finding aid were revised by <name role="processor">Kelly
+                        Bolding</name> in <date type="processed" normal="2017/2017">2017</date>,
+                    with assistance from <name role="processor">Julia English '19</name> and <name role="processor">Fiona Bell '18</name>.</p>
+            </processinfo>
+            <processinfo type="conservation">
+                <p>Some materials in this collection were treated for mold in 2018.</p>
+            </processinfo>
+        </descgrp>
+        
+
+
+        <controlaccess>
+            <persname source="lcnaf">Jackson, Andrew, 1767-1834 -- Political and social
+                views.</persname>
+            <persname source="lcnaf">Wilson, Woodrow, 1856-1924 -- Career in politics.</persname>
+            <persname source="lcnaf">Blair family</persname>
+            <persname source="lcnaf">Lee, Blair,1867-1944.</persname>
+            <persname source="lcnaf">Lee, Elizabeth Blair,1818-1906.</persname>
+            <persname source="viaf" authfilenumber="http://viaf.org/viaf/10228718">Lee, Samuel
+                Phillips,1812-1897.</persname>
+            <famname source="lcnaf">Brooks family.</famname>
+            <famname source="lcnaf">Gist family.</famname>
+            <famname source="lcnaf">Lee family.</famname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/135165054">Columbian Law
+                School.</corpname>
+            <corpname source="lcnaf">Democratic National Publishing Company.</corpname>
+            <corpname source="lcnaf">Democratic Party (Md.) -- History.</corpname>
+            <corpname source="lcnaf">Episcopal Church -- Clergy -- 19th century.</corpname>
+            <corpname source="lcnaf">K.F.R. Society.</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/150532399">National Mary
+                Washington Memorial Association.</corpname>
+            <corpname source="lcnaf">College of New Jersey (Princeton, N.J.) -- Students.</corpname>
+            <corpname source="lcnaf">College of New Jersey (Princeton, N.J.). Class of
+                1880.</corpname>
+            <corpname source="lcnaf">College of New Jersey (Princeton, N.J.). Ivy Club.</corpname>
+            <corpname source="lcnaf">Silver Knight-Watchman (Washington, D.C.)</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/125529562">Society of the
+                Cincinnati in the State of Virginia.</corpname>
+            <corpname source="lcnaf">United States. Congress -- Committees -- 20th
+                century.</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/152715630">United States.
+                Navy Dept. -- Bureau of Equipment and Recruiting.</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/131403193">United States.
+                Navy Dept. -- Bureau of Ordnance and Hydrography.</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/134087816">United States.
+                Navy Dept. -- Bureau of Provisions and Clothing.</corpname>
+            <corpname source="lcnaf">United States. Navy Dept. -- Bureau of Yards and Dock
+                Construction.</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/146648568">United States.
+                Navy Dept. -- Mississippi Squadron.</corpname>
+            <corpname source="lcnaf">United States. Navy Dept. -- North Atlantic Blockading
+                Squadron.</corpname>
+            <corpname source="lcnaf">United States. Navy -- History -- Civil War,
+                1861-1865.</corpname>
+            <corpname source="lcnaf">United States. Navy -- History -- 19th century.</corpname>
+            <corpname source="lcnaf">United States. Navy -- Officers -- 19th century.</corpname>
+            <corpname source="lcnaf">United States Naval Academy -- Alumni -- 19th
+                century.</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/123323953">Washington City
+                Orphan Asylum.</corpname>
+            <corpname source="lcnaf">Brandywine (Ship)</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/137301729">Dolphin
+                (Ship)</corpname>
+            <corpname source="lcnaf">Legare (Ship)</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/156110678">Marion
+                (Ship)</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/128054520">Nautilus
+                (Ship)</corpname>
+            <corpname source="lcnaf">Newborn (Ship)</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/132664775">Oneida
+                (Ship)</corpname>
+            <corpname source="lcnaf">Severn (Ship)</corpname>
+            <corpname source="lcnaf">Vandalia (Ship)</corpname>
+            <corpname source="lcnaf">Vincennes (Ship)</corpname>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/151460260">Washington
+                (Ship)</corpname>
+            <corpname source="lcnaf">Young Rover (Ship)</corpname>
+            <subject source="lcsh">Administration of estates -- Maryland.</subject>
+            <subject source="lcsh">Bimetalism.</subject>
+            <subject source="lcsh">City planning -- United States -- 20th century.</subject>
+            <subject source="lcsh">Criminal law -- Maryland.</subject>
+            <subject source="lcsh">Education -- New Jersey -- 19th century.</subject>
+            <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh85041561">Elections --
+                United States.</subject>
+            <subject source="lcsh">English literature -- Study and teaching -- New Jersey --
+                Princeton -- 19th century.</subject>
+            <subject source="lcsh">Estates (Law) -- Maryland.</subject>
+            <subject source="lcsh">Fathers and daughters -- Washington (D.C.) -- 19th
+                century.</subject>
+            <subject source="lcsh">Fathers and sons -- Maryland.</subject>
+            <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh85051911">French spoliation
+                claims.</subject>
+            <subject source="lcsh">Governors -- New Jersey -- 20th century.</subject>
+            <subject source="lcsh">Husband and wife -- Maryland -- Silver Spring -- 19th
+                century.</subject>
+            <subject source="lcsh">Husband and wife -- Washington (D.C.) -- 19th century.</subject>
+            <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh2008106843">Law -- United
+                States -- Cases.</subject>
+            <subject source="lcsh">Local government -- Maryland -- 20th century.</subject>
+            <subject source="lcsh">Mothers and sons -- New Jersey -- Princeton -- 20th
+                century.</subject>
+            <subject source="lcsh">Municipal government -- Maryland.</subject>
+            <subject source="lcsh">Naval education -- Maryland -- Annapolis -- 19th
+                century.</subject>
+            <subject source="lcsh">Naval history -- 19th century.</subject>
+            <subject source="lcsh">Patronage, Political -- Maryland -- Montgomery County.</subject>
+            <subject source="lcsh">Political clubs -- Maryland -- Montgomery County.</subject>
+            <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh2010106966">Political
+                conventions -- United States.</subject>
+            <subject source="lcsh">Politicians -- Maryland.</subject>
+            <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh85104464">Politicians --
+                United States.</subject>
+            <subject source="lcsh">Presidents -- United States -- Elections, 1896.</subject>
+            <subject source="lcsh">Presidents -- United States -- Elections, 1900.</subject>
+            <subject source="lcsh">Presidents -- United States -- Elections, 1908.</subject>
+            <subject source="lcsh">Presidents -- United States -- Elections, 1912.</subject>
+            <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh85106496">Presidents'
+                spouses -- United States.</subject>
+            <subject source="lcsh">Real property -- Maryland -- Montgomery County.</subject>
+            <subject source="lcsh">Real property -- Missouri -- St. Louis.</subject>
+            <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh2010109736">Real property
+                -- Washington (D.C.).</subject>
+            <subject source="lcsh">Students and war -- United States -- 19th century.</subject>
+            <subject source="lcsh">World War, 1914-1918 -- France -- Photographs.</subject>
+            <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh2008113789">World War,
+                1914-1918 -- Personal narratives, American.</subject>
+            <geogname source="lcsh">Maryland -- Governors -- 19th century.</geogname>
+            <geogname source="lcsh">Maryland -- History -- Civil War, 1861-1865.</geogname>
+            <geogname source="lcsh">Maryland -- History -- 1775-1865.</geogname>
+            <geogname source="lcsh">Maryland -- History -- 1865-1950.</geogname>
+            <geogname source="lcsh">Maryland -- Politics and government -- 1861-1865.</geogname>
+            <geogname source="lcsh">Maryland -- Politics and government -- 1775-1865.</geogname>
+            <geogname source="lcsh">Maryland -- Politics and government -- 1865-1950.</geogname>
+            <geogname source="lcsh">Montgomery County (Md.) -- History -- 19th century --
+                Sources.</geogname>
+            <geogname source="lcsh">Montgomery County (Md.) -- History -- 20th century --
+                Sources.</geogname>
+            <geogname source="lcsh">United States -- History -- Civil War, 1861-1865.</geogname>
+            <geogname source="lcsh">United States -- History, Naval -- 19th century.</geogname>
+            <geogname source="lcsh">United States -- Politics and government --
+                1853-1857.</geogname>
+            <geogname source="lcsh">United States -- Politics and government --
+                1857-1861.</geogname>
+            <geogname source="lcsh">United States -- Politics and government --
+                1865-1933.</geogname>
+            <genreform source="aat">Account books.</genreform>
+            <genreform source="aat">Business records.</genreform>
+            <genreform source="aat">Campaign literature, 1896</genreform>
+            <genreform source="aat">Campaign literature, 1905</genreform>
+            <genreform source="aat">Campaign literature, 1909</genreform>
+            <genreform source="aat">Campaign literature, 1911</genreform>
+            <genreform source="aat">Campaign literature, 1912</genreform>
+            <genreform source="aat">Campaign literature, 1913</genreform>
+            <genreform source="aat">Campaign speeches, 1852</genreform>
+            <genreform source="aat">Campaign speeches, 1856</genreform>
+            <genreform source="aat">Campaign speeches, 1896</genreform>
+            <genreform source="aat">Campaign speeches, 1911</genreform>
+            <genreform source="aat">Campaign speeches, 1912</genreform>
+            <genreform source="aat">Case files.</genreform>
+            <genreform source="aat">Commonplace books.</genreform>
+            <genreform source="aat">Contracts</genreform>
+            <genreform source="aat">Correspondence.</genreform>
+            <genreform source="aat">Diaries.</genreform>
+            <genreform source="aat">Family papers.</genreform>
+            <genreform source="aat">Insurance policies.</genreform>
+            <genreform source="aat">Leases.</genreform>
+            <genreform source="aat">Legal correspondence.</genreform>
+            <genreform source="aat">Legal documents.</genreform>
+            <genreform source="aat">Military maps.</genreform>
+            <genreform source="aat">Nautical charts.</genreform>
+            <genreform source="aat">Photographs.</genreform>
+            <genreform source="aat">Scrapbooks.</genreform>
+            <genreform source="aat">Ships' logs.</genreform>
+            <occupation source="lcsh">Editors -- United States.</occupation>
+            <occupation source="lcsh">Journalists -- Washington (D.C.)</occupation>
+            <occupation source="lcsh">Lawyers -- Maryland.</occupation>
+            <occupation source="lcsh">Statesmen -- United States.</occupation>
+            <subject source="local" encodinganalog="690" authfilenumber="t2" rules="local">American
+                history</subject>
+            <subject source="local" encodinganalog="690" authfilenumber="t10" rules="local">American
+                politics and government</subject>
+        </controlaccess>
+        <dsc type="combined">
+            <c id="C0614_c00001" level="series">
+                <did>
+                    <unittitle>Papers of Francis Preston Blair</unittitle>
+                    <unitdate normal="1640-01-01/1911-12-31" type="inclusive">1640-1911</unitdate>
+                    <unitdate type="bulk" normal="1791/1876">1791-1876</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="box">54 boxes (1 partial)</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>The papers of Francis Preston Blair, journalist and politician, consist of
+                        writings, correspondence, documents, materials regarding Blair as a subject,
+                        printed matter, papers of other persons, and additional papers. The writings
+                        include his speeches, editorials, addresses, articles, essays, and general
+                        works; these date from 1830, when Blair was called to Washington, D.C., by
+                        President Andrew Jackson to edit the <emph render="italic">Globe</emph>, the
+                        official newspaper of the Democratic administration. Although he never held
+                        an elected office, Blair was considered a person of political importance and
+                        influence in the mid-19th century, and his correspondence is indicative of
+                        this, containing letters from Andrew Jackson (1767-1845), Martin Van Buren
+                        (1782-1862), and Andrew Johnson (1808-1875), as well as senators Lewis Cass
+                        (1782-1866), John Charles Fremont (1813-1890), and John Jordan Crittenden
+                        (1787-1863), and congressmen Schuyler Colfax (1823-1885), Edward Livingston
+                        (1764-1836), and Thomas Patrick Moore (1797-1853).</p>
+                    <p>Also included is family correspondence, especially with his sons, Francis
+                        "Frank" Preston Blair, Jr. (1821-1875, Princeton Class of 1841), lawyer,
+                        general, and politician, and Montgomery Blair (1813-1883), lawyer,
+                        statesman, and postmaster general in President Abraham Lincoln's cabinet,
+                        and daughter, Elizabeth Blair Lee, wife of Admiral Samuel Phillips Lee and
+                        mother of Blair Lee.</p>
+                    <p>In addition, there are documents including Blair's last will and testament,
+                        financial papers such as receipts, checks, checkbooks, and account books.
+                        Among papers of others persons, there is correspondence of Andrew Jackson,
+                        manuscripts contributed to the <emph render="italic">Globe</emph>, and old
+                        family papers, many of them relating to the family of Eliza Violet Gist,
+                        Blair's wife.</p>
+                </scopecontent>
+                <arrangement>
+                    <p>Arranged by genre of material.</p>
+                </arrangement>
+                <c id="C0614_c00002" level="subseries">
+                    <did>
+                        <unittitle>Writings</unittitle>
+                        <unitdate normal="1830-01-01/1869-12-31" type="inclusive">1830-1869</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="box">2 boxes</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Contains addresses, speeches, tracts, articles, essays, and notes dealing
+                            with political subjects including the elections of 1852 and 1856, repeal
+                            of the Missouri Compromise, the reviving of the Democratic Party, and
+                            the Civil War, as well as politicians such as Andrew Jackson, John C.
+                            Calhoun, and Sam Houston. Some of Blair's articles were written for the
+                                <emph render="italic">Globe</emph>, which he edited.</p>
+                    </scopecontent>
+                    <arrangement>
+                        <p>Arranged chronologically.</p>
+                    </arrangement>
+                    <c level="file" id="C0614_c00003">
+                        <did>
+                            <container type="folder" parent="C0614_i1">1</container>
+                            <unittitle>General Writings</unittitle>
+                            <unitdate type="inclusive" normal="1830/1840">circa 1830 -
+                                1840</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folder">1 folder</extent>
+                            </physdesc>
+                        </did>
+                        <scopecontent>
+                            <p>Includes writings regarding drafts for articles in the <emph render="italic">Globe</emph>.</p>
+                        </scopecontent>
+                    </c>
+                    <c level="file" id="C0614_c00004">
+                        <did>
+                            <container type="folder" parent="C0614_i1">2</container>
+                            <unittitle>General Writings</unittitle>
+                            <unitdate type="inclusive" normal="1840/1869">1840s - 1860s</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folder">1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                  </c>
+            </c>
+            <c level="otherlevel" otherlevel="physicalitem" id="C0614_i474">
+                <did>
+                    <container type="box">P-000112</container>
+                    <unitid type="barcode">32101086135926</unitid>
+                    <physloc type="code">mss</physloc>
+                </did>
+            </c>
+        </dsc>
+    </archdesc>
+</ead>

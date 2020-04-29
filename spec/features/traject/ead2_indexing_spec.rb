@@ -55,6 +55,26 @@ describe "EAD 2 traject indexing", type: :feature do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "ead", "C0002.xml")
     end
+
+    context "when indexing a collection with deeply nested components" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "ead", "C0614.EAD.xml")
+      end
+
+      it "indexes the nested components" do
+        components = result["components"]
+        child_component_trees = components.select { |c| c["components"] && !c["components"].empty? }
+        child_component_tree = child_component_trees.first
+        expect(child_component_tree).to include("id")
+        expect(child_component_tree["id"]).to include("C0614_c00001")
+        nested_component_trees = child_component_tree["components"]
+        expect(nested_component_trees).not_to be_empty
+        nested_component_tree = nested_component_trees.first
+        expect(nested_component_tree).to include("id")
+        expect(nested_component_tree["id"]).to include("C0614_c00002")
+      end
+    end
+
     it "doesn't index them as components" do
       components = result["components"]
       expect(components.length).to eq 10
