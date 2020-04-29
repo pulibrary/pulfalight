@@ -27,8 +27,7 @@ describe "controller requests", type: :request do
       expect(response.body).not_to be_empty
       json_body = JSON.parse(response.body)
       expect(json_body).to include("id" => "WC064_c1")
-      expect(json_body).to include("ead_ssi" => "WC064")
-      expect(json_body).to include("title_ssm" => ["American Indian man wearing traditional clothing with three white\n                        children"])
+      expect(json_body).to include("unittitle" => ["American Indian man wearing traditional clothing with three white\n                        children"])
     end
   end
 end
