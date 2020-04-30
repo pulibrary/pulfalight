@@ -191,6 +191,57 @@ describe "EAD 2 traject indexing", type: :feature do
         result["normalized_date_ssm"][0]
       )
     end
+
+    describe "collection notes indexing" do
+      it "indexes all note fields from the <archdesc> child elements for the collection" do
+        expect(result).to include("collection_notes_ssm")
+        expect(result["collection_notes_ssm"]).not_to be_empty
+        notes = result["collection_notes_ssm"].join
+        expect(notes).to include("Harold Boies Hoskins was a businessman, diplomat, and educator working in")
+        expect(notes).to include("Born in Beirut and raised by American missionary parents, he")
+        expect(notes).to include("The Harold B. Hoskins Papers consist of correspondence, diaries, notes")
+        expect(notes).to include("The collection is open for research use.")
+        expect(notes).to include("Single photocopies may be made for research purposes. For quotations that are fair use as defined under")
+        expect(notes).to include("Gifted to the American Heritage Center at the University of Wyoming by Grania H.")
+        expect(notes).to include("Scott Rodman approved the gifting to Mudd on behalf of the Hoskins family in")
+        expect(notes).to include("boxes of books were separated during processing in 2007. No materials were")
+        expect(notes).to include("A preliminary inventory list, MARC record and collection-level description were")
+      end
+
+      it "indexes all note fields from the <archdesc> child elements for the child components" do
+        components = result["components"]
+        component = components.first
+
+        expect(component).to include("collection_notes_ssm")
+        expect(component["collection_notes_ssm"]).not_to be_empty
+        notes = component["collection_notes_ssm"].join
+        expect(notes).to include("Harold Boies Hoskins was a businessman, diplomat, and educator working in")
+        expect(notes).to include("Born in Beirut and raised by American missionary parents, he")
+        expect(notes).to include("The Harold B. Hoskins Papers consist of correspondence, diaries, notes")
+        expect(notes).to include("The collection is open for research use.")
+        expect(notes).to include("Single photocopies may be made for research purposes. For quotations that are fair use as defined under")
+        expect(notes).to include("Gifted to the American Heritage Center at the University of Wyoming by Grania H.")
+        expect(notes).to include("Scott Rodman approved the gifting to Mudd on behalf of the Hoskins family in")
+        expect(notes).to include("boxes of books were separated during processing in 2007. No materials were")
+        expect(notes).to include("A preliminary inventory list, MARC record and collection-level description were")
+
+        nested_components = components.flat_map { |c| c["components"] }
+        nested_component = nested_components.first
+
+        expect(nested_component).to include("collection_notes_ssm")
+        expect(nested_component["collection_notes_ssm"]).not_to be_empty
+        notes = nested_component["collection_notes_ssm"].join
+        expect(notes).to include("Harold Boies Hoskins was a businessman, diplomat, and educator working in")
+        expect(notes).to include("Born in Beirut and raised by American missionary parents, he")
+        expect(notes).to include("The Harold B. Hoskins Papers consist of correspondence, diaries, notes")
+        expect(notes).to include("The collection is open for research use.")
+        expect(notes).to include("Single photocopies may be made for research purposes. For quotations that are fair use as defined under")
+        expect(notes).to include("Gifted to the American Heritage Center at the University of Wyoming by Grania H.")
+        expect(notes).to include("Scott Rodman approved the gifting to Mudd on behalf of the Hoskins family in")
+        expect(notes).to include("boxes of books were separated during processing in 2007. No materials were")
+        expect(notes).to include("A preliminary inventory list, MARC record and collection-level description were")
+      end
+    end
   end
 
   describe "generating citations" do

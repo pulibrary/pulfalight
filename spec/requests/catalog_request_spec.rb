@@ -4,6 +4,7 @@ require "rails_helper"
 
 describe "controller requests", type: :request do
   let(:solr_response) { instance_double(Blacklight::Solr::Response) }
+
   let(:settings) do
     {
       repository: "mss"
@@ -136,6 +137,22 @@ describe "controller requests", type: :request do
         child_component_elements = component_tree_element.css(".document-minimal-field-value")
         expect(child_component_elements).not_to be_empty
         expect(child_component_elements.first.text).to eq("WC064_c1")
+      end
+    end
+  end
+
+  describe "collection-level notes" do
+    let(:document_id) { "C1588" }
+    it "renders the notes on the collection show page" do
+      expect(response.body).to include("Consists primarily of three diaries that William Dundas Bathurst (1859-1940)")
+      expect(response.body).to include("No materials were removed from the collection during 2018 processing beyond")
+    end
+
+    context "when viewing the child component pages" do
+      let(:document_id) { "C1588_c15" }
+      it "renders the notes on the collection show page" do
+        expect(response.body).to include("Consists primarily of three diaries that William Dundas Bathurst (1859-1940)")
+        expect(response.body).to include("No materials were removed from the collection during 2018 processing beyond")
       end
     end
   end

@@ -226,6 +226,33 @@ to_field "prefercite_teim" do |_record, accumulator, context|
   accumulator.concat Array.wrap(context.output_hash["prefercite_ssm"])
 end
 
+to_field "collection_notes_ssm" do |record, accumulator, _context|
+  child_nodes = record.xpath('/ead/archdesc/*[name() != "controlaccess"][name() != "dsc"]')
+  child_text_nodes = child_nodes.select { |c| c.is_a?(Nokogiri::XML::Text) }
+  accumulator.concat(child_text_nodes)
+
+  child_elements = child_nodes.select { |c| c.is_a?(Nokogiri::XML::Element) }
+  parse_nested_text = lambda do |node|
+    text_nodes = []
+    # I was getting a strange error with the Nokogiri API when attempting this
+    # children = node.children.select { |c| c.is_a?(Nokogiri::XML:Element) }
+    children = if node.name == "did"
+                 node.xpath("./abstract").select { |c| c.class == Nokogiri::XML::Element }
+               elsif node.name == "descgrp" && node["id"] == "dacs7"
+                 node.xpath("./processinfo")
+               else
+                 node.children.select { |c| c.class == Nokogiri::XML::Element }
+               end
+    children.each do |c|
+      text_nodes << [c.text.lstrip, "\n"].join
+      text_nodes.concat(parse_nested_text.call(c)) unless node.name == "descgrp" && node["id"] == "dacs7"
+    end
+    text_nodes
+  end
+  text_node_ancestors = child_elements.flat_map { |c| parse_nested_text.call(c) }
+  accumulator.concat(text_node_ancestors)
+end
+
 to_field "components" do |record, accumulator, context|
   xpath = if record.is_a?(Nokogiri::XML::Document)
             "/ead/archdesc/dsc[@type='combined']/*[is_component(.)][@level != 'otherlevel']"
