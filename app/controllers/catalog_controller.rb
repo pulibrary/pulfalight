@@ -38,6 +38,20 @@ class CatalogController < ApplicationController
     end
   end
 
+  def index
+    query_param = params.fetch(:q)
+    return super unless query_param =~ /^[A-Z]{1,2}\d{3,4}$/
+
+    # Try and take the user directly to the show page
+    begin
+      _deprecated_response, @document = search_service.fetch(query_param)
+    rescue Blacklight::Exceptions::RecordNotFound
+      return super
+    end
+
+    redirect_to solr_document_path(id: @document)
+  end
+
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
