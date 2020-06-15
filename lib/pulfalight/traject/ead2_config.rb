@@ -188,7 +188,7 @@ end
 
 SEARCHABLE_NOTES_FIELDS.map do |selector|
   to_field "#{selector}_ssm", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']")
-  to_field "#{selector}_heading_ssm", extract_xpath("/ead/archdesc/#{selector}/head") unless selector == "prefercite"
+  to_field "#{selector}_heading_ssm", extract_xpath("/ead/archdesc/#{selector}/head")
   to_field "#{selector}_teim", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']")
 end
 
@@ -208,6 +208,23 @@ to_field "language_sim", extract_xpath("/ead/archdesc/did/langmaterial")
 to_field "language_ssm", extract_xpath("/ead/archdesc/did/langmaterial")
 
 to_field "descrules_ssm", extract_xpath("/ead/eadheader/profiledesc/descrules")
+
+to_field "prefercite_ssm" do |_record, accumulator, context|
+  titles = context.output_hash["title_ssm"]
+  title = titles.first
+  output = "#{title}; "
+  citation = CitationResolverService.resolve(repository_id: settings["repository"])
+  if citation
+    output += citation
+    output += ", Princeton University Library"
+
+    accumulator << output unless output.empty?
+  end
+end
+
+to_field "prefercite_teim" do |_record, accumulator, context|
+  accumulator.concat Array.wrap(context.output_hash["prefercite_ssm"])
+end
 
 to_field "components" do |record, accumulator, context|
   xpath = if record.is_a?(Nokogiri::XML::Document)

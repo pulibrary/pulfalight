@@ -60,7 +60,7 @@ module Pulfalight
 
     def build_component_indexer(context)
       config_file_path = Rails.root.join("lib", "pulfalight", "traject", "ead2_component_config.rb")
-      indexer_settings = { parent: context }
+      indexer_settings = { parent: context, repository: settings["repository"] }
       Traject::Indexer::NokogiriIndexer.new(indexer_settings).tap do |i|
         i.load_config_file(config_file_path)
       end

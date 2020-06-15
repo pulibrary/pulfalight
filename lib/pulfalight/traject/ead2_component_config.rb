@@ -305,6 +305,26 @@ Pulfalight::Ead2Indexing::DID_SEARCHABLE_NOTES_FIELDS.map do |selector|
 end
 to_field "did_note_ssm", extract_xpath("./did/note")
 
+to_field "prefercite_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  parent_ids = parent.output_hash["id"]
+  parent_id = parent_ids.first
+  parent_titles = parent.output_hash["title_ssm"]
+  parent_title = parent_titles.first
+  output = "#{parent_title}, #{parent_id}, "
+  citation = CitationResolverService.resolve(repository_id: settings["repository"])
+  if citation
+    output += citation
+    output += ", Princeton University Library"
+
+    accumulator << output unless output.empty?
+  end
+end
+
+to_field "prefercite_teim" do |_record, accumulator, context|
+  accumulator.concat Array.wrap(context.output_hash["prefercite_ssm"])
+end
+
 to_field "components" do |record, accumulator, _context|
   child_components = record.xpath("./*[is_component(.)][@level != 'otherlevel']", NokogiriXpathExtensions.new)
   child_components.each do |child_component|

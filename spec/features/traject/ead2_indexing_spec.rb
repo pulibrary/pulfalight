@@ -9,38 +9,31 @@ describe "EAD 2 traject indexing", type: :feature do
     indexer.map_record(record)
   end
 
+  let(:settings) do
+    {
+      repository: "publicpolicy"
+    }
+  end
+
   let(:indexer) do
-    Traject::Indexer::NokogiriIndexer.new.tap do |i|
+    Traject::Indexer::NokogiriIndexer.new(settings).tap do |i|
       i.load_config_file(Rails.root.join("lib", "pulfalight", "traject", "ead2_config.rb"))
     end
   end
-
   let(:fixture_file) do
     File.read(fixture_path)
   end
-
   let(:nokogiri_reader) do
     Arclight::Traject::NokogiriNamespacelessReader.new(fixture_file.to_s, indexer.settings)
   end
-
   let(:records) do
     nokogiri_reader.to_a
   end
-
   let(:record) do
     records.first
   end
-
   let(:fixture_path) do
     Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC221_pruned.EAD.xml")
-  end
-
-  before do
-    ENV["REPOSITORY_ID"] = nil
-  end
-
-  after do # ensure we reset these otherwise other tests will fail
-    ENV["REPOSITORY_ID"] = nil
   end
 
   describe "solr fields" do
@@ -52,16 +45,10 @@ describe "EAD 2 traject indexing", type: :feature do
   end
 
   describe "repository indexing" do
-    context "when a Repository model has been persisted before the collection is indexed" do
-      let(:repository_name) { "Test Repository" }
-      let(:repository) { Arclight::Repository.create(name: repository_name) }
-      before do
-        ENV["REPOSITORY_FILE"] = Rails.root.join("spec", "fixtures", "repositories.yml").to_s
-        ENV["REPOSITORY_ID"] = "nlm"
-      end
+    context "when a Repository has been before the collection is indexed" do
       it "retrieves an existing Repository model and indexes this into Solr" do
-        expect(result).to include("repository_ssm" => ["National Library of Medicine. History of Medicine Division"])
-        expect(result).to include("repository_sim" => ["National Library of Medicine. History of Medicine Division"])
+        expect(result).to include("repository_ssm" => ["Public Policy Papers"])
+        expect(result).to include("repository_sim" => ["Public Policy Papers"])
       end
     end
   end
@@ -131,6 +118,11 @@ describe "EAD 2 traject indexing", type: :feature do
     end
 
     context "when <dao> has no role" do
+      let(:settings) do
+        {
+          repository: "mss"
+        }
+      end
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "ead", "mss", "WC064_pruned.EAD.xml")
       end
@@ -198,6 +190,22 @@ describe "EAD 2 traject indexing", type: :feature do
         result["title_ssm"][0],
         result["normalized_date_ssm"][0]
       )
+    end
+  end
+
+  describe "generating citations" do
+    it "generates a citation for any given collection" do
+      expect(result).to include("prefercite_ssm" => ["Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections, Princeton University Library"])
+      expect(result).to include("prefercite_teim" => ["Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections, Princeton University Library"])
+    end
+
+    it "generates a citation for any given component" do
+      expect(result).to include("components")
+      components = result["components"]
+      expect(components).not_to be_empty
+      component = components.first
+      expect(component).to include("prefercite_ssm" => ["Harold B. Hoskins Papers, MC221, Public Policy Papers, Department of Special Collections, Princeton University Library"])
+      expect(component).to include("prefercite_teim" => ["Harold B. Hoskins Papers, MC221, Public Policy Papers, Department of Special Collections, Princeton University Library"])
     end
   end
 end
