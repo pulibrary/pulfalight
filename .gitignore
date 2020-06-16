@@ -41,6 +41,7 @@ yarn-debug.log*
 .yarn-integrity
 
 /eads/pulfa
+/eads/aspace_fa
 /public/robots.txt
 
 # This seems to be an artifact left from SVN when checking out the PULFA repository
