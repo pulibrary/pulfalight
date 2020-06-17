@@ -3,7 +3,7 @@
 # Add a role attribute to this class
 class Arclight::DigitalObject
   attr_reader :role
-  def initialize(label:, href:, role:)
+  def initialize(label:, href:, role: nil)
     @label = label.present? ? label : href
     @href = href
     @role = role
