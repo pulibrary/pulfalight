@@ -326,7 +326,7 @@ to_field "prefercite_teim" do |_record, accumulator, context|
 end
 
 to_field "components" do |record, accumulator, _context|
-  child_components = record.xpath("./*[is_component(.)][@level != 'otherlevel']", NokogiriXpathExtensions.new)
+  child_components = record.xpath("./*[is_component(.)]", NokogiriXpathExtensions.new)
   child_components.each do |child_component|
     root_context = settings[:parent]
     component_indexer = build_component_indexer(root_context)
