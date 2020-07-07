@@ -228,7 +228,7 @@ end
 
 to_field "components" do |record, accumulator, context|
   xpath = if record.is_a?(Nokogiri::XML::Document)
-            "/ead/archdesc/dsc[@type='combined']/*[is_component(.)][@level != 'otherlevel']"
+            "/ead/archdesc/dsc/*[is_component(.)][@level != 'otherlevel']"
           else
             "./*[is_component(.)][@level != 'otherlevel']"
           end
