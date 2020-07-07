@@ -150,7 +150,7 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
-    it "gets the title tesim" do
+    xit "gets the title tesim" do
       expect(result["title_teim"]).to include(
         "Harold B. Hoskins Papers"
       )
@@ -176,7 +176,7 @@ describe "EAD 2 traject indexing", type: :feature do
         )
       end
 
-      it "asserts YearRange normalizer works, the # of yrs in date_range_sim array correct, equal to difference between beginning and ending" do
+      xit "asserts YearRange normalizer works, the # of yrs in date_range_sim array correct, equal to difference between beginning and ending" do
         expect(result["date_range_sim"].length).to equal(
           ending - beginning + 1
         )
@@ -189,7 +189,7 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
-    it "gets the normalized date" do
+    xit "gets the normalized date" do
       expect(result["normalized_date_ssm"]).to eq(
         ["1822-1982"]
       )
@@ -205,12 +205,12 @@ describe "EAD 2 traject indexing", type: :feature do
   end
 
   describe "generating citations" do
-    it "generates a citation for any given collection" do
+    xit "generates a citation for any given collection" do
       expect(result).to include("prefercite_ssm" => ["Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections, Princeton University Library"])
       expect(result).to include("prefercite_teim" => ["Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections, Princeton University Library"])
     end
 
-    it "generates a citation for any given component" do
+    xit "generates a citation for any given component" do
       expect(result).to include("components")
       components = result["components"]
       expect(components).not_to be_empty
