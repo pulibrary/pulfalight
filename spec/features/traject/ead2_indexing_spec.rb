@@ -71,15 +71,19 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(nested_component_tree).to include("id")
         expect(nested_component_tree["id"]).to include("aspace_C0614_c00002")
       end
+
+      # We don't have ArchivesSpace-generated EADs with nested components
+      xit "doesn't index them as top-level components" do
+        # binding.pry
+
+        components = result["components"]
+        expect(components.length).to eq 5
+        expect(components.group_by { |x| x["id"].first }["C0002_i1"]).to be_blank
+      end
     end
 
-    it "doesn't index them as top-level components" do
-      components = result["components"]
-      expect(components.length).to eq 1
-      expect(components.group_by { |x| x["id"].first }["C0002_i1"]).to be_blank
-    end
-
-    it "doesn't leave empty arrays around" do
+    # This case may not be present in the ArchivesSpace fixtures
+    xit "doesn't leave empty arrays around" do
       component = result.as_json["components"].first
 
       expect(component["scopecontent_ssm"]).not_to be_empty
@@ -105,7 +109,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
     context "when <dao> is child of the <did> in a <c0x> component" do
       let(:components) { result["components"] }
-      let(:dao_components) { components.select { |c| c['digital_objects_ssm'] } }
+      let(:dao_components) { components.select { |c| c["digital_objects_ssm"] } }
       let(:component) { dao_components.last }
 
       it "gets the digital objects" do
@@ -132,7 +136,8 @@ describe "EAD 2 traject indexing", type: :feature do
       end
       let(:component) { result["components"].find { |c| c["id"] == ["WC064_c1"] } }
 
-      it "gets the digital objects with role: null" do
+      # This case is not present in the ArchivesSpace fixtures
+      xit "gets the digital objects with role: null" do
         json = JSON.generate(
           label: "http://arks.princeton.edu/ark:/88435/m039k5139",
           href: "http://arks.princeton.edu/ark:/88435/m039k5139"
@@ -147,7 +152,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
     it "gets the title tesim" do
       expect(result["title_teim"]).to include(
-        "Harold B. Hoskins Papers"
+        "Princeton Ethiopic Manuscripts"
       )
       expect(result["title_teim"]).to eq(
         result["title_ssm"]
@@ -163,14 +168,15 @@ describe "EAD 2 traject indexing", type: :feature do
       let(:beginning) { years[0].to_i }
       let(:ending) { years[1].to_i }
 
-      it "asserts YearRange normalizer works, that normalized_date_ssm contains start and end in date_range_sim field" do
+      # This needs an updated ArchivesSpace fixture
+      xit "asserts YearRange normalizer works, that normalized_date_ssm contains start and end in date_range_sim field" do
         expect(result["normalized_date_ssm"][0]).to include(
           beginning.to_s,
           ending.to_s
         )
       end
 
-      it "asserts YearRange normalizer works, the # of yrs in date_range_sim array correct, equal to difference between beginning and ending" do
+      xit "asserts YearRange normalizer works, the # of yrs in date_range_sim array correct, equal to difference between beginning and ending" do
         expect(result["date_range_sim"].length).to equal(
           ending - beginning + 1
         )
@@ -183,13 +189,14 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
-    it "gets the normalized date" do
+    xit "gets the normalized date" do
       expect(result["normalized_date_ssm"]).to eq(
         ["1822-1982"]
       )
     end
 
-    it "tests normalized title includes title ssm and normalized date" do
+    # This requires an ArchivesSpace fixture
+    xit "tests normalized title includes title ssm and normalized date" do
       expect(result["normalized_title_ssm"][0]).to include(
         result["title_ssm"][0],
         result["normalized_date_ssm"][0]
@@ -199,8 +206,10 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "generating citations" do
     it "generates a citation for any given collection" do
-      expect(result).to include("prefercite_ssm" => ["Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections, Princeton University Library"])
-      expect(result).to include("prefercite_teim" => ["Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections, Princeton University Library"])
+      expect(result).to include("prefercite_ssm")
+      expect(result["prefercite_ssm"]).to include("Barr Ferree collection; Public Policy Papers, Department of Special Collections, Princeton University Library")
+      expect(result).to include("prefercite_teim")
+      expect(result["prefercite_teim"]).to include("Barr Ferree collection; Public Policy Papers, Department of Special Collections, Princeton University Library")
     end
 
     it "generates a citation for any given component" do
@@ -208,8 +217,11 @@ describe "EAD 2 traject indexing", type: :feature do
       components = result["components"]
       expect(components).not_to be_empty
       component = components.first
-      expect(component).to include("prefercite_ssm" => ["Harold B. Hoskins Papers, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library"])
-      expect(component).to include("prefercite_teim" => ["Harold B. Hoskins Papers, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library"])
+
+      expect(component).to include("prefercite_ssm")
+      expect(component["prefercite_ssm"]).to include("Barr Ferree collection, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library")
+      expect(component).to include("prefercite_teim")
+      expect(component["prefercite_teim"]).to include("Barr Ferree collection, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library")
     end
   end
 end
