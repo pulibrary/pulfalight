@@ -191,17 +191,20 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
-    xit "gets the normalized date" do
+    it "gets the normalized date" do
       expect(result["normalized_date_ssm"]).to eq(
-        ["1822-1982"]
+        ["1600-1900"]
       )
     end
 
-    # This requires an ArchivesSpace fixture
-    xit "tests normalized title includes title ssm and normalized date" do
-      expect(result["normalized_title_ssm"][0]).to include(
-        result["title_ssm"][0],
-        result["normalized_date_ssm"][0]
+    it "tests normalized title includes title ssm and normalized date" do
+      normal_titles = result["normalized_title_ssm"]
+      titles = result["title_ssm"]
+      normal_dates = result["normalized_date_ssm"]
+
+      expect(normal_titles.first).to include(
+        titles.first,
+        normal_dates.first
       )
     end
   end
