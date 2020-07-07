@@ -74,8 +74,6 @@ describe "EAD 2 traject indexing", type: :feature do
 
       # We don't have ArchivesSpace-generated EADs with nested components
       xit "doesn't index them as top-level components" do
-        # binding.pry
-
         components = result["components"]
         expect(components.length).to eq 5
         expect(components.group_by { |x| x["id"].first }["C0002_i1"]).to be_blank
@@ -164,21 +162,25 @@ describe "EAD 2 traject indexing", type: :feature do
     end
 
     context "YearRange normalizer tests" do
-      let(:years) { result["normalized_date_ssm"][0].split("-") }
-      let(:beginning) { years[0].to_i }
-      let(:ending) { years[1].to_i }
+      let(:dates) { result["normalized_date_ssm"] }
+      let(:date_range) { result["date_range_sim"] }
+      let(:date) { dates.first }
+      let(:years) { date.split("-") }
+      let(:beginning) { years.first.to_i }
+      let(:ending) { years.last.to_i }
 
-      # This needs an updated ArchivesSpace fixture
-      xit "asserts YearRange normalizer works, that normalized_date_ssm contains start and end in date_range_sim field" do
-        expect(result["normalized_date_ssm"][0]).to include(
+      it "asserts YearRange normalizer works, that normalized_date_ssm contains start and end in date_range_sim field" do
+        expect(years).to include(
           beginning.to_s,
           ending.to_s
         )
       end
 
-      xit "asserts YearRange normalizer works, the # of yrs in date_range_sim array correct, equal to difference between beginning and ending" do
-        expect(result["date_range_sim"].length).to equal(
-          ending - beginning + 1
+      it "asserts YearRange normalizer works, the # of yrs in date_range_sim array correct, equal to difference between beginning and ending" do
+        # <unitdate normal="1670/1900" type="inclusive">1600s-1900s</unitdate>
+
+        expect(date_range.length).to equal(
+          ending - 1670 + 1
         )
       end
 
