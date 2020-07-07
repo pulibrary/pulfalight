@@ -124,7 +124,7 @@ describe "EAD 2 traject indexing", type: :feature do
         }
       end
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "ead", "mss", "WC064_pruned.EAD.xml")
+        Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.ead.xml")
       end
       let(:component) { result["components"].find { |c| c["id"] == ["WC064_c1"] } }
 
