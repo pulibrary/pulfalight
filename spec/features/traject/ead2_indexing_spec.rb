@@ -132,7 +132,7 @@ describe "EAD 2 traject indexing", type: :feature do
         }
       end
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "ead", "mss", "WC064-dao-no-role.EAD.xml")
+        Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
       end
       let(:component) { result["components"].find { |c| c["id"] == ["WC064_c1"] } }
 
@@ -150,9 +150,9 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
-    xit "gets the title tesim" do
+    it "gets the title tesim" do
       expect(result["title_teim"]).to include(
-        "Harold B. Hoskins Papers"
+        "Princeton Ethiopic Manuscripts"
       )
       expect(result["title_teim"]).to eq(
         result["title_ssm"]
@@ -205,18 +205,23 @@ describe "EAD 2 traject indexing", type: :feature do
   end
 
   describe "generating citations" do
-    xit "generates a citation for any given collection" do
-      expect(result).to include("prefercite_ssm" => ["Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections, Princeton University Library"])
-      expect(result).to include("prefercite_teim" => ["Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections, Princeton University Library"])
+    it "generates a citation for any given collection" do
+      expect(result).to include("prefercite_ssm")
+      expect(result["prefercite_ssm"]).to include("Barr Ferree collection; Public Policy Papers, Department of Special Collections, Princeton University Library")
+      expect(result).to include("prefercite_teim")
+      expect(result["prefercite_teim"]).to include("Barr Ferree collection; Public Policy Papers, Department of Special Collections, Princeton University Library")
     end
 
-    xit "generates a citation for any given component" do
+    it "generates a citation for any given component" do
       expect(result).to include("components")
       components = result["components"]
       expect(components).not_to be_empty
       component = components.first
-      expect(component).to include("prefercite_ssm" => ["Harold B. Hoskins Papers, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library"])
-      expect(component).to include("prefercite_teim" => ["Harold B. Hoskins Papers, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library"])
+
+      expect(component).to include("prefercite_ssm")
+      expect(component["prefercite_ssm"]).to include("Barr Ferree collection, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library")
+      expect(component).to include("prefercite_teim")
+      expect(component["prefercite_teim"]).to include("Barr Ferree collection, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library")
     end
   end
 end
