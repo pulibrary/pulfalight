@@ -168,7 +168,7 @@ describe "controller requests", type: :request do
   end
 
   describe "searching all collections" do
-    let(:query) { "WC064" }
+    let(:query) { "C1588" }
 
     before do
       repository = Blacklight.default_index
@@ -176,7 +176,6 @@ describe "controller requests", type: :request do
       repository.connection.commit
 
       allow(Blacklight::SearchService).to receive(:new).and_call_original
-      get "/catalog?q=#{query}"
     end
 
     after do
@@ -187,6 +186,7 @@ describe "controller requests", type: :request do
 
     context "when searching for a specific collection by ID" do
       it "directs the user to the exact collection if it exists" do
+        get "/catalog?q=#{query}"
         expect(response).to redirect_to(solr_document_url(document.id))
       end
 
