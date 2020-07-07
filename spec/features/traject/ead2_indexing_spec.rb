@@ -64,12 +64,12 @@ describe "EAD 2 traject indexing", type: :feature do
         child_component_trees = components.select { |c| c["components"] && !c["components"].empty? }
         child_component_tree = child_component_trees.first
         expect(child_component_tree).to include("id")
-        expect(child_component_tree["id"]).to include("C0614_c00001")
+        expect(child_component_tree["id"]).to include("aspace_C0614_c00001")
         nested_component_trees = child_component_tree["components"]
         expect(nested_component_trees).not_to be_empty
         nested_component_tree = nested_component_trees.first
         expect(nested_component_tree).to include("id")
-        expect(nested_component_tree["id"]).to include("C0614_c00002")
+        expect(nested_component_tree["id"]).to include("aspace_C0614_c00002")
       end
     end
 
