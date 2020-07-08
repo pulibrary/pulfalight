@@ -190,7 +190,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
     it "gets the normalized date" do
       expect(result["normalized_date_ssm"]).to eq(
-        ["1600-1900"]
+        ["1670-1900"]
       )
     end
 

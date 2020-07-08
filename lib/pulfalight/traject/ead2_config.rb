@@ -38,9 +38,19 @@ to_field "title_ssm", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "title_teim", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "ead_ssi", extract_xpath("/ead/eadheader/eadid")
 
-to_field "unitdate_ssm", extract_xpath("/ead/archdesc/did/unitdate")
-to_field "unitdate_bulk_ssim", extract_xpath('/ead/archdesc/did/unitdate[@type="bulk"]')
-to_field "unitdate_inclusive_ssm", extract_xpath('/ead/archdesc/did/unitdate[@type="inclusive"]')
+# Use normal attribute value of unitdate. Text values are unreliable and potentially very different.
+# E.g. <unitdate normal="1670/1900" type="inclusive">1600s-1900s</unitdate>
+# returns a date range of 1600-1900 rather than 1670-1900.
+to_field "unitdate_ssm", extract_xpath("/ead/archdesc/did/unitdate/@normal", to_text: false) do |_record, accumulator|
+  accumulator.replace [accumulator&.first&.value]
+end
+to_field "unitdate_bulk_ssim", extract_xpath('/ead/archdesc/did/unitdate[@type="bulk"]/@normal', to_text: false) do |_record, accumulator|
+  accumulator.replace [accumulator&.first&.value]
+end
+to_field "unitdate_inclusive_ssm", extract_xpath('/ead/archdesc/did/unitdate[@type="inclusive"]/@normal', to_text: false) do |_record, accumulator|
+  accumulator.replace [accumulator&.first&.value]
+end
+
 to_field "unitdate_other_ssim", extract_xpath("/ead/archdesc/did/unitdate[not(@type)]")
 
 # All top-level docs treated as 'collection' for routing / display purposes
