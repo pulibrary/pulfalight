@@ -57,7 +57,7 @@ describe "controller requests", type: :request do
 
   context "when requesting a JSON serialization of the Document" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064_pruned.EAD.xml")
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
     end
     let(:document) do
       SolrDocument.new(solr_values, solr_response)
@@ -76,7 +76,7 @@ describe "controller requests", type: :request do
 
   context "when an AJAX request is transmitted for a collection document" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064_pruned.EAD.xml")
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
     end
     let(:document) do
       SolrDocument.new(solr_values, solr_response)
@@ -111,13 +111,13 @@ describe "controller requests", type: :request do
       expect(component_field_elements).not_to be_empty
       component_field_element = component_field_elements.first
       component_tree_element = component_field_element.parent
-      child_component_elements = component_tree_element.css("#document-minimal-WC064_c1")
+      child_component_elements = component_tree_element.css("#document-minimal-aspace_WC064_c1")
       expect(child_component_elements).not_to be_empty
     end
 
     context "when requesting a component with child component nodes" do
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "ead", "mss", "WC064_pruned.EAD.xml")
+        Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
       end
       let(:document) do
         SolrDocument.new(solr_values, solr_response)
@@ -135,7 +135,7 @@ describe "controller requests", type: :request do
         component_tree_element = component_field_element.parent
         child_component_elements = component_tree_element.css(".document-minimal-field-value")
         expect(child_component_elements).not_to be_empty
-        expect(child_component_elements.first.text).to eq("WC064_c1")
+        expect(child_component_elements.first.text).to eq("aspace_WC064_c1")
       end
     end
   end
