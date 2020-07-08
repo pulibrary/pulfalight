@@ -132,13 +132,12 @@ describe "EAD 2 traject indexing", type: :feature do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
       end
-      let(:component) { result["components"].find { |c| c["id"] == ["WC064_c1"] } }
+      let(:component) { result["components"].find { |c| c["id"] == ["aspace_WC064_c1"] } }
 
-      # This case is not present in the ArchivesSpace fixtures
-      xit "gets the digital objects with role: null" do
+      it "gets the digital objects with role: null" do
         json = JSON.generate(
-          label: "http://arks.princeton.edu/ark:/88435/m039k5139",
-          href: "http://arks.princeton.edu/ark:/88435/m039k5139"
+          label: "American Indian man wearing traditional clothing with three white children",
+          href: "https://figgy.princeton.edu/concern/scanned_resources/258dc168-da8e-49c3-b239-f3da67cfa896/manifest"
         ).slice(0..-2) + ",\"role\":null}"
         expect(component["digital_objects_ssm"]).to eq(
           [
