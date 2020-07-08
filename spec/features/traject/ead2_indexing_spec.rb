@@ -72,21 +72,19 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(nested_component_tree["id"]).to include("aspace_C0614_c00002")
       end
 
-      # We don't have ArchivesSpace-generated EADs with nested components
-      xit "doesn't index them as top-level components" do
+      it "doesn't index them as top-level components" do
         components = result["components"]
-        expect(components.length).to eq 5
+        expect(components.length).to eq 1
         expect(components.group_by { |x| x["id"].first }["C0002_i1"]).to be_blank
       end
-    end
 
-    # This case may not be present in the ArchivesSpace fixtures
-    xit "doesn't leave empty arrays around" do
-      component = result.as_json["components"].first
+      it "doesn't leave empty arrays around" do
+        component = result.as_json["components"].first
 
-      expect(component["scopecontent_ssm"]).not_to be_empty
-      expect(component["scopecontent_ssm"].length).to eq(1)
-      expect(component["scopecontent_ssm"].first).not_to be_empty
+        expect(component["scopecontent_ssm"]).not_to be_empty
+        expect(component["scopecontent_ssm"].length).to eq(3)
+        expect(component["scopecontent_ssm"].first).not_to be_empty
+      end
     end
 
     it "indexes deep children without periods" do
