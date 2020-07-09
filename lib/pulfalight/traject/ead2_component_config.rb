@@ -325,6 +325,11 @@ to_field "prefercite_teim" do |_record, accumulator, context|
   accumulator.concat Array.wrap(context.output_hash["prefercite_ssm"])
 end
 
+to_field "collection_notes_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  accumulator.concat(parent.output_hash["collection_notes_ssm"])
+end
+
 to_field "components" do |record, accumulator, _context|
   child_components = record.xpath("./*[is_component(.)][@level != 'otherlevel']", NokogiriXpathExtensions.new)
   child_components.each do |child_component|

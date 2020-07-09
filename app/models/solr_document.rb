@@ -4,6 +4,21 @@ class SolrDocument
   include Arclight::SolrDocument
   include ActiveModel::Serialization
 
+  # self.unique_key = 'id'
+
+  # Email uses the semantic field mappings below to generate the body of an email.
+  SolrDocument.use_extension(Blacklight::Document::Email)
+
+  # SMS uses the semantic field mappings below to generate the body of an SMS email.
+  SolrDocument.use_extension(Blacklight::Document::Sms)
+
+  # DublinCore uses the semantic field mappings below to assemble an OAI-compliant Dublin Core document
+  # Semantic mappings of solr stored fields. Fields may be multi or
+  # single valued. See Blacklight::Document::SemanticFields#field_semantics
+  # and Blacklight::Document::SemanticFields#to_semantic_values
+  # Recommendation: Use field names from Dublin Core
+  use_extension(Blacklight::Document::DublinCore)
+
   COLLECTION_LEVEL = "collection"
 
   # The attributes which are rendered by the JSON serialization
@@ -40,6 +55,23 @@ class SolrDocument
     level == self.class::COLLECTION_LEVEL
   end
 
+  def component?
+    key?("component_level_isim")
+  end
+
+  def html_presenter_class
+    if component?
+      ComponentHtmlPresenter
+    else
+      CollectionHtmlPresenter
+    end
+  end
+
+  def html_presenter
+    html_presenter_class.new(self)
+  end
+  alias presenter html_presenter # Update this for other format-based presenters
+
   def id
     Array.wrap(super).first
   end
@@ -54,6 +86,10 @@ class SolrDocument
 
   def eadid
     Array.wrap(super).first
+  end
+
+  def collection_notes
+    fetch("collection_notes_ssm", [])
   end
 
   def title
@@ -117,21 +153,6 @@ class SolrDocument
     merged.select { |u, _v| self.class.json_attributes.include?(u) }
   end
   delegate :to_json, to: :attributes
-
-  # self.unique_key = 'id'
-
-  # Email uses the semantic field mappings below to generate the body of an email.
-  SolrDocument.use_extension(Blacklight::Document::Email)
-
-  # SMS uses the semantic field mappings below to generate the body of an SMS email.
-  SolrDocument.use_extension(Blacklight::Document::Sms)
-
-  # DublinCore uses the semantic field mappings below to assemble an OAI-compliant Dublin Core document
-  # Semantic mappings of solr stored fields. Fields may be multi or
-  # single valued. See Blacklight::Document::SemanticFields#field_semantics
-  # and Blacklight::Document::SemanticFields#to_semantic_values
-  # Recommendation: Use field names from Dublin Core
-  use_extension(Blacklight::Document::DublinCore)
 
   private
 

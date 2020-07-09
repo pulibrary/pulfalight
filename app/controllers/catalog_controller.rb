@@ -296,6 +296,7 @@ class CatalogController < ApplicationController
     config.add_summary_field "extent_ssm", label: "Extent"
     config.add_summary_field "language_ssm", label: "Language"
     config.add_summary_field "prefercite_ssm", label: "Preferred citation"
+    config.add_summary_field "collection_notes_ssm", label: "Collection notes", helper_method: :collection_notes_formatter
 
     # Collection Show Page - Background Section
     config.add_background_field "scopecontent_ssm", label: "Scope and Content", helper_method: :paragraph_separator
@@ -359,6 +360,7 @@ class CatalogController < ApplicationController
     config.add_component_field "accruals_ssm", label: "Accruals", helper_method: :paragraph_separator
     config.add_component_field "phystech_ssm", label: "Physical / technical requirements", helper_method: :paragraph_separator
     config.add_component_field "physloc_ssm", label: "Physical location", helper_method: :paragraph_separator
+    config.add_component_field "collection_notes_ssm", label: "Collection notes", helper_method: :component_notes_formatter
 
     # Component Show Page - Indexed Terms Section
     config.add_component_indexed_terms_field "access_subjects_ssim", label: "Subjects", link_to_facet: true, separator_options: {
