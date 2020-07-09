@@ -183,4 +183,41 @@ describe "controller requests", type: :request do
       expect(response.body).to include("Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections, Princeton University Library")
     end
   end
+
+  describe "searching all collections" do
+    let(:query) { "C1588" }
+
+    before do
+      repository = Blacklight.default_index
+      repository.connection.add(document)
+      repository.connection.commit
+
+      allow(Blacklight::SearchService).to receive(:new).and_call_original
+    end
+
+    after do
+      repository = Blacklight.default_index
+      repository.connection.delete_by_id(document.id)
+      repository.connection.commit
+    end
+
+    context "when searching for a specific collection by ID" do
+      it "directs the user to the exact collection if it exists" do
+        get "/catalog?q=#{query}"
+        expect(response).to redirect_to(solr_document_url(document.id))
+      end
+
+      it "directs the user to the search results if it does not exist" do
+        get "/catalog?q=WC063"
+        expect(response.body).to include("Search Results")
+      end
+
+      context "when no query is provided" do
+        it "directs to the default search page" do
+          get "/catalog?q="
+          expect(response.body).to include("Use this site to explore descriptions of our unique holdings at the Princeton University Libraries")
+        end
+      end
+    end
+  end
 end

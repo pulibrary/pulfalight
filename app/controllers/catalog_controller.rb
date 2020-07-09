@@ -38,6 +38,20 @@ class CatalogController < ApplicationController
     end
   end
 
+  def index
+    query_param = params[:q]
+    return super unless query_param =~ /^[A-Z]{1,2}\d{3,4}$/
+
+    # Try and take the user directly to the show page
+    server_response = Blacklight.default_index.connection.get("select", params: { q: query_param })
+    solr_response = server_response["response"]
+    docs = solr_response["docs"]
+    return super if docs.empty?
+
+    @document = SolrDocument.new(docs.first)
+    redirect_to solr_document_path(id: @document)
+  end
+
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
