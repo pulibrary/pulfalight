@@ -206,6 +206,8 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(notes).to include("Scott Rodman approved the gifting to Mudd on behalf of the Hoskins family in")
         expect(notes).to include("boxes of books were separated during processing in 2007. No materials were")
         expect(notes).to include("A preliminary inventory list, MARC record and collection-level description were")
+
+        expect(result["collection_notes_ssm"]).not_to include("The collection is open for research use.\n            \n")
       end
 
       it "indexes all note fields from the <archdesc> child elements for the child components" do

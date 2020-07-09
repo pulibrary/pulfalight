@@ -249,7 +249,10 @@ to_field "collection_notes_ssm" do |record, accumulator, _context|
     end
     text_nodes
   end
+
   text_node_ancestors = child_elements.flat_map { |c| parse_nested_text.call(c) }
+  text_node_ancestors = text_node_ancestors.map { |t| t.gsub(/\s{2,}/, " ") }.uniq
+  text_node_ancestors = text_node_ancestors.map { |t| t.gsub(/\s{1,}$/, "") }.uniq
   accumulator.concat(text_node_ancestors)
 end
 
