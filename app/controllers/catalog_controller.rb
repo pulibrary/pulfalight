@@ -39,7 +39,7 @@ class CatalogController < ApplicationController
   end
 
   def index
-    query_param = params.fetch(:q)
+    query_param = params[:q]
     return super unless query_param =~ /^[A-Z]{1,2}\d{3,4}$/
 
     # Try and take the user directly to the show page
