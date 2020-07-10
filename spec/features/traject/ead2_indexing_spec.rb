@@ -206,6 +206,10 @@ describe "EAD 2 traject indexing", type: :feature do
     end
 
     describe "collection notes indexing" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC221.EAD.xml")
+      end
+
       it "indexes all note fields from the <archdesc> child elements for the collection" do
         expect(result).to include("collection_notes_ssm")
         expect(result["collection_notes_ssm"]).not_to be_empty

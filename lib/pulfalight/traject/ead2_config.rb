@@ -244,8 +244,6 @@ to_field "collection_notes_ssm" do |record, accumulator, _context|
   child_elements = child_nodes.select { |c| c.is_a?(Nokogiri::XML::Element) }
   parse_nested_text = lambda do |node|
     text_nodes = []
-    # I was getting a strange error with the Nokogiri API when attempting this
-    # children = node.children.select { |c| c.is_a?(Nokogiri::XML:Element) }
     children = if node.name == "did"
                  node.xpath("./abstract").select { |c| c.class == Nokogiri::XML::Element }
                elsif node.name == "descgrp" && node["id"] == "dacs7"
