@@ -75,12 +75,10 @@ namespace :pulfalight do
   end
 
   desc "Seed fixture data to Solr"
-  task :seed do
+  task seed: :environment do
     puts "Seeding index with data from spec/fixtures/ead..."
-
-    Dir.glob("spec/fixtures/ead/**/*.xml").each do |file|
-      index_file(relative_path: file, root_path: Rails.root)
-    end
+    index_directory(name: "spec/fixtures/ead/", root_path: Rails.root, enqueue: false)
+    blacklight_connection.commit
   end
 
   desc "Generate a robots.txt file"
@@ -186,7 +184,7 @@ namespace :pulfalight do
 
   # Index an EAD-XML Document into Solr
   # @param [String] relative_path
-  def index_file(relative_path:, root_path: nil)
+  def index_file(relative_path:, root_path: nil, enqueue: true)
     root_path ||= pulfa_root
     ead_file_path = if File.exist?(relative_path)
                       relative_path
@@ -195,20 +193,24 @@ namespace :pulfalight do
                     end
     repository_id = resolve_repository_id(ead_file_path)
 
-    IndexJob.perform_later(file_paths: [ead_file_path], repository_id: repository_id)
+    if enqueue
+      IndexJob.perform_later(file_paths: [ead_file_path], repository_id: repository_id)
+    else
+      IndexJob.perform_now(file_paths: [ead_file_path], repository_id: repository_id)
+    end
   end
 
   # Index a directory of PULFA EAD-XML Document into Solr
   # Note: This assumes that the documents have been checked out into eads/pulfa
   # @param [String] relative_path
-  def index_directory(name:, root_path: nil)
+  def index_directory(name:, root_path: nil, enqueue: true)
     root_path ||= pulfa_root
     dir = root_path.join(name)
     glob_pattern = File.join(dir, "**", "*.xml")
     file_paths = Dir.glob(glob_pattern)
 
     file_paths.each do |file_path|
-      index_file(relative_path: file_path, root_path: root_path)
+      index_file(relative_path: file_path, root_path: root_path, enqueue: enqueue)
     end
   end
 
