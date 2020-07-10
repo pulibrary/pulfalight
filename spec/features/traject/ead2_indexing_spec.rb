@@ -283,4 +283,19 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(component["prefercite_teim"]).to include("Barr Ferree collection, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library")
     end
   end
+
+  describe "indexing the location information" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "location_aspace.EAD.xml")
+    end
+
+    it "indexes the barcode into the barcodes_ssim" do
+      expect(result).to include("components")
+      components = result["components"]
+      expect(components).not_to be_empty
+      component = components.first
+      expect(component).to include("barcodes_ssim")
+      expect(component["barcodes_ssim"]).to include("32101092753019")
+    end
+  end
 end
