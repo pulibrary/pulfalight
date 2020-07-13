@@ -11,7 +11,7 @@ class CatalogController < ApplicationController
     raise(ActionController::RoutingError, "Not Found") unless blacklight_config.raw_endpoint.enabled
 
     _, @document = search_service.fetch(params[:id])
-    render json: @document.to_json
+    render json: @document.as_json
   end
 
   # @see Blacklight::Catalog#show
