@@ -23,11 +23,11 @@ describe "controller requests", type: :request do
       get "/catalog/#{document.id}/raw"
     end
 
-    it "renders a JSON serialization of the document" do
+    it "renders a raw Solr JSON document" do
       expect(response.body).not_to be_empty
       json_body = JSON.parse(response.body)
       expect(json_body).to include("id" => "WC064_c1")
-      expect(json_body).to include("unittitle" => ["American Indian man wearing traditional clothing with three white\n                        children"])
+      expect(json_body).to include("title_ssm" => ["American Indian man wearing traditional clothing with three white\n                        children"])
     end
   end
 end
