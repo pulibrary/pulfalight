@@ -298,4 +298,27 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(component["barcodes_ssim"]).to include("32101092753019")
     end
   end
+
+  describe "indexing collection component extent values" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "collection_extents.ead.xml")
+    end
+
+    it "indexes all extent elements" do
+      result
+      expect(result).to include("components")
+      components = result["components"]
+      expect(components.length).to eq(1)
+      expect(components.first).to include("components")
+      child_components = components.first["components"]
+      expect(child_components.length).to eq(9)
+      expect(child_components.first).to include("id" => ["MC148_c00002"])
+      expect(child_components.last).to include("id" => ["MC148_c00018"])
+
+      expect(result).to include("extent_ssm")
+      expect(result["extent_ssm"].length).to eq(2)
+      expect(result["extent_ssm"]).to include("278.9 linear feet")
+      expect(result["extent_ssm"]).to include("632 boxes and 2 oversize folders")
+    end
+  end
 end

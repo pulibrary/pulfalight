@@ -154,6 +154,10 @@ class SolrDocument
   end
   delegate :to_json, to: :attributes
 
+  def extents
+    fetch("extent_ssm")
+  end
+
   private
 
     def pulfalight_attributes

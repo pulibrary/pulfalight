@@ -13,6 +13,8 @@ namespace :pulfalight do
 
     desc "Index a single EAD file into Solr"
     task :file, [:file] => :environment do |_t, args|
+      $stdout.puts "Indexing #{args[:file]}..."
+
       index_file(relative_path: args[:file], root_path: Rails.root)
     end
 
