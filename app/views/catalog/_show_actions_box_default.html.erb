@@ -1,0 +1,14 @@
+<div class='al-show-actions-box'>
+  <div class="al-actions-box-container">
+    <% if document.unitid || document.containers.present? %>
+      <div class='al-collection-id'>
+        <% if document.unitid %>
+          <%= document.unitid %>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+
+  <%= render document.downloads %>
+</div>
