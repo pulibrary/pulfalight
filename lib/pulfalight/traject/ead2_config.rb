@@ -83,7 +83,7 @@ to_field "normalized_title_ssm" do |_record, accumulator, context|
   ).to_s
 
   titles = context.output_hash["title_ssm"]
-  unless titles.blank?
+  if titles.present?
     title = titles.first
     accumulator << Pulfalight::NormalizedTitle.new(title, dates).to_s
   end

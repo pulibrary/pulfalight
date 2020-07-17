@@ -2,7 +2,7 @@
 
 namespace :pulfa do
   desc "Retrieve the PULFA finding aid EAD Documents Subversion"
-  task :checkout do
+  task checkout: :environment do
     check_if_lpass_installed
     check_if_logged_in
 
@@ -25,7 +25,7 @@ namespace :pulfa do
 
   namespace :aspace do
     desc "Check out ArchiveSpace EAD examples"
-    task :checkout do
+    task checkout: :environment do
       check_if_lpass_installed
       check_if_logged_in
 

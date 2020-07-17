@@ -4,7 +4,7 @@
 class Arclight::DigitalObject
   attr_reader :role
   def initialize(label:, href:, role:)
-    @label = label.present? ? label : href
+    @label = label.presence || href
     @href = href
     @role = role
   end

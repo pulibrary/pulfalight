@@ -6,13 +6,13 @@ module Pulfalight
 
   private
 
-    def config_yaml
-      YAML.safe_load(yaml, aliases: true)[Rails.env]
-    end
+  def config_yaml
+    YAML.safe_load(yaml, aliases: true)[Rails.env]
+  end
 
-    def yaml
-      ERB.new(File.read(Rails.root.join("config", "config.yml"))).result
-    end
+  def yaml
+    ERB.new(File.read(Rails.root.join("config", "config.yml"))).result
+  end
 
-    module_function :config, :config_yaml, :yaml
+  module_function :config, :config_yaml, :yaml
 end

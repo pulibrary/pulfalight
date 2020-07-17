@@ -161,47 +161,47 @@ class SolrDocument
 
   private
 
-    def pulfalight_attributes
-      {
-        has_digital_content: has_digital_content?,
-        components: component_attributes,
-        containers: containers,
-        refs: refs,
-        ead: ead,
-        title: title,
-        unittitle: title,
-        collection: collection,
-        names: names,
-        corpname: corpname,
-        geogname: geogname,
-        places: places,
-        access_subjects: access_subjects,
-        acqinfo: acqinfo,
-        scopecontent: scopecontent
-      }
-    end
+  def pulfalight_attributes
+    {
+      has_digital_content: has_digital_content?,
+      components: component_attributes,
+      containers: containers,
+      refs: refs,
+      ead: ead,
+      title: title,
+      unittitle: title,
+      collection: collection,
+      names: names,
+      corpname: corpname,
+      geogname: geogname,
+      places: places,
+      access_subjects: access_subjects,
+      acqinfo: acqinfo,
+      scopecontent: scopecontent
+    }
+  end
 
-    def arclight_attributes
-      {
-        level: level,
-        component_level: component_level,
-        reference: reference,
-        creator: creator,
-        abstract: abstract,
-        extent: extent,
-        repository: repository,
-        unitid: unitid,
-        eadid: eadid,
-        parent: parent,
-        parent_levels: parent_levels,
-        parent_labels: parent_labels,
-        parent_ids: parent_ids
-      }
-    end
+  def arclight_attributes
+    {
+      level: level,
+      component_level: component_level,
+      reference: reference,
+      creator: creator,
+      abstract: abstract,
+      extent: extent,
+      repository: repository,
+      unitid: unitid,
+      eadid: eadid,
+      parent: parent,
+      parent_levels: parent_levels,
+      parent_labels: parent_labels,
+      parent_ids: parent_ids
+    }
+  end
 
-    def blacklight_attributes
-      {
-        id: id
-      }
-    end
+  def blacklight_attributes
+    {
+      id: id
+    }
+  end
 end
