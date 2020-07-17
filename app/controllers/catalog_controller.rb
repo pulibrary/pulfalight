@@ -21,7 +21,7 @@ class CatalogController < ApplicationController
 
     respond_to do |format|
       format.html do
-        if request.xml_http_request?
+        if request.xml_http_request? == 0
           # If a component (rather than an entire collection) is requested, this ensures that the component has no child nodes
           minimal_attributes = @document.attributes
           minimal_attributes["components"] = [] unless @document.collection?

@@ -33,7 +33,8 @@ class SolrDocument
   end
 
   def components
-    fetch(:components, [])
+    # Solr returns a single hash rather than an array when there is only one value
+    Array.wrap(fetch(:components, []))
   end
 
   def component_documents
@@ -155,7 +156,7 @@ class SolrDocument
   delegate :to_json, to: :attributes
 
   def extents
-    fetch("extent_ssm")
+    fetch("extent_ssm", [])
   end
 
   private

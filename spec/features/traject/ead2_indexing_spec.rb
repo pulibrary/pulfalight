@@ -301,7 +301,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "indexing collection component extent values" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "collection_extents.ead.xml")
+      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC148.EAD.xml")
     end
 
     it "indexes all extent elements" do
