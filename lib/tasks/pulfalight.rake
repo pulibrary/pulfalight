@@ -50,6 +50,7 @@ namespace :pulfalight do
   task :development do
     SolrWrapper.wrap(managed: true, verbose: true, port: 8983, instance_dir: "tmp/pulfalight-core-dev", persist: false, download_dir: "tmp") do |solr|
       solr.with_collection(name: "pulfalight-core-dev", dir: solr_conf_dir, persist: true) do
+        Rake::Task["pulfalight:seed"].invoke
         puts "Setup solr"
         puts "Solr running at http://localhost:8983/solr/pulfalight-core-dev/, ^C to exit"
         begin
@@ -65,6 +66,7 @@ namespace :pulfalight do
   task :test do |_t, _args|
     SolrWrapper.wrap(managed: true, verbose: true, port: 8984, instance_dir: "tmp/pulfalight-core-test", persist: false, download_dir: "tmp") do |solr|
       solr.with_collection(name: "pulfalight-core-test", dir: solr_conf_dir) do
+        Rake::Task["pulfalight:seed"].invoke
         puts "Setup solr"
         puts "Solr running at http://localhost:8984/solr/pulfalight-core-test/, ^C to exit"
         begin
@@ -79,6 +81,8 @@ namespace :pulfalight do
   desc "Seed fixture data to Solr"
   task seed: :environment do
     puts "Seeding index with data from spec/fixtures/ead..."
+    # Delete previous fixtures. Needed for lando-based test solr.
+    delete_by_query("<delete><query>*:*</query></delete>")
     index_directory(name: "spec/fixtures/ead/", root_path: Rails.root, enqueue: false)
     blacklight_connection.commit
   end
