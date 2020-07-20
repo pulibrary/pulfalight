@@ -7,7 +7,7 @@ require Rails.root.join("app", "services", "robots_generator_service")
 namespace :pulfalight do
   namespace :index do
     desc "Delete all Solr documents in the index"
-    task :delete do
+    task delete: :environment do
       delete_by_query("<delete><query>*:*</query></delete>")
     end
 
@@ -25,7 +25,7 @@ namespace :pulfalight do
 
     namespace :configs do
       desc "Updates solr config files from github"
-      task :update, :solr_dir do |_t, args|
+      task :update, [:solr_dir] => :environment do |_t, args|
         solr_dir = args[:solr_dir] || Rails.root.join("solr")
 
         ["_rest_managed.json", "admin-extra.html", "elevate.xml",
@@ -39,7 +39,7 @@ namespace :pulfalight do
     end
 
     desc "Index Princeton University Library Finding Aids (PULFA) into Solr"
-    task :pulfa do
+    task pulfa: :environment do
       Dir.glob("eads/**/*.xml").each do |file|
         index_file(relative_path: file, root_path: Rails.root)
       end
@@ -47,9 +47,10 @@ namespace :pulfalight do
   end
 
   desc "Run Solr and Arclight for interactive development"
-  task :development do
+  task development: :environment do
     SolrWrapper.wrap(managed: true, verbose: true, port: 8983, instance_dir: "tmp/pulfalight-core-dev", persist: false, download_dir: "tmp") do |solr|
       solr.with_collection(name: "pulfalight-core-dev", dir: solr_conf_dir, persist: true) do
+        Rake::Task["pulfalight:seed"].invoke
         puts "Setup solr"
         puts "Solr running at http://localhost:8983/solr/pulfalight-core-dev/, ^C to exit"
         begin
@@ -62,9 +63,10 @@ namespace :pulfalight do
   end
 
   desc "Run Solr and Arclight for testing"
-  task :test do |_t, _args|
+  task test: :environment do |_t, _args|
     SolrWrapper.wrap(managed: true, verbose: true, port: 8984, instance_dir: "tmp/pulfalight-core-test", persist: false, download_dir: "tmp") do |solr|
       solr.with_collection(name: "pulfalight-core-test", dir: solr_conf_dir) do
+        Rake::Task["pulfalight:seed"].invoke
         puts "Setup solr"
         puts "Solr running at http://localhost:8984/solr/pulfalight-core-test/, ^C to exit"
         begin
@@ -79,12 +81,14 @@ namespace :pulfalight do
   desc "Seed fixture data to Solr"
   task seed: :environment do
     puts "Seeding index with data from spec/fixtures/ead..."
+    # Delete previous fixtures. Needed for lando-based test solr.
+    delete_by_query("<delete><query>*:*</query></delete>")
     index_directory(name: "spec/fixtures/ead/", root_path: Rails.root, enqueue: false)
     blacklight_connection.commit
   end
 
   desc "Generate a robots.txt file"
-  task :robots_txt do |_t, args|
+  task robots_txt: :environment do |_t, args|
     file_path = args[:file_path] || Rails.root.join("public", "robots.txt")
     robots = RobotsGeneratorService.new(path: file_path, disallowed_paths: Rails.configuration.robots.disallowed_paths)
     robots.insert_group(user_agent: "*")

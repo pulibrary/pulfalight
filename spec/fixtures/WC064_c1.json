@@ -1,1 +1,95 @@
-{"ref_ssi":"WC064_c1","ref_ssm":["WC064_c1","[]"],"id":"WC064_c1","ead_ssi":"WC064","title_ssm":["American Indian man wearing traditional clothing with three white\n                        children"],"unitdate_inclusive_ssm":["1850-1860"],"normalized_title_ssm":["American Indian man wearing traditional clothing with three white\n                        children, 1850-1860"],"normalized_date_ssm":["1850-1860"],"component_level_isim":[1],"parent_ssm":["WC064"],"parent_ssi":"WC064","parent_unittitles_ssm":["Princeton University Library Collection of Western Americana\n                Photographs, 1840-1998, bulk 1870-1915"],"parent_levels_ssm":["collection"],"unitid_ssm":["WA 1984-753"],"collection_unitid_ssm":["WC064"],"collection_ssm":["Princeton University Library Collection of Western Americana\n                Photographs, 1840-1998, bulk 1870-1915"],"collection_ssi":"Princeton University Library Collection of Western Americana\n                Photographs, 1840-1998, bulk 1870-1915","extent_ssm":["1 item"],"collection_creator_ssm":["Princeton University Library. Special Collections."],"has_online_content_ssim":["true"],"child_component_count_isim":[0],"level_ssm":["Item"],"digital_objects_ssm":["{\"label\":\"http://arks.princeton.edu/ark:/88435/m039k5139\",\"href\":\"http://arks.princeton.edu/ark:/88435/m039k5139\"}"],"access_subjects_ssim":["Clothing","Indians of North America","Tintypes","Group portraits","Portrait photographs","Vintage prints"],"access_subjects_ssm":["Clothing","Indians of North America","Tintypes","Group portraits","Portrait photographs","Vintage prints"],"acqinfo_ssim":["This is an open collection that continually grows from gifts and purchases."],"acqinfo_ssm":["This is an open collection that continually grows from gifts and purchases."],"containers_ssim":["folder H0001"],"scopecontent_ssm":["[]"],"_nest_path_":"/components#0","_nest_parent_":"WC064","_root_":"WC064","_version_":1662708640697548800,"timestamp":"2020-03-31T19:22:05.465Z"}
+{
+    "_nest_parent_": "WC064",
+    "_nest_path_": "/components#0",
+    "_root_": "WC064",
+    "_version_": 1662708640697548800,
+    "access_subjects_ssim": [
+        "Clothing",
+        "Indians of North America",
+        "Tintypes",
+        "Group portraits",
+        "Portrait photographs",
+        "Vintage prints"
+    ],
+    "access_subjects_ssm": [
+        "Clothing",
+        "Indians of North America",
+        "Tintypes",
+        "Group portraits",
+        "Portrait photographs",
+        "Vintage prints"
+    ],
+    "acqinfo_ssim": [
+        "This is an open collection that continually grows from gifts and purchases."
+    ],
+    "acqinfo_ssm": [
+        "This is an open collection that continually grows from gifts and purchases."
+    ],
+    "child_component_count_isim": [
+        0
+    ],
+    "collection_creator_ssm": [
+        "Princeton University Library. Special Collections."
+    ],
+    "collection_ssi": "Princeton University Library Collection of Western Americana\n                Photographs, 1840-1998, bulk 1870-1915",
+    "collection_ssm": [
+        "Princeton University Library Collection of Western Americana\n                Photographs, 1840-1998, bulk 1870-1915"
+    ],
+    "collection_unitid_ssm": [
+        "WC064"
+    ],
+    "component_level_isim": [
+        1
+    ],
+    "containers_ssim": [
+        "folder H0001"
+    ],
+    "digital_objects_ssm": [
+        "{\"label\":\"http://arks.princeton.edu/ark:/88435/m039k5139\",\"href\":\"http://arks.princeton.edu/ark:/88435/m039k5139\"}"
+    ],
+    "ead_ssi": "WC064",
+    "extent_ssm": [
+        "1 item"
+    ],
+    "has_online_content_ssim": [
+        "true"
+    ],
+    "id": "WC064_c1",
+    "level_ssm": [
+        "Item"
+    ],
+    "normalized_date_ssm": [
+        "1850-1860"
+    ],
+    "normalized_title_ssm": [
+        "American Indian man wearing traditional clothing with three white\n                        children, 1850-1860"
+    ],
+    "parent_levels_ssm": [
+        "collection"
+    ],
+    "parent_ssi": "WC064",
+    "parent_ssm": [
+        "WC064"
+    ],
+    "parent_unittitles_ssm": [
+        "Princeton University Library Collection of Western Americana\n                Photographs, 1840-1998, bulk 1870-1915"
+    ],
+    "ref_ssi": "WC064_c1",
+    "ref_ssm": [
+        "WC064_c1",
+        "[]"
+    ],
+    "scopecontent_ssm": [
+        "[]"
+    ],
+    "timestamp": "2020-03-31T19:22:05.465Z",
+    "title_ssm": [
+        "American Indian man wearing traditional clothing with three white\n                        children"
+    ],
+    "unitdate_inclusive_ssm": [
+        "1850-1860"
+    ],
+    "unitid_ssm": [
+        "WA 1984-753"
+    ]
+}

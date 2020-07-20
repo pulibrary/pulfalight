@@ -6,6 +6,6 @@ class ComponentHtmlPresenter < ComponentPresenter
 
   def collection_notes
     values = @document.collection_notes
-    safe_join(values.map { |paragraph| content_tag(:p, paragraph) })
+    safe_join(values.map { |paragraph| tag.p(paragraph) })
   end
 end

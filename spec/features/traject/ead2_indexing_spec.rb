@@ -61,7 +61,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
       it "indexes the nested components" do
         components = result["components"]
-        child_component_trees = components.select { |c| c["components"] && !c["components"].empty? }
+        child_component_trees = components.select { |c| c["components"].present? }
         child_component_tree = child_component_trees.first
         expect(child_component_tree).to include("id")
         expect(child_component_tree["id"]).to include("aspace_C0614_c00001")
@@ -301,7 +301,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "indexing collection component extent values" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "collection_extents.ead.xml")
+      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC148.EAD.xml")
     end
 
     it "indexes all extent elements" do

@@ -5,12 +5,12 @@ module Pulfalight
   class NormalizedTitle < Arclight::NormalizedTitle
     private
 
-      # Generates the normalized title
-      # @return [String]
-      def normalize
-        result = [title, date].compact.join(", ")
-        result = title if result.blank?
-        result
-      end
+    # Generates the normalized title
+    # @return [String]
+    def normalize
+      result = [title, date].compact.join(", ")
+      result = title if result.blank?
+      result
+    end
   end
 end

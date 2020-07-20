@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: circleci/ruby:2.6-node-browsers
+      - image: circleci/ruby:2.6.5-node-browsers
         environment:
           RAILS_ENV: test
     steps:
@@ -60,7 +60,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: circleci/ruby:2.6-node-browsers
+      - image: circleci/ruby:2.6.5-node-browsers
         environment:
           RAILS_ENV: test
     steps:
@@ -89,7 +89,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: circleci/ruby:2.6-node-browsers
+      - image: circleci/ruby:2.6.5-node-browsers
         environment:
           RAILS_ENV: test
           PULFALIGHT_DB_HOST: localhost
@@ -127,6 +127,7 @@ jobs:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:migrate
       - run: bundle exec rake db:migrate RAILS_ENV=test
+      - run: bundle exec rake pulfalight:seed
       # Test
       - run:
           name: Run Rspec

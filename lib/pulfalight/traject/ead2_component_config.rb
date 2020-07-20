@@ -49,7 +49,7 @@ to_field "ead_ssi" do |_record, accumulator, context|
   next unless parent
 
   ead_ids = parent.output_hash["ead_ssi"]
-  accumulator << ead_ids.first unless ead_ids.blank?
+  accumulator << ead_ids.first if ead_ids.present?
 end
 
 to_field "title_filing_si", extract_xpath("./did/unittitle"), first_only
@@ -87,14 +87,14 @@ to_field "parent_ssm" do |record, accumulator, context|
   next unless parent
 
   ids = parent.output_hash["id"]
-  unless ids.blank?
+  if ids.present?
     accumulator << ids.first
     accumulator.concat Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new.is_component(record.ancestors).reverse.map { |n| n.attribute("id")&.value&.strip&.gsub(".", "-") }
   end
 end
 
 to_field "parent_ssi" do |_record, accumulator, context|
-  accumulator << context.output_hash["parent_ssm"].last unless context.output_hash["parent_ssm"].blank?
+  accumulator << context.output_hash["parent_ssm"].last if context.output_hash["parent_ssm"].present?
 end
 
 to_field "parent_unittitles_ssm" do |_rec, accumulator, context|
@@ -102,7 +102,7 @@ to_field "parent_unittitles_ssm" do |_rec, accumulator, context|
   parent = context.clipboard[:parent] || settings[:parent]
   next unless parent
 
-  accumulator.concat parent.output_hash["normalized_title_ssm"] unless parent.output_hash["normalized_title_ssm"].blank?
+  accumulator.concat parent.output_hash["normalized_title_ssm"] if parent.output_hash["normalized_title_ssm"].present?
   parent_ssm = context.output_hash["parent_ssm"]
   components = parent.output_hash["components"]
 
@@ -114,7 +114,7 @@ to_field "parent_unittitles_ssm" do |_rec, accumulator, context|
 end
 
 to_field "parent_unittitles_teim" do |_record, accumulator, context|
-  accumulator.concat context.output_hash["parent_unittitles_ssm"] unless context.output_hash["parent_unittitles_ssm"].blank?
+  accumulator.concat context.output_hash["parent_unittitles_ssm"] if context.output_hash["parent_unittitles_ssm"].present?
 end
 
 to_field "parent_levels_ssm" do |_record, accumulator, context|

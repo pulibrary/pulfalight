@@ -21,14 +21,14 @@ class CatalogController < ApplicationController
 
     respond_to do |format|
       format.html do
-        if request.xml_http_request?
+        if request.xml_http_request?.nil?
+          @search_context = setup_next_and_previous_documents
+        else
           # If a component (rather than an entire collection) is requested, this ensures that the component has no child nodes
           minimal_attributes = @document.attributes
           minimal_attributes["components"] = [] unless @document.collection?
 
           render "catalog/_minimal", locals: { attributes: minimal_attributes }
-        else
-          @search_context = setup_next_and_previous_documents
         end
       end
       format.json do
@@ -40,7 +40,7 @@ class CatalogController < ApplicationController
 
   def index
     query_param = params[:q]
-    return super unless query_param =~ /^[A-Z]{1,2}\d{3,4}$/
+    return super unless /^[A-Z]{1,2}\d{3,4}$/.match?(query_param)
 
     # Try and take the user directly to the show page
     server_response = Blacklight.default_index.connection.get("select", params: { q: query_param })
