@@ -55,6 +55,8 @@ end
 to_field "title_filing_si", extract_xpath("./did/unittitle"), first_only
 to_field "title_ssm", extract_xpath("./did/unittitle")
 to_field "title_teim", extract_xpath("./did/unittitle")
+to_field "subtitle_ssm", extract_xpath("./did/unittitle")
+to_field "subtitle_teim", extract_xpath("./did/unittitle")
 
 to_field "unitdate_bulk_ssim", extract_xpath('./did/unitdate[@type="bulk"]')
 to_field "unitdate_inclusive_ssm", extract_xpath('./did/unitdate[@type="inclusive"]')

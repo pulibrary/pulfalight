@@ -52,6 +52,11 @@ class CatalogController < ApplicationController
     redirect_to solr_document_path(id: @document)
   end
 
+  # This overrides Arclight::FieldConfigHelpers#item_requestable?
+  def item_requestable?(_, _options)
+    true
+  end
+
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository

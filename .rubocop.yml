@@ -15,6 +15,7 @@ AllCops:
 
 Metrics/AbcSize:
   Exclude:
+    - 'app/models/pulfalight/requests/aeon_external_request.rb'
     - 'lib/pulfalight/traject/ead2_component_config.rb'
 Metrics/BlockLength:
   Exclude:
@@ -28,10 +29,11 @@ Metrics/ClassLength:
     - 'app/controllers/catalog_controller.rb'
 Metrics/MethodLength:
   Exclude:
-    - 'lib/tasks/pulfalight.rake'
-    - 'app/models/solr_document.rb'
     - 'app/controllers/catalog_controller.rb'
+    - 'app/models/pulfalight/requests/aeon_external_request.rb'
+    - 'app/models/solr_document.rb'
     - 'lib/pulfalight/traject/ead2_component_config.rb'
+    - 'lib/tasks/pulfalight.rake'
 Naming/PredicateName:
   Exclude:
     - 'app/models/solr_document.rb'

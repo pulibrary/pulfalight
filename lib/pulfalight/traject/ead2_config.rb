@@ -36,6 +36,8 @@ to_field "id", extract_xpath("/ead/eadheader/eadid"), strip, gsub(".", "-")
 to_field "title_filing_si", extract_xpath('/ead/eadheader/filedesc/titlestmt/titleproper[@type="filing"]')
 to_field "title_ssm", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "title_teim", extract_xpath("/ead/archdesc/did/unittitle")
+to_field "subtitle_ssm", extract_xpath("/ead/archdesc/did/unittitle")
+to_field "subtitle_teim", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "ead_ssi", extract_xpath("/ead/eadheader/eadid")
 
 # Use normal attribute value of unitdate. Text values are unreliable and potentially very different.

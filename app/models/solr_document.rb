@@ -98,6 +98,10 @@ class SolrDocument
   end
   alias unittitle title
 
+  def subtitle
+    fetch(:subtitle_ssm, [])
+  end
+
   def places
     fetch("places_ssm", [])
   end
@@ -136,6 +140,18 @@ class SolrDocument
 
   def geogname
     fetch("geogname_ssm", [])
+  end
+
+  def volume
+    fetch(:volume_ssm, [])
+  end
+
+  def location_note
+    fetch(:location_note_ssm, [])
+  end
+
+  def location_code
+    fetch(:location_code_ssm, [])
   end
 
   def has_online_content

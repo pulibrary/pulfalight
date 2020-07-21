@@ -23,4 +23,13 @@ module PulfalightHelper
   def component_notes_formatter(*_args)
     html_presenter.collection_notes
   end
+
+  def aeon_external_request_class
+    Pulfalight::Requests::AeonExternalRequest
+  end
+
+  # This needs to parse the config/aeon.yml file
+  def available_request_types
+    [:aeon_external_request_endpoint]
+  end
 end
