@@ -24,6 +24,7 @@ module PulfalightHelper
     html_presenter.collection_notes
   end
 
+  # @return [Class]
   def aeon_external_request_class
     Pulfalight::Requests::AeonExternalRequest
   end

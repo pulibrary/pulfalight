@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Plantain
+module Pulfalight
   module Requests
     class AeonExternalRequest < Arclight::Requests::AeonExternalRequest
       include Rails.application.routes.url_helpers
@@ -36,11 +36,11 @@ module Plantain
       private
 
       def default_url_options
-        Rails.application.config.default_url_options
+        Rails.application.config.action_controller.default_url_options
       end
 
       def host
-        default_url_options[:host]
+        "localhost"
       end
 
       def request_id
@@ -69,7 +69,7 @@ module Plantain
           "ItemInfo2_#{request_id}" => @document.extent.first, # Example: "262.4 linear feet | 648 boxes and 5 oversize folders"
           "ItemInfo3_#{request_id}" => 1, # This is the unit with or without a label (1 or Reel 5)
           "ItemInfo4_#{request_id}" => @document.location_note.join(","), # I am uncertain as to where this is generated
-          "ItemInfo5_#{request_id}" => solr_document_url(@document, host: host),
+          "ItemInfo5_#{request_id}" => solr_document_url(@document),
           "Location_#{request_id}" => @document.location_code, # Example: mudd
           "Location" => @document.location_code,
           "ReferenceNumber_#{request_id}" => @document.eadid.first,

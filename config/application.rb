@@ -26,5 +26,17 @@ module Pulfalight
     end
 
     config.robots = OpenStruct.new(config_for(:robots))
+
+    config.action_controller.default_url_options = {
+      host: ENV.fetch("APPLICATION_HOST", "localhost"),
+      port: ENV.fetch("APPLICATION_PORT", "3000"),
+      protocol: ENV.fetch("APPLICATION_HOST_PROTOCOL", "http")
+    }
   end
+
+  Rails.application.routes.default_url_options = {
+    host: ENV.fetch("APPLICATION_HOST", "localhost"),
+    port: ENV.fetch("APPLICATION_PORT", "3000"),
+    protocol: ENV.fetch("APPLICATION_HOST_PROTOCOL", "http")
+  }
 end
