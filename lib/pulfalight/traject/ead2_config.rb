@@ -79,28 +79,29 @@ to_field "unitid_ssm", extract_xpath("/ead/archdesc/did/unitid")
 to_field "unitid_teim", extract_xpath("/ead/archdesc/did/unitid")
 
 to_field "physloc_code_ssm" do |record, accumulator|
-  record.xpath("/ead/archdesc/did/physloc[1]").each do |physloc_element|
-    physical_location_code = Pulfalight::PhysicalLocationCode.resolve(physloc_element.text)
-    accumulator << physical_location_code.to_s
+  record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
+    if Pulfalight::PhysicalLocationCode.registered?(physloc_element.text)
+      physical_location_code = Pulfalight::PhysicalLocationCode.resolve(physloc_element.text)
+      accumulator << physical_location_code.to_s
+    end
   end
 end
 
 to_field "location_code_ssm" do |record, accumulator|
-  record.xpath("/ead/archdesc/did/physloc[2]").each do |physloc_element|
-    location_code = Pulfalight::LocationCode.resolve(physloc_element.text)
-    accumulator << location_code.to_s
+  values = []
+  record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
+    if Pulfalight::LocationCode.registered?(physloc_element.text)
+      location_code = Pulfalight::LocationCode.resolve(physloc_element.text)
+      values << location_code.to_s
+    end
   end
+
+  accumulator.concat(values.uniq)
 end
 
 to_field "location_note_ssm" do |record, accumulator|
-  record.xpath("/ead/archdesc/did/physloc[3]").each do |physloc_element|
-    accumulator << physloc_element.text
-  end
-end
-
-to_field "volume_ssm" do |record, accumulator|
-  record.xpath("/ead/archdesc/did/physloc[3]").each do |physloc_element|
-    accumulator << physloc_element.text
+  record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
+    accumulator << physloc_element.text if !Pulfalight::PhysicalLocationCode.registered?(physloc_element.text) && !Pulfalight::LocationCode.registered?(physloc_element.text)
   end
 end
 

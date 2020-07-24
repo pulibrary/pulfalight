@@ -10,8 +10,10 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
 )
 
 SimpleCov.coverage_dir(File.join(ENV["CIRCLE_ARTIFACTS"], "coverage")) if ENV["CIRCLE_ARTIFACTS"]
-SimpleCov.start do
-  add_filter "/config/lando_env.rb"
+SimpleCov.start "rails" do
+  add_filter "app/mailers/application_mailer.rb"
+  add_filter "config"
+  add_filter "spec"
 end
 
 RSpec.configure do |config|

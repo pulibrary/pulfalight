@@ -180,9 +180,39 @@ end
 to_field "extent_ssm", extract_xpath("./did/physdesc/extent")
 to_field "extent_teim", extract_xpath("./did/physdesc/extent")
 
+to_field "physloc_code_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  next unless parent
+
+  physloc_code = parent.output_hash["physloc_code_ssm"]
+  accumulator.concat(physloc_code) if physloc_code
+end
+
+to_field "location_code_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  next unless parent
+
+  physloc_code = parent.output_hash["location_code_ssm"]
+  accumulator.concat(physloc_code) if physloc_code
+end
+
+to_field "location_note_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  next unless parent
+
+  physloc_code = parent.output_hash["location_note_ssm"]
+  accumulator.concat(physloc_code) if physloc_code
+end
+
 to_field "volume_ssm" do |record, accumulator|
   record.xpath("./did/physdesc[@altrender='whole']/extent[@altrender='materialtype spaceoccupied']").each do |extent_element|
     accumulator << extent_element.text if extent_element.text.downcase.include?("vol")
+  end
+end
+
+to_field "physdesc_number_ssm" do |record, accumulator|
+  record.xpath("./did/physdesc").each do |extent_element|
+    accumulator << extent_element.text if /^\d+$/.match?(extent_element.text)
   end
 end
 

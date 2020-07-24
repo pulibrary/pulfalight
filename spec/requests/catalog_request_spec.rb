@@ -98,7 +98,7 @@ describe "controller requests", type: :request do
     context "when searching for a specific collection by ID" do
       it "directs the user to the exact collection if it exists" do
         get "/catalog?q=WC064"
-        expect(response).to redirect_to(solr_document_url("WC064"))
+        expect(response).to redirect_to("http://www.example.com/catalog/WC064")
       end
 
       it "directs the user to the search results if it does not exist" do

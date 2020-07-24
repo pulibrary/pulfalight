@@ -305,7 +305,6 @@ describe "EAD 2 traject indexing", type: :feature do
     end
 
     it "indexes all extent elements" do
-      result
       expect(result).to include("components")
       components = result["components"]
       expect(components.length).to eq(1)
@@ -328,9 +327,16 @@ describe "EAD 2 traject indexing", type: :feature do
     end
 
     it "resolves and indexes the physical location code" do
-      result
       expect(result).to include("physloc_code_ssm")
       expect(result["physloc_code_ssm"]).to eq(["RBSC"])
+    end
+
+    it "resolves and indexes the physical location code in child components" do
+      expect(result).to include("components")
+      components = result["components"]
+      expect(components).not_to be_empty
+      expect(components.first).to include("physloc_code_ssm")
+      expect(components.first["physloc_code_ssm"]).to eq(["RBSC"])
     end
   end
 
@@ -340,7 +346,6 @@ describe "EAD 2 traject indexing", type: :feature do
     end
 
     it "resolves and indexes the location code" do
-      result
       expect(result).to include("location_code_ssm")
       expect(result["location_code_ssm"]).to eq(["Firestone Library"])
     end
@@ -370,6 +375,21 @@ describe "EAD 2 traject indexing", type: :feature do
 
       expect(components.first).to include("volume_ssm")
       expect(components.first["volume_ssm"]).to eq(["2 Volumes"])
+    end
+  end
+
+  describe "#physdesc_number_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "C0776.EAD.xml")
+    end
+
+    it "indexes physical description values encoding material numbers" do
+      expect(result).to include("components")
+      components = result["components"].select { |c| c.key?("physdesc_number_ssm") }
+      expect(components).not_to be_empty
+
+      expect(components.first).to include("physdesc_number_ssm")
+      expect(components.first["physdesc_number_ssm"]).to eq(["1"])
     end
   end
 end

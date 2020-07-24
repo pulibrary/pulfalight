@@ -51,6 +51,7 @@ RSpec/ExampleLength:
   Exclude:
     - 'spec/features/catalog_view_spec.rb'
     - 'spec/features/traject/ead2_indexing_spec.rb'
+    - 'spec/models/pulfalight/requests/aeon_external_request_spec.rb'
     - 'spec/models/solr_document_spec.rb'
     - 'spec/requests/catalog_request_spec.rb'
     - 'spec/services/robots_generator_service_spec.rb'

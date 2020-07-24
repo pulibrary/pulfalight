@@ -154,6 +154,16 @@ class SolrDocument
     fetch(:location_code_ssm, [])
   end
 
+  def physical_location_code
+    fetch(:physloc_code_ssm, [])
+  end
+  alias physloc_code physical_location_code
+
+  def physical_description_number
+    fetch(:physdesc_number_ssm, [])
+  end
+  alias physdesc_number physical_description_number
+
   def has_online_content
     fetch("has_online_content_ssim", [])
   end
@@ -173,6 +183,10 @@ class SolrDocument
 
   def extents
     fetch("extent_ssm", [])
+  end
+
+  def extent
+    super || []
   end
 
   private

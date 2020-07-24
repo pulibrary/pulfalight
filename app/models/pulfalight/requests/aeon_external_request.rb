@@ -22,9 +22,9 @@ module Pulfalight
       end
 
       def url_params
-        return unless configured_request_mappings.key?("url_params")
+        return unless config.key?("url_params")
 
-        configured_request_mappings["url_params"].to_query
+        config["url_params"].to_query
       end
 
       def url
@@ -39,10 +39,6 @@ module Pulfalight
         Rails.application.config.action_controller.default_url_options
       end
 
-      def host
-        "localhost"
-      end
-
       def request_id
         # Generate the request ID here
         @request_id ||= SecureRandom.hex(14).to_i(16)
@@ -52,6 +48,14 @@ module Pulfalight
         {
           Request: request_id
         }
+      end
+
+      def physdesc_number
+        @document.physdesc_number.empty? ? ["1"] : @document.physdesc_number
+      end
+
+      def physical_location_code
+        @document.physical_location_code.first
       end
 
       def default_dynamic_fields
@@ -67,22 +71,20 @@ module Pulfalight
           "ItemVolume_#{request_id}" => @document.volume.first, # Example: "Box23"
           "ItemInfo1_#{request_id}" => @document.acqinfo.first, # Example: "Restrictions May Appli. Check Finding Aid."
           "ItemInfo2_#{request_id}" => @document.extent.first, # Example: "262.4 linear feet | 648 boxes and 5 oversize folders"
-          "ItemInfo3_#{request_id}" => 1, # This is the unit with or without a label (1 or Reel 5)
-          "ItemInfo4_#{request_id}" => @document.location_note.join(","), # I am uncertain as to where this is generated
+          "ItemInfo3_#{request_id}" => physdesc_number.first,
+          "ItemInfo4_#{request_id}" => @document.location_note.join(","),
           "ItemInfo5_#{request_id}" => solr_document_url(@document),
           "Location_#{request_id}" => @document.location_code, # Example: mudd
-          "Location" => @document.location_code,
+          "Location" => @document.location_code.first,
           "ReferenceNumber_#{request_id}" => @document.eadid.first,
           "DocumentType": "Manuscript",
-          "Site": "MUDD",
+          "Site": physical_location_code,
           "SubmitButton": "Submit Request"
         }
       end
 
       def dynamic_field_mappings
-        return default_dynamic_fields unless configured_request_mappings.key?("dynamic_fields")
-        configured_dynamic_fields = configured_request_mappings["dynamic_fields"]
-        default_dynamic_fields.merge(configured_dynamic_fields)
+        default_dynamic_fields
       end
 
       def configured_request_url
@@ -90,10 +92,6 @@ module Pulfalight
       rescue KeyError => key_error
         Rails.logger.error("No request service URL is configured for Aeon in config/aeon.yml")
         raise key_error
-      end
-
-      def configured_request_mappings
-        config.fetch("request_mappings", {})
       end
     end
   end

@@ -4,15 +4,13 @@ require "rails_helper"
 
 describe "viewing catalog records", type: :feature, js: true do
   context "when viewing a component which can be requested from Aeon" do
-    before do
-      visit "/catalog/MC148_c00001"
-    end
-
     it "renders a request button" do
+      visit "/catalog/MC148_c00001"
       expect(page).to have_css(".al-request-button")
     end
 
     it "generates a request <form>" do
+      visit "/catalog/aspace_WC064_c1"
       expect(page).to have_css(".al-request-form")
       expect(page).to have_css(".al-request-form input[name='Request']", visible: false)
       expect(page).to have_css(".al-request-form input[name='Notes']", visible: false)
@@ -35,7 +33,6 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_css(".al-request-form input[name^='ItemDate_']", visible: false)
       expect(page).to have_css(".al-request-form input[name^='ItemNumber_']", visible: false)
       expect(page).to have_css(".al-request-form input[name^='ItemInfo1_']", visible: false)
-      expect(page).to have_css(".al-request-form input[name^='ItemInfo2_']", visible: false)
       expect(page).to have_css(".al-request-form input[name^='ItemInfo3_']", visible: false)
       expect(page).to have_css(".al-request-form input[name^='ItemInfo4_']", visible: false)
       expect(page).to have_css(".al-request-form input[name^='ItemInfo5_']", visible: false)
@@ -44,6 +41,14 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_css(".al-request-form input[name='DocumentType']", visible: false)
       expect(page).to have_css(".al-request-form input[name='Site']", visible: false)
       expect(page).to have_css(".al-request-form input[name='SubmitButton']", visible: false)
+    end
+
+    context "with extent provided" do
+      it "maps this to the <form> <input>" do
+        visit "/catalog/MC148_c00001"
+
+        expect(page).to have_css(".al-request-form input[name^='ItemInfo2_']", visible: false)
+      end
     end
   end
 end

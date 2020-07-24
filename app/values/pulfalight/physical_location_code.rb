@@ -7,13 +7,14 @@ module Pulfalight
     end
 
     def self.config_file
-      @config_file ||= IO.read(config_file_path)
+      @config_file ||= IO.read(config_file_path.to_s)
     end
 
     def self.config_erb
       @config_erb ||= ERB.new(config_file).result(binding)
     rescue StandardError, SyntaxError => e
-      raise("#{config_file} was found, but could not be parsed with ERB. \n#{e.inspect}")
+      Rails.logger.error("#{config_file_path} was found, but could not be parsed with ERB. \n#{e.inspect}")
+      raise(SyntaxError, "#{config_file_path} was found, but could not be parsed with ERB. Please inspect the logs for more information.")
     end
 
     def self.config
@@ -24,6 +25,10 @@ module Pulfalight
       raise("Location code #{value} is not supported.") unless config.key?(value)
 
       config[value]
+    end
+
+    def self.registered?(value)
+      config.key?(value)
     end
 
     def self.resolve(value)
@@ -37,7 +42,6 @@ module Pulfalight
       @value = value
     end
 
-    # alias to_s resolve
     def to_s
       resolve
     end
