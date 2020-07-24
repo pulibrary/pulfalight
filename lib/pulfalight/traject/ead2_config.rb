@@ -98,6 +98,12 @@ to_field "location_note_ssm" do |record, accumulator|
   end
 end
 
+to_field "volume_ssm" do |record, accumulator|
+  record.xpath("/ead/archdesc/did/physloc[3]").each do |physloc_element|
+    accumulator << physloc_element.text
+  end
+end
+
 to_field "collection_unitid_ssm", extract_xpath("/ead/archdesc/did/unitid")
 
 to_field "normalized_title_ssm" do |_record, accumulator, context|

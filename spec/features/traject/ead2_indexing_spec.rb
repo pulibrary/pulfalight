@@ -358,23 +358,18 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
-  # to_field "physloc_code_ssm" do |record, accumulator|
-  #   record.xpath("/ead/archdesc/did/physloc[1]").each do |physloc_element|
-  #     physical_location_code = Pulfalight::PhysicalLocationCode.resolve(physloc_element.text)
-  #     accumulator << physical_location_code.to_s
-  #   end
-  # end
-  #
-  # to_field "location_code_ssm" do |record, accumulator|
-  #   record.xpath("/ead/archdesc/did/physloc[2]").each do |physloc_element|
-  #     location_code = Pulfalight::LocationCode.resolve(physloc_element.text)
-  #     accumulator << location_code.to_s
-  #   end
-  # end
-  #
-  # to_field "location_note_ssm" do |record, accumulator|
-  #   record.xpath("/ead/archdesc/did/physloc[3]").each do |physloc_element|
-  #     accumulator << physloc_element.text
-  #   end
-  # end
+  describe "#volume_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC152.ead.xml")
+    end
+
+    it "indexes extent values encoding volume numbers" do
+      expect(result).to include("components")
+      components = result["components"].select { |c| c.key?("volume_ssm") }
+      expect(components).not_to be_empty
+
+      expect(components.first).to include("volume_ssm")
+      expect(components.first["volume_ssm"]).to eq(["2 Volumes"])
+    end
+  end
 end

@@ -180,6 +180,12 @@ end
 to_field "extent_ssm", extract_xpath("./did/physdesc/extent")
 to_field "extent_teim", extract_xpath("./did/physdesc/extent")
 
+to_field "volume_ssm" do |record, accumulator|
+  record.xpath("./did/physdesc[@altrender='whole']/extent[@altrender='materialtype spaceoccupied']").each do |extent_element|
+    accumulator << extent_element.text if extent_element.text.downcase.include?("vol")
+  end
+end
+
 to_field "creator_ssm", extract_xpath("./did/origination")
 to_field "creator_ssim", extract_xpath("./did/origination")
 to_field "creators_ssim", extract_xpath("./did/origination")
