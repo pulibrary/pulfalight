@@ -321,4 +321,60 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(result["extent_ssm"]).to include("632 boxes and 2 oversize folders")
     end
   end
+
+  describe "#physloc_code_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+    end
+
+    it "resolves and indexes the physical location code" do
+      result
+      expect(result).to include("physloc_code_ssm")
+      expect(result["physloc_code_ssm"]).to eq(["RBSC"])
+    end
+  end
+
+  describe "#location_code_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+    end
+
+    it "resolves and indexes the location code" do
+      result
+      expect(result).to include("location_code_ssm")
+      expect(result["location_code_ssm"]).to eq(["Firestone Library"])
+    end
+  end
+
+  describe "#location_note_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+    end
+
+    it "indexes the location note" do
+      result
+      expect(result).to include("location_note_ssm")
+      expect(result["location_note_ssm"]).to eq(["Boxes H4 and H5 (Lummis glass plate negatives) and H6 (California Gold Rush daguerreotype) are stored in special vault facilities."])
+    end
+  end
+
+  # to_field "physloc_code_ssm" do |record, accumulator|
+  #   record.xpath("/ead/archdesc/did/physloc[1]").each do |physloc_element|
+  #     physical_location_code = Pulfalight::PhysicalLocationCode.resolve(physloc_element.text)
+  #     accumulator << physical_location_code.to_s
+  #   end
+  # end
+  #
+  # to_field "location_code_ssm" do |record, accumulator|
+  #   record.xpath("/ead/archdesc/did/physloc[2]").each do |physloc_element|
+  #     location_code = Pulfalight::LocationCode.resolve(physloc_element.text)
+  #     accumulator << location_code.to_s
+  #   end
+  # end
+  #
+  # to_field "location_note_ssm" do |record, accumulator|
+  #   record.xpath("/ead/archdesc/did/physloc[3]").each do |physloc_element|
+  #     accumulator << physloc_element.text
+  #   end
+  # end
 end

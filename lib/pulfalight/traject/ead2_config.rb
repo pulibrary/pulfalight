@@ -19,6 +19,8 @@ require_relative "../normalized_title"
 require_relative "../normalized_date"
 require_relative "../year_range"
 require Rails.root.join("lib", "pulfalight", "traject", "ead2_indexing")
+require Rails.root.join("app", "values", "pulfalight", "location_code")
+require Rails.root.join("app", "values", "pulfalight", "physical_location_code")
 
 extend TrajectPlus::Macros
 self.class.include(Pulfalight::Ead2Indexing)
@@ -75,6 +77,27 @@ end
 
 to_field "unitid_ssm", extract_xpath("/ead/archdesc/did/unitid")
 to_field "unitid_teim", extract_xpath("/ead/archdesc/did/unitid")
+
+to_field "physloc_code_ssm" do |record, accumulator|
+  record.xpath("/ead/archdesc/did/physloc[1]").each do |physloc_element|
+    physical_location_code = Pulfalight::PhysicalLocationCode.resolve(physloc_element.text)
+    accumulator << physical_location_code.to_s
+  end
+end
+
+to_field "location_code_ssm" do |record, accumulator|
+  record.xpath("/ead/archdesc/did/physloc[2]").each do |physloc_element|
+    location_code = Pulfalight::LocationCode.resolve(physloc_element.text)
+    accumulator << location_code.to_s
+  end
+end
+
+to_field "location_note_ssm" do |record, accumulator|
+  record.xpath("/ead/archdesc/did/physloc[3]").each do |physloc_element|
+    accumulator << physloc_element.text
+  end
+end
+
 to_field "collection_unitid_ssm", extract_xpath("/ead/archdesc/did/unitid")
 
 to_field "normalized_title_ssm" do |_record, accumulator, context|
