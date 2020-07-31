@@ -10,13 +10,37 @@ import TocBuilder from "../packs/toc.es6"
 
 Vue.use(system)
 
+<<<<<<< HEAD
 document.addEventListener('turbolinks:load', () => {
+=======
+import RequestCart from '../RequestCart.vue'
+
+function ComponentBuilder() {}
+ComponentBuilder.build = function(className, componentClass) {
+  var elements = document.getElementsByClassName(className)
+
+  for (var i = 0; i < elements.length; i++) {
+    new componentClass({
+      el: elements[i]
+    })
+  }
+}
+
+function RequestFactory() {}
+RequestFactory.build = function() {
+  ComponentBuilder.build('request-cart-block', RequestCart)
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+>>>>>>> Porting an original Aeon request support implementation from an older branch
   var elements = document.getElementsByClassName("lux")
   for (var i = 0; i < elements.length; i++) {
     new Vue({
       el: elements[i]
     })
   }
+
+  RequestCartFactory.build()
 
   // Initialize the range limit interface
   $('.blacklight-date_range_sim').data('plot-config', {
