@@ -1,0 +1,10 @@
+<% parents = Arclight::Parents.from_solr_document(document).as_parents %>
+<nav aria-label="breadcrumb">
+  <%= content_tag :h1, class: "breadcrumb-item breadcrumb-item-#{parents.length + 2} media" do %>
+    <span class="col"><%= document.title.first %></span>
+  <% end %>
+
+  <%= content_tag :h2, class: "breadcrumb-date media" do %>
+    <span class="col"><%= document.normalized_date %></span>
+  <% end %>
+</nav>
