@@ -1,0 +1,37 @@
+.document {
+
+  .al-show {
+    margin-top: 0.64rem;
+    padding-top: 0.64rem;
+
+    h1 {
+      font-size: 2.12rem;
+      font-weight: 600;
+    }
+
+    h2 {
+      padding-left: 10px;
+      font-weight: 300;
+      font-size: 1.85rem;
+
+    }
+
+  }
+
+  .al-show-actions-box {
+    border-color: #c2e0fa;
+    background-color: #f2f9fe;
+    color: #479af4;
+
+    border-width: 2px;
+
+    font-size: 0.875rem;
+    height: 100%;
+    margin-bottom: 2rem;
+    padding: 0.5rem 1rem 0.75rem;
+
+    .al-collection-id {
+      margin-bottom: inherit;
+    }
+  }
+}
