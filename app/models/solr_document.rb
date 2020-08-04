@@ -189,6 +189,17 @@ class SolrDocument
     super || []
   end
 
+  def physical_locations
+    values = fetch("physloc_ssm", [])
+    return if values.empty?
+
+    values.first.split(", ")
+  end
+
+  def last_physical_location
+    physical_locations.last
+  end
+
   private
 
   def pulfalight_attributes

@@ -364,25 +364,23 @@ class CatalogController < ApplicationController
     # ==========================
 
     # Component Show Page - Metadata Section
-    config.add_component_field "containers", label: "Containers", accessor: "containers", separator_options: {
-      words_connector: ", ",
-      two_words_connector: ", ",
-      last_word_connector: ", "
-    }, if: lambda { |_context, _field_config, document|
-      document.containers.present?
-    }
-    config.add_component_field "abstract_ssm", label: "Abstract", helper_method: :paragraph_separator
+    #
+    # Fields:
+    # Collection Creator
+    # Dates
+    # Located In
+    # Extent
+    # Languages
+    # Access Restrictions
+    # Credit this material
+
+    config.add_component_field "collection_creator_ssm", label: "Collection Creator"
+    config.add_component_field "unitdate_inclusive_ssm", label: "Dates"
+    config.add_component_field "physloc_ssm", label: "Located In"
     config.add_component_field "extent_ssm", label: "Extent"
-    config.add_component_field "scopecontent_ssm", label: "Scope and Content", helper_method: :paragraph_separator
-    config.add_component_field "acqinfo_ssm", label: "Acquisition information", helper_method: :paragraph_separator
-    config.add_component_field "appraisal_ssm", label: "Appraisal information", helper_method: :paragraph_separator
-    config.add_component_field "custodhist_ssm", label: "Custodial history", helper_method: :paragraph_separator
-    config.add_component_field "processinfo_ssm", label: "Processing information", helper_method: :paragraph_separator
-    config.add_component_field "arrangement_ssm", label: "Arrangement", helper_method: :paragraph_separator
-    config.add_component_field "accruals_ssm", label: "Accruals", helper_method: :paragraph_separator
-    config.add_component_field "phystech_ssm", label: "Physical / technical requirements", helper_method: :paragraph_separator
-    config.add_component_field "physloc_ssm", label: "Physical location", helper_method: :paragraph_separator
-    config.add_component_field "collection_notes_ssm", label: "Collection notes", helper_method: :component_notes_formatter
+    config.add_component_field "language_ssm", label: "Languages"
+    config.add_component_field "parent_access_restrict_ssm", label: "Access Restrictions"
+    config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
 
     # Component Show Page - Indexed Terms Section
     config.add_component_indexed_terms_field "access_subjects_ssim", label: "Subjects", link_to_facet: true, separator_options: {
@@ -433,8 +431,9 @@ class CatalogController < ApplicationController
     end
 
     # Insert the breadcrumbs at the beginning
-    config.show.partials.unshift(:show_upper_metadata)
-    config.show.partials.unshift(:show_breadcrumbs)
+    # config.show.partials.unshift(:show_upper_metadata)
+    config.show.partials.unshift(:show_collection_header)
+    # config.show.partials.unshift(:show_breadcrumbs)
     config.show.partials.delete(:show_header)
 
     ##

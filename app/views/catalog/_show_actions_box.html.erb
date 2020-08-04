@@ -1,0 +1,20 @@
+<div class="lux collection id">
+  <alert status="info">
+
+  <% if document.unitid %>
+    <div class='al-collection-id'>
+      <% if document.unitid %>
+        <%= document.unitid %>
+      <% end %>
+    </div>
+  <% elsif document.collection_unitid %>
+    <div class='al-collection-id'>
+      <%= document.collection_unitid %>
+    </div>
+  <% else %>
+    <div class='al-collection-id'>
+      Unprocessed
+    </div>
+  <% end %>
+  </alert>
+</div>

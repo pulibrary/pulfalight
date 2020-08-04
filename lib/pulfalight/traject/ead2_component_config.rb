@@ -60,6 +60,7 @@ to_field "subtitle_teim", extract_xpath("./did/unittitle")
 
 to_field "unitdate_bulk_ssim", extract_xpath('./did/unitdate[@type="bulk"]')
 to_field "unitdate_inclusive_ssm", extract_xpath('./did/unitdate[@type="inclusive"]')
+# to_field "unitdate_normal_inclusive_ssm", extract_xpath('./did/unitdate[@type="inclusive"]@normal')
 to_field "unitdate_other_ssim", extract_xpath("./did/unitdate[not(@type)]")
 
 to_field "normalized_title_ssm" do |_record, accumulator, context|
@@ -216,7 +217,13 @@ to_field "physdesc_number_ssm" do |record, accumulator|
   end
 end
 
-to_field "creator_ssm", extract_xpath("./did/origination")
+to_field "creator_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+
+  parent_creator = parent.output_hash["creator_ssm"]
+  accumulator.concat(parent_creator) unless parent.nil? || parent_creator.nil?
+end
+# to_field "creator_ssm", extract_xpath("./did/origination")
 to_field "creator_ssim", extract_xpath("./did/origination")
 to_field "creators_ssim", extract_xpath("./did/origination")
 to_field "creator_sort" do |record, accumulator|
@@ -326,7 +333,38 @@ to_field "acqinfo_ssm" do |_record, accumulator, context|
   accumulator.concat(context.output_hash.fetch("acqinfo_ssim", []))
 end
 
-to_field "language_ssm", extract_xpath("./did/langmaterial")
+to_field "physloc_sim" do |record, accumulator, context|
+  values = []
+  container_elements = record.xpath('./did/container')
+  container_elements.each do |container_element|
+    next unless container_element['type']
+
+    container_type = container_element['type'].capitalize
+    container_value = container_element.text
+    values << "#{container_type} #{container_value}"
+  end
+  values = Array.wrap(values.join(", "))
+
+  if values.empty?
+    parent = context.clipboard[:parent] || settings[:parent]
+    values = parent.output_hash["physloc_sim"]
+  end
+
+  accumulator.concat(values)
+end
+to_field "physloc_ssm" do |_record, accumulator, context|
+  values = context.output_hash["physloc_sim"]
+  accumulator.concat(values)
+end
+
+# to_field "language_ssm", extract_xpath("./did/langmaterial")
+to_field "language_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  parent_languages = parent.output_hash["language_ssm"]
+
+  accumulator.concat(parent_languages)
+end
+
 to_field "containers_ssim" do |record, accumulator|
   record.xpath("./did/container").each do |node|
     accumulator << [node.attribute("type"), node.text].join(" ").strip
