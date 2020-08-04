@@ -1,0 +1,26 @@
+
+<div class="collection title" aria-label="collection title">
+  <%= content_tag :h1, class: "media" do %>
+    <span class="col"><%= document.collection.first %></span>
+  <% end %>
+
+  <div class="collection-id">
+  <% if document.unitid %>
+        <%= document.unitid %>
+  <% elsif document.collection_unitid %>
+      <%= document.collection_unitid %>
+  <% else %>
+      Unprocessed
+  <% end %>
+
+  </div>
+
+  <div class="collection-attributes">
+    <%= content_tag :h2, class: "media" do %>
+      <span class="col"><%= document.normalized_date %></span>
+    <% end %>
+
+    <%= render(partial: 'show_access_levels') %>
+    <%= render(partial: 'print_finding_aid') %>
+  </div>
+</div>
