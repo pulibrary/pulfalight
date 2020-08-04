@@ -1,0 +1,127 @@
+.document {
+
+  .collection {
+
+    &.header {
+
+      margin-top: 0.8rem;
+      margin-bottom: 0.8rem;
+
+      .collection.title {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+
+        h1 {
+          font-size: 2.12rem;
+          font-weight: 600;
+
+          flex: 0 0 88.8%;
+        }
+
+        h2 {
+          padding-left: 10px;
+          font-weight: 300;
+          font-size: 1.85rem;
+        }
+
+        .collection.id {
+          margin-left: auto;
+        }
+
+        .access-levels {
+        }
+
+        .print-finding-aid {
+          margin-left: auto;
+        }
+
+      }
+    }
+  }
+
+  .nav-tabs {
+    .nav-link {
+
+      border-top: 1px solid;
+      border-bottom: 1px solid;
+      border-color: #dee2e6;
+      border-radius: 0px;
+
+      border-left-width: 0px;
+      border-right-width: 0px;
+
+      padding-top: 1.6rem;
+      padding-bottom: 1.6rem;
+    }
+  }
+
+  .tab-pane {
+    padding-top: 1.0rem;
+  }
+
+  .breadcrumbs {
+    margin-top: 0.6rem;
+    margin-bottom: 2.2rem;
+
+    span {
+      display: inline;
+      a {
+        display: inline;
+      }
+    }
+
+    .breadcrumb-item.breadcrumb-item-leaf.media {
+      font-weight: 500;
+    }
+
+    .breadcrumb-item.breadcrumb-item-4.media {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .breadcrumb-item.breadcrumb-item-3.media {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .breadcrumb-item.breadcrumb-item-2.media {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+      padding-right: 0.0;
+    }
+  }
+
+  .document-title {
+    border-bottom: 3px solid #dee2e6;
+
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    margin-top: 0.6rem;
+    margin-bottom: 2.6rem;
+
+    .lux-alert {
+      display: inline-block;
+      padding-top: 0.33rem;
+      padding-bottom: 0.33rem;
+
+      span {
+        text-transform: uppercase;
+      }
+    }
+
+    .lux-tag {
+      display: inline-block;
+    }
+
+  }
+}
+
+/* Override */
+.nav.nav-tabs .nav-item .nav-link:not(.active) {
+  background: inherit;
+  border-color: #dee2e6;
+}
