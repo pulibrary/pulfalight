@@ -60,6 +60,7 @@ to_field "subtitle_teim", extract_xpath("./did/unittitle")
 
 to_field "unitdate_bulk_ssim", extract_xpath('./did/unitdate[@type="bulk"]')
 to_field "unitdate_inclusive_ssm", extract_xpath('./did/unitdate[@type="inclusive"]')
+# to_field "unitdate_normal_inclusive_ssm", extract_xpath('./did/unitdate[@type="inclusive"]@normal')
 to_field "unitdate_other_ssim", extract_xpath("./did/unitdate[not(@type)]")
 
 to_field "normalized_title_ssm" do |_record, accumulator, context|
