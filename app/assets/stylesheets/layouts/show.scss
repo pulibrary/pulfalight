@@ -215,11 +215,47 @@
       }
     }
 
-
     .lux-tag {
       display: inline-block;
     }
+  }
 
+  .content-container {
+
+    .navbar {
+      top: calc(100% - 2.62rem);
+
+      background-color: #ffffff;
+      border-top: solid 1px #7f7f7f;
+      border-bottom: solid 1px #7f7f7f;
+      margin-left: 2.05rem;
+      margin-right: 2.05rem;
+      padding-left: 0;
+      padding-right: 0;
+
+      .row {
+        width: 100%;
+        text-align: center;
+
+        .col-md-4 {
+          padding-left: 0;
+          padding-right: 0;
+
+          a {
+            color: #7f7f7f;
+            font-weight: 600;
+
+            img {
+              height: 1.6rem;
+            }
+          }
+        }
+      }
+    }
+
+    .tab-pane.active {
+      margin-top: -2.8rem;
+    }
   }
 }
 
