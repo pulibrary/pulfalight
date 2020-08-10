@@ -4,7 +4,7 @@
   <div class='col-md-12'>
 
     <!-- The content tab navigation -->
-    <div class='row'>
+    <div class='row content-navigation'>
       <div class='col-md-12'>
         <ul class='nav nav-tabs nav-fill' role='tablist' aria-label='<%= t('arclight.views.show.tablist_nav') %>'>
 
@@ -35,15 +35,42 @@
           </li>
         </ul>
       </div><!-- /.col-md-12 -->
-    </div><!-- /.row -->
+    </div><!-- /.row.content-navigation -->
 
-    <div class="row">
+    <div class="row content-container">
       <div class="col-md-4">
         <%= render(partial: 'table_of_contents') %>
       </div>
 
-       <div class="col-md-8">
-         <div class="tab-content">
+      <div class="col-md-8">
+
+        <div class="tab-content">
+
+<nav class="navbar sticky-top">
+        <div class="row">
+          <div class="col-md-4">
+            <a href="#request">
+                <%= image_tag(asset_path('icon-request.svg')) %>
+                Request this box
+            </a>
+          </div>
+
+          <div class="col-md-4">
+            <a href="#question">
+              <%= image_tag(asset_path('icon-question.svg')) %>
+              Ask a question
+            </a>
+          </div>
+
+          <div class="col-md-4">
+            <a href="#correction">
+              <%= image_tag(asset_path('icon-correction.svg')) %>
+              Suggest a correction
+            </a>
+          </div>
+        </div><!-- .row -->
+      </nav>
+
           <div class='tab-pane active' id='summary' role='tabpanel'>
             <%= render(partial: 'component_summary') %>
           </div>
@@ -67,10 +94,12 @@
           <div class='tab-pane' id='find-more' role='tabpanel'>
             <%= render(partial: 'component_find_more') %>
           </div>
-        </div>
 
-      </div>
-    </div>
+
+        </div><!-- .tab-content -->
+      </div><!-- .col-md-8 -->
+
+    </div><!-- .row.content-container -->
 
   </div>
 </div>
