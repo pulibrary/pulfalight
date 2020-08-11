@@ -246,9 +246,7 @@ end
 
 to_field "corpname_sim", extract_xpath("//corpname")
 
-# to_field "physloc_sim", extract_xpath("/ead/archdesc/did/physloc")
-# to_field "physloc_ssm", extract_xpath("/ead/archdesc/did/physloc")
-to_field "physloc_sim" do |record, accumulator, context|
+to_field "physloc_sim" do |record, accumulator, _context|
   values = []
   record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
     if Pulfalight::LocationCode.registered?(physloc_element.text)
@@ -265,14 +263,12 @@ to_field "physloc_ssm" do |_record, accumulator, context|
   accumulator.concat(values)
 end
 
-# to_field "language_sim", extract_xpath("/ead/archdesc/did/langmaterial")
-# to_field "language_ssm", extract_xpath("/ead/archdesc/did/langmaterial")
-to_field "language_sim" do |record, accumulator, context|
+to_field "language_sim" do |record, accumulator, _context|
   elements = record.xpath("/ead/archdesc/did/langmaterial")
   values = []
   elements.each do |element|
     value = element.text
-    value = value.gsub(/[[:space:]]+?[[:punct:]]/, '')
+    value = value.gsub(/[[:space:]]+?[[:punct:]]/, "")
     values << value
   end
 

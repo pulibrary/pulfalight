@@ -1,9 +1,9 @@
+@import 'overrides';
 @import 'base';
-
-@import 'layouts/home';
-@import 'layouts/show';
 
 @import 'modules/header';
 @import 'modules/search';
 @import 'modules/footer';
 
+@import 'layouts/home';
+@import 'layouts/catalog_show';

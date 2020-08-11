@@ -1,0 +1,35 @@
+  @mixin breadcrumbs {
+    margin-top: 0.6rem;
+    margin-bottom: 2.2rem;
+
+    span {
+      display: inline;
+      a {
+        display: inline;
+      }
+    }
+
+    .breadcrumb-item.breadcrumb-item-leaf.media {
+      font-weight: 500;
+    }
+
+    .breadcrumb-item.breadcrumb-item-4.media {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .breadcrumb-item.breadcrumb-item-3.media {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .breadcrumb-item.breadcrumb-item-2.media {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .breadcrumb-item + .breadcrumb-item::before {
+      padding-right: 0.0;
+    }
+  }
+

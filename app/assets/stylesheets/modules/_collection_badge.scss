@@ -1,0 +1,20 @@
+@mixin collection-badge {
+  display: inline-flex;
+
+  border-style: solid;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 0.4rem;
+  border-width: 0.2rem;
+  gap: 0.4rem;
+  align-items: center;
+
+  color: #479af4;
+  background-color: #f2f9fe;
+  border-color: #7fbef8;
+
+  height: 100%;
+  margin-left: auto;
+}
+
