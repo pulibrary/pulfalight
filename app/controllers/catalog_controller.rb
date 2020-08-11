@@ -364,16 +364,6 @@ class CatalogController < ApplicationController
     # ==========================
 
     # Component Show Page - Metadata Section
-    #
-    # Fields:
-    # Collection Creator
-    # Dates
-    # Located In
-    # Extent
-    # Languages
-    # Access Restrictions
-    # Credit this material
-
     config.add_component_field "collection_creator_ssm", label: "Collection Creator"
     config.add_component_field "unitdate_inclusive_ssm", label: "Dates"
     config.add_component_field "physloc_ssm", label: "Located In"
@@ -431,9 +421,7 @@ class CatalogController < ApplicationController
     end
 
     # Insert the breadcrumbs at the beginning
-    # config.show.partials.unshift(:show_upper_metadata)
     config.show.partials.unshift(:show_collection_header)
-    # config.show.partials.unshift(:show_breadcrumbs)
     config.show.partials.delete(:show_header)
 
     ##

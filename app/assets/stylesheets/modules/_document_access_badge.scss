@@ -1,0 +1,34 @@
+@mixin document-access-badge {
+  display: inline-flex;
+
+  border-style: solid;
+  padding: 0.2rem 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 0.4rem;
+  border-width: 0.2rem;
+  gap: 0.4rem;
+  align-items: center;
+
+  &.online-content {
+    color: #52a34f;
+    background-color: #f4fef5;
+    border-color: #d7fcbe;
+  }
+
+  &.some-restricted {
+    color: #f3c560;
+    background-color: #fefbf2;
+    border-color: #fcecbd;
+  }
+
+  &.restricted {
+    color: #866f39;
+    background-color: #fdf1f1;
+    border-color: #f19b99;
+  }
+
+  img {
+    height: 1.4rem
+  }
+}
