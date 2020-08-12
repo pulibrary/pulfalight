@@ -1,0 +1,18 @@
+request_url: 'https://lib-aeon.princeton.edu/aeon/Aeon.dll'
+request_mappings:
+  static:
+    Notes: ''
+    scheduledDate: ''
+    AeonForm: 'EADRequest'
+    RequestType: 'Loan'
+    GroupingIdentifier: 'ItemVolume'
+    GroupingOption_ReferenceNumber: 'Concatenate'
+    GroupingOption_ItemNumber: 'Concatenate'
+    GroupingOption_ItemDate: 'FirstValue'
+    GroupingOption_CallNumber: 'FirstValue'
+    GroupingOption_ItemVolume: 'FirstValue'
+    GroupingOption_ItemInfo1: 'FirstValue'
+    GroupingOption_Location: 'FirstValue'
+  accessor:
+    Location: repository
+    ItemTitle: title

@@ -29,6 +29,7 @@ RSpec.configure do |config|
   end
 
   config.include Capybara::DSL
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.infer_spec_type_from_file_location!
 end

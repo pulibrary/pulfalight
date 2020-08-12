@@ -19,6 +19,9 @@ class CatalogController < ApplicationController
     deprecated_response, @document = search_service.fetch(params[:id])
     @response = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(deprecated_response, "The @response instance variable is deprecated; use @document.response instead.")
 
+    # If the item can be requested, construct the request
+    @aeon_external_request = (helpers.aeon_external_request_class.new(@document, helpers.show_presenter(@document)) if item_requestable?)
+
     respond_to do |format|
       format.html do
         if request.xml_http_request?.nil?
@@ -50,6 +53,11 @@ class CatalogController < ApplicationController
 
     @document = SolrDocument.new(docs.first)
     redirect_to solr_document_path(id: @document)
+  end
+
+  # This overrides Arclight::FieldConfigHelpers#item_requestable?
+  def item_requestable?(_ = nil, _options = {})
+    @document.present? && @document.repository_config.present?
   end
 
   configure_blacklight do |config|

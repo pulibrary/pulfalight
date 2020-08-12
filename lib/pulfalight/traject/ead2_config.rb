@@ -19,6 +19,8 @@ require_relative "../normalized_title"
 require_relative "../normalized_date"
 require_relative "../year_range"
 require Rails.root.join("lib", "pulfalight", "traject", "ead2_indexing")
+require Rails.root.join("app", "values", "pulfalight", "location_code")
+require Rails.root.join("app", "values", "pulfalight", "physical_location_code")
 
 extend TrajectPlus::Macros
 self.class.include(Pulfalight::Ead2Indexing)
@@ -36,6 +38,8 @@ to_field "id", extract_xpath("/ead/eadheader/eadid"), strip, gsub(".", "-")
 to_field "title_filing_si", extract_xpath('/ead/eadheader/filedesc/titlestmt/titleproper[@type="filing"]')
 to_field "title_ssm", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "title_teim", extract_xpath("/ead/archdesc/did/unittitle")
+to_field "subtitle_ssm", extract_xpath("/ead/archdesc/did/unittitle")
+to_field "subtitle_teim", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "ead_ssi", extract_xpath("/ead/eadheader/eadid")
 
 # Use normal attribute value of unitdate. Text values are unreliable and potentially very different.
@@ -73,6 +77,34 @@ end
 
 to_field "unitid_ssm", extract_xpath("/ead/archdesc/did/unitid")
 to_field "unitid_teim", extract_xpath("/ead/archdesc/did/unitid")
+
+to_field "physloc_code_ssm" do |record, accumulator|
+  record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
+    if Pulfalight::PhysicalLocationCode.registered?(physloc_element.text)
+      physical_location_code = Pulfalight::PhysicalLocationCode.resolve(physloc_element.text)
+      accumulator << physical_location_code.to_s
+    end
+  end
+end
+
+to_field "location_code_ssm" do |record, accumulator|
+  values = []
+  record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
+    if Pulfalight::LocationCode.registered?(physloc_element.text)
+      location_code = Pulfalight::LocationCode.resolve(physloc_element.text)
+      values << location_code.to_s
+    end
+  end
+
+  accumulator.concat(values.uniq)
+end
+
+to_field "location_note_ssm" do |record, accumulator|
+  record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
+    accumulator << physloc_element.text if !Pulfalight::PhysicalLocationCode.registered?(physloc_element.text) && !Pulfalight::LocationCode.registered?(physloc_element.text)
+  end
+end
+
 to_field "collection_unitid_ssm", extract_xpath("/ead/archdesc/did/unitid")
 
 to_field "normalized_title_ssm" do |_record, accumulator, context|

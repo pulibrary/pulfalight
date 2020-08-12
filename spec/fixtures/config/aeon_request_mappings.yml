@@ -1,0 +1,21 @@
+request_url: https://example.com/aeon.dll
+url_params:
+  token: 2d94befc-9a97-48b7-b724-7eb262c83055
+request_mappings:
+  static:
+    Notes: ''
+    scheduledDate: ''
+    AeonForm: 'EADRequest'
+    RequestType: 'Loan'
+    GroupingIdentifier: 'ItemVolume'
+    GroupingOption_ReferenceNumber: 'Concatenate'
+    GroupingOption_ItemNumber: 'Concatenate'
+    GroupingOption_ItemDate: 'FirstValue'
+    GroupingOption_CallNumber: 'FirstValue'
+    GroupingOption_ItemVolume: 'FirstValue'
+    GroupingOption_ItemInfo1: 'FirstValue'
+    GroupingOption_Location: 'FirstValue'
+  accessor:
+    Location: repository
+    ItemTitle: title
+

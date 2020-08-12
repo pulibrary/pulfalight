@@ -305,7 +305,6 @@ describe "EAD 2 traject indexing", type: :feature do
     end
 
     it "indexes all extent elements" do
-      result
       expect(result).to include("components")
       components = result["components"]
       expect(components.length).to eq(1)
@@ -319,6 +318,78 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(result["extent_ssm"].length).to eq(2)
       expect(result["extent_ssm"]).to include("278.9 linear feet")
       expect(result["extent_ssm"]).to include("632 boxes and 2 oversize folders")
+    end
+  end
+
+  describe "#physloc_code_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+    end
+
+    it "resolves and indexes the physical location code" do
+      expect(result).to include("physloc_code_ssm")
+      expect(result["physloc_code_ssm"]).to eq(["RBSC"])
+    end
+
+    it "resolves and indexes the physical location code in child components" do
+      expect(result).to include("components")
+      components = result["components"]
+      expect(components).not_to be_empty
+      expect(components.first).to include("physloc_code_ssm")
+      expect(components.first["physloc_code_ssm"]).to eq(["RBSC"])
+    end
+  end
+
+  describe "#location_code_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+    end
+
+    it "resolves and indexes the location code" do
+      expect(result).to include("location_code_ssm")
+      expect(result["location_code_ssm"]).to eq(["Firestone Library"])
+    end
+  end
+
+  describe "#location_note_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+    end
+
+    it "indexes the location note" do
+      result
+      expect(result).to include("location_note_ssm")
+      expect(result["location_note_ssm"]).to eq(["Boxes H4 and H5 (Lummis glass plate negatives) and H6 (California Gold Rush daguerreotype) are stored in special vault facilities."])
+    end
+  end
+
+  describe "#volume_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC152.ead.xml")
+    end
+
+    it "indexes extent values encoding volume numbers" do
+      expect(result).to include("components")
+      components = result["components"].select { |c| c.key?("volume_ssm") }
+      expect(components).not_to be_empty
+
+      expect(components.first).to include("volume_ssm")
+      expect(components.first["volume_ssm"]).to eq(["2 Volumes"])
+    end
+  end
+
+  describe "#physdesc_number_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "C0776.EAD.xml")
+    end
+
+    it "indexes physical description values encoding material numbers" do
+      expect(result).to include("components")
+      components = result["components"].select { |c| c.key?("physdesc_number_ssm") }
+      expect(components).not_to be_empty
+
+      expect(components.first).to include("physdesc_number_ssm")
+      expect(components.first["physdesc_number_ssm"]).to eq(["1"])
     end
   end
 end

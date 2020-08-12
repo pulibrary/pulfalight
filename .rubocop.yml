@@ -15,6 +15,7 @@ AllCops:
 
 Metrics/AbcSize:
   Exclude:
+    - 'app/models/pulfalight/requests/aeon_external_request.rb'
     - 'lib/pulfalight/traject/ead2_component_config.rb'
 Metrics/BlockLength:
   Exclude:
@@ -28,10 +29,11 @@ Metrics/ClassLength:
     - 'app/controllers/catalog_controller.rb'
 Metrics/MethodLength:
   Exclude:
-    - 'lib/tasks/pulfalight.rake'
-    - 'app/models/solr_document.rb'
     - 'app/controllers/catalog_controller.rb'
+    - 'app/models/pulfalight/requests/aeon_external_request.rb'
+    - 'app/models/solr_document.rb'
     - 'lib/pulfalight/traject/ead2_component_config.rb'
+    - 'lib/tasks/pulfalight.rake'
 Naming/PredicateName:
   Exclude:
     - 'app/models/solr_document.rb'
@@ -47,10 +49,12 @@ Metrics/PerceivedComplexity:
 
 RSpec/ExampleLength:
   Exclude:
+    - 'spec/features/catalog_view_spec.rb'
     - 'spec/features/traject/ead2_indexing_spec.rb'
-    - 'spec/services/robots_generator_service_spec.rb'
+    - 'spec/models/pulfalight/requests/aeon_external_request_spec.rb'
     - 'spec/models/solr_document_spec.rb'
     - 'spec/requests/catalog_request_spec.rb'
+    - 'spec/services/robots_generator_service_spec.rb'
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 RSpec/VerifiedDoubles:
