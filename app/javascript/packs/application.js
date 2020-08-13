@@ -25,6 +25,24 @@ import "lux-design-system/dist/system/tokens/tokens.scss"
 
 Vue.use(system)
 
+import RequestCart from '../RequestCart.vue'
+
+function ComponentBuilder() {}
+ComponentBuilder.build = function(className, componentClass) {
+  var elements = document.getElementsByClassName(className)
+
+  for (var i = 0; i < elements.length; i++) {
+    new componentClass({
+      el: elements[i]
+    })
+  }
+}
+
+function RequestFactory() {}
+RequestFactory.build = function() {
+  ComponentBuilder.build('request-cart-block', RequestCart)
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   var elements = document.getElementsByClassName("lux")
   for (var i = 0; i < elements.length; i++) {
@@ -32,6 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
       el: elements[i]
     })
   }
+
+  RequestCartFactory.build()
 
   // Initialize the range limit interface
   $('.blacklight-date_range_sim').data('plot-config', {
