@@ -24,4 +24,13 @@ describe "viewing catalog records", type: :feature, js: true do
       end
     end
   end
+  context "with a component show page" do
+    before do
+      visit "/catalog/MC221_c0060"
+    end
+
+    it "has a table of contents element" do
+      expect(page).to have_css('#toc[data-selected="MC221_c0060"]')
+    end
+  end
 end
