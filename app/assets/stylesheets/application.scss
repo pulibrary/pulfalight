@@ -1,4 +1,9 @@
-@import 'components/header';
-@import 'components/search';
-@import 'components/footer';
-@import 'components/home';
+@import 'overrides';
+@import 'base';
+
+@import 'modules/header';
+@import 'modules/search';
+@import 'modules/footer';
+
+@import 'layouts/home';
+@import 'layouts/catalog_show';

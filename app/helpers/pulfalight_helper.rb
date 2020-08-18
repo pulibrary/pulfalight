@@ -33,4 +33,20 @@ module PulfalightHelper
   def available_request_types
     [:aeon_external_request_endpoint]
   end
+
+  def repository_thumbnail
+    img_src = if document&.repository_config&.thumbnail_url
+                document.repository_config.thumbnail_url
+              else
+                repository_thumbnail_path
+              end
+
+    image_tag(img_src, alt: "", class: "img-fluid float-left")
+  end
+
+  private
+
+  def repository_thumbnail_path
+    image_path("default_repository_thumbnail.jpg")
+  end
 end

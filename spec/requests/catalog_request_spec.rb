@@ -6,7 +6,6 @@ describe "controller requests", type: :request do
     it "renders containers within component" do
       get "/catalog/C1588_c15"
       expect(response).to render_template(:show)
-      expect(response.body).to include("Containers:")
       expect(response.body).to include("Folder 11")
     end
   end
@@ -74,14 +73,6 @@ describe "controller requests", type: :request do
       get "/catalog/C1588"
       expect(response.body).to include("Consists primarily of three diaries that William Dundas Bathurst (1859-1940)")
       expect(response.body).to include("No materials were removed from the collection during 2018 processing beyond")
-    end
-
-    context "when viewing the child component pages" do
-      it "renders the notes on the collection show page" do
-        get "/catalog/C1588_c15"
-        expect(response.body).to include("Consists primarily of three diaries that William Dundas Bathurst (1859-1940)")
-        expect(response.body).to include("No materials were removed from the collection during 2018 processing beyond")
-      end
     end
   end
 

@@ -1,0 +1,21 @@
+<div class="overview">
+  <%= render partial: 'shared/show_breadcrumbs', locals: {document: document} %>
+
+  <div class="lux document-title">
+    <h3><%= document.normalized_title %></h3>
+
+    <div class="document-attributes">
+      <div class="document-extent">
+        <span><%= document.extent %></span>
+      </div>
+
+      <div class="document-access restricted">
+        <%= image_tag(asset_path('icon-restricted.svg')) %>
+        <span>Restricted Content</span>
+      </div>
+    </div>
+
+  </div>
+
+  <%= render(partial: 'show_upper_metadata_default') %>
+</div>

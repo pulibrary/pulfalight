@@ -1,0 +1,22 @@
+@mixin print-button {
+  margin-left: auto;
+
+  img {
+    height: 1.4rem;
+  }
+
+  button {
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-width: 0px;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    color: #55a3f4;
+
+    img {
+      margin-right: 0.2rem;
+      margin-left: 0.2rem;
+      height: 1.6rem;
+    }
+  }
+}
