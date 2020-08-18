@@ -63,6 +63,22 @@ describe PulfalightHelper, type: :helper do
         expect(helper.component_notes_formatter).to include("</p>")
       end
     end
+
+    describe "#repository_thumbnail" do
+      it "generates the <img> markup for repository thumbnail images" do
+        expect(helper.repository_thumbnail).to include("findingaids.princeton.edu/repositories/publicpolicy.jpg")
+      end
+
+      context "when no repository configuration is available" do
+        before do
+          allow(component_document).to receive(:repository_config).and_return(nil)
+        end
+
+        it "generates the default <img> src for repository thumbnail images" do
+          expect(helper.repository_thumbnail).to include("/assets/default_repository_thumbnail")
+        end
+      end
+    end
   end
 
   describe "#available_request_types" do
