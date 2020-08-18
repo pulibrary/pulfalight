@@ -13,19 +13,11 @@
       font-weight: 500;
     }
 
-    .breadcrumb-item.breadcrumb-item-4.media {
-      padding-left: 0px;
-      padding-right: 0px;
-    }
-
-    .breadcrumb-item.breadcrumb-item-3.media {
-      padding-left: 0px;
-      padding-right: 0px;
-    }
-
-    .breadcrumb-item.breadcrumb-item-2.media {
-      padding-left: 0px;
-      padding-right: 0px;
+    @for $i from 2 to 14 {
+      .breadcrumb-item.breadcrumb-item-#{$i}.media {
+        padding-left: 0px;
+        padding-right: 0px;
+      }
     }
 
     .breadcrumb-item + .breadcrumb-item::before {
