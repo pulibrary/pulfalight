@@ -1,8 +1,18 @@
 <% parents = Arclight::Parents.from_solr_document(document).as_parents %>
 
-<div class='row'>
-  <div class='col-md-12'>
+<div class="row">
 
+  <!-- Request Cart Pane -->
+  <div class="request-cart-block">
+    <request-cart
+      :configuration="<%= JSON.generate(@aeon_configuration) %>"
+      :requests="<%= JSON.generate(@aeon_requests) %>"
+      :form-params="<%= JSON.generate(@aeon_requests) %>"
+    >
+    </request-cart>
+  </div>
+
+  <div class='col-md-12'>
     <!-- The content tab navigation -->
     <div class='row content-navigation'>
       <div class='col-md-12'>
@@ -101,3 +111,4 @@
 
   </div>
 </div>
+

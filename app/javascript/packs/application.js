@@ -17,17 +17,25 @@ import RequestCart from '../RequestCart.vue'
 
 function ComponentBuilder() {}
 ComponentBuilder.build = function(className, componentClass) {
+  console.log(className)
+  console.log(componentClass)
+
   var elements = document.getElementsByClassName(className)
 
   for (var i = 0; i < elements.length; i++) {
-    new componentClass({
-      el: elements[i]
+    console.log(elements[i])
+
+    new Vue({
+      el: elements[i],
+      components: {
+        'request-cart': RequestCart
+      }
     })
   }
 }
 
-function RequestFactory() {}
-RequestFactory.build = function() {
+function RequestCartFactory() {}
+RequestCartFactory.build = function() {
   ComponentBuilder.build('request-cart-block', RequestCart)
 }
 

@@ -4,6 +4,8 @@
 @import 'modules/document_extent_badge';
 @import 'modules/print_button';
 
+@import 'modules/request_cart';
+
 .document {
 
   .document-extent {
@@ -206,5 +208,9 @@
     .tab-pane.active {
       margin-top: -2.8rem;
     }
+  }
+
+  .request-cart-block {
+    @include request-cart;
   }
 }
