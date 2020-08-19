@@ -30,15 +30,25 @@ class CatalogController < ApplicationController
   def aeon_request_form_params
     # binding.pry
     # @aeon_request_form_params ||= [ presenter.request.form_params ]
-    @aeon_request_form_params ||= presenter.form_params
+
+    # @aeon_request_form_params ||= presenter.form_params[:params]
+    # @aeon_request_form_params ||= presenter.aeon_request_form_params
+
+    values = presenter.aeon_request_form_params
   end
 
+  # Remove this
   def aeon_requests
+=begin
     @aeon_requests ||= [
       { title: "Test Item", callnumber: 'AC044_C0023', containers: [ { type: "Box", value: "1" }, { type: "folder", value: "2" } ], subcontainers: [], location: { url: 'https://library.princeton.edu/special-collections/mudd', name: 'Mudd Library Reading Room' } },
       { title: "Test Item 2", callnumber: 'MC001', containers: [ { type: "box", value: "1" }, { type: "folder", value: "1" } ], subcontainers: [] },
       { title: "Test Item 3", callnumber: 'AC044_C0025', containers: [ { type: "box", value: "1" } ], subcontainers: [{ type: "folder", value: "3" }], location: { url: 'https://library.princeton.edu/special-collections/mudd', name: 'Mudd Library Reading Room', notes: 'This item is stored offsite. Please allow up to 48 hours for delivery.' } }
     ]
+=end
+
+    # @aeon_requests ||= presenter.form_params
+    presenter.request_form_params
   end
 
   # @see Blacklight::Catalog#show
@@ -51,7 +61,6 @@ class CatalogController < ApplicationController
 
     # For the Request Cart
     @aeon_configuration = aeon_configuration
-    @aeon_request_form_params = aeon_request_form_params
     @aeon_requests = aeon_requests
 
     respond_to do |format|

@@ -14,8 +14,26 @@ class DocumentPresenter
     @request ||= self.class.request_class.new(@document, self) if requestable?
   end
 
-  def form_params
+  def aeon_request_form_params
     build_form_params
+  end
+
+  def request_form_params
+    output = {}
+
+    # output[:aeon_form_params] = aeon_request_form_params
+    output[:callnumber] = @document.physical_location_code.first
+    output[:title] = @document.title.first
+
+    # Update this
+    output[:containers] = []
+    output[:subcontainers] = []
+
+    # Update this
+    output[:location] = { url: 'https://library.princeton.edu/special-collections/mudd', name: 'Mudd Library Reading Room' }
+    output[:aeonRequestFormParams] = aeon_request_form_params
+
+    [output]
   end
 
   def requestable?

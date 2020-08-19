@@ -34,7 +34,7 @@ module.exports = function(api) {
           modules: false,
           exclude: ['transform-typeof-symbol']
         }
-      ]
+      ],
     ].filter(Boolean),
     plugins: [
       require('babel-plugin-macros'),

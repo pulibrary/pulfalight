@@ -66,8 +66,10 @@
         </table>
 
         <div class="hidden">
-          <template v-for="(item, index) in requestFields">
-            <request-field :key="index" :name="item.name" :values="item.values"></request-field>
+          <template v-for="request in requestsState">
+          <template v-for="(item, index) in request.formParamsState">
+            <request-form-input :key="index" :name="item.name" :values="item.values"></request-form-input>
+          </template>
           </template>
         </div>
 
@@ -99,7 +101,7 @@ export default {
     'lux-icon-cart': LuxIconCart,
     'geo-icon': GeoIcon,
     'truck-icon': TruckIcon,
-    'request-field': RequestField
+    'request-form-input': RequestField
   },
   props: {
     configuration: {
@@ -122,15 +124,22 @@ export default {
   },
   data: function () {
     return {
-      requestState: this.requests,
-      formParamsState: this.formParams
+      requestsState: this.requests,
+      formParamsState: this.requests.map( (request) => request.aeonRequestFormParams )
+    }
+  },
+  watch: {
+    formParamsState: {
+      handler: function (val, oldVal) {
+        console.log('new: %s, old: %s', val, oldVal)
+      },
+      deep: true
     }
   },
   computed: {
-
+    // This should be removed
     requestFields: function () {
       return this.formParamsState
-
     }
   },
   methods: {
