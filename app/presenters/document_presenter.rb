@@ -14,12 +14,18 @@ class DocumentPresenter
     @request ||= self.class.request_class.new(@document, self) if requestable?
   end
 
-  def form_params
-    build_form_params
+  def request_form_params
+    @request_form_params ||= build_request_form_params
   end
+
+  delegate :attributes, to: :request, prefix: true
 
   def requestable?
     @document.repository_config.present?
+  end
+
+  def notes
+    ""
   end
 
   private
@@ -55,13 +61,12 @@ class DocumentPresenter
     name
   end
 
-  def build_form_params
+  def build_request_form_params
     hidden_fields = []
     flatten_hash(form_mapping).each do |name, value|
       value = Array.wrap(value)
       value.each do |v|
-        # hidden_fields << hidden_field_tag(name, v.to_s, id: nil)
-        hidden_fields << { name: name, values: [ v.to_s ], id: nil }
+        hidden_fields << { name: name, values: [v.to_s], id: nil }
       end
     end
 

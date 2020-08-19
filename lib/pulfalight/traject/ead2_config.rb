@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "logger"
+require "pry-byebug"
 require "traject"
 require "traject/nokogiri_reader"
 require "traject_plus"
@@ -33,7 +34,14 @@ configure_before
 # ==================
 
 # rubocop:disable Performance/StringReplacement
-to_field "id", extract_xpath("/ead/eadheader/eadid"), strip, gsub(".", "-")
+to_field "id" do |record, accumulator, _context|
+  eadid_element = record.at_xpath("/ead/eadheader/eadid")
+  eadid = eadid_element.content.strip.gsub(".", "-")
+
+  @logger.info("Processing the component #{eadid}")
+  accumulator << eadid
+end
+
 # rubocop:enable Performance/StringReplacement
 to_field "title_filing_si", extract_xpath('/ead/eadheader/filedesc/titlestmt/titleproper[@type="filing"]')
 to_field "title_ssm", extract_xpath("/ead/archdesc/did/unittitle")
@@ -78,12 +86,21 @@ end
 to_field "unitid_ssm", extract_xpath("/ead/archdesc/did/unitid")
 to_field "unitid_teim", extract_xpath("/ead/archdesc/did/unitid")
 
+to_field "physloc_ssm" do |record, accumulator, _context|
+  values = []
+  record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
+    next unless Pulfalight::PhysicalLocationCode.registered?(physloc_element.text)
+    physical_location_code = Pulfalight::PhysicalLocationCode.resolve(physloc_element.text)
+
+    values << physical_location_code.to_s
+  end
+
+  accumulator.concat(values.uniq)
+end
+
 to_field "physloc_code_ssm" do |record, accumulator|
   record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
-    if Pulfalight::PhysicalLocationCode.registered?(physloc_element.text)
-      physical_location_code = Pulfalight::PhysicalLocationCode.resolve(physloc_element.text)
-      accumulator << physical_location_code.to_s
-    end
+    accumulator << physloc_element.text if Pulfalight::PhysicalLocationCode.registered?(physloc_element.text)
   end
 end
 
@@ -97,6 +114,12 @@ to_field "location_code_ssm" do |record, accumulator|
   end
 
   accumulator.concat(values.uniq)
+end
+
+to_field "location_ssm" do |record, accumulator|
+  record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
+    accumulator << physloc_element.text if Pulfalight::LocationCode.registered?(physloc_element.text)
+  end
 end
 
 to_field "location_note_ssm" do |record, accumulator|
@@ -245,20 +268,8 @@ end
 
 to_field "corpname_sim", extract_xpath("//corpname")
 
-to_field "physloc_sim" do |record, accumulator, _context|
-  values = []
-  record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
-    if Pulfalight::LocationCode.registered?(physloc_element.text)
-      location_code = Pulfalight::LocationCode.resolve(physloc_element.text)
-      values << location_code.to_s
-    end
-  end
-
-  accumulator.concat(values.uniq)
-end
-
-to_field "physloc_ssm" do |_record, accumulator, context|
-  values = context.output_hash["physloc_sim"]
+to_field "physloc_sim" do |_record, accumulator, context|
+  values = context.output_hash["physloc_ssm"]
   accumulator.concat(values)
 end
 
@@ -364,7 +375,9 @@ to_field "components" do |record, accumulator, context|
             "./*[is_component(.)][@level != 'otherlevel']"
           end
   child_components = record.xpath(xpath, Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new)
-  child_components.each do |child_component|
+  child_components.each_with_index do |child_component, i|
+    @logger.info("Processing the component #{child_component['id']} (#{i + 1} or #{child_components.length})")
+
     component_indexer = build_component_indexer(context)
     output = component_indexer.map_record(child_component)
     accumulator << output

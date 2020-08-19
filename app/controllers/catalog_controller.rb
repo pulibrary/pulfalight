@@ -14,45 +14,12 @@ class CatalogController < ApplicationController
     render json: @document.as_json
   end
 
-  def aeon_external_request
-    @aeon_external_request ||= (helpers.aeon_external_request_class.new(@document, helpers.show_presenter(@document)) if item_requestable?)
-  end
-
-  def aeon_configuration
-    @aeon_configuration ||= { url: aeon_external_request.url }
-  end
-
-  def presenter
-    @presenter ||= @document.presenter if @document
-  end
-  alias show_presenter presenter
-
-  def aeon_request_form_params
-    # binding.pry
-    # @aeon_request_form_params ||= [ presenter.request.form_params ]
-    @aeon_request_form_params ||= presenter.form_params
-  end
-
-  def aeon_requests
-    @aeon_requests ||= [
-      { title: "Test Item", callnumber: 'AC044_C0023', containers: [ { type: "Box", value: "1" }, { type: "folder", value: "2" } ], subcontainers: [], location: { url: 'https://library.princeton.edu/special-collections/mudd', name: 'Mudd Library Reading Room' } },
-      { title: "Test Item 2", callnumber: 'MC001', containers: [ { type: "box", value: "1" }, { type: "folder", value: "1" } ], subcontainers: [] },
-      { title: "Test Item 3", callnumber: 'AC044_C0025', containers: [ { type: "box", value: "1" } ], subcontainers: [{ type: "folder", value: "3" }], location: { url: 'https://library.princeton.edu/special-collections/mudd', name: 'Mudd Library Reading Room', notes: 'This item is stored offsite. Please allow up to 48 hours for delivery.' } }
-    ]
-  end
+  helper_method :aeon_configuration, :aeon_request_form_params, :aeon_request_attributes
 
   # @see Blacklight::Catalog#show
   def show
     deprecated_response, @document = search_service.fetch(params[:id])
     @response = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(deprecated_response, "The @response instance variable is deprecated; use @document.response instead.")
-
-    # If the item can be requested, construct the request
-    @aeon_external_request = aeon_external_request
-
-    # For the Request Cart
-    @aeon_configuration = aeon_configuration
-    @aeon_request_form_params = aeon_request_form_params
-    @aeon_requests = aeon_requests
 
     respond_to do |format|
       format.html do
@@ -361,7 +328,7 @@ class CatalogController < ApplicationController
     # Component Show Page - Metadata Section
     config.add_component_field "collection_creator_ssm", label: "Collection Creator"
     config.add_component_field "unitdate_inclusive_ssm", label: "Dates"
-    config.add_component_field "physloc_ssm", label: "Located In"
+    config.add_component_field "containers_ssim", label: "Located In"
     config.add_component_field "extent_ssm", label: "Extent"
     config.add_component_field "language_ssm", label: "Languages"
     config.add_component_field "parent_access_restrict_ssm", label: "Access Restrictions"
@@ -456,5 +423,28 @@ class CatalogController < ApplicationController
     # Compact index view
     config.view.compact
     config.view.compact.partials = %i[arclight_index_compact]
+  end
+
+  private
+
+  def aeon_external_request
+    @aeon_external_request ||= (helpers.aeon_external_request_class.new(@document, helpers.show_presenter(@document)) if item_requestable?)
+  end
+
+  def aeon_configuration
+    @aeon_configuration ||= { url: aeon_external_request.url }
+  end
+
+  def presenter
+    @presenter ||= @document.presenter if @document
+  end
+  alias show_presenter presenter
+
+  def aeon_request_form_params
+    presenter.request_form_params
+  end
+
+  def aeon_request_attributes
+    @aeon_request_attributes ||= presenter.request_attributes
   end
 end

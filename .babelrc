@@ -1,11 +1,16 @@
 {
   "presets": [
     [
-      "@babel/preset-env",
-      {
-        "modules": false,
+      "@babel/preset-env", {
         "forceAllTransforms": true,
-        "useBuiltIns": "entry"
+        "useBuiltIns": 'entry',
+        "corejs": 3,
+        "modules": false,
+        "exclude": ['transform-typeof-symbol'],
+        "targets": {
+          "node": 'current'
+        },
+        "useBuiltIns": 'entry'
       }
     ]
   ],

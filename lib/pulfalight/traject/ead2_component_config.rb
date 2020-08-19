@@ -33,7 +33,9 @@ to_field "ref_ssi" do |record, accumulator, context|
                    record["id"] = hexdigest
                    hexdigest
                  else
-                   record.attribute("id")&.value&.strip&.gsub(".", "-")
+                   value = record.attribute("id")&.value&.strip&.gsub(".", "-")
+                   # This is handling for ArchivesSpace-generated EAD Documents
+                   value.gsub("aspace_", "")
                  end
 end
 to_field "ref_ssm" do |_record, accumulator, context|
@@ -177,14 +179,40 @@ to_field "collection_ssi" do |_record, accumulator, context|
   accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
 end
 
-to_field "extent_ssm", extract_xpath("./did/physdesc/extent")
-to_field "extent_teim", extract_xpath("./did/physdesc/extent")
+to_field "extent_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  next unless parent
+
+  value = parent.output_hash["extent_ssm"]
+  accumulator.concat(value) if value
+end
+
+to_field "extent_teim" do |_record, accumulator, context|
+  value = context.output_hash["extent_ssm"]
+  accumulator.concat(value) if value
+end
+
+to_field "physloc_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  next unless parent
+
+  physloc_code = parent.output_hash["physloc_ssm"]
+  accumulator.concat(physloc_code) if physloc_code
+end
 
 to_field "physloc_code_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:parent]
   next unless parent
 
   physloc_code = parent.output_hash["physloc_code_ssm"]
+  accumulator.concat(physloc_code) if physloc_code
+end
+
+to_field "location_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  next unless parent
+
+  physloc_code = parent.output_hash["location_ssm"]
   accumulator.concat(physloc_code) if physloc_code
 end
 
@@ -333,27 +361,9 @@ to_field "acqinfo_ssm" do |_record, accumulator, context|
   accumulator.concat(context.output_hash.fetch("acqinfo_ssim", []))
 end
 
-to_field "physloc_sim" do |record, accumulator, context|
-  values = []
-  container_elements = record.xpath("./did/container")
-  container_elements.each do |container_element|
-    next unless container_element["type"]
-
-    container_type = container_element["type"].capitalize
-    container_value = container_element.text
-    values << "#{container_type} #{container_value}"
-  end
-  values = Array.wrap(values.join(", "))
-
-  if values.empty?
-    parent = context.clipboard[:parent] || settings[:parent]
-    values = parent.output_hash["physloc_sim"]
-  end
-
-  accumulator.concat(values)
-end
-to_field "physloc_ssm" do |_record, accumulator, context|
-  values = context.output_hash["physloc_sim"]
+to_field "physloc_sim" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  values = parent.output_hash["physloc_sim"]
   accumulator.concat(values)
 end
 
@@ -364,10 +374,115 @@ to_field "language_ssm" do |_record, accumulator, context|
   accumulator.concat(parent_languages)
 end
 
+# Legacy field for ArcLight compatibility
 to_field "containers_ssim" do |record, accumulator|
   record.xpath("./did/container").each do |node|
-    accumulator << [node.attribute("type"), node.text].join(" ").strip
+    ptr_element = node.at_xpath("./ptr")
+
+    # Legacy structure
+    if ptr_element
+      target = ptr_element["target"]
+
+      linked_component = record.xpath("//c[ @level='otherlevel' and @otherlevel='physicalitem' and @id='#{target}']")
+      linked_container = linked_component.first.at_xpath("./did/container")
+      container_node = linked_container
+    else
+      container_node = node
+    end
+
+    type_attribute = container_node.attribute("type")
+    values = []
+    if type_attribute
+      type = type_attribute.value.capitalize
+      values << type
+    end
+    values << container_node.text
+
+    accumulator << values.join(" ").strip
   end
+end
+
+# Cases like these were the justification for https://github.com/pulibrary/pulfalight/pull/257
+to_field "container_types_ssim" do |_record, accumulator, context|
+  value = context.output_hash["containers_ssim"]
+
+  accumulator.concat(value) if value
+end
+
+to_field "containers_ssm" do |record, accumulator|
+  values = []
+  nodes = record.xpath("./did/container")
+
+  container_nodes = []
+  unless nodes.empty?
+    ptr_element = nodes.first.at_xpath("./ptr")
+
+    # Legacy structure
+    if ptr_element
+      target = ptr_element["target"]
+
+      linked_component = record.xpath("//c[ @level='otherlevel' and @otherlevel='physicalitem' and @id='#{target}']")
+      linked_container = linked_component.first.at_xpath("./did/container")
+      container_nodes << linked_container
+    else
+      container_nodes << nodes.first
+    end
+  end
+
+  container_nodes.each do |node|
+    type_attribute = node.attribute("type")
+    value = {}
+
+    if type_attribute
+      type = type_attribute.value.capitalize
+      value[:type] = type
+    end
+
+    value[:value] = node.text
+    values << ::JSON.generate(value)
+  end
+
+  accumulator.concat(values)
+end
+
+to_field "subcontainers_ssm" do |record, accumulator|
+  values = []
+  nodes = record.xpath("./did/container")
+
+  subcontainer_nodes = []
+
+  if nodes.length > 1
+
+    sibling_nodes = nodes[1..-1]
+    sibling_nodes.each do |sibling_node|
+      ptr_element = sibling_node.at_xpath("./ptr")
+      # Legacy structure
+      if ptr_element
+        target = ptr_element["target"]
+
+        linked_component = record.xpath("//c[ @level='otherlevel' and @otherlevel='physicalitem' and @id='#{target}']")
+        linked_container = linked_component.first.at_xpath("./did/container")
+        subcontainer_nodes << linked_container
+      else
+        subcontainer_nodes << sibling_node
+      end
+    end
+  end
+
+  subcontainer_nodes.each do |node|
+    type_attribute = node.attribute("type")
+    value = {}
+
+    if type_attribute
+      type = type_attribute.value.capitalize
+      value[:type] = type
+    end
+
+    value[:value] = node.text
+    values << ::JSON.generate(value)
+  end
+
+  accumulator.concat(values)
 end
 
 Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
@@ -496,13 +611,16 @@ to_field "barcodes_ssim" do |record, accumulator|
   record.xpath("./did/container[@label]").each do |node|
     label = node.attr("label")
     barcode_match = label.match(/\[(\d+?)\]/)
+
     accumulator << barcode_match[1] if barcode_match
   end
 end
 
 to_field "components" do |record, accumulator, _context|
   child_components = record.xpath("./*[is_component(.)][@level != 'otherlevel']", NokogiriXpathExtensions.new)
-  child_components.each do |child_component|
+  child_components.each_with_index do |child_component, i|
+    @logger.info("Processing the component #{child_component['id']} (#{i + 1} or #{child_components.length})")
+
     root_context = settings[:parent]
     component_indexer = build_component_indexer(root_context)
     output = component_indexer.map_record(child_component)

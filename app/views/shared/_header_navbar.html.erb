@@ -1,5 +1,9 @@
 <header class="lux">
   <library-header app-name="<%= application_name %>" app-url="<%= root_path %>">
+    <div class="cart-view-toggle-block">
+      <cart-view-toggle></cart-view-toggle>
+    </div>
+
     <div class="menu--level-1 d-none d-md-block col-md-2 col-lg-3">
       <ul>
         <%= render partial: 'shared/header_account_dropdown' %>

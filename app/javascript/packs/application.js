@@ -3,6 +3,8 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 
 import Vue from 'vue/dist/vue.esm'
+import Vuex from "vuex"
+
 import system from 'lux-design-system'
 import "lux-design-system/dist/system/system.css"
 import "lux-design-system/dist/system/tokens/tokens.scss"
@@ -10,25 +12,23 @@ import TocBuilder from "../packs/toc.es6"
 
 Vue.use(system)
 
-<<<<<<< HEAD
-document.addEventListener('turbolinks:load', () => {
-=======
-import RequestCart from '../RequestCart.vue'
+import store from '../store'
+import RequestCart from '../components/RequestCart.vue'
+import AddToCartButton from '../components/AddToCartButton.vue'
+import CartViewToggle from '../components/CartViewToggle.vue'
 
 function ComponentBuilder() {}
-ComponentBuilder.build = function(className, componentClass) {
-  console.log(className)
-  console.log(componentClass)
-
+ComponentBuilder.build = function(className) {
   var elements = document.getElementsByClassName(className)
 
   for (var i = 0; i < elements.length; i++) {
-    console.log(elements[i])
-
     new Vue({
       el: elements[i],
+      store,
       components: {
-        'request-cart': RequestCart
+        'request-cart': RequestCart,
+        'add-to-cart-button': AddToCartButton,
+        'cart-view-toggle': CartViewToggle
       }
     })
   }
@@ -36,11 +36,12 @@ ComponentBuilder.build = function(className, componentClass) {
 
 function RequestCartFactory() {}
 RequestCartFactory.build = function() {
-  ComponentBuilder.build('request-cart-block', RequestCart)
+  ComponentBuilder.build('request-cart-block')
+  ComponentBuilder.build('add-to-cart-block')
+  ComponentBuilder.build('cart-view-toggle-block')
 }
 
-document.addEventListener("DOMContentLoaded", () => {
->>>>>>> Porting an original Aeon request support implementation from an older branch
+document.addEventListener('turbolinks:load', () => {
   var elements = document.getElementsByClassName("lux")
   for (var i = 0; i < elements.length; i++) {
     new Vue({

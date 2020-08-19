@@ -30,7 +30,6 @@ module Pulfalight
     DID_SEARCHABLE_NOTES_FIELDS = %w[
       abstract
       materialspec
-      physloc
     ].freeze
 
     def configure_before

@@ -133,15 +133,12 @@ describe "EAD 2 traject indexing", type: :feature do
       let(:component) { result["components"].find { |c| c["id"] == ["aspace_WC064_c1"] } }
 
       it "gets the digital objects with role: null" do
-        json = JSON.generate(
-          label: "American Indian man wearing traditional clothing with three white children",
-          href: "https://figgy.princeton.edu/concern/scanned_resources/258dc168-da8e-49c3-b239-f3da67cfa896/manifest"
-        ).slice(0..-2) + ",\"role\":null}"
-        expect(component["digital_objects_ssm"]).to eq(
-          [
-            json
-          ]
-        )
+        values = component["digital_objects_ssm"]
+        manifest_json = values.first
+        manifest = JSON.parse(manifest_json)
+        expect(manifest).to include("label")
+        expect(manifest).to include("href")
+        expect(manifest).to include("role" => nil)
       end
     end
 
@@ -286,7 +283,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "indexing the location information" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mss", "location_aspace.EAD.xml")
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
     end
 
     it "indexes the barcode into the barcodes_ssim" do
@@ -295,7 +292,7 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(components).not_to be_empty
       component = components.first
       expect(component).to include("barcodes_ssim")
-      expect(component["barcodes_ssim"]).to include("32101092753019")
+      expect(component["barcodes_ssim"]).to include("32101047360068")
     end
   end
 
@@ -328,7 +325,9 @@ describe "EAD 2 traject indexing", type: :feature do
 
     it "resolves and indexes the physical location code" do
       expect(result).to include("physloc_code_ssm")
-      expect(result["physloc_code_ssm"]).to eq(["RBSC"])
+      values = result["physloc_code_ssm"]
+      expect(values).to include("mss")
+      expect(values).to include("hsvm")
     end
 
     it "resolves and indexes the physical location code in child components" do
@@ -336,7 +335,29 @@ describe "EAD 2 traject indexing", type: :feature do
       components = result["components"]
       expect(components).not_to be_empty
       expect(components.first).to include("physloc_code_ssm")
-      expect(components.first["physloc_code_ssm"]).to eq(["RBSC"])
+
+      values = components.first["physloc_code_ssm"]
+      expect(values).to include("mss")
+      expect(values).to include("hsvm")
+    end
+  end
+
+  describe "#physloc_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+    end
+
+    it "resolves and indexes the physical location code" do
+      expect(result).to include("physloc_ssm")
+      expect(result["physloc_ssm"]).to eq(["Firestone Library"])
+    end
+
+    it "resolves and indexes the physical location code in child components" do
+      expect(result).to include("components")
+      components = result["components"]
+      expect(components).not_to be_empty
+      expect(components.first).to include("physloc_ssm")
+      expect(components.first["physloc_ssm"]).to eq(["Firestone Library"])
     end
   end
 
@@ -347,7 +368,18 @@ describe "EAD 2 traject indexing", type: :feature do
 
     it "resolves and indexes the location code" do
       expect(result).to include("location_code_ssm")
-      expect(result["location_code_ssm"]).to eq(["Firestone Library"])
+      expect(result["location_code_ssm"]).to eq(["RBSC"])
+    end
+  end
+
+  describe "#location_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+    end
+
+    it "resolves and indexes the location" do
+      expect(result).to include("location_ssm")
+      expect(result["location_ssm"]).to eq(["mss"])
     end
   end
 

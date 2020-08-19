@@ -105,6 +105,34 @@ class SolrDocument
     fetch(:subtitle_ssm, [])
   end
 
+  def barcode
+    fetch(:barcodes_ssim, [])
+  end
+
+  def container_types
+    fetch(:container_types_ssim, [])
+  end
+
+  # This should be refactored for nested Solr Documents
+  # Please see https://github.com/pulibrary/pulfalight/pull/257
+  def containers
+    values = fetch(:containers_ssm, [])
+    values.map do |json_value|
+      value = JSON.parse(json_value)
+      OpenStruct.new(value)
+    end
+  end
+
+  # This should be refactored for nested Solr Documents
+  # Please see https://github.com/pulibrary/pulfalight/pull/257
+  def subcontainers
+    values = fetch(:subcontainers_ssm, [])
+    values.map do |json_value|
+      value = JSON.parse(json_value)
+      OpenStruct.new(value)
+    end
+  end
+
   def places
     fetch("places_ssm", [])
   end
@@ -153,6 +181,10 @@ class SolrDocument
     fetch(:location_note_ssm, [])
   end
 
+  def location
+    fetch(:location_ssm, [])
+  end
+
   def location_code
     fetch(:location_code_ssm, [])
   end
@@ -161,6 +193,11 @@ class SolrDocument
     fetch(:physloc_code_ssm, [])
   end
   alias physloc_code physical_location_code
+
+  def physical_location
+    fetch(:physloc_ssm, [])
+  end
+  alias physloc physical_location
 
   def physical_description_number
     fetch(:physdesc_number_ssm, [])

@@ -1,14 +1,44 @@
 <template>
-  <div :class="['request-cart']">
-    <div v-if="requests.length" class="panel">
+
+  <transition name="slide">
+
+  <div v-if="isVisible" :class="['request-cart']">
 
       <form method="post" :action="configuration.url">
+    <div v-if="requests.length" class="panel">
         <table :class="['lux-data-table']">
+
           <caption>
-            Request Cart
-            <lux-icon-base width="30" height="30" icon-name="Cart">
-              <lux-icon-cart></lux-icon-cart>
-            </lux-icon-base>
+
+    <input-button
+      v-on:button-clicked="toggleCartView($event)"
+      type="button"
+      variation="text"
+      class="denied-button"
+    >
+
+      <div class="lux-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          viewBox="0 0 16 16"
+          aria-labelledby="denied"
+          role="img"
+          fill="#6e757c"
+          >
+          <title id="icon-name" lang="en">denied</title>
+          <x-circle-icon></x-circle-icon>
+        </svg>
+      </div>
+    </input-button>
+
+    <div class="caption-title">
+      <span>Request Cart</span>
+      <lux-icon-base width="30" height="30" icon-name="Cart">
+        <lux-icon-cart></lux-icon-cart>
+      </lux-icon-base>
+    </div>
           </caption>
 
           <thead>
@@ -22,76 +52,86 @@
           <tbody>
             <template v-for="(item, index) in requests">
 
-            <tr
-              :key="item.callnumber"
-              :id="item.callnumber"
-              class="lux-cartItem request"
+              <tr
+                :key="index"
+                :id="item.callnumber"
+                class="lux-cartItem request"
               >
-              <td>{{ item.title }}</td>
-              <td>{{ item.callnumber }}</td>
-              <td>
-                {{ displayContainers(item.containers) }}
-                <br />
-                <em v-if="item.subcontainers.length">
-                  [{{ displayContainers(item.subcontainers) }}]
-                </em>
-              </td>
-              <td>
-                <input-button
-                  @button-clicked="removeFromCart(item)"
-                  type="button"
-                  variation="outline"
-                  >
-                  Remove
-                </input-button>
-              </td>
-            </tr>
+                <td>{{ item.title }}</td>
+                <td>{{ item.callnumber }}</td>
+                <td>
+                  {{ displayContainers(item.containers) }}
+                  <br />
+                  <em v-if="item.subcontainers.length">
+                    [{{ displayContainers(item.subcontainers) }}]
+                  </em>
+                </td>
+                <td>
+                  <input-button
+                    @button-clicked="removeFromCart(item)"
+                    type="button"
+                    variation="outline"
+                    >
+                    Remove
+                  </input-button>
+                </td>
+              </tr>
 
-            <tr v-if="item.location" class="request__location">
-              <td colspan="4">
-                <geo-icon></geo-icon>
-                View this item at the <a :href="item.location.url">Mudd Library Reading Room</a>
-              </td>
-            </tr>
+              <tr v-if="item.location" class="request__location">
+                <td colspan="4">
+                  <geo-icon></geo-icon>
+                  View this item at the <a :href="item.location.url">Mudd Library Reading Room</a>
+                </td>
+              </tr>
 
-            <tr v-if="item.location && item.location.notes" class="request__location-notes">
-              <td colspan="4">
-                <truck-icon></truck-icon>
-                {{ item.location.notes }}
-              </td>
-            </tr>
-
+              <tr v-if="item.location && item.location.notes" class="request__location-notes">
+                <td colspan="4">
+                  <truck-icon></truck-icon>
+                  {{ item.location.notes }}
+                </td>
+              </tr>
             </template>
           </tbody>
         </table>
 
         <div class="hidden">
-          <template v-for="(item, index) in requestFields">
-            <request-field :key="index" :name="item.name" :values="item.values"></request-field>
+          <template v-for="(request, requestIndex) in requests">
+            <template v-for="(item, paramIndex) in request.formParams">
+              <request-form-input :key="Math.random()" :name="item.name" :values="item.values"></request-form-input>
+            </template>
           </template>
         </div>
 
+    </div><!-- /.panel -->
+    <div v-else class="panel">
+      <heading level="h3">Your cart is currently empty.</heading>
+    </div>
+
         <div class="cart-actions">
           <div class="center">
-            <input-button type="submit" variation="solid" block>
+            <input-button type="submit" variation="solid" :disabled="requests.length == 0" block>
               {{ requestButtonText() }}
             </input-button>
           </div>
         </div>
-      </form>
-    </div>
 
-    <div v-else class="panel">
-      <heading level="h3">Your cart is currently empty.</heading>
-    </div>
-  </div>
+      </form>
+
+      </div>
+
+  </transition>
+
 </template>
 
 <script>
+import store from "../store"
+import { mapState, mapGetters } from "vuex"
+
 import LuxIconCart from './RequestCartIcon.vue'
 import GeoIcon from './GeoIcon.vue'
-import TruckIcon from './TrackIcon.vue'
-import RequestField from './RequestField.vue'
+import TruckIcon from './TruckIcon.vue'
+import XCircleIcon from './XCircleIcon.vue'
+import RequestFormInput from './RequestFormInput.vue'
 
 export default {
   name: "RequestCart",
@@ -99,83 +139,132 @@ export default {
     'lux-icon-cart': LuxIconCart,
     'geo-icon': GeoIcon,
     'truck-icon': TruckIcon,
-    'request-field': RequestField
+    'x-circle-icon': XCircleIcon,
+    'request-form-input': RequestFormInput
   },
+
   props: {
     configuration: {
       type: Object,
       required: true,
       default: () => {}
-    },
-
-    requests: {
-      type: Array,
-      required: false,
-      default: () => { [] }
-    },
-
-    formParams: {
-      type: Array,
-      required: false,
-      default: () => { [] }
     }
   },
-  data: function () {
-    return {
-      requestState: this.requests,
-      formParamsState: this.formParams
-    }
-  },
+
   computed: {
+    requests() {
+      return this.cart.items
+    },
 
-    requestFields: function () {
-      return this.formParamsState
+    isVisible: {
+      get() {
+        return this.cart.isVisible
+      },
+      set() {
+        store.commit("TOGGLE_VISIBILITY")
+      }
+    },
 
-    }
+    ...mapState({
+      cart: state => store.state.cart,
+    })
   },
+
   methods: {
     displayContainers(containers) {
       let displayString = containers.map(function(container) {
-        return (
-          container.type.charAt(0).toUpperCase() + container.type.slice(1) + " " + container.value
-        )
+        let value = 'Unspecified'
+
+        if (container.type) {
+          value = container.type.charAt(0).toUpperCase() + container.type.slice(1) + " " + container.value
+        }
+
+        return value
       })
+
       return displayString.join(", ")
     },
+
     requestButtonText() {
+      if (this.requests.length == 0) {
+        return "No Items in Your Cart"
+      }
+
       let text = "Request " + this.requests.length + " Item"
 
       if (this.requests.length > 1) {
         text = text + "s"
       }
       return text
-    }
+    },
+
+    removeFromCart(item) {
+      store.dispatch("removeItemFromCart", item)
+    },
+
+    toggleCartView(event) {
+      store.commit("TOGGLE_VISIBILITY")
+    },
   }
 }
 </script>
 
 <style lang="scss" scoped>
 
+/*
+.circle-icon {
+  display: inline-flex;
+  align-self: center;
+  margin: 0 4px;
+}
+*/
+
 .lux-data-table {
+  /*display: block;*/
+  table-layout: fixed;
+  width: 100%;
+
   border-collapse: collapse;
   border-spacing: 0;
   border-left: none;
   border-right: none;
   border-bottom: none;
-}
 
-.lux-data-table caption {
-  margin-bottom: 24px;
-  display: table-caption;
-  text-align: left;
-  font-size: 36px;
-  font-size: 2vw;
-  font-weight: 700;
-  font-family: franklin-gothic-urw, Helvetica, Arial, sans-serif;
-  line-height: 1;
-}
-.lux-data-table caption:last-child {
-  margin-bottom: 0;
+  caption {
+    margin-bottom: 24px;
+    display: table-caption;
+    text-align: left;
+    font-size: 36px;
+    font-size: 2vw;
+    font-weight: 700;
+    font-family: franklin-gothic-urw, Helvetica, Arial, sans-serif;
+    line-height: 1;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  tbody {
+    background-color: #fff;
+    width: 100%;
+    /* display: table; */
+    background-color: #fff;
+
+    tr {
+      display: table-row;
+
+      /* display: block; */
+      vertical-align: inherit;
+      background-color: #fff;
+      color: #41464e;
+
+      &:hover input,
+      &:hover {
+        background: #faf9f5;
+      }
+    }
+  }
 }
 
 @media (max-width: 63.3em) {
@@ -226,19 +315,7 @@ export default {
   color: #41464e;
   letter-spacing: 0.5px;
 }
-.lux-data-table tbody tr {
-  display: table-row;
-  vertical-align: inherit;
-  background-color: #fff;
-  color: #41464e;
-}
-.lux-data-table tbody tr:hover input,
-.lux-data-table tbody tr:hover {
-  background: #faf9f5;
-}
-.lux-data-table tbody {
-  background-color: #fff;
-}
+
 .lux-data-table td {
   color: #001123;
   font-weight: 400;
@@ -344,18 +421,73 @@ $box-shadow-small: 0 0 0 1px rgba(92, 106, 196, 0.1);
 $color-rich-black: rgb(0, 17, 35);
 $space-base: 24px;
 
+/* Copied from upstream */
+.slide-enter-active,
+.slide-leave-active {
+  transform: translateX(0%);
+  transition: 0.3s ease-out;
+}
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(100%);
+  transition: 0.3s ease-out;
+}
+
 /* Component Styling */
+
 .request-cart {
-  margin-left: 0.8rem;
-  margin-right: 0.8rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+
+  /* Custom */
+  /* transform: translateX(0%); */
+
+  position: fixed;
+  z-index: 2020;
+  display: block;
+  top: 20%;
+  height: 80%;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #8f8f8f;
+
+  /* width: 44%; */
+  width: 40%;
+
+  .denied-button {
+    font-size: 1.5rem;
+    padding: 6px;
+
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+
+    color: #6e757c;
+  }
+
+  .caption-title {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    /*
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    */
+  }
 }
 
 .lux-data-table {
   width: 100%;
-}
+  margin-top: 0px;
 
-.lux-data-table caption {
-  caption-side: inherit;
+  caption {
+    caption-side: inherit;
+    margin-bottom: 0px;
+
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
 }
 
 .panel-wrap {
@@ -381,7 +513,7 @@ $space-base: 24px;
   bottom: 0;
   left: 0;
   right: 0;
-  overflow: auto;
+  overflow: hidden;
   padding: 1em;
 }
 
@@ -414,14 +546,18 @@ table {
 
 .slide-enter-active,
 .slide-leave-active {
+  /*
   transform: translateX(0%);
   transition: 0.3s ease-out;
+  */
 }
 
 .slide-enter,
 .slide-leave-to {
+  /*
   transform: translateX(100%);
   transition: 0.3s ease-out;
+  */
 }
 
 /*

@@ -10,11 +10,16 @@
     "@babel/preset-env": "^7.0.0",
     "@rails/webpacker": "^4.0.7",
     "babel-core": "^7.0.0-bridge",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "lux-design-system": "^2.16.3",
     "serialize-javascript": "^3.1.0",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "vuex": "^3.5.1",
+    "vuex-persist": "^2.2.0"
   },
   "devDependencies": {
     "jest": "^26.4.2",
