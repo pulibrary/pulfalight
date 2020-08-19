@@ -22,8 +22,15 @@ class CatalogController < ApplicationController
     @aeon_configuration ||= { url: aeon_external_request.url }
   end
 
+  def presenter
+    @presenter ||= @document.presenter if @document
+  end
+  alias show_presenter presenter
+
   def aeon_request_form_params
-    @aeon_form_params ||= aeon_external_request.form_mapping
+    # binding.pry
+    # @aeon_request_form_params ||= [ presenter.request.form_params ]
+    @aeon_request_form_params ||= presenter.form_params
   end
 
   def aeon_requests
@@ -82,7 +89,7 @@ class CatalogController < ApplicationController
 
   # This overrides Arclight::FieldConfigHelpers#item_requestable?
   def item_requestable?(_ = nil, _options = {})
-    @document.present? && @document.repository_config.present?
+    presenter.present? && presenter.requestable?
   end
 
   configure_blacklight do |config|

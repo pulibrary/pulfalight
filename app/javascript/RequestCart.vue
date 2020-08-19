@@ -66,8 +66,8 @@
         </table>
 
         <div class="hidden">
-          <template v-for="(param, index) in params">
-
+          <template v-for="(item, index) in requestFields">
+            <request-field :key="index" :name="item.name" :values="item.values"></request-field>
           </template>
         </div>
 
@@ -91,13 +91,15 @@
 import LuxIconCart from './RequestCartIcon.vue'
 import GeoIcon from './GeoIcon.vue'
 import TruckIcon from './TrackIcon.vue'
+import RequestField from './RequestField.vue'
 
 export default {
   name: "RequestCart",
   components: {
     'lux-icon-cart': LuxIconCart,
     'geo-icon': GeoIcon,
-    'truck-icon': TruckIcon
+    'truck-icon': TruckIcon,
+    'request-field': RequestField
   },
   props: {
     configuration: {
@@ -116,6 +118,19 @@ export default {
       type: Array,
       required: false,
       default: () => { [] }
+    }
+  },
+  data: function () {
+    return {
+      requestState: this.requests,
+      formParamsState: this.formParams
+    }
+  },
+  computed: {
+
+    requestFields: function () {
+      return this.formParamsState
+
     }
   },
   methods: {
@@ -330,7 +345,6 @@ $color-rich-black: rgb(0, 17, 35);
 $space-base: 24px;
 
 /* Component Styling */
-
 .request-cart {
   margin-left: 0.8rem;
   margin-right: 0.8rem;

@@ -10,10 +10,11 @@ describe "viewing catalog records", type: :feature, js: true do
       # This is now blocked by the Request Cart Vue integration
     end
 
-    xit "generates a request <form>" do
+    it "generates a request <form>" do
       visit "/catalog/aspace_WC064_c1"
 
       # This is now blocked by the Request Cart Vue integration
+      binding.pry
     end
 
     context "with extent provided" do
