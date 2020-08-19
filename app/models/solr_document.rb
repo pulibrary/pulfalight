@@ -67,7 +67,14 @@ class SolrDocument
   def html_presenter
     html_presenter_class.new(self)
   end
-  alias presenter html_presenter # Update this for other format-based presenters
+
+  def self.presenter_class
+    DocumentPresenter
+  end
+
+  def presenter
+    self.class.presenter_class.new(self)
+  end
 
   def id
     Array.wrap(super).first
