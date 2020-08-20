@@ -105,8 +105,8 @@ export default {
     },
 
     formParams: {
-      type: Object,
-      default: () => {},
+      type: Array,
+      default: () => { [] },
       required: true,
     }
   },

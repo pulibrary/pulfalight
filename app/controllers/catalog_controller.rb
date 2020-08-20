@@ -60,7 +60,7 @@ class CatalogController < ApplicationController
 
     # For the Request Cart
     @aeon_configuration = aeon_configuration
-    @aeon_requests = aeon_requests
+    @aeon_request_form_params = aeon_request_form_params
     @aeon_request_attributes = aeon_request_attributes
 
     respond_to do |format|

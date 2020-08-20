@@ -6,8 +6,6 @@
   <div class="request-cart-block">
     <request-cart
       :configuration="<%= JSON.generate(@aeon_configuration) %>"
-      :requests="<%= JSON.generate(@aeon_requests) %>"
-      :form-params="<%= JSON.generate(@aeon_request_form_params) %>"
     >
     </request-cart>
   </div>
@@ -53,48 +51,49 @@
       </div>
 
       <div class="col-md-8">
-
         <div class="tab-content">
 
-<nav class="navbar sticky-top">
-        <div class="row">
-          <div class="col-md-4">
+          <nav class="navbar sticky-top">
+            <div class="row">
+              <div class="col-md-4">
 
-            <add-to-cart-button
-              class="add-to-cart-block"
+                <add-to-cart-button
+                  class="add-to-cart-block"
 
-              <% @aeon_request_attributes.each_pair do |key, value| %>
-                <% unless value.nil? || value.empty? %>
-                  <% if value.is_a?(Hash) %>
-                    :<%= key %>="<%= JSON.generate(value) %>"
-                  <% else %>
-                    <%= key %>="<%= value %>"
+                  <% @aeon_request_attributes.each_pair do |key, value| %>
+                    <% unless value.nil? || value.empty? %>
+                      <% if value.is_a?(Hash) %>
+                        :<%= key %>="<%= JSON.generate(value) %>"
+                      <% else %>
+                        <%= key %>="<%= value %>"
+                      <% end %>
+                    <% end %>
                   <% end %>
-                <% end %>
-              <% end %>
-            >
-              <a href="#request" >
-                <%= image_tag(asset_path('icon-request.svg')) %>
-                Request this box
-              </a>
-            </add-to-cart-button>
-          </div>
 
-          <div class="col-md-4">
-            <a href="#question">
-              <%= image_tag(asset_path('icon-question.svg')) %>
-              Ask a question
-            </a>
-          </div>
+                  :form-params="<%= JSON.generate(@aeon_request_form_params) %>"
+                >
+                  <a href="#request" >
+                    <%= image_tag(asset_path('icon-request.svg')) %>
+                    Request this box
+                  </a>
+                </add-to-cart-button>
+              </div>
 
-          <div class="col-md-4">
-            <a href="#correction">
-              <%= image_tag(asset_path('icon-correction.svg')) %>
-              Suggest a correction
-            </a>
-          </div>
-        </div><!-- .row -->
-      </nav>
+              <div class="col-md-4">
+                <a href="#question">
+                  <%= image_tag(asset_path('icon-question.svg')) %>
+                  Ask a question
+                </a>
+              </div>
+
+              <div class="col-md-4">
+                <a href="#correction">
+                  <%= image_tag(asset_path('icon-correction.svg')) %>
+                  Suggest a correction
+                </a>
+              </div>
+            </div><!-- .row -->
+          </nav>
 
           <div class='tab-pane active' id='summary' role='tabpanel'>
             <%= render(partial: 'component_summary') %>
