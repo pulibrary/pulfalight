@@ -1,9 +1,9 @@
 
 <template>
   <div>
-    <input-button @button-clicked="addToCart" variation="solid" size="small">
+    <button @click="addToCart">
       <slot />
-    </input-button>
+    </button>
   </div>
 </template>
 
@@ -113,6 +113,7 @@ export default {
 
   methods: {
     addToCart() {
+      console.log(this.item)
       store.dispatch("addItemToCart", this.item)
     }
   },
