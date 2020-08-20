@@ -1,4 +1,3 @@
-
 export const cartState = {
   items: [],
   isVisible: false

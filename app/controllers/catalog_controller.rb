@@ -14,49 +14,10 @@ class CatalogController < ApplicationController
     render json: @document.as_json
   end
 
-  def aeon_external_request
-    @aeon_external_request ||= (helpers.aeon_external_request_class.new(@document, helpers.show_presenter(@document)) if item_requestable?)
-  end
-
-  def aeon_configuration
-    @aeon_configuration ||= { url: aeon_external_request.url }
-  end
-
-  def presenter
-    @presenter ||= @document.presenter if @document
-  end
-  alias show_presenter presenter
-
-  def aeon_request_form_params
-    presenter.aeon_request_form_params
-  end
-
-  # Remove this
-  def aeon_requests
-
-=begin
-    @aeon_requests ||= [
-      { title: "Test Item", callnumber: 'AC044_C0023', containers: [ { type: "Box", value: "1" }, { type: "folder", value: "2" } ], subcontainers: [], location: { url: 'https://library.princeton.edu/special-collections/mudd', name: 'Mudd Library Reading Room' } },
-      { title: "Test Item 2", callnumber: 'MC001', containers: [ { type: "box", value: "1" }, { type: "folder", value: "1" } ], subcontainers: [] },
-      { title: "Test Item 3", callnumber: 'AC044_C0025', containers: [ { type: "box", value: "1" } ], subcontainers: [{ type: "folder", value: "3" }], location: { url: 'https://library.princeton.edu/special-collections/mudd', name: 'Mudd Library Reading Room', notes: 'This item is stored offsite. Please allow up to 48 hours for delivery.' } }
-    ]
-=end
-
-    @aeon_requests ||= presenter.request_form_params
-  end
-
-  def aeon_request_attributes
-    @aeon_request_attributes ||= presenter.request_attributes
-  end
-
   # @see Blacklight::Catalog#show
   def show
     deprecated_response, @document = search_service.fetch(params[:id])
     @response = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(deprecated_response, "The @response instance variable is deprecated; use @document.response instead.")
-
-    # If the item can be requested, construct the request
-    # This should not be needed any longer
-    @aeon_external_request = aeon_external_request
 
     # For the Request Cart
     @aeon_configuration = aeon_configuration
@@ -487,5 +448,28 @@ class CatalogController < ApplicationController
     # Compact index view
     config.view.compact
     config.view.compact.partials = %i[arclight_index_compact]
+  end
+
+  private
+
+  def aeon_external_request
+    @aeon_external_request ||= (helpers.aeon_external_request_class.new(@document, helpers.show_presenter(@document)) if item_requestable?)
+  end
+
+  def aeon_configuration
+    @aeon_configuration ||= { url: aeon_external_request.url }
+  end
+
+  def presenter
+    @presenter ||= @document.presenter if @document
+  end
+  alias show_presenter presenter
+
+  def aeon_request_form_params
+    presenter.request_form_params
+  end
+
+  def aeon_request_attributes
+    @aeon_request_attributes ||= presenter.request_attributes
   end
 end

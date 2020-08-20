@@ -35,7 +35,6 @@ function ComponentBuilder() {}
 ComponentBuilder.build = function(className, componentClass) {
   var elements = document.getElementsByClassName(className)
 
-  console.log(store)
   for (var i = 0; i < elements.length; i++) {
     new Vue({
       el: elements[i],

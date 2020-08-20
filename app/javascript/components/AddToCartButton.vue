@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <button @click="addToCart">
@@ -113,7 +112,6 @@ export default {
 
   methods: {
     addToCart() {
-      console.log(this.item)
       store.dispatch("addItemToCart", this.item)
     }
   },
@@ -142,7 +140,4 @@ export default {
     })
   }
 }
-
 </script>
-
-<style scoped></style>

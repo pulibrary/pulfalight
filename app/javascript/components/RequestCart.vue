@@ -60,7 +60,6 @@
                   {{ item.location.notes }}
                 </td>
               </tr>
-
             </template>
           </tbody>
         </table>

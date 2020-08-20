@@ -14,26 +14,8 @@ class DocumentPresenter
     @request ||= self.class.request_class.new(@document, self) if requestable?
   end
 
-  def aeon_request_form_params
-    build_form_params
-  end
-
   def request_form_params
-    output = {}
-
-    # output[:aeon_form_params] = aeon_request_form_params
-    output[:callnumber] = @document.physical_location_code.first
-    output[:title] = @document.title.first
-
-    # Update this
-    output[:containers] = []
-    output[:subcontainers] = []
-
-    # Update this
-    output[:location] = { url: 'https://library.princeton.edu/special-collections/mudd', name: 'Mudd Library Reading Room' }
-    output[:aeonRequestFormParams] = aeon_request_form_params
-
-    [output]
+    @request_form_params ||= build_request_form_params
   end
 
   # This seems to deprecate the AeonExternalRequest Class
@@ -94,12 +76,11 @@ class DocumentPresenter
     name
   end
 
-  def build_form_params
+  def build_request_form_params
     hidden_fields = []
     flatten_hash(form_mapping).each do |name, value|
       value = Array.wrap(value)
       value.each do |v|
-        # hidden_fields << hidden_field_tag(name, v.to_s, id: nil)
         hidden_fields << { name: name, values: [ v.to_s ], id: nil }
       end
     end
