@@ -22,54 +22,54 @@
           <tbody>
             <template v-for="(item, index) in requests">
 
-            <tr
-              :key="item.callnumber"
-              :id="item.callnumber"
-              class="lux-cartItem request"
+              <tr
+                :key="item.callnumber"
+                :id="item.callnumber"
+                class="lux-cartItem request"
               >
-              <td>{{ item.title }}</td>
-              <td>{{ item.callnumber }}</td>
-              <td>
-                {{ displayContainers(item.containers) }}
-                <br />
-                <em v-if="item.subcontainers.length">
-                  [{{ displayContainers(item.subcontainers) }}]
-                </em>
-              </td>
-              <td>
-                <input-button
-                  @button-clicked="removeFromCart(item)"
-                  type="button"
-                  variation="outline"
-                  >
-                  Remove
-                </input-button>
-              </td>
-            </tr>
+                <td>{{ item.title }}</td>
+                <td>{{ item.callnumber }}</td>
+                <td>
+                  {{ displayContainers(item.containers) }}
+                  <br />
+                  <em v-if="item.subcontainers.length">
+                    [{{ displayContainers(item.subcontainers) }}]
+                  </em>
+                </td>
+                <td>
+                  <input-button
+                    @button-clicked="removeFromCart(item)"
+                    type="button"
+                    variation="outline"
+                    >
+                    Remove
+                  </input-button>
+                </td>
+              </tr>
 
-            <tr v-if="item.location" class="request__location">
-              <td colspan="4">
-                <geo-icon></geo-icon>
-                View this item at the <a :href="item.location.url">Mudd Library Reading Room</a>
-              </td>
-            </tr>
+              <tr v-if="item.location" class="request__location">
+                <td colspan="4">
+                  <geo-icon></geo-icon>
+                  View this item at the <a :href="item.location.url">Mudd Library Reading Room</a>
+                </td>
+              </tr>
 
-            <tr v-if="item.location && item.location.notes" class="request__location-notes">
-              <td colspan="4">
-                <truck-icon></truck-icon>
-                {{ item.location.notes }}
-              </td>
-            </tr>
+              <tr v-if="item.location && item.location.notes" class="request__location-notes">
+                <td colspan="4">
+                  <truck-icon></truck-icon>
+                  {{ item.location.notes }}
+                </td>
+              </tr>
 
             </template>
           </tbody>
         </table>
 
         <div class="hidden">
-          <template v-for="request in requestsState">
-          <template v-for="(item, index) in request.formParamsState">
-            <request-form-input :key="index" :name="item.name" :values="item.values"></request-form-input>
-          </template>
+          <template v-for="request in requests">
+            <template v-for="(item, index) in request.formParams">
+              <request-form-input :key="index" :name="item.name" :values="item.values"></request-form-input>
+            </template>
           </template>
         </div>
 
@@ -90,10 +90,13 @@
 </template>
 
 <script>
+import store from "../store"
+import { mapState, mapGetters } from "vuex"
+
 import LuxIconCart from './RequestCartIcon.vue'
 import GeoIcon from './GeoIcon.vue'
-import TruckIcon from './TrackIcon.vue'
-import RequestField from './RequestField.vue'
+import TruckIcon from './TruckIcon.vue'
+import RequestFormInput from './RequestFormInput.vue'
 
 export default {
   name: "RequestCart",
@@ -101,47 +104,27 @@ export default {
     'lux-icon-cart': LuxIconCart,
     'geo-icon': GeoIcon,
     'truck-icon': TruckIcon,
-    'request-form-input': RequestField
+    'request-form-input': RequestFormInput
   },
+
   props: {
     configuration: {
       type: Object,
       required: true,
       default: () => {}
     },
+  },
 
-    requests: {
-      type: Array,
-      required: false,
-      default: () => { [] }
+  computed: {
+    requests() {
+      return this.cart.items
     },
 
-    formParams: {
-      type: Array,
-      required: false,
-      default: () => { [] }
-    }
+    ...mapState({
+      cart: state => store.state.cart,
+    })
   },
-  data: function () {
-    return {
-      requestsState: this.requests,
-      formParamsState: this.requests.map( (request) => request.aeonRequestFormParams )
-    }
-  },
-  watch: {
-    formParamsState: {
-      handler: function (val, oldVal) {
-        console.log('new: %s, old: %s', val, oldVal)
-      },
-      deep: true
-    }
-  },
-  computed: {
-    // This should be removed
-    requestFields: function () {
-      return this.formParamsState
-    }
-  },
+
   methods: {
     displayContainers(containers) {
       let displayString = containers.map(function(container) {
@@ -151,6 +134,7 @@ export default {
       })
       return displayString.join(", ")
     },
+
     requestButtonText() {
       let text = "Request " + this.requests.length + " Item"
 
@@ -158,6 +142,10 @@ export default {
         text = text + "s"
       }
       return text
+    },
+
+    removeFromCart(item) {
+      store.dispatch("removeItemFromCart", item)
     }
   }
 }

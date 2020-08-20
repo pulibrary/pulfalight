@@ -36,6 +36,27 @@ class DocumentPresenter
     [output]
   end
 
+  # This seems to deprecate the AeonExternalRequest Class
+  def request_attributes
+    {
+      callnumber: @document.parent_ids.first,
+      referencenumber: @request.eadid,
+      title: @document.title.first,
+      containers: @request.containers, # add this,
+      subcontainers: @request.subcontainers, # add this
+      unitid: @request.unitid,
+      physloc: "rcpxm",
+      location: "mudd",
+      subtitle: @document.subtitle.first,
+      itemdate: @document.normalized_date.first,
+      itemnumber: @request.id, # This should not be coupled here
+      itemvolume: @document.volume.first,
+      accessnote: @request.accessnote,
+      extent: @request.extent,
+      itemurl: @request.url
+    }
+  end
+
   def requestable?
     @document.repository_config.present?
   end

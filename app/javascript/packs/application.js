@@ -19,22 +19,27 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 
 import Vue from 'vue/dist/vue.esm'
+import Vuex from "vuex"
+
 import system from 'lux-design-system'
 import "lux-design-system/dist/system/system.css"
 import "lux-design-system/dist/system/tokens/tokens.scss"
 
 Vue.use(system)
 
-import RequestCart from '../RequestCart.vue'
+import store from '../store'
+import RequestCart from '../components/RequestCart.vue'
 import AddToCartButton from '../components/AddToCartButton.vue'
 
 function ComponentBuilder() {}
 ComponentBuilder.build = function(className, componentClass) {
   var elements = document.getElementsByClassName(className)
 
+  console.log(store)
   for (var i = 0; i < elements.length; i++) {
     new Vue({
       el: elements[i],
+      store,
       components: {
         'request-cart': RequestCart,
         'add-to-cart-button': AddToCartButton
@@ -46,6 +51,7 @@ ComponentBuilder.build = function(className, componentClass) {
 function RequestCartFactory() {}
 RequestCartFactory.build = function() {
   ComponentBuilder.build('request-cart-block', RequestCart)
+  ComponentBuilder.build('add-to-cart-block', RequestCart)
 }
 
 document.addEventListener("DOMContentLoaded", () => {

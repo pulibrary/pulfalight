@@ -33,15 +33,41 @@ module Pulfalight
         "#{configured_request_url}?#{url_params}"
       end
 
+      def containers
+        []
+      end
+
+      def subcontainers
+        []
+      end
+
+      def eadid
+        Array.wrap(@document.eadid).first
+      end
+
+      def extent
+        Array.wrap(@document.extent).first
+      end
+
+      def accessnote
+        value = @document.acqinfo.first
+        value.gsub(/\t+/, " ").delete("\n")
+      end
+
+      def id
+        # Generate the request ID here
+        @request_id ||= SecureRandom.hex(14).to_i(16).to_s
+      end
+      alias request_id id
+
+def unitid
+        { type: 'barcode', value: '32101040795617' }
+      end
+
       private
 
       def default_url_options
         Rails.application.config.action_controller.default_url_options
-      end
-
-      def request_id
-        # Generate the request ID here
-        @request_id ||= SecureRandom.hex(14).to_i(16)
       end
 
       def request_mappings

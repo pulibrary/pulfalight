@@ -1,5 +1,6 @@
-import Vue from "vue"
+import Vue from 'vue/dist/vue.esm'
 import Vuex from "vuex"
+
 import { cartModule } from "./modules"
 import VuexPersist from "vuex-persist"
 
@@ -12,9 +13,7 @@ const vuexPersist = new VuexPersist({
 
 export default new Vuex.Store({
   modules: {
-    counter: counterModule,
-    gallery: galleryModule,
-    cart: cartModule,
+    cart: cartModule
   },
   plugins: [vuexPersist.plugin],
 })

@@ -28,17 +28,12 @@ class CatalogController < ApplicationController
   alias show_presenter presenter
 
   def aeon_request_form_params
-    # binding.pry
-    # @aeon_request_form_params ||= [ presenter.request.form_params ]
-
-    # @aeon_request_form_params ||= presenter.form_params[:params]
-    # @aeon_request_form_params ||= presenter.aeon_request_form_params
-
-    values = presenter.aeon_request_form_params
+    presenter.aeon_request_form_params
   end
 
   # Remove this
   def aeon_requests
+
 =begin
     @aeon_requests ||= [
       { title: "Test Item", callnumber: 'AC044_C0023', containers: [ { type: "Box", value: "1" }, { type: "folder", value: "2" } ], subcontainers: [], location: { url: 'https://library.princeton.edu/special-collections/mudd', name: 'Mudd Library Reading Room' } },
@@ -47,8 +42,11 @@ class CatalogController < ApplicationController
     ]
 =end
 
-    # @aeon_requests ||= presenter.form_params
-    presenter.request_form_params
+    @aeon_requests ||= presenter.request_form_params
+  end
+
+  def aeon_request_attributes
+    @aeon_request_attributes ||= presenter.request_attributes
   end
 
   # @see Blacklight::Catalog#show
@@ -57,11 +55,13 @@ class CatalogController < ApplicationController
     @response = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(deprecated_response, "The @response instance variable is deprecated; use @document.response instead.")
 
     # If the item can be requested, construct the request
+    # This should not be needed any longer
     @aeon_external_request = aeon_external_request
 
     # For the Request Cart
     @aeon_configuration = aeon_configuration
     @aeon_requests = aeon_requests
+    @aeon_request_attributes = aeon_request_attributes
 
     respond_to do |format|
       format.html do

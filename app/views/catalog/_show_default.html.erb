@@ -59,11 +59,25 @@
 <nav class="navbar sticky-top">
         <div class="row">
           <div class="col-md-4">
-            <a href="#request">
+
+            <add-to-cart-button
+              class="add-to-cart-block"
+
+              <% @aeon_request_attributes.each_pair do |key, value| %>
+                <% unless value.nil? || value.empty? %>
+                  <% if value.is_a?(Hash) %>
+                    :<%= key %>="<%= JSON.generate(value) %>"
+                  <% else %>
+                    <%= key %>="<%= value %>"
+                  <% end %>
+                <% end %>
+              <% end %>
+            >
+              <a href="#request" >
                 <%= image_tag(asset_path('icon-request.svg')) %>
-                <div></div>
                 Request this box
-            </a>
+              </a>
+            </add-to-cart-button>
           </div>
 
           <div class="col-md-4">

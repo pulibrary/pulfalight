@@ -1,13 +1,18 @@
 {
   "presets": [
-    ["env", {
-      "modules": false,
-      "targets": {
-        "browsers": "> 1%",
-        "uglify": true
-      },
-      "useBuiltIns": true
-    }]
+    [
+      "@babel/preset-env", {
+        "forceAllTransforms": true,
+        "useBuiltIns": 'entry',
+        "corejs": 3,
+        "modules": false,
+        "exclude": ['transform-typeof-symbol'],
+        "targets": {
+          "node": 'current'
+        },
+        "useBuiltIns": 'entry'
+      }
+    ]
   ],
 
   "plugins": [
