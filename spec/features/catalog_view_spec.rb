@@ -11,10 +11,11 @@ describe "viewing catalog records", type: :feature, js: true do
     end
 
     it "generates a request <form>" do
-      visit "/catalog/aspace_WC064_c1"
+      # MC148_c00002
+      # visit "/catalog/aspace_WC064_c1"
+      visit "/catalog/MC148_c00002"
 
       # This is now blocked by the Request Cart Vue integration
-      binding.pry
     end
 
     context "with extent provided" do

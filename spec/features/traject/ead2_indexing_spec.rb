@@ -340,6 +340,25 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  describe "#physloc_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+    end
+
+    it "resolves and indexes the physical location code" do
+      expect(result).to include("physloc_ssm")
+      expect(result["physloc_ssm"]).to eq(["Firestone Library"])
+    end
+
+    it "resolves and indexes the physical location code in child components" do
+      expect(result).to include("components")
+      components = result["components"]
+      expect(components).not_to be_empty
+      expect(components.first).to include("physloc_ssm")
+      expect(components.first["physloc_ssm"]).to eq(["Firestone Library"])
+    end
+  end
+
   describe "#location_code_ssm" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
@@ -347,7 +366,18 @@ describe "EAD 2 traject indexing", type: :feature do
 
     it "resolves and indexes the location code" do
       expect(result).to include("location_code_ssm")
-      expect(result["location_code_ssm"]).to eq(["Firestone Library"])
+      expect(result["location_code_ssm"]).to eq(["RBSC"])
+    end
+  end
+
+  describe "#location_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+    end
+
+    it "resolves and indexes the location" do
+      expect(result).to include("location_ssm")
+      expect(result["location_ssm"]).to eq(["mss"])
     end
   end
 

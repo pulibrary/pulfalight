@@ -180,11 +180,27 @@ end
 to_field "extent_ssm", extract_xpath("./did/physdesc/extent")
 to_field "extent_teim", extract_xpath("./did/physdesc/extent")
 
+to_field "physloc_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  next unless parent
+
+  physloc_code = parent.output_hash["physloc_ssm"]
+  accumulator.concat(physloc_code) if physloc_code
+end
+
 to_field "physloc_code_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:parent]
   next unless parent
 
   physloc_code = parent.output_hash["physloc_code_ssm"]
+  accumulator.concat(physloc_code) if physloc_code
+end
+
+to_field "location_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  next unless parent
+
+  physloc_code = parent.output_hash["location_ssm"]
   accumulator.concat(physloc_code) if physloc_code
 end
 
@@ -331,27 +347,9 @@ to_field "acqinfo_ssm" do |_record, accumulator, context|
   accumulator.concat(context.output_hash.fetch("acqinfo_ssim", []))
 end
 
-to_field "physloc_sim" do |record, accumulator, context|
-  values = []
-  container_elements = record.xpath("./did/container")
-  container_elements.each do |container_element|
-    next unless container_element["type"]
-
-    container_type = container_element["type"].capitalize
-    container_value = container_element.text
-    values << "#{container_type} #{container_value}"
-  end
-  values = Array.wrap(values.join(", "))
-
-  if values.empty?
-    parent = context.clipboard[:parent] || settings[:parent]
-    values = parent.output_hash["physloc_sim"]
-  end
-
-  accumulator.concat(values)
-end
-to_field "physloc_ssm" do |_record, accumulator, context|
-  values = context.output_hash["physloc_sim"]
+to_field "physloc_sim" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  values = parent.output_hash["physloc_sim"]
   accumulator.concat(values)
 end
 
