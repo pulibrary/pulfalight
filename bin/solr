@@ -6,6 +6,7 @@ Dir.chdir(APP_ROOT) do
     system("lando", *ARGV)
     if ARGV.first.downcase == "start"
       system("RAILS_ENV=test rake pulfalight:seed")
+      system("RAILS_ENV=development rake pulfalight:seed")
     end
   rescue Errno::ENOENT
     $stderr.puts "Lando executable was not detected in the system."
