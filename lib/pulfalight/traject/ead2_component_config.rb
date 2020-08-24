@@ -405,6 +405,7 @@ to_field "barcodes_ssim" do |record, accumulator|
   record.xpath("./did/container[@label]").each do |node|
     label = node.attr("label")
     barcode_match = label.match(/\[(\d+?)\]/)
+
     accumulator << barcode_match[1] if barcode_match
   end
 end
