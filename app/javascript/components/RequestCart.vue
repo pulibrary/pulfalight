@@ -377,7 +377,7 @@ $space-base: 24px;
   bottom: 0;
   left: 0;
   right: 0;
-  overflow: auto;
+  overflow: hidden;
   padding: 1em;
 }
 
