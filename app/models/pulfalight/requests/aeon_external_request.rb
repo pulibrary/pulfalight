@@ -34,11 +34,21 @@ module Pulfalight
       end
 
       def containers
-        []
+        values = @document.containers.map do |container|
+          { type: container.type, value: container.value }
+        end
+
+        JSON.generate(values)
+        values
       end
 
       def subcontainers
-        []
+        values = @document.subcontainers.map do |container|
+          { type: container.type, value: container.value }
+        end
+
+        JSON.generate(values)
+        values
       end
 
       def eadid
@@ -65,6 +75,14 @@ module Pulfalight
           type: "barcode",
           value: @document.barcode.first
         }
+      end
+
+      def self.hash_value?(field)
+        [
+          :unitid,
+          :containers,
+          :subcontainers
+        ].include?(field.to_sym)
       end
 
       def physdesc_number

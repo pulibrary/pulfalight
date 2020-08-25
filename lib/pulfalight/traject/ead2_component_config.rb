@@ -394,6 +394,50 @@ to_field "container_types_ssim" do |_record, accumulator, context|
   accumulator.concat(value) if value
 end
 
+to_field "containers_ssm" do |record, accumulator|
+  values = []
+  nodes = record.xpath("./did/container")
+  container_nodes = []
+  container_nodes << nodes.first unless nodes.empty?
+
+  container_nodes.each do |node|
+    type_attribute = node.attribute("type")
+    value = {}
+
+    if type_attribute
+      type = type_attribute.value.capitalize
+      value[:type] = type
+    end
+
+    value[:value] = node.text
+    values << ::JSON.generate(value)
+  end
+
+  accumulator.concat(values)
+end
+
+to_field "subcontainers_ssm" do |record, accumulator|
+  values = []
+  nodes = record.xpath("./did/container")
+  subcontainer_nodes = []
+  subcontainer_nodes = nodes[1..-1] unless nodes.empty?
+
+  subcontainer_nodes.each do |node|
+    type_attribute = node.attribute("type")
+    value = {}
+
+    if type_attribute
+      type = type_attribute.value.capitalize
+      value[:type] = type
+    end
+
+    value[:value] = node.text
+    values << ::JSON.generate(value)
+  end
+
+  accumulator.concat(values)
+end
+
 Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
   to_field "#{selector}_ssm", extract_xpath("./#{selector}/*[local-name()!='head']")
   to_field "#{selector}_heading_ssm", extract_xpath("./#{selector}/head")

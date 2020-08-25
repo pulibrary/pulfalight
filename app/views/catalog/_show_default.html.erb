@@ -64,6 +64,12 @@
                     <% unless value.nil? || value.empty? %>
                       <% if value.is_a?(Hash) %>
                         :<%= key %>="<%= JSON.generate(value) %>"
+
+                      <% elsif key == :containers %>
+                        :<%= key %>="<%= JSON.generate(value) %>"
+                      <% elsif key == :subcontainers %>
+                        :<%= key %>="<%= JSON.generate(value) %>"
+
                       <% else %>
                         <%= key %>="<%= value %>"
                       <% end %>

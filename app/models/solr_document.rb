@@ -117,6 +117,26 @@ class SolrDocument
     fetch(:container_types_ssim, [])
   end
 
+  # This should be refactored for nested Solr Documents
+  # Please see https://github.com/pulibrary/pulfalight/pull/257
+  def containers
+    values = fetch(:containers_ssm, [])
+    values.map do |json_value|
+      value = JSON.parse(json_value)
+      OpenStruct.new(value)
+    end
+  end
+
+  # This should be refactored for nested Solr Documents
+  # Please see https://github.com/pulibrary/pulfalight/pull/257
+  def subcontainers
+    values = fetch(:subcontainers_ssm, [])
+    values.map do |json_value|
+      value = JSON.parse(json_value)
+      OpenStruct.new(value)
+    end
+  end
+
   def places
     fetch("places_ssm", [])
   end
