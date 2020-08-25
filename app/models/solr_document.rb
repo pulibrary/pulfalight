@@ -109,6 +109,14 @@ class SolrDocument
     fetch(:subtitle_ssm, [])
   end
 
+  def barcode
+    fetch(:barcodes_ssim, [])
+  end
+
+  def container_types
+    fetch(:container_types_ssim, [])
+  end
+
   def places
     fetch("places_ssm", [])
   end

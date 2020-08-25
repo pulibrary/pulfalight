@@ -51,21 +51,20 @@ module Pulfalight
 
       def accessnote
         value = @document.acqinfo.first
+        # This needs to be moved into the Traject configuration
         value.gsub(/\t+/, " ").delete("\n")
       end
 
       def id
-        # Generate the request ID here
-        @id ||= begin
-                  hex_value = SecureRandom.hex(14)
-                  dec_value = hex_value.to_i(16)
-                  dec_value.to_s
-                end
+        @document.barcode.first
       end
       alias request_id id
 
       def unitid
-        { type: "barcode", value: "32101040795617" }
+        {
+          type: "barcode",
+          value: @document.barcode.first
+        }
       end
 
       def physdesc_number
@@ -74,6 +73,14 @@ module Pulfalight
 
       def physical_location_code
         @document.physical_location_code.first
+      end
+
+      def itemvolume
+        top_container_type = @document.container_types.first
+        first_value = top_container_type.gsub(/\s+?\d+/, "")
+        values = [first_value]
+        values << @document.id
+        values.join(" ")
       end
 
       def attributes
@@ -88,8 +95,8 @@ module Pulfalight
           location: @document.location.first,
           subtitle: @document.subtitle.first,
           itemdate: @document.normalized_date.first,
-          itemnumber: id, # This should not be coupled here
-          itemvolume: @document.volume.first,
+          itemnumber: id,
+          itemvolume: itemvolume,
           accessnote: accessnote,
           extent: extent,
           itemurl: url
@@ -139,6 +146,22 @@ module Pulfalight
       # GroupingOption_Location=FirstValue
       # SubmitButton=Submit+Request
 
+      #           callnumber: @document.id,
+      #           referencenumber: eadid,
+      #           title: @document.title.first,
+      #           containers: containers, # add this,
+      #           subcontainers: subcontainers, # add this
+      #           unitid: unitid,
+      #           physloc: @document.physical_location_code.first,
+      #           location: @document.location.first,
+      #           subtitle: @document.subtitle.first,
+      #           itemdate: @document.normalized_date.first,
+      #           itemnumber: id,
+      #           itemvolume: itemvolume,
+      #           accessnote: accessnote,
+      #           extent: extent,
+      #           itemurl: url
+
       def default_dynamic_fields
         {
           "Request" => id,
@@ -149,9 +172,9 @@ module Pulfalight
           "ItemAuthor_#{id}" => @document.collection_creator,
           "ItemDate_#{id}" => @document.normalized_date.first,
           "ItemNumber_#{id}" => id,
-          "ItemVolume_#{id}" => @document.volume.first, # Example: "Box23"
-          "ItemInfo1_#{id}" => accessnote, # Example: "Restrictions May Appli. Check Finding Aid."
-          "ItemInfo2_#{id}" => extent, # Example: "262.4 linear feet | 648 boxes and 5 oversize folders"
+          "ItemVolume_#{id}" => itemvolume,
+          "ItemInfo1_#{id}" => accessnote,
+          "ItemInfo2_#{id}" => extent,
           "ItemInfo3_#{id}" => physdesc_number.first,
           "ItemInfo4_#{id}" => @document.location_note.join(","),
           "ItemInfo5_#{id}" => url,

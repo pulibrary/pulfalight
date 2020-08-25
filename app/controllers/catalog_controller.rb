@@ -14,15 +14,12 @@ class CatalogController < ApplicationController
     render json: @document.as_json
   end
 
+  helper_method :aeon_configuration, :aeon_request_form_params, :aeon_request_attributes
+
   # @see Blacklight::Catalog#show
   def show
     deprecated_response, @document = search_service.fetch(params[:id])
     @response = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(deprecated_response, "The @response instance variable is deprecated; use @document.response instead.")
-
-    # For the Request Cart
-    @aeon_configuration = aeon_configuration
-    @aeon_request_form_params = aeon_request_form_params
-    @aeon_request_attributes = aeon_request_attributes
 
     respond_to do |format|
       format.html do

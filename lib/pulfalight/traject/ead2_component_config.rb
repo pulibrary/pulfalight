@@ -33,7 +33,9 @@ to_field "ref_ssi" do |record, accumulator, context|
                    record["id"] = hexdigest
                    hexdigest
                  else
-                   record.attribute("id")&.value&.strip&.gsub(".", "-")
+                   value = record.attribute("id")&.value&.strip&.gsub(".", "-")
+                   # This is handling for ArchivesSpace-generated EAD Documents
+                   value.gsub("aspace_", "")
                  end
 end
 to_field "ref_ssm" do |_record, accumulator, context|
@@ -177,8 +179,18 @@ to_field "collection_ssi" do |_record, accumulator, context|
   accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
 end
 
-to_field "extent_ssm", extract_xpath("./did/physdesc/extent")
-to_field "extent_teim", extract_xpath("./did/physdesc/extent")
+to_field "extent_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  next unless parent
+
+  value = parent.output_hash["extent_ssm"]
+  accumulator.concat(value) if value
+end
+
+to_field "extent_teim" do |_record, accumulator, context|
+  value = context.output_hash["extent_ssm"]
+  accumulator.concat(value) if value
+end
 
 to_field "physloc_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:parent]
@@ -360,10 +372,26 @@ to_field "language_ssm" do |_record, accumulator, context|
   accumulator.concat(parent_languages)
 end
 
+# Legacy field for ArcLight compatibility
 to_field "containers_ssim" do |record, accumulator|
   record.xpath("./did/container").each do |node|
-    accumulator << [node.attribute("type"), node.text].join(" ").strip
+    type_attribute = node.attribute("type")
+    values = []
+    if type_attribute
+      type = type_attribute.value.capitalize
+      values << type
+    end
+    values << node.text
+
+    accumulator << values.join(" ").strip
   end
+end
+
+# Cases like these were the justification for https://github.com/pulibrary/pulfalight/pull/257
+to_field "container_types_ssim" do |_record, accumulator, context|
+  value = context.output_hash["containers_ssim"]
+
+  accumulator.concat(value) if value
 end
 
 Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|

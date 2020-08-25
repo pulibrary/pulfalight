@@ -5,7 +5,7 @@
   <!-- Request Cart Pane -->
   <div class="request-cart-block">
     <request-cart
-      :configuration="<%= JSON.generate(@aeon_configuration) %>"
+      :configuration="<%= JSON.generate(aeon_configuration) %>"
     >
     </request-cart>
   </div>
@@ -60,7 +60,7 @@
                 <add-to-cart-button
                   class="add-to-cart-block"
 
-                  <% @aeon_request_attributes.each_pair do |key, value| %>
+                  <% aeon_request_attributes.each_pair do |key, value| %>
                     <% unless value.nil? || value.empty? %>
                       <% if value.is_a?(Hash) %>
                         :<%= key %>="<%= JSON.generate(value) %>"
@@ -70,7 +70,7 @@
                     <% end %>
                   <% end %>
 
-                  :form-params="<%= JSON.generate(@aeon_request_form_params) %>"
+                  :form-params="<%= JSON.generate(aeon_request_form_params) %>"
                 >
                     <%= image_tag(asset_path('icon-request.svg')) %>
                     Request this box

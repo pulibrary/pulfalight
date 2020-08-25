@@ -25,6 +25,7 @@ Metrics/BlockLength:
     - 'config/routes.rb'
 Metrics/ClassLength:
   Exclude:
+    - 'app/models/pulfalight/requests/aeon_external_request.rb'
     - 'app/models/solr_document.rb'
     - 'app/controllers/catalog_controller.rb'
 Metrics/MethodLength:

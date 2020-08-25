@@ -24,6 +24,10 @@ class DocumentPresenter
     @document.repository_config.present?
   end
 
+  def notes
+    ""
+  end
+
   private
 
   def form_mapping
