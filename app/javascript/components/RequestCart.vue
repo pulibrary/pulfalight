@@ -1,14 +1,44 @@
 <template>
-  <div :class="['request-cart']">
-    <div v-if="requests.length" class="panel">
+
+  <transition name="slide">
+
+  <div v-if="isVisible" :class="['request-cart']">
 
       <form method="post" :action="configuration.url">
+    <div v-if="requests.length" class="panel">
         <table :class="['lux-data-table']">
+
           <caption>
-            Request Cart
-            <lux-icon-base width="30" height="30" icon-name="Cart">
-              <lux-icon-cart></lux-icon-cart>
-            </lux-icon-base>
+
+    <input-button
+      v-on:button-clicked="toggleCartView($event)"
+      type="button"
+      variation="text"
+      class="denied-button"
+    >
+
+      <div class="lux-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1em"
+          height="1em"
+          viewBox="0 0 16 16"
+          aria-labelledby="denied"
+          role="img"
+          fill="#6e757c"
+          >
+          <title id="icon-name" lang="en">denied</title>
+          <x-circle-icon></x-circle-icon>
+        </svg>
+      </div>
+    </input-button>
+
+    <div class="caption-title">
+      <span>Request Cart</span>
+      <lux-icon-base width="30" height="30" icon-name="Cart">
+        <lux-icon-cart></lux-icon-cart>
+      </lux-icon-base>
+    </div>
           </caption>
 
           <thead>
@@ -72,20 +102,25 @@
           </template>
         </div>
 
+    </div><!-- /.panel -->
+    <div v-else class="panel">
+      <heading level="h3">Your cart is currently empty.</heading>
+    </div>
+
         <div class="cart-actions">
           <div class="center">
-            <input-button type="submit" variation="solid" block>
+            <input-button type="submit" variation="solid" :disabled="requests.length == 0" block>
               {{ requestButtonText() }}
             </input-button>
           </div>
         </div>
-      </form>
-    </div>
 
-    <div v-else class="panel">
-      <heading level="h3">Your cart is currently empty.</heading>
-    </div>
-  </div>
+      </form>
+
+      </div>
+
+  </transition>
+
 </template>
 
 <script>
@@ -95,6 +130,7 @@ import { mapState, mapGetters } from "vuex"
 import LuxIconCart from './RequestCartIcon.vue'
 import GeoIcon from './GeoIcon.vue'
 import TruckIcon from './TruckIcon.vue'
+import XCircleIcon from './XCircleIcon.vue'
 import RequestFormInput from './RequestFormInput.vue'
 
 export default {
@@ -103,6 +139,7 @@ export default {
     'lux-icon-cart': LuxIconCart,
     'geo-icon': GeoIcon,
     'truck-icon': TruckIcon,
+    'x-circle-icon': XCircleIcon,
     'request-form-input': RequestFormInput
   },
 
@@ -117,6 +154,15 @@ export default {
   computed: {
     requests() {
       return this.cart.items
+    },
+
+    isVisible: {
+      get() {
+        return this.cart.isVisible
+      },
+      set() {
+        store.commit("TOGGLE_VISIBILITY")
+      }
     },
 
     ...mapState({
@@ -135,6 +181,10 @@ export default {
     },
 
     requestButtonText() {
+      if (this.requests.length == 0) {
+        return "No Items in Your Cart"
+      }
+
       let text = "Request " + this.requests.length + " Item"
 
       if (this.requests.length > 1) {
@@ -145,12 +195,24 @@ export default {
 
     removeFromCart(item) {
       store.dispatch("removeItemFromCart", item)
-    }
+    },
+
+    toggleCartView(event) {
+      store.commit("TOGGLE_VISIBILITY")
+    },
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
+/*
+.circle-icon {
+  display: inline-flex;
+  align-self: center;
+  margin: 0 4px;
+}
+*/
 
 .lux-data-table {
   border-collapse: collapse;
@@ -340,18 +402,71 @@ $box-shadow-small: 0 0 0 1px rgba(92, 106, 196, 0.1);
 $color-rich-black: rgb(0, 17, 35);
 $space-base: 24px;
 
+/* Copied from upstream */
+.slide-enter-active,
+.slide-leave-active {
+  transform: translateX(0%);
+  transition: 0.3s ease-out;
+}
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(100%);
+  transition: 0.3s ease-out;
+}
+
 /* Component Styling */
+
 .request-cart {
-  margin-left: 0.8rem;
-  margin-right: 0.8rem;
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+
+  /* Custom */
+  /* transform: translateX(0%); */
+
+  position: fixed;
+  z-index: 2020;
+  display: block;
+  top: 20%;
+  height: 80%;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #8f8f8f;
+  width: 38%;
+
+  .denied-button {
+    font-size: 1.5rem;
+    padding: 6px;
+
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+
+    color: #6e757c;
+  }
+
+  .caption-title {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    /*
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    */
+  }
 }
 
 .lux-data-table {
   width: 100%;
-}
+  margin-top: 0px;
 
-.lux-data-table caption {
-  caption-side: inherit;
+  caption {
+    caption-side: inherit;
+    margin-bottom: 0px;
+
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
 }
 
 .panel-wrap {
@@ -410,14 +525,18 @@ table {
 
 .slide-enter-active,
 .slide-leave-active {
+  /*
   transform: translateX(0%);
   transition: 0.3s ease-out;
+  */
 }
 
 .slide-enter,
 .slide-leave-to {
+  /*
   transform: translateX(100%);
   transition: 0.3s ease-out;
+  */
 }
 
 /*

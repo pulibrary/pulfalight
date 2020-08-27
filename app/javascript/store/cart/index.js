@@ -31,5 +31,8 @@ export const cartMutations = {
   REMOVE_ITEM_FROM_CART(state, payload) {
     const i = state.items.map(item => item.callnumber).indexOf(payload.callnumber)
     state.items.splice(i, 1)
+    if (state.items.length == 0) {
+      window.localStorage.clear()
+    }
   }
 }

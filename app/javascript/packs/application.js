@@ -30,9 +30,10 @@ Vue.use(system)
 import store from '../store'
 import RequestCart from '../components/RequestCart.vue'
 import AddToCartButton from '../components/AddToCartButton.vue'
+import CartViewToggle from '../components/CartViewToggle.vue'
 
 function ComponentBuilder() {}
-ComponentBuilder.build = function(className, componentClass) {
+ComponentBuilder.build = function(className) {
   var elements = document.getElementsByClassName(className)
 
   for (var i = 0; i < elements.length; i++) {
@@ -41,7 +42,8 @@ ComponentBuilder.build = function(className, componentClass) {
       store,
       components: {
         'request-cart': RequestCart,
-        'add-to-cart-button': AddToCartButton
+        'add-to-cart-button': AddToCartButton,
+        'cart-view-toggle': CartViewToggle
       }
     })
   }
@@ -49,8 +51,9 @@ ComponentBuilder.build = function(className, componentClass) {
 
 function RequestCartFactory() {}
 RequestCartFactory.build = function() {
-  ComponentBuilder.build('request-cart-block', RequestCart)
-  ComponentBuilder.build('add-to-cart-block', RequestCart)
+  ComponentBuilder.build('request-cart-block')
+  ComponentBuilder.build('add-to-cart-block')
+  ComponentBuilder.build('cart-view-toggle-block')
 }
 
 document.addEventListener("DOMContentLoaded", () => {

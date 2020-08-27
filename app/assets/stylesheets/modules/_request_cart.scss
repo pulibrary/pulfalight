@@ -1,13 +1,17 @@
 @mixin request-cart {
+  /*
   position: fixed;
 
   z-index: 2020;
   display: block;
+  */
 
-  /*
+  /* Disabled
   top: 0%;
   height: 100%;
   */
+
+  /*
   top: 20%;
   height: 80%;
 
@@ -17,4 +21,5 @@
   border: 1px solid #8f8f8f;
 
   width: 38%;
+  */
 }

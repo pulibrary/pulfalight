@@ -23,6 +23,7 @@ Metrics/BlockLength:
     - 'lib/tasks/**/*'
     - 'app/controllers/catalog_controller.rb'
     - 'config/routes.rb'
+    - 'lib/pulfalight/traject/ead2_component_config.rb'
 Metrics/ClassLength:
   Exclude:
     - 'app/models/pulfalight/requests/aeon_external_request.rb'

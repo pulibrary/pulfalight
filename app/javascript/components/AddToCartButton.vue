@@ -58,7 +58,7 @@ export default {
     location: {
       type: String,
       default: "",
-      required: true,
+      required: false,
     },
 
     subtitle: {
