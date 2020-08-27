@@ -34,7 +34,14 @@ configure_before
 # ==================
 
 # rubocop:disable Performance/StringReplacement
-to_field "id", extract_xpath("/ead/eadheader/eadid"), strip, gsub(".", "-")
+to_field "id" do |record, accumulator, _context|
+  eadid_element = record.at_xpath("/ead/eadheader/eadid")
+  eadid = eadid_element.content.strip.gsub(".", "-")
+
+  @logger.info("Processing the component #{eadid}")
+  accumulator << eadid
+end
+
 # rubocop:enable Performance/StringReplacement
 to_field "title_filing_si", extract_xpath('/ead/eadheader/filedesc/titlestmt/titleproper[@type="filing"]')
 to_field "title_ssm", extract_xpath("/ead/archdesc/did/unittitle")
@@ -337,7 +344,9 @@ to_field "components" do |record, accumulator, context|
             "./*[is_component(.)][@level != 'otherlevel']"
           end
   child_components = record.xpath(xpath, Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new)
-  child_components.each do |child_component|
+  child_components.each_with_index do |child_component, i|
+    @logger.info("Processing the component #{child_component['id']} (#{i + 1} or #{child_components.length})")
+
     component_indexer = build_component_indexer(context)
     output = component_indexer.map_record(child_component)
     accumulator << output

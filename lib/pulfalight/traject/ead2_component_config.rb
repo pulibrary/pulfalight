@@ -375,13 +375,26 @@ end
 # Legacy field for ArcLight compatibility
 to_field "containers_ssim" do |record, accumulator|
   record.xpath("./did/container").each do |node|
-    type_attribute = node.attribute("type")
+    ptr_element = node.at_xpath("./ptr")
+
+    # Legacy structure
+    if ptr_element
+      target = ptr_element["target"]
+
+      linked_component = record.xpath("//c[ @level='otherlevel' and @otherlevel='physicalitem' and @id='#{target}']")
+      linked_container = linked_component.first.at_xpath("./did/container")
+      container_node = linked_container
+    else
+      container_node = node
+    end
+
+    type_attribute = container_node.attribute("type")
     values = []
     if type_attribute
       type = type_attribute.value.capitalize
       values << type
     end
-    values << node.text
+    values << container_node.text
 
     accumulator << values.join(" ").strip
   end
@@ -397,8 +410,22 @@ end
 to_field "containers_ssm" do |record, accumulator|
   values = []
   nodes = record.xpath("./did/container")
+
   container_nodes = []
-  container_nodes << nodes.first unless nodes.empty?
+  unless nodes.empty?
+    ptr_element = nodes.first.at_xpath("./ptr")
+
+    # Legacy structure
+    if ptr_element
+      target = ptr_element["target"]
+
+      linked_component = record.xpath("//c[ @level='otherlevel' and @otherlevel='physicalitem' and @id='#{target}']")
+      linked_container = linked_component.first.at_xpath("./did/container")
+      container_nodes << linked_container
+    else
+      container_nodes << nodes.first
+    end
+  end
 
   container_nodes.each do |node|
     type_attribute = node.attribute("type")
@@ -419,8 +446,26 @@ end
 to_field "subcontainers_ssm" do |record, accumulator|
   values = []
   nodes = record.xpath("./did/container")
+
   subcontainer_nodes = []
-  subcontainer_nodes = nodes[1..-1] unless nodes.empty?
+
+  if nodes.length > 1
+
+    sibling_nodes = nodes[1..-1]
+    sibling_nodes.each do |sibling_node|
+      ptr_element = sibling_node.at_xpath("./ptr")
+      # Legacy structure
+      if ptr_element
+        target = ptr_element["target"]
+
+        linked_component = record.xpath("//c[ @level='otherlevel' and @otherlevel='physicalitem' and @id='#{target}']")
+        linked_container = linked_component.first.at_xpath("./did/container")
+        subcontainer_nodes << linked_container
+      else
+        subcontainer_nodes << sibling_node
+      end
+    end
+  end
 
   subcontainer_nodes.each do |node|
     type_attribute = node.attribute("type")
@@ -484,7 +529,9 @@ end
 
 to_field "components" do |record, accumulator, _context|
   child_components = record.xpath("./*[is_component(.)][@level != 'otherlevel']", NokogiriXpathExtensions.new)
-  child_components.each do |child_component|
+  child_components.each_with_index do |child_component, i|
+    @logger.info("Processing the component #{child_component['id']} (#{i + 1} or #{child_components.length})")
+
     root_context = settings[:parent]
     component_indexer = build_component_indexer(root_context)
     output = component_indexer.map_record(child_component)
