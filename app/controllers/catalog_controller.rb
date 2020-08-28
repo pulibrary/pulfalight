@@ -365,7 +365,7 @@ class CatalogController < ApplicationController
     # Component Show Page - Metadata Section
     config.add_component_field "collection_creator_ssm", label: "Collection Creator"
     config.add_component_field "unitdate_inclusive_ssm", label: "Dates"
-    config.add_component_field "physloc_ssm", label: "Located In"
+    config.add_component_field "containers_ssim", label: "Located In"
     config.add_component_field "extent_ssm", label: "Extent"
     config.add_component_field "language_ssm", label: "Languages"
     config.add_component_field "parent_access_restrict_ssm", label: "Access Restrictions"
