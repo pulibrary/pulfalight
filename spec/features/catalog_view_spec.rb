@@ -3,6 +3,12 @@
 require "rails_helper"
 
 describe "viewing catalog records", type: :feature, js: true do
+  context "when viewing a component show page" do
+    it "renders a collection title without a separate date element" do
+      visit "catalog/MC221_c0059"
+      expect(page).not_to have_css(".collection-attributes h2.media span.col")
+    end
+  end
   context "when viewing a component which can be requested from Aeon" do
     xit "renders a request button" do
       visit "/catalog/MC148_c00001"
