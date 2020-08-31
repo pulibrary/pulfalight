@@ -53,7 +53,7 @@
             <template v-for="(item, index) in requests">
 
               <tr
-                :key="item.callnumber"
+                :key="index"
                 :id="item.callnumber"
                 class="lux-cartItem request"
               >
@@ -95,9 +95,9 @@
         </table>
 
         <div class="hidden">
-          <template v-for="request in requests">
-            <template v-for="(item, index) in request.formParams">
-              <request-form-input :key="index" :name="item.name" :values="item.values"></request-form-input>
+          <template v-for="(request, requestIndex) in requests">
+            <template v-for="(item, paramIndex) in request.formParams">
+              <request-form-input :key="Math.random()" :name="item.name" :values="item.values"></request-form-input>
             </template>
           </template>
         </div>
@@ -173,10 +173,15 @@ export default {
   methods: {
     displayContainers(containers) {
       let displayString = containers.map(function(container) {
-        return (
-          container.type.charAt(0).toUpperCase() + container.type.slice(1) + " " + container.value
-        )
+        let value = 'Unspecified'
+
+        if (container.type) {
+          value = container.type.charAt(0).toUpperCase() + container.type.slice(1) + " " + container.value
+        }
+
+        return value
       })
+
       return displayString.join(", ")
     },
 
@@ -215,25 +220,51 @@ export default {
 */
 
 .lux-data-table {
+  /*display: block;*/
+  table-layout: fixed;
+  width: 100%;
+
   border-collapse: collapse;
   border-spacing: 0;
   border-left: none;
   border-right: none;
   border-bottom: none;
-}
 
-.lux-data-table caption {
-  margin-bottom: 24px;
-  display: table-caption;
-  text-align: left;
-  font-size: 36px;
-  font-size: 2vw;
-  font-weight: 700;
-  font-family: franklin-gothic-urw, Helvetica, Arial, sans-serif;
-  line-height: 1;
-}
-.lux-data-table caption:last-child {
-  margin-bottom: 0;
+  caption {
+    margin-bottom: 24px;
+    display: table-caption;
+    text-align: left;
+    font-size: 36px;
+    font-size: 2vw;
+    font-weight: 700;
+    font-family: franklin-gothic-urw, Helvetica, Arial, sans-serif;
+    line-height: 1;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  tbody {
+    background-color: #fff;
+    width: 100%;
+    /* display: table; */
+    background-color: #fff;
+
+    tr {
+      display: table-row;
+
+      /* display: block; */
+      vertical-align: inherit;
+      background-color: #fff;
+      color: #41464e;
+
+      &:hover input,
+      &:hover {
+        background: #faf9f5;
+      }
+    }
+  }
 }
 
 @media (max-width: 63.3em) {
@@ -284,19 +315,7 @@ export default {
   color: #41464e;
   letter-spacing: 0.5px;
 }
-.lux-data-table tbody tr {
-  display: table-row;
-  vertical-align: inherit;
-  background-color: #fff;
-  color: #41464e;
-}
-.lux-data-table tbody tr:hover input,
-.lux-data-table tbody tr:hover {
-  background: #faf9f5;
-}
-.lux-data-table tbody {
-  background-color: #fff;
-}
+
 .lux-data-table td {
   color: #001123;
   font-weight: 400;
@@ -431,7 +450,9 @@ $space-base: 24px;
   right: 0;
   background-color: #ffffff;
   border: 1px solid #8f8f8f;
-  width: 38%;
+
+  /* width: 44%; */
+  width: 40%;
 
   .denied-button {
     font-size: 1.5rem;

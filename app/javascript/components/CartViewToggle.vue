@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     toggleCartView(event) {
+      console.log(event)
       store.commit("TOGGLE_VISIBILITY")
     }
   }

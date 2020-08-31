@@ -70,10 +70,14 @@ module Pulfalight
       end
       alias request_id id
 
+      def barcode
+        @document.barcode.first || @document.id
+      end
+
       def unitid
         {
           type: "barcode",
-          value: @document.barcode.first
+          value: barcode
         }
       end
 
@@ -103,7 +107,7 @@ module Pulfalight
 
       def attributes
         {
-          callnumber: @document.id,
+          callnumber: eadid,
           referencenumber: eadid,
           title: @document.title.first,
           containers: containers, # add this,
@@ -132,53 +136,6 @@ module Pulfalight
           Request: id
         }
       end
-
-      # ItemSubTitle_32101037024476=Assorted+Documents
-      # ItemTitle_32101037024476=18th-century+French+Documents
-      # ItemAuthor_32101037024476=Princeton+University.+Library.%0D%0A++++++++++++++++++++Dept.+of+Special+Collections.
-      # ItemDate_32101037024476=1700-1799
-      # ReferenceNumber_32101037024476=C0575_c01
-      # CallNumber_32101037024476=C0575
-      # ItemNumber_32101037024476=32101037024476
-      # ItemVolume_32101037024476=Box1
-      # Location_32101037024476=mss
-      # ItemInfo1_32101037024476=Collection+is+open+for+research+use.
-      # ItemInfo2_32101037024476=0.8+linear+feet+%7C+2+boxes
-      # ItemInfo3_32101037024476=
-      # ItemInfo4_32101037024476=
-      # ItemInfo5_32101037024476=https%3A%2F%2Ffindingaids.princeton.edu%2Fcollections%2FC0575%2Fc01
-      # Notes=
-      # AeonForm=EADRequest
-      # RequestType=Loan
-      # DocumentType=Manuscript
-      # Site=RBSC
-      # Location=mss
-      # ItemTitle=18th-century+French+Documents
-      # GroupingIdentifier=ItemVolume
-      # GroupingOption_ReferenceNumber=Concatenate
-      # GroupingOption_ItemNumber=Concatenate
-      # GroupingOption_ItemDate=FirstValue
-      # GroupingOption_CallNumber=FirstValue
-      # GroupingOption_ItemVolume=FirstValue
-      # GroupingOption_ItemInfo1=FirstValue
-      # GroupingOption_Location=FirstValue
-      # SubmitButton=Submit+Request
-
-      #           callnumber: @document.id,
-      #           referencenumber: eadid,
-      #           title: @document.title.first,
-      #           containers: containers, # add this,
-      #           subcontainers: subcontainers, # add this
-      #           unitid: unitid,
-      #           physloc: @document.physical_location_code.first,
-      #           location: @document.location.first,
-      #           subtitle: @document.subtitle.first,
-      #           itemdate: @document.normalized_date.first,
-      #           itemnumber: id,
-      #           itemvolume: itemvolume,
-      #           accessnote: accessnote,
-      #           extent: extent,
-      #           itemurl: url
 
       def default_dynamic_fields
         {
