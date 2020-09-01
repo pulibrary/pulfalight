@@ -59,4 +59,16 @@ RSpec.describe TableOfContentsBuilder do
       expect(child_component["children"]).to be_nil
     end
   end
+
+  context "when requesting a full table of contents where there is a single child component" do
+    it "generates a JSON document of the collection components without an error" do
+      document = SolrDocument.find("MC148_c00002")
+      output = described_class.build(document)
+      toc_hash = JSON.parse(output)
+
+      series_level_components = toc_hash
+      series_level_component = series_level_components[0]
+      expect(series_level_component["id"]).to eq "MC148_c00001"
+    end
+  end
 end

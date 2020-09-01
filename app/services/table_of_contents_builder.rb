@@ -20,6 +20,9 @@ class TableOfContentsBuilder
 
   def build_tree(solr_docs)
     return [] unless solr_docs
+    # Ensure that the docs object is an array. Solr will return a single
+    # hash rather than an array if there is a single component.
+    solr_docs = Array.wrap(solr_docs)
     solr_docs.map do |doc|
       node = Tree::TreeNode.new(doc["id"], content(doc))
       children = build_tree(doc["components"])
