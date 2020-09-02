@@ -38,5 +38,9 @@ describe "viewing catalog records", type: :feature, js: true do
     it "has a table of contents element" do
       expect(page).to have_css('#toc[data-selected="MC221_c0060"]')
     end
+
+    it "does not have breadcrumbs" do
+      expect(page).not_to have_css("ol.breadcrumb")
+    end
   end
 end
