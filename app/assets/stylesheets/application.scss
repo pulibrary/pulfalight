@@ -20,8 +20,9 @@
 @import 'modules/header';
 @import 'modules/search';
 @import 'modules/footer';
+@import 'modules/toc';
 
 @import 'layouts/home';
 @import 'layouts/catalog_show';
 @import 'blacklight_range_limit';
-@import 'jqtree';
+@import 'jstree-theme';

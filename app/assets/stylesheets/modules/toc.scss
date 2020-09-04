@@ -1,0 +1,6 @@
+// Ensures that table of contents leaf nodes wrap correctly
+#toc a {
+    white-space: normal !important;
+    height: auto;
+    padding: 1px 2px;
+}

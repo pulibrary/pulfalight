@@ -44,5 +44,8 @@ yarn-debug.log*
 /eads/aspace_fa
 /public/robots.txt
 
+# Ensure that files in the vendor directory are not ingnored
+!/vendor
+
 # This seems to be an artifact left from SVN when checking out the PULFA repository
 Zeen2iep*

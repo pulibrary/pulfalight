@@ -41,7 +41,7 @@ class TableOfContentsBuilder
   def content(component)
     {
       id: component["id"],
-      name: component["normalized_title_ssm"].first,
+      text: component["normalized_title_ssm"].first,
       has_children: component["components"].present?
     }
   end
@@ -94,7 +94,8 @@ class TableOfContentsBuilder
     nodes.map do |node|
       content = node.content
       content[:children] = transform(node.children)
-      content[:load_on_demand] = true if content[:children].blank? && content[:has_children]
+      content[:children] = true if content[:children].blank? && content[:has_children]
+      content[:state] = { selected: true } if content[:id] == document.id
       content.delete(:has_children)
       content.delete_if { |_k, v| v.nil? || v.blank? }
       content
