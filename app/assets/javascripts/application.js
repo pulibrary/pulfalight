@@ -21,7 +21,7 @@
 //= require twitter/typeahead
 //= require bootstrap
 //= require blacklight/blacklight
-//= require tree.jquery
+//= require jstree
 //= require_tree .
 
 

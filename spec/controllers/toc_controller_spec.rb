@@ -10,10 +10,8 @@ RSpec.describe TocController, type: :controller do
         expect(toc.count).to eq 52
         expect(toc[0]["id"]).to eq "MC221_c0002"
         expect(toc[0]["children"]).to be_nil
-        expect(toc[0]["load_on_demand"]).to be_nil
         expect(toc[1]["id"]).to eq "MC221_c0003"
-        expect(toc[1]["children"]).to be_nil
-        expect(toc[1]["load_on_demand"]).to be_truthy
+        expect(toc[1]["children"]).to be_truthy
       end
     end
     context "requesting a full tree" do

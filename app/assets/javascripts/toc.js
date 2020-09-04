@@ -1,3 +1,4 @@
+// Setup jstree-based Table Of Contents
 $(document).ready(function() {
   let element = $('#toc')
   if(element.length > 0) {
@@ -5,24 +6,29 @@ $(document).ready(function() {
     let baseUrl = element.data('url')
     let initialUrl = `${baseUrl}?node=${selectedId}&full=true`
 
-    $.getJSON(
-      initialUrl,
-      function(data) {
-        element.tree({
-          data: data
-        });
-      }).done(function() {
-        let selectedNode = element.tree('getNodeById', selectedId);
-        element.tree('selectNode', selectedNode);
+    $(element).jstree({
+      'core': {
+        'themes': {
+          'icons': false,
+          'dots': false
+        },
+        'data' : {
+          'url': function (node) {
+            if (node.id === '#') {
+              return initialUrl
+            } else {
+              return `${baseUrl}?node=${node.id}`
+            }
+          }
+        }
+      }
     });
 
-    $(element).on(
-      'tree.click',
-      function(event) {
-          let node = event.node
-          let url = `/catalog/${node.id}`
-          window.location.href = url
-      }
-    );
+    // Listen for click on the leaf node and follow link to component
+    $(element)
+    .on('activate_node.jstree', function (e, data) {
+        let url = `/catalog/${data.node.id}`
+        window.location.href = url
+    })
   }
 })
