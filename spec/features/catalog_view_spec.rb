@@ -42,5 +42,13 @@ describe "viewing catalog records", type: :feature, js: true do
     it "does not have breadcrumbs" do
       expect(page).not_to have_css("ol.breadcrumb")
     end
+    context "which has a viewer", js: false do
+      before do
+        visit "/catalog/MC221_c0094"
+      end
+      it "displays the viewer" do
+        expect(page).to have_css(".uv__overlay")
+      end
+    end
   end
 end
