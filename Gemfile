@@ -49,6 +49,7 @@ group :development do
   gem "capistrano-passenger", require: false
   gem "capistrano-rails", "~> 1.4", require: false
   gem "foreman"
+  gem "solargraph"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
 end
