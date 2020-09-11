@@ -80,6 +80,7 @@ gem "rubytree"
 gem "rubyzip", ">= 1.3.0"
 gem "sidekiq"
 gem "solr_wrapper", "~> 2.1"
+gem "turbolinks", "~> 5.2.0"
 gem "twitter-typeahead-rails", "0.11.1.pre.corejavascript"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "webpacker", "~> 4.0"

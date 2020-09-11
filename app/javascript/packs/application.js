@@ -25,7 +25,7 @@ import "lux-design-system/dist/system/tokens/tokens.scss"
 
 Vue.use(system)
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('turbolinks:load', () => {
   var elements = document.getElementsByClassName("lux")
   for (var i = 0; i < elements.length; i++) {
     new Vue({
