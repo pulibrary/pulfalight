@@ -7,7 +7,7 @@
     </div>
   </library-header>
   <% unless params[:action] == 'error' || params[:action] == 'generate' %>
-    <div class="header__secondary<%= " py-lg-5" unless has_search_parameters? %>">
+    <div class="header__secondary<%= " py-lg-5 home-header" unless has_search_parameters? %>">
       <nav class="container" role="navigation">
         <% unless has_search_parameters? %>
           <div class="row pt-lg-5">
