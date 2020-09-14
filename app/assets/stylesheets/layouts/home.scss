@@ -33,17 +33,32 @@
       padding-bottom: 0.35rem;
     }
   }
-  .hour-entry {
-    border: 1px solid black;
-    @extend .ml-0;
-    @extend .mr-3;
-    > div {
-      @extend .py-2;
+  #hours {
+    .hour-header {
+      @extend .row;
+      > div {
+        @extend .col-md-12;
+        > h2 {
+          @extend .text-justify;
+        }
+      }
     }
-    .name {
-      background-color: black;
-      color: white;
-      @include make-col("md", 9);
+    .hour-entry {
+      @extend .row;
+      border: 1px solid black;
+      @extend .ml-0;
+      @extend .mr-3;
+      > div {
+        @extend .py-2;
+      }
+      .name {
+        @extend .col-md-8;
+        background-color: black;
+        color: white;
+      }
+      .hours {
+        @extend .col-md-4;
+      }
     }
   }
 }
