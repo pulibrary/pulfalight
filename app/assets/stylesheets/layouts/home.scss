@@ -33,7 +33,11 @@
       padding-bottom: 0.35rem;
     }
   }
+  #requests {
+    @extend .col-lg-7;
+  }
   #hours {
+    @extend .col-lg-5;
     .hour-header {
       @extend .row;
       > div {
@@ -48,16 +52,25 @@
       border: 1px solid black;
       @extend .ml-0;
       @extend .mr-3;
+      @extend .mb-3;
       > div {
         @extend .py-2;
       }
       .name {
         @extend .col-md-8;
-        background-color: black;
+        background-color: $gray-800;
         color: white;
       }
       .hours {
         @extend .col-md-4;
+      }
+    }
+    #more-hours {
+      @extend .text-justify;
+      a {
+        @extend .btn;
+        @extend .btn-primary;
+        @extend .mr-auto;
       }
     }
   }
