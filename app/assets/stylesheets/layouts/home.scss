@@ -33,4 +33,17 @@
       padding-bottom: 0.35rem;
     }
   }
+  .hour-entry {
+    border: 1px solid black;
+    @extend .ml-0;
+    @extend .mr-3;
+    > div {
+      @extend .py-2;
+    }
+    .name {
+      background-color: black;
+      color: white;
+      @include make-col("md", 9);
+    }
+  }
 }
