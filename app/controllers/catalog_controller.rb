@@ -314,11 +314,13 @@ class CatalogController < ApplicationController
 
     # Collection Show Page - Summary Section
     config.add_summary_field "creators_ssim", label: "Creator", link_to_facet: true
-    config.add_summary_field "abstract_ssm", label: "Abstract", helper_method: :paragraph_separator
-    config.add_summary_field "extent_ssm", label: "Extent"
+    config.add_summary_field "title_ssm", label: "Title"
+    config.add_summary_field "normalized_date_ssm", label: "Dates"
+    config.add_summary_field "extent_ssm", label: "Size"
     config.add_summary_field "language_ssm", label: "Language"
-    config.add_summary_field "prefercite_ssm", label: "Preferred citation"
-    config.add_summary_field "collection_notes_ssm", label: "Collection notes", helper_method: :collection_notes_formatter
+
+    # Collect Show Page - Abstract Section
+    config.add_abstract_field "abstract_ssm", label: "Abstract", helper_method: :paragraph_separator
 
     # Collection Show Page - Background Section
     config.add_background_field "scopecontent_ssm", label: "Scope and Content", helper_method: :paragraph_separator
