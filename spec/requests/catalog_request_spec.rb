@@ -100,7 +100,7 @@ describe "controller requests", type: :request do
       context "when no query is provided" do
         it "directs to the default search page" do
           get "/catalog?q="
-          expect(response.body).to include("Use this site to explore descriptions of our unique holdings at the Princeton University Libraries")
+          expect(response.body).to include("Location and Today's Hours")
         end
       end
     end
