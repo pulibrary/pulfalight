@@ -1,4 +1,9 @@
-
+.header__secondary.home-header {
+  background-image: image-url("firestone.png");
+  h1 {
+    color: white;
+  }
+}
 .home {
   text-align: center;
 
@@ -19,6 +24,87 @@
 
       .btn {
         margin-bottom: 1.35rem;
+      }
+    }
+  }
+  .home-text  {
+    h2 {
+      border-bottom: 1px solid black;
+      padding-bottom: 0.35rem;
+    }
+  }
+  #requests {
+    @extend .col-lg-7;
+    .request-header {
+      h2 {
+        margin-bottom: 0;
+      }
+    }
+    #request-contents {
+      @extend .row;
+      border-collapse: collapse;
+    }
+    #request-directions {
+      @extend .col-lg-7;
+      @extend .text-left;
+      padding-top: 1.50rem;
+
+    }
+    #request-registration {
+      @extend .col-lg-5;
+      padding-right: 0;
+      div {
+        border: 1px solid black;
+        width: 100%;
+        height: 100%;
+        @extend .row;
+        @extend .align-items-center;
+        @extend .justify-content-center;
+        @extend .p-3;
+        background-color: $gray;
+        margin-top: -1px;
+        a {
+          @extend .btn;
+          @extend .btn-primary;
+        }
+      }
+    }
+  }
+  #hours {
+    @extend .col-lg-5;
+    .hour-header {
+      @extend .row;
+      > div {
+        @extend .col-md-12;
+        > h2 {
+          @extend .text-justify;
+        }
+      }
+    }
+    .hour-entry {
+      @extend .row;
+      border: 1px solid black;
+      @extend .ml-0;
+      @extend .mr-3;
+      @extend .mb-3;
+      > div {
+        @extend .py-2;
+      }
+      .name {
+        @extend .col-md-8;
+        background-color: $dark-gray;
+        color: white;
+      }
+      .hours {
+        @extend .col-md-4;
+      }
+    }
+    #more-hours {
+      @extend .text-justify;
+      a {
+        @extend .btn;
+        @extend .btn-primary;
+        @extend .mr-auto;
       }
     }
   }

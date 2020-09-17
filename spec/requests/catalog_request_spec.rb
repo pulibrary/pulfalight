@@ -2,6 +2,13 @@
 require "rails_helper"
 
 describe "controller requests", type: :request do
+  context "on the home page" do
+    it "displays a large-form header and search bar" do
+      get "/"
+      expect(response.body).to have_selector ".home-header"
+      expect(response.body).not_to have_field "search_field"
+    end
+  end
   context "when requesting to view a component" do
     it "renders containers within component" do
       get "/catalog/C1588_c15"
@@ -95,12 +102,13 @@ describe "controller requests", type: :request do
       it "directs the user to the search results if it does not exist" do
         get "/catalog?q=WC063"
         expect(response.body).to include("Search Results")
+        expect(response.body).not_to have_selector ".home-header"
       end
 
       context "when no query is provided" do
         it "directs to the default search page" do
           get "/catalog?q="
-          expect(response.body).to include("Use this site to explore descriptions of our unique holdings at the Princeton University Libraries")
+          expect(response.body).to include("Location and Today's Hours")
         end
       end
     end
