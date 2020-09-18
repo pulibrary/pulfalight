@@ -70,7 +70,7 @@ describe "controller requests", type: :request do
 
   describe "collection-level notes" do
     xit "renders the notes on the collection show page" do
-      # TODO: Move the collection notes to the description and history tabs
+      # TODO: Remove collection notes and index more fine-grained metadata on the description and history tabs
       get "/catalog/C1588"
       expect(response.body).to include("Consists primarily of three diaries that William Dundas Bathurst (1859-1940)")
       expect(response.body).to include("No materials were removed from the collection during 2018 processing beyond")

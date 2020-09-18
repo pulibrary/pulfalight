@@ -16,10 +16,6 @@ module PulfalightHelper
     document.presenter
   end
 
-  def collection_notes_formatter(*_args)
-    html_presenter.notes
-  end
-
   def component_notes_formatter(*_args)
     html_presenter.collection_notes
   end

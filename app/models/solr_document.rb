@@ -61,11 +61,7 @@ class SolrDocument
   end
 
   def html_presenter_class
-    if component?
-      ComponentHtmlPresenter
-    else
-      CollectionHtmlPresenter
-    end
+    ComponentHtmlPresenter
   end
 
   def html_presenter
