@@ -403,6 +403,20 @@ to_field "collection_notes_ssm" do |_record, accumulator, context|
   accumulator.concat(parent.output_hash["collection_notes_ssm"])
 end
 
+# For collection description tab
+to_field "collection_description_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["collection_description_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For collection description tab
+to_field "bioghist_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["bioghist_ssm"] || []
+  accumulator.concat(value)
+end
+
 to_field "barcodes_ssim" do |record, accumulator|
   record.xpath("./did/container[@label]").each do |node|
     label = node.attr("label")

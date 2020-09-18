@@ -67,5 +67,12 @@ describe "viewing catalog records", type: :feature, js: true do
       # TODO: ensure that collection language is indexed correctly
       expect(page).to have_css("dd.blacklight-language_ssm", text: "English")
     end
+
+    context "when clicking the collection description tab" do
+      it "has description and creator biography metadata" do
+        expect(page.body).to include "The Harold B. Hoskins Papers consist of correspondence"
+        expect(page.body).to include "Harold Boies Hoskins was a businessman, diplomat, and educator"
+      end
+    end
   end
 end

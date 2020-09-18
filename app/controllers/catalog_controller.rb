@@ -284,6 +284,7 @@ class CatalogController < ApplicationController
     config.show.metadata_partials = %i[
       summary_field
       access_field
+      collection_description_field
       background_field
       related_field
       indexed_terms_field
@@ -322,9 +323,12 @@ class CatalogController < ApplicationController
     # Collect Show Page - Abstract Section
     config.add_abstract_field "abstract_ssm", label: "Abstract", helper_method: :paragraph_separator
 
+    # Collection Information - Collection Description
+    config.add_collection_description_field "collection_description_ssm", label: "Description", helper_method: :paragraph_separator
+    config.add_collection_description_field "bioghist_ssm", label: "Collection Creator Biography", helper_method: :paragraph_separator
+
     # Collection Show Page - Background Section
     config.add_background_field "scopecontent_ssm", label: "Scope and Content", helper_method: :paragraph_separator
-    config.add_background_field "bioghist_ssm", label: "Biographical / Historical", helper_method: :paragraph_separator
     config.add_background_field "acqinfo_ssm", label: "Acquisition information", helper_method: :paragraph_separator
     config.add_background_field "appraisal_ssm", label: "Appraisal information", helper_method: :paragraph_separator
     config.add_background_field "custodhist_ssm", label: "Custodial history", helper_method: :paragraph_separator
