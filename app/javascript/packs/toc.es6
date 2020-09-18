@@ -1,4 +1,4 @@
-class TocBuilder {
+export default class TocBuilder {
   constructor(element) {
     this.element = $(element)
     // We need a separate data element that is updated by turbolinks so we always
@@ -29,8 +29,6 @@ class TocBuilder {
     this.element.on('activate_node.jstree', function (e, data) {
       let location = `/catalog/${data.node.id}`
       Turbolinks.visit(location)
-      // Scroll to top of page instead of jumping for better user experience
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     })
   }
 
@@ -55,35 +53,3 @@ class TocBuilder {
     });
   }
 }
-
-
-// Setup table of contents on initial page load
-$(document).ready(function() {
-  const toc = new TocBuilder('#toc')
-  toc.build()
-  // Set initial toc build flag
-  window.buildToc = true
-})
-
-// The before-visit event only fires when a Turbolinks-enabled link is clicked
-document.addEventListener('turbolinks:before-visit', function() {
-  // We do NOT want to rebuild the table of contents when a link is clicked.
-  // Provides a better user experience and reduces the number of AJAX requests.
-  window.buildToc = false
-})
-
-// Add listener for event that fires after turbolinks loads page
-// We DO want to rebuild the table of contents if navigating via history API.
-// Otherwise, the nodes on the tree are stale.
-document.addEventListener('turbolinks:load', function() {
-  if(window.buildToc) {
-    // Remove existing tree
-    $('#toc').jstree('destroy').empty()
-    // Build new tree
-    const toc = new TocBuilder('#toc')
-    toc.build()
-  } else {
-    // Reset the toc build flag
-    window.buildToc = true
-  }
-})
