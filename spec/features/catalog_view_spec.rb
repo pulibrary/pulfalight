@@ -68,11 +68,17 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_css("dd.blacklight-language_ssm", text: "English")
     end
 
-    context "when clicking the collection description tab" do
-      it "has description and creator biography metadata" do
-        expect(page.body).to include "The Harold B. Hoskins Papers consist of correspondence"
-        expect(page.body).to include "Harold Boies Hoskins was a businessman, diplomat, and educator"
-      end
+    it "has description and creator biography metadata" do
+      expect(page.body).to include "The Harold B. Hoskins Papers consist of correspondence"
+      expect(page.body).to include "Harold Boies Hoskins was a businessman, diplomat, and educator"
+    end
+
+    it "has collection history metadata" do
+      expect(page.body).to include "Scott Rodman approved the gifting to Mudd"
+      expect(page.body).to include "Gifted to the American Heritage Center"
+      expect(page.body).to include "boxes of books were separated during processing in 2007"
+      expect(page.body).to include "A preliminary inventory list, MARC record and collection-level description"
+      expect(page.body).to include "These papers were processed with the generous support"
     end
   end
 end

@@ -417,6 +417,34 @@ to_field "bioghist_ssm" do |_record, accumulator, context|
   accumulator.concat(value)
 end
 
+# For collection history tab
+to_field "custodhist_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["custodhist_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For collection history tab
+to_field "appraisal_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["appraisal_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For collection history tab
+to_field "processinfo_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["processinfo_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For collection history tab
+to_field "sponsor_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["sponsor_ssm"] || []
+  accumulator.concat(value)
+end
+
 to_field "barcodes_ssim" do |record, accumulator|
   record.xpath("./did/container[@label]").each do |node|
     label = node.attr("label")

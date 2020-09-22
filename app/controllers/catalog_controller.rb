@@ -285,6 +285,7 @@ class CatalogController < ApplicationController
       summary_field
       access_field
       collection_description_field
+      collection_history_field
       background_field
       related_field
       indexed_terms_field
@@ -327,12 +328,15 @@ class CatalogController < ApplicationController
     config.add_collection_description_field "collection_description_ssm", label: "Description", helper_method: :paragraph_separator
     config.add_collection_description_field "bioghist_ssm", label: "Collection Creator Biography", helper_method: :paragraph_separator
 
+    # Collection Information - Collection History
+    config.add_collection_history_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator
+    config.add_collection_history_field "custodhist_ssm", label: "Custodial History", helper_method: :paragraph_separator
+    config.add_collection_history_field "appraisal_ssm", label: "Archival Appraisal Information", helper_method: :paragraph_separator
+    config.add_collection_history_field "processinfo_ssm", label: "Processing Information", helper_method: :paragraph_separator
+    config.add_collection_history_field "sponsor_ssm", label: "Sponsorship", helper_method: :paragraph_separator
+
     # Collection Show Page - Background Section
     config.add_background_field "scopecontent_ssm", label: "Scope and Content", helper_method: :paragraph_separator
-    config.add_background_field "acqinfo_ssm", label: "Acquisition information", helper_method: :paragraph_separator
-    config.add_background_field "appraisal_ssm", label: "Appraisal information", helper_method: :paragraph_separator
-    config.add_background_field "custodhist_ssm", label: "Custodial history", helper_method: :paragraph_separator
-    config.add_background_field "processinfo_ssm", label: "Processing information", helper_method: :paragraph_separator
     config.add_background_field "arrangement_ssm", label: "Arrangement", helper_method: :paragraph_separator
     config.add_background_field "accruals_ssm", label: "Accruals", helper_method: :paragraph_separator
     config.add_background_field "phystech_ssm", label: "Physical / technical requirements", helper_method: :paragraph_separator
