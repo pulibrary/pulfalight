@@ -60,7 +60,7 @@ module Pulfalight
       end
 
       def accessnote
-        value = @document.acqinfo.first
+        value = @document.acqinfo.first.to_s
         # This needs to be moved into the Traject configuration
         value.gsub(/\t+/, " ").delete("\n")
       end

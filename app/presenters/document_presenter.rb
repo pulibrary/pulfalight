@@ -21,7 +21,7 @@ class DocumentPresenter
   delegate :attributes, to: :request, prefix: true
 
   def requestable?
-    return true
+    true
   end
 
   def notes
