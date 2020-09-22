@@ -51,4 +51,21 @@ describe "viewing catalog records", type: :feature, js: true do
       end
     end
   end
+  context "with a collection show page" do
+    before do
+      visit "/catalog/MC221"
+    end
+
+    it "has overview and abstract summary sections" do
+      expect(page).to have_css(".blacklight-creators_ssim a", text: "Hoskins")
+      expect(page).to have_css("dd.blacklight-title_ssm", text: "Harold B. Hoskins Papers")
+      expect(page).to have_css("dd.blacklight-normalized_date_ssm", text: "1822-1982")
+      expect(page).to have_css("dd.blacklight-extent_ssm", text: "14 linear feet and 17 boxes")
+      expect(page).to have_text("Harold Boies Hoskins was a businessman")
+    end
+    xit "has a language property in the overview summary section" do
+      # TODO: ensure that collection language is indexed correctly
+      expect(page).to have_css("dd.blacklight-language_ssm", text: "English")
+    end
+  end
 end
