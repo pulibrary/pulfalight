@@ -36,7 +36,7 @@ describe "viewing catalog records", type: :feature, js: true do
     end
 
     it "has a table of contents element" do
-      expect(page).to have_css('#toc[data-selected="MC221_c0060"]')
+      expect(page).to have_css("#toc")
     end
 
     it "does not have breadcrumbs" do
