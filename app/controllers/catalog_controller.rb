@@ -335,6 +335,13 @@ class CatalogController < ApplicationController
     config.add_collection_history_field "processinfo_ssm", label: "Processing Information", helper_method: :paragraph_separator
     config.add_collection_history_field "sponsor_ssm", label: "Sponsorship", helper_method: :paragraph_separator
 
+    # Collection Information - Collection Access
+    config.add_access_field "accessrestrict_ssm", label: "Access Restrictions", helper_method: :paragraph_separator
+    config.add_access_field "userestrict_ssm", label: "Use Restrictions", helper_method: :paragraph_separator
+    config.add_access_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
+    config.add_access_field "repository_ssm", if: :repository_config_present, label: "Location", helper_method: :context_access_tab_repository
+    config.add_access_field "id", if: :before_you_visit_note_present, label: "Before you visit", helper_method: :context_access_tab_visit_note # Using ID because we know it will always exist
+
     # Collection Show Page - Background Section
     config.add_background_field "scopecontent_ssm", label: "Scope and Content", helper_method: :paragraph_separator
     config.add_background_field "arrangement_ssm", label: "Arrangement", helper_method: :paragraph_separator
@@ -404,26 +411,6 @@ class CatalogController < ApplicationController
     # =================
     # ACCESS TAB FIELDS
     # =================
-
-    # Collection Show Page Access Tab - Terms and Conditions Section
-    config.add_terms_field "accessrestrict_ssm", label: "Restrictions", helper_method: :paragraph_separator
-    config.add_terms_field "userestrict_ssm", label: "Terms of Access", helper_method: :paragraph_separator
-
-    # Component Show Page Access Tab - Terms and Condition Section
-    config.add_component_terms_field "accessrestrict_ssm", label: "Restrictions", helper_method: :paragraph_separator
-    config.add_component_terms_field "userestrict_ssm", label: "Terms of Access", helper_method: :paragraph_separator
-    config.add_component_terms_field "parent_access_restrict_ssm", label: "Parent Restrictions", helper_method: :paragraph_separator
-    config.add_component_terms_field "parent_access_terms_ssm", label: "Parent Terms of Access", helper_method: :paragraph_separator
-
-    # Collection and Component Show Page Access Tab - In Person Section
-    config.add_in_person_field "repository_ssm", if: :repository_config_present, label: "Location of this collection", helper_method: :context_access_tab_repository
-    config.add_in_person_field "id", if: :before_you_visit_note_present, label: "Before you visit", helper_method: :context_access_tab_visit_note # Using ID because we know it will always exist
-
-    # Collection and Component Show Page Access Tab - How to Cite Section
-    config.add_cite_field "prefercite_ssm", label: "Preferred citation"
-
-    # Collection and Component Show Page Access Tab - Contact Section
-    config.add_contact_field "repository_ssm", if: :repository_config_present, label: "Contact", helper_method: :access_repository_contact
 
     # Remove unused show document actions
     %i[citation email sms].each do |action|

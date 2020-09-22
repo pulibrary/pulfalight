@@ -1,0 +1,25 @@
+<div class='xal-in-person-repository-name'>
+  <div>
+    <%= link_to(repository.name, arclight_engine.repository_path(repository.slug)) %>
+  </div>
+</div>
+<div class='xal-in-person-repository-location'>
+  <address>
+    <% %i[building address1 address2 city_state_zip_country].each do |f| %>
+      <% if repository.send(f).present? %>
+        <div class='al-repository-contact-<%= f %>'>
+          <%= repository.send(f) %>
+        </div>
+      <% end %>
+    <% end %>
+  </address>
+</div>
+<div class='xal-in-person-repository-contact'>
+  <% %i[phone contact_info].each do |f| %>
+    <% if repository.send(f).present? %>
+      <div class='al-repository-contact-<%= f %>'>
+        <%= repository.send(f) %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

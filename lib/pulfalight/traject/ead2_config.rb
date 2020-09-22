@@ -335,6 +335,10 @@ to_field "appraisal_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs5"]/appr
 to_field "processinfo_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs7"]/processinfo')
 to_field "sponsor_ssm", extract_xpath("/ead/eadheader/filedesc/titlestmt/sponsor")
 
+# For collection access tab
+to_field "accessrestrict_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs4"]/accessrestrict')
+to_field "userestrict_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs4"]/userestrict')
+
 to_field "components" do |record, accumulator, context|
   xpath = if record.is_a?(Nokogiri::XML::Document)
             "/ead/archdesc/dsc/*[is_component(.)][@level != 'otherlevel']"

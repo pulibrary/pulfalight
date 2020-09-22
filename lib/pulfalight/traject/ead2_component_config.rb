@@ -445,6 +445,20 @@ to_field "sponsor_ssm" do |_record, accumulator, context|
   accumulator.concat(value)
 end
 
+# For collection access tab
+to_field "accessrestrict_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["accessrestrict_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For collection access tab
+to_field "userestrict_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["userestrict_ssm"] || []
+  accumulator.concat(value)
+end
+
 to_field "barcodes_ssim" do |record, accumulator|
   record.xpath("./did/container[@label]").each do |node|
     label = node.attr("label")
