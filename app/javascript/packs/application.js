@@ -9,13 +9,13 @@ import system from 'lux-design-system'
 import "lux-design-system/dist/system/system.css"
 import "lux-design-system/dist/system/tokens/tokens.scss"
 import TocBuilder from "../packs/toc.es6"
-
-Vue.use(system)
-
 import store from '../store'
 import RequestCart from '../components/RequestCart.vue'
 import AddToCartButton from '../components/AddToCartButton.vue'
 import CartViewToggle from '../components/CartViewToggle.vue'
+
+Vue.use(system)
+
 
 function ComponentBuilder() {}
 ComponentBuilder.build = function(className) {
@@ -28,7 +28,6 @@ ComponentBuilder.build = function(className) {
       components: {
         'request-cart': RequestCart,
         'add-to-cart-button': AddToCartButton,
-        'cart-view-toggle': CartViewToggle
       }
     })
   }
@@ -38,14 +37,19 @@ function RequestCartFactory() {}
 RequestCartFactory.build = function() {
   ComponentBuilder.build('request-cart-block')
   ComponentBuilder.build('add-to-cart-block')
-  ComponentBuilder.build('cart-view-toggle-block')
 }
 
 document.addEventListener('turbolinks:load', () => {
   var elements = document.getElementsByClassName("lux")
   for (var i = 0; i < elements.length; i++) {
     new Vue({
-      el: elements[i]
+      el: elements[i],
+      store,
+      components: {
+        'request-cart': RequestCart,
+        'add-to-cart-button': AddToCartButton,
+        'cart-view-toggle': CartViewToggle
+      }
     })
   }
 

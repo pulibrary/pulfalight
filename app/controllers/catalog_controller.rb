@@ -428,7 +428,7 @@ class CatalogController < ApplicationController
   private
 
   def aeon_external_request
-    @aeon_external_request ||= (helpers.aeon_external_request_class.new(@document, helpers.show_presenter(@document)) if item_requestable?)
+    @aeon_external_request ||= (helpers.aeon_external_request_class.new(@document, helpers.show_presenter(@document)))
   end
 
   def aeon_configuration

@@ -21,7 +21,7 @@ class DocumentPresenter
   delegate :attributes, to: :request, prefix: true
 
   def requestable?
-    @document.repository_config.present?
+    return true
   end
 
   def notes
