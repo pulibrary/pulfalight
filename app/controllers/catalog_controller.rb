@@ -322,40 +322,47 @@ class CatalogController < ApplicationController
     # Collect Show Page - Abstract Section
     config.add_abstract_field "abstract_ssm", label: "Abstract", helper_method: :paragraph_separator
 
-    # Collection Information - Collection Description
+    # ==========================
+    # COMPONENT SHOW PAGE FIELDS
+    # ==========================
+
+    # Component Show Page - Metadata Section
+    config.add_component_field "collection_creator_ssm", label: "Collection Creator"
+    config.add_component_field "unitdate_inclusive_ssm", label: "Dates"
+    config.add_component_field "physloc_ssm", label: "Located In"
+    config.add_component_field "extent_ssm", label: "Extent"
+    config.add_component_field "language_ssm", label: "Languages"
+    config.add_component_field "parent_access_restrict_ssm", label: "Access Restrictions"
+    config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
+
+    # =================================
+    # COLLECTION DESCRIPTION TAB FIELDS
+    # =================================
     config.add_collection_description_field "collection_description_ssm", label: "Description", helper_method: :paragraph_separator
     config.add_collection_description_field "bioghist_ssm", label: "Collection Creator Biography", helper_method: :paragraph_separator
 
-    # Collection Information - Collection History
+    # =============================
+    # COLLECTION HISTORY TAB FIELDS
+    # =============================
     config.add_collection_history_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator
     config.add_collection_history_field "custodhist_ssm", label: "Custodial History", helper_method: :paragraph_separator
     config.add_collection_history_field "appraisal_ssm", label: "Archival Appraisal Information", helper_method: :paragraph_separator
     config.add_collection_history_field "processinfo_ssm", label: "Processing Information", helper_method: :paragraph_separator
     config.add_collection_history_field "sponsor_ssm", label: "Sponsorship", helper_method: :paragraph_separator
 
-    # Collection Information - Collection Access
+    # =================
+    # ACCESS TAB FIELDS
+    # =================
     config.add_access_field "accessrestrict_ssm", label: "Access Restrictions", helper_method: :paragraph_separator
     config.add_access_field "userestrict_ssm", label: "Use Restrictions", helper_method: :paragraph_separator
     config.add_access_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
     config.add_access_field "repository_ssm", if: :repository_config_present, label: "Location", helper_method: :context_access_tab_repository
-    config.add_access_field "id", if: :before_you_visit_note_present, label: "Before you visit", helper_method: :context_access_tab_visit_note # Using ID because we know it will always exist
+    # Using ID because we know it will always exist
+    config.add_access_field "id", if: :before_you_visit_note_present, label: "Before you visit", helper_method: :context_access_tab_visit_note
 
-    # Collection Show Page - Background Section
-    config.add_background_field "scopecontent_ssm", label: "Scope and Content", helper_method: :paragraph_separator
-    config.add_background_field "arrangement_ssm", label: "Arrangement", helper_method: :paragraph_separator
-    config.add_background_field "accruals_ssm", label: "Accruals", helper_method: :paragraph_separator
-    config.add_background_field "phystech_ssm", label: "Physical / technical requirements", helper_method: :paragraph_separator
-    config.add_background_field "physloc_ssm", label: "Physical location", helper_method: :paragraph_separator
-    config.add_background_field "descrules_ssm", label: "Rules or conventions", helper_method: :paragraph_separator
-
-    # Collection Show Page - Related Section
-    config.add_related_field "relatedmaterial_ssm", label: "Related material", helper_method: :paragraph_separator
-    config.add_related_field "separatedmaterial_ssm", label: "Separated material", helper_method: :paragraph_separator
-    config.add_related_field "otherfindaid_ssm", label: "Other finding aids", helper_method: :paragraph_separator
-    config.add_related_field "altformavail_ssm", label: "Alternative form available", helper_method: :paragraph_separator
-    config.add_related_field "originalsloc_ssm", label: "Location of originals", helper_method: :paragraph_separator
-
-    # Collection Show Page - Indexed Terms Section
+    # =================
+    # FIND RELATED TAB FIELDS
+    # =================
     config.add_indexed_terms_field "access_subjects_ssim", label: "Subjects", link_to_facet: true, separator_options: {
       words_connector: "<br/>",
       two_words_connector: "<br/>",
@@ -373,42 +380,6 @@ class CatalogController < ApplicationController
       two_words_connector: "<br/>",
       last_word_connector: "<br/>"
     }
-
-    # ==========================
-    # COMPONENT SHOW PAGE FIELDS
-    # ==========================
-
-    # Component Show Page - Metadata Section
-    config.add_component_field "collection_creator_ssm", label: "Collection Creator"
-    config.add_component_field "unitdate_inclusive_ssm", label: "Dates"
-    config.add_component_field "physloc_ssm", label: "Located In"
-    config.add_component_field "extent_ssm", label: "Extent"
-    config.add_component_field "language_ssm", label: "Languages"
-    config.add_component_field "parent_access_restrict_ssm", label: "Access Restrictions"
-    config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
-
-    # Component Show Page - Indexed Terms Section
-    config.add_component_indexed_terms_field "access_subjects_ssim", label: "Subjects", link_to_facet: true, separator_options: {
-      words_connector: "<br/>",
-      two_words_connector: "<br/>",
-      last_word_connector: "<br/>"
-    }
-
-    config.add_component_indexed_terms_field "names_ssim", label: "Names", separator_options: {
-      words_connector: "<br/>",
-      two_words_connector: "<br/>",
-      last_word_connector: "<br/>"
-    }, helper_method: :link_to_name_facet
-
-    config.add_component_indexed_terms_field "places_ssim", label: "Places", link_to_facet: true, separator_options: {
-      words_connector: "<br/>",
-      two_words_connector: "<br/>",
-      last_word_connector: "<br/>"
-    }
-
-    # =================
-    # ACCESS TAB FIELDS
-    # =================
 
     # Remove unused show document actions
     %i[citation email sms].each do |action|
