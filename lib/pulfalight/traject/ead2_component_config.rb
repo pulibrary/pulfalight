@@ -303,6 +303,7 @@ to_field "date_range_sim", extract_xpath("./did/unitdate/@normal", to_text: fals
 end
 
 Pulfalight::Ead2Indexing::NAME_ELEMENTS.map do |selector|
+  to_field "names_coll_ssim", extract_xpath("/ead/archdesc/controlaccess/#{selector}")
   to_field "names_ssim", extract_xpath("./controlaccess/#{selector}")
   to_field "#{selector}_ssm", extract_xpath(".//#{selector}")
 end
@@ -401,6 +402,76 @@ end
 to_field "collection_notes_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:parent]
   accumulator.concat(parent.output_hash["collection_notes_ssm"])
+end
+
+# For collection description tab
+to_field "collection_description_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["collection_description_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For collection description tab
+to_field "bioghist_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["bioghist_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For collection history tab
+to_field "custodhist_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["custodhist_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For collection history tab
+to_field "appraisal_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["appraisal_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For collection history tab
+to_field "processinfo_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["processinfo_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For collection history tab
+to_field "sponsor_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["sponsor_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For collection access tab
+to_field "accessrestrict_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["accessrestrict_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For collection access tab
+to_field "userestrict_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["userestrict_ssm"] || []
+  accumulator.concat(value)
+end
+
+# For find-more tab
+to_field "access_subjects_ssim" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["access_subjects_ssim"] || []
+  accumulator.concat(value)
+end
+
+# For find-more tab
+to_field "places_ssim" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["places_ssim"] || []
+  accumulator.concat(value)
 end
 
 to_field "barcodes_ssim" do |record, accumulator|

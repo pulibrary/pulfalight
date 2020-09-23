@@ -15,7 +15,7 @@
           </li>
           <li class='nav-item flex-fill'>
             <a class='nav-link ' data-toggle='tab' href='#description' role='tab'>
-              Collection Description & Creator Information
+              Collection Description
             </a>
           </li>
           <li class='nav-item flex-fill'>
@@ -39,7 +39,8 @@
 
     <div class="row content-container">
       <div class="col-md-4">
-        <div id="toc" data-selected="<%= document.id %>" data-url="/toc/"></div>
+        <div id="toc" data-turbolinks-permanent></div>
+        <div id="toc-data" data-selected="<%= document.id %>"></div>
       </div>
 
       <div class="col-md-8">
@@ -75,24 +76,18 @@
             <%= render(partial: 'collection_summary') %>
           </div>
           <div class='tab-pane' id='description' role='tabpanel'>
-            <%= render(partial: 'component_description') %>
+            <%= render(partial: 'collection_description') %>
           </div>
           <div class='tab-pane' id='collection-history' role='tabpanel'>
-            <%= render(partial: 'component_collection_history') %>
+            <%= render(partial: 'collection_history') %>
           </div>
 
           <div class='tab-pane' id='access' role='tabpanel'>
-            <h2 class="sr-only"><%= t 'arclight.views.show.access' %></h2>
-            <% unless blacklight_config.show.context_access_tab_items.nil? %>
-              <% items = blacklight_config.show.context_access_tab_items.select { |i|  fields_have_content?(@document, i) }  %>
-              <% items.each_with_index do |item, index| %>
-                <%= render partial: 'access_contents', locals: { document: @document, field_accessor: item, card_index: index} %>
-              <% end %>
-            <% end %>
+            <%= render(partial: 'collection_access') %>
           </div>
 
           <div class='tab-pane' id='find-more' role='tabpanel'>
-            <%= render(partial: 'component_find_more') %>
+            <%= render(partial: 'collection_find_more') %>
           </div>
 
 

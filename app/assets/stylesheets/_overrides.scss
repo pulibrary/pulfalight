@@ -10,3 +10,9 @@ $container-max-widths: (
   lg: 960px,
   xl: 1400px
 ) !default;
+
+// Make font size for access tab labels and property consistent with other tabs
+#access dl dt {
+  font-size: 1rem !important;
+}
+

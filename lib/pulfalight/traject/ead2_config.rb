@@ -326,6 +326,19 @@ to_field "collection_notes_ssm" do |record, accumulator, _context|
   accumulator.concat(text_node_ancestors)
 end
 
+# For collection description tab
+to_field "collection_description_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs3"]/scopecontent')
+
+# For collection history tab
+to_field "custodhist_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs5"]/custodhist')
+to_field "appraisal_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs5"]/appraisal')
+to_field "processinfo_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs7"]/processinfo')
+to_field "sponsor_ssm", extract_xpath("/ead/eadheader/filedesc/titlestmt/sponsor")
+
+# For collection access tab
+to_field "accessrestrict_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs4"]/accessrestrict')
+to_field "userestrict_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs4"]/userestrict')
+
 to_field "components" do |record, accumulator, context|
   xpath = if record.is_a?(Nokogiri::XML::Document)
             "/ead/archdesc/dsc/*[is_component(.)][@level != 'otherlevel']"

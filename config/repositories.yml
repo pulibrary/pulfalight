@@ -77,8 +77,8 @@ publicpolicy:
   name: 'Public Policy Papers'
   description: "Housed at the Seeley G. Mudd Manuscript Library, the Public Policy Papers include important collections representing individuals and organizations in the areas of 20th-century American foreign policy, jurisprudence, journalism, public policy formation, and economic development."
   building: 'Seeley G. Mudd Manuscript Library'
-  address1: 'Seeley G. Mudd Manuscript Library'
-  address2: '65 Olden Street'
+  address1: '65 Olden Street'
+  address2: ''
   city: 'Princeton'
   state: 'NJ'
   zip: '08540'
