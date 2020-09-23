@@ -42,6 +42,28 @@ describe "viewing catalog records", type: :feature, js: true do
     it "does not have breadcrumbs" do
       expect(page).not_to have_css("ol.breadcrumb")
     end
+
+    it "has a collection history tab" do
+      expect(page.body).to include "Scott Rodman approved the gifting to Mudd"
+      expect(page.body).to include "Gifted to the American Heritage Center"
+      expect(page.body).to include "boxes of books were separated during processing in 2007"
+      expect(page.body).to include "A preliminary inventory list, MARC record and collection-level description"
+      expect(page.body).to include "These papers were processed with the generous support"
+    end
+
+    it "has a collection access tab" do
+      expect(page.body).to include "The collection is open for research use."
+      expect(page.body).to include "Single photocopies may be made for research purposes"
+      expect(page.body).to include "Public Policy Papers, Department of Special Collections"
+      expect(page.body).to include "65 Olden Street"
+      expect(page.body).to include "(609) 258-6345"
+    end
+
+    it "has a find related materials tab" do
+      expect(page.body).to include "20th century"
+      expect(page.body).to include "Foreign Service Institute"
+      expect(page.body).to include "Middle East -- Politics"
+    end
     context "which has a viewer", js: false do
       before do
         visit "/catalog/MC221_c0094"
@@ -73,7 +95,7 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page.body).to include "Harold Boies Hoskins was a businessman, diplomat, and educator"
     end
 
-    it "has collection history metadata" do
+    it "has a collection history tab" do
       expect(page.body).to include "Scott Rodman approved the gifting to Mudd"
       expect(page.body).to include "Gifted to the American Heritage Center"
       expect(page.body).to include "boxes of books were separated during processing in 2007"
@@ -81,12 +103,18 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page.body).to include "These papers were processed with the generous support"
     end
 
-    it "has collection access metadata" do
+    it "has a collection access tab" do
       expect(page.body).to include "The collection is open for research use."
       expect(page.body).to include "Single photocopies may be made for research purposes"
       expect(page.body).to include "Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections"
       expect(page.body).to include "65 Olden Street"
       expect(page.body).to include "(609) 258-6345"
+    end
+
+    it "has a find related materials tab" do
+      expect(page.body).to include "20th century"
+      expect(page.body).to include "Foreign Service Institute"
+      expect(page.body).to include "Middle East -- Politics"
     end
   end
 end

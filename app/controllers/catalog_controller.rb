@@ -288,7 +288,6 @@ class CatalogController < ApplicationController
       collection_history_field
       background_field
       related_field
-      indexed_terms_field
     ]
 
     config.show.context_access_tab_items = %i[
@@ -300,7 +299,6 @@ class CatalogController < ApplicationController
 
     config.show.component_metadata_partials = %i[
       component_field
-      component_indexed_terms_field
     ]
 
     config.show.component_access_tab_items = %i[
