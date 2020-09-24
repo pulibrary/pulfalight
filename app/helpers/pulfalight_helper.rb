@@ -40,11 +40,6 @@ module PulfalightHelper
     image_tag(img_src, alt: "", class: "img-fluid float-left")
   end
 
-  def collection_link
-    collection_id = document.fetch("ead_ssi", nil)
-    return "/catalog/#{collection_id}" if collection_id
-  end
-
   private
 
   def repository_thumbnail_path
