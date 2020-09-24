@@ -4,8 +4,9 @@ require "rails_helper"
 
 describe "viewing catalog records", type: :feature, js: true do
   context "when viewing a component show page" do
-    it "renders a collection title without a separate date element" do
+    it "renders a collection title as a link without a separate date element" do
       visit "catalog/MC221_c0059"
+      expect(page).to have_css(".collection.title a span", text: "Harold B. Hoskins Papers, 1822-1982")
       expect(page).not_to have_css(".collection-attributes h2.media span.col")
     end
   end
