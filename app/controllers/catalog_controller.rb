@@ -363,7 +363,19 @@ class CatalogController < ApplicationController
     # =================
     # FIND RELATED TAB FIELDS
     # =================
-    config.add_indexed_terms_field "access_subjects_ssim", label: "Subjects", link_to_facet: true, separator_options: {
+    config.add_indexed_terms_field "topics_ssm", label: "Topics", link_to_facet: true, separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
+    }
+
+    config.add_indexed_terms_field "subject_terms_ssm", label: "Subject Terms", link_to_facet: true, separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
+    }
+
+    config.add_indexed_terms_field "genreform_ssm", label: "Genre Terms", link_to_facet: true, separator_options: {
       words_connector: "<br/>",
       two_words_connector: "<br/>",
       last_word_connector: "<br/>"

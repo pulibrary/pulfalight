@@ -461,17 +461,34 @@ to_field "userestrict_ssm" do |_record, accumulator, context|
 end
 
 # For find-more tab
-to_field "access_subjects_ssim" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:parent]
-  value = parent.output_hash["access_subjects_ssim"] || []
-  accumulator.concat(value)
-end
-
-# For find-more tab
 to_field "places_ssim" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:parent]
   value = parent.output_hash["places_ssim"] || []
   accumulator.concat(value)
+end
+
+# For find-more tab
+to_field "subject_terms_ssm", extract_xpath('./controlaccess/subject[@source="lcsh"]')
+to_field "subject_terms_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["subject_terms_ssm"] || []
+  accumulator.concat(value&.first)
+end
+
+# For find-more tab
+to_field "topics_ssm", extract_xpath('./controlaccess/subject[@source="local"]')
+to_field "topics_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["topics_ssm"] || []
+  accumulator.concat(value&.first)
+end
+
+# For find-more tab
+to_field "genreform_ssm", extract_xpath("./controlaccess/genreform")
+to_field "genreform_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:parent]
+  value = parent.output_hash["genreform_ssm"] || []
+  accumulator.concat(value&.first)
 end
 
 to_field "barcodes_ssim" do |record, accumulator|

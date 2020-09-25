@@ -216,8 +216,6 @@ end
 
 to_field "extent_ssm", extract_xpath("/ead/archdesc/did/physdesc/extent")
 to_field "extent_teim", extract_xpath("/ead/archdesc/did/physdesc/extent")
-to_field "genreform_sim", extract_xpath("/ead/archdesc/controlaccess/genreform")
-to_field "genreform_ssm", extract_xpath("/ead/archdesc/controlaccess/genreform")
 
 to_field "date_range_sim", extract_xpath("/ead/archdesc/did/unitdate/@normal", to_text: false) do |_record, accumulator|
   range = Pulfalight::YearRange.new
@@ -338,6 +336,25 @@ to_field "sponsor_ssm", extract_xpath("/ead/eadheader/filedesc/titlestmt/sponsor
 # For collection access tab
 to_field "accessrestrict_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs4"]/accessrestrict')
 to_field "userestrict_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs4"]/userestrict')
+
+# For find-more tab
+to_field "subject_terms_ssm" do |record, accumulator|
+  values = record.xpath('/ead/archdesc/controlaccess/subject[@source="lcsh"]').map(&:text)
+  accumulator << values.sort
+end
+
+# For find-more tab
+# to_field "topics_ssm", extract_xpath('/ead/archdesc/controlaccess/subject[@source="local"]')
+to_field "topics_ssm" do |record, accumulator|
+  values = record.xpath('/ead/archdesc/controlaccess/subject[@source="local"]').map(&:text)
+  accumulator << values.sort
+end
+
+# For find-more tab
+to_field "genreform_ssm" do |record, accumulator|
+  values = record.xpath("/ead/archdesc/controlaccess/genreform").map(&:text)
+  accumulator << values.sort
+end
 
 to_field "components" do |record, accumulator, context|
   xpath = if record.is_a?(Nokogiri::XML::Document)
