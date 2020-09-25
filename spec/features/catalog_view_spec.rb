@@ -61,8 +61,15 @@ describe "viewing catalog records", type: :feature, js: true do
     end
 
     it "has a find related materials tab" do
+      expect(page.body).to include "Topics"
       expect(page.body).to include "20th century"
+      expect(page.body).to include "Subject Terms"
+      expect(page.body).to include "Missionaries"
+      expect(page.body).to include "Genre Terms"
+      expect(page.body).to include "Correspondence"
+      expect(page.body).to include "Names"
       expect(page.body).to include "Foreign Service Institute"
+      expect(page.body).to include "Places"
       expect(page.body).to include "Middle East -- Politics"
     end
     context "which has a viewer", js: false do
@@ -113,8 +120,15 @@ describe "viewing catalog records", type: :feature, js: true do
     end
 
     it "has a find related materials tab" do
+      expect(page.body).to include "Topics"
       expect(page.body).to include "20th century"
+      expect(page.body).to include "Subject Terms"
+      expect(page.body).to include "Missionaries"
+      expect(page.body).to include "Genre Terms"
+      expect(page.body).to include "Correspondence"
+      expect(page.body).to include "Names"
       expect(page.body).to include "Foreign Service Institute"
+      expect(page.body).to include "Places"
       expect(page.body).to include "Middle East -- Politics"
     end
   end
