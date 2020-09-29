@@ -54,7 +54,7 @@ class AspaceIndexJob < ApplicationJob
 
   def perform(collection_id:, repository_id:)
     aspace_client.config.base_repo = "repositories/#{repository_id}"
-    ead_content = aspace_client.get("/resource_descriptions/#{collection_id}.xml").body.force_encoding('UTF-8')
+    ead_content = aspace_client.get("/resource_descriptions/#{collection_id}.xml", query: {include_daos: true}).body.force_encoding('UTF-8')
     xml_documents = Nokogiri::XML.parse(ead_content)
     xml_documents.remove_namespaces!
 
