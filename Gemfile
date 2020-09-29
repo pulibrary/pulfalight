@@ -66,6 +66,7 @@ group :development, :test do
   gem "database_cleaner"
 end
 
+gem "archivesspace-client", github: "pulibrary/archivesspace-client", branch: "fix_login"
 gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
 gem "blacklight_range_limit", "~> 7.1"
 gem "bootstrap", ">= 4.3.1"
@@ -83,3 +84,5 @@ gem "sidekiq"
 gem "twitter-typeahead-rails", "0.11.1.pre.corejavascript"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "webpacker", "~> 4.0"
+
+gem 'dotenv-rails', groups: [:development, :test]

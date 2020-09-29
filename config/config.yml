@@ -1,5 +1,8 @@
 defaults: &defaults
   external_universal_viewer_url: "https://figgy.princeton.edu/viewer"
+  archivespace_url: "https://aspace.princeton.edu/staff/api"
+  archivespace_user: <%= ENV["ASPACE_USER"] %>
+  archivespace_password: <%= ENV["ASPACE_PASSWORD"] %>
 
 development:
   <<: *defaults
