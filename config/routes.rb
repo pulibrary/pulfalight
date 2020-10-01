@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   end
 
   get "/toc", to: "toc#toc", as: "toc"
+  get "/hours", to: "hours#hours"
 end

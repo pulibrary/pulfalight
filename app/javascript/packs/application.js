@@ -7,6 +7,7 @@ import system from 'lux-design-system'
 import "lux-design-system/dist/system/system.css"
 import "lux-design-system/dist/system/tokens/tokens.scss"
 import TocBuilder from "../packs/toc.es6"
+import LibCalHours from "../packs/lib_cal_hours.es6"
 
 Vue.use(system)
 
@@ -25,6 +26,16 @@ document.addEventListener('turbolinks:load', () => {
         series: { lines: { fillColor: 'rgba(255,255,255, 0.5)' }},
         grid: { color: '#aaaaaa', tickColor: '#aaaaaa', borderWidth: 0 }
   });
+})
+
+/**
+ * LibCal Hours initialization
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  const elements = document.getElementsByClassName("hours")
+  for (var i = 0; i < elements.length; i++) {
+    new  LibCalHours(elements[i]).insert_hours()
+  }
 })
 
 /**

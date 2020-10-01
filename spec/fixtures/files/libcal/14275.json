@@ -1,0 +1,28 @@
+{
+    "locations": [
+        {
+            "lid": 14275,
+            "name": "Special Collections",
+            "category": "library",
+            "desc": "<p>By Appointment Only</p>",
+            "url": "https://library.princeton.edu/special-collections",
+            "contact": "",
+            "lat": "",
+            "long": "",
+            "color": "#C69214",
+            "fn": "",
+            "day": "Thursday",
+            "times": {
+                "status": "open",
+                "hours": [
+                    {
+                        "from": "9:00am",
+                        "to": "5:00pm"
+                    }
+                ],
+                "currently_open": false
+            },
+            "rendered": "9:00am - 5:00pm"
+        }
+    ]
+}

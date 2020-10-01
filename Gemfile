@@ -58,6 +58,7 @@ group :test do
   gem "capybara", ">= 3.18"
   gem "simplecov", require: false
   gem "webdrivers"
+  gem "webmock"
 end
 
 group :development, :test do
