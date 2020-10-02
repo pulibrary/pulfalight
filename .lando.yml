@@ -12,6 +12,9 @@ services:
     core: pulfalight-core-dev
     config:
       dir: "solr/conf"
+  pulfalight_database:
+    type: postgres:10
+    portforward: true
 proxy:
   pulfalight_test_solr:
     - pulfalight.test.solr.lndo.site:8983

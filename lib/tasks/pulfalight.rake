@@ -46,35 +46,23 @@ namespace :pulfalight do
     end
   end
 
-  desc "Run Solr and Arclight for interactive development"
-  task development: :environment do
-    SolrWrapper.wrap(managed: true, verbose: true, port: 8983, instance_dir: "tmp/pulfalight-core-dev", persist: false, download_dir: "tmp") do |solr|
-      solr.with_collection(name: "pulfalight-core-dev", dir: solr_conf_dir, persist: true) do
-        Rake::Task["pulfalight:seed"].invoke
-        puts "Setup solr"
-        puts "Solr running at http://localhost:8983/solr/pulfalight-core-dev/, ^C to exit"
-        begin
-          sleep
-        rescue Interrupt
-          puts "\nShutting down..."
-        end
-      end
+  namespace :server do
+    task initialize: :environment do
+      Rake::Task["db:create"].invoke
+      Rake::Task["db:migrate"].invoke
+      Rake::Task["pulfalight:seed"].invoke
     end
-  end
 
-  desc "Run Solr and Arclight for testing"
-  task test: :environment do |_t, _args|
-    SolrWrapper.wrap(managed: true, verbose: true, port: 8984, instance_dir: "tmp/pulfalight-core-test", persist: false, download_dir: "tmp") do |solr|
-      solr.with_collection(name: "pulfalight-core-test", dir: solr_conf_dir) do
-        Rake::Task["pulfalight:seed"].invoke
-        puts "Setup solr"
-        puts "Solr running at http://localhost:8984/solr/pulfalight-core-test/, ^C to exit"
-        begin
-          sleep
-        rescue Interrupt
-          puts "\nShutting down..."
-        end
-      end
+    desc "Start solr and postgres servers using lando."
+    task start: :environment do
+      system("lando start")
+      system("rake pulfalight:server:initialize")
+      system("rake pulfalight:server:initialize RAILS_ENV=test")
+    end
+
+    desc "Stop lando solr and postgres servers."
+    task stop: :environment do
+      system("lando stop")
     end
   end
 
@@ -111,14 +99,6 @@ namespace :pulfalight do
   def blacklight_connection
     repository = Blacklight.default_index
     repository.connection
-  end
-
-  # Retrieve the URL for the Blacklight Solr core
-  # @return [String]
-  def blacklight_url
-    blacklight_connection.base_uri
-  rescue StandardError
-    ENV["SOLR_URL"] || "http://127.0.0.1:8983/solr/blacklight-core"
   end
 
   # Delete a set of Solr Documents using a query
