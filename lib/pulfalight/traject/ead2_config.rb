@@ -238,7 +238,8 @@ end
 
 NAME_ELEMENTS.map do |selector|
   to_field "names_coll_ssim", extract_xpath("/ead/archdesc/controlaccess/#{selector}")
-  to_field "names_ssim", extract_xpath("//#{selector}")
+  to_field "names_ssim", extract_xpath("//#{selector}[@role != 'processor'][@role != 'author']")
+  to_field "names_ssim", extract_xpath("//#{selector}[not(@role)]")
   to_field "#{selector}_ssm", extract_xpath("//#{selector}")
 end
 

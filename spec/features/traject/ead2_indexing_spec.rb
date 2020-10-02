@@ -392,4 +392,14 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(components.first["physdesc_number_ssm"]).to eq(["1"])
     end
   end
+
+  describe "#names_ssim" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+    end
+
+    it "does not include staff names" do
+      expect(result["names_ssim"]).not_to include "Heather Shannon"
+    end
+  end
 end
