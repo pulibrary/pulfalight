@@ -4,8 +4,8 @@ export default class LibCalHours {
   }
 
  get url() {
-   const lid = this.element.data("lid")
-   return `/hours?id=${lid}`
+   const id = this.element.data("id")
+   return `/hours?id=${id}`
  }
 
  async insert_hours() {
