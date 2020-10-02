@@ -17,6 +17,32 @@
     "vue-template-compiler": "^2.6.10"
   },
   "devDependencies": {
+    "jest": "^26.4.2",
     "webpack-dev-server": "^3.8.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:debug": "node --inspect node_modules/.bin/jest --runInBand"
+  },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "roots": [
+      "spec/javascript"
+    ],
+    "setupFiles": [
+      "./source/setup-jest.js"
+    ],
+    "transform": {
+      ".*": "./node_modules/babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "es6"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "app/javascript"
+    ]
   }
 }
