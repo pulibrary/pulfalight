@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_203518) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bookmarks", force: :cascade do |t|
+  create_table "bookmarks", id: :serial, force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "user_type"
     t.string "document_id"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_203518) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
-  create_table "searches", force: :cascade do |t|
+  create_table "searches", id: :serial, force: :cascade do |t|
     t.binary "query_params"
     t.integer "user_id"
     t.string "user_type"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_203518) do
     t.boolean "guest", default: false
     t.string "provider"
     t.string "uid"
+    t.index ["email"], name: "index_users_on_email"
     t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid"], name: "index_users_on_uid"

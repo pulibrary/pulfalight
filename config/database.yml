@@ -1,30 +1,26 @@
-development: &default
-  <<: *default
+default: &default
   adapter: postgresql
-  database: pulfalight_development
   encoding: utf8
   min_messages: warning
-  pool: <%= Integer(ENV.fetch("DB_POOL", 30)) %>
+  pool: <%= Integer(ENV.fetch("DB_POOL", 40)) %>
   reaping_frequency: <%= Integer(ENV.fetch("DB_REAPING_FREQUENCY", 10)) %>
   timeout: 5000
+  host: <%= ENV["lando_pulfalight_database_conn_host"] || ENV["PULFALIGHT_DB_HOST"] || "localhost" %>
+  port: <%= ENV["lando_pulfalight_database_conn_port"] || 5432 %>
+  username: <%= ENV["lando_pulfalight_database_creds_user"] || ENV["PULFALIGHT_DB_USERNAME"] %>
+  password: <%= ENV["lando_pulfalight_database_creds_password"] || ENV["PULFALIGHT_DB_PASSWORD"] %>
+  database: <%= ENV['PULFALIGHT_DB'] %>
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
+development:
+  <<: *default
+  database: pulfalight_development
+
 test:
   <<: *default
-  host: <%= ENV["PULFALIGHT_DB_HOST"] %>
   database: pulfalight_test
-  username: <%= ENV["PULFALIGHT_DB_USERNAME"] %>
-  password: <%= ENV["PULFALIGHT_DB_PASSWORD"] %>
 
-production: &deploy
+production:
   <<: *default
-  host: <%= ENV["PULFALIGHT_DB_HOST"] %>
-  database: <%= ENV["PULFALIGHT_DB"] %>
-  username: <%= ENV["PULFALIGHT_DB_USERNAME"] %>
-  password: <%= ENV["PULFALIGHT_DB_PASSWORD"] %>
-  pool: 40
 
 staging:
-  <<: *deploy
+  <<: *default

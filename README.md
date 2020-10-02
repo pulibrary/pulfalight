@@ -19,26 +19,16 @@ install`) on an ongoing basis as dependencies are updated.  Please note that the
 oldest version of Node.js supported is 10.16.0.
 
 #### Setup server
-1. For development:
-   - `bundle exec rake pulfalight:development`
-   - In a separate terminal, please run: `bundle exec foreman start`
-   - _Or, should you need to debug the Webpack build, please run `bundle exec webpack-dev-server` instead, and then run `bundle exec rails server` in another terminal_
-   - Now, please visit the new installation at
-     [http://localhost:3000](http://localhost:3000)
-2. For testing:
-   - `bundle exec rake pulfalight:test`
-   - In a separate terminal, please run: `bundle exec rspec`
-
-#### With Lando
-
 1. Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
-2. `bundle exec solr start` will bring up the Solr Test & Development servers.
-3. Either `bundle exec foreman start` or `bundle exec rspec` depending on if you're in dev or testing.
+1. To start: `rake pulfalight:server:start`
+1. For test:
+   - `bundle exec rspec`
+1. For development:
+   - `rails s`
+   - Access Pulfalight at http://localhost:3000/
+1. To stop: `rake pulfalight:server:stop` or `lando stop`
 
 ### Configuration
-By default, Pulfalight uses Solr over the port 8983 (deployed using
-`solr_wrapper`) for the index.
-
 Please see [the ArcLight
 documentation](https://github.com/projectblacklight/arclight/wiki/Indexing-EAD-in-ArcLight#repository-configuration)
 for information regarding the configuration of repositories in ArcLight.
