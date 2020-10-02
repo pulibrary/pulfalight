@@ -133,6 +133,9 @@ jobs:
           name: Run Rspec
           command: bundle exec rspec
       - run:
+          name: Run JS unit tests
+          command: bundle exec yarn test --passWithNoTests
+      - run:
           name: Stash Coverage Results
           command: |
             mkdir coverage_results
