@@ -304,7 +304,8 @@ end
 
 Pulfalight::Ead2Indexing::NAME_ELEMENTS.map do |selector|
   to_field "names_coll_ssim", extract_xpath("/ead/archdesc/controlaccess/#{selector}")
-  to_field "names_ssim", extract_xpath("./controlaccess/#{selector}")
+  to_field "names_ssim", extract_xpath("./controlaccess/#{selector}[@role != 'processor'][@role != 'author']")
+  to_field "names_ssim", extract_xpath("./controlaccess/#{selector}[not(@role)]")
   to_field "#{selector}_ssm", extract_xpath(".//#{selector}")
 end
 
