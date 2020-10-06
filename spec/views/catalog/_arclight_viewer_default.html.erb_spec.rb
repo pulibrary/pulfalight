@@ -6,7 +6,7 @@ RSpec.describe "catalog/_arclight_viewer_default.html.erb", type: :view do
     let(:manifest_url) { "https://figgy.princeton.edu/concern/scanned_resources/3359153c-82da-4078-ae51-e301f4c5e38b/manifest" }
     let(:document) do
       SolrDocument.new(
-        digital_objects_ssm: [{ href: manifest_url, role: UniversalViewer::IIIF_MANIFEST_ROLE }.to_json]
+        direct_digital_objects_ssm: [{ href: manifest_url, role: UniversalViewer::IIIF_MANIFEST_ROLE }.to_json]
       )
     end
 
@@ -23,7 +23,7 @@ RSpec.describe "catalog/_arclight_viewer_default.html.erb", type: :view do
     let(:json) { "{\"label\":\"#{ark_url}\",\"href\":\"#{ark_url}\",\"role\":null}" }
     let(:document) do
       SolrDocument.new(
-        digital_objects_ssm: [json]
+        direct_digital_objects_ssm: [json]
       )
     end
 

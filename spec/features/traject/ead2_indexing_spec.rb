@@ -118,6 +118,15 @@ describe "EAD 2 traject indexing", type: :feature do
             )
           ]
         )
+        expect(component["direct_digital_objects_ssm"]).to eq(
+          [
+            JSON.generate(
+              label: "Princeton Ethiopic Manuscript No. 84: Magical Prayers to the Virgin Mary",
+              href: "https://figgy.princeton.edu/concern/scanned_resources/d93bdf4a-83d1-40cc-ba48-9eeac87a91fc/manifest",
+              role: "https://iiif.io/api/presentation/2.1/"
+            )
+          ]
+        )
       end
     end
 
