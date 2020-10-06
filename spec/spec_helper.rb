@@ -3,6 +3,7 @@ ENV["RACK_ENV"] = "test"
 require "pry"
 require "webmock/rspec"
 require "simplecov"
+require "faraday"
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
   [

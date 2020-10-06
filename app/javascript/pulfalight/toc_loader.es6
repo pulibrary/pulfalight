@@ -3,12 +3,12 @@ import TocBuilder from "../pulfalight/toc.es6"
 export default class TocLoader {
   run() {
     this.setup_toc()
-    this.setup_before_visit_listenter()
+    this.setup_before_visit_listener()
     this.setup_turbolinks_load_listener()
   }
 
   // The before-visit event only fires when a Turbolinks-enabled link is clicked
-  setup_before_visit_listenter() {
+  setup_before_visit_listener() {
     document.addEventListener('turbolinks:before-visit', () => {
       // We do NOT want to rebuild the table of contents when a link is clicked.
       // Provides a better user experience and reduces the number of AJAX requests.
