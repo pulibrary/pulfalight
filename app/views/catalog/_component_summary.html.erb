@@ -14,7 +14,7 @@
     </div>
 
   </div>
-  <% if document.digital_objects.present? %>
+  <% if document.direct_digital_objects.present? %>
     <%= render(partial: "arclight_viewer_default") %>
   <% end %>
   <%= render(partial: 'show_upper_metadata_default') %>
