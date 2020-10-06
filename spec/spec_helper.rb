@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 ENV["RACK_ENV"] = "test"
-require "simplecov"
 require "pry"
+require "webmock/rspec"
+require "simplecov"
+require "faraday"
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
   [
@@ -21,3 +23,6 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 end
+
+WebMock.disable_net_connect!(allow_localhost: true,
+                             allow: "chromedriver.storage.googleapis.com")

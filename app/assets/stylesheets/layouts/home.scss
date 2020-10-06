@@ -91,12 +91,12 @@
         @extend .py-2;
       }
       .name {
-        @extend .col-md-8;
+        @extend .col-md-7;
         background-color: $dark-gray;
         color: white;
       }
       .hours {
-        @extend .col-md-4;
+        @extend .col-md-5;
       }
     }
     #more-hours {
