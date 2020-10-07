@@ -7,6 +7,7 @@ import LibCalHours from "../pulfalight/lib_cal_hours.es6"
 
 export default class PulfalightLoader {
   run() {
+    this.setup_toc()
     this.setup_vue()
     this.setup_lib_cal_hours()
     this.setup_range_limit()
@@ -27,6 +28,11 @@ export default class PulfalightLoader {
           series: { lines: { fillColor: 'rgba(255,255,255, 0.5)' }},
           grid: { color: '#aaaaaa', tickColor: '#aaaaaa', borderWidth: 0 }
     });
+  }
+
+  setup_toc() {
+    const toc = new TocBuilder('#toc')
+    toc.build()
   }
 
   setup_vue() {

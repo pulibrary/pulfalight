@@ -28,7 +28,7 @@ export default class TocBuilder {
     // Listen for click on the leaf node and follow link to component
     this.element.on('activate_node.jstree', function (e, data) {
       let location = `/catalog/${data.node.id}`
-      Turbolinks.visit(location)
+      window.location = location
     })
   }
 
