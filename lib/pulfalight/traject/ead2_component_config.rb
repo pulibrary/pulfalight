@@ -284,12 +284,13 @@ to_field "digital_objects_ssm", extract_xpath(".//dao", to_text: false) do |_rec
   end
 end
 
-to_field "direct_digital_objects_ssm", extract_xpath("./dao", to_text: false) do |_record, accumulator|
+to_field "direct_digital_objects_ssm", extract_xpath("./did/dao", to_text: false) do |_record, accumulator|
   accumulator.map! do |dao|
     label = dao.attributes["title"]&.value ||
             dao.xpath("daodesc/p")&.text
     href = (dao.attributes["href"] || dao.attributes["xlink:href"])&.value
-    Arclight::DigitalObject.new(label: label, href: href).to_json
+    role = (dao.attributes["role"] || dao.attributes["xlink:role"])&.value
+    Arclight::DigitalObject.new(label: label, href: href, role: role).to_json
   end
 end
 

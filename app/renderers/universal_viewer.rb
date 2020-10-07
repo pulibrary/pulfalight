@@ -24,7 +24,7 @@ class UniversalViewer
   end
 
   def digital_object
-    document.digital_objects.first
+    document.direct_digital_objects.first
   end
   delegate :href, to: :digital_object
   delegate :label, to: :digital_object
