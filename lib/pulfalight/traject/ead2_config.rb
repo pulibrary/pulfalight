@@ -365,7 +365,7 @@ to_field "components" do |record, accumulator, context|
           end
   child_components = record.xpath(xpath, Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new)
   child_components.each do |child_component|
-    component_indexer = build_component_indexer(context)
+    component_indexer = build_component_indexer(context, context)
     output = component_indexer.map_record(child_component)
     accumulator << output
   end
