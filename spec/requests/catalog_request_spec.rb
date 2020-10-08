@@ -98,10 +98,17 @@ describe "controller requests", type: :request do
       it "directs the user to the exact collection if it exists" do
         get "/catalog?q=WC064"
         expect(response).to redirect_to("http://www.example.com/catalog/WC064")
+
+        get "/catalog?q=MC152"
+        expect(response).to redirect_to("http://www.example.com/catalog/MC152")
       end
 
       it "directs the user to the search results if it does not exist" do
         get "/catalog?q=WC063"
+        expect(response.body).to include("Search Results")
+        expect(response.body).not_to have_selector ".home-header"
+
+        get "/catalog?q=MC128"
         expect(response.body).to include("Search Results")
         expect(response.body).not_to have_selector ".home-header"
       end
