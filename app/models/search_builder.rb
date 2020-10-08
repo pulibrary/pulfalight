@@ -4,11 +4,11 @@ class SearchBuilder < Blacklight::SearchBuilder
   include Arclight::SearchBehavior
   include BlacklightRangeLimit::RangeLimitBuilder
 
-  ##
-  # @example Adding a new step to the processor chain
-  #   self.default_processor_chain += [:add_custom_data_to_query]
-  #
-  #   def add_custom_data_to_query(solr_parameters)
-  #     solr_parameters[:custom] = blacklight_params[:user_value]
-  #   end
+  self.default_processor_chain += [:remove_grouping]
+
+  def remove_grouping(solr_params)
+    # Remove grouping parameters if faceting by collection
+    Arclight::Engine.config.catalog_controller_group_query_params.keys.each { |k| solr_params.delete(k) } if blacklight_params.dig(:f, :collection_sim)
+    solr_params
+  end
 end
