@@ -43,7 +43,7 @@ class CatalogController < ApplicationController
 
   def index
     query_param = params[:q]
-    return super unless /^[A-Z]{1,2}\d{3,4}$/.match?(query_param)
+    return super unless /^[A-Z]{1,2}\d{3,4}(_c.*)?$/.match?(query_param)
 
     # Try and take the user directly to the show page
     server_response = Blacklight.default_index.connection.get("select", params: { q: "id:#{query_param}" })

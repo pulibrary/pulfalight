@@ -120,5 +120,18 @@ describe "controller requests", type: :request do
         end
       end
     end
+
+    context "when searching for a specific component by ID" do
+      it "directs the user to the exact component if it exists" do
+        get "/catalog?q=MC148_c00006"
+        expect(response).to redirect_to("http://www.example.com/catalog/MC148_c00006")
+      end
+
+      it "directs the user to the search results if it does not exist" do
+        get "/catalog?q=MC148_cabc"
+        expect(response.body).to include("Search Results")
+        expect(response.body).not_to have_selector ".home-header"
+      end
+    end
   end
 end
