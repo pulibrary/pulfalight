@@ -39,22 +39,11 @@ class AspaceIndexJob < ApplicationJob
   end
 
   def aspace_client
-    @aspace_client ||=
-      begin
-        config = ArchivesSpace::Configuration.new({
-          base_uri: Pulfalight.config["archivespace_url"],
-          username: Pulfalight.config["archivespace_user"],
-          password: Pulfalight.config["archivespace_password"],
-          page_size: 50,
-          throttle: 0
-        })
-        client = ArchivesSpace::Client.new(config).login
-      end
+    @aspace_client ||= Aspace::Client.new
   end
 
-  def perform(collection_id:, repository_id:)
-    aspace_client.config.base_repo = "repositories/#{repository_id}"
-    ead_content = aspace_client.get("/resource_descriptions/#{collection_id}.xml", query: {include_daos: true}).body.force_encoding('UTF-8')
+  def perform(resource_descriptions_uri:)
+    ead_content = aspace_client.get("#{resource_descriptions_uri}.xml", query: { include_daos: true }).body.force_encoding("UTF-8")
     xml_documents = Nokogiri::XML.parse(ead_content)
     xml_documents.remove_namespaces!
 
