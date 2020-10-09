@@ -1,16 +1,17 @@
 <div class="overview">
   <div class="lux document-title">
     <h3><%= document.normalized_title %></h3>
-
     <div class="document-attributes">
       <div class="document-extent">
         <span><%= document.extent %></span>
       </div>
     </div>
-
+    <% if document.direct_digital_objects.present? %>
+      <%= render_simple_link %>
+    <% end %>
   </div>
   <% if document.direct_digital_objects.present? %>
-    <%= render(partial: "arclight_viewer_default") %>
+    <%= render_universal_viewer %>
   <% end %>
   <%= render(partial: 'show_upper_metadata_default') %>
 </div>

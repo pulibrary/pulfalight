@@ -1,3 +1,7 @@
-<div>
-  <%= link_to(viewer.label, viewer.href) %>
+<div class="view-content">
+  <%= link_to viewer.href do  %>
+    <input-button type="button" variation="solid">
+      <span>View Content</span>
+    </input-button>
+  <% end %>
 </div>

@@ -1,0 +1,10 @@
+@mixin view-content-button {
+  margin-left: auto;
+  display: inline-flex;
+
+  button {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+}

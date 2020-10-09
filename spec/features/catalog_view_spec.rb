@@ -132,4 +132,25 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page.body).to include "Middle East -- Politics"
     end
   end
+  context "when a component has a digital object with a manifest" do
+    before do
+      visit "/catalog/MC221_c0094"
+    end
+
+    it "renders the universal viewer" do
+      manifest_url = "https://figgy.princeton.edu/concern/scanned_resources/3359153c-82da-4078-ae51-e301f4c5e38b/manifest"
+      iframe = "<iframe src=\"https://figgy.princeton.edu/viewer#?manifest=#{manifest_url}\" allowfullscreen=\"true\"></iframe>"
+      expect(page.body).to include iframe
+    end
+  end
+  context "when a component has a digital object with a link" do
+    before do
+      visit "/catalog/MC221_c0119"
+    end
+
+    it "renders a view content link" do
+      url = "https://webspace.princeton.edu/users/mudd/Digitization/MC221/MC221_c0119.pdf"
+      expect(page).to have_css("a[href=\"#{url}\"]")
+    end
+  end
 end
