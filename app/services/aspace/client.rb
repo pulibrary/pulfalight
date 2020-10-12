@@ -19,11 +19,9 @@ module Aspace
     def ead_urls
       output = recent_repositories.flat_map do |repository|
         config.base_repo = repository["uri"][1..-1]
-        resources = self.resources.select do |resource|
-          resource["level"] == "collection"
-        end
-        resources.map do |resource|
-          resource["uri"][1..-1].gsub("resources", "resource_descriptions")
+        resource_ids = self.get("resources", query: { all_ids: true }).parsed
+        resource_ids.map do |resource_id|
+          "#{config.base_repo}/resource_descriptions/#{resource_id}"
         end
       end
       config.base_repo = ""

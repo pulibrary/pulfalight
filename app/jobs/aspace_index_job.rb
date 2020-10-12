@@ -43,7 +43,7 @@ class AspaceIndexJob < ApplicationJob
   end
 
   def perform(resource_descriptions_uri:)
-    ead_content = aspace_client.get("#{resource_descriptions_uri}.xml", query: { include_daos: true }).body.force_encoding("UTF-8")
+    ead_content = aspace_client.get("#{resource_descriptions_uri}.xml", query: { include_daos: true, include_unpublished: false }, timeout: 1200).body.force_encoding("UTF-8")
     xml_documents = Nokogiri::XML.parse(ead_content)
     xml_documents.remove_namespaces!
 
