@@ -40,6 +40,14 @@ module PulfalightHelper
     image_tag(img_src, alt: "", class: "img-fluid float-left")
   end
 
+  def render_simple_link
+    SimpleLinkRenderer.render(document)
+  end
+
+  def render_universal_viewer
+    UniversalViewerRenderer.render(document)
+  end
+
   private
 
   def repository_thumbnail_path

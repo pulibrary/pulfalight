@@ -3,6 +3,7 @@
 @import 'modules/document_access_badge';
 @import 'modules/document_extent_badge';
 @import 'modules/print_button';
+@import 'modules/view_content_button';
 
 .document {
 
@@ -12,6 +13,10 @@
 
   .document-access {
     @include document-access-badge;
+  }
+
+  .view-content {
+    @include view-content-button;
   }
 
   .uv__overlay {
