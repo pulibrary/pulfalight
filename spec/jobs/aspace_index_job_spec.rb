@@ -12,7 +12,7 @@ RSpec.describe AspaceIndexJob do
         described_class.perform_now(resource_descriptions_uri: "repositories/13/resources/5396")
         connection.commit
 
-        items = connection.get("select", params: { q: "id:C1588" })
+        items = connection.get("select", params: { q: "id:C1588test" })
         expect(items["response"]["numFound"]).to eq 1
       end
     end
