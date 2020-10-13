@@ -28,6 +28,8 @@ module Aspace
       output
     end
 
+    # We have old test repositories, we only want to import EADs from the ones
+    # migrated from our SVN by Lyrasis.
     def recent_repositories
       repositories.select do |repository|
         Time.zone.parse(repository["create_time"]) > Time.zone.parse("2020-01-01")
