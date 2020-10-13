@@ -19,7 +19,7 @@ module Aspace
     def ead_urls
       output = recent_repositories.flat_map do |repository|
         config.base_repo = repository["uri"][1..-1]
-        resource_ids = self.get("resources", query: { all_ids: true }).parsed
+        resource_ids = get("resources", query: { all_ids: true }).parsed
         resource_ids.map do |resource_id|
           "#{config.base_repo}/resource_descriptions/#{resource_id}"
         end
