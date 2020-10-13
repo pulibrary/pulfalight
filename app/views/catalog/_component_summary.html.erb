@@ -6,12 +6,12 @@
         <span><%= document.extent %></span>
       </div>
     </div>
-    <% if document.direct_digital_objects.present? %>
-      <%= render_simple_link %>
-    <% end %>
   </div>
   <% if document.direct_digital_objects.present? %>
     <%= render_universal_viewer %>
+  <% end %>
+  <% if document.direct_digital_objects.present? %>
+    <%= render_simple_link %>
   <% end %>
   <%= render(partial: 'show_upper_metadata_default') %>
 </div>

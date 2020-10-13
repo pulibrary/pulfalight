@@ -17,6 +17,7 @@
 
   .view-content {
     @include view-content-button;
+    margin-bottom: 1.6rem;
   }
 
   .uv__overlay {
@@ -142,7 +143,7 @@
           padding-top: 0.6rem;
           padding-bottom: 0.6rem;
           margin-top: 0.6rem;
-          margin-bottom: 2.6rem;
+          margin-bottom: 1.6rem;
 
           .lux-alert {
             display: inline-block;
