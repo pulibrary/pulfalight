@@ -47,7 +47,7 @@ class AspaceIndexJob < ApplicationJob
     xml_documents = Nokogiri::XML.parse(ead_content)
     xml_documents.remove_namespaces!
 
-    @repository_id = repository_id
+    @repository_id = repository_id.try(&:downcase)
     solr_documents = EADArray.new
 
     logger.info("Transforming the Documents for Solr...")
