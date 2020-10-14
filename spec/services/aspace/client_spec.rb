@@ -19,15 +19,17 @@ RSpec.describe Aspace::Client do
   end
 
   describe "ead_urls" do
-    it "returns EAD urls for all 2020 and later repositories" do
+    it "returns EAD urls for all 2020 and later repositories, grouped by repository code" do
       client = described_class.new
 
-      expect(client.ead_urls.to_a).to eq(
-        [
-          "repositories/13/resource_descriptions/1",
-          "repositories/13/resource_descriptions/2",
-          "repositories/13/resource_descriptions/3"
-        ]
+      expect(client.ead_urls).to eq(
+        {
+          "mss" => [
+            "repositories/13/resource_descriptions/1",
+            "repositories/13/resource_descriptions/2",
+            "repositories/13/resource_descriptions/3"
+          ]
+        }
       )
     end
   end

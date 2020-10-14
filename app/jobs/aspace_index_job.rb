@@ -42,12 +42,12 @@ class AspaceIndexJob < ApplicationJob
     @aspace_client ||= Aspace::Client.new
   end
 
-  def perform(resource_descriptions_uri:)
+  def perform(resource_descriptions_uri:, repository_id: nil)
     ead_content = aspace_client.get("#{resource_descriptions_uri}.xml", query: { include_daos: true, include_unpublished: false }, timeout: 1200).body.force_encoding("UTF-8")
     xml_documents = Nokogiri::XML.parse(ead_content)
     xml_documents.remove_namespaces!
 
-    # @repository_id = repository_id
+    @repository_id = repository_id
     solr_documents = EADArray.new
 
     logger.info("Transforming the Documents for Solr...")

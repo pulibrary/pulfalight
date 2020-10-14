@@ -37,8 +37,8 @@
         "oai_is_disabled": false,
         "oai_sets_available": "[\"888\",\"889\",\"890\",\"891\",\"892\",\"893\",\"894\",\"895\",\"896\",\"897\",\"898\"]",
         "publish": true,
-        "repo_code": "mss-replacements",
-        "slug": "mss-replacements",
+        "repo_code": "mss",
+        "slug": "mss",
         "system_mtime": "2020-10-05T23:13:08Z",
         "uri": "/repositories/13",
         "user_mtime": "2020-10-05T23:13:08Z"

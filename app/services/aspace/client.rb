@@ -17,12 +17,13 @@ module Aspace
     end
 
     def ead_urls
-      output = recent_repositories.flat_map do |repository|
+      output = recent_repositories.each_with_object({}) do |repository, acc|
         config.base_repo = repository["uri"][1..-1]
         resource_ids = get("resources", query: { all_ids: true }).parsed
-        resource_ids.map do |resource_id|
+        urls = resource_ids.map do |resource_id|
           "#{config.base_repo}/resource_descriptions/#{resource_id}"
         end
+        acc[repository["repo_code"]] = urls
       end
       config.base_repo = ""
       output
