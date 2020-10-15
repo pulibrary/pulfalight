@@ -1,4 +1,8 @@
 <header class="lux">
+  <banner dismissible>
+    <h2>Fall Semester Announcements</h2>
+    <p>We’re currently in beta for students and will be introducing faculty, advisor and staff functionality in the coming months.</p>
+  </banner>
   <library-header app-name="<%= application_name %>" app-url="<%= root_path %>">
     <div class="menu--level-1 d-none d-md-block col-md-2 col-lg-3">
       <div class="cart-view-toggle-block">
@@ -14,7 +18,7 @@
       <nav class="container" role="navigation">
         <% if on_home_page? %>
           <div class="row pt-lg-5">
-            <h1 class="ml-auto mr-auto">Explore Princeton's Archival Collections</h2>
+            <h1 class="ml-auto mr-auto">Explore Princeton's Archival Collections</h1>
           </div>
         <% end %>
         <div class="row<%= " pb-lg-5 pb-2" if on_home_page? %>">
