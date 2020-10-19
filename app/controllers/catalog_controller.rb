@@ -14,6 +14,10 @@ class CatalogController < ApplicationController
     render json: @document.as_json
   end
 
+  def build_document_tree
+    SolrDocumentTree.new(root: @document)
+  end
+
   # @see Blacklight::Catalog#show
   def show
     deprecated_response, @document = search_service.fetch(params[:id])
@@ -26,6 +30,15 @@ class CatalogController < ApplicationController
       format.html do
         if request.xml_http_request?.nil?
           @search_context = setup_next_and_previous_documents
+          if expanded_collection_request?
+            show_view_config = blacklight_config.show
+            updated_partials = show_view_config[:partials].reject { |p| p == :show }
+            updated_partials << :show_collection_expanded
+            blacklight_config.show[:partials] = updated_partials
+
+            @document_tree = build_document_tree
+            @document_tree.descendent_documents
+          end
         else
           # If a component (rather than an entire collection) is requested, this ensures that the component has no child nodes
           minimal_attributes = @document.attributes
@@ -436,5 +449,12 @@ class CatalogController < ApplicationController
     # Compact index view
     config.view.compact
     config.view.compact.partials = %i[arclight_index_compact]
+  end
+
+  private
+
+  def expanded_collection_request?
+    expanded_param = request.params["expanded"]
+    @document.collection? && expanded_param.present? && expanded_param.downcase.strip == "true"
   end
 end
