@@ -1,0 +1,14 @@
+  <div class="lux document-title">
+    <h3><%= document.normalized_title %></h3>
+    <div class="document-attributes">
+      <div class="document-extent">
+        <span><%= document.extent %></span>
+      </div>
+    </div>
+  </div>
+  <% if document.direct_digital_objects.present? %>
+    <%= render_universal_viewer %>
+  <% end %>
+  <% if document.direct_digital_objects.present? %>
+    <%= render_simple_link %>
+  <% end %>
