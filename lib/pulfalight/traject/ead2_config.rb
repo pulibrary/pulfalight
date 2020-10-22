@@ -257,10 +257,10 @@ to_field "physloc_sim" do |record, accumulator, _context|
   accumulator.concat(values.uniq)
 end
 
-to_field "physloc_ssm" do |_record, accumulator, context|
-  values = context.output_hash["physloc_sim"]
-  accumulator.concat(values)
-end
+# to_field "physloc_ssm" do |_record, accumulator, context|
+#   values = context.output_hash["physloc_sim"]
+#   accumulator.concat(values)
+# end
 
 to_field "language_sim" do |record, accumulator, _context|
   elements = record.xpath("/ead/archdesc/did/langmaterial")

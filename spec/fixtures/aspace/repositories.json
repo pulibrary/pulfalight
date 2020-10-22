@@ -1,0 +1,46 @@
+[
+    {
+        "agent_representation": {
+            "ref": "/agents/corporate_entities/2"
+        },
+        "create_time": "2016-06-27T14:10:41Z",
+        "created_by": "admin",
+        "display_string": "Public Policy Papers (Public Policy Papers)",
+        "is_slug_auto": true,
+        "jsonmodel_type": "repository",
+        "last_modified_by": "aa9",
+        "lock_version": 1,
+        "name": "Public Policy Papers",
+        "oai_is_disabled": false,
+        "oai_sets_available": "[]",
+        "parent_institution_name": "Princeton University Library.  Department of Rare Books and Special Collections",
+        "publish": true,
+        "repo_code": "Public Policy Papers",
+        "slug": "public_policy_papers",
+        "system_mtime": "2017-09-27T16:51:24Z",
+        "uri": "/repositories/3",
+        "url": "http://www.princeton.edu/mudd",
+        "user_mtime": "2016-06-27T20:17:08Z"
+    },
+    {
+        "agent_representation": {
+            "ref": "/agents/corporate_entities/4470"
+        },
+        "create_time": "2020-10-05T23:13:08Z",
+        "created_by": "admin",
+        "display_string": "mss EADs that duplicate ones in Manuscripts (mss-replacements)",
+        "is_slug_auto": false,
+        "jsonmodel_type": "repository",
+        "last_modified_by": "admin",
+        "lock_version": 0,
+        "name": "mss EADs that duplicate ones in Manuscripts",
+        "oai_is_disabled": false,
+        "oai_sets_available": "[\"888\",\"889\",\"890\",\"891\",\"892\",\"893\",\"894\",\"895\",\"896\",\"897\",\"898\"]",
+        "publish": true,
+        "repo_code": "mss",
+        "slug": "mss",
+        "system_mtime": "2020-10-05T23:13:08Z",
+        "uri": "/repositories/13",
+        "user_mtime": "2020-10-05T23:13:08Z"
+    }
+]
