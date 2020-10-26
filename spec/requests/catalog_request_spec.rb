@@ -3,10 +3,12 @@ require "rails_helper"
 
 describe "controller requests", type: :request do
   context "on the home page" do
-    it "displays a large-form header and search bar" do
+    it "displays a large-form header, search bar, and request cart" do
       get "/"
       expect(response.body).to have_selector ".home-header"
       expect(response.body).not_to have_field "search_field"
+      expect(response.body).to have_selector "cart-view-toggle"
+      expect(response.body).to have_selector ".request-cart-block request-cart"
     end
   end
   context "when requesting to view a component" do
