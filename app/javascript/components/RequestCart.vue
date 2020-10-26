@@ -60,11 +60,7 @@
                 <td>{{ item.title }}</td>
                 <td>{{ item.callnumber }}</td>
                 <td>
-                  {{ displayContainers(item.containers) }}
-                  <br />
-                  <em v-if="item.subcontainers.length">
-                    [{{ displayContainers(item.subcontainers) }}]
-                  </em>
+                  {{ item.containers }}
                 </td>
                 <td>
                   <input-button

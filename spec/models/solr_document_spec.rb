@@ -139,4 +139,18 @@ RSpec.describe Arclight::SolrDocument do
       expect(document.collection?).to be true
     end
   end
+
+  describe "#aeon_request" do
+    it "returns an object with all the necessary attributes" do
+      fixture = Rails.root.join("spec", "fixtures", "C1588.json")
+      fixture = JSON.parse(fixture.read)
+      component = fixture["components"].first["components"].first["components"].first
+      document = SolrDocument.new(component)
+
+      request = document.aeon_request
+      expect(request.attributes[:callnumber]).to eq "aspace_C1588_c3"
+      expect(request.attributes[:title]).to eq "Diary"
+      expect(request.attributes[:containers]).to eq "Box B-001180, Folder 1"
+    end
+  end
 end

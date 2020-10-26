@@ -20,7 +20,7 @@ export default {
     referencenumber: {
       type: String,
       default: "",
-      required: true,
+      required: false,
     },
     title: {
       type: String,
@@ -29,7 +29,7 @@ export default {
     },
     containers: {
       type: Array,
-      default: () => [],
+      default: "",
       required: false,
     },
     subcontainers: {
@@ -40,12 +40,12 @@ export default {
     unitid: {
       type: Object,
       default: () => {},
-      required: true,
+      required: false,
     },
     physloc: {
       type: String,
       default: "",
-      required: true,
+      required: false,
     },
     location: {
       type: String,
@@ -90,7 +90,7 @@ export default {
     formParams: {
       type: Array,
       default: () => { [] },
-      required: true,
+      required: false,
     }
   },
   methods: {
@@ -104,9 +104,6 @@ export default {
         callnumber: this.callnumber,
         title: this.title,
         containers: this.containers,
-        subcontainers: this.subcontainers,
-        unitid: this.unitid,
-        physloc: this.physloc,
         formParams: this.formParams
       }
     },
