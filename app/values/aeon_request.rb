@@ -9,7 +9,7 @@ class AeonRequest
     {
       callnumber: solr_document.id,
       title: solr_document.title&.first,
-      containers: solr_document["physloc_sim"]&.first
+      containers: solr_document["physloc_ssm"]&.first
     }
   end
 end
