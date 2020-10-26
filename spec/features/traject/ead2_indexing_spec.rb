@@ -53,6 +53,17 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  describe "ASpace indexing" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "mss", "C1588.xml")
+    end
+    it "indexes container_location_codes_ssim" do
+      components = result["components"]
+      component = components.first["components"].first["components"].first
+      expect(component["container_location_codes_ssim"]).to eq ["mss"]
+    end
+  end
+
   describe "container indexing" do
     context "when indexing a collection with deeply nested components" do
       let(:fixture_path) do

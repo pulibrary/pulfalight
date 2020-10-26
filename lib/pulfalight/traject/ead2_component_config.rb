@@ -172,6 +172,13 @@ end
 to_field "extent_ssm", extract_xpath("./did/physdesc/extent")
 to_field "extent_teim", extract_xpath("./did/physdesc/extent")
 
+to_field "container_location_codes_ssim" do |record, accumulator|
+  record.xpath("./did/container").each do |container_element|
+    container_location_code = container_element.attributes["altrender"].to_s
+    accumulator << container_location_code if container_location_code.present?
+  end
+end
+
 to_field "physloc_code_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
   next unless parent

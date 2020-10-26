@@ -14,7 +14,7 @@
       </publicationstmt>
     </filedesc>
     <profiledesc>
-      <creation>This finding aid was produced using ArchivesSpace on <date>2020-10-13 13:26:58 -0400</date>.</creation>
+      <creation>This finding aid was produced using ArchivesSpace on <date>2020-10-26 14:00:48 -0400</date>.</creation>
       <descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules>
     </profiledesc>
     <revisiondesc>
@@ -126,8 +126,8 @@
                 <extent altrender="materialtype spaceoccupied">1 folder</extent>
               </physdesc>
               <unitdate normal="1883-12-11/1884-07-26" type="inclusive">1883 December 11-1884 July 26</unitdate>
-              <container altrender="Barcode: 32101080851049" id="aspace_e1e8740ba192acaf21248697f7e13c5f" label="mixed materials [32101080851049]" type="box">B-001180</container>
-              <container id="aspace_17a79fc70957f987162c037f09e0251d" parent="aspace_e1e8740ba192acaf21248697f7e13c5f" type="folder">1</container>
+              <container altrender="mss" id="aspace_d34e544eef71aba84214a9d51f03ce1a" label="mixed materials [32101080851049]" type="box">B-001180</container>
+              <container id="aspace_1da48668ef862c5de44d708c323c9ddb" parent="aspace_d34e544eef71aba84214a9d51f03ce1a" type="folder">1</container>
             </did>
             <scopecontent id="aspace_71258f99ab283c57516ad1b595ce5db7">
               <head>Scope and Contents</head>
@@ -141,8 +141,8 @@
                 <extent altrender="materialtype spaceoccupied">1 folder</extent>
               </physdesc>
               <unitdate normal="1884-07-27/1886-02-28" type="inclusive">1884 July 27- 1886 February 28</unitdate>
-              <container altrender="Barcode: 32101080851049" id="aspace_783bc49f26daa7b66f70ad24f2c609ab" label="mixed materials [32101080851049]" type="box">B-001180</container>
-              <container id="aspace_2744fc24003f44157db6ab7557505498" parent="aspace_783bc49f26daa7b66f70ad24f2c609ab" type="folder">2</container>
+              <container altrender="mss" id="aspace_e2c86baba8685ab15c75d1e7a3e1530a" label="mixed materials [32101080851049]" type="box">B-001180</container>
+              <container id="aspace_2328604f323878506523611c8fb27695" parent="aspace_e2c86baba8685ab15c75d1e7a3e1530a" type="folder">2</container>
             </did>
             <scopecontent id="aspace_eae979329610cd65d8e63282b985ea7d">
               <head>Scope and Contents</head>
@@ -156,8 +156,8 @@
                 <extent altrender="materialtype spaceoccupied">1 folder</extent>
               </physdesc>
               <unitdate normal="1886-03-01/1886-09-24" type="inclusive">1886 March 1- September 24</unitdate>
-              <container altrender="Barcode: 32101080851049" id="aspace_51f5ad5edf28a9c4946cc4f37131d498" label="mixed materials [32101080851049]" type="box">B-001180</container>
-              <container id="aspace_1d87b1315519b04cc22ec283866d5fcd" parent="aspace_51f5ad5edf28a9c4946cc4f37131d498" type="folder">3</container>
+              <container altrender="mss" id="aspace_2064e024291436044bbdccb70726bfd0" label="mixed materials [32101080851049]" type="box">B-001180</container>
+              <container id="aspace_a64b0612fbfb3fb77da121e4c13dc4ed" parent="aspace_2064e024291436044bbdccb70726bfd0" type="folder">3</container>
             </did>
           </c>
         </c>
@@ -176,8 +176,8 @@
                 <extent altrender="materialtype spaceoccupied">1 folder</extent>
               </physdesc>
               <unitdate normal="1884-09-04/1884-09-04">1884 September 4</unitdate>
-              <container altrender="Barcode: 32101080851049" id="aspace_a88ab485da29645df94855822cf45d8d" label="mixed materials [32101080851049]" type="box">B-001180</container>
-              <container id="aspace_7070ebe9eb75bba0200031eab0e7389d" parent="aspace_a88ab485da29645df94855822cf45d8d" type="folder">4</container>
+              <container altrender="mss" id="aspace_f57264ae686ff5346e71cb2e747309cb" label="mixed materials [32101080851049]" type="box">B-001180</container>
+              <container id="aspace_406db1b80d4950c927f3723d3d77c434" parent="aspace_f57264ae686ff5346e71cb2e747309cb" type="folder">4</container>
             </did>
             <scopecontent id="aspace_f2932ff94dcc5031e1ddcf84efd97386">
               <head>Scope and Contents</head>
@@ -191,8 +191,8 @@
                 <extent altrender="materialtype spaceoccupied">1 folder</extent>
               </physdesc>
               <unitdate normal="1890/1890" type="inclusive">1890</unitdate>
-              <container altrender="Barcode: 32101080851049" id="aspace_4e8228aa980bbc416afa211cf07837ba" label="mixed materials [32101080851049]" type="box">B-001180</container>
-              <container id="aspace_b3e11c800ee492bfe1baca7ee3371b06" parent="aspace_4e8228aa980bbc416afa211cf07837ba" type="folder">5</container>
+              <container altrender="mss" id="aspace_73d57911973bc0a9d491f84afc313f6d" label="mixed materials [32101080851049]" type="box">B-001180</container>
+              <container id="aspace_126b26459793baaa25ce36fac4fe0b82" parent="aspace_73d57911973bc0a9d491f84afc313f6d" type="folder">5</container>
             </did>
             <scopecontent id="aspace_bbe446c8f6811fb9e326e957854aaf70">
               <head>Scope and Contents</head>
@@ -208,8 +208,8 @@
               <extent altrender="materialtype spaceoccupied">1 folder</extent>
             </physdesc>
             <unitdate certainty="approximate" normal="1885/1885" type="inclusive">circa 1885</unitdate>
-            <container altrender="Barcode: 32101080851049" id="aspace_2cbafe3657619e50121209c7f3cce6de" label="mixed materials [32101080851049]" type="box">B-001180</container>
-            <container id="aspace_18dd2fcedb52759d95ed130d4875f9e4" parent="aspace_2cbafe3657619e50121209c7f3cce6de" type="folder">6</container>
+            <container altrender="mss" id="aspace_a867950db85e9c032b95bd1b8a346287" label="mixed materials [32101080851049]" type="box">B-001180</container>
+            <container id="aspace_96765f3d78e730c0f3b651617ec13acb" parent="aspace_a867950db85e9c032b95bd1b8a346287" type="folder">6</container>
           </did>
         </c>
       </c>
@@ -228,8 +228,8 @@
               <extent altrender="materialtype spaceoccupied">1 folder</extent>
             </physdesc>
             <unitdate normal="1889/1890" type="inclusive">1889-1890</unitdate>
-            <container altrender="Barcode: 32101080851049" id="aspace_d454c85e10e7cc7254c5725bf5410f0c" label="mixed materials [32101080851049]" type="box">B-001180</container>
-            <container id="aspace_228d9e794ec55676a568c37da3b9dade" parent="aspace_d454c85e10e7cc7254c5725bf5410f0c" type="folder">7</container>
+            <container altrender="mss" id="aspace_5461fc056dba981439a403b87c733273" label="mixed materials [32101080851049]" type="box">B-001180</container>
+            <container id="aspace_6b66668a8e60ba06f6aa689e40909182" parent="aspace_5461fc056dba981439a403b87c733273" type="folder">7</container>
           </did>
           <scopecontent id="aspace_ae86ccabf5e709a5529bd37be05c3774">
             <head>Scope and Contents</head>
@@ -243,8 +243,8 @@
               <extent altrender="materialtype spaceoccupied">1 folder</extent>
             </physdesc>
             <unitdate normal="1888/1895" type="inclusive">1888-1895</unitdate>
-            <container altrender="Barcode: 32101080851049" id="aspace_8d8c6aa5db2990f12332e0de694b93ea" label="mixed materials [32101080851049]" type="box">B-001180</container>
-            <container id="aspace_9dd7d1151432d38f2f07480c2cf000fe" parent="aspace_8d8c6aa5db2990f12332e0de694b93ea" type="folder">8</container>
+            <container altrender="mss" id="aspace_3f544ecef4ab42e028937fc9110a8ad6" label="mixed materials [32101080851049]" type="box">B-001180</container>
+            <container id="aspace_09b590ccba2ba20bccdc301d068b14e9" parent="aspace_3f544ecef4ab42e028937fc9110a8ad6" type="folder">8</container>
           </did>
           <scopecontent id="aspace_ee8f287afb7f3938381fc968975dfbdb">
             <head>Scope and Contents</head>
@@ -258,8 +258,8 @@
               <extent altrender="materialtype spaceoccupied">1 folder</extent>
             </physdesc>
             <unitdate normal="1891-09-13/1891-09-13">1891 September 13</unitdate>
-            <container altrender="Barcode: 32101080851049" id="aspace_41021bec377229f8966d4d5a6915a8ac" label="mixed materials [32101080851049]" type="box">B-001180</container>
-            <container id="aspace_8135dae5262822a3f8b842c20f0038e7" parent="aspace_41021bec377229f8966d4d5a6915a8ac" type="folder">9</container>
+            <container altrender="mss" id="aspace_450ae90e4a6ee28d63b37c57100763b1" label="mixed materials [32101080851049]" type="box">B-001180</container>
+            <container id="aspace_e70b2a5a3486a16bd33c8853aba9c65e" parent="aspace_450ae90e4a6ee28d63b37c57100763b1" type="folder">9</container>
           </did>
           <scopecontent id="aspace_d0992e6067cb5583a17b794c5f7a4802">
             <head>Scope and Contents</head>
@@ -274,8 +274,8 @@
             <extent altrender="materialtype spaceoccupied">1 folder</extent>
           </physdesc>
           <unitdate normal="1891/1923" type="inclusive">1891-1923</unitdate>
-          <container altrender="Barcode: 32101080851049" id="aspace_3b9878d44edd0b931ec2ce377ffd990d" label="mixed materials [32101080851049]" type="box">B-001180</container>
-          <container id="aspace_ba7703c595b82321b7697459804ca562" parent="aspace_3b9878d44edd0b931ec2ce377ffd990d" type="folder">10</container>
+          <container altrender="mss" id="aspace_7f629a6e2847cbea2bf201a37723991a" label="mixed materials [32101080851049]" type="box">B-001180</container>
+          <container id="aspace_68551569ecbc40c2bcbd8159c0549bdc" parent="aspace_7f629a6e2847cbea2bf201a37723991a" type="folder">10</container>
         </did>
         <scopecontent id="aspace_ae890c63d850c343d30b53566643b64e">
           <head>Scope and Contents</head>
@@ -289,8 +289,8 @@
             <extent altrender="materialtype spaceoccupied">1 folder</extent>
           </physdesc>
           <unitdate normal="1886-11-12/1886-11-12">1886 November 12</unitdate>
-          <container altrender="Barcode: 32101080851049" id="aspace_438bc393a4ee1d1966373973ced1a79b" label="mixed materials [32101080851049]" type="box">B-001180</container>
-          <container id="aspace_a728178a13fc5ea47895bdc92c9920db" parent="aspace_438bc393a4ee1d1966373973ced1a79b" type="folder">11</container>
+          <container altrender="mss" id="aspace_c5d532d18d961957d54801626f6e12e3" label="mixed materials [32101080851049]" type="box">B-001180</container>
+          <container id="aspace_e776b5c27fb44c4c8322f3ed618c8af1" parent="aspace_c5d532d18d961957d54801626f6e12e3" type="folder">11</container>
         </did>
       </c>
       <c id="aspace_C1588_c16" level="file">
@@ -300,8 +300,8 @@
             <extent altrender="materialtype spaceoccupied">1 folder</extent>
           </physdesc>
           <unitdate certainty="approximate" normal="1890/1890" type="inclusive">circa 1890</unitdate>
-          <container altrender="Barcode: 32101080851049" id="aspace_bbbcd8899cc7565dcb83f149cd960d9d" label="mixed materials [32101080851049]" type="box">B-001180</container>
-          <container id="aspace_892561548bab6a428d0728f89cff7220" parent="aspace_bbbcd8899cc7565dcb83f149cd960d9d" type="folder">12</container>
+          <container altrender="mss" id="aspace_4c32f6d793bedc018a33f4110236efbd" label="mixed materials [32101080851049]" type="box">B-001180</container>
+          <container id="aspace_b43ada5fe65f1b40094eab9d7f9a1cea" parent="aspace_4c32f6d793bedc018a33f4110236efbd" type="folder">12</container>
         </did>
         <scopecontent id="aspace_085b350cae14140f31d8bdde72789373">
           <head>Scope and Contents</head>
