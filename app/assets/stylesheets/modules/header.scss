@@ -83,7 +83,6 @@ header {
     padding: 0;
     list-style-type: none;
     text-align: center;
-    float: right;
     @mixin vertical-align($position: relative) {
       position: $position;
       top: 50%;
