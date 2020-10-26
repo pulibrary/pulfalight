@@ -62,6 +62,11 @@ describe "EAD 2 traject indexing", type: :feature do
       component = components.first["components"].first["components"].first
       expect(component["container_location_codes_ssim"]).to eq ["mss"]
     end
+    it "indexes barcodes" do
+      components = result["components"]
+      component = components.first["components"].first["components"].first
+      expect(component["barcodes_ssim"]).to eq ["32101080851049"]
+    end
   end
 
   describe "container indexing" do
