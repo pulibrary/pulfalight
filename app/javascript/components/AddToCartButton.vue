@@ -28,7 +28,7 @@ export default {
       required: true,
     },
     containers: {
-      type: Array,
+      type: String,
       default: "",
       required: false,
     },
@@ -88,8 +88,8 @@ export default {
       required: false,
     },
     formParams: {
-      type: Array,
-      default: () => { [] },
+      type: Object,
+      default: () => { {} },
       required: false,
     }
   },

@@ -92,8 +92,9 @@
 
         <div class="hidden">
           <template v-for="(request, requestIndex) in requests">
-            <template v-for="(item, paramIndex) in request.formParams">
-              <request-form-input :key="Math.random()" :name="item.name" :values="item.values"></request-form-input>
+            <template v-for="(form_values, field_name) in request.formParams">
+              <input :id="field_name" :name="field_name" type="hidden"
+              :value="form_values"></input>
             </template>
           </template>
         </div>

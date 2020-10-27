@@ -60,6 +60,7 @@
                   <%= key %>="<%= value %>"
                 <% end %>
               <% end %>
+              :form-params="<%= JSON.generate(@document.aeon_request.form_attributes) %>"
               >
                 <%= image_tag(asset_path('icon-request.svg')) %>
                 Request this box

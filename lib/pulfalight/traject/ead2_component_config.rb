@@ -107,6 +107,14 @@ to_field "parent_unittitles_ssm" do |_rec, accumulator, context|
   accumulator.concat parent.output_hash["normalized_title_ssm"] if parent.output_hash["normalized_title_ssm"].present?
 end
 
+to_field "parent_unnormalized_unittitles_ssm" do |_rec, accumulator, context|
+  # top level document
+  parent = context.clipboard[:parent] || settings[:parent]
+  next unless parent
+  accumulator.concat parent.output_hash["parent_unittitles_ssm"] if parent.output_hash["parent_unittitles_ssm"]
+  accumulator.concat parent.output_hash["title_ssm"] if parent.output_hash["normalized_title_ssm"].present?
+end
+
 to_field "parent_unittitles_teim" do |_record, accumulator, context|
   accumulator.concat context.output_hash["parent_unittitles_ssm"] if context.output_hash["parent_unittitles_ssm"].present?
 end

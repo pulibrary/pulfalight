@@ -13,9 +13,9 @@ export default {
       required: true
     },
     values: {
-      type: Array,
+      type: String,
       required: true,
-      default: () => { [] }
+      default: ""
     }
   },
   computed: {
@@ -26,7 +26,7 @@ export default {
       return `${this.name}`
     },
     inputValue: function () {
-      return this.values.join(',')
+      return this.values
     }
   }
 }
