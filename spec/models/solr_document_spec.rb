@@ -171,6 +171,24 @@ RSpec.describe Arclight::SolrDocument do
       expect(request.form_attributes[:Request]).not_to be_blank
       request_id = request.form_attributes[:Request]
       expect(request.form_attributes[:"ItemSubTitle_#{request_id}"]).to eq "Diaries / Diary"
+      expect(request.form_attributes[:"ItemTitle_#{request_id}"]).to eq "Walter Dundas Bathurst Papers"
+      expect(request.form_attributes[:"ItemAuthor_#{request_id}"]).to eq "Bathurst, Walter Dundas, 1859-1940"
+      expect(request.form_attributes[:"ItemDate_#{request_id}"]).to eq "1883 December 11-1884 July 26"
+      expect(request.form_attributes[:"ReferenceNumber_#{request_id}"]).to eq "aspace_C1588_c3"
+      expect(request.form_attributes[:"CallNumber_#{request_id}"]).to eq "C1588test"
+      expect(request.form_attributes[:"ItemNumber_#{request_id}"]).to eq "32101080851049"
+      expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Box B-001180"
+      expect(request.form_attributes[:"ItemInfo1_#{request_id}"]).to eq "Open for research."
+      # This may be wrong. This appears to be the collection extent in
+      # findingaids, which would mean this is "1 box"
+      expect(request.form_attributes[:"ItemInfo2_#{request_id}"]).to eq "1 folder"
+      expect(request.form_attributes[:"ItemInfo3_#{request_id}"]).to eq "Folder 1"
+      # I don't know what ItemInfo4 should be. Seems to be the physloc of some
+      # higher component in the tree, it's just a comma for this component in
+      # FA.
+      expect(request.form_attributes[:"Location_#{request_id}"]).to eq "mss"
+      expect(request.form_attributes[:"ItemInfo5_#{request_id}"]).to eq "http://localhost:3000/catalog/aspace_C1588_c3"
+      expect(request.form_attributes[:"SubmitButton"]).to eq "Submit Request"
     end
   end
 end

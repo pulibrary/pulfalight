@@ -17,6 +17,7 @@ Metrics/AbcSize:
   Exclude:
     - 'app/models/pulfalight/requests/aeon_external_request.rb'
     - 'lib/pulfalight/traject/ead2_component_config.rb'
+    - 'app/values/aeon_request.rb'
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
@@ -34,6 +35,7 @@ Metrics/MethodLength:
     - 'app/models/solr_document.rb'
     - 'lib/pulfalight/traject/ead2_component_config.rb'
     - 'lib/tasks/pulfalight.rake'
+    - 'app/values/aeon_request.rb'
 Naming/PredicateName:
   Exclude:
     - 'app/models/solr_document.rb'
