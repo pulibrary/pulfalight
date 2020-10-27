@@ -5,6 +5,19 @@ require Rails.root.join("app", "jobs", "index_job")
 require Rails.root.join("app", "services", "robots_generator_service")
 
 namespace :pulfalight do
+  namespace :fixtures do
+    desc "Regenerate JSON fixtures from EAD"
+    task regenerate_json: :environment do
+      indexer = Traject::Indexer::NokogiriIndexer.new(repository: "publicpolicy").tap do |i|
+        i.load_config_file(Rails.root.join("lib", "pulfalight", "traject", "ead2_config.rb"))
+      end
+      fixture_file = File.read(Rails.root.join("spec", "fixtures", "aspace", "mss", "C1588.xml"))
+      nokogiri_reader = Arclight::Traject::NokogiriNamespacelessReader.new(fixture_file.to_s, indexer.settings)
+      File.open(Rails.root.join("spec", "fixtures", "C1588.json"), "w") do |f|
+        f.puts indexer.map_record(nokogiri_reader.to_a.first).to_json
+      end
+    end
+  end
   namespace :index do
     desc "Delete all Solr documents in the index"
     task delete: :environment do
