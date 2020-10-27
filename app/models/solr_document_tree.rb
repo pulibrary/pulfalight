@@ -1,49 +1,65 @@
 # frozen_string_literal: true
 class SolrDocumentTree
   class Node
-    attr_reader :document
+    attr_reader :document, :children
 
-    def initialize(document)
-      @document = document
-    end
-
-    def children
-      @children ||= find_children
-    end
-
-    def descendents
-      @descendents ||= find_descendents
-    end
-
+    # Retrieve the current Solr index for querying
+    # @return [Blacklight::Solr::Repository]
     def self.blacklight_index
       Blacklight.default_index
     end
 
-    def self.solr_client
-      blacklight_index.connection
+    # Generate the Solr Child Document Transformer parameter for the query results
+    # @return [Array<String>]
+    def self.solr_child_doc_transformer
+      ["child", "fl=*", "limit=1000000"]
     end
 
+    # Generate the Solr Document Transformers for the query results
+    # @return [Array<Array<String>>]
+    def self.solr_doc_transformers
+      [solr_child_doc_transformer]
+    end
+
+    # Generate the necessary Solr Document fields
+    # @return [Array<String>]
+    def self.solr_fields
+      ["*", "components"]
+    end
+
+    # Generate the field list parameter for the Solr Query
+    # @return [String]
     def self.field_list
-      "*, components, [child fl=* limit=1000000]"
+      values = solr_fields
+      transformers = solr_doc_transformers.map { |dt| dt.join(" ") }.join(" ")
+      values << "[#{transformers}]"
+      values.join(" ")
     end
 
-    def self.find_children_query(document)
-      "id:#{document.id}"
-    end
-
-    def self.query_solr(query)
-      server_response = solr_client.select(params: { q: query, fl: field_list })
-      solr_response = server_response["response"]
-      docs = solr_response["docs"]
+    # Retrieve the Document with the requested fields from Solr
+    # @param document [SolrDocument]
+    # @return [SolrDocument]
+    def self.query_solr(document)
+      solr_response = blacklight_index.find(document.id, fl: field_list)
+      response = solr_response["response"]
+      docs = response["docs"]
       docs.map { |doc| SolrDocument.new(doc) }
     end
 
+    # Constructor
+    # @param document [SolrDocument]
+    def initialize(document)
+      @document = document
+      @children = find_children
+    end
+
+    # Query for and build object child documents
+    # @return [<SolrDocumentTree>]
     def find_children
-      if @document.key?("components")
+      if !@document.collection? && @document.key?("components")
         components = Array.wrap(@document["components"])
       else
-        query = self.class.find_children_query(@document)
-        parent_docs = self.class.query_solr(query)
+        parent_docs = self.class.query_solr(@document)
         return [] if parent_docs.empty?
 
         parent_doc = parent_docs.first
@@ -53,36 +69,25 @@ class SolrDocumentTree
       docs = components.map { |p| SolrDocument.new(p) }
       docs.map { |doc| self.class.new(doc) }
     end
-
-    def find_descendents
-      nodes = []
-
-      children.each do |child|
-        nodes << child
-        nodes += child.find_descendents
-      end
-
-      nodes
-    end
   end
 
+  attr_reader :root
+
+  # Constructor
+  # @param root [SolrDocument]
   def initialize(root:)
     @root = root
   end
 
-  def document
-    @root
-  end
-
+  # Build a tree node from the root SolrDocument
+  # @return [SolrDocumentTree::Node]
   def root_node
     @root_node ||= Node.new(@root)
   end
 
+  # Build trees for each child node
+  # @return [Array<SolrDocumentTree::Node>]
   def children
     root_node.children.map { |c| self.class.new(root: c.document) }
-  end
-
-  def descendent_documents
-    root_node.descendents.map(&:document)
   end
 end
