@@ -112,7 +112,7 @@ describe "EAD 2 traject indexing", type: :feature do
       child_component = component["components"].last
       expect(child_component["parent_ssm"]).to eq ["MC152", "aspace_MC152_c001"]
       expect(child_component["parent_unittitles_ssm"]).to eq ["Barr Ferree collection, 1880-1929", "Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc., 1881-1921"]
-      expect(child_component["parent_unnormalized_unittitles_ssm"]).to eq ["Barr Ferree collection, 1880-1929", "Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc."]
+      expect(child_component["parent_unnormalized_unittitles_ssm"]).to eq ["Barr Ferree collection", "Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc."]
     end
   end
 
