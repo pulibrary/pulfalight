@@ -1,14 +1,15 @@
 # frozen_string_literal: true
 
 class TableOfContentsBuilder
-  def self.build(document, single_node: false)
-    new(document, single_node: single_node).build
+  def self.build(document, single_node: false, expanded: false)
+    new(document, single_node: single_node, expanded: expanded).build
   end
 
   attr_reader :document, :single_node
-  def initialize(document, single_node: false)
+  def initialize(document, single_node: false, expanded: false)
     @document = document
     @single_node = single_node
+    @expanded = expanded
   end
 
   def build
@@ -42,7 +43,8 @@ class TableOfContentsBuilder
     {
       id: component["id"],
       text: component["normalized_title_ssm"].first,
-      has_children: component["components"].present?
+      has_children: component["components"].present?,
+      state: { opened: @expanded } # This applies to every node in the tree
     }
   end
 
@@ -95,7 +97,13 @@ class TableOfContentsBuilder
       content = node.content
       content[:children] = transform(node.children)
       content[:children] = true if content[:children].blank? && content[:has_children]
-      content[:state] = { selected: true } if content[:id] == document.id
+
+      if content[:id] == document.id
+        node_state = content[:state]
+        node_state = node_state.merge({ selected: true })
+        content[:state] = node_state
+      end
+
       content.delete(:has_children)
       content.delete_if { |_k, v| v.nil? || v.blank? }
       content

@@ -7,12 +7,22 @@ export default class TocBuilder {
     this.dataElement = $(`${element}-data`)
   }
 
+  get expanded() {
+    return this.dataElement.data('expanded')
+  }
+
   get baseUrl() {
-    return '/toc/'
+    return '/toc'
   }
 
   get initialUrl() {
-    return `${this.baseUrl}?node=${this.selectedId}&full=true`
+    let url = `${this.baseUrl}?node=${this.selectedId}&full=true`
+
+    if (this.expanded) {
+      url = `${url}&expanded=true`
+    }
+
+    return url
   }
 
   get selectedId() {
@@ -51,7 +61,11 @@ export default class TocBuilder {
             if (node.id === '#') {
               return that.initialUrl
             } else {
-              return `${that.baseUrl}?node=${node.id}`
+              let url = `${that.baseUrl}?node=${node.id}`
+              if (that.expanded) {
+                url = `${url}&expanded=true`
+              }
+              return url
             }
           }
         }
