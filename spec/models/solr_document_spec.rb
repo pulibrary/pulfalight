@@ -188,7 +188,7 @@ RSpec.describe Arclight::SolrDocument do
       # FA.
       expect(request.form_attributes[:"Location_#{request_id}"]).to eq "mss"
       expect(request.form_attributes[:"ItemInfo5_#{request_id}"]).to eq "http://localhost:3000/catalog/aspace_C1588_c3"
-      expect(request.form_attributes[:"SubmitButton"]).to eq "Submit Request"
+      expect(request.form_attributes[:SubmitButton]).to eq "Submit Request"
     end
   end
 end
