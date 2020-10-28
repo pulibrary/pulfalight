@@ -192,15 +192,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/*
-.circle-icon {
-  display: inline-flex;
-  align-self: center;
-  margin: 0 4px;
-}
-*/
 .lux-data-table {
-  /*display: block;*/
   table-layout: fixed;
   width: 100%;
   border-collapse: collapse;
@@ -224,11 +216,9 @@ export default {
   tbody {
     background-color: #fff;
     width: 100%;
-    /* display: table; */
     background-color: #fff;
     tr {
       display: table-row;
-      /* display: block; */
       vertical-align: inherit;
       background-color: #fff;
       color: #41464e;
@@ -404,7 +394,6 @@ $space-base: 24px;
   padding-left: 0.8rem;
   padding-right: 0.8rem;
   /* Custom */
-  /* transform: translateX(0%); */
   position: fixed;
   z-index: 2020;
   display: block;
@@ -413,7 +402,6 @@ $space-base: 24px;
   right: 0;
   background-color: #ffffff;
   border: 1px solid #8f8f8f;
-  /* width: 44%; */
   width: 40%;
   .denied-button {
     font-size: 1.5rem;
@@ -428,10 +416,6 @@ $space-base: 24px;
   .caption-title {
     margin-top: 1rem;
     margin-bottom: 1rem;
-    /*
-    padding-top: 0.8rem;
-    padding-bottom: 0.8rem;
-    */
   }
 }
 .lux-data-table {
@@ -491,20 +475,6 @@ $space-base: 24px;
 }
 table {
   margin-top: 2em;
-}
-.slide-enter-active,
-.slide-leave-active {
-  /*
-  transform: translateX(0%);
-  transition: 0.3s ease-out;
-  */
-}
-.slide-enter,
-.slide-leave-to {
-  /*
-  transform: translateX(100%);
-  transition: 0.3s ease-out;
-  */
 }
 /*
  * Custom Styling
