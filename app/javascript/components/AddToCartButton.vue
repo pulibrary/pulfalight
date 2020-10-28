@@ -17,72 +17,12 @@ export default {
       default: "",
       required: true,
     },
-    referencenumber: {
-      type: String,
-      default: "",
-      required: false,
-    },
     title: {
       type: String,
       default: "",
       required: true,
     },
     containers: {
-      type: String,
-      default: "",
-      required: false,
-    },
-    subcontainers: {
-      type: Array,
-      default: () => [],
-      required: false,
-    },
-    unitid: {
-      type: Object,
-      default: () => {},
-      required: false,
-    },
-    physloc: {
-      type: String,
-      default: "",
-      required: false,
-    },
-    location: {
-      type: String,
-      default: "",
-      required: false,
-    },
-    subtitle: {
-      type: String,
-      default: "",
-      required: false,
-    },
-    itemdate: {
-      type: String,
-      default: "",
-      required: false,
-    },
-    itemnumber: {
-      type: String,
-      default: "",
-      required: false,
-    },
-    itemvolume: {
-      type: String,
-      default: "",
-      required: false,
-    },
-    accessnote: {
-      type: String,
-      default: "",
-      required: false,
-    },
-    extent: {
-      type: String,
-      default: "",
-      required: false,
-    },
-    itemurl: {
       type: String,
       default: "",
       required: false,
