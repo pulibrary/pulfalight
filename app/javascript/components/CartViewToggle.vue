@@ -17,11 +17,11 @@
 <script>
 import store from "../store"
 import { mapState, mapGetters } from "vuex"
-import CartIcon from './CartIcon.vue'
+import RequestCartIcon from './RequestCartIcon.vue'
 export default {
   name: "CartViewToggle",
   components: {
-    'cart-icon': CartIcon
+    'cart-icon': RequestCartIcon
   },
   computed: {
     items: {
@@ -50,7 +50,7 @@ $font-family-text: "franklin-gothic-urw", Helvetica, Arial, sans-serif;
   color: #fff;
   padding: 0 5px;
   vertical-align: super;
-  margin-left: -28px;
+  margin-left: -22px;
 }
 .badge {
   padding-left: 9px;
