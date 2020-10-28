@@ -5,6 +5,89 @@ require Rails.root.join("app", "jobs", "index_job")
 require Rails.root.join("app", "services", "robots_generator_service")
 
 namespace :pulfalight do
+  namespace :aspace do
+    desc "Index EADIDs defined by stakeholders as representatives."
+    task index_test_eads: :environment do
+      test_eadids = [
+        "AC019",
+        "C0014",
+        "MC001.03.01",
+        "C0003",
+        "RBD2",
+        "AC014",
+        "C0280",
+        "MC039",
+        "AC011",
+        "C0171",
+        "LAE026",
+        "MC001.02.01",
+        "ST1",
+        "TC022",
+        "C0003",
+        "AC020",
+        "MC085",
+        "AC465",
+        "MC181.05",
+        "C1491",
+        "AC003",
+        "C0022",
+        "MC001.02.01",
+        "RBD1.1",
+        "AC026",
+        "C0247",
+        "MC001.01",
+        "C0001",
+        "COTSEN5",
+        "MC120",
+        "RBD1.1",
+        "AC001",
+        "C0002",
+        "ENG002",
+        "LAE049",
+        "MC001.02",
+        "RBD3",
+        "AC005",
+        "C0006",
+        "COTSEN1",
+        "LAE002",
+        "MC001.01",
+        "RCPXR-6386581",
+        "ST1",
+        "AC010",
+        "C0003",
+        "LAE002",
+        "MC001.02.06",
+        "RCPXG-5830371.1",
+        "TC022",
+        "AC001",
+        "C0022",
+        "COTSEN1",
+        "ENG001",
+        "GC185",
+        "LAE001",
+        "MC001.01",
+        "RCPXR-6386581",
+        "AC001",
+        "C0003",
+        "COTSEN2",
+        "ENG001",
+        "GC186",
+        "LAE001",
+        "MC001.01",
+        "RBD1.1"
+      ].uniq
+      or_query = test_eadids.join(" OR ")
+      client = Aspace::Client.new
+      client.recent_repositories.each do |repository|
+        repository_uri = repository["uri"][1..-1]
+        repo_code = repository["repo_code"]
+        uris = client.get("#{repository_uri}/search", query: { q: "identifier:(#{or_query})", type: ["resource"], fields: ["uri"], page: 1 }).parsed["results"].map { |x| x["uri"] }
+        uris.each do |uri|
+          AspaceIndexJob.perform_later(resource_descriptions_uri: uri[1..-1].gsub("resources", "resource_descriptions"), repository_id: repo_code.split("-").first)
+        end
+      end
+    end
+  end
   namespace :fixtures do
     desc "Regenerate JSON fixtures from EAD"
     task regenerate_json: :environment do
