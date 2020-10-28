@@ -196,6 +196,10 @@ class SolrDocument
     physical_locations.last
   end
 
+  def aeon_request
+    @aeon_request ||= AeonRequest.new(self)
+  end
+
   private
 
   def pulfalight_attributes

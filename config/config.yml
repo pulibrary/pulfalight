@@ -3,6 +3,7 @@ defaults: &defaults
   archivespace_url: "https://asqa.lyrtech.org/staff/api"
   archivespace_user: <%= ENV["ASPACE_USER"] %>
   archivespace_password: <%= ENV["ASPACE_PASSWORD"] %>
+  aeon_url: 'https://lib-aeon.princeton.edu/aeon/Aeon.dll'
 
 development:
   <<: *defaults

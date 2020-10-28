@@ -3,6 +3,7 @@
 @import 'modules/document_access_badge';
 @import 'modules/document_extent_badge';
 @import 'modules/print_button';
+@import 'modules/request_cart';
 @import 'modules/view_content_button';
 
 .document {
@@ -89,6 +90,50 @@
     }
   }
 
+  .tab-pane {
+    padding-top: 1.0rem;
+  }
+
+  .document-attributes {
+    display: inline-flex;
+    column-gap: 0.8rem;
+  }
+
+  .document-extent {
+    @include document-extent-badge;
+  }
+
+  .document-access {
+    @include document-access-badge;
+  }
+
+  .breadcrumbs {
+    @include breadcrumbs;
+  }
+
+  .document-title {
+    border-bottom: 3px solid #dee2e6;
+
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    margin-top: 0.6rem;
+    margin-bottom: 2.6rem;
+
+    .lux-alert {
+      display: inline-block;
+      padding-top: 0.33rem;
+      padding-bottom: 0.33rem;
+
+      span {
+        text-transform: uppercase;
+      }
+    }
+
+    .lux-tag {
+      display: inline-block;
+    }
+  }
+
   .content-container {
     .navbar {
       top: calc(100% - 2.62rem);
@@ -109,9 +154,11 @@
           padding-left: 0;
           padding-right: 0;
 
-          a {
+          button {
             color: #7f7f7f;
             font-weight: 600;
+            background-color: #ffffff;
+            border-width: 0px;
 
             img {
               height: 1.6rem;

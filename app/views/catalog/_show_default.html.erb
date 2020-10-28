@@ -52,11 +52,19 @@
 
 <nav class="navbar sticky-top">
         <div class="row">
-          <div class="col-md-4">
-            <a href="#request">
+          <div class="col-md-4 lux">
+            <add-to-cart-button
+              class="add-to-cart-block"
+              <% @document.aeon_request.attributes.each_pair do |key, value| %>
+                <% unless value.nil? || value.empty? %>
+                  <%= key %>="<%= value %>"
+                <% end %>
+              <% end %>
+              :form-params="<%= JSON.generate(@document.aeon_request.form_attributes) %>"
+              >
                 <%= image_tag(asset_path('icon-request.svg')) %>
                 Request this box
-            </a>
+              </add-to-cart-button>
           </div>
         </div><!-- .row -->
       </nav>

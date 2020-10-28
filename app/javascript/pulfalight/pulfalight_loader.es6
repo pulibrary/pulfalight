@@ -1,7 +1,12 @@
 import Vue from 'vue/dist/vue.esm'
+import Vuex from "vuex"
 import system from 'lux-design-system'
 import "lux-design-system/dist/system/system.css"
 import "lux-design-system/dist/system/tokens/tokens.scss"
+import store from '../store'
+import RequestCart from '../components/RequestCart'
+import AddToCartButton from '../components/AddToCartButton'
+import CartViewToggle from '../components/CartViewToggle'
 import TocBuilder from "../pulfalight/toc.es6"
 import LibCalHours from "../pulfalight/lib_cal_hours.es6"
 
@@ -40,7 +45,13 @@ export default class PulfalightLoader {
     var elements = document.getElementsByClassName("lux")
     for (var i = 0; i < elements.length; i++) {
       new Vue({
-        el: elements[i]
+        el: elements[i],
+        store,
+        components: {
+          'request-cart': RequestCart,
+          'add-to-cart-button': AddToCartButton,
+          'cart-view-toggle': CartViewToggle
+        }
       })
     }
   }

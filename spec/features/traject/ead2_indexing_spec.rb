@@ -62,6 +62,11 @@ describe "EAD 2 traject indexing", type: :feature do
       component = components.first["components"].first["components"].first
       expect(component["container_location_codes_ssim"]).to eq ["mss"]
     end
+    it "indexes barcodes" do
+      components = result["components"]
+      component = components.first["components"].first["components"].first
+      expect(component["barcodes_ssim"]).to eq ["32101080851049"]
+    end
   end
 
   describe "container indexing" do
@@ -107,6 +112,7 @@ describe "EAD 2 traject indexing", type: :feature do
       child_component = component["components"].last
       expect(child_component["parent_ssm"]).to eq ["MC152", "aspace_MC152_c001"]
       expect(child_component["parent_unittitles_ssm"]).to eq ["Barr Ferree collection, 1880-1929", "Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc., 1881-1921"]
+      expect(child_component["parent_unnormalized_unittitles_ssm"]).to eq ["Barr Ferree collection", "Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc."]
     end
   end
 
