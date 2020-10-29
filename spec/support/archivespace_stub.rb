@@ -14,8 +14,10 @@ module AspaceStubbing
       .to_return(status: 200, body: File.open(Rails.root.join("spec", "fixtures", "aspace", "repositories.json")), headers: { "Content-Type": "application/json" })
   end
 
-  def stub_aspace_resource_ids(repository_id:, resource_ids:)
-    stub_request(:get, "https://aspace.test.org/staff/api/repositories/#{repository_id}/resources?all_ids=true")
+  def stub_aspace_resource_ids(repository_id:, resource_ids:, modified_since: nil)
+    url = "https://aspace.test.org/staff/api/repositories/#{repository_id}/resources?all_ids=true"
+    url += "&modified_since=#{modified_since}" if modified_since
+    stub_request(:get, url)
       .to_return(status: 200, body: resource_ids.to_json, headers: { "Content-Type": "application/json" })
   end
 end

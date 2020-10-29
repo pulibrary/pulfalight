@@ -16,10 +16,12 @@ module Aspace
       login
     end
 
-    def ead_urls
+    def ead_urls(modified_since: nil)
       output = recent_repositories.each_with_object({}) do |repository, acc|
         config.base_repo = repository["uri"][1..-1]
-        resource_ids = get("resources", query: { all_ids: true }).parsed
+        query = { all_ids: true }
+        query[:modified_since] = modified_since if modified_since
+        resource_ids = get("resources", query: query).parsed
         urls = resource_ids.map do |resource_id|
           "#{config.base_repo}/resource_descriptions/#{resource_id}"
         end

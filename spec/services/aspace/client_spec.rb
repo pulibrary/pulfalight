@@ -6,6 +6,7 @@ RSpec.describe Aspace::Client do
     stub_aspace_login
     stub_aspace_repositories
     stub_aspace_resource_ids(repository_id: "13", resource_ids: ["1", "2", "3"])
+    stub_aspace_resource_ids(repository_id: "13", modified_since: Time.zone.parse("2020-01-09").to_i, resource_ids: ["3"])
   end
   describe ".new" do
     it "returns a configured ASpace Client" do
@@ -31,6 +32,19 @@ RSpec.describe Aspace::Client do
           ]
         }
       )
+    end
+    context "when given modified_since" do
+      it "passes it" do
+        client = described_class.new
+
+        expect(client.ead_urls(modified_since: Time.zone.parse("2020-01-09").to_i)).to eq(
+          {
+            "mss" => [
+              "repositories/13/resource_descriptions/3"
+            ]
+          }
+        )
+      end
     end
   end
 end
