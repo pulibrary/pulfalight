@@ -61,6 +61,7 @@ RSpec/ExampleLength:
     - 'spec/services/table_of_contents_builder_spec.rb'
     - 'spec/jobs/aspace_index_job_spec.rb'
     - 'spec/services/aspace/client_spec.rb'
+    - 'spec/services/aspace/indexer_spec.rb'
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
