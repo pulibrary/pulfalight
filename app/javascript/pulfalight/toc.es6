@@ -30,6 +30,12 @@ export default class TocBuilder {
       let location = `/catalog/${data.node.id}`
       window.location = location
     })
+    this.element.on('ready.jstree', (e, data) => {
+      const selectedId = this.element.jstree().get_selected()[0]
+      const selectedElement = $(`#${selectedId}`)
+      const scrollOffset = selectedElement.offset().top - selectedElement.offsetParent().offset().top - 60
+      this.element.scrollTop(scrollOffset)
+    })
   }
 
   setupTree() {
