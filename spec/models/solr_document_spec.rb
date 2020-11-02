@@ -141,6 +141,29 @@ RSpec.describe Arclight::SolrDocument do
   end
 
   describe "#aeon_request" do
+    context "#requestable?" do
+      it "returns false if it's not a leaf node" do
+        fixture = Rails.root.join("spec", "fixtures", "C1588.json")
+        fixture = JSON.parse(fixture.read)
+        component = fixture["components"].first["components"].first
+        document = SolrDocument.new(component)
+
+        request = document.aeon_request
+
+        expect(request).not_to be_requestable
+      end
+      it "returns false if there's no location code" do
+        fixture = Rails.root.join("spec", "fixtures", "C1588.json")
+        fixture = JSON.parse(fixture.read)
+        component = fixture["components"].first["components"].first
+        component["components"] = []
+        document = SolrDocument.new(component)
+
+        request = document.aeon_request
+
+        expect(request).not_to be_requestable
+      end
+    end
     it "returns an object with all the necessary attributes" do
       fixture = Rails.root.join("spec", "fixtures", "C1588.json")
       fixture = JSON.parse(fixture.read)
