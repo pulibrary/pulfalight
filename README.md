@@ -27,7 +27,7 @@ Start and initialize solr and database services with `rake pulfalight:server:sta
 To stop solr and database services: `rake pulfalight:server:stop` or `lando stop`
 
 #### Run tests
-`bundle exec rspec`
+- `bundle exec rspec`
 
 #### Start development server
 - `rails s`
