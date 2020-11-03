@@ -57,6 +57,7 @@ end
 group :test do
   gem "capybara", ">= 3.18"
   gem "simplecov", require: false
+  gem "timecop"
   gem "webdrivers"
   gem "webmock"
 end
