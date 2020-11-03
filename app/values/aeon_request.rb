@@ -5,6 +5,10 @@ class AeonRequest
     @solr_document = solr_document
   end
 
+  def requestable?
+    solr_document["components"].blank? && container_locations.present?
+  end
+
   def attributes
     {
       callnumber: solr_document.id,
