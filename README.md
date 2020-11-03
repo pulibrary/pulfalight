@@ -6,27 +6,32 @@ Status](https://coveralls.io/repos/github/pulibrary/pulfalight/badge.svg?branch=
 This is an implementation of ArcLight being implemented as a replacement for the
  Princeton University Finding Aids (PULFA) service.
 
-### Initial setup
+### Development
+
+#### Setup
+* Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
+* See .tool-versions for language version requirements (ruby, nodejs)
+
 ```sh
 bundle install
 yarn install
-bundle exec rake db:setup db:migrate
 ```
+(Remember you'll need to run the above commands on an ongoing basis as dependencies are updated.)
 
-#### Node.js Support
-Remember you'll need to run `bundle install` and `yarn install` (or `npm
-install`) on an ongoing basis as dependencies are updated.  Please note that the
-oldest version of Node.js supported is 10.16.0.
+#### Starting / stopping services
+We use lando to run services required for both test and development
+environments.
 
-#### Setup server
-1. Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
-1. To start: `rake pulfalight:server:start`
-1. For test:
-   - `bundle exec rspec`
-1. For development:
-   - `rails s`
-   - Access Pulfalight at http://localhost:3000/
-1. To stop: `rake pulfalight:server:stop` or `lando stop`
+Start and initialize solr and database services with `rake pulfalight:server:start`
+
+To stop solr and database services: `rake pulfalight:server:stop` or `lando stop`
+
+#### Run tests
+`bundle exec rspec`
+
+#### Start development server
+- `rails s`
+- Access Pulfalight at http://localhost:3000/
 
 ### Configuration
 Please see [the ArcLight
