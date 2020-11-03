@@ -72,7 +72,7 @@ describe "EAD 2 traject indexing", type: :feature do
   describe "container indexing" do
     context "when indexing a collection with deeply nested components" do
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "ead", "C0614.EAD.xml")
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "C0251.EAD.xml")
       end
 
       it "indexes the nested components" do
@@ -80,25 +80,25 @@ describe "EAD 2 traject indexing", type: :feature do
         child_component_trees = components.select { |c| c["components"].present? }
         child_component_tree = child_component_trees.first
         expect(child_component_tree).to include("id")
-        expect(child_component_tree["id"]).to include("aspace_C0614_c00001")
+        expect(child_component_tree["id"]).to include("aspace_C0251_c0001")
         nested_component_trees = child_component_tree["components"]
         expect(nested_component_trees).not_to be_empty
         nested_component_tree = nested_component_trees.first
         expect(nested_component_tree).to include("id")
-        expect(nested_component_tree["id"]).to include("aspace_C0614_c00002")
+        expect(nested_component_tree["id"]).to include("aspace_C0251_c0002")
       end
 
       it "doesn't index them as top-level components" do
         components = result["components"]
-        expect(components.length).to eq 1
-        expect(components.group_by { |x| x["id"].first }["C0002_i1"]).to be_blank
+        expect(components.length).to eq 6
+        expect(components.group_by { |x| x["id"].first }["aspace_C0251_c0002"]).to be_blank
       end
 
       it "doesn't leave empty arrays around" do
         component = result.as_json["components"].first
 
         expect(component["scopecontent_ssm"]).not_to be_empty
-        expect(component["scopecontent_ssm"].length).to eq(3)
+        expect(component["scopecontent_ssm"].length).to eq(1)
         expect(component["scopecontent_ssm"].first).not_to be_empty
       end
     end
@@ -118,7 +118,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "digital objects" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "C0776.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "C0776.processed.EAD.xml")
     end
 
     context "when <dao> is child of the <did> in a <c0x> component" do
@@ -130,8 +130,8 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(component["digital_objects_ssm"]).to eq(
           [
             JSON.generate(
-              label: "Princeton Ethiopic Manuscript No. 84: Magical Prayers to the Virgin Mary",
-              href: "https://figgy.princeton.edu/concern/scanned_resources/d93bdf4a-83d1-40cc-ba48-9eeac87a91fc/manifest",
+              label: "View digital content",
+              href: "https://figgy.princeton.edu/concern/scanned_resources/919b6dfa-db00-437c-a49d-0b76eb4358d1/manifest",
               role: "https://iiif.io/api/presentation/2.1/"
             )
           ]
@@ -139,8 +139,8 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(component["direct_digital_objects_ssm"]).to eq(
           [
             JSON.generate(
-              label: "Princeton Ethiopic Manuscript No. 84: Magical Prayers to the Virgin Mary",
-              href: "https://figgy.princeton.edu/concern/scanned_resources/d93bdf4a-83d1-40cc-ba48-9eeac87a91fc/manifest",
+              label: "View digital content",
+              href: "https://figgy.princeton.edu/concern/scanned_resources/919b6dfa-db00-437c-a49d-0b76eb4358d1/manifest",
               role: "https://iiif.io/api/presentation/2.1/"
             )
           ]
