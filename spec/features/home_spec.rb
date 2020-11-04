@@ -9,6 +9,6 @@ describe "the home page", type: :feature, js: true do
 
     visit "/"
 
-    expect(page).to be_axe_clean
+    expect(page).to be_axe_clean.according_to :wcag2a, :wcag2aa, :wcag21a, :wcag21aa
   end
 end
