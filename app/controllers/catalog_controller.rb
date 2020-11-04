@@ -150,7 +150,6 @@ class CatalogController < ApplicationController
     config.add_facet_field "creator_ssim", label: "Creator", limit: 10
     config.add_facet_field "creators_ssim", label: "Creator", show: false
     config.add_facet_field "date_range_sim", label: "Date range", range: true
-    config.add_facet_field "level_sim", label: "Level", limit: 10
     config.add_facet_field "names_ssim", label: "Names", limit: 10
     config.add_facet_field "repository_sim", label: "Repository", limit: 10
     config.add_facet_field "geogname_sim", label: "Place", limit: 10
