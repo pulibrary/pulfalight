@@ -1,3 +1,4 @@
+@import "variables/colors";
 
 .nav.nav-tabs .nav-item .nav-link:not(.active) {
   background: inherit;
@@ -14,5 +15,9 @@ $container-max-widths: (
 // Make font size for access tab labels and property consistent with other tabs
 #access dl dt {
   font-size: 1rem !important;
+}
+
+a {
+  color: $blue;
 }
 
