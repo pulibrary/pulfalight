@@ -1,0 +1,22 @@
+{
+    "locations": [
+        {
+            "lid": 12315,
+            "name": "Mudd Library",
+            "category": "library",
+            "desc": "<p>Closed for Renovations</p>",
+            "url": "https://library.princeton.edu/special-collections/mudd",
+            "contact": "",
+            "lat": "",
+            "long": "",
+            "color": "#F2A900",
+            "fn": "",
+            "day": "Wednesday",
+            "times": {
+                "status": "closed",
+                "currently_open": false
+            },
+            "rendered": "Closed"
+        }
+    ]
+}
