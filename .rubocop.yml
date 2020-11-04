@@ -63,6 +63,7 @@ RSpec/ExampleLength:
     - 'spec/services/aspace/client_spec.rb'
     - 'spec/services/aspace/indexer_spec.rb'
     - 'spec/services/aspace_fixture_generator_spec.rb'
+    - 'spec/features/accessibility_spec.rb'
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
