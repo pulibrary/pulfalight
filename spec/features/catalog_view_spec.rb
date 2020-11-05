@@ -55,7 +55,7 @@ describe "viewing catalog records", type: :feature, js: true do
     it "has a collection access tab" do
       expect(page.body).to include "The collection is open for research use."
       expect(page.body).to include "Single photocopies may be made for research purposes"
-      expect(page.body).to include "Public Policy Papers, Special Collections"
+      expect(page.body).to include "Public Policy Papers, Department of Special Collections"
       expect(page.body).to include "65 Olden Street"
       expect(page.body).to include "(609) 258-6345"
     end

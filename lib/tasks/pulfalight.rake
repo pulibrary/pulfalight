@@ -169,7 +169,7 @@ namespace :pulfalight do
 
   desc "Seed fixture data to Solr"
   task seed: :environment do
-    puts "Seeding index with data from spec/fixtures/ead..."
+    puts "Seeding index with data from spec/fixtures/aspace/generated..."
     # Delete previous fixtures. Needed for lando-based test solr.
     delete_by_query("<delete><query>*:*</query></delete>")
     index_directory(name: "spec/fixtures/aspace/generated/", root_path: Rails.root, enqueue: false)

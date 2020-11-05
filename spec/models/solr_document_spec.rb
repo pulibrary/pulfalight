@@ -51,7 +51,7 @@ RSpec.describe Arclight::SolrDocument do
 
   context "when the collection contains one or more member components" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "MC152.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC152.processed.EAD.xml")
     end
     let(:collection_values) do
       indexer.map_record(record)
@@ -75,7 +75,7 @@ RSpec.describe Arclight::SolrDocument do
 
   context "when the collection contains an encoded physical location" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "MC152.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC152.processed.EAD.xml")
     end
     let(:values) do
       indexer.map_record(record)
@@ -97,7 +97,7 @@ RSpec.describe Arclight::SolrDocument do
 
   describe "#to_json" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
     let(:values) do
       indexer.map_record(record)
@@ -127,7 +127,7 @@ RSpec.describe Arclight::SolrDocument do
 
   describe "#collection?" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
     let(:values) do
       indexer.map_record(record)

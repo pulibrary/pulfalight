@@ -42,7 +42,7 @@ describe PulfalightHelper, type: :helper do
       SolrDocument.new(component_values)
     end
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "MC152.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC152.processed.EAD.xml")
     end
 
     before do

@@ -33,7 +33,7 @@ describe "EAD 2 traject indexing", type: :feature do
     records.first
   end
   let(:fixture_path) do
-    Rails.root.join("spec", "fixtures", "aspace", "generated", "MC152.processed.EAD.xml")
+    Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC152.processed.EAD.xml")
   end
 
   describe "solr fields" do
@@ -55,7 +55,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "ASpace indexing" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "C1588.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1588.EAD.xml")
     end
     it "indexes container_location_codes_ssim" do
       components = result["components"]
@@ -72,7 +72,7 @@ describe "EAD 2 traject indexing", type: :feature do
   describe "container indexing" do
     context "when indexing a collection with deeply nested components" do
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "aspace", "generated", "C0251.processed.EAD.xml")
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0251.processed.EAD.xml")
       end
 
       it "indexes the nested components" do
@@ -118,7 +118,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "digital objects" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "C0776.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0776.processed.EAD.xml")
     end
 
     context "when <dao> is child of the <did> in a <c0x> component" do
@@ -155,7 +155,7 @@ describe "EAD 2 traject indexing", type: :feature do
         }
       end
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "aspace", "generated", "MC085.processed.EAD.xml")
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC085.processed.EAD.xml")
       end
       let(:component) { result["components"].find { |c| c["id"] == ["aspace_MC085_c01084"] }["components"][0]["components"][0] }
 
@@ -234,7 +234,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
     describe "collection notes indexing" do
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "aspace", "generated", "MC221.processed.EAD.xml")
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC221.processed.EAD.xml")
       end
 
       it "indexes all note fields from the <archdesc> child elements for the collection" do
@@ -313,7 +313,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "indexing collection component extent values" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "MC148.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC148.processed.EAD.xml")
     end
 
     it "indexes all extent elements" do
@@ -335,7 +335,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#physloc_code_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "resolves and indexes the physical location code" do
@@ -354,7 +354,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#location_code_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "resolves and indexes the location code" do
@@ -365,7 +365,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#location_note_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "indexes the location note" do
@@ -377,7 +377,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#volume_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "MC152.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC152.processed.EAD.xml")
     end
 
     # I can't find any data from ASpace that has "vol" in the extent anymore. We
@@ -409,7 +409,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#names_ssim" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "does not include staff names" do
