@@ -138,13 +138,6 @@ namespace :pulfalight do
         end
       end
     end
-
-    desc "Index Princeton University Library Finding Aids (PULFA) into Solr"
-    task pulfa: :environment do
-      Dir.glob("eads/**/*.xml").each do |file|
-        index_file(relative_path: file, root_path: Rails.root)
-      end
-    end
   end
 
   namespace :server do
