@@ -68,13 +68,6 @@ Once the jobs are finished processing by sidekiq you'll need to either wait 5 mi
 A subset of collections (the same that are run in specs) can be indexed into
   development via `bundle exec rake pulfalight:seed`
 
-### Citation Formatting
-
-Citations are generated for collections and components, and rendered on the
-show page for either of these resources. The default formatted repository
-sources may be found and updated within the appropriate [configuration
-file](./config/citations.yml).
-
 #### Adding new EADs to test suite.
 
 1. Open up `app/services/aspace_fixture_generator.rb`
@@ -82,3 +75,10 @@ file](./config/citations.yml).
 1. If you're only interested in a subset of components, add them to the
    `AspaceFixtureGEnerator::COMPONENT_MAP` constant.
 1. `bundle exec rake pulfalight:fixtures:refresh_aspace_fixtures`
+
+### Citation Formatting
+
+Citations are generated for collections and components, and rendered on the
+show page for either of these resources. The default formatted repository
+sources may be found and updated within the appropriate [configuration
+file](./config/citations.yml).
