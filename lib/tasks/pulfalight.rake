@@ -104,7 +104,7 @@ namespace :pulfalight do
     desc "Pulls Aspace EAD Fixtures"
     task refresh_aspace_fixtures: :environment do
       Rails.logger = Logger.new(STDOUT)
-      AspaceFixtureGenerator.regenerate!
+      AspaceFixtureGenerator.new.regenerate!
     end
   end
   namespace :index do

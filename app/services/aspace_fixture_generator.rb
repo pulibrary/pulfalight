@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 class AspaceFixtureGenerator
-  def self.regenerate!
-    new(client: Aspace::Client.new).regenerate!
-  end
-
   # EAD IDs to pull down from ArchivesSpace.
   EAD_IDS = [
     "C0251",
@@ -54,9 +50,12 @@ class AspaceFixtureGenerator
     "C1408" => []
   }.freeze
 
-  attr_reader :client
-  def initialize(client:)
+  attr_reader :client, :ead_ids, :component_map, :fixture_dir
+  def initialize(client: Aspace::Client.new, ead_ids: EAD_IDS, component_map: COMPONENT_MAP, fixture_dir: Rails.root.join("spec", "fixtures", "aspace", "generated"))
     @client = client
+    @ead_ids = ead_ids
+    @component_map = component_map
+    @fixture_dir = fixture_dir
   end
 
   def regenerate!
@@ -70,19 +69,15 @@ class AspaceFixtureGenerator
     end
   end
 
-  def fixture_dir
-    Rails.root.join("spec", "fixtures", "aspace", "generated")
-  end
-
   private
 
   # Filter an EAD to just the components in the component map and write it to a
   # separate file.
   def process(fixture_file)
-    return unless COMPONENT_MAP.key?(fixture_file.eadid)
+    return unless component_map.key?(fixture_file.eadid)
     output = select_components(
       fixture_file,
-      COMPONENT_MAP[fixture_file.eadid]
+      component_map[fixture_file.eadid]
     )
     File.open(fixture_dir.join(fixture_file.repository, "#{fixture_file.eadid}.processed.EAD.xml"), "w") do |f|
       f.puts(output)
@@ -90,8 +85,7 @@ class AspaceFixtureGenerator
   end
 
   def select_components(fixture_file, components)
-    doc = Nokogiri::XML(fixture_file.content)
-    doc.remove_namespaces!
+    doc = Nokogiri::XML(fixture_file.content).remove_namespaces!
     doc.search("//c").each do |container|
       all_ids = container.search(".//c").map { |x| x["id"] }
       container.remove if !components.include?(container["id"]) && (all_ids & components).blank?
@@ -102,10 +96,9 @@ class AspaceFixtureGenerator
   def fixture_files
     @fixture_files ||=
       begin
-        EAD_IDS.lazy.map do |eadid|
+        ead_ids.lazy.map do |eadid|
           uri, repo_code = client.ead_url_for_eadid(eadid: eadid)&.first
-          ead_content = get_content(uri, eadid)
-          EADContainer.new(eadid: eadid, content: ead_content, repository: repo_code)
+          EADContainer.new(eadid: eadid, content: get_content(uri, eadid), repository: repo_code)
         end
       end
   end
@@ -116,7 +109,7 @@ class AspaceFixtureGenerator
   #   for the test suite.
   def get_content(uri, eadid)
     file = fixture_dir.glob("**/*.EAD.xml").find { |x| x.to_s.ends_with?("#{eadid}.EAD.xml") }
-    return File.read(file) if File.exist?(file)
+    return File.read(file) if file.present?
     client.get("#{uri}.xml", query: { include_daos: true, include_unpublished: false }, timeout: 1200).body.force_encoding("UTF-8")
   end
 
