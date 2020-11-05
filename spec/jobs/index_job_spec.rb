@@ -22,7 +22,7 @@ describe IndexJob do
 
   let(:file_paths) do
     [
-      Rails.root.join("spec", "fixtures", "ead", "rarebooks", "WC127.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "WC127.EAD.xml")
     ]
   end
   let(:connection) { instance_double(RSolr::Client) }

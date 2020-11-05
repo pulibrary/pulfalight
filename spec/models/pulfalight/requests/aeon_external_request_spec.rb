@@ -37,7 +37,7 @@ RSpec.describe Pulfalight::Requests::AeonExternalRequest do
   let(:document) { SolrDocument.new(solr_values) }
   let(:presenter) { Arclight::ShowPresenter.new(document, view_context, config) }
   let(:fixture_path) do
-    Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC152.ead.xml")
+    Rails.root.join("spec", "fixtures", "aspace", "generated", "MC152.processed.EAD.xml")
   end
 
   describe "#form_mapping" do

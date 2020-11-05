@@ -387,8 +387,6 @@ describe "EAD 2 traject indexing", type: :feature do
       components = result["components"].select { |c| c.key?("volume_ssm") }
       expect(components).not_to be_empty
 
-      expect(components.first).to include("volume_ssm")
-      expect(components.first["volume_ssm"]).to eq(["2 Volumes"])
     end
   end
 
