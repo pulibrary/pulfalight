@@ -131,6 +131,29 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page.body).to include "Places"
       expect(page.body).to include "Middle East -- Politics"
     end
+
+    context "when viewing an expanded collection" do
+      before do
+        visit "/catalog/MC148?expanded=true"
+      end
+
+      it "has child components rendered", js: true do
+        expect(page).to have_css(".collection-tree-block--child")
+      end
+
+      context "when a child component has container location information" do
+        before do
+          # rubocop:disable RSpec/AnyInstance
+          allow_any_instance_of(AeonRequest).to receive(:requestable?).and_return(true)
+          # rubocop:enable RSpec/AnyInstance
+          visit "/catalog/MC148?expanded=true"
+        end
+
+        it "has child components rendered with request buttons", js: true do
+          expect(page).to have_css(".collection-tree-block--child .add-to-cart-block button img")
+        end
+      end
+    end
   end
   context "when a component has a digital object with a manifest" do
     before do

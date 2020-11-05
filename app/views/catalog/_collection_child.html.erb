@@ -5,10 +5,18 @@
         <span><%= document.extent %></span>
       </div>
     </div>
+
+    <% if document.aeon_request.requestable? %>
+      <add-to-cart-button
+          class="add-to-cart-block"
+          <% document.aeon_request.attributes.each_pair do |key, value| %>
+            <% unless value.nil? || value.empty? %>
+              <%= key %>="<%= value %>"
+            <% end %>
+          <% end %>
+          :form-params="<%= JSON.generate(document.aeon_request.form_attributes) %>"
+          >
+          <%= image_tag(asset_path('icon-request.svg')) %>
+      </add-to-cart-button>
+    <% end %>
   </div>
-  <% if document.direct_digital_objects.present? %>
-    <%= render_universal_viewer %>
-  <% end %>
-  <% if document.direct_digital_objects.present? %>
-    <%= render_simple_link %>
-  <% end %>

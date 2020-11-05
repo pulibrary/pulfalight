@@ -3,6 +3,7 @@
 @import 'modules/document_access_badge';
 @import 'modules/document_extent_badge';
 @import 'modules/print_button';
+@import 'modules/request_button';
 @import 'modules/request_cart';
 @import 'modules/view_content_button';
 
@@ -168,11 +169,16 @@
       }
     }
 
+    /* This should use .component-content-block (or something similar) */
     .tab-pane {
+      border-width: 0px;
       padding-top: 1.0rem;
 
-      &.active {
+      &--requestable {
         margin-top: -2.8rem;
+      }
+
+      &.active {
         padding-bottom: 4.4rem;
 
         .document-attributes {

@@ -47,53 +47,52 @@
       </div>
 
       <div class="col-md-8">
-
         <div class="tab-content">
 
-<nav class="navbar sticky-top">
-        <div class="row">
-          <div class="col-md-4 lux">
-            <% if @document.aeon_request.requestable? %>
-              <add-to-cart-button
-                class="add-to-cart-block"
-                <% @document.aeon_request.attributes.each_pair do |key, value| %>
-                  <% unless value.nil? || value.empty? %>
-                    <%= key %>="<%= value %>"
-                  <% end %>
-                <% end %>
-                :form-params="<%= JSON.generate(@document.aeon_request.form_attributes) %>"
-                >
-                  <%= image_tag(asset_path('icon-request.svg')) %>
-                  Request this box
-                </add-to-cart-button>
-            <% end %>
-          </div>
-        </div><!-- .row -->
-      </nav>
+          <% if @document.aeon_request.requestable? %>
+            <nav class="navbar sticky-top aeon-request-block">
+              <div class="row">
+                <div class="col-md-4 lux">
+                  <add-to-cart-button
+                    class="add-to-cart-block"
+                    <% @document.aeon_request.attributes.each_pair do |key, value| %>
+                      <% unless value.nil? || value.empty? %>
+                        <%= key %>="<%= value %>"
+                      <% end %>
+                    <% end %>
+                    :form-params="<%= JSON.generate(@document.aeon_request.form_attributes) %>"
+                    >
+                      <%= image_tag(asset_path('icon-request.svg')) %>
+                      Request this box
+                  </add-to-cart-button>
+                </div>
+              </div><!-- .row -->
+            </nav>
+          <% else %>
+            <nav class="navbar sticky-top aeon-request-block--disabled"></nav>
+          <% end %>
 
-          <div class='tab-pane active' id='summary' role='tabpanel'>
+          <% @requestable_style_class = @document.aeon_request.requestable? ? 'tab-pane--requestable' : '' %>
+
+          <div class='tab-pane active <%= @requestable_style_class %>' id='summary' role='tabpanel'>
             <%= render(partial: 'component_summary') %>
           </div>
-          <div class='tab-pane' id='description' role='tabpanel'>
+          <div class='tab-pane <%= @requestable_style_class %>' id='description' role='tabpanel'>
             <%= render(partial: 'collection_description') %>
           </div>
-          <div class='tab-pane' id='collection-history' role='tabpanel'>
+          <div class='tab-pane <%= @requestable_style_class %>' id='collection-history' role='tabpanel'>
             <%= render(partial: 'collection_history') %>
           </div>
 
-          <div class='tab-pane' id='access' role='tabpanel'>
+          <div class='tab-pane <%= @requestable_style_class %>' id='access' role='tabpanel'>
             <%= render(partial: 'collection_access') %>
           </div>
 
-          <div class='tab-pane' id='find-more' role='tabpanel'>
+          <div class='tab-pane <%= @requestable_style_class %>' id='find-more' role='tabpanel'>
             <%= render(partial: 'collection_find_more') %>
           </div>
-
-
         </div><!-- .tab-content -->
       </div><!-- .col-md-8 -->
-
     </div><!-- .row.content-container -->
-
   </div>
 </div>
