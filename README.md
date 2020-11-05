@@ -53,16 +53,7 @@ full reindex, or if that's happened before, index any changes.
 
 This will move to a rake task when our production system is implemented.
 
-Sidekiq must be running to process the resulting jobs (see below.)
-
-#### Indexing into a Development environment
-
-A subset of collections (the same that are run in specs) can be indexed into
-  development via `bundle exec rake pulfalight:seed`
-
-If you want to install a specific EAD:
-
-Start sidekiq in a terminal window that you keep open:
+Sidekiq must be running in a separate window to process the resulting jobs (see below.)
 
 `$ bundle exec sidekiq`
 
@@ -72,7 +63,10 @@ Once the jobs are finished processing by sidekiq you'll need to either wait 5 mi
 
 `> Blacklight.default_index.connection.commit`
 
-#### Indexing the PULFA Documents into the Pulfalight Server Environment
+#### Indexing into a Development environment
+
+A subset of collections (the same that are run in specs) can be indexed into
+  development via `bundle exec rake pulfalight:seed`
 
 ### Citation Formatting
 
