@@ -168,6 +168,8 @@ namespace :pulfalight do
     # Delete previous fixtures. Needed for lando-based test solr.
     delete_by_query("<delete><query>*:*</query></delete>")
     index_directory(name: "spec/fixtures/ead/", root_path: Rails.root, enqueue: false)
+    puts "Seeding index with data from spec/fixtures/aspace..."
+    index_directory(name: "spec/fixtures/aspace/generated", root_path: Rails.root, enqueue: false)
     blacklight_connection.commit
   end
 
