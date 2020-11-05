@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/rr171x21j">MC148</eadid><filedesc><titlestmt><titleproper>David E. Lilienthal Papers, <date normal="1900/1981" type="inclusive">1900-1981</date> (bulk <date normal="1950/1981" type="bulk">1950-1981</date>): Inventory <num>MC148</num></titleproper></titlestmt><publicationstmt><publisher>EADs for public policy collection from import batch</publisher><p><date>1998</date></p></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2020-11-03 13:42:11 -0500</date>.</creation><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T16:19:02.874-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-04-15T15:19:21.608-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>EADs for public policy collection from import batch</corpname>
+    </repository>
+    <unittitle>David E. Lilienthal Papers</unittitle>
+    <unitid>MC148</unitid>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">632 boxes</extent>
+    </physdesc>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">4 items</extent>
+    </physdesc>
+    <unitdate normal="1900/1981" type="inclusive">1900-1981</unitdate>
+    <unitdate normal="1950/1981" type="bulk">1950-1981</unitdate>
+    <abstract id="aspace_a37895c5fe600e989b9461ebebcad471">David Lilienthal served on the Wisconsin Public Service Commission (1923-1932), as a member of the board of directors (1933-1941) and then chairman (1941-1946) of the Tennessee Valley Authority (TVA), as first chairman (1946-1950) of the Atomic Energy Commission, and, later, in private business as an industrial consultant and chairman (1955) of the Development and Resources Corporation, which was involved with the Khuzestan Program in Iran. This collection consists of the papers of Lilienthal spanning his entire career, including correspondence, reports, articles, speeches, and printed matter.</abstract>
+    <physloc id="aspace_43c1fa259ae9b2df02d6fea261a126a9">mudd</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+.    </langmaterial>
+  </did>
+  <bioghist id="aspace_MC148_b1">
+    <head>Biographical / Historical</head>
+    <chronlist>
+      <chronitem>
+        <date>1931</date>
+        <eventgrp>
+          <event>Wisconsin Railroad Commission</event>
+        </eventgrp>
+      </chronitem>
+      <chronitem>
+        <date>1931-1932</date>
+        <eventgrp>
+          <event>Wisconsin Public Service Commission, Member Commissioner</event>
+        </eventgrp>
+      </chronitem>
+      <chronitem>
+        <date>1933-1946</date>
+        <eventgrp>
+          <event>Tennessee Valley Authority Member, Board of Directors, 1933-1940 Director and Chairman, 1941-1946</event>
+        </eventgrp>
+      </chronitem>
+      <chronitem>
+        <date>1946</date>
+        <eventgrp>
+          <event>United States Department of State, Board of Consultants on the International Control of Atomic Energy, Chairman</event>
+        </eventgrp>
+      </chronitem>
+      <chronitem>
+        <date>1946-1950</date>
+        <eventgrp>
+          <event>U.S. Atomic Energy Commission, Chairman</event>
+        </eventgrp>
+      </chronitem>
+    </chronlist>
+<p>Publications by Lilienthal: TVA, Democray on the March (New York: Harper &amp; Brothers, 1944), This I Do Believe (New York: Harper, 1949), Big Business, A New Era (New York: Harper, 1953), Change, Hope, and the Bomb (Princeton: Princeton University Press, 1963), The Journals of David E. Lilienthal, vols. I-VII. (New York: Harper, 1964-1983), and Atomic Energy, A New Start (New York: Harper &amp; Row, 1980)</p>  </bioghist>
+  <scopecontent id="aspace_fa2e635fd8f43fda064a5de17a597003">
+    <head>Scope and Contents</head>
+<p>This collection consists of the papers of Lilienthal spanning his entire career. Included are correspondence, reports, articles, speeches, and printed matter relating to his positions with the Wisconsin Public Service Commission (1923-1932), as a member of the board of directors (1933-1941) and then chairman (1941-1946) of the Tennessee Valley Authority (TVA), as first chairman (1946-1950) of the Atomic Energy Commission, and, later, in private business as an industrial consultant and chairman (1955) of the Development and Resources Corporation, which was involved with the Khuzestan Program in Iran. Also present are manuscripts for six works, including TVA, Democracy on the March (1944), Big Business, A New Era (1953), Atomic Energy, A New Start (1980), and the published Journals of David E. Lilienthal, Vols. I-VII, 1939-1981 (1964-1983), as well as his personal, unpublished, manuscript journals (1915-1981).</p><p> Other personal papers include documents, early correspondence (1917-1923) with his future wife, Helen Lamb, and other family members, appointment books, scrapbooks, film and tape recordings, photographs, and memorabilia.</p>  </scopecontent>
+  <arrangement id="aspace_de63f164c90cc8cae34cbbfcab612828">
+    <head>Arrangement</head>
+<p>The materials in this collection may have been put in this order by Lilienthal or his administrative staff before transfer to Princeton, and further arrangement may have been done by an archivist at Princeton but no information is available regarding the extent to which an archivist was involved in the current arrangement. In 2019 a number of materials after series 22 were rehoused and merged with corresponding series into series 8, 10-13, and 25. Other series that are are broken up in in two, including speeches and correspondence, are left intact.</p>  </arrangement>
+  <accessrestrict id="aspace_b15098f579873d87e372993cedb9e664">
+    <head>Conditions Governing Access</head>
+<p>LINKED DIGITAL CONTENT NOTE: Please note that some previously linked digital content is temporarily unavailable while the data is being migrated from an outdated access service. If you would like to access this content, please send a request to mudd@princeton.libanswers.com.</p><p> Collection is open for research use.</p>  </accessrestrict>
+  <phystech id="aspace_f841a1cef432ac1da7a3d65529a8486d">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>Access to audiovisual material in this collection follows the Mudd Manuscript Library <extref href="http://rbsc.princeton.edu/policies/mudd-library-imaging-guidelines-and-price-list#Audio%20visual" type="simple">policy for preservation and access to audiovisual materials</extref>.</p>  </phystech>
+  <userestrict id="aspace_221e7fd0c8e792adf352e940312c497f">
+    <head>Conditions Governing Use</head>
+<p>Single photocopies may be made for research purposes. For quotations that are fair use as defined under <extref href="http://copyright.princeton.edu/basics/fair-use" type="simple">U. S. Copyright Law</extref>, no permission to cite or publish is required. For those few instances beyond fair use, any copyright vested in the donor has passed to Princeton University and researchers are free to move forward with use of materials without anything further from Mudd Library. For materials not created by the donor, where the copyright is not held by the University, researchers are responsible for determining who may hold the copyright and obtaining approval from them. In these instances, researchers do not need anything further from the Mudd Library to move forward with their use. If you have a question about who owns the copyright for an item, you may request clarification by contacting us through the <extref href="https://library.princeton.edu/special-collections/ask-us" type="simple">Ask Us! form</extref>.</p>  </userestrict>
+  <acqinfo id="aspace_8aa47b45d0d6dc5e5988aa2915a96417">
+    <head>Immediate Source of Acquisition</head>
+<p>The original collection was a gift from David E. Lilienthal in 1965. Several additions to the collection were received over the next two decades, the last one for which documentation exists was in July 1987. Amendments to the original 1965 Deed of Gift allow access to previously restricted materials.</p>  </acqinfo>
+  <appraisal id="aspace_8e66382cdbda50f2427cf544c6726d58">
+    <head>Appraisal</head>
+<p>No information about appraisal is available for this collection&gt;</p>  </appraisal>
+  <prefercite id="aspace_226c95e048c0e1f20fd16463b5cef04a">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); David E. Lilienthal Papers, Box and Folder Number; Public Policy Papers, Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_processing">
+    <head>Processing Information</head>
+<p>There is no processing information available for this collection. Existing content lists provided a preliminary inventory, and and machine-readable finding aid was created in <date type="processing" normal="2007-01">January 2007</date> by <name role="processor">Cristela Garcia Spitz</name>.</p>  </processinfo>
+  <controlaccess>
+    <subject source="lcsh">Big business -- United States -- 20th century.</subject>
+    <subject source="lcsh">Chemical industries -- United States -- 20th century.</subject>
+    <subject source="lcsh">Dams -- Iran -- 20th century.</subject>
+    <subject source="lcsh">Dams -- Tennessee -- 20th century.</subject>
+    <subject source="lcsh">Economic development projects -- Iran -- Khuzestan -- 20th century.</subject>
+    <subject source="lcsh">Economic development projects -- Tennessee -- 20th century.</subject>
+    <subject source="lcsh">Flood control -- Tennessee -- 20th century.</subject>
+    <subject source="lcsh">Flood dams and reservoirs -- Tennessee -- 20th century.</subject>
+    <subject source="lcsh">Industries -- Power supply -- 20th century.</subject>
+    <subject source="lcsh">Mineral industries -- United States -- 20th century.</subject>
+    <subject source="lcsh">Natural resources -- Developing countries -- 20th century.</subject>
+    <subject source="lcsh">Nuclear energy -- United States.</subject>
+    <subject source="lcsh">Nuclear industry -- United States.</subject>
+    <subject source="lcsh">Nuclear nonproliferation.</subject>
+    <subject source="lcsh">Power resources -- Tennessee -- 20th century.</subject>
+    <subject source="lcsh">Public utilities -- Wisconsin.</subject>
+    <subject source="lcsh">Railroads and state -- United States -- 20th century.</subject>
+    <subject source="lcsh">Regional planning -- Tennessee -- 20th century.</subject>
+    <subject source="lcsh">Rural development -- Tennessee -- 20th century.</subject>
+    <subject source="lcsh">Rural electrification -- Tennessee -- 20th century.</subject>
+    <subject source="lcsh">Water resources development -- Tennessee -- 20th century.</subject>
+    <subject source="lcsh">World War, 1939-1945 -- Economic aspects -- United States.</subject>
+    <subject source="lcsh">Industries -- Power supply -- United States -- 20th century.</subject>
+    <geogname source="lcnaf">Khuzestan (Iran) -- Economic conditions -- 20th century.</geogname>
+    <geogname source="lcnaf">Tennessee -- Politics and government -- 1865-1950.</geogname>
+    <genreform source="aat">Audio tapes.</genreform>
+    <genreform source="aat">Autobiographies.</genreform>
+    <genreform source="aat">Correspondence.</genreform>
+    <genreform source="aat">Journals.</genreform>
+    <genreform source="aat">Manuscripts.</genreform>
+    <genreform source="aat">Memorabilia.</genreform>
+    <genreform source="aat">Photographs.</genreform>
+    <genreform source="aat">Scrapbooks.</genreform>
+    <genreform source="aat">Speeches.</genreform>
+    <occupation source="lcsh">Lawyers -- United States -- 20th century.</occupation>
+    <occupation source="lcsh">Public officers -- United States -- 20th century.</occupation>
+    <subject source="local">American history/20th century</subject>
+    <subject source="local">American politics and government</subject>
+    <subject source="local">Cold War</subject>
+    <subject source="local">Economic history</subject>
+    <subject source="local">International organizations</subject>
+  </controlaccess>
+  <dsc><c id="aspace_MC148_c00001" level="series"><did><unittitle>Series 1: Articles, books, and Lecture Notes by David E. Lilienthal</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">17 boxes</extent></physdesc><unitdate normal="1918-01-01/1952-12-31" type="inclusive">1918-1952</unitdate></did><scopecontent id="aspace_6bbfefeff44273e9b94af6705cee02ff"><head>Scope and Contents</head><p>Series 1: Articles, books, and lecture notes includes articles and books written by Lilienthal from 1918-1949 and lecture notes from Lilienthal's time at law school.</p></scopecontent><arrangement id="aspace_c7f6b5dd3f60282872d6a7df68b0ba0b"><head>Arrangement</head><p>The materials in this series are arranged in chronological order.</p></arrangement><c id="aspace_MC148_c00002" level="file"><did><unittitle>1918</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent></physdesc><unitdate normal="1918/1918" type="inclusive">1918</unitdate><container altrender="mudd" id="aspace_7b9b2697f733985a30424a7d3ae8730a" label="mixed materials [32101105978116]" type="box">1</container></did></c><c id="aspace_MC148_c00018" level="file"><did><unittitle>1949</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">4 boxes</extent></physdesc><unitdate normal="1947-01-01/1952-12-31" type="inclusive">1947-1952</unitdate></did></c></c></dsc>
+</archdesc>
+</ead>

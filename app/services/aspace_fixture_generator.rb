@@ -34,9 +34,7 @@ class AspaceFixtureGenerator
     return unless component_filter.key?(fixture_file.eadid)
     output = select_components(
       fixture_file,
-      [
-        component_filter[fixture_file.eadid]
-      ]
+      component_filter[fixture_file.eadid]
     )
     File.open(fixture_dir.join("#{fixture_file.eadid}.processed.EAD.xml"), "w") do |f|
       f.puts(output)
@@ -47,6 +45,32 @@ class AspaceFixtureGenerator
     {
       "C0776" => [
         "aspace_C0776_c00071"
+      ],
+      "MC085" => [
+        "aspace_MC085_c01078"
+      ],
+      "MC152" => [
+        "aspace_MC152_c001",
+        "aspace_MC152_c009",
+        "aspace_MC152_c010"
+      ],
+      "MC221" => [
+        "aspace_MC221_c0001",
+        "aspace_MC221_c0002"
+      ],
+      "C0251" => [
+        "aspace_C0251_c0001",
+        "aspace_C0251_c0002",
+        "aspace_C0251_c0007",
+        "aspace_C0251_c0089",
+        "aspace_C0251_c0091",
+        "aspace_C0251_c0097",
+        "aspace_C0251_c0101"
+      ],
+      "WC064" => ["aspace_WC064_c1"],
+      "MC148" => [
+        "aspace_MC148_c00002",
+        "aspace_MC148_c00018"
       ]
     }
   end
@@ -54,18 +78,23 @@ class AspaceFixtureGenerator
   def select_components(fixture_file, components)
     doc = Nokogiri::XML(fixture_file.content)
     doc.remove_namespaces!
-    doc.search("./ead/archdesc/dsc/c").each do |container|
-      container.remove unless components.include?(container["id"])
+    doc.search("//c").each do |container|
+      all_ids = container.search(".//c").map { |x| x["id"] }
+      container.remove if !components.include?(container["id"]) && (all_ids & components).blank?
     end
     doc.to_xml
   end
 
   def eadids
     [
-      "C0002",
-      "C0614",
       "C0251",
-      "C0776"
+      "C0776",
+      "MC085",
+      "MC152",
+      "C1588",
+      "MC221",
+      "WC064",
+      "MC148"
     ]
   end
 
