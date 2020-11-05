@@ -40,6 +40,15 @@ for information regarding the configuration of repositories in ArcLight.
 
 ### Indexing documents into Pulfalight
 
+#### Configuring ASpace
+
+Create a .env file in the root of the project with the following information
+
+```
+ASPACE_USER=yourusername
+ASPACE_PASSWORD=yourpassword
+```
+
 #### Index "Interesting" EADs
 A sub-section of all our collections have been identified and can be queued up
   for ingest via:
