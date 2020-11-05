@@ -5,14 +5,14 @@ require "rails_helper"
 describe "viewing catalog records", type: :feature, js: true do
   context "when viewing a component show page" do
     it "renders a collection title as a link without a separate date element" do
-      visit "catalog/MC221_c0059"
+      visit "catalog/aspace_MC221_c0059"
       expect(page).to have_css(".collection.title a span", text: "Harold B. Hoskins Papers, 1822-1982")
       expect(page).not_to have_css(".collection-attributes h2.media span.col")
     end
   end
   context "when viewing a component which can be requested from Aeon" do
     xit "renders a request button" do
-      visit "/catalog/MC148_c00001"
+      visit "/catalog/aspace_MC148_c00001"
 
       # This is now blocked by the Request Cart Vue integration
     end
@@ -25,7 +25,7 @@ describe "viewing catalog records", type: :feature, js: true do
 
     context "with extent provided" do
       xit "maps this to the <form> <input>" do
-        visit "/catalog/MC148_c00001"
+        visit "/catalog/aspace_MC148_c00001"
 
         # This is now blocked by the Request Cart Vue integration
       end
@@ -33,7 +33,7 @@ describe "viewing catalog records", type: :feature, js: true do
   end
   context "with a component show page" do
     before do
-      visit "/catalog/MC221_c0060"
+      visit "/catalog/aspace_MC221_c0060"
     end
 
     it "has a table of contents element" do
@@ -55,7 +55,7 @@ describe "viewing catalog records", type: :feature, js: true do
     it "has a collection access tab" do
       expect(page.body).to include "The collection is open for research use."
       expect(page.body).to include "Single photocopies may be made for research purposes"
-      expect(page.body).to include "Public Policy Papers, Department of Special Collections"
+      expect(page.body).to include "Public Policy Papers, Special Collections"
       expect(page.body).to include "65 Olden Street"
       expect(page.body).to include "(609) 258-6345"
     end
@@ -74,7 +74,7 @@ describe "viewing catalog records", type: :feature, js: true do
     end
     context "which has a viewer", js: false do
       before do
-        visit "/catalog/MC221_c0094"
+        visit "/catalog/aspace_MC221_c0094"
       end
       it "displays the viewer" do
         expect(page).to have_css(".uv__overlay")
@@ -134,7 +134,7 @@ describe "viewing catalog records", type: :feature, js: true do
   end
   context "when a component has a digital object with a manifest" do
     before do
-      visit "/catalog/MC221_c0094"
+      visit "/catalog/aspace_MC221_c0094"
     end
 
     it "renders the universal viewer" do
@@ -145,7 +145,7 @@ describe "viewing catalog records", type: :feature, js: true do
   end
   context "when a component has a digital object with a link" do
     before do
-      visit "/catalog/MC221_c0119"
+      visit "/catalog/aspace_MC221_c0119"
     end
 
     it "renders a view content link" do

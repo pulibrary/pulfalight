@@ -95,7 +95,6 @@ class AspaceFixtureGenerator
       "MC221",
       "WC064",
       "MC148",
-      "C1588",
       "WC127"
     ]
   end

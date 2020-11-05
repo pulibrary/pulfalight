@@ -19,8 +19,8 @@ describe "catalog searches", type: :feature, js: true do
     end
 
     it "renders all collection extents in the collection search results" do
-      expect(page).to have_text("278.9 linear feet")
-      expect(page).to have_text("632 boxes and 2 oversize folders")
+      expect(page).to have_text("4 items")
+      expect(page).to have_text("632 boxes")
     end
   end
 

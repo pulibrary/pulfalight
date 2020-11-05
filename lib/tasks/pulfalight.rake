@@ -172,10 +172,7 @@ namespace :pulfalight do
     puts "Seeding index with data from spec/fixtures/ead..."
     # Delete previous fixtures. Needed for lando-based test solr.
     delete_by_query("<delete><query>*:*</query></delete>")
-    index_directory(name: "spec/fixtures/ead/", root_path: Rails.root, enqueue: false)
-    puts "Seeding index with data from spec/fixtures/aspace..."
-    index_directory(name: "spec/fixtures/aspace/generated", root_path: Rails.root, enqueue: false)
-    blacklight_connection.commit
+    index_directory(name: "spec/fixtures/aspace/generated/", root_path: Rails.root, enqueue: false)
   end
 
   desc "Generate a robots.txt file"
@@ -299,6 +296,9 @@ namespace :pulfalight do
     file_paths = Dir.glob(glob_pattern)
 
     file_paths.each do |file_path|
+      # Don't index full versions of seed files if given argument.
+      next if file_path.include?(".processed") && file_path.include?("MC221")
+      next if File.exist?(file_path.gsub(".EAD", ".processed.EAD")) && !file_path.include?("MC221")
       index_file(relative_path: file_path, root_path: root_path, enqueue: enqueue)
     end
   end

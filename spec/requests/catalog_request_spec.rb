@@ -13,7 +13,7 @@ describe "controller requests", type: :request do
   end
   context "when requesting to view a component" do
     it "renders containers within component" do
-      get "/catalog/C1588_c15"
+      get "/catalog/aspace_C1588_c15"
       expect(response).to render_template(:show)
       expect(response.body).to include("Folder 11")
     end
@@ -96,7 +96,7 @@ describe "controller requests", type: :request do
       get "/catalog/MC221"
       expect(response).to render_template(:show)
       expect(response.body).to include("Credit this material")
-      expect(response.body).to include("Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections, Princeton University Library")
+      expect(response.body).to include("Harold B. Hoskins Papers, Box and Folder Number; Public Policy Papers, Special Collections, Princeton University Library.")
     end
   end
 
@@ -130,8 +130,8 @@ describe "controller requests", type: :request do
 
     context "when searching for a specific component by ID" do
       it "directs the user to the exact component if it exists" do
-        get "/catalog?q=MC148_c00006"
-        expect(response).to redirect_to("http://www.example.com/catalog/MC148_c00006")
+        get "/catalog?q=aspace_MC148_c00002"
+        expect(response).to redirect_to("http://www.example.com/catalog/aspace_MC148_c00002")
       end
 
       it "directs the user to the search results if it does not exist" do
