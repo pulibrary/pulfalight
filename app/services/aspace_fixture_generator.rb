@@ -110,6 +110,10 @@ class AspaceFixtureGenerator
       end
   end
 
+  # Only fetch content from ASpace if the file doesn't already exist.
+  # @note This was added because sometimes these take a long time to fetch, and
+  #   all we want to do is process the original to have more or less components
+  #   for the test suite.
   def get_content(uri, eadid)
     file = fixture_dir.glob("**/*.EAD.xml").find { |x| x.to_s.ends_with?("#{eadid}.EAD.xml") }
     return File.read(file) if File.exist?(file)
