@@ -17,6 +17,11 @@ describe "controller requests", type: :request do
       expect(response).to render_template(:show)
       expect(response.body).to include("Folder 11")
     end
+    it "renders a component with diacritics" do
+      get "/catalog/C1408"
+      expect(response.body).to include("Tēlemachos")
+      expect(response.body).to include("Thessalonikē")
+    end
   end
 
   context "when requesting a JSON serialization of the Document" do
