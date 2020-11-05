@@ -70,7 +70,8 @@ class AspaceFixtureGenerator
       "WC064" => ["aspace_WC064_c1"],
       "MC148" => [
         "aspace_MC148_c00002",
-        "aspace_MC148_c00018"
+        "aspace_MC148_c00018",
+        "aspace_MC148_c07608"
       ]
     }
   end
@@ -111,7 +112,7 @@ class AspaceFixtureGenerator
   end
 
   def get_content(uri, eadid)
-    file = fixture_dir.join("#{eadid}.EAD.xml")
+    file = fixture_dir.glob("**/*.EAD.xml").find { |x| x.to_s.ends_with?("#{eadid}.EAD.xml") }
     return File.read(file) if File.exist?(file)
     client.get("#{uri}.xml", query: { include_daos: true, include_unpublished: false }, timeout: 1200).body.force_encoding("UTF-8")
   end

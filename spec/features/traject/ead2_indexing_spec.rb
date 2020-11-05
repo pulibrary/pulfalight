@@ -319,7 +319,7 @@ describe "EAD 2 traject indexing", type: :feature do
     it "indexes all extent elements" do
       expect(result).to include("components")
       components = result["components"]
-      expect(components.length).to eq(1)
+      expect(components.length).to eq(2)
       expect(components.first).to include("components")
       child_components = components.first["components"]
       expect(child_components.length).to eq(2)
