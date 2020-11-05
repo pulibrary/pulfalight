@@ -298,9 +298,11 @@ namespace :pulfalight do
     file_paths.each do |file_path|
       # Don't index full versions of seed files if given argument.
       next if file_path.include?(".processed") && file_path.include?("MC221")
+      # Index all of MC221 - we have several tests for it.
       next if File.exist?(file_path.gsub(".EAD", ".processed.EAD")) && !file_path.include?("MC221")
       index_file(relative_path: file_path, root_path: root_path, enqueue: enqueue)
     end
+    Blacklight.default_index.connection.commit
   end
 
   def solr_conf_dir
