@@ -10,9 +10,9 @@ class AspaceFixtureGenerator
   end
 
   def regenerate!
-    FileUtils.mkdir_p(fixture_dir)
     fixture_files.each do |fixture_file|
-      File.open(fixture_dir.join("#{fixture_file.eadid}.EAD.xml"), "w") do |f|
+      FileUtils.mkdir_p(fixture_dir.join(fixture_file.repository))
+      File.open(fixture_dir.join(fixture_file.repository, "#{fixture_file.eadid}.EAD.xml"), "w") do |f|
         f.puts(fixture_file.content)
       end
       process(fixture_file)
@@ -36,7 +36,7 @@ class AspaceFixtureGenerator
       fixture_file,
       component_filter[fixture_file.eadid]
     )
-    File.open(fixture_dir.join("#{fixture_file.eadid}.processed.EAD.xml"), "w") do |f|
+    File.open(fixture_dir.join(fixture_file.repository, "#{fixture_file.eadid}.processed.EAD.xml"), "w") do |f|
       f.puts(output)
     end
   end
@@ -103,9 +103,9 @@ class AspaceFixtureGenerator
     @fixture_files ||=
       begin
         eadids.lazy.map do |eadid|
-          uri = find_eadid_uri(eadid: eadid)
+          repo_code, uri = find_eadid_uri(eadid: eadid)
           ead_content = get_content(uri, eadid)
-          EADContainer.new(eadid: eadid, content: ead_content)
+          EADContainer.new(eadid: eadid, content: ead_content, repository: repo_code)
         end
       end
   end
@@ -117,19 +117,22 @@ class AspaceFixtureGenerator
   end
 
   def find_eadid_uri(eadid:)
-    client.recent_repositories.each do |repository|
+    client.repositories.map do |repository|
       repository_uri = repository["uri"][1..-1]
       result = client.get("#{repository_uri}/search", query: { q: "identifier:#{eadid}", type: ["resource"], fields: ["uri", "identifier"], page: 1 }).parsed["results"][0]
       next if result.blank?
-      return result["uri"][1..-1].gsub("resources", "resource_descriptions")
-    end
+      code = repository["repo_code"].split("_").first.split("-").first
+      code = "mss" if code == "Manuscripts"
+      [code, result["uri"][1..-1].gsub("resources", "resource_descriptions")]
+    end.to_a.compact.last
   end
 
   class EADContainer
-    attr_reader :eadid, :content
-    def initialize(eadid:, content:)
+    attr_reader :eadid, :content, :repository
+    def initialize(eadid:, content:, repository:)
       @eadid = eadid
       @content = content
+      @repository = repository.downcase
     end
   end
 end
