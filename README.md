@@ -80,3 +80,11 @@ Citations are generated for collections and components, and rendered on the
 show page for either of these resources. The default formatted repository
 sources may be found and updated within the appropriate [configuration
 file](./config/citations.yml).
+
+#### Adding new EADs to test suite.
+
+1. Open up `app/services/aspace_fixture_generator.rb`
+1. Add EAD ID to the `AspaceFixtureGenerator::EADID` constant.
+1. If you're only interested in a subset of components, add them to the
+   `AspaceFixtureGEnerator::COMPONENT_MAP` constant.
+1. `bundle exec rake pulfalight:fixtures:refresh_aspace_fixtures`

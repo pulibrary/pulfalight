@@ -4,6 +4,56 @@ class AspaceFixtureGenerator
     new(client: Aspace::Client.new).regenerate!
   end
 
+  # EAD IDs to pull down from ArchivesSpace.
+  EAD_IDS = [
+    "C0251",
+    "C0776",
+    "MC085",
+    "MC152",
+    "C1588",
+    "MC221",
+    "WC064",
+    "MC148",
+    "WC127",
+    "C1408"
+  ].freeze
+
+  # List components per EAD which are used in tests to make processing those
+  # EADs in the test suite faster.
+  COMPONENT_MAP = {
+    "C0776" => [
+      "aspace_C0776_c00071"
+    ],
+    "MC085" => [
+      "aspace_MC085_c01078"
+    ],
+    "MC152" => [
+      "aspace_MC152_c001",
+      "aspace_MC152_c009",
+      "aspace_MC152_c010"
+    ],
+    "MC221" => [
+      "aspace_MC221_c0001",
+      "aspace_MC221_c0002"
+    ],
+    "C0251" => [
+      "aspace_C0251_c0001",
+      "aspace_C0251_c0002",
+      "aspace_C0251_c0007",
+      "aspace_C0251_c0089",
+      "aspace_C0251_c0091",
+      "aspace_C0251_c0097",
+      "aspace_C0251_c0101"
+    ],
+    "WC064" => ["aspace_WC064_c1"],
+    "MC148" => [
+      "aspace_MC148_c00002",
+      "aspace_MC148_c00018",
+      "aspace_MC148_c07608"
+    ],
+    "C1408" => []
+  }.freeze
+
   attr_reader :client
   def initialize(client:)
     @client = client
@@ -26,55 +76,17 @@ class AspaceFixtureGenerator
 
   private
 
-  def or_query
-    fixtures.join(" OR ")
-  end
-
+  # Filter an EAD to just the components in the component map and write it to a
+  # separate file.
   def process(fixture_file)
-    return unless component_filter.key?(fixture_file.eadid)
+    return unless COMPONENT_MAP.key?(fixture_file.eadid)
     output = select_components(
       fixture_file,
-      component_filter[fixture_file.eadid]
+      COMPONENT_MAP[fixture_file.eadid]
     )
     File.open(fixture_dir.join(fixture_file.repository, "#{fixture_file.eadid}.processed.EAD.xml"), "w") do |f|
       f.puts(output)
     end
-  end
-
-  def component_filter
-    {
-      "C0776" => [
-        "aspace_C0776_c00071"
-      ],
-      "MC085" => [
-        "aspace_MC085_c01078"
-      ],
-      "MC152" => [
-        "aspace_MC152_c001",
-        "aspace_MC152_c009",
-        "aspace_MC152_c010"
-      ],
-      "MC221" => [
-        "aspace_MC221_c0001",
-        "aspace_MC221_c0002"
-      ],
-      "C0251" => [
-        "aspace_C0251_c0001",
-        "aspace_C0251_c0002",
-        "aspace_C0251_c0007",
-        "aspace_C0251_c0089",
-        "aspace_C0251_c0091",
-        "aspace_C0251_c0097",
-        "aspace_C0251_c0101"
-      ],
-      "WC064" => ["aspace_WC064_c1"],
-      "MC148" => [
-        "aspace_MC148_c00002",
-        "aspace_MC148_c00018",
-        "aspace_MC148_c07608"
-      ],
-      "C1408" => []
-    }
   end
 
   def select_components(fixture_file, components)
@@ -87,26 +99,11 @@ class AspaceFixtureGenerator
     doc.to_xml
   end
 
-  def eadids
-    [
-      "C0251",
-      "C0776",
-      "MC085",
-      "MC152",
-      "C1588",
-      "MC221",
-      "WC064",
-      "MC148",
-      "WC127",
-      "C1408"
-    ]
-  end
-
   def fixture_files
     @fixture_files ||=
       begin
-        eadids.lazy.map do |eadid|
-          repo_code, uri = find_eadid_uri(eadid: eadid)
+        EAD_IDS.lazy.map do |eadid|
+          uri, repo_code = client.ead_url_for_eadid(eadid: eadid)&.first
           ead_content = get_content(uri, eadid)
           EADContainer.new(eadid: eadid, content: ead_content, repository: repo_code)
         end
@@ -117,17 +114,6 @@ class AspaceFixtureGenerator
     file = fixture_dir.glob("**/*.EAD.xml").find { |x| x.to_s.ends_with?("#{eadid}.EAD.xml") }
     return File.read(file) if File.exist?(file)
     client.get("#{uri}.xml", query: { include_daos: true, include_unpublished: false }, timeout: 1200).body.force_encoding("UTF-8")
-  end
-
-  def find_eadid_uri(eadid:)
-    client.repositories.map do |repository|
-      repository_uri = repository["uri"][1..-1]
-      result = client.get("#{repository_uri}/search", query: { q: "identifier:#{eadid}", type: ["resource"], fields: ["uri", "identifier"], page: 1 }).parsed["results"][0]
-      next if result.blank?
-      code = repository["repo_code"].split("_").first.split("-").first
-      code = "mss" if code == "Manuscripts"
-      [code, result["uri"][1..-1].gsub("resources", "resource_descriptions")]
-    end.to_a.compact.last
   end
 
   class EADContainer

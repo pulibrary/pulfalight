@@ -100,10 +100,11 @@ namespace :pulfalight do
         f.puts indexer.map_record(nokogiri_reader.to_a.first).to_json
       end
     end
-    desc "Pulls Aspace EAD Fixtures" do
-      task refresh_aspace_fixtures: :environment do
-        AspaceFixtureGenerator.regenerate!
-      end
+
+    desc "Pulls Aspace EAD Fixtures"
+    task refresh_aspace_fixtures: :environment do
+      Rails.logger = Logger.new(STDOUT)
+      AspaceFixtureGenerator.regenerate!
     end
   end
   namespace :index do
