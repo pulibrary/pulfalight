@@ -72,7 +72,8 @@ class AspaceFixtureGenerator
         "aspace_MC148_c00002",
         "aspace_MC148_c00018",
         "aspace_MC148_c07608"
-      ]
+      ],
+      "C1408" => []
     }
   end
 
@@ -96,7 +97,8 @@ class AspaceFixtureGenerator
       "MC221",
       "WC064",
       "MC148",
-      "WC127"
+      "WC127",
+      "C1408"
     ]
   end
 
