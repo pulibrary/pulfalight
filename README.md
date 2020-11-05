@@ -53,7 +53,8 @@ ASPACE_PASSWORD=yourpassword
 A sub-section of all our collections have been identified and can be queued up
   for ingest via:
 
-  `bundle exec rake pulfalight:aspace:index_text_eads`
+  `start redis-server`
+  `bundle exec rake pulfalight:aspace:index_test_eads`
 
 #### Full/Partial Reindex
 
@@ -80,9 +81,9 @@ A subset of collections (the same that are run in specs) can be indexed into
 #### Adding new EADs to test suite.
 
 1. Open up `app/services/aspace_fixture_generator.rb`
-1. Add EAD ID to the `AspaceFixtureGenerator::EADID` constant.
+1. Add EAD ID to the `AspaceFixtureGenerator::EAD_IDS` constant.
 1. If you're only interested in a subset of components, add them to the
-   `AspaceFixtureGEnerator::COMPONENT_MAP` constant.
+   `AspaceFixtureGenerator::COMPONENT_MAP` constant.
 1. `bundle exec rake pulfalight:fixtures:refresh_aspace_fixtures`
 
 ### Citation Formatting

@@ -87,8 +87,11 @@ class AspaceFixtureGenerator
   def select_components(fixture_file, components)
     doc = Nokogiri::XML(fixture_file.content).remove_namespaces!
     doc.search("//c").each do |container|
-      all_ids = container.search(".//c").map { |x| x["id"] }
-      container.remove if !components.include?(container["id"]) && (all_ids & components).blank?
+      child_ids = container.search(".//c").map { |x| x["id"] }
+      next if components.include?(container["id"])
+      # Don't remove the container if it contains a child which we want to save.
+      next if (child_ids & components).present?
+      container.remove
     end
     doc.to_xml
   end

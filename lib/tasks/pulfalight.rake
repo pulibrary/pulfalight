@@ -293,6 +293,9 @@ namespace :pulfalight do
       # Don't index full versions of seed files if given argument.
       next if file_path.include?(".processed") && file_path.include?("MC221")
       # Index all of MC221 - we have several tests for it.
+      # Several EAD seeds are "processed" to only contain the components needed
+      # for indexing tests, to speed them up. MC221 is too, but we need the full
+      # EAD for catalog tests. This processing happens in AspaceFixtureGenerator
       next if File.exist?(file_path.gsub(".EAD", ".processed.EAD")) && !file_path.include?("MC221")
       index_file(relative_path: file_path, root_path: root_path, enqueue: enqueue)
     end

@@ -129,6 +129,7 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page.body).to include "Correspondence"
       # Commented out these two - names are not currently in our aspace
       # instance data.
+      # TODO: Put these back.
       # expect(page.body).to include "Names"
       # expect(page.body).to include "Foreign Service Institute"
       expect(page.body).to include "Places"
