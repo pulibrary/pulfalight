@@ -163,6 +163,21 @@ RSpec.describe Arclight::SolrDocument do
         expect(request).not_to be_requestable
       end
     end
+    context "when given a ReCAP location" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1408.processed.EAD.xml")
+      end
+      let(:values) do
+        indexer.map_record(record)["components"][0]["components"][0]["components"][0]
+      end
+      let(:document) { SolrDocument.new(values) }
+      it "returns ReCAP as the location" do
+        request = document.aeon_request
+        expect(request.form_attributes[:Location]).to eq "ReCAP"
+        request_id = request.form_attributes[:Request]
+        expect(request.form_attributes[:"Location_#{request_id}"]).to eq "ReCAP"
+      end
+    end
     it "returns an object with all the necessary attributes" do
       # The following fixture is generated from a fixture exported from our
       # local system. It's created via `rake

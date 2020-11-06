@@ -48,7 +48,7 @@ class AspaceFixtureGenerator
       "aspace_MC148_c00018",
       "aspace_MC148_c07608"
     ],
-    "C1408" => [],
+    "C1408" => ["aspace_C1408_c3"],
     "MC001.02.06" => []
   }.freeze
 
