@@ -53,7 +53,6 @@ ASPACE_PASSWORD=yourpassword
 A sub-section of all our collections have been identified and can be queued up
   for ingest via:
 
-  `start redis-server`
   `bundle exec rake pulfalight:aspace:index_test_eads`
 
 #### Full/Partial Reindex
@@ -64,6 +63,8 @@ full reindex, or if that's happened before, index any changes.
 This will move to a rake task when our production system is implemented.
 
 Sidekiq must be running in a separate window to process the resulting jobs (see below.)
+
+Make sure Redis is running (`redis-server`), and then run:
 
 `$ bundle exec sidekiq`
 
