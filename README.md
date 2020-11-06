@@ -40,73 +40,33 @@ for information regarding the configuration of repositories in ArcLight.
 
 ### Indexing documents into Pulfalight
 
-Documents are indexed from the EADs which are stored in a subversion
-repository.
+#### Configuring ASpace
 
-#### Retrieving the EAD-XML Documents
-Documents are available from Princeton University Library staff, and should be
-populated into the `eads/pulfa` directory, yielding a structure similar to the
-following:
-
-```bash
-% ll eads/pulfa
-[...] cotsen
-[...] eng
-[...] ga
-[...] lae
-[...] mss
-[...] mudd
-[...] rarebooks
-```
-
-##### Retrieving the Documents from SVN
-
-One must ensure that SVN is installed locally:
-
-*In a macOS Environment:*
-```
-brew install svn
-```
-
-###### Using `lastpass-cli` for authentication [LastPass](https://lastpass.com)
-
-*In a macOS Environment:*
-```
-brew install lastpass-cli
-```
-
-Then please invoke the following:
-```
-lpass login username@domain.edu
-bundle exec rake pulfa:checkout
-```
-
-###### Manually Retrieving the Documents (without `lpass`)
-In order to download the EAD documents from Princeton University Library
-servers, one will need to please retrieve the server name, as well as the
-credentials for retrieving the documents from LastPass. Then, please download
-the files with the following:
+Create a .env file in the root of the project with the following information
 
 ```
-export PULFA_SERVER_URL=[the PULFA subversion URL]
-export PULFA_USERNAME=[the PULFA subversion username]
-svn checkout $PULFA_SERVER_URL --username $PULFA_USERNAME eads/pulfa/
+ASPACE_USER=yourusername
+ASPACE_PASSWORD=yourpassword
 ```
 
-One should now have access to the EAD files from within the local development
-environment.
+#### Index "Interesting" EADs
+A sub-section of all our collections have been identified and can be queued up
+  for ingest via:
 
-#### Indexing into a Development environment
+  `bundle exec rake pulfalight:aspace:index_test_eads`
 
-Start sidekiq in a terminal window that you keep open:
+#### Full/Partial Reindex
+
+In a Rails console, `Aspace::Indexer.index_new` can be run to either perform a
+full reindex, or if that's happened before, index any changes.
+
+This will move to a rake task when our production system is implemented.
+
+Sidekiq must be running in a separate window to process the resulting jobs (see below.)
+
+Make sure Redis is running (`redis-server`), and then run:
 
 `$ bundle exec sidekiq`
-
-Use the rake tasks to index either a single file or a directory, e.g.:
-
-`$ bundle exec rake pulfalight:index:file["mss/TC071.EAD.xml"]`
-
-`$ bundle exec rake pulfalight:index:directory["mss"]`
 
 Once the jobs are finished processing by sidekiq you'll need to either wait 5 minutes for the soft commit to occur or manually issue a solr commit:
 
@@ -114,13 +74,18 @@ Once the jobs are finished processing by sidekiq you'll need to either wait 5 mi
 
 `> Blacklight.default_index.connection.commit`
 
-#### Indexing the PULFA Documents into the Pulfalight Server Environment
-One may also index the Documents remotely on the staging server by invoking the
-follow Capistrano task:
+#### Indexing into a Development environment
 
-```bash
-bundle exec cap staging pulfalight:index_pulfa
-```
+A subset of collections (the same that are run in specs) can be indexed into
+  development via `bundle exec rake pulfalight:seed`
+
+#### Adding new EADs to test suite.
+
+1. Open up `app/services/aspace_fixture_generator.rb`
+1. Add EAD ID to the `AspaceFixtureGenerator::EAD_IDS` constant.
+1. If you're only interested in a subset of components, add them to the
+   `AspaceFixtureGenerator::COMPONENT_MAP` constant.
+1. `bundle exec rake pulfalight:fixtures:refresh_aspace_fixtures`
 
 ### Citation Formatting
 

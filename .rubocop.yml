@@ -62,9 +62,11 @@ RSpec/ExampleLength:
     - 'spec/jobs/aspace_index_job_spec.rb'
     - 'spec/services/aspace/client_spec.rb'
     - 'spec/services/aspace/indexer_spec.rb'
+    - 'spec/services/aspace_fixture_generator_spec.rb'
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/models/user_spec.rb'
+    - 'spec/services/aspace_fixture_generator_spec.rb'

@@ -19,6 +19,33 @@ module AspaceStubbing
     url += "&modified_since=#{modified_since}" if modified_since
     stub_request(:get, url)
       .to_return(status: 200, body: resource_ids.to_json, headers: { "Content-Type": "application/json" })
+    stub_search(repository_id: repository_id, resource_ids: resource_ids)
+  end
+
+  def stub_search(repository_id:, resource_ids:)
+    resource_ids.each do |resource_id|
+      all_repository_ids.each do |curr_repo_id|
+        if curr_repo_id == repository_id
+          stub_request(:get, "https://aspace.test.org/staff/api/repositories/#{repository_id}/search?fields%5B%5D=identifier&fields%5B%5D=uri&page=1&q=identifier:#{resource_id}&type%5B%5D=resource")
+            .to_return(status: 200, body: resource_response(repository_id, resource_id).to_json, headers: { "Content-Type": "application/json" })
+        else
+          stub_request(:get, "https://aspace.test.org/staff/api/repositories/#{curr_repo_id}/search?fields%5B%5D=identifier&fields%5B%5D=uri&page=1&q=identifier:#{resource_id}&type%5B%5D=resource")
+            .to_return(status: 200, body: { results: [] }.to_json, headers: { "Content-Type": "application/json" })
+        end
+      end
+    end
+  end
+
+  def all_repository_ids
+    ["3", "13"]
+  end
+
+  def resource_response(repository_id, resource_id)
+    {
+      results: [
+        { uri: "/repositories/#{repository_id}/resources/#{resource_id}", identifier: resource_id }
+      ]
+    }
   end
 end
 

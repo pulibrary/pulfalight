@@ -5,14 +5,14 @@ require "rails_helper"
 describe "viewing catalog records", type: :feature, js: true do
   context "when viewing a component show page" do
     it "renders a collection title as a link without a separate date element" do
-      visit "catalog/MC221_c0059"
+      visit "catalog/aspace_MC221_c0059"
       expect(page).to have_css(".collection.title a span", text: "Harold B. Hoskins Papers, 1822-1982")
       expect(page).not_to have_css(".collection-attributes h2.media span.col")
     end
   end
   context "when viewing a component which can be requested from Aeon" do
     xit "renders a request button" do
-      visit "/catalog/MC148_c00001"
+      visit "/catalog/aspace_MC148_c00001"
 
       # This is now blocked by the Request Cart Vue integration
     end
@@ -25,7 +25,7 @@ describe "viewing catalog records", type: :feature, js: true do
 
     context "with extent provided" do
       xit "maps this to the <form> <input>" do
-        visit "/catalog/MC148_c00001"
+        visit "/catalog/aspace_MC148_c00001"
 
         # This is now blocked by the Request Cart Vue integration
       end
@@ -33,7 +33,7 @@ describe "viewing catalog records", type: :feature, js: true do
   end
   context "with a component show page" do
     before do
-      visit "/catalog/MC221_c0060"
+      visit "/catalog/aspace_MC221_c0060"
     end
 
     it "has a table of contents element" do
@@ -74,7 +74,7 @@ describe "viewing catalog records", type: :feature, js: true do
     end
     context "which has a viewer", js: false do
       before do
-        visit "/catalog/MC221_c0094"
+        visit "/catalog/aspace_MC221_c0094"
       end
       it "displays the viewer" do
         expect(page).to have_css(".uv__overlay")
@@ -87,10 +87,11 @@ describe "viewing catalog records", type: :feature, js: true do
     end
 
     it "has overview and abstract summary sections" do
-      expect(page).to have_css(".blacklight-creators_ssim a", text: "Hoskins")
+      # Collection name records not in aspace data yet.
+      # expect(page).to have_css(".blacklight-creators_ssim a", text: "Hoskins")
       expect(page).to have_css("dd.blacklight-title_ssm", text: "Harold B. Hoskins Papers")
       expect(page).to have_css("dd.blacklight-normalized_date_ssm", text: "1822-1982")
-      expect(page).to have_css("dd.blacklight-extent_ssm", text: "14 linear feet and 17 boxes")
+      expect(page).to have_css("dd.blacklight-extent_ssm", text: "17 boxes")
       expect(page).to have_text("Harold Boies Hoskins was a businessman")
     end
     xit "has a language property in the overview summary section" do
@@ -99,7 +100,7 @@ describe "viewing catalog records", type: :feature, js: true do
     end
 
     it "has description and creator biography metadata" do
-      expect(page.body).to include "The Harold B. Hoskins Papers consist of correspondence"
+      expect(page.body).to include "This collection consists of correspondence, diaries, notes, photographs,"
       expect(page.body).to include "Harold Boies Hoskins was a businessman, diplomat, and educator"
     end
 
@@ -126,15 +127,18 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page.body).to include "Missionaries"
       expect(page.body).to include "Genre Terms"
       expect(page.body).to include "Correspondence"
-      expect(page.body).to include "Names"
-      expect(page.body).to include "Foreign Service Institute"
+      # Commented out these two - names are not currently in our aspace
+      # instance data.
+      # TODO: Put these back.
+      # expect(page.body).to include "Names"
+      # expect(page.body).to include "Foreign Service Institute"
       expect(page.body).to include "Places"
       expect(page.body).to include "Middle East -- Politics"
     end
   end
   context "when a component has a digital object with a manifest" do
     before do
-      visit "/catalog/MC221_c0094"
+      visit "/catalog/aspace_MC221_c0094"
     end
 
     it "renders the universal viewer" do
@@ -145,11 +149,11 @@ describe "viewing catalog records", type: :feature, js: true do
   end
   context "when a component has a digital object with a link" do
     before do
-      visit "/catalog/MC221_c0119"
+      visit "/catalog/aspace_MC148_c07608"
     end
 
     it "renders a view content link" do
-      url = "https://webspace.princeton.edu/users/mudd/Digitization/MC221/MC221_c0119.pdf"
+      url = "https://webspace.princeton.edu/users/mudd/Digitization/MC148/MC148_c07608.pdf"
       expect(page).to have_css("a[href=\"#{url}\"]")
     end
   end

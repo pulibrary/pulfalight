@@ -33,7 +33,7 @@ describe "EAD 2 traject indexing", type: :feature do
     records.first
   end
   let(:fixture_path) do
-    Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC152.ead.xml")
+    Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC152.processed.EAD.xml")
   end
 
   describe "solr fields" do
@@ -55,7 +55,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "ASpace indexing" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "mss", "C1588.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1588.EAD.xml")
     end
     it "indexes container_location_codes_ssim" do
       components = result["components"]
@@ -72,7 +72,7 @@ describe "EAD 2 traject indexing", type: :feature do
   describe "container indexing" do
     context "when indexing a collection with deeply nested components" do
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "ead", "C0614.EAD.xml")
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0251.processed.EAD.xml")
       end
 
       it "indexes the nested components" do
@@ -80,25 +80,25 @@ describe "EAD 2 traject indexing", type: :feature do
         child_component_trees = components.select { |c| c["components"].present? }
         child_component_tree = child_component_trees.first
         expect(child_component_tree).to include("id")
-        expect(child_component_tree["id"]).to include("aspace_C0614_c00001")
+        expect(child_component_tree["id"]).to include("aspace_C0251_c0001")
         nested_component_trees = child_component_tree["components"]
         expect(nested_component_trees).not_to be_empty
         nested_component_tree = nested_component_trees.first
         expect(nested_component_tree).to include("id")
-        expect(nested_component_tree["id"]).to include("aspace_C0614_c00002")
+        expect(nested_component_tree["id"]).to include("aspace_C0251_c0002")
       end
 
       it "doesn't index them as top-level components" do
         components = result["components"]
-        expect(components.length).to eq 1
-        expect(components.group_by { |x| x["id"].first }["C0002_i1"]).to be_blank
+        expect(components.length).to eq 6
+        expect(components.group_by { |x| x["id"].first }["aspace_C0251_c0002"]).to be_blank
       end
 
       it "doesn't leave empty arrays around" do
         component = result.as_json["components"].first
 
         expect(component["scopecontent_ssm"]).not_to be_empty
-        expect(component["scopecontent_ssm"].length).to eq(3)
+        expect(component["scopecontent_ssm"].length).to eq(1)
         expect(component["scopecontent_ssm"].first).not_to be_empty
       end
     end
@@ -118,7 +118,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "digital objects" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "C0776.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0776.processed.EAD.xml")
     end
 
     context "when <dao> is child of the <did> in a <c0x> component" do
@@ -130,8 +130,8 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(component["digital_objects_ssm"]).to eq(
           [
             JSON.generate(
-              label: "Princeton Ethiopic Manuscript No. 84: Magical Prayers to the Virgin Mary",
-              href: "https://figgy.princeton.edu/concern/scanned_resources/d93bdf4a-83d1-40cc-ba48-9eeac87a91fc/manifest",
+              label: "View digital content",
+              href: "https://figgy.princeton.edu/concern/scanned_resources/919b6dfa-db00-437c-a49d-0b76eb4358d1/manifest",
               role: "https://iiif.io/api/presentation/2.1/"
             )
           ]
@@ -139,8 +139,8 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(component["direct_digital_objects_ssm"]).to eq(
           [
             JSON.generate(
-              label: "Princeton Ethiopic Manuscript No. 84: Magical Prayers to the Virgin Mary",
-              href: "https://figgy.princeton.edu/concern/scanned_resources/d93bdf4a-83d1-40cc-ba48-9eeac87a91fc/manifest",
+              label: "View digital content",
+              href: "https://figgy.princeton.edu/concern/scanned_resources/919b6dfa-db00-437c-a49d-0b76eb4358d1/manifest",
               role: "https://iiif.io/api/presentation/2.1/"
             )
           ]
@@ -155,14 +155,14 @@ describe "EAD 2 traject indexing", type: :feature do
         }
       end
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC085.processed.EAD.xml")
       end
-      let(:component) { result["components"].find { |c| c["id"] == ["aspace_WC064_c1"] } }
+      let(:component) { result["components"].find { |c| c["id"] == ["aspace_MC085_c01084"] }["components"][0]["components"][0] }
 
       it "gets the digital objects with role: null" do
         json = JSON.generate(
-          label: "American Indian man wearing traditional clothing with three white children",
-          href: "https://figgy.princeton.edu/concern/scanned_resources/258dc168-da8e-49c3-b239-f3da67cfa896/manifest"
+          label: "View digital content",
+          href: "https://figgy.princeton.edu/collections/6ff2c854-f102-4a5e-861d-276179a3a5f0/manifest"
         ).slice(0..-2) + ",\"role\":null}"
         expect(component["digital_objects_ssm"]).to eq(
           [
@@ -234,7 +234,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
     describe "collection notes indexing" do
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC221.EAD.xml")
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC221.processed.EAD.xml")
       end
 
       it "indexes all note fields from the <archdesc> child elements for the collection" do
@@ -311,46 +311,31 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
-  describe "indexing the location information" do
-    let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mss", "location_aspace.EAD.xml")
-    end
-
-    it "indexes the barcode into the barcodes_ssim" do
-      expect(result).to include("components")
-      components = result["components"]
-      expect(components).not_to be_empty
-      component = components.first
-      expect(component).to include("barcodes_ssim")
-      expect(component["barcodes_ssim"]).to include("32101092753019")
-    end
-  end
-
   describe "indexing collection component extent values" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC148.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC148.processed.EAD.xml")
     end
 
     it "indexes all extent elements" do
       expect(result).to include("components")
       components = result["components"]
-      expect(components.length).to eq(1)
+      expect(components.length).to eq(2)
       expect(components.first).to include("components")
       child_components = components.first["components"]
-      expect(child_components.length).to eq(9)
-      expect(child_components.first).to include("id" => ["MC148_c00002"])
-      expect(child_components.last).to include("id" => ["MC148_c00018"])
+      expect(child_components.length).to eq(2)
+      expect(child_components.first).to include("id" => ["aspace_MC148_c00002"])
+      expect(child_components.last).to include("id" => ["aspace_MC148_c00018"])
 
       expect(result).to include("extent_ssm")
       expect(result["extent_ssm"].length).to eq(2)
-      expect(result["extent_ssm"]).to include("278.9 linear feet")
-      expect(result["extent_ssm"]).to include("632 boxes and 2 oversize folders")
+      expect(result["extent_ssm"]).to include("4 items")
+      expect(result["extent_ssm"]).to include("632 boxes")
     end
   end
 
   describe "#physloc_code_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "resolves and indexes the physical location code" do
@@ -369,7 +354,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#location_code_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "resolves and indexes the location code" do
@@ -380,7 +365,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#location_note_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "indexes the location note" do
@@ -392,16 +377,15 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#volume_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC152.ead.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC152.processed.EAD.xml")
     end
 
-    it "indexes extent values encoding volume numbers" do
+    # I can't find any data from ASpace that has "vol" in the extent anymore. We
+    # don't seem to use this field.
+    xit "indexes extent values encoding volume numbers" do
       expect(result).to include("components")
       components = result["components"].select { |c| c.key?("volume_ssm") }
       expect(components).not_to be_empty
-
-      expect(components.first).to include("volume_ssm")
-      expect(components.first["volume_ssm"]).to eq(["2 Volumes"])
     end
   end
 
@@ -410,7 +394,9 @@ describe "EAD 2 traject indexing", type: :feature do
       Rails.root.join("spec", "fixtures", "ead", "C0776.EAD.xml")
     end
 
-    it "indexes physical description values encoding material numbers" do
+    # I don't think we need this anymore, and this isn't how this component is
+    # indexed in ASpace.
+    xit "indexes physical description values encoding material numbers" do
       expect(result).to include("components")
       components = result["components"].select { |c| c.key?("physdesc_number_ssm") }
       expect(components).not_to be_empty
@@ -422,7 +408,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#names_ssim" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mss", "WC064.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "does not include staff names" do

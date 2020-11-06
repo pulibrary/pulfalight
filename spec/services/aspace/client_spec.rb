@@ -19,6 +19,18 @@ RSpec.describe Aspace::Client do
     end
   end
 
+  describe "#ead_url_for_eadid" do
+    it "returns the EAD URL and repository code for a given eadid" do
+      client = described_class.new
+
+      expect(client.ead_url_for_eadid(eadid: "3")).to eq(
+        {
+          "repositories/13/resource_descriptions/3" => "mss"
+        }
+      )
+    end
+  end
+
   describe "ead_urls" do
     it "returns EAD urls for all 2020 and later repositories, grouped by repository code" do
       client = described_class.new

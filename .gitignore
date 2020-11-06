@@ -49,3 +49,5 @@ yarn-debug.log*
 
 # This seems to be an artifact left from SVN when checking out the PULFA repository
 Zeen2iep*
+
+.env

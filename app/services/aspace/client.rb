@@ -31,6 +31,17 @@ module Aspace
       output
     end
 
+    def ead_url_for_eadid(eadid:)
+      repositories.map do |repository|
+        repository_uri = repository["uri"][1..-1]
+        result = get("#{repository_uri}/search", query: { q: "identifier:#{eadid}", type: ["resource"], fields: ["uri", "identifier"], page: 1 }).parsed["results"][0]
+        next if result.blank?
+        code = repository["repo_code"].split("_").first.split("-").first
+        code = "mss" if code == "Manuscripts"
+        { result["uri"][1..-1].gsub("resources", "resource_descriptions") => code }
+      end.to_a.compact.last
+    end
+
     # We have old test repositories, we only want to import EADs from the ones
     # migrated from our SVN by Lyrasis.
     def recent_repositories

@@ -51,7 +51,7 @@ RSpec.describe Arclight::SolrDocument do
 
   context "when the collection contains one or more member components" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC152.ead.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC152.processed.EAD.xml")
     end
     let(:collection_values) do
       indexer.map_record(record)
@@ -75,7 +75,7 @@ RSpec.describe Arclight::SolrDocument do
 
   context "when the collection contains an encoded physical location" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC152.ead.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC152.processed.EAD.xml")
     end
     let(:values) do
       indexer.map_record(record)
@@ -96,15 +96,15 @@ RSpec.describe Arclight::SolrDocument do
   end
 
   describe "#to_json" do
-    let(:file_path) do
-      Rails.root.join("spec", "fixtures", "WC064.json")
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
     let(:values) do
-      fixture = File.read(file_path)
-      JSON.parse(fixture)
+      indexer.map_record(record)
     end
-    let(:document) { SolrDocument.new(values) }
-    let(:serialized) { document.to_json }
+    let(:serialized) do
+      document.to_json
+    end
     it "builds the JSON for the Document" do
       expect(serialized).to be_a(String)
       expect(serialized).not_to be_empty
@@ -120,18 +120,17 @@ RSpec.describe Arclight::SolrDocument do
       expect(built).to include("components")
       expect(built["components"]).not_to be_empty
       first_child = built["components"].first
-      expect(first_child).to include("id" => "WC064_c1")
+      expect(first_child).to include("id" => "aspace_WC064_c1")
       expect(first_child).to include("has_digital_content" => true)
     end
   end
 
   describe "#collection?" do
-    let(:file_path) do
-      Rails.root.join("spec", "fixtures", "WC064.json")
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
     let(:values) do
-      fixture = File.read(file_path)
-      JSON.parse(fixture)
+      indexer.map_record(record)
     end
     let(:document) { SolrDocument.new(values) }
 
@@ -165,6 +164,11 @@ RSpec.describe Arclight::SolrDocument do
       end
     end
     it "returns an object with all the necessary attributes" do
+      # The following fixture is generated from a fixture exported from our
+      # local system. It's created via `rake
+      # pulfalight:fixtures:regenerate_json.
+      # TODO: Migrate to fixture generated from aspace. Right now creator isn't
+      #   in that EAD yet.
       fixture = Rails.root.join("spec", "fixtures", "C1588.json")
       fixture = JSON.parse(fixture.read)
       component = fixture["components"].first["components"].first["components"].first

@@ -100,6 +100,12 @@ namespace :pulfalight do
         f.puts indexer.map_record(nokogiri_reader.to_a.first).to_json
       end
     end
+
+    desc "Pulls Aspace EAD Fixtures"
+    task refresh_aspace_fixtures: :environment do
+      Rails.logger = Logger.new(STDOUT)
+      AspaceFixtureGenerator.new.regenerate!
+    end
   end
   namespace :index do
     desc "Delete all Solr documents in the index"
@@ -133,13 +139,6 @@ namespace :pulfalight do
         end
       end
     end
-
-    desc "Index Princeton University Library Finding Aids (PULFA) into Solr"
-    task pulfa: :environment do
-      Dir.glob("eads/**/*.xml").each do |file|
-        index_file(relative_path: file, root_path: Rails.root)
-      end
-    end
   end
 
   namespace :server do
@@ -164,13 +163,10 @@ namespace :pulfalight do
 
   desc "Seed fixture data to Solr"
   task seed: :environment do
-    puts "Seeding index with data from spec/fixtures/ead..."
+    puts "Seeding index with data from spec/fixtures/aspace/generated..."
     # Delete previous fixtures. Needed for lando-based test solr.
     delete_by_query("<delete><query>*:*</query></delete>")
-    index_directory(name: "spec/fixtures/ead/", root_path: Rails.root, enqueue: false)
-    puts "Seeding index with data from spec/fixtures/aspace..."
-    index_directory(name: "spec/fixtures/aspace/generated", root_path: Rails.root, enqueue: false)
-    blacklight_connection.commit
+    index_directory(name: "spec/fixtures/aspace/generated/", root_path: Rails.root, enqueue: false)
   end
 
   desc "Generate a robots.txt file"
@@ -294,8 +290,16 @@ namespace :pulfalight do
     file_paths = Dir.glob(glob_pattern)
 
     file_paths.each do |file_path|
+      # Don't index full versions of seed files if given argument.
+      next if file_path.include?(".processed") && file_path.include?("MC221")
+      # Index all of MC221 - we have several tests for it.
+      # Several EAD seeds are "processed" to only contain the components needed
+      # for indexing tests, to speed them up. MC221 is too, but we need the full
+      # EAD for catalog tests. This processing happens in AspaceFixtureGenerator
+      next if File.exist?(file_path.gsub(".EAD", ".processed.EAD")) && !file_path.include?("MC221")
       index_file(relative_path: file_path, root_path: root_path, enqueue: enqueue)
     end
+    Blacklight.default_index.connection.commit
   end
 
   def solr_conf_dir
