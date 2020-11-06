@@ -39,6 +39,9 @@
         <lux-icon-cart></lux-icon-cart>
       </lux-icon-base>
     </div>
+    <div class="caption-note">
+      Add items from multiple pages and request them all at once.
+    </div>
           </caption>
 
           <thead>
@@ -212,6 +215,11 @@ export default {
     &:last-child {
       margin-bottom: 0;
     }
+  }
+  .caption-note {
+    font-size: 16px;
+    margin-bottom: 12px;
+    font-weight: 350;
   }
   tbody {
     background-color: #fff;
