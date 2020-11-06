@@ -108,6 +108,9 @@ describe "controller requests", type: :request do
 
         get "/catalog?q=MC152"
         expect(response).to redirect_to("http://www.example.com/catalog/MC152")
+
+        get "/catalog?q=MC001.02.06"
+        expect(response).to redirect_to("http://www.example.com/catalog/MC001-02-06")
       end
 
       it "directs the user to the search results if it does not exist" do
