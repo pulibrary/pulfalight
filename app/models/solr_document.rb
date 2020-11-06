@@ -81,6 +81,10 @@ class SolrDocument
     fetch("ead_ssi", [])
   end
 
+  def http_safe_ead
+    ead.map { |e| e.tr(".", "-") } .first
+  end
+
   def eadid
     Array.wrap(super).first
   end

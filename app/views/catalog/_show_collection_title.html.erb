@@ -2,7 +2,7 @@
 <div class="collection title" aria-label="collection title">
   <%= content_tag :h1, class: "media" do %>
     <% if document.ead.present? %>
-      <%= link_to solr_document_path(document.ead), data: { turbolinks: "false" } do %>
+      <%= link_to solr_document_path(document.http_safe_ead), data: { turbolinks: "false" } do %>
         <span class="col"><%= document.collection.first %></span>
       <% end %>
     <% else %>
