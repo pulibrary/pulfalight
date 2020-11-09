@@ -5527,10 +5527,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lux-design-system@^2.16.3:
-  version "2.16.6"
-  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-2.16.6.tgz#d8053bb3de6eae6ce6c8c14bdb27916621560503"
-  integrity sha512-jfhN/p60wbGyBIpJHjVNPNJGRG+dICYC2sPlxnF52nZSvrD5SdRe6vzo1NSWMB46ITu42SuZMeHm0HnkfxIc2A==
+lux-design-system@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-3.0.1.tgz#2b86fe2bb33076f26b24966f332fbc3d384d8ca6"
+  integrity sha512-6OJKzHhVKu+DIzsObrLsueWtvs57n2IP5sQ0B29qGfyiV03HEn4Xxe2CF5VJJCWXJtJBwbxAYEJaoEXIpO90SQ==
   dependencies:
     lodash "^4.17.11"
     mini-css-extract-plugin "^0.4.5"
@@ -5542,6 +5542,7 @@ lux-design-system@^2.16.3:
     tinycolor2 "^1.4.1"
     v-calendar "^0.9.7"
     vue "^2.5.18"
+    vue-cookies "^1.7.4"
     vue-lodash "^2.0.0"
     vue-meta "^1.5.6"
     vue-router "^3.0.2"
@@ -9043,6 +9044,11 @@ vm-browserify@^1.0.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
+
+vue-cookies@^1.7.4:
+  version "1.7.4"
+  resolved "https://registry.yarnpkg.com/vue-cookies/-/vue-cookies-1.7.4.tgz#d241d0a0431da0795837651d10b4d73e7c8d3e8d"
+  integrity sha512-mOS5Btr8V9zvAtkmQ7/TfqJIropOx7etDAgBywPCmHjvfJl2gFbH2XgoMghleLoyyMTi5eaJss0mPN7arMoslA==
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
