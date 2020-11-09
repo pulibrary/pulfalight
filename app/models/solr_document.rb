@@ -181,6 +181,10 @@ class SolrDocument
     fetch("extent_ssm", [])
   end
 
+  def fetch_html_safe(field)
+    fetch(field, []).map(&:html_safe)
+  end
+
   def extent
     super || []
   end

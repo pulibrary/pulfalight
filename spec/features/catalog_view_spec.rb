@@ -58,6 +58,7 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page.body).to include "Public Policy Papers, Department of Special Collections"
       expect(page.body).to include "65 Olden Street"
       expect(page.body).to include "(609) 258-6345"
+      expect(page.body).to have_link "U. S. Copyright Law", href: "http://copyright.princeton.edu/basics/fair-use", visible: false
     end
 
     it "has a find related materials tab" do
