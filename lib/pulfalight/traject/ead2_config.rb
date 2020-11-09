@@ -227,7 +227,7 @@ to_field "date_range_sim", extract_xpath("/ead/archdesc/did/unitdate/@normal", t
 end
 
 SEARCHABLE_NOTES_FIELDS.map do |selector|
-  sanitizer = Rails::Html::WhiteListSanitizer.new
+  sanitizer = Rails::Html::SafeListSanitizer.new
   to_field "#{selector}_ssm", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
     accumulator.map! do |element|
       sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a")
