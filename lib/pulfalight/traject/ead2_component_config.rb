@@ -383,7 +383,7 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
   to_field "#{selector}_heading_ssm", extract_xpath("./#{selector}/head")
   to_field "#{selector}_teim", extract_xpath("./#{selector}/*[local-name()!='head']")
 end
-Pulfalight::Ead2Indexing::DID_SEARCHABLE_NOTES_FIELDS.map do |selector|
+(Pulfalight::Ead2Indexing::DID_SEARCHABLE_NOTES_FIELDS - ["physloc"]).map do |selector|
   to_field "#{selector}_ssm", extract_xpath("./did/#{selector}")
 end
 to_field "did_note_ssm", extract_xpath("./did/note")
