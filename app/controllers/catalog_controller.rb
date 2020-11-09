@@ -353,7 +353,7 @@ class CatalogController < ApplicationController
     # ACCESS TAB FIELDS
     # =================
     config.add_access_field "accessrestrict_ssm", label: "Access Restrictions", helper_method: :paragraph_separator
-    config.add_access_field "userestrict_ssm", label: "Use Restrictions", helper_method: :paragraph_separator
+    config.add_access_field "userestrict_ssm", label: "Use Restrictions", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_access_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
     config.add_access_field "repository_ssm", if: :repository_config_present, label: "Location", helper_method: :context_access_tab_repository
     # Using ID because we know it will always exist
