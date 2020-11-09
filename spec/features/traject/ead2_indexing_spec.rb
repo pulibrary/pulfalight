@@ -232,6 +232,14 @@ describe "EAD 2 traject indexing", type: :feature do
       )
     end
 
+    def find_component(result, component_id)
+      all_components(result).find { |x| Array.wrap(x["id"]).include?(component_id) }
+    end
+
+    def all_components(result)
+      [result] + result.fetch("components", []).flat_map { |x| all_components(x) }
+    end
+
     describe "collection notes indexing" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC221.processed.EAD.xml")
@@ -241,6 +249,16 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(result["userestrict_ssm"]).to eq [
           "Single photocopies may be made for research purposes. For quotations that are fair use as defined under <a href=\"http://copyright.princeton.edu/basics/fair-use\">U. S. Copyright Law</a>, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use."
         ]
+      end
+
+      context "when given a staff-only physloc code" do
+        let(:fixture_path) do
+          Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
+        end
+        it "doesn't index" do
+          component = find_component(result, "aspace_C1491_c5621")
+          expect(component["physloc_ssm"]).to eq ["Box 330, Folder 5-6"]
+        end
       end
 
       it "indexes all note fields from the <archdesc> child elements for the collection" do
