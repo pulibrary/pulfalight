@@ -280,6 +280,42 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(result["collection_notes_ssm"]).not_to include("The collection is open for research use.\n            \n")
       end
 
+      context "when given a collection with arrangement" do
+        let(:fixture_path) do
+          Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0776.processed.EAD.xml")
+        end
+        it "indexes the requested notes" do
+          expect(result["arrangement_ssm"]).to eq ["Arranged in manuscript number order, by accession. Numbers 29 and 67-71 are unassigned."]
+        end
+      end
+      context "when given a collection with a phystech note" do
+        let(:fixture_path) do
+          Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC148.processed.EAD.xml")
+        end
+        it "indexes the requested notes" do
+          expect(result["phystech_ssm"]).to eq ["Access to audiovisual material in this collection follows the Mudd Manuscript Library policy for preservation and access to audiovisual materials."]
+          expect(result["components"][0]["phystech_ssm"]).to eq result["phystech_ssm"]
+        end
+      end
+      context "when given a collection with an otherfindaid" do
+        let(:fixture_path) do
+          Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC001.02.06.processed.EAD.xml")
+        end
+        it "indexes otherfindaid note" do
+          expect(result["otherfindaid_ssm"]).to eq ["This finding aid describes a portion of the American Civil Liberties Union Records held at the Seeley G. Mudd Manuscript Library. For an overview of the entire collection, instructions on searching the collection and requesting materials, and other information, please see the Guide to the American Civil Liberties Union Records."]
+        end
+      end
+      it "indexes the requested notes" do
+        # Description, do not propagate.
+        expect(result["scopecontent_ssm"]).to eq ["The Harold B. Hoskins Papers consist of correspondence, diaries, notes, photographs, publications, maps, and professional files that document Hoskins' personal and professional activities, as well as the Hoskins family. See individual series descriptions for more specific information on each series."]
+        # Access restriction, propagate
+        expect(result["accessrestrict_ssm"]).to eq ["LINKED DIGITAL CONTENT NOTE: Please note that some previously linked digital content is temporarily unavailable while the data is being migrated from an outdated access service. If you would like to access this content, please send a request to mudd@princeton.libanswers.com.", "The collection is open for research use."]
+        expect(result["components"][0]["accessrestrict_ssm"]).to eq result["accessrestrict_ssm"]
+        # Use restriction, propagate
+        expect(result["userestrict_ssm"]).to eq ["Single photocopies may be made for research purposes. For quotations that are fair use as defined under U. S. Copyright Law, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use."]
+        expect(result["components"][0]["userestrict_ssm"]).to eq result["userestrict_ssm"]
+      end
+
       it "indexes all note fields from the <archdesc> child elements for the child components" do
         components = result["components"]
         component = components.first

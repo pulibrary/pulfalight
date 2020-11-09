@@ -474,6 +474,13 @@ to_field "userestrict_ssm" do |_record, accumulator, context|
   accumulator.concat(value)
 end
 
+# For collection access tab
+to_field "phystech_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:root]
+  value = parent.output_hash["phystech_ssm"] || []
+  accumulator.concat(value)
+end
+
 # For find-more tab
 to_field "places_ssim" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]

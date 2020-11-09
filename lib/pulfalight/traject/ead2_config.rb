@@ -241,8 +241,14 @@ SEARCHABLE_NOTES_FIELDS.map do |selector|
   to_field "#{selector}_teim", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']")
 end
 
+def cleanup(x)
+  x.strip.gsub("  ", " ").gsub(" ,", ",").gsub(" .", ".")
+end
+
 DID_SEARCHABLE_NOTES_FIELDS.map do |selector|
-  to_field "#{selector}_ssm", extract_xpath("/ead/archdesc/did/#{selector}")
+  to_field "#{selector}_ssm", extract_xpath("/ead/archdesc/did/#{selector}") do |_record, accumulator|
+    accumulator.map!(&:strip)
+  end
 end
 
 NAME_ELEMENTS.map do |selector|
@@ -333,19 +339,6 @@ to_field "collection_notes_ssm" do |record, accumulator, _context|
   text_node_ancestors = text_node_ancestors.map { |t| t.gsub(/\s{1,}$/, "") }.uniq
   accumulator.concat(text_node_ancestors)
 end
-
-# For collection description tab
-to_field "collection_description_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs3"]/scopecontent')
-
-# For collection history tab
-to_field "custodhist_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs5"]/custodhist')
-to_field "appraisal_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs5"]/appraisal')
-to_field "processinfo_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs7"]/processinfo')
-to_field "sponsor_ssm", extract_xpath("/ead/eadheader/filedesc/titlestmt/sponsor")
-
-# For collection access tab
-to_field "accessrestrict_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs4"]/accessrestrict')
-to_field "userestrict_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs4"]/userestrict')
 
 # For find-more tab
 to_field "subject_terms_ssm" do |record, accumulator|
