@@ -1,6 +1,10 @@
 @import 'variables/colors';
 
 header {
+  .lux-announcement {
+    @extend .alert-info;
+  }
+
   .lux-library-header[data-v-22f7d1b2] {
     background-color: $black-pul;
 
@@ -179,5 +183,4 @@ header {
   .dropdown-toggle a {
     color: $dark-gray;
   }
-
 }
