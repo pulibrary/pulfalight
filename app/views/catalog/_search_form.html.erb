@@ -26,7 +26,7 @@
       <%= text_field_tag :q, params[:q], placeholder: t('blacklight.search.form.search.placeholder'), class: "search-q q rounded-0 form-control", id: "q", autofocus: presenter.autofocus?, data: { autocomplete_enabled: presenter.autocomplete_enabled?, autocomplete_path: search_action_path(action: :suggest) }  %>
 
       <span class="input-group-append">
-        <button type="submit" class="btn btn-primary search-btn" id="search">
+        <button type="submit" class="btn btn-primary search-btn" id="search" aria-label="Submit Search">
           <%= blacklight_icon :search, aria_hidden: true %>
         </button>
       </span>

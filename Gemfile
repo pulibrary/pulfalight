@@ -55,6 +55,7 @@ group :development do
 end
 
 group :test do
+  gem "axe-core-rspec"
   gem "capybara", ">= 3.18"
   gem "simplecov", require: false
   gem "timecop"
