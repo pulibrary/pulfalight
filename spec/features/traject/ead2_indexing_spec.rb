@@ -237,6 +237,12 @@ describe "EAD 2 traject indexing", type: :feature do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC221.processed.EAD.xml")
       end
 
+      it "indexes extref as links" do
+        expect(result["userestrict_ssm"]).to eq [
+          "Single photocopies may be made for research purposes. For quotations that are fair use as defined under <a href=\"http://copyright.princeton.edu/basics/fair-use\">U. S. Copyright Law</a>, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use."
+        ]
+      end
+
       it "indexes all note fields from the <archdesc> child elements for the collection" do
         expect(result).to include("collection_notes_ssm")
         expect(result["collection_notes_ssm"]).not_to be_empty
