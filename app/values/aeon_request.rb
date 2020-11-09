@@ -43,7 +43,12 @@ class AeonRequest
   end
 
   def container_locations
-    solr_document.fetch("container_location_codes_ssim", []).join(", ")
+    solr_document.fetch("container_location_codes_ssim", []).map { |code| translate_location_code(code) }.join(", ")
+  end
+
+  def translate_location_code(code)
+    return "ReCAP" if code.downcase.start_with?("rcp")
+    code
   end
 
   def url
