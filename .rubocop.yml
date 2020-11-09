@@ -28,6 +28,7 @@ Metrics/ClassLength:
   Exclude:
     - 'app/models/solr_document.rb'
     - 'app/controllers/catalog_controller.rb'
+    - 'app/services/aspace_fixture_generator.rb'
 Metrics/MethodLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
