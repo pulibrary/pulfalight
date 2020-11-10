@@ -15,4 +15,14 @@ describe "accessibility", type: :feature, js: true do
         .excluding(".tt-hint") # Issue is in typeahead.js library
     end
   end
+
+  context "research help" do
+    it "complies with WCAG" do
+      visit "/research_help"
+
+      expect(page).to be_axe_clean
+        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
+        .excluding(".tt-hint") # Issue is in typeahead.js library
+    end
+  end
 end
