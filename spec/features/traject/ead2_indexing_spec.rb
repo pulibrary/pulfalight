@@ -261,6 +261,12 @@ describe "EAD 2 traject indexing", type: :feature do
         end
       end
 
+      it "indexes a storage note" do
+        expect(result["storage_note_ssm"]).to eq [
+          "Mudd Library collections are unavailable until further notice due to a renovation. See <a href=\"https://library.princeton.edu/special-collections/policies/access-mudd-library-during-renovation\">our webpage</a> for the most current information."
+        ]
+      end
+
       it "indexes all note fields from the <archdesc> child elements for the collection" do
         expect(result).to include("collection_notes_ssm")
         expect(result["collection_notes_ssm"]).not_to be_empty

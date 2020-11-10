@@ -1,0 +1,34 @@
+---
+## Mudd locations temporarily closed.
+mudd: &mudd_note >-
+    Mudd Library collections are unavailable until further notice due to a renovation.
+    See <a href="https://library.princeton.edu/special-collections/policies/access-mudd-library-during-renovation">our webpage</a> for the most current information.
+rcpph: *mudd_note
+## ReCAP
+rcppf: &recap_note >-
+  This collection is stored offsite at the ReCAP facility.
+rcpxg: *recap_note
+rcpxm: *recap_note
+rcpxr: *recap_note
+rcppa: *recap_note
+## Firestone
+flm: &firestone_note >-
+  This collection is stored onsite at Firestone Library.
+flmp: *firestone_note
+wa: *firestone_note
+gax: *firestone_note
+ex: *firestone_note
+mss: *firestone_note
+ex: *firestone_note
+flmm: *firestone_note
+ctsn: *firestone_note
+thx: *firestone_note
+## Vault
+hsvc: &firestone_vault >-
+  This collection is stored in special vault facilities at Firestone Library.
+hsvg: *firestone_vault
+hsvm: *firestone_vault
+hsvr: *firestone_vault
+anxb: "This collection is stored offsite at Annex B (Fine Hall)."
+st: "This collection is stored onsite at the Engineering Library."
+ppl: "This collection is stored onsite at the Plasma Physics Library."
