@@ -6,7 +6,16 @@ class SuggestACorrectionForm
   validates :name, :email, :message, presence: true
 
   def submit
-    true
+    ContactMailer.with(form: self).suggest.deliver
+    @submitted = true
+    @name = ""
+    @email = ""
+    @message = ""
+    @box_number = ""
+  end
+
+  def submitted?
+    @submitted == true
   end
 
   def routed_mail_to

@@ -1,3 +1,8 @@
+<% if form.submitted? %>
+  <div class="alert alert-success" role="alert">
+    Thank you for your submission.
+  </div>
+<% end %>
 <%= simple_form_for form, url: contact_suggest_path, remote: true do |f| %>
   <%= f.input :name %>
   <%= f.input :email, as: :email %>

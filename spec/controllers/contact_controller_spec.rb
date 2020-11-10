@@ -27,6 +27,8 @@ RSpec.describe ContactController do
         }
 
         expect(response.status).to eq 200
+        expect(response.body).to have_field "Name", with: ""
+        expect(response.body).to have_content "Thank you for your submission."
 
         expect(ActionMailer::Base.deliveries.length).to eq 1
         delivery = ActionMailer::Base.deliveries.first

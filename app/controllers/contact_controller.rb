@@ -3,8 +3,7 @@ class ContactController < ApplicationController
   def suggest
     @form = SuggestACorrectionForm.new(suggest_params)
     if @form.valid? && @form.submit
-      ContactMailer.with(form: @form).suggest.deliver
-      render status: :ok, body: nil
+      render partial: "catalog/correction_form", locals: { form: @form }
     else
       render partial: "catalog/correction_form", locals: { form: @form }, status: :unprocessable_entity
     end

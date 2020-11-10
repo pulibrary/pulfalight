@@ -60,6 +60,8 @@ export default class PulfalightLoader {
   setup_form_modal() {
     $("#correctionModal").on("ajax:error", function(event) {
       $("#correctionModal .modal-body").html(event.detail[0].body)
+    }).on("ajax:success", function(event) {
+      $("#correctionModal .modal-body").html(event.detail[0].body)
     })
   }
 }

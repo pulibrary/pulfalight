@@ -8,7 +8,8 @@ RSpec.describe SuggestACorrectionForm do
       "email" => "test@test.org",
       "box_number" => "1",
       "message" => "This is so broken.",
-      "location_code" => "mss"
+      "location_code" => "mss",
+      "context" => "http://example.com/catalog/1"
     }
   end
   describe "initialization" do
@@ -22,6 +23,22 @@ RSpec.describe SuggestACorrectionForm do
       expect(form.location_code).to eq "mss"
 
       expect(form).to be_valid
+    end
+  end
+
+  describe "submit" do
+    it "sends an email and resets its attributes, setting itself as submitted" do
+      form = described_class.new(valid_attributes)
+
+      form.submit
+      expect(ActionMailer::Base.deliveries.length).to eq 1
+      expect(form.name).to eq ""
+      expect(form.email).to eq ""
+      expect(form.box_number).to eq ""
+      expect(form.message).to eq ""
+      expect(form.location_code).to eq "mss"
+      expect(form.context).to eq "http://example.com/catalog/1"
+      expect(form).to be_submitted
     end
   end
   describe "validations" do
