@@ -204,6 +204,10 @@ class SolrDocument
     @aeon_request ||= AeonRequest.new(self)
   end
 
+  def storage_notes
+    StorageNotes.for(fetch("physloc_ssm", []).first).to_a.map(&:html_safe)
+  end
+
   private
 
   def pulfalight_attributes

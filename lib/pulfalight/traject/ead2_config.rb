@@ -362,11 +362,6 @@ to_field "genreform_ssm" do |record, accumulator|
   accumulator << values.sort
 end
 
-to_field "storage_note_ssm" do |_record, accumulator, context|
-  notes = StorageNotes.for(context.output_hash["physloc_ssm"].first) if context.output_hash["physloc_ssm"].present?
-  accumulator.concat(notes.to_a)
-end
-
 to_field "components" do |record, accumulator, context|
   xpath = if record.is_a?(Nokogiri::XML::Document)
             "/ead/archdesc/dsc/*[is_component(.)][@level != 'otherlevel']"
