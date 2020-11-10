@@ -94,6 +94,7 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_css("dd.blacklight-normalized_date_ssm", text: "1822-1982")
       expect(page).to have_css("dd.blacklight-extent_ssm", text: "17 boxes")
       expect(page).to have_text("Harold Boies Hoskins was a businessman")
+      expect(page).to have_text "unavailable until further notice"
     end
     xit "has a language property in the overview summary section" do
       # TODO: ensure that collection language is indexed correctly

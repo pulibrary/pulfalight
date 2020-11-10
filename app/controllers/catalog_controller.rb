@@ -316,6 +316,7 @@ class CatalogController < ApplicationController
     config.add_summary_field "title_ssm", label: "Title"
     config.add_summary_field "normalized_date_ssm", label: "Dates"
     config.add_summary_field "extent_ssm", label: "Size"
+    config.add_summary_field "storage_note_ssm", label: "Storage Note", accessor: :fetch_html_safe
     config.add_summary_field "language_ssm", label: "Language"
 
     # Collect Show Page - Abstract Section
