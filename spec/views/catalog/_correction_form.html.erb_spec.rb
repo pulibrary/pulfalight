@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe "catalog/_correction_form" do
+RSpec.describe "catalog/_correction_form.html.erb" do
   it "renders a form" do
     form = SuggestACorrectionForm.new
 
