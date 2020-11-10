@@ -50,6 +50,10 @@ RSpec.describe SuggestACorrectionForm do
       form = described_class.new(valid_attributes.merge("email" => ""))
       expect(form).not_to be_valid
     end
+    it "is invalid wtihout an email-looking email" do
+      form = described_class.new(valid_attributes.merge("email" => "test"))
+      expect(form).not_to be_valid
+    end
     it "is invalid without a message" do
       form = described_class.new(valid_attributes.merge("message" => ""))
       expect(form).not_to be_valid

@@ -54,6 +54,13 @@
         <div class="row">
           <div class="col-md-4">
           </div>
+          <div class="col-md-4">
+            <a href="#correction" data-toggle="modal" data-target="#correctionModal">
+              <%= image_tag(asset_path('icon-correction.svg')) %>
+              Suggest a correction
+            </a>
+            <%= render "correction_modal" %>
+          </div>
         </div><!-- .row -->
       </nav>
 

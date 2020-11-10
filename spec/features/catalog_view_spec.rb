@@ -12,6 +12,7 @@ describe "viewing catalog records", type: :feature, js: true do
     it "has a suggest a correction form", js: false do
       visit "catalog/aspace_MC221_c0059"
 
+      expect(page).to have_field "suggest_a_correction_form_location_code", visible: false, type: :hidden, with: "mudd"
       expect(page).to have_field "suggest_a_correction_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/aspace_MC221_c0059"
     end
   end
@@ -90,6 +91,11 @@ describe "viewing catalog records", type: :feature, js: true do
   context "with a collection show page" do
     before do
       visit "/catalog/MC221"
+    end
+
+    it "has a suggest a correction form", js: false do
+      expect(page).to have_field "suggest_a_correction_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221"
+      expect(page).to have_field "suggest_a_correction_form_location_code", visible: false, type: :hidden, with: "mudd"
     end
 
     it "has overview and abstract summary sections" do

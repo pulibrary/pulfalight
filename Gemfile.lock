@@ -169,6 +169,8 @@ GEM
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
     dumb_delegator (1.0.0)
+    email_validator (2.0.1)
+      activemodel
     equalizer (0.0.11)
     erubi (1.9.0)
     execjs (2.7.0)
@@ -526,6 +528,7 @@ DEPENDENCIES
   devise (>= 4.7.1)
   devise-guests (~> 0.6)
   dotenv-rails
+  email_validator
   foreman
   honeybadger (~> 4.0)
   jbuilder (~> 2.5)

@@ -4,6 +4,7 @@ class SuggestACorrectionForm
   attr_accessor :name, :email, :box_number, :message, :location_code, :context
 
   validates :name, :email, :message, presence: true
+  validates :email, email: true
 
   def submit
     ContactMailer.with(form: self).suggest.deliver
