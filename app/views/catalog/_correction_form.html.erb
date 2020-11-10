@@ -1,0 +1,7 @@
+<%= simple_form_for form, url: "#", remote: true do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email, as: :email %>
+  <%= f.input :box_number, label: "Box/Container Number (optional)" %>
+  <%= f.input :message, as: :text %>
+  <%= f.submit "Send", class: "btn btn-primary" %>
+<% end %>
