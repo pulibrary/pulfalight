@@ -9,6 +9,11 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_css(".collection.title a span", text: "Harold B. Hoskins Papers, 1822-1982")
       expect(page).not_to have_css(".collection-attributes h2.media span.col")
     end
+    it "has a suggest a correction form", js: false do
+      visit "catalog/aspace_MC221_c0059"
+
+      expect(page).to have_field "suggest_a_correction_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/aspace_MC221_c0059"
+    end
   end
   context "when viewing a component which can be requested from Aeon" do
     xit "renders a request button" do
