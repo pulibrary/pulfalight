@@ -57,6 +57,9 @@ export default class PulfalightLoader {
     }
   }
 
+  // Set up Suggest a Correction modal. Rails UJS submits as a remote form, and
+  // ContactController#suggest returns the form partial in response to the
+  // request.
   setup_form_modal() {
     $("#correctionModal").on("ajax:error", function(event) {
       $("#correctionModal .modal-body").html(event.detail[0].body)
