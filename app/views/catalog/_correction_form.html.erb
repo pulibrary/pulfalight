@@ -1,4 +1,4 @@
-<%= simple_form_for form, url: "#", remote: true do |f| %>
+<%= simple_form_for form, url: contact_suggest_path, remote: true do |f| %>
   <%= f.input :name %>
   <%= f.input :email, as: :email %>
   <%= f.input :box_number, label: "Box/Container Number (optional)" %>

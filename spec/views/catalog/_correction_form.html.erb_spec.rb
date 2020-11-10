@@ -12,6 +12,6 @@ RSpec.describe "catalog/_correction_form.html.erb" do
     expect(rendered).to have_field "Box/Container Number (optional)"
     expect(rendered).to have_field "Message"
     expect(rendered).to have_button "Send"
-    expect(rendered).to have_css("form[data-remote=true]")
+    expect(rendered).to have_css("form[data-remote=true][action='/contact/suggest']")
   end
 end

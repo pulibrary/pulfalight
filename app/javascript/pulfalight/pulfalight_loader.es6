@@ -16,6 +16,7 @@ export default class PulfalightLoader {
     this.setup_vue()
     this.setup_lib_cal_hours()
     this.setup_range_limit()
+    this.setup_form_modal()
   }
 
   setup_lib_cal_hours() {
@@ -54,5 +55,11 @@ export default class PulfalightLoader {
         }
       })
     }
+  }
+
+  setup_form_modal() {
+    $("#correctionModal").on("ajax:error", function(event) {
+      $("#correctionModal .modal-body").html(event.detail[0].body)
+    })
   }
 }
