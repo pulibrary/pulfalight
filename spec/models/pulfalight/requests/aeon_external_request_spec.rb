@@ -63,7 +63,7 @@ RSpec.describe Pulfalight::Requests::AeonExternalRequest do
       expect(form_mapping).to include("scheduledDate" => "")
 
       expect(form_mapping).to include(DocumentType: "Manuscript")
-      expect(form_mapping).to include(Site: nil)
+      expect(form_mapping).to include(Site: "MUDD")
       expect(form_mapping).to include(SubmitButton: "Submit Request")
     end
   end
