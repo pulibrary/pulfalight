@@ -24,6 +24,7 @@ Metrics/BlockLength:
     - 'lib/tasks/**/*'
     - 'app/controllers/catalog_controller.rb'
     - 'config/routes.rb'
+    - 'config/initializers/simple_form_bootstrap.rb'
 Metrics/ClassLength:
   Exclude:
     - 'app/models/solr_document.rb'
@@ -40,6 +41,7 @@ Metrics/MethodLength:
 Layout/LineLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
+    - 'config/initializers/simple_form_bootstrap.rb'
 Naming/PredicateName:
   Exclude:
     - 'app/models/solr_document.rb'
