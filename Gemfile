@@ -89,5 +89,5 @@ gem "webpacker", "~> 4.0"
 
 gem "dotenv-rails", groups: [:development, :test]
 
-gem "simple_form"
 gem "email_validator"
+gem "simple_form"
