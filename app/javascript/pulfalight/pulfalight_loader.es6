@@ -61,10 +61,15 @@ export default class PulfalightLoader {
   // ContactController#suggest returns the form partial in response to the
   // request.
   setup_form_modal() {
+    $("#correctionModal").on("show.bs.modal", function() {
+      $("#correctionModal form").show()
+      $("#correctionModal .alert").hide()
+    })
     $("#correctionModal").on("ajax:error", function(event) {
       $("#correctionModal .modal-body").html(event.detail[0].body)
     }).on("ajax:success", function(event) {
       $("#correctionModal .modal-body").html(event.detail[0].body)
+      $("#correctionModal form").hide()
     })
   }
 }
