@@ -9,7 +9,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <%= render partial: "correction_form", locals: { form: SuggestACorrectionForm.new(location_code: Array.wrap(@document.physical_location_code).first.to_s.downcase, context: request.original_url) } %>
+          <%= render partial: "correction_form", locals: { form: SuggestACorrectionForm.new(location_code: @document.fetch("repository_code_ssm", []).first, context: request.original_url) } %>
         </div>
       </div>
     </div>
