@@ -150,6 +150,10 @@ to_field "repository_sim" do |_record, accumulator, context|
   accumulator << context.clipboard[:repository]
 end
 
+to_field "repository_code_ssm" do |_record, accumulator, context|
+  accumulator << context.settings[:repository]
+end
+
 to_field "geogname_ssm", extract_xpath("/ead/archdesc/controlaccess/geogname")
 to_field "geogname_sim", extract_xpath("/ead/archdesc/controlaccess/geogname")
 
