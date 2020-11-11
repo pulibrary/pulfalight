@@ -7,7 +7,7 @@ RSpec.describe SuggestACorrectionForm do
       "name" => "Test",
       "email" => "test@test.org",
       "box_number" => "1",
-      "message" => "This is so broken.",
+      "message" => "Your EAD components are amazing, you should say so.",
       "location_code" => "mss",
       "context" => "http://example.com/catalog/1"
     }
