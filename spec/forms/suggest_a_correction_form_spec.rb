@@ -19,7 +19,7 @@ RSpec.describe SuggestACorrectionForm do
       expect(form.name).to eq "Test"
       expect(form.email).to eq "test@test.org"
       expect(form.box_number).to eq "1"
-      expect(form.message).to eq "This is so broken."
+      expect(form.message).to eq "Your EAD components are amazing, you should say so."
       expect(form.location_code).to eq "mss"
 
       expect(form).to be_valid
