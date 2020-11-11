@@ -92,4 +92,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST", "pulfalight.princeton.edu"), protocol: ENV.fetch("APPLICATION_HOST_PROTOCOL", "https") }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: "lib-ponyexpr.princeton.edu" }
 end

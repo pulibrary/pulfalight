@@ -1,0 +1,17 @@
+<% content_for :correction_modal do %>
+  <div class="modal fade" id="correctionModal" tabindex="-1" role="dialog" aria-labelledby="Suggest a Correction" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="correctionModalTitle">Suggest a Correction</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= render partial: "correction_form", locals: { form: SuggestACorrectionForm.new(location_code: @document.fetch("repository_code_ssm", []).first, context: request.original_url) } %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

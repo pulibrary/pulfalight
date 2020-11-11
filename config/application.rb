@@ -32,6 +32,7 @@ module Pulfalight
       port: ENV.fetch("APPLICATION_PORT", "3000"),
       protocol: ENV.fetch("APPLICATION_HOST_PROTOCOL", "http")
     }
+    config.action_mailer.default_url_options = config.action_controller.default_url_options
   end
 
   Rails.application.routes.default_url_options = {

@@ -1,0 +1,14 @@
+<% if form.submitted? %>
+  <div class="alert alert-success" role="alert">
+    Thank you for your submission.
+  </div>
+<% end %>
+<%= simple_form_for form, url: contact_suggest_path, remote: true do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email, as: :email %>
+  <%= f.input :box_number, label: "Box/Container Number (optional)" %>
+  <%= f.input :message, as: :text %>
+  <%= f.input :location_code, as: :hidden %>
+  <%= f.input :context, as: :hidden %>
+  <%= f.submit "Send", class: "btn btn-primary" %>
+<% end %>

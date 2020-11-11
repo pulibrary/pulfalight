@@ -24,6 +24,7 @@ Metrics/BlockLength:
     - 'lib/tasks/**/*'
     - 'app/controllers/catalog_controller.rb'
     - 'config/routes.rb'
+    - 'config/initializers/simple_form_bootstrap.rb'
 Metrics/ClassLength:
   Exclude:
     - 'app/models/solr_document.rb'
@@ -40,6 +41,7 @@ Metrics/MethodLength:
 Layout/LineLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
+    - 'config/initializers/simple_form_bootstrap.rb'
 Naming/PredicateName:
   Exclude:
     - 'app/models/solr_document.rb'
@@ -54,20 +56,7 @@ Metrics/PerceivedComplexity:
     - 'lib/pulfalight/traject/ead2_component_config.rb'
 
 RSpec/ExampleLength:
-  Exclude:
-    - 'spec/controllers/toc_controller_spec.rb'
-    - 'spec/features/catalog_view_spec.rb'
-    - 'spec/features/traject/ead2_indexing_spec.rb'
-    - 'spec/models/pulfalight/requests/aeon_external_request_spec.rb'
-    - 'spec/models/solr_document_spec.rb'
-    - 'spec/requests/catalog_request_spec.rb'
-    - 'spec/services/robots_generator_service_spec.rb'
-    - 'spec/services/table_of_contents_builder_spec.rb'
-    - 'spec/jobs/aspace_index_job_spec.rb'
-    - 'spec/services/aspace/client_spec.rb'
-    - 'spec/services/aspace/indexer_spec.rb'
-    - 'spec/services/aspace_fixture_generator_spec.rb'
-    - 'spec/features/accessibility_spec.rb'
+  Enabled: false
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
@@ -75,3 +64,6 @@ RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/models/user_spec.rb'
     - 'spec/services/aspace_fixture_generator_spec.rb'
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/views/**/*.rb'

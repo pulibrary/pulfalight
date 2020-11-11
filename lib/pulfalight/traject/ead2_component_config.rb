@@ -152,6 +152,11 @@ to_field "repository_sim" do |_record, accumulator, context|
 
   accumulator << parent.clipboard[:repository]
 end
+
+to_field "repository_code_ssm" do |_record, accumulator, context|
+  accumulator << context.settings[:repository]
+end
+
 to_field "collection_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
   next unless parent

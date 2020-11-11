@@ -49,6 +49,8 @@ describe "EAD 2 traject indexing", type: :feature do
       it "retrieves an existing Repository model and indexes this into Solr" do
         expect(result).to include("repository_ssm" => ["Public Policy Papers"])
         expect(result).to include("repository_sim" => ["Public Policy Papers"])
+        expect(result["repository_code_ssm"]).to eq ["publicpolicy"]
+        expect(result["components"][0]["repository_code_ssm"]).to eq ["publicpolicy"]
       end
     end
   end
