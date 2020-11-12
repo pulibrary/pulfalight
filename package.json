@@ -37,7 +37,7 @@
       "spec/javascript"
     ],
     "setupFiles": [
-      "./source/setup-jest.js"
+      "./spec/javascript/setup.js"
     ],
     "transform": {
       "^.+\\.js$": "babel-jest",
@@ -47,7 +47,8 @@
     "moduleFileExtensions": [
       "js",
       "es6",
-      "vue"
+      "vue",
+      "css"
     ],
     "moduleDirectories": [
       "node_modules",
