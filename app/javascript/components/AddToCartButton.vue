@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import store from "../store"
 import { mapState, mapGetters } from "vuex"
 export default {
   name: "AddToCartButton",
@@ -35,8 +34,7 @@ export default {
   },
   methods: {
     addToCart() {
-      console.log(store.dispatch)
-      store.dispatch("addItemToCart", this.item)
+      this.$store.dispatch("addItemToCart", this.item)
     }
   },
   computed: {
@@ -54,7 +52,7 @@ export default {
       }
     },
     ...mapState({
-      cart: state => store.state.cart,
+      cart: state => this.$store.state.cart,
     })
   }
 }
