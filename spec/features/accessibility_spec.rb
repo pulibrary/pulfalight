@@ -37,4 +37,24 @@ describe "accessibility", type: :feature, js: true do
         .skipping(:"aria-required-children") # Issue in js.tree. Children should have "treeitem" role.
     end
   end
+
+  context "collection show page" do
+    it "complies with WCAG" do
+      visit "/catalog/MC221"
+      expect(page).to be_axe_clean
+        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
+        .excluding("#toc")
+        .excluding(".tt-hint") # Issue is in typeahead.js library
+    end
+  end
+
+  context "component show page" do
+    it "complies with WCAG" do
+      visit "/catalog/aspace_MC148_c07608"
+      expect(page).to be_axe_clean
+        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
+        .excluding("#toc")
+        .excluding(".tt-hint") # Issue is in typeahead.js library
+    end
+  end
 end
