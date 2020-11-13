@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require "rails_helper"
 
 describe "catalog/_show_collection_title" do
