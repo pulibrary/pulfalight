@@ -2,9 +2,11 @@
   <div class="lux document-title">
     <h3><%= document.normalized_title %></h3>
     <div class="document-attributes">
-      <div class="document-extent">
-        <span><%= document.extent %></span>
-      </div>
+      <% if document.extent.present? %>
+        <div class="document-extent">
+          <span><%= document.extent %></span>
+        </div>
+      <% end %>
     </div>
   </div>
   <% if document.direct_digital_objects.present? %>
