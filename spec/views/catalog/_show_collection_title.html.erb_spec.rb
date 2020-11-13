@@ -4,7 +4,7 @@ describe "catalog/_show_collection_title" do
   context "when collection id has dots" do
     let(:document) do
       {
-        "ead_ssi" => ["MC001.02.06"],
+        "ead_ssi" => "MC001.02.06",
         "id" => ["MC001-02-06"],
         "level_ssm" => ["collection"],
         "title_ssm" => ["American Civil Liberties Union Records: Subgroup 2, Audiovisual Materials Series"],
@@ -24,7 +24,7 @@ describe "catalog/_show_collection_title" do
   context "when a compent id has dots" do
     let(:document) do
       {
-        "ead_ssi" => ["MC001.02.06"],
+        "ead_ssi" => "MC001.02.06",
         "id" => ["aspace_MC001-02-06_c0001"],
         "level_ssm" => ["Series"],
         "title_ssm" => ["Series 6, Audio-Visual materials"],
