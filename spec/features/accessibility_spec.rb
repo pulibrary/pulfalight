@@ -25,6 +25,25 @@ describe "accessibility", type: :feature, js: true do
     end
   end
 
+  context "search results page" do
+    it "complies with WCAG" do
+      visit "/?utf8=✓&group=true&search_field=all_fields&q=morrison"
+      # test that we got at least one collection result, so we know there is
+      # content to check accessibility on; this is the class for the repository
+      # name
+      expect(page).to have_selector(".al-grouped-repository")
+      # Blacklight icons have problems with:
+      # - aria-valid-attr
+      # - aria-roles
+      # - duplicate-id
+      # We should try including these again after upgrading blacklight (see https://github.com/pulibrary/pulfalight/issues/304)
+      expect(page).to be_axe_clean
+        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
+        .excluding(".tt-hint") # Issue is in typeahead.js library
+        .excluding(".blacklight-icons > svg")
+    end
+  end
+
   context "table of contents" do
     it "complies with WCAG" do
       visit "/catalog/MC221"
