@@ -78,7 +78,11 @@ class SolrDocument
   end
 
   def ead
-    fetch("ead_ssi", [])
+    fetch("ead_ssi", "")
+  end
+
+  def http_safe_ead
+    ead.tr(".", "-")
   end
 
   def eadid
