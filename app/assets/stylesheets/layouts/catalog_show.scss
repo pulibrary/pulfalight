@@ -72,6 +72,12 @@
     }
   }
 
+  .content-navigation {
+    .nav.nav-tabs {
+      flex-wrap: wrap;
+    }
+  }
+
   .nav-tabs {
     .nav-link {
 

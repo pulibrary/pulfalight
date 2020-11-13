@@ -60,6 +60,14 @@ module PulfalightHelper
     uri.is_a?(URI::HTTP)
   end
 
+  ##
+  # Class used for specifying main layout container classes. Can be
+  # overwritten to return 'container-fluid' for Bootstrap full-width layout
+  # @return [String]
+  def container_classes
+    "container-fluid"
+  end
+
   private
 
   def repository_thumbnail_path

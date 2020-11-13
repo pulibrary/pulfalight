@@ -8,9 +8,10 @@ export const cartActions = {
     const duplicate = context.state.items.find(item => item.callnumber === newItem.callnumber)
     if (typeof duplicate === "undefined") {
       context.commit("PUSH_ITEM_TO_CART", newItem)
-      if(context.state.isVisible === false)
-        context.commit("TOGGLE_VISIBILITY")
     }
+
+    if(context.state.isVisible === false)
+      context.commit("TOGGLE_VISIBILITY")
   },
   removeItemFromCart(context, item) {
     context.commit("REMOVE_ITEM_FROM_CART", item)
