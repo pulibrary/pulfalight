@@ -10,12 +10,11 @@
         <cart-icon></cart-icon>
       </lux-icon-base>
     </input-button>
-    <span class="badge" id="count"> {{ cart.items.length }} </span>
+    <span class="badge" id="count"> {{ items.length }} </span>
   </div>
 </template>
 
 <script>
-import store from "../store"
 import { mapState, mapGetters } from "vuex"
 import RequestCartIcon from './RequestCartIcon.vue'
 export default {
@@ -26,16 +25,13 @@ export default {
   computed: {
     items: {
       get() {
-        return this.cart.items
+        return this.$store.state.cart.items
       }
-    },
-    ...mapState({
-      cart: state => store.state.cart,
-    })
+    }
   },
   methods: {
     toggleCartView(event) {
-      store.commit("TOGGLE_VISIBILITY")
+      this.$store.commit("TOGGLE_VISIBILITY")
     }
   }
 }
