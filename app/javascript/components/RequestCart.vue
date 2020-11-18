@@ -15,6 +15,7 @@
       type="button"
       variation="text"
       class="denied-button"
+      aria-labelledby="denied"
     >
 
       <div class="lux-icon">
@@ -27,7 +28,7 @@
           role="img"
           fill="#6e757c"
           >
-          <title id="icon-name" lang="en">denied</title>
+          <title id="denied" lang="en">denied</title>
           <x-circle-icon></x-circle-icon>
         </svg>
       </div>
@@ -57,7 +58,7 @@
 
               <tr
                 :key="index"
-                :id="item.callnumber"
+                :id="'item-' + item.callnumber"
                 class="lux-cartItem request"
               >
                 <td>{{ item.title }}</td>

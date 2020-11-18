@@ -6,7 +6,7 @@
       variation="text"
       hideLabel
     >
-      <lux-icon-base width="30" height="30" icon-name="Cart" icon-color="#ffffff">
+      <lux-icon-base width="30" height="30" icon-name="CartViewToggle" icon-color="#ffffff">
         <cart-icon></cart-icon>
       </lux-icon-base>
     </input-button>
@@ -16,11 +16,11 @@
 
 <script>
 import { mapState, mapGetters } from "vuex"
-import RequestCartIcon from './RequestCartIcon.vue'
+import LuxIconCart from './RequestCartIcon.vue'
 export default {
   name: "CartViewToggle",
   components: {
-    'cart-icon': RequestCartIcon
+    'cart-icon': LuxIconCart
   },
   computed: {
     items: {
