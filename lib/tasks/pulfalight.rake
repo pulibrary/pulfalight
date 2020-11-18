@@ -9,6 +9,13 @@ namespace :pulfalight do
     desc "Index EADIDs defined by stakeholders as representatives."
     task index_test_eads: :environment do
       test_eadids = [
+        "WC064",
+        "C0614",
+        "MC152",
+        "C0807",
+        "MC001.04",
+        "C0776",
+        "C0879",
         "AC019",
         "C0014",
         "MC001.03.01",
