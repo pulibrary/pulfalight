@@ -82,9 +82,24 @@ describe "accessibility", type: :feature, js: true do
     it "complies with WCAG" do
       visit "/catalog/aspace_MC148_c07608"
 
-      # Clink button for suggest a correction and wait for modal.
+      # Click button for suggest a correction and wait for modal
       click_link(href: "#correction")
       expect(page).to have_css("#suggest_a_correction_form_box_number")
+
+      expect(page).to be_axe_clean
+        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
+        .excluding("#toc")
+        .excluding(".tt-hint") # Issue is in typeahead.js library
+    end
+  end
+
+  context "request cart" do
+    it "complies with WCAG" do
+      visit "/catalog/aspace_MC148_c07608"
+
+      # Click request button and wait for request cart div
+      find(".add-to-cart-block > button").click
+      expect(page).to have_css("div.request-cart")
 
       expect(page).to be_axe_clean
         .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
