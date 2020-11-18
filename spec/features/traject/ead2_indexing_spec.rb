@@ -267,8 +267,6 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(result).to include("collection_notes_ssm")
         expect(result["collection_notes_ssm"]).not_to be_empty
         notes = result["collection_notes_ssm"].join
-        expect(notes).to include("Harold Boies Hoskins was a businessman, diplomat, and educator working in")
-        expect(notes).to include("Born in Beirut and raised by American missionary parents, he")
         expect(notes).to include("The Harold B. Hoskins Papers consist of correspondence, diaries, notes")
         expect(notes).to include("The collection is open for research use.")
         expect(notes).to include("Single photocopies may be made for research purposes. For quotations that are fair use as defined under")
@@ -287,8 +285,6 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(component).to include("collection_notes_ssm")
         expect(component["collection_notes_ssm"]).not_to be_empty
         notes = component["collection_notes_ssm"].join
-        expect(notes).to include("Harold Boies Hoskins was a businessman, diplomat, and educator working in")
-        expect(notes).to include("Born in Beirut and raised by American missionary parents, he")
         expect(notes).to include("The Harold B. Hoskins Papers consist of correspondence, diaries, notes")
         expect(notes).to include("The collection is open for research use.")
         expect(notes).to include("Single photocopies may be made for research purposes. For quotations that are fair use as defined under")
@@ -303,8 +299,6 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(nested_component).to include("collection_notes_ssm")
         expect(nested_component["collection_notes_ssm"]).not_to be_empty
         notes = nested_component["collection_notes_ssm"].join
-        expect(notes).to include("Harold Boies Hoskins was a businessman, diplomat, and educator working in")
-        expect(notes).to include("Born in Beirut and raised by American missionary parents, he")
         expect(notes).to include("The Harold B. Hoskins Papers consist of correspondence, diaries, notes")
         expect(notes).to include("The collection is open for research use.")
         expect(notes).to include("Single photocopies may be made for research purposes. For quotations that are fair use as defined under")
