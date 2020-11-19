@@ -347,8 +347,8 @@ class CatalogController < ApplicationController
     # =============================
     config.add_collection_history_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator
     config.add_collection_history_field "custodhist_ssm", label: "Custodial History", helper_method: :paragraph_separator
+    config.add_collection_history_field "accruals_ssm", label: "Additions", helper_method: :paragraph_separator
     config.add_collection_history_field "appraisal_ssm", label: "Archival Appraisal Information", helper_method: :paragraph_separator
-    config.add_collection_history_field "processinfo_ssm", label: "Processing Information", helper_method: :paragraph_separator
     config.add_collection_history_field "sponsor_ssm", label: "Sponsorship", helper_method: :paragraph_separator
     config.add_collection_history_field "processinfo_processing_ssm", label: "Processing Information", helper_method: :paragraph_separator, accessor: :fetch_html_safe
 

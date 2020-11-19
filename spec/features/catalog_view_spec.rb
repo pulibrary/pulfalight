@@ -211,8 +211,6 @@ describe "viewing catalog records", type: :feature, js: true do
           # Acquisition
           expect(page).to have_selector "dt.blacklight-acqinfo_ssm", text: "Acquisition"
           expect(page).to have_selector "dd.blacklight-acqinfo_ssm", text: /gift from David E. Lilienthal/
-          # Accruals
-          # TODO: Add accruals test: C0274
           # Appraisal
           expect(page).to have_selector "dt.blacklight-appraisal_ssm", text: "Archival Appraisal Information"
           expect(page).to have_selector "dd.blacklight-appraisal_ssm", text: /No information about appraisal/
@@ -228,6 +226,15 @@ describe "viewing catalog records", type: :feature, js: true do
           # separatedmaterial
           # TODO: Add separatedmaterial: RCPXG-5830371.2
           # No finding aid with separatedmaterial - leaving off.
+        end
+      end
+      it "shows accruals" do
+        visit "/catalog/C0257"
+        # Collection History
+        within("#collection-history") do
+          # Accruals
+          expect(page).to have_selector "dt.blacklight-accruals_ssm", text: "Additions"
+          expect(page).to have_selector "dd.blacklight-accruals_ssm", text: /No accruals are expected./
         end
       end
       it "shows originalsloc" do
