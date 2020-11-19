@@ -218,12 +218,14 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dt.blacklight-processinfo_processing_ssm", text: "Processing Information"
           expect(page).to have_selector "dd.blacklight-processinfo_processing_ssm", text: /There is no processing information available for this collection./
         end
+      end
+      it "shows separatedmaterial" do
+        visit "/catalog/C1210"
 
-        # Find Related Materials
         within("#find-more") do
-          # separatedmaterial
-          # TODO: Add separatedmaterial: RCPXG-5830371.2
-          # No finding aid with separatedmaterial - leaving off.
+          # Separated Material
+          expect(page).to have_selector "dt.blacklight-separatedmaterial_ssm", text: "Separated Material"
+          expect(page).to have_selector "dd.blacklight-separatedmaterial_ssm", text: /During 2017 processing/
         end
       end
       it "shows conservation info" do
