@@ -62,8 +62,11 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page.body).to include "These papers were processed with the generous support"
     end
 
-    it "has a collection access tab" do
+    it "has a collection access tab", js: false do
+      # accessrestrict
       expect(page.body).to include "The collection is open for research use."
+      # userestrict
+      expect(page.body).to include "Conditions for Reproduction and Use"
       expect(page.body).to include "Single photocopies may be made for research purposes"
       expect(page.body).to include "Public Policy Papers, Department of Special Collections"
       expect(page.body).to include "65 Olden Street"
@@ -111,8 +114,7 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_text("Harold Boies Hoskins was a businessman")
       expect(page).to have_text "unavailable until further notice"
     end
-    xit "has a language property in the overview summary section" do
-      # TODO: ensure that collection language is indexed correctly
+    it "has a language property in the overview summary section" do
       expect(page).to have_css("dd.blacklight-language_ssm", text: "English")
     end
 
@@ -172,6 +174,156 @@ describe "viewing catalog records", type: :feature, js: true do
     it "renders a view content link" do
       url = "https://webspace.princeton.edu/users/mudd/Digitization/MC148/MC148_c07608.pdf"
       expect(page).to have_css("a[href=\"#{url}\"]")
+    end
+  end
+
+  describe "notes", js: false do
+    context "on a collection page" do
+      it "shows note" do
+        visit "/catalog/C0841"
+
+        within("#description") do
+          expect(page).to have_selector "dt.blacklight-odd_ssm", text: "Note"
+          expect(page).to have_selector "dd.blacklight-odd_ssm", text: /Location of Printed Books Removed for Cataloging/
+        end
+      end
+      it "shows all the relevant notes" do
+        visit "/catalog/MC148"
+
+        within("#summary") do
+          # Repository
+          expect(page).to have_selector "dt.blacklight-repository_ssm", text: "Repository"
+          expect(page).to have_selector "dd.blacklight-repository_ssm", text: "Public Policy Papers"
+        end
+
+        # Collection Description
+        within("#description") do
+          # Description
+          expect(page).to have_selector "dt.blacklight-collection_description_ssm", text: "Description"
+          expect(page).to have_selector "dd.blacklight-collection_description_ssm", text: /This collection consists of the papers of Lilienthal/
+          # Arrangement
+          expect(page).to have_selector "dt.blacklight-arrangement_ssm", text: "Arrangement"
+          expect(page).to have_selector "dd.blacklight-arrangement_ssm", text: /may have been put in this order by Lilienthal/
+        end
+
+        # Access
+        within("#access") do
+          # Access Restrictions
+          expect(page).to have_selector "dt.blacklight-accessrestrict_ssm", text: "Access Restrictions"
+          expect(page).to have_selector "dd.blacklight-accessrestrict_ssm", text: /LINKED DIGITAL CONTENT NOTE:/
+          # Use Restrictions
+          expect(page).to have_selector "dt.blacklight-userestrict_ssm", text: "Conditions for Reproduction and Use"
+          expect(page).to have_selector "dd.blacklight-userestrict_ssm", text: /Single photocopies/
+          # Special Requirements
+          expect(page).to have_selector "dt.blacklight-phystech_ssm", text: "Special Requirements for Access"
+          expect(page).to have_selector "dd.blacklight-phystech_ssm", text: /Access to audiovisual material/
+        end
+
+        # Collection History
+        within("#collection-history") do
+          # Acquisition
+          expect(page).to have_selector "dt.blacklight-acqinfo_ssm", text: "Acquisition"
+          expect(page).to have_selector "dd.blacklight-acqinfo_ssm", text: /gift from David E. Lilienthal/
+          # Appraisal
+          expect(page).to have_selector "dt.blacklight-appraisal_ssm", text: "Archival Appraisal Information"
+          expect(page).to have_selector "dd.blacklight-appraisal_ssm", text: /No information about appraisal/
+          # Processing Information
+          expect(page).to have_selector "dt.blacklight-processinfo_processing_ssm", text: "Processing Information"
+          expect(page).to have_selector "dd.blacklight-processinfo_processing_ssm", text: /There is no processing information available for this collection./
+        end
+        within("#find-more") do
+          # Ensure blank labels aren't showing up.
+          expect(page).not_to have_selector "dt.blacklight-separatedmaterial_ssm"
+          # Subject - include occupation.
+          expect(page).to have_selector "dt.blacklight-subject_terms_ssm"
+          expect(page).to have_selector "dd.blacklight-subject_terms_ssm", text: /Industries -- Power supply -- United States -- 20th century./
+          expect(page).to have_selector "dd.blacklight-subject_terms_ssm", text: /Lawyers -- United States -- 20th century./
+        end
+      end
+      it "shows separatedmaterial" do
+        visit "/catalog/C1210"
+
+        within("#find-more") do
+          # Separated Material
+          expect(page).to have_selector "dt.blacklight-separatedmaterial_ssm", text: "Separated Material"
+          expect(page).to have_selector "dd.blacklight-separatedmaterial_ssm", text: /During 2017 processing/
+        end
+      end
+      it "shows conservation info" do
+        visit "/catalog/C1513"
+        within("#collection-history") do
+          # Conservation
+          expect(page).to have_selector "dt.blacklight-processinfo_conservation_ssm", text: "Conservation"
+          expect(page).to have_selector "dd.blacklight-processinfo_conservation_ssm", text: /were digitized in 2017./
+        end
+      end
+      it "shows accruals, sponsor" do
+        visit "/catalog/C0257"
+        # Collection History
+        within("#collection-history") do
+          # Accruals
+          expect(page).to have_selector "dt.blacklight-accruals_ssm", text: "Additions"
+          expect(page).to have_selector "dd.blacklight-accruals_ssm", text: /No accruals are expected./
+          # Sponsor
+          expect(page).to have_selector "dt.blacklight-sponsor_ssm", text: "Sponsor"
+          expect(page).to have_selector "dd.blacklight-sponsor_ssm", text: /New Jersey Historical Commission/
+        end
+      end
+      it "shows Creator" do
+        visit "/catalog/C1408"
+        within("#summary") do
+          expect(page).to have_selector "dt.blacklight-creators_ssim", text: "Creator"
+          expect(page).to have_selector "dd.blacklight-creators_ssim", text: "Alaveras, Tēlemachos"
+        end
+
+        visit "/catalog/aspace_C1408_c3"
+        within("#summary") do
+          expect(page).to have_selector "dt.blacklight-collection_creator_ssm", text: "Collection Creator"
+          expect(page).to have_selector "dd.blacklight-collection_creator_ssm", text: "Alaveras, Tēlemachos"
+        end
+      end
+      it "shows originalsloc" do
+        visit "/catalog/C0274"
+        within("#find-more") do
+          expect(page).to have_selector "dt.blacklight-originalsloc_ssm", text: "Location of Originals"
+          expect(page).to have_selector "dd.blacklight-originalsloc_ssm", text: /One box of the collection consists entirely of photocopies/
+        end
+      end
+      it "shows alternate form available" do
+        visit "/catalog/WC064"
+        # Find Related Materials
+        within("#find-more") do
+          # Alternative Form Available
+          expect(page).to have_selector "dt.blacklight-altformavail_ssm", text: "Alternative Form Available"
+          expect(page).to have_selector "dd.blacklight-altformavail_ssm", text: /Many of the items in this collection/
+        end
+      end
+      it "shows custodial history" do
+        visit "/catalog/MC221"
+        # Collection History
+        within("#collection-history") do
+          # Custodial History
+          expect(page).to have_selector "dt.blacklight-custodhist_ssm", text: "Custodial History"
+          expect(page).to have_selector "dd.blacklight-custodhist_ssm", text: /Gifted to the American Heritage Center/
+        end
+      end
+      it "shows otherfindaid, related materials" do
+        visit "/catalog/MC001-02-06"
+        # Access Restrictions
+        within("#access") do
+          expect(page).to have_selector "dt.blacklight-otherfindaid_ssm", text: "Other Finding Aids"
+          expect(page).to have_selector "dd.blacklight-otherfindaid_ssm", text: /This finding aid describes a portion/
+        end
+        # Find Related Materials
+        within("#find-more") do
+          # relatedmaterial
+          expect(page).to have_selector "dt.blacklight-relatedmaterial_ssm", text: "Related Material"
+          expect(page).to have_selector "dd.blacklight-relatedmaterial_ssm", text: /American Civil Liberties Union, Washington, D.C. Office Records/
+          # Bibliography
+          expect(page).to have_selector "dt.blacklight-bibliography_ssm", text: "Publication Note"
+          expect(page).to have_selector "dd.blacklight-bibliography_ssm", text: /Historical sketch based on/
+        end
+      end
     end
   end
 end

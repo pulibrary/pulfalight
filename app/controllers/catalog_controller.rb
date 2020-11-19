@@ -314,6 +314,7 @@ class CatalogController < ApplicationController
     # Collection Show Page - Summary Section
     config.add_summary_field "creators_ssim", label: "Creator", link_to_facet: true
     config.add_summary_field "title_ssm", label: "Title"
+    config.add_summary_field "repository_ssm", label: "Repository"
     config.add_summary_field "normalized_date_ssm", label: "Dates"
     config.add_summary_field "extent_ssm", label: "Size"
     config.add_summary_field "storage_notes", label: "Storage Note", accessor: :storage_notes
@@ -339,22 +340,28 @@ class CatalogController < ApplicationController
     # COLLECTION DESCRIPTION TAB FIELDS
     # =================================
     config.add_collection_description_field "collection_description_ssm", label: "Description", helper_method: :paragraph_separator
+    config.add_collection_description_field "arrangement_ssm", label: "Arrangement", helper_method: :paragraph_separator
     config.add_collection_description_field "bioghist_ssm", label: "Collection Creator Biography", helper_method: :paragraph_separator
+    config.add_collection_description_field "odd_ssm", label: "Note", helper_method: :paragraph_separator, accessor: :fetch_html_safe
 
     # =============================
     # COLLECTION HISTORY TAB FIELDS
     # =============================
     config.add_collection_history_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator
     config.add_collection_history_field "custodhist_ssm", label: "Custodial History", helper_method: :paragraph_separator
+    config.add_collection_history_field "accruals_ssm", label: "Additions", helper_method: :paragraph_separator
     config.add_collection_history_field "appraisal_ssm", label: "Archival Appraisal Information", helper_method: :paragraph_separator
-    config.add_collection_history_field "processinfo_ssm", label: "Processing Information", helper_method: :paragraph_separator
     config.add_collection_history_field "sponsor_ssm", label: "Sponsorship", helper_method: :paragraph_separator
+    config.add_collection_history_field "processinfo_processing_ssm", label: "Processing Information", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_collection_history_field "processinfo_conservation_ssm", label: "Conservation", helper_method: :paragraph_separator, accessor: :fetch_html_safe
 
     # =================
     # ACCESS TAB FIELDS
     # =================
     config.add_access_field "accessrestrict_ssm", label: "Access Restrictions", helper_method: :paragraph_separator
-    config.add_access_field "userestrict_ssm", label: "Use Restrictions", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_access_field "userestrict_ssm", label: "Conditions for Reproduction and Use", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_access_field "phystech_ssm", label: "Special Requirements for Access", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_access_field "otherfindaid_ssm", label: "Other Finding Aids", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_access_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
     config.add_access_field "repository_ssm", if: :repository_config_present, label: "Location", helper_method: :context_access_tab_repository
     # Using ID because we know it will always exist
@@ -363,6 +370,11 @@ class CatalogController < ApplicationController
     # =================
     # FIND RELATED TAB FIELDS
     # =================
+    config.add_indexed_terms_field "altformavail_ssm", label: "Alternative Form Available", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_indexed_terms_field "relatedmaterial_ssm", label: "Related Material", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_indexed_terms_field "originalsloc_ssm", label: "Location of Originals", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_indexed_terms_field "separatedmaterial_ssm", label: "Separated Material", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_indexed_terms_field "bibliography_ssm", label: "Publication Note", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_indexed_terms_field "topics_ssm", label: "Topics", link_to_facet: true, separator_options: {
       words_connector: "<br/>",
       two_words_connector: "<br/>",

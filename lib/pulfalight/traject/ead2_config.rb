@@ -234,7 +234,7 @@ SEARCHABLE_NOTES_FIELDS.map do |selector|
   sanitizer = Rails::Html::SafeListSanitizer.new
   to_field "#{selector}_ssm", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
     accumulator.map! do |element|
-      sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a")
+      sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip
     end
   end
   to_field "#{selector}_heading_ssm", extract_xpath("/ead/archdesc/#{selector}/head")
@@ -242,7 +242,9 @@ SEARCHABLE_NOTES_FIELDS.map do |selector|
 end
 
 DID_SEARCHABLE_NOTES_FIELDS.map do |selector|
-  to_field "#{selector}_ssm", extract_xpath("/ead/archdesc/did/#{selector}")
+  to_field "#{selector}_ssm", extract_xpath("/ead/archdesc/did/#{selector}") do |_record, accumulator|
+    accumulator.map!(&:strip)
+  end
 end
 
 NAME_ELEMENTS.map do |selector|
@@ -334,23 +336,34 @@ to_field "collection_notes_ssm" do |record, accumulator, _context|
   accumulator.concat(text_node_ancestors)
 end
 
-# For collection description tab
-to_field "collection_description_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs3"]/scopecontent')
+# For collection description tab.
+to_field "sponsor_ssm", extract_xpath("/ead/eadheader/filedesc/titlestmt/sponsor")
+to_field "collection_description_ssm" do |_record, accumulator, context|
+  accumulator.concat(context.output_hash["scopecontent_ssm"] || [])
+end
 
 # For collection history tab
-to_field "custodhist_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs5"]/custodhist')
-to_field "appraisal_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs5"]/appraisal')
-to_field "processinfo_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs7"]/processinfo')
-to_field "sponsor_ssm", extract_xpath("/ead/eadheader/filedesc/titlestmt/sponsor")
-
-# For collection access tab
-to_field "accessrestrict_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs4"]/accessrestrict')
-to_field "userestrict_ssm", extract_xpath('/ead/archdesc/descgrp[@id="dacs4"]/userestrict')
+sanitizer = Rails::Html::SafeListSanitizer.new
+["processing", "conservation"].each do |processinfo_type|
+  selector = if processinfo_type == "processing"
+               "processinfo[@id!='aspace_conservation']"
+             else
+               "processinfo[@id='aspace_conservation']"
+             end
+  to_field "processinfo_#{processinfo_type}_ssm", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
+    accumulator.map! do |element|
+      sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip
+    end
+  end
+  to_field "processinfo_#{processinfo_type}_heading_ssm", extract_xpath("/ead/archdesc/#{selector}/head")
+  to_field "processinfo_#{processinfo_type}_teim", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']")
+end
 
 # For find-more tab
 to_field "subject_terms_ssm" do |record, accumulator|
   values = record.xpath('/ead/archdesc/controlaccess/subject[@source="lcsh"]').map(&:text)
-  accumulator << values.sort
+  occupations = record.xpath("/ead/archdesc/controlaccess/occupation").map(&:text)
+  accumulator << (values + occupations).sort
 end
 
 # For find-more tab
