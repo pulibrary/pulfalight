@@ -314,6 +314,11 @@ describe "EAD 2 traject indexing", type: :feature do
         # Use restriction, propagate
         expect(result["userestrict_ssm"]).to eq ["Single photocopies may be made for research purposes. For quotations that are fair use as defined under <a href=\"http://copyright.princeton.edu/basics/fair-use\">U. S. Copyright Law</a>, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use."]
         expect(result["components"][0]["userestrict_ssm"]).to eq result["userestrict_ssm"]
+        # Acquisition Info
+        expect(result["acqinfo_ssm"]).to eq [
+          "Scott Rodman approved the gifting to Mudd on behalf of the Hoskins family in November 2007 (accession number ML.2007.037). Grania Ackley donated eight rolls of 16mm safety film and a file of correspondence in May 2012 (accession number ML.2012.020). The materials that comprise Series 3 were donated by John and Binti Ackley in 2014 (accession number ML.2014.029)."
+        ]
+        # Accruals - unable to find
       end
 
       it "indexes all note fields from the <archdesc> child elements for the child components" do

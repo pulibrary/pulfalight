@@ -338,6 +338,9 @@ end
 
 # For collection description tab.
 to_field "sponsor_ssm", extract_xpath("/ead/eadheader/filedesc/titlestmt/sponsor")
+to_field "collection_description_ssm" do |_record, accumulator, context|
+  accumulator.concat(context.output_hash["scopecontent_ssm"] || [])
+end
 
 # For find-more tab
 to_field "subject_terms_ssm" do |record, accumulator|

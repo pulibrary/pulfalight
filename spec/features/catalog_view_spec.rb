@@ -58,8 +58,11 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page.body).to include "These papers were processed with the generous support"
     end
 
-    it "has a collection access tab" do
+    it "has a collection access tab", js: false do
+      # accessrestrict
       expect(page.body).to include "The collection is open for research use."
+      # userestrict
+      expect(page.body).to include "Conditions for Reproduction and Use"
       expect(page.body).to include "Single photocopies may be made for research purposes"
       expect(page.body).to include "Public Policy Papers, Department of Special Collections"
       expect(page.body).to include "65 Olden Street"
@@ -168,6 +171,45 @@ describe "viewing catalog records", type: :feature, js: true do
     it "renders a view content link" do
       url = "https://webspace.princeton.edu/users/mudd/Digitization/MC148/MC148_c07608.pdf"
       expect(page).to have_css("a[href=\"#{url}\"]")
+    end
+  end
+
+  describe "notes", js: false do
+    context "on a collection page" do
+      it "shows all the relevant notes" do
+        visit "/catalog/MC148"
+
+        # Collection Description
+        within("#description") do
+          # Description
+          expect(page).to have_selector "dt.blacklight-collection_description_ssm", text: "Description"
+          expect(page).to have_selector "dd.blacklight-collection_description_ssm", text: /This collection consists of the papers of Lilienthal/
+          # Arrangement
+          expect(page).to have_selector "dt.blacklight-arrangement_ssm", text: "Arrangement"
+          expect(page).to have_selector "dd.blacklight-arrangement_ssm", text: /may have been put in this order by Lilienthal/
+        end
+
+        # Access Restrictions
+        within("#access") do
+          # Access Restrictions
+          expect(page).to have_selector "dt.blacklight-accessrestrict_ssm", text: "Access Restrictions"
+          expect(page).to have_selector "dd.blacklight-accessrestrict_ssm", text: /LINKED DIGITAL CONTENT NOTE:/
+          # Use Restrictions
+          expect(page).to have_selector "dt.blacklight-userestrict_ssm", text: "Conditions for Reproduction and Use"
+          expect(page).to have_selector "dd.blacklight-userestrict_ssm", text: /Single photocopies/
+          # Special Requirements
+          expect(page).to have_selector "dt.blacklight-phystech_ssm", text: "Special Requirements for Access"
+          expect(page).to have_selector "dd.blacklight-phystech_ssm", text: /Access to audiovisual material/
+        end
+      end
+      it "shows otherfindaid" do
+        visit "/catalog/MC001-02-06"
+        # Access Restrictions
+        within("#access") do
+          expect(page).to have_selector "dt.blacklight-otherfindaid_ssm", text: "Other Finding Aids"
+          expect(page).to have_selector "dd.blacklight-otherfindaid_ssm", text: /This finding aid describes a portion/
+        end
+      end
     end
   end
 end

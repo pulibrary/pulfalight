@@ -339,6 +339,7 @@ class CatalogController < ApplicationController
     # COLLECTION DESCRIPTION TAB FIELDS
     # =================================
     config.add_collection_description_field "collection_description_ssm", label: "Description", helper_method: :paragraph_separator
+    config.add_collection_description_field "arrangement_ssm", label: "Arrangement", helper_method: :paragraph_separator
     config.add_collection_description_field "bioghist_ssm", label: "Collection Creator Biography", helper_method: :paragraph_separator
 
     # =============================
@@ -354,7 +355,9 @@ class CatalogController < ApplicationController
     # ACCESS TAB FIELDS
     # =================
     config.add_access_field "accessrestrict_ssm", label: "Access Restrictions", helper_method: :paragraph_separator
-    config.add_access_field "userestrict_ssm", label: "Use Restrictions", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_access_field "userestrict_ssm", label: "Conditions for Reproduction and Use", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_access_field "phystech_ssm", label: "Special Requirements for Access", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_access_field "otherfindaid_ssm", label: "Other Finding Aids", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_access_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
     config.add_access_field "repository_ssm", if: :repository_config_present, label: "Location", helper_method: :context_access_tab_repository
     # Using ID because we know it will always exist
