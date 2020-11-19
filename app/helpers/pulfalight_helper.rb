@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "arclight_helper"
 module PulfalightHelper
   # Retrieves the current year
   # @return [Integer]
