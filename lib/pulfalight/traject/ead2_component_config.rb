@@ -447,9 +447,14 @@ to_field "appraisal_ssm" do |_record, accumulator, context|
 end
 
 # For collection history tab
-to_field "processinfo_ssm" do |_record, accumulator, context|
+to_field "processinfo_processing_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
-  value = parent.output_hash["processinfo_ssm"] || []
+  value = parent.output_hash["processinfo_processing_ssm"] || []
+  accumulator.concat(value)
+end
+to_field "processinfo_conservation_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:root]
+  value = parent.output_hash["processinfo_conservation_ssm"] || []
   accumulator.concat(value)
 end
 

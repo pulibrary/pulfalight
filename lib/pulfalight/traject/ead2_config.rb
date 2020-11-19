@@ -345,13 +345,17 @@ end
 # For collection history tab
 sanitizer = Rails::Html::SafeListSanitizer.new
 ["processing", "conservation"].each do |processinfo_type|
-  selector = "processinfo[@id='aspace_#{processinfo_type}']"
+  selector = if processinfo_type == "processing"
+               "processinfo[@id!='aspace_conservation']"
+             else
+               "processinfo[@id='aspace_conservation']"
+             end
   to_field "processinfo_#{processinfo_type}_ssm", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
     accumulator.map! do |element|
       sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip
     end
   end
-  to_field "processingo_#{processinfo_type}_heading_ssm", extract_xpath("/ead/archdesc/#{selector}/head")
+  to_field "processinfo_#{processinfo_type}_heading_ssm", extract_xpath("/ead/archdesc/#{selector}/head")
   to_field "processinfo_#{processinfo_type}_teim", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']")
 end
 
