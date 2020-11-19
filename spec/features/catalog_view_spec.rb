@@ -225,12 +225,16 @@ describe "viewing catalog records", type: :feature, js: true do
 
         # Find Related Materials
         within("#find-more") do
-          # Originalsloc
-          # TODO: Add originalsloc: C0257
-          # No finding aid with originalsloc - leaving off.
           # separatedmaterial
           # TODO: Add separatedmaterial: RCPXG-5830371.2
           # No finding aid with separatedmaterial - leaving off.
+        end
+      end
+      it "shows originalsloc" do
+        visit "/catalog/C0274"
+        within("#find-more") do
+          expect(page).to have_selector "dt.blacklight-originalsloc_ssm", text: "Location of Originals"
+          expect(page).to have_selector "dd.blacklight-originalsloc_ssm", text: /One box of the collection consists entirely of photocopies/
         end
       end
       it "shows alternate form available" do
