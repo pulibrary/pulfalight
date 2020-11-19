@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/z029p473t">C0841</eadid><filedesc><titlestmt><titleproper>Noël Riley Fitch Papers, 1858-2012 (bulk 1965-1995): Finding Aid <num>C0841</num></titleproper><author>Barabara Voz</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2005</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Rd.</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2020-11-19 15:34:08 -0500</date>.</creation><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T14:53:31.99-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Manuscripts Division </corpname>
+    </repository>
+    <unittitle>Noël Riley Fitch Papers</unittitle>
+    <unitid>C0841</unitid>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">39 boxes</extent>
+    </physdesc>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">2 items</extent>
+    </physdesc>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">17.4 linear feet</extent>
+    </physdesc>
+    <unitdate normal="1858/2012" type="inclusive">1858-2012</unitdate>
+    <unitdate normal="1965/1995" type="bulk">1965-1995</unitdate>
+    <abstract id="aspace_e9f208c7ae33174632bf608ef3e61847">Consists of the writings, correspondence, interviews, printed works, and other additional papers of the American educator and author Noël Riley Fitch (1937- ). Also included are a selection of Sylvia Beach papers that Fitch consulted for her book Sylvia Beach and the Lost Generation: A History of Literary Paris in the Twenties and Thirties (1983).</abstract>
+    <physloc id="aspace_8ac6f5e3a0829620d13fdf24e8b46abf">mss</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+.    </langmaterial>
+  </did>
+  <scopecontent id="aspace_fa968d40ad681f2d1855b746ec72ece3">
+    <head>Scope and Contents</head>
+<p>This collection primarily consists of papers of Noël Riley Fitch relating to her two books Sylvia Beach and the Lost Generation: A History of Literary Paris in the Twenties and Thirties(1983) and Walks in Hemingway's Paris: A Guide for the Literary Traveler(1990), as well as her thesis, dissertation, and other writings about Sylvia Beach (1887-1962), the American proprietress of the bookshop Shakespeare and Company in Paris, France. Included are research files, notes, typescripts, and galleys for Fitch's biography of Beach; correspondence and transcripts of interviews with former friends and associates of Beach, such as Berenice Abbott, Morrill Cody, Malcolm Cowley, Janet Flanner, Marcelle Fournier, Maurice Saillet, and others; correspondence with Richard McDougall, the poet and writer on the life of Adrienne Monnier, and typed copies of McDougall's A Selection of Poems(1957); as well as audiotapes (1969-1982) of Fitch's interviews with Elizabeth Bishop, Frederic Dennis, Helen Eddy, Marthiel Mathews, François Valéry, Priscilla Veitch, and others reminiscing about Beach and Paris in the 1920s and 1930s. There are also notes, manuscript drafts, and galleys of Fitch's Walks in Hemingway's Paris: A Guide for the Literary Traveler, and a cassette tape of an interview with Dutch journalists about the book and Ernest Hemingway (1990). Furthermore, the collection includes articles and book reviews concerning Djuna Barnes; assorted articles and lectures by Fitch; a copy of Lisa MacFarlane's Princeton University thesis on Sylvia Beach entitled "For Who is Silvier" (1979); four unpublished writings by Fitch (1988); additional correspondence between Fitch and her literary agents, friends, and fans primarily relating to Fitch's books concerning Lost Generation authors; and a photograph of photographs hanging in Shakespeare and Company.</p><p> The original papers of Sylvia Beach include letters by Beach to her parents and sisters (1898-1952); letters by other family members and friends (1858-1954); a photograph album showing Sylvia and Holly Beach in Italy and Serbia (1917-1920); scrapbook pages of photographs and memorabilia (ca.1932-1949); a typescript draft, with autograph corrections (removed from Fitch's research files), and revised galleys for Beach's book Shakespeare and Company(1959); reviews of the book; cassette tapes of Beach's interview with Jackson Mathews for the Kenyon Review (1960); a scrapbook of obituaries(1962); letters sent to Holly Beach (Mrs. Frederic Dennis) (1962-1964); and correspondence regarding Sylvia Beach's estate (1962-1962).</p><p> An additional accession consists of several typescript versions of "Voyage to Ithaca: William Carlos Williams in Paris," with holograph corrections, annotations, and additions by Fitch; and correspondence with Else Albrecht-Carrie, Donald Gallup, James Laughlin, Marilyn V. Schuler, Emily Wallace, and Mrs. William Carlos Williams, regarding the above manuscript, which was published in the Princeton University Library Chronicle (spring 1979).</p>  </scopecontent>
+  <arrangement id="aspace_c12b5b683636098facc12914f76872f2">
+    <head>Arrangement</head>
+<p>The collection has been arranged in the following series:</p>  </arrangement>
+  <accessrestrict id="aspace_a09b4c5c16eefe55184bfd0bcd181bf7">
+    <head>Conditions Governing Access</head>
+<p>The audiotapes (cassettes and reel-to-reel) of interviews conducted by Noël Riley Fitch about Sylvia Beach are restricted due to their age and fragile condition. In order to listen to these tapes, researchers must request copies through the Department's duplication process.</p>  </accessrestrict>
+  <userestrict id="aspace_a2b732143d9cc7e0b6eeb5baa4132393">
+    <head>Conditions Governing Use</head>
+<p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref href="https://library.princeton.edu/special-collections/ask-us" type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
+  <acqinfo id="aspace_b7d05080618fd3e419013e8d037b9ab3">
+    <head>Immediate Source of Acquisition</head>
+<p>Gift of Noël Riley Fitch in several installments, in <date type="acquisition" normal="1998/2002">1998, 1999, and 2002</date>.</p>  </acqinfo>
+  <appraisal id="aspace_397718a4d440b9d6b4fe1f445317e383">
+    <head>Appraisal</head>
+<p>No appraisal information is available.</p>  </appraisal>
+  <altformavail id="aspace_f7d4e09d298ca386e6e8e4289d9b06bc">
+    <head>Existence and Location of Copies</head>
+<p>Some of the manuscripts and notes found in draft form in the collection came to print in the following publications: Sylvia Beach and the Lost Generation: A History of Literary Paris in the Twenties and Thirties(New York: W. W. Norton, 1983), and Walks in Hemingway's Paris: A Guide for the Literary Traveler(New York: St. Martins, 1990) by Noël Riley Fitch; and Shakespeare and Company (London: Faber and Faber, 1959) by Sylvia Beach.</p>  </altformavail>
+  <relatedmaterial id="aspace_ebc6e3d6f910e40a4cc0765333fc6b9e">
+    <head>Related Materials</head>
+<p>Researchers working with the papers of Noël Riley Fitch Papers may also be interested to consult the Sylvia Beach Papers (C0108).</p>  </relatedmaterial>
+  <odd id="aspace_5a4ab6c1c0df113e3a7c97b12f34b54d">
+    <head>General</head>
+<p>Location of Printed Books Removed for Cataloging</p><p> Ex Balzac: La Femme de Trente Ans(1912), front cover torn off, inscribed "To Sylvia with love from Mother, Christmas 1913."</p><p> Ex Balzac: Ursule Mirouët(1913), front cover torn torn off, inscribed "Eleanor Beach from Sylvester, Christmas 1913, Princeton."</p><p> Ex Balzac: La Fausse Maitresse(1912), poor condition, signed "Sylvia Beach, Princeton, 1915."</p><p> Ex Beckett, Samuel and others: Our Exagmination Round His Factification for Incamination of Work in Progress(London: Faber and Faber, 1961), inscribed "For Holly with the ex-publishers love, Sylvia, February 1962."</p><p> Ex Beach Comité Walt Whitman de Paris: "Exposition Walt Whitman, du 20 avril au 20 juin 1926" (Paris: Shakespeare and Co., 1926).</p><p> Ex Mervine, William M.: Harris, Dunlop, Valentine and Allied Families: Compiled for Mary (Harris) Morris(Philadelphia: Edward S. Paret Co., printed for private circulation only, 1920), copy no. 21 of 100 printed; [Mary (Harris) Morris was SB's aunt, from the library of Holly Beach Dennis].</p><p> Ex Archives Record of the Class of Eighteen Hundred and Seventy-Six of Princeton College, No. V. 1876-1891 (Rev. Sylvester W. Beach).</p><p> Archives Record of the Class of Eighteen Hundred and Seventy-Six of Princeton University, No. VII. 1876-1901 (Rev. Sylvester W. Beach).</p><p> Ex Weld, John: Fly Away Home(Santa Barbara: Mission Pub., 1991), presentation copy to NRF by the author.</p>  </odd>
+  <prefercite id="aspace_f8cde546b05a9a8452ac792e54ed2054">
+    <head>Preferred Citation</head>
+<p>Citations should be as follows: Noël Riley Fitch Papers, Box #, Folder #, Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_bbc9fe15059ace599a74efe12cbef95d">
+    <head>Processing Information</head>
+<p>This collection was processed by Barbara Volz in 1998 . Finding aid written by Barabara Voz in 1998, with additions by Karla J. Vecchia in 2002 .</p>  </processinfo>
+  <controlaccess>
+    <subject source="lcsh">Authors, American–20th century–Correspondence.</subject>
+    <subject source="lcsh">Authors, American–20th century–Interviews.</subject>
+    <subject source="lcsh">Authors, American–20th century–Manuscripts.</subject>
+    <subject source="lcsh">Authors, French–20th century–Correspondence.</subject>
+    <subject source="lcsh">Authors, French–20th century–Interviews.</subject>
+    <subject source="lcsh">Booksellers and bookselling–France–Paris–20th century–Biography.</subject>
+    <subject source="lcsh">Booksellers and bookselling–France–Paris–20th century–Interviews.</subject>
+    <subject source="lcsh">Bookstores–France–Paris–20th century.</subject>
+    <subject source="lcsh">Literary landmarks–France–Paris–20th century.</subject>
+    <subject source="lcsh">Poets, American–20th century–Correspondence.</subject>
+    <subject source="lcsh">Poets, American–20th century–Manuscripts.</subject>
+    <geogname source="lcnaf">Paris (France)–20th century–Intellectual life.</geogname>
+    <genreform source="aat">Audiocassettes.</genreform>
+    <genreform source="aat">Correspondence.</genreform>
+    <genreform source="aat">Interviews.</genreform>
+    <genreform source="aat">Manuscripts.</genreform>
+    <subject source="local">American literature</subject>
+  </controlaccess>
+  <dsc/>
+</archdesc>
+</ead>

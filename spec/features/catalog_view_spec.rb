@@ -176,6 +176,14 @@ describe "viewing catalog records", type: :feature, js: true do
 
   describe "notes", js: false do
     context "on a collection page" do
+      it "shows note" do
+        visit "/catalog/C0841"
+
+        within("#description") do
+          expect(page).to have_selector "dt.blacklight-odd_ssm", text: "Note"
+          expect(page).to have_selector "dd.blacklight-odd_ssm", text: /Location of Printed Books Removed for Cataloging/
+        end
+      end
       it "shows all the relevant notes" do
         visit "/catalog/MC148"
 
@@ -187,8 +195,6 @@ describe "viewing catalog records", type: :feature, js: true do
           # Arrangement
           expect(page).to have_selector "dt.blacklight-arrangement_ssm", text: "Arrangement"
           expect(page).to have_selector "dd.blacklight-arrangement_ssm", text: /may have been put in this order by Lilienthal/
-          # Note
-          # TODO: Add Note, need new EAD
         end
 
         # Access
