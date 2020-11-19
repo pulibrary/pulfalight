@@ -40,7 +40,11 @@
     <div class="row content-container">
       <div class="col-md-4">
         <div class="toc-header">
-          <span>CONTENTS AND ARRANGEMENT</span>
+          <span>Contents and Arrangement</span>
+          <a class="toc-header__expand-button" href="?expanded=true" >
+            <%= image_tag(asset_path('icon-expand-alt-solid.svg'), class: 'expand-collection-icon') %>
+            <span>Expanded View</span>
+          </a>
         </div>
         <div id="toc" data-turbolinks-permanent></div>
         <div id="toc-data" data-selected="<%= document.id %>"></div>

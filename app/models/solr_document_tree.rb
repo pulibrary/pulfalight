@@ -53,6 +53,8 @@ class SolrDocumentTree
       @children = find_children
     end
 
+    private
+
     # Query for and build object child documents
     # @return [<SolrDocumentTree>]
     def find_children
@@ -79,15 +81,17 @@ class SolrDocumentTree
     @root = root
   end
 
-  # Build a tree node from the root SolrDocument
-  # @return [SolrDocumentTree::Node]
-  def root_node
-    @root_node ||= Node.new(@root)
-  end
-
   # Build trees for each child node
   # @return [Array<SolrDocumentTree::Node>]
   def children
     root_node.children.map { |c| self.class.new(root: c.document) }
+  end
+
+  private
+
+  # Build a tree node from the root SolrDocument
+  # @return [SolrDocumentTree::Node]
+  def root_node
+    @root_node ||= Node.new(@root)
   end
 end

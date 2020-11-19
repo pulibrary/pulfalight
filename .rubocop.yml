@@ -58,18 +58,23 @@ Metrics/PerceivedComplexity:
 
 RSpec/ExampleLength:
   Exclude:
+    - 'spec/controllers/contact_controller_spec.rb'
     - 'spec/controllers/toc_controller_spec.rb'
+    - 'spec/features/accessibility_spec.rb'
     - 'spec/features/catalog_view_spec.rb'
     - 'spec/features/traject/ead2_indexing_spec.rb'
+    - 'spec/forms/suggest_a_correction_form_spec.rb'
+    - 'spec/jobs/aspace_index_job_spec.rb'
     - 'spec/models/pulfalight/requests/aeon_external_request_spec.rb'
     - 'spec/models/solr_document_spec.rb'
+    - 'spec/models/solr_document_tree_spec.rb'
     - 'spec/requests/catalog_request_spec.rb'
-    - 'spec/services/robots_generator_service_spec.rb'
-    - 'spec/services/table_of_contents_builder_spec.rb'
-    - 'spec/jobs/aspace_index_job_spec.rb'
     - 'spec/services/aspace/client_spec.rb'
     - 'spec/services/aspace/indexer_spec.rb'
-    - 'spec/models/solr_document_tree_spec.rb'
+    - 'spec/services/aspace_fixture_generator_spec.rb'
+    - 'spec/services/robots_generator_service_spec.rb'
+    - 'spec/services/table_of_contents_builder_spec.rb'
+    - 'spec/views/catalog/_correction_form.html.erb_spec.rb'
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
