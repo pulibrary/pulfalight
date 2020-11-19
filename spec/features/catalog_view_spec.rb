@@ -110,8 +110,7 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_text("Harold Boies Hoskins was a businessman")
       expect(page).to have_text "unavailable until further notice"
     end
-    xit "has a language property in the overview summary section" do
-      # TODO: ensure that collection language is indexed correctly
+    it "has a language property in the overview summary section" do
       expect(page).to have_css("dd.blacklight-language_ssm", text: "English")
     end
 
@@ -187,6 +186,12 @@ describe "viewing catalog records", type: :feature, js: true do
       it "shows all the relevant notes" do
         visit "/catalog/MC148"
 
+        within("#summary") do
+          # Repository
+          expect(page).to have_selector "dt.blacklight-repository_ssm", text: "Repository"
+          expect(page).to have_selector "dd.blacklight-repository_ssm", text: "Public Policy Papers"
+        end
+
         # Collection Description
         within("#description") do
           # Description
@@ -248,13 +253,29 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dd.blacklight-processinfo_conservation_ssm", text: /were digitized in 2017./
         end
       end
-      it "shows accruals" do
+      it "shows accruals, sponsor" do
         visit "/catalog/C0257"
         # Collection History
         within("#collection-history") do
           # Accruals
           expect(page).to have_selector "dt.blacklight-accruals_ssm", text: "Additions"
           expect(page).to have_selector "dd.blacklight-accruals_ssm", text: /No accruals are expected./
+          # Sponsor
+          expect(page).to have_selector "dt.blacklight-sponsor_ssm", text: "Sponsor"
+          expect(page).to have_selector "dd.blacklight-sponsor_ssm", text: /New Jersey Historical Commission/
+        end
+      end
+      it "shows Creator" do
+        visit "/catalog/C1408"
+        within("#summary") do
+          expect(page).to have_selector "dt.blacklight-creators_ssim", text: "Creator"
+          expect(page).to have_selector "dd.blacklight-creators_ssim", text: "Alaveras, Tēlemachos"
+        end
+
+        visit "/catalog/aspace_C1408_c3"
+        within("#summary") do
+          expect(page).to have_selector "dt.blacklight-collection_creator_ssm", text: "Collection Creator"
+          expect(page).to have_selector "dd.blacklight-collection_creator_ssm", text: "Alaveras, Tēlemachos"
         end
       end
       it "shows originalsloc" do
