@@ -53,6 +53,13 @@ module PulfalightHelper
     super && show_presenter(document).with_field_group(config_field).field_value(field).present?
   end
 
+  def display_simple_link?
+    dao = document.direct_digital_objects
+    return if dao.blank?
+    uri = URI.parse(dao.first&.href)
+    uri.is_a?(URI::HTTP)
+  end
+
   private
 
   def repository_thumbnail_path
