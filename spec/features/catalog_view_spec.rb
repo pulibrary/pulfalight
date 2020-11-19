@@ -189,8 +189,6 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dd.blacklight-arrangement_ssm", text: /may have been put in this order by Lilienthal/
           # Note
           # TODO: Add Note, need new EAD
-          # Odd
-          # TODO: Add <odd>, need new EAD
         end
 
         # Access
