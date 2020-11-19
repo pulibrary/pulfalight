@@ -351,6 +351,7 @@ class CatalogController < ApplicationController
     config.add_collection_history_field "appraisal_ssm", label: "Archival Appraisal Information", helper_method: :paragraph_separator
     config.add_collection_history_field "sponsor_ssm", label: "Sponsorship", helper_method: :paragraph_separator
     config.add_collection_history_field "processinfo_processing_ssm", label: "Processing Information", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_collection_history_field "processinfo_conservation_ssm", label: "Conservation", helper_method: :paragraph_separator, accessor: :fetch_html_safe
 
     # =================
     # ACCESS TAB FIELDS

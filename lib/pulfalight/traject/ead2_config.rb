@@ -344,14 +344,16 @@ end
 
 # For collection history tab
 sanitizer = Rails::Html::SafeListSanitizer.new
-selector = "processinfo[@id='aspace_processing']"
-to_field "processinfo_processing_ssm", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
-  accumulator.map! do |element|
-    sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip
+["processing", "conservation"].each do |processinfo_type|
+  selector = "processinfo[@id='aspace_#{processinfo_type}']"
+  to_field "processinfo_#{processinfo_type}_ssm", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
+    accumulator.map! do |element|
+      sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip
+    end
   end
+  to_field "processingo_#{processinfo_type}_heading_ssm", extract_xpath("/ead/archdesc/#{selector}/head")
+  to_field "processinfo_#{processinfo_type}_teim", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']")
 end
-to_field "processingo_processing_heading_ssm", extract_xpath("/ead/archdesc/#{selector}/head")
-to_field "processinfo_processing_teim", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']")
 
 # For find-more tab
 to_field "subject_terms_ssm" do |record, accumulator|

@@ -217,8 +217,6 @@ describe "viewing catalog records", type: :feature, js: true do
           # Processing Information
           expect(page).to have_selector "dt.blacklight-processinfo_processing_ssm", text: "Processing Information"
           expect(page).to have_selector "dd.blacklight-processinfo_processing_ssm", text: /There is no processing information available for this collection./
-          # Conservation
-          # TODO: Add conservation test - need EAD.
         end
 
         # Find Related Materials
@@ -226,6 +224,14 @@ describe "viewing catalog records", type: :feature, js: true do
           # separatedmaterial
           # TODO: Add separatedmaterial: RCPXG-5830371.2
           # No finding aid with separatedmaterial - leaving off.
+        end
+      end
+      it "shows conservation info" do
+        visit "/catalog/C1513"
+        within("#collection-history") do
+          # Conservation
+          expect(page).to have_selector "dt.blacklight-processinfo_conservation_ssm", text: "Conservation"
+          expect(page).to have_selector "dd.blacklight-processinfo_conservation_ssm", text: /were digitized in 2017./
         end
       end
       it "shows accruals" do
