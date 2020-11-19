@@ -187,9 +187,13 @@ describe "viewing catalog records", type: :feature, js: true do
           # Arrangement
           expect(page).to have_selector "dt.blacklight-arrangement_ssm", text: "Arrangement"
           expect(page).to have_selector "dd.blacklight-arrangement_ssm", text: /may have been put in this order by Lilienthal/
+          # Note
+          # TODO: Add Note, need new EAD
+          # Odd
+          # TODO: Add <odd>, need new EAD
         end
 
-        # Access Restrictions
+        # Access
         within("#access") do
           # Access Restrictions
           expect(page).to have_selector "dt.blacklight-accessrestrict_ssm", text: "Access Restrictions"
@@ -201,13 +205,67 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dt.blacklight-phystech_ssm", text: "Special Requirements for Access"
           expect(page).to have_selector "dd.blacklight-phystech_ssm", text: /Access to audiovisual material/
         end
+
+        # Collection History
+        within("#collection-history") do
+          # Acquisition
+          expect(page).to have_selector "dt.blacklight-acqinfo_ssm", text: "Acquisition"
+          expect(page).to have_selector "dd.blacklight-acqinfo_ssm", text: /gift from David E. Lilienthal/
+          # Accruals
+          # TODO: Add accruals test: C0274
+          # Appraisal
+          expect(page).to have_selector "dt.blacklight-appraisal_ssm", text: "Archival Appraisal Information"
+          expect(page).to have_selector "dd.blacklight-appraisal_ssm", text: /No information about appraisal/
+          # Processing Information
+          expect(page).to have_selector "dt.blacklight-processinfo_processing_ssm", text: "Processing Information"
+          expect(page).to have_selector "dd.blacklight-processinfo_processing_ssm", text: /There is no processing information available for this collection./
+          # Conservation
+          # TODO: Add conservation test - need EAD.
+        end
+
+        # Find Related Materials
+        within("#find-more") do
+          # Originalsloc
+          # TODO: Add originalsloc: C0257
+          # No finding aid with originalsloc - leaving off.
+          # separatedmaterial
+          # TODO: Add separatedmaterial: RCPXG-5830371.2
+          # No finding aid with separatedmaterial - leaving off.
+        end
       end
-      it "shows otherfindaid" do
+      it "shows alternate form available" do
+        visit "/catalog/WC064"
+        # Find Related Materials
+        within("#find-more") do
+          # Alternative Form Available
+          expect(page).to have_selector "dt.blacklight-altformavail_ssm", text: "Alternative Form Available"
+          expect(page).to have_selector "dd.blacklight-altformavail_ssm", text: /Many of the items in this collection/
+        end
+      end
+      it "shows custodial history" do
+        visit "/catalog/MC221"
+        # Collection History
+        within("#collection-history") do
+          # Custodial History
+          expect(page).to have_selector "dt.blacklight-custodhist_ssm", text: "Custodial History"
+          expect(page).to have_selector "dd.blacklight-custodhist_ssm", text: /Gifted to the American Heritage Center/
+        end
+      end
+      it "shows otherfindaid, related materials" do
         visit "/catalog/MC001-02-06"
         # Access Restrictions
         within("#access") do
           expect(page).to have_selector "dt.blacklight-otherfindaid_ssm", text: "Other Finding Aids"
           expect(page).to have_selector "dd.blacklight-otherfindaid_ssm", text: /This finding aid describes a portion/
+        end
+        # Find Related Materials
+        within("#find-more") do
+          # relatedmaterial
+          expect(page).to have_selector "dt.blacklight-relatedmaterial_ssm", text: "Related Material"
+          expect(page).to have_selector "dd.blacklight-relatedmaterial_ssm", text: /American Civil Liberties Union, Washington, D.C. Office Records/
+          # Bibliography
+          expect(page).to have_selector "dt.blacklight-bibliography_ssm", text: "Publication Note"
+          expect(page).to have_selector "dd.blacklight-bibliography_ssm", text: /Historical sketch based on/
         end
       end
     end

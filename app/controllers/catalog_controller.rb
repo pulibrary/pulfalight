@@ -350,6 +350,7 @@ class CatalogController < ApplicationController
     config.add_collection_history_field "appraisal_ssm", label: "Archival Appraisal Information", helper_method: :paragraph_separator
     config.add_collection_history_field "processinfo_ssm", label: "Processing Information", helper_method: :paragraph_separator
     config.add_collection_history_field "sponsor_ssm", label: "Sponsorship", helper_method: :paragraph_separator
+    config.add_collection_history_field "processinfo_processing_ssm", label: "Processing Information", helper_method: :paragraph_separator, accessor: :fetch_html_safe
 
     # =================
     # ACCESS TAB FIELDS
@@ -366,6 +367,9 @@ class CatalogController < ApplicationController
     # =================
     # FIND RELATED TAB FIELDS
     # =================
+    config.add_indexed_terms_field "altformavail_ssm", label: "Alternative Form Available", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_indexed_terms_field "relatedmaterial_ssm", label: "Related Material", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_indexed_terms_field "bibliography_ssm", label: "Publication Note", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_indexed_terms_field "topics_ssm", label: "Topics", link_to_facet: true, separator_options: {
       words_connector: "<br/>",
       two_words_connector: "<br/>",

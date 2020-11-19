@@ -342,6 +342,17 @@ to_field "collection_description_ssm" do |_record, accumulator, context|
   accumulator.concat(context.output_hash["scopecontent_ssm"] || [])
 end
 
+# For collection history tab
+sanitizer = Rails::Html::SafeListSanitizer.new
+selector = "processinfo[@id='aspace_processing']"
+to_field "processinfo_processing_ssm", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
+  accumulator.map! do |element|
+    sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip
+  end
+end
+to_field "processingo_processing_heading_ssm", extract_xpath("/ead/archdesc/#{selector}/head")
+to_field "processinfo_processing_teim", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']")
+
 # For find-more tab
 to_field "subject_terms_ssm" do |record, accumulator|
   values = record.xpath('/ead/archdesc/controlaccess/subject[@source="lcsh"]').map(&:text)
