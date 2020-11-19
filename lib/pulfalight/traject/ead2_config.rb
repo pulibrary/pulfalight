@@ -241,10 +241,6 @@ SEARCHABLE_NOTES_FIELDS.map do |selector|
   to_field "#{selector}_teim", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']")
 end
 
-def cleanup(x)
-  x.strip.gsub("  ", " ").gsub(" ,", ",").gsub(" .", ".")
-end
-
 DID_SEARCHABLE_NOTES_FIELDS.map do |selector|
   to_field "#{selector}_ssm", extract_xpath("/ead/archdesc/did/#{selector}") do |_record, accumulator|
     accumulator.map!(&:strip)
