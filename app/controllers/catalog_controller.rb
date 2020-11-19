@@ -146,6 +146,10 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
+    config.add_facet_field "has_online_content_ssim", label: "Access", collapse: false, query: {
+      offline: { label: "In the Library", fq: "has_online_content_ssim:false" },
+      online: { label: "Online", fq: "has_online_content_ssim:true" }
+    }
     config.add_facet_field "collection_sim", label: "Collection", limit: 10
     config.add_facet_field "creator_ssim", label: "Creator", limit: 10
     config.add_facet_field "creators_ssim", label: "Creator", show: false
@@ -173,10 +177,6 @@ class CatalogController < ApplicationController
     config.add_index_field "accessrestrict_ssm", label: "Conditions Governing Access"
     config.add_index_field "collection_ssm", label: "Collection Title"
     config.add_index_field "geogname_ssm", label: "Place"
-
-    config.add_facet_field "has_online_content_ssim", label: "Access", query: {
-      online: { label: "Online access", fq: "has_online_content_ssim:true" }
-    }
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
