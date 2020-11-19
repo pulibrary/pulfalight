@@ -293,7 +293,7 @@ describe "EAD 2 traject indexing", type: :feature do
           Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC148.processed.EAD.xml")
         end
         it "indexes the requested notes" do
-          expect(result["phystech_ssm"]).to eq ["Access to audiovisual material in this collection follows the Mudd Manuscript Library policy for preservation and access to audiovisual materials."]
+          expect(result["phystech_ssm"]).to eq ["Access to audiovisual material in this collection follows the Mudd Manuscript Library <a href=\"http://rbsc.princeton.edu/policies/mudd-library-imaging-guidelines-and-price-list#Audio%20visual\">policy for preservation and access to audiovisual materials</a>."]
           expect(result["components"][0]["phystech_ssm"]).to eq result["phystech_ssm"]
         end
       end
@@ -302,7 +302,7 @@ describe "EAD 2 traject indexing", type: :feature do
           Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC001.02.06.processed.EAD.xml")
         end
         it "indexes otherfindaid note" do
-          expect(result["otherfindaid_ssm"]).to eq ["This finding aid describes a portion of the American Civil Liberties Union Records held at the Seeley G. Mudd Manuscript Library. For an overview of the entire collection, instructions on searching the collection and requesting materials, and other information, please see the Guide to the American Civil Liberties Union Records."]
+          expect(result["otherfindaid_ssm"]).to eq ["This finding aid describes a portion of the American Civil Liberties Union Records held at the Seeley G. Mudd Manuscript Library. For an overview of the entire collection, instructions on searching the collection and requesting materials, and other information, please see the <a href=\"http://libguides.princeton.edu/mudd_aclu\">Guide to the American Civil Liberties Union Records</a>."]
         end
       end
       it "indexes the requested notes" do
@@ -312,7 +312,7 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(result["accessrestrict_ssm"]).to eq ["LINKED DIGITAL CONTENT NOTE: Please note that some previously linked digital content is temporarily unavailable while the data is being migrated from an outdated access service. If you would like to access this content, please send a request to mudd@princeton.libanswers.com.", "The collection is open for research use."]
         expect(result["components"][0]["accessrestrict_ssm"]).to eq result["accessrestrict_ssm"]
         # Use restriction, propagate
-        expect(result["userestrict_ssm"]).to eq ["Single photocopies may be made for research purposes. For quotations that are fair use as defined under U. S. Copyright Law, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use."]
+        expect(result["userestrict_ssm"]).to eq ["Single photocopies may be made for research purposes. For quotations that are fair use as defined under <a href=\"http://copyright.princeton.edu/basics/fair-use\">U. S. Copyright Law</a>, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use."]
         expect(result["components"][0]["userestrict_ssm"]).to eq result["userestrict_ssm"]
       end
 
