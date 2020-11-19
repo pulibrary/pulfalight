@@ -340,6 +340,9 @@ to_field "collection_notes_ssm" do |record, accumulator, _context|
   accumulator.concat(text_node_ancestors)
 end
 
+# For collection description tab.
+to_field "sponsor_ssm", extract_xpath("/ead/eadheader/filedesc/titlestmt/sponsor")
+
 # For find-more tab
 to_field "subject_terms_ssm" do |record, accumulator|
   values = record.xpath('/ead/archdesc/controlaccess/subject[@source="lcsh"]').map(&:text)
