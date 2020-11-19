@@ -48,6 +48,10 @@ module PulfalightHelper
     UniversalViewerRenderer.render(document)
   end
 
+  def generic_should_render_field?(config_field, document, field)
+    super && show_presenter(document).with_field_group(config_field).field_value(field).present?
+  end
+
   private
 
   def repository_thumbnail_path

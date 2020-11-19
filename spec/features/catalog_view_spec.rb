@@ -216,6 +216,10 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dt.blacklight-processinfo_processing_ssm", text: "Processing Information"
           expect(page).to have_selector "dd.blacklight-processinfo_processing_ssm", text: /There is no processing information available for this collection./
         end
+        within("#find-more") do
+          # Ensure blank labels aren't showing up.
+          expect(page).not_to have_selector "dt.blacklight-separatedmaterial_ssm"
+        end
       end
       it "shows separatedmaterial" do
         visit "/catalog/C1210"
