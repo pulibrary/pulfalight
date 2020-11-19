@@ -25,7 +25,7 @@ RSpec.describe TableOfContentsBuilder do
       file_level_component = file_level_components[1]
       expect(file_level_component["children"].count).to eq 23
       expect(file_level_component["id"]).to eq "aspace_MC221_c0003"
-      expect(file_level_component["text"]).to eq "Speeches, 1949-1960"
+      expect(file_level_component["text"]).to eq "Speeches, 1949 November-1960 February"
 
       # Non-ancestor file level components have no children, but can be loaded on demand
       expect(file_level_components[30]["children"]).to be_truthy
@@ -49,7 +49,7 @@ RSpec.describe TableOfContentsBuilder do
 
       child_component = toc_hash[1]
       expect(child_component["id"]).to eq "aspace_MC221_c0003"
-      expect(child_component["text"]).to eq "Speeches, 1949-1960"
+      expect(child_component["text"]).to eq "Speeches, 1949 November-1960 February"
       # No deeply nested child components
       expect(child_component["children"]).to be_truthy
     end
