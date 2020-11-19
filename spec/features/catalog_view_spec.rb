@@ -225,6 +225,10 @@ describe "viewing catalog records", type: :feature, js: true do
         within("#find-more") do
           # Ensure blank labels aren't showing up.
           expect(page).not_to have_selector "dt.blacklight-separatedmaterial_ssm"
+          # Subject - include occupation.
+          expect(page).to have_selector "dt.blacklight-subject_terms_ssm"
+          expect(page).to have_selector "dd.blacklight-subject_terms_ssm", text: /Industries -- Power supply -- United States -- 20th century./
+          expect(page).to have_selector "dd.blacklight-subject_terms_ssm", text: /Lawyers -- United States -- 20th century./
         end
       end
       it "shows separatedmaterial" do

@@ -362,7 +362,8 @@ end
 # For find-more tab
 to_field "subject_terms_ssm" do |record, accumulator|
   values = record.xpath('/ead/archdesc/controlaccess/subject[@source="lcsh"]').map(&:text)
-  accumulator << values.sort
+  occupations = record.xpath("/ead/archdesc/controlaccess/occupation").map(&:text)
+  accumulator << (values + occupations).sort
 end
 
 # For find-more tab
