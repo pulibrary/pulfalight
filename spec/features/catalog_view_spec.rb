@@ -173,7 +173,17 @@ describe "viewing catalog records", type: :feature, js: true do
 
     it "renders a view content link" do
       url = "https://webspace.princeton.edu/users/mudd/Digitization/MC148/MC148_c07608.pdf"
-      expect(page).to have_css("a[href=\"#{url}\"]")
+      expect(page).to have_selector("a[href=\"#{url}\"]", text: "View Content")
+    end
+  end
+
+  context "when a component has a digital object with a relative pdf link" do
+    before do
+      visit "/catalog/aspace_C1491_c363"
+    end
+
+    it "does not render a view content link" do
+      expect(page).not_to have_selector("a[href=\"pdf/c363.pdf", text: "View Content")
     end
   end
 
