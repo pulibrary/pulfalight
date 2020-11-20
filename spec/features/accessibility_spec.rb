@@ -67,6 +67,16 @@ describe "accessibility", type: :feature, js: true do
     end
   end
 
+  context "expanded collection show page" do
+    it "complies with WCAG" do
+      visit "/catalog/MC221?expanded=true"
+      expect(page).to be_axe_clean
+        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
+        .excluding("#toc")
+        .excluding(".tt-hint") # Issue is in typeahead.js library
+    end
+  end
+
   context "component show page" do
     it "complies with WCAG" do
       visit "/catalog/aspace_MC148_c07608"

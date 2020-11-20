@@ -8,27 +8,27 @@
       <div class='col-md-12'>
         <ul class='nav nav-tabs nav-fill' role='tablist' aria-label='<%= t('arclight.views.show.tablist_nav') %>'>
 
-          <li class='nav-item flex-fill'>
+          <li class='nav-item flex-fill' role='tab'>
             <a class='nav-link active' data-toggle='tab' href='#summary' role='tab' aria-selected="true">
               Overview
             </a>
           </li>
-          <li class='nav-item flex-fill'>
+          <li class='nav-item flex-fill' role='tab'>
             <a class='nav-link ' data-toggle='tab' href='#description' role='tab'>
               Collection Description
             </a>
           </li>
-          <li class='nav-item flex-fill'>
+          <li class='nav-item flex-fill' role='tab'>
             <a class='nav-link ' data-toggle='tab' href='#collection-history' role='tab'>
               Collection History
             </a>
           </li>
-          <li class='nav-item flex-fill'>
+          <li class='nav-item flex-fill' role='tab'>
             <a class='nav-link ' data-toggle='tab' href='#access' role='tab'>
               <%= t 'arclight.views.show.access' %>
             </a>
           </li>
-          <li class='nav-item flex-fill'>
+          <li class='nav-item flex-fill' role='tab'>
             <a class='nav-link ' data-toggle='tab' href='#find-more' role='tab'>
               Find Related Materials
             </a>
@@ -42,7 +42,7 @@
         <div class="toc-header">
           <span>Contents and Arrangement</span>
           <a class="toc-header__expand-button" href="<%= solr_document_url(document) %>">
-            <%= image_tag(asset_path('icon-compress-alt-solid.svg'), class: 'expand-collection-icon') %>
+            <%= image_tag(asset_path('icon-compress-alt-solid.svg'), class: 'compress-collection-icon', "aria-label": "view the collection in the default mode") %>
             <span>Collection View</span>
           </a>
         </div>
@@ -51,16 +51,17 @@
       </div>
 
       <div class="col-md-8">
-
         <div class="tab-content">
-
           <nav class="navbar sticky-top">
             <div class="row">
+              <div class="col-md-4"></div>
               <div class="col-md-4">
-                <a href="#request">
-                  <%= image_tag(asset_path('icon-request.svg')) %>
-                  Request this box
+                <a href="#correction" data-toggle="modal" data-target="#correctionModal">
+                  <%= image_tag(asset_path('icon-correction.svg'), "aria-label": "suggest correction icon") %>
+                  Suggest a correction
                 </a>
+
+                <%= render "correction_modal" %>
               </div>
             </div><!-- .row -->
           </nav>
@@ -74,20 +75,14 @@
           <div class='tab-pane' id='collection-history' role='tabpanel'>
             <%= render(partial: 'collection_history') %>
           </div>
-
           <div class='tab-pane' id='access' role='tabpanel'>
             <%= render(partial: 'collection_access') %>
           </div>
-
           <div class='tab-pane' id='find-more' role='tabpanel'>
             <%= render(partial: 'collection_find_more') %>
           </div>
-
-
         </div><!-- .tab-content -->
       </div><!-- .col-md-8 -->
-
     </div><!-- .row.content-container -->
-
   </div>
 </div>

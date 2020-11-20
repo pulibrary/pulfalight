@@ -42,7 +42,7 @@
         <div class="toc-header">
           <span>Contents and Arrangement</span>
           <a class="toc-header__expand-button" href="?expanded=true" >
-            <%= image_tag(asset_path('icon-expand-alt-solid.svg'), class: 'expand-collection-icon') %>
+            <%= image_tag(asset_path('icon-expand-alt-solid.svg'), class: 'expand-collection-icon', "aria-label": "expand the collection view") %>
             <span>Expanded View</span>
           </a>
         </div>
@@ -51,22 +51,20 @@
       </div>
 
       <div class="col-md-8">
-
         <div class="tab-content">
+          <nav class="navbar sticky-top">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <a href="#correction" data-toggle="modal" data-target="#correctionModal">
+                  <%= image_tag(asset_path('icon-correction.svg'), "aria-label": "suggest correction icon") %>
+                  Suggest a correction
+                </a>
 
-<nav class="navbar sticky-top">
-        <div class="row">
-          <div class="col-md-4">
-          </div>
-          <div class="col-md-4">
-            <a href="#correction" data-toggle="modal" data-target="#correctionModal">
-              <%= image_tag(asset_path('icon-correction.svg'), "aria-label": "suggest correction icon") %>
-              Suggest a correction
-            </a>
-            <%= render "correction_modal" %>
-          </div>
-        </div><!-- .row -->
-      </nav>
+                <%= render "correction_modal" %>
+              </div>
+            </div><!-- .row -->
+          </nav>
 
           <div class='tab-pane active' id='summary' role='tabpanel'>
             <%= render(partial: 'collection_summary') %>
@@ -77,20 +75,14 @@
           <div class='tab-pane' id='collection-history' role='tabpanel'>
             <%= render(partial: 'collection_history') %>
           </div>
-
           <div class='tab-pane' id='access' role='tabpanel'>
             <%= render(partial: 'collection_access') %>
           </div>
-
           <div class='tab-pane' id='find-more' role='tabpanel'>
             <%= render(partial: 'collection_find_more') %>
           </div>
-
-
         </div><!-- .tab-content -->
       </div><!-- .col-md-8 -->
-
     </div><!-- .row.content-container -->
-
   </div>
 </div>

@@ -93,12 +93,12 @@ describe "controller requests", type: :request do
 
       expect(field_name_elements).not_to be_empty
       expect(field_name_elements.first.text).to include("Series 1: Articles, books, and Lecture Notes by David E.")
-      expect(field_name_elements.last.text).to include("1947-1952 articles in  Collier's")
+      expect(field_name_elements.last.text).to include("Center of Theological Inquiry, 1978")
 
       attribute_elements = html_tree.css(".collection-tree-block--child .document-extent")
       expect(attribute_elements).not_to be_empty
-      expect(attribute_elements.first.text).to include("16 boxes")
-      expect(attribute_elements.last.text).to include("1 box (2 volumes)")
+      expect(attribute_elements.first.text).to include("17 boxes")
+      expect(attribute_elements.last.text).to include("1 box")
     end
   end
 

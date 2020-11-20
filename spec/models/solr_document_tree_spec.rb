@@ -36,7 +36,7 @@ RSpec.describe SolrDocumentTree do
 
   context "when the Solr Document contains one or more member components" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "ead", "mudd", "publicpolicy", "MC152.ead.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC152.EAD.xml")
     end
 
     describe "#children" do
@@ -46,7 +46,7 @@ RSpec.describe SolrDocumentTree do
         expect(solr_document_tree.children.first.root).to be_a SolrDocument
         expect(solr_document_tree.children.first.root.id).to eq("aspace_MC152_c001")
         expect(solr_document_tree.children.last.root).to be_a SolrDocument
-        expect(solr_document_tree.children.last.root.id).to eq("aspace_MC152_c043")
+        expect(solr_document_tree.children.last.root.id).to eq("aspace_MC152_c010")
       end
     end
   end
