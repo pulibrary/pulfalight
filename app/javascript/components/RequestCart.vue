@@ -4,8 +4,8 @@
 
   <div v-if="isVisible" :class="['request-cart']">
 
-      <form method="post" :action="configuration.url">
-    <div v-if="requests.length" class="panel">
+    <form method="post" :action="configuration.url">
+      <div v-if="requests.length" class="panel">
         <table :class="['lux-data-table']">
 
           <caption>
