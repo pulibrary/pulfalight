@@ -6,6 +6,7 @@ const createMockSuccessXHR = responseJSON => {
     onreadystatechange: jest.fn(),
     send: jest.fn(),
     readyState: 4,
+    setRequestHeader: jest.fn(),
     responseText: JSON.stringify({"resourcesByOrangelightId":
           [{"id":"78e15d09-3a79-4057-b358-4fde3d884bbb",
           "label":"Outlines and Notes",
@@ -34,10 +35,11 @@ describe('QueryFiggy', function() {
     expect(QueryFiggy).not.toBe(undefined)
   })
 
-  test('Should return a mockSuccessXHR when it finds the component_id in figgy', async () => {
-    const reqPromise = QueryFiggy.checkFiggy(component_id);
+  test('add the Log in button when it finds the component_id in figgy', async () => {
+    const query = new QueryFiggy
+    const reqPromise = query.checkFiggy(component_id);
 
-    mockSuccessXHR.onreadystatechange();
+    expect(mockSuccessXHR.send).toHaveBeenCalled();
     await jest.setTimeout(7000)
   })
 })
