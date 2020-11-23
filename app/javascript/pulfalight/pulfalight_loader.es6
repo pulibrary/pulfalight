@@ -9,6 +9,7 @@ import AddToCartButton from '../components/AddToCartButton'
 import CartViewToggle from '../components/CartViewToggle'
 import TocBuilder from "../pulfalight/toc.es6"
 import LibCalHours from "../pulfalight/lib_cal_hours.es6"
+import QueryFiggy from "../pulfalight/query_figgy.es6"
 
 export default class PulfalightLoader {
   run() {
@@ -17,6 +18,15 @@ export default class PulfalightLoader {
     this.setup_lib_cal_hours()
     this.setup_range_limit()
     this.setup_form_modal()
+    this.query_figgy()
+  }
+
+  query_figgy(){
+    const query = new QueryFiggy()
+    let component_id = $("#document div:first").attr('id').replace('doc_aspace_', '')
+    component_id = component_id.charAt(0).toUpperCase() + component_id.slice(1)
+    console.log(component_id)
+    query.checkFiggy(component_id)
   }
 
   setup_lib_cal_hours() {
