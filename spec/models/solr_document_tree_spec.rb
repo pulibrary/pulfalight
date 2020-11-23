@@ -31,7 +31,7 @@ RSpec.describe SolrDocumentTree do
     indexer.map_record(record)
   end
   let(:solr_document) do
-    SolrDocument.new(values)
+    SolrDocument.find("MC152")
   end
 
   context "when the Solr Document contains one or more member components" do
