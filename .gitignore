@@ -51,3 +51,5 @@ yarn-debug.log*
 Zeen2iep*
 
 .env
+dump.rdb
+
