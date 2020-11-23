@@ -17,13 +17,15 @@
 }
 
 #readingroom {
-  border-radius: 15px;
+  border-radius: 3px;
   background: #fee7ba;
   padding: 20px;
   width: 90%;
+  margin-bottom: 2em;
 }
 
-#readingroom button {
+#readingroom p button {
   display: block;
   margin-top: 20px;
+  background-color: #f6f6f6;
 }

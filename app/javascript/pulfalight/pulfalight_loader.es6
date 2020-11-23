@@ -24,8 +24,8 @@ export default class PulfalightLoader {
   query_figgy(){
     const query = new QueryFiggy()
     let component_id = $("#document div:first").attr('id').replace('doc_aspace_', '')
-    component_id = component_id.charAt(0).toUpperCase() + component_id.slice(1)
-    console.log(component_id)
+    let doc_aspace_component_id = document.getElementById('document').getElementsByTagName('div')[0]
+    let component_id = doc_aspace_component_id.getAttribute('id').replace('doc_aspace_', '')
     query.checkFiggy(component_id)
   }
 
