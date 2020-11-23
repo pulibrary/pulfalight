@@ -494,26 +494,26 @@ to_field "places_ssim" do |_record, accumulator, context|
 end
 
 # For find-more tab
-to_field "subject_terms_ssm", extract_xpath('./controlaccess/subject[@source="lcsh"]')
-to_field "subject_terms_ssm" do |_record, accumulator, context|
+to_field "subject_terms_ssim", extract_xpath('./controlaccess/subject[@source="lcsh"]')
+to_field "subject_terms_ssim" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
-  value = parent.output_hash["subject_terms_ssm"] || []
+  value = parent.output_hash["subject_terms_ssim"] || []
   accumulator.concat(value&.first)
 end
 
 # For find-more tab
-to_field "topics_ssm", extract_xpath('./controlaccess/subject[@source="local"]')
-to_field "topics_ssm" do |_record, accumulator, context|
+to_field "topics_ssim", extract_xpath('./controlaccess/subject[@source="local"]')
+to_field "topics_ssim" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
-  value = parent.output_hash["topics_ssm"] || []
+  value = parent.output_hash["topics_ssim"] || []
   accumulator.concat(value&.first)
 end
 
 # For find-more tab
-to_field "genreform_ssm", extract_xpath("./controlaccess/genreform")
-to_field "genreform_ssm" do |_record, accumulator, context|
+to_field "genreform_ssim", extract_xpath("./controlaccess/genreform")
+to_field "genreform_ssim" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
-  value = parent.output_hash["genreform_ssm"] || []
+  value = parent.output_hash["genreform_ssim"] || []
   accumulator.concat(value&.first)
 end
 

@@ -360,7 +360,7 @@ sanitizer = Rails::Html::SafeListSanitizer.new
 end
 
 # For find-more tab
-to_field "subject_terms_ssm" do |record, accumulator|
+to_field "subject_terms_ssim" do |record, accumulator|
   values = record.xpath('/ead/archdesc/controlaccess/subject[@source="lcsh"]').map(&:text)
   occupations = record.xpath("/ead/archdesc/controlaccess/occupation").map(&:text)
   accumulator << (values + occupations).sort
@@ -368,13 +368,13 @@ end
 
 # For find-more tab
 # to_field "topics_ssm", extract_xpath('/ead/archdesc/controlaccess/subject[@source="local"]')
-to_field "topics_ssm" do |record, accumulator|
+to_field "topics_ssim" do |record, accumulator|
   values = record.xpath('/ead/archdesc/controlaccess/subject[@source="local"]').map(&:text)
   accumulator << values.sort
 end
 
 # For find-more tab
-to_field "genreform_ssm" do |record, accumulator|
+to_field "genreform_ssim" do |record, accumulator|
   values = record.xpath("/ead/archdesc/controlaccess/genreform").map(&:text)
   accumulator << values.sort
 end

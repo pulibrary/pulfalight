@@ -245,9 +245,13 @@ describe "viewing catalog records", type: :feature, js: true do
           # Ensure blank labels aren't showing up.
           expect(page).not_to have_selector "dt.blacklight-separatedmaterial_ssm"
           # Subject - include occupation.
-          expect(page).to have_selector "dt.blacklight-subject_terms_ssm"
-          expect(page).to have_selector "dd.blacklight-subject_terms_ssm", text: /Industries -- Power supply -- United States -- 20th century./
-          expect(page).to have_selector "dd.blacklight-subject_terms_ssm", text: /Lawyers -- United States -- 20th century./
+          expect(page).to have_selector "dt.blacklight-subject_terms_ssim"
+          expect(page).to have_selector "dd.blacklight-subject_terms_ssim", text: /Industries -- Power supply -- United States -- 20th century./
+          expect(page).to have_selector "dd.blacklight-subject_terms_ssim", text: /Lawyers -- United States -- 20th century./
+          expect(page).to have_selector "dt.blacklight-topics_ssim"
+          expect(page).to have_selector "dd.blacklight-topics_ssim", text: /American politics and government/
+          expect(page).to have_selector "dt.blacklight-genreform_ssim"
+          expect(page).to have_selector "dd.blacklight-genreform_ssim", text: /Audio tapes/
         end
       end
       it "shows separatedmaterial" do
