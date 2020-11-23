@@ -58,18 +58,15 @@ class SolrDocumentTree
     # Query for and build object child documents
     # @return [<SolrDocumentTree>]
     def find_children
-      if !@document.collection? && @document.key?("components")
-        components = Array.wrap(@document["components"])
-      else
-        parent_docs = self.class.query_solr(@document)
-        return [] if parent_docs.empty?
+      if @document.collection? && @document.component_documents.empty?
+        retrieved_docs = self.class.query_solr(@document)
+        return [] if retrieved_docs.empty?
 
-        parent_doc = parent_docs.first
-        components = Array.wrap(parent_doc["components"])
+        retrieved_doc = retrieved_docs.first
+        return retrieved_doc.component_documents.map { |doc| self.class.new(doc) }
       end
 
-      docs = components.map { |p| SolrDocument.new(p) }
-      docs.map { |doc| self.class.new(doc) }
+      @document.component_documents.map { |doc| self.class.new(doc) }
     end
   end
 
