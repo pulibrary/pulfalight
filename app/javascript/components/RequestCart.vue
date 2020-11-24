@@ -4,7 +4,7 @@
 
   <div v-if="isVisible" :class="['request-cart']">
 
-    <form method="post" :action="configuration.url">
+    <form method="post" :action="configuration.url" v-on:submit="clearForm">
       <div v-if="requests.length" class="panel">
         <table :class="['lux-data-table']">
 
@@ -125,7 +125,6 @@
 </template>
 
 <script>
-import store from "../store"
 import { mapState, mapGetters } from "vuex"
 import LuxIconCart from './RequestCartIcon.vue'
 import GeoIcon from './GeoIcon.vue'
@@ -144,24 +143,22 @@ export default {
   props: {
     configuration: {
       type: Object,
+      required: true,
       default: () => {}
     }
   },
   computed: {
     requests() {
-      return this.cart.items
+      return this.$store.state.cart.items
     },
     isVisible: {
       get() {
-        return this.cart.isVisible
+        return this.$store.state.cart.isVisible
       },
       set() {
-        store.commit("TOGGLE_VISIBILITY")
+        this.$store.commit("TOGGLE_VISIBILITY")
       }
-    },
-    ...mapState({
-      cart: state => store.state.cart,
-    })
+    }
   },
   methods: {
     displayContainers(containers) {
@@ -185,11 +182,14 @@ export default {
       return text
     },
     removeFromCart(item) {
-      store.dispatch("removeItemFromCart", item)
+      this.$store.dispatch("removeItemFromCart", item)
     },
     toggleCartView(event) {
-      store.commit("TOGGLE_VISIBILITY")
+      this.$store.commit("TOGGLE_VISIBILITY")
     },
+    clearForm() {
+      this.$store.commit("SET_CART", [])
+    }
   }
 }
 </script>
