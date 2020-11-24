@@ -6,7 +6,7 @@ RSpec.describe AskAQuestionForm do
     {
       "name" => "Test",
       "email" => "test@test.org",
-      "subject" => "Reproduction & Photocopies",
+      "subject" => "reproduction",
       "message" => "Your EAD components are amazing, you should say so.",
       "location_code" => "mss",
       "context" => "http://example.com/catalog/1",
@@ -19,7 +19,7 @@ RSpec.describe AskAQuestionForm do
 
       expect(form.name).to eq "Test"
       expect(form.email).to eq "test@test.org"
-      expect(form.subject).to eq "Reproduction & Photocopies"
+      expect(form.subject).to eq "reproduction"
       expect(form.message).to eq "Your EAD components are amazing, you should say so."
       expect(form.location_code).to eq "mss"
       expect(form.context).to eq "http://example.com/catalog/1"
@@ -29,19 +29,39 @@ RSpec.describe AskAQuestionForm do
     end
   end
 
+  describe "#email_subject" do
+    it "depends on the drop down" do
+      form = described_class.new(valid_attributes)
+      ["reproduction", "permission", "access", "how much"].each do |subject_type|
+        form.subject = subject_type
+        expect(form.email_subject).to eq "[PULFA] #{subject_type}"
+      end
+      form.subject = "collection"
+      expect(form.email_subject).to eq "[PULFA] Example Record"
+    end
+  end
+
   describe "submit" do
-    xit "sends an email and resets its attributes, setting itself as submitted" do
+    it "sends an email and resets its attributes, setting itself as submitted" do
       form = described_class.new(valid_attributes)
 
       form.submit
       expect(ActionMailer::Base.deliveries.length).to eq 1
       expect(form.name).to eq ""
       expect(form.email).to eq ""
-      expect(form.box_number).to eq ""
       expect(form.message).to eq ""
       expect(form.location_code).to eq "mss"
       expect(form.context).to eq "http://example.com/catalog/1"
+      expect(form.title).to eq "Example Record"
       expect(form).to be_submitted
+
+      mail = ActionMailer::Base.deliveries.first
+      expect(mail.subject).to eq "[PULFA] reproduction"
+      expect(mail.body).to include "Name: Test"
+      expect(mail.body).to include "Email: test@test.org"
+      expect(mail.body).to include "Subject: reproduction"
+      expect(mail.body).to include "Comments: Your EAD components are amazing"
+      expect(mail.body).to include "Context: http://example.com/catalog/1"
     end
   end
   describe "validations" do
