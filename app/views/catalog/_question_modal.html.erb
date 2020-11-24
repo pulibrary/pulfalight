@@ -11,8 +11,8 @@
         </div>
         <div class="modal-body">
           <div class="row">
-            <div id="questionForm">
-              Test
+            <div id="questionForm" class="form-wrapper">
+              <%= render partial: "ask_a_question_form", locals: { form: AskAQuestionForm.new(location_code: @document.fetch("repository_code_ssm", []).first, context: request.original_url, title: @document.collection.first) } %>
             </div>
             <div id="questionFAQ">
               <h6>
@@ -27,7 +27,6 @@
               </div>
             </div>
           </div>
-          <%= render partial: "ask_a_question_form", locals: { form: AskAQuestionForm.new(location_code: @document.fetch("repository_code_ssm", []).first, context: request.original_url, title: @document.collection.first) } %>
         </div>
       </div>
     </div>
