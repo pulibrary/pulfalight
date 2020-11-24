@@ -69,8 +69,8 @@
             <% end %>
           </div>
           <div class="col-md-4">
-            <a href="#correction" data-toggle="modal" data-target="#questionModal">
-              <%= image_tag(asset_path('icon-question.svg')) %>
+            <a href="#question" data-toggle="modal" data-target="#questionModal">
+              <%= image_tag(asset_path('icon-question.svg'), "aria-label": "ask a question icon") %>
               Ask a question
             </a>
             <%= render "question_modal" %>

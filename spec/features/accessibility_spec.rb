@@ -93,6 +93,21 @@ describe "accessibility", type: :feature, js: true do
     end
   end
 
+  context "ask a question modal" do
+    it "complies with WCAG" do
+      visit "/catalog/aspace_MC148_c07608"
+
+      # Click button for suggest a correction and wait for modal
+      click_link(href: "#question")
+      expect(page).to have_css("#ask_a_question_form_name")
+
+      expect(page).to be_axe_clean
+        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
+        .excluding("#toc")
+        .excluding(".tt-hint") # Issue is in typeahead.js library
+    end
+  end
+
   context "request cart" do
     it "complies with WCAG" do
       visit "/catalog/aspace_MC148_c07608"
