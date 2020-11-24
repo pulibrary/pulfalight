@@ -15,6 +15,16 @@ class AskAQuestionForm
     subject
   end
 
+  def subject_options
+    [
+      ["This Collection", "collection"],
+      ["Reproductions & Photocopies", "reproduction"],
+      ["Rights & Permissions", "permission"],
+      ["Access", "access"],
+      ["Other", "how much"]
+    ]
+  end
+
   def submit
     ContactMailer.with(form: self).contact.deliver
     @submitted = true
