@@ -1,26 +1,91 @@
+// import Vuex from "vuex"
+// import { createLocalVue, mount } from "@vue/test-utils"
+// import RequestCart from "components/RequestCart"
+//
+// // use vuex state
+// const localVue = createLocalVue()
+// localVue.use(Vuex)
+//
+// let wrapper
+// let store
+//
+// describe("LoginForm.vue", () => {
+//   beforeEach(() => {
+//     store = new Vuex.Store({
+//       state: {
+//         cart: {
+//           items: [ {
+//             title: "My word"
+//           } ]
+//         }
+//       }
+//     })
+//
+//   })
+//
+//   it("is visible", () => {
+//     debugger;
+//     wrapper = mount(RequestCart, {
+//       computed: {
+//         isVisible: () => true
+//       },
+//       // mocks: {
+//       //   $store: {
+//       //     state: {
+//       //       cart: {
+//       //         items: [ { title: "My word" } ],
+//       //         // isVisible: { get() { return true } }
+//       //       }
+//       //     }
+//       //   }
+//       // },
+//       localVue,
+//       store,
+//       propsData: {
+//         configuration: {},
+//       },
+//     })
+//
+//     wrapper.overview()
+//     console.log(wrapper.vm.$store.state)
+//     // expect(wrapper.find("submit")).toBe(true)
+//   })
+// })
+//
+//
+
+
 import RequestCart from "components/RequestCart"
+import { cartState, cartMutations, cartActions } from "store/cart/index"
 import { render, fireEvent } from '@testing-library/vue'
+import store from "store/index"
 
 describe("RequestCart.vue", () => {
   test("Submitting cart", async () => {
-    const store = {
-      state: {
+    const customStore = {
+      modules: {
         cart: {
-          items: [ {
-            title: "My word"
-          } ],
-          isVisible: true
+          state: {
+            items: [ {
+              title: "My word"
+            } ],
+            isVisible: true
+          },
+          actions: cartActions,
+          mutations: cartMutations
         }
-      }
+      },
     }
     const { getByText, getByRole, container } = render(RequestCart, {
-      store,
+    // const { debug } = render(RequestCart, {
+      store: { ...store, ...customStore },
       props: {
         configuration: {}
-      }})
+      }
+    })
 
-    debugger;
-    const submitButton = getByText("submit")
+    console.log(container.textContent)
+    const submitButton = getByRole("button")
 
     await fireEvent.click(submitButton)
 

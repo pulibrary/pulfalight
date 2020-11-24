@@ -10,39 +10,39 @@
 
           <caption>
 
-    <input-button
-      v-on:button-clicked="toggleCartView($event)"
-      type="button"
-      variation="text"
-      class="denied-button"
-      aria-labelledby="denied"
-    >
+            <input-button
+              v-on:button-clicked="toggleCartView($event)"
+              type="button"
+              variation="text"
+              class="denied-button"
+              aria-labelledby="denied"
+              >
 
-      <div class="lux-icon">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1em"
-          height="1em"
-          viewBox="0 0 16 16"
-          aria-labelledby="denied"
-          role="img"
-          fill="#6e757c"
-          >
-          <title id="denied" lang="en">denied</title>
-          <x-circle-icon></x-circle-icon>
-        </svg>
-      </div>
-    </input-button>
+              <div class="lux-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  aria-labelledby="denied"
+                  role="img"
+                  fill="#6e757c"
+                  >
+                  <title id="denied" lang="en">denied</title>
+                  <x-circle-icon></x-circle-icon>
+                </svg>
+              </div>
+            </input-button>
 
-    <div class="caption-title">
-      <span>Request Cart</span>
-      <lux-icon-base width="30" height="30" icon-name="Cart">
-        <lux-icon-cart></lux-icon-cart>
-      </lux-icon-base>
-    </div>
-    <div class="caption-note">
-      Add items from multiple pages and request them all at once.
-    </div>
+            <div class="caption-title">
+              <span>Request Cart</span>
+              <lux-icon-base width="30" height="30" icon-name="Cart">
+                <lux-icon-cart></lux-icon-cart>
+              </lux-icon-base>
+            </div>
+            <div class="caption-note">
+              Add items from multiple pages and request them all at once.
+            </div>
           </caption>
 
           <thead>
@@ -60,7 +60,7 @@
                 :key="index"
                 :id="'item-' + item.callnumber"
                 class="lux-cartItem request"
-              >
+                >
                 <td>{{ item.title }}</td>
                 <td>{{ item.callnumber }}</td>
                 <td>
@@ -98,27 +98,27 @@
           <template v-for="(request, requestIndex) in requests">
             <template v-for="(form_values, field_name) in request.formParams">
               <input :id="field_name" :name="field_name" type="hidden"
-              :value="form_values"></input>
+                                                         :value="form_values"></input>
             </template>
           </template>
         </div>
 
-    </div><!-- /.panel -->
-    <div v-else class="panel">
-      <heading level="h3">Your cart is currently empty.</heading>
-    </div>
-
-        <div class="cart-actions">
-          <div class="center">
-            <input-button type="submit" variation="solid" :disabled="requests.length == 0" block>
-              {{ requestButtonText() }}
-            </input-button>
-          </div>
-        </div>
-
-      </form>
-
+      </div><!-- /.panel -->
+      <div v-else class="panel">
+        <heading level="h3">Your cart is currently empty.</heading>
       </div>
+
+      <div class="cart-actions">
+        <div class="center">
+          <input-button type="submit" variation="solid" :disabled="requests.length == 0" block>
+            {{ requestButtonText() }}
+          </input-button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
 
   </transition>
 
@@ -144,7 +144,6 @@ export default {
   props: {
     configuration: {
       type: Object,
-      required: true,
       default: () => {}
     }
   },
