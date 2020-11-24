@@ -529,6 +529,7 @@ DEPENDENCIES
   devise-guests (~> 0.6)
   dotenv-rails
   email_validator
+  faraday
   foreman
   honeybadger (~> 4.0)
   jbuilder (~> 2.5)
