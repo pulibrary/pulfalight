@@ -71,6 +71,7 @@ export default class PulfalightLoader {
       }).on("ajax:success", function(event) {
         $(`${selector} .form-wrapper`).html(event.detail[0].body)
         $(`${selector} .form-wrapper form`).hide()
+        $(`${selector} .form-wrapper .is-valid`).removeClass("is-valid")
       })
     })
   }
