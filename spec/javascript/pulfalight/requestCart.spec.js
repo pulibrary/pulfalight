@@ -9,7 +9,10 @@ describe("RequestCart.vue", () => {
         cart: {
           state: {
             items: [ {
-              title: "My word"
+              title: "My word",
+              formParams: {
+                AeonForm: "EADRequest"
+              }
             } ],
             isVisible: true
           },
@@ -25,9 +28,26 @@ describe("RequestCart.vue", () => {
       }
     })
 
-    const form = container.querySelector("form")
+    const form = container.querySelector("form#request-cart-form")
+    expect(form.querySelector("input[name='AeonForm'][value='EADRequest']")).not.toBe(null)
+
+    const shadowForm = container.querySelector("form#shadow-form")
+    const submitEvent = jest.fn()
+    shadowForm.addEventListener("submit", (event) => {
+      event.preventDefault()
+      submitEvent()
+    })
+
     await fireEvent.submit(form)
 
+    // shadow form is populated
+    expect(shadowForm.querySelector("input[name='AeonForm'][value='EADRequest']")).not.toBe(null)
+
+    // shadow form was submitted
+    expect(submitEvent).toHaveBeenCalled()
+
+
+    // cart is empty
     const button = container.querySelector("button[type='submit']")
     expect(button.textContent.trim()).toBe("No Items in Your Cart")
   })

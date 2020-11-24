@@ -4,7 +4,124 @@
 
   <div v-if="isVisible" :class="['request-cart']">
 
-    <form method="post" :action="configuration.url" v-on:submit="clearForm">
+    <form id="shadow-form" method="post" :action="configuration.url"
+              ref="shadowForm">
+      <div v-if="shadowRequests.length" class="panel">
+        <table :class="['lux-data-table']">
+
+          <caption>
+
+            <input-button
+              v-on:button-clicked="toggleCartView($event)"
+              type="button"
+              variation="text"
+              class="denied-button"
+              aria-labelledby="denied"
+              >
+
+              <div class="lux-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  aria-labelledby="denied"
+                  role="img"
+                  fill="#6e757c"
+                  >
+                  <title id="denied" lang="en">denied</title>
+                  <x-circle-icon></x-circle-icon>
+                </svg>
+              </div>
+            </input-button>
+
+            <div class="caption-title">
+              <span>Request Cart</span>
+              <lux-icon-base width="30" height="30" icon-name="Cart">
+                <lux-icon-cart></lux-icon-cart>
+              </lux-icon-base>
+            </div>
+            <div class="caption-note">
+              Add items from multiple pages and request them all at once.
+            </div>
+          </caption>
+
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Call Number</th>
+              <th colspan="2">Containers</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <template v-for="(item, index) in shadowRequests">
+
+              <tr
+                :key="index"
+                :id="'item-' + item.callnumber"
+                class="lux-cartItem request"
+                >
+                <td>{{ item.title }}</td>
+                <td>{{ item.callnumber }}</td>
+                <td>
+                  {{ item.containers }}
+                </td>
+                <td>
+                  <input-button
+                    @button-clicked="removeFromCart(item)"
+                    type="button"
+                    variation="outline"
+                    >
+                    Remove
+                  </input-button>
+                </td>
+              </tr>
+
+              <tr v-if="item.location" class="request__location">
+                <td colspan="4">
+                  <geo-icon></geo-icon>
+                  View this item at the <a :href="item.location.url">Mudd Library Reading Room</a>
+                </td>
+              </tr>
+
+              <tr v-if="item.location && item.location.notes" class="request__location-notes">
+                <td colspan="4">
+                  <truck-icon></truck-icon>
+                  {{ item.location.notes }}
+                </td>
+              </tr>
+            </template>
+          </tbody>
+        </table>
+
+        <div class="hidden">
+          <template v-for="(request, requestIndex) in shadowRequests">
+            <template v-for="(form_values, field_name) in request.formParams">
+              <input :id="field_name" :name="field_name" type="hidden"
+                                                         :value="form_values"></input>
+            </template>
+          </template>
+        </div>
+
+      </div><!-- /.panel -->
+      <div v-else class="panel">
+        <heading level="h3">Your cart is currently empty.</heading>
+      </div>
+
+      <div class="cart-actions">
+        <div class="center">
+          <input-button type="submit" variation="solid" :disabled="shadowRequests.length == 0" block>
+            {{ requestButtonText() }}
+          </input-button>
+        </div>
+      </div>
+
+    </form>
+
+    < !-- REAL FORM -->
+    <form id="request-cart-form" method="post" :action="configuration.url"
+      v-on:submit.prevent="clearForm">
       <div v-if="requests.length" class="panel">
         <table :class="['lux-data-table']">
 
@@ -140,6 +257,11 @@ export default {
     'x-circle-icon': XCircleIcon,
     'request-form-input': RequestFormInput
   },
+  data() {
+    return {
+      shadowRequests: []
+    }
+  },
   props: {
     configuration: {
       type: Object,
@@ -188,7 +310,9 @@ export default {
       this.$store.commit("TOGGLE_VISIBILITY")
     },
     clearForm() {
+      this.shadowRequests = this.requests
       this.$store.commit("SET_CART", [])
+      this.$refs.shadowForm.submit()
     }
   }
 }
