@@ -375,19 +375,19 @@ class CatalogController < ApplicationController
     config.add_indexed_terms_field "originalsloc_ssm", label: "Location of Originals", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_indexed_terms_field "separatedmaterial_ssm", label: "Separated Material", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_indexed_terms_field "bibliography_ssm", label: "Publication Note", helper_method: :paragraph_separator, accessor: :fetch_html_safe
-    config.add_indexed_terms_field "topics_ssm", label: "Topics", link_to_facet: true, separator_options: {
+    config.add_indexed_terms_field "topics_ssim", label: "Topics", link_to_facet: true, separator_options: {
       words_connector: "<br/>",
       two_words_connector: "<br/>",
       last_word_connector: "<br/>"
     }
 
-    config.add_indexed_terms_field "subject_terms_ssm", label: "Subject Terms", link_to_facet: true, separator_options: {
+    config.add_indexed_terms_field "subject_terms_ssim", label: "Subject Terms", link_to_facet: true, separator_options: {
       words_connector: "<br/>",
       two_words_connector: "<br/>",
       last_word_connector: "<br/>"
     }
 
-    config.add_indexed_terms_field "genreform_ssm", label: "Genre Terms", link_to_facet: true, separator_options: {
+    config.add_indexed_terms_field "genreform_ssim", label: "Genre Terms", link_to_facet: true, separator_options: {
       words_connector: "<br/>",
       two_words_connector: "<br/>",
       last_word_connector: "<br/>"
