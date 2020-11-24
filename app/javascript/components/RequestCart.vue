@@ -312,7 +312,9 @@ export default {
     clearForm() {
       this.shadowRequests = this.requests
       this.$store.commit("SET_CART", [])
-      this.$refs.shadowForm.submit()
+      this.$nextTick(() => {
+        this.$refs.shadowForm.submit()
+      })
     }
   }
 }
