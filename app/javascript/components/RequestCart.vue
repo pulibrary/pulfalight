@@ -93,7 +93,7 @@
         </tbody>
       </table>
 
-    </div>
+    </div><!-- /.panel -->
 
     <div class="cart-actions">
       <div class="center">
