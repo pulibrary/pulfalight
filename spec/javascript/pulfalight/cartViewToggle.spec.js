@@ -14,7 +14,7 @@ describe("CartViewToggle.vue", () => {
         TOGGLE_VISIBILITY: toggleVisibility
       }
     }
-    const { getByRole, container} = render(CartViewToggle, { store })
+    const { getByRole, container } = render(CartViewToggle, { store })
     const button = getByRole("button")
     await fireEvent.click(button)
     expect(toggleVisibility).toHaveBeenCalled()
