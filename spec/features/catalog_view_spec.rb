@@ -29,23 +29,30 @@ describe "viewing catalog records", type: :feature, js: true do
     end
   end
   context "when viewing a component which can be requested from Aeon" do
-    xit "renders a request button" do
-      visit "/catalog/aspace_MC148_c00001"
+    it "renders a request button which opens a request cart form" do
+      visit "/catalog/aspace_MC148_c00002"
 
-      # This is now blocked by the Request Cart Vue integration
-    end
+      find(".add-to-cart-block > button").click
+      within(".request-cart") do
+        expect(page).to have_selector "button.denied-button"
+        expect(page).to have_selector "#item-aspace_MC148_c00002"
+        expect(page).to have_selector "td", text: /1918/
+        expect(page).to have_selector "td", text: /aspace_MC148_c00002/
+        expect(page).to have_selector "td", text: /Box 1/
+        expect(page).to have_selector "button[type='submit']", text: /Request 1 Item/
 
-    xit "generates a request <form>" do
-      visit "/catalog/aspace_WC064_c1"
+        # Click the remove item button
+        find("#item-aspace_MC148_c00002 > td > button").click
+      end
 
-      # This is now blocked by the Request Cart Vue integration
-    end
+      # Open the cart again
+      find(".cart-view-toggle-block > div > button").click
+      within(".request-cart") do
+        # Check that it is empty
+        expect(page).to have_selector "button[type='submit']", text: /No Items in Your Cart/
 
-    context "with extent provided" do
-      xit "maps this to the <form> <input>" do
-        visit "/catalog/aspace_MC148_c00001"
-
-        # This is now blocked by the Request Cart Vue integration
+        # Check that it can be closed
+        expect(page).to have_selector "button.denied-button"
       end
     end
   end

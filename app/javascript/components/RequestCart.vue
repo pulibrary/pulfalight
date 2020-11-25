@@ -4,7 +4,7 @@
 
   <div v-if="isVisible" :class="['request-cart']">
 
-    <div v-if="requests.length" class="panel">
+    <div class="panel">
       <table :class="['lux-data-table']">
 
         <caption>
@@ -94,9 +94,6 @@
       </table>
 
     </div><!-- /.panel -->
-    <div v-else class="panel">
-      <heading level="h3">Your cart is currently empty.</heading>
-    </div>
 
     <div class="cart-actions">
       <div class="center">
