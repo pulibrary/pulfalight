@@ -103,7 +103,7 @@ class CatalogController < ApplicationController
     # }
 
     config.default_document_solr_params = {
-      fl: "*, [child limit=1000000]"
+      fl: "*"
     }
 
     # solr field configuration for search results/index views
