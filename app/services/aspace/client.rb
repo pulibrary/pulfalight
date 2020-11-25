@@ -17,7 +17,7 @@ module Aspace
     end
 
     def ead_urls(modified_since: nil)
-      output = recent_repositories.each_with_object({}) do |repository, acc|
+      output = repositories.each_with_object({}) do |repository, acc|
         config.base_repo = repository["uri"][1..-1]
         query = { all_ids: true }
         query[:modified_since] = modified_since if modified_since
@@ -40,14 +40,6 @@ module Aspace
         code = "mss" if code == "Manuscripts"
         { result["uri"][1..-1].gsub("resources", "resource_descriptions") => code }
       end.to_a.compact.last
-    end
-
-    # We have old test repositories, we only want to import EADs from the ones
-    # migrated from our SVN by Lyrasis.
-    def recent_repositories
-      repositories.select do |repository|
-        Time.zone.parse(repository["create_time"]) > Time.zone.parse("2020-01-01")
-      end
     end
   end
 end
