@@ -46,6 +46,7 @@ class AspaceIndexJob < ApplicationJob
     ead_content = aspace_client.get("#{resource_descriptions_uri}.xml", query: { include_daos: true, include_unpublished: false }, timeout: 1200).body.force_encoding("UTF-8")
     xml_documents = Nokogiri::XML.parse(ead_content)
     xml_documents.remove_namespaces!
+    return if xml_documents.children[0]["audience"] == "internal"
 
     @repository_id = repository_id.try(&:downcase)
     solr_documents = EADArray.new
