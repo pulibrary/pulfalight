@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cart-wrapper">
     <input-button
       v-on:button-clicked="toggleCartView($event)"
       type="button"
@@ -47,6 +47,8 @@ $font-family-text: "franklin-gothic-urw", Helvetica, Arial, sans-serif;
   padding: 0 5px;
   vertical-align: super;
   margin-left: -22px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .badge {
   padding-left: 9px;
@@ -54,5 +56,8 @@ $font-family-text: "franklin-gothic-urw", Helvetica, Arial, sans-serif;
   -webkit-border-radius: 9px;
   -moz-border-radius: 9px;
   border-radius: 9px;
+}
+.cart-wrapper {
+  display: flex;
 }
 </style>
