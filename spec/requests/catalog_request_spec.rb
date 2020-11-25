@@ -144,4 +144,11 @@ describe "controller requests", type: :request do
       end
     end
   end
+
+  describe "searching for box and folder number", js: false do
+    it "returns it" do
+      get "/catalog", params: { q: "MC221 Box 1 Folder 4", search_field: "all_fields" }
+      expect(assigns.fetch(:document_list, []).map(&:id).first).to eq "aspace_MC221_c0004"
+    end
+  end
 end

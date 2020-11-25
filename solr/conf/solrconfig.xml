@@ -74,7 +74,7 @@
        <int name="rows">10</int>
 
        <str name="q.alt">*:*</str>
-       <str name="mm">2&lt;-1 5&lt;-2 6&lt;90%</str>
+       <str name="mm">0%</str>
 
        <!-- this qf and pf are used by default, if not otherwise specified by
             client. The default blacklight_config will use these for the
@@ -85,27 +85,31 @@
        -->
 
        <str name="qf">
-         collection_title_tesim^150
-         title_tesim^100
-         name_tsim^10
-         place_tsim^10
-         unitid_identifier_match^5
-         subject_tsim^2
+         ead_ssi^100
+         physloc_teim
+         containers_tesim
+         physloc_tesim
+         collection_title_tesim
+         title_tesim
+         name_tsim
+         place_tsim
+         unitid_identifier_match
+         subject_tsim
          ref_identifier_match
          parent_identifier_match
          text
        </str>
        <str name="pf">
-         collection_title_tesim^150
-         title_tesim^100
+         title_tesim^10
          name_tsim^10
          place_tsim^10
-         unitid_identifier_match^5
          subject_tsim^2
-         ref_identifier_match
-         parent_identifier_match
-         text
        </str>
+       <str name="pf2">
+         physloc_tesim^20
+       </str>
+
+       <int name="ps2">3</int>
 
        <str name="qf_name">
          name_tsim
@@ -188,6 +192,7 @@
     <arr name="last-components">
       <str>spellcheck</str>
     </arr>
+  
   </requestHandler>
 
   <!-- for requests to get a single document; use id=666 instead of q=id:666 -->
