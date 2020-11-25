@@ -1,0 +1,6 @@
+<div class="collection-tree-block--child">
+  <% tree.children.each do |child_tree| %>
+    <%= render(partial: 'collection_child', locals: { document: child_tree.root }) %>
+    <%= render(partial: 'collection_tree', locals: { tree: child_tree }) %>
+  <% end %>
+</div>

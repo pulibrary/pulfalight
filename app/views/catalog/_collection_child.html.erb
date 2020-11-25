@@ -1,0 +1,21 @@
+  <div class="lux document-title">
+    <a href="<%= solr_document_path(document) %>">
+      <h3><%= document.normalized_title %></h3>
+    </a>
+    <div class="document-attributes">
+      <div class="document-extent">
+        <span><%= document.extent %></span>
+      </div>
+    </div>
+      </div>
+<% if document.root_component? %>
+      <div class="document-scope-note">
+        <span class="document-scope-note__label">Scope Note:</span>
+        <p><%= document.scope_content %></p>
+      </div>
+
+      <div class="document-arrangement">
+        <p><%= document.arrangement %></p>
+      </div>
+    <% end %>
+

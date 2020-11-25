@@ -82,6 +82,26 @@ describe "controller requests", type: :request do
     end
   end
 
+  context "when requesting a component with child component nodes" do
+    before do
+      get "/catalog/MC148?expanded=true"
+    end
+
+    it "renders the expanded collection view template" do
+      html_tree = Nokogiri::HTML(response.body)
+      field_name_elements = html_tree.css(".document-title h3")
+
+      expect(field_name_elements).not_to be_empty
+      expect(field_name_elements.first.text).to include("Series 1: Articles, books, and Lecture Notes by David E.")
+      expect(field_name_elements.last.text).to include("Center of Theological Inquiry, 1978")
+
+      attribute_elements = html_tree.css(".collection-tree-block--child .document-extent")
+      expect(attribute_elements).not_to be_empty
+      expect(attribute_elements.first.text).to include("17 boxes")
+      expect(attribute_elements.last.text).to include("1 box")
+    end
+  end
+
   describe "collection-level notes" do
     xit "renders the notes on the collection show page" do
       # TODO: Remove collection notes and index more fine-grained metadata on the description and history tabs

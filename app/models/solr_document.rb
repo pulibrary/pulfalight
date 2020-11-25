@@ -20,6 +20,7 @@ class SolrDocument
   use_extension(Blacklight::Document::DublinCore)
 
   COLLECTION_LEVEL = "collection"
+  ROOT_COMPONENT_LEVEL = 1
 
   # The attributes which are rendered by the JSON serialization
   # @return [Array<Symbol>]
@@ -32,17 +33,11 @@ class SolrDocument
     ]
   end
 
+  ## Solr Document Field accessor methods
+
   def components
     # Solr returns a single hash rather than an array when there is only one value
     Array.wrap(fetch(:components, []))
-  end
-
-  def component_documents
-    components.map { |component_values| self.class.new(component_values) }
-  end
-
-  def component_attributes
-    component_documents.map(&:attributes)
   end
 
   def level
@@ -50,24 +45,17 @@ class SolrDocument
     values.first
   end
 
-  def collection?
-    return false if level.nil?
+  def component_levels
+    return unless component?
 
-    level == self.class::COLLECTION_LEVEL
+    fetch(:component_level_isim, [])
   end
 
-  def component?
-    key?("component_level_isim")
-  end
+  def component_level
+    return unless component_levels
 
-  def html_presenter_class
-    ComponentHtmlPresenter
+    component_levels.first
   end
-
-  def html_presenter
-    html_presenter_class.new(self)
-  end
-  alias presenter html_presenter # Update this for other format-based presenters
 
   def id
     Array.wrap(super).first
@@ -168,19 +156,6 @@ class SolrDocument
     fetch("has_online_content_ssim", [])
   end
 
-  def has_digital_content?
-    has_online_content.present?
-  end
-
-  def attributes
-    default_attributes = {}
-    merged = default_attributes.merge(blacklight_attributes)
-    merged = merged.merge(arclight_attributes)
-    merged = merged.merge(pulfalight_attributes)
-    merged.select { |u, _v| self.class.json_attributes.include?(u) }
-  end
-  delegate :to_json, to: :attributes
-
   def extents
     fetch("extent_ssm", [])
   end
@@ -203,6 +178,69 @@ class SolrDocument
   def last_physical_location
     physical_locations.last
   end
+
+  def scope_contents
+    fetch("scopecontent_ssm", [])
+  end
+
+  def scope_content
+    scope_contents.first
+  end
+
+  def arrangements
+    fetch("arrangement_ssm", [])
+  end
+
+  def arrangement
+    arrangements.first
+  end
+
+  ## Other Methods
+  def root_component?
+    component? && component_level == self.class::ROOT_COMPONENT_LEVEL
+  end
+
+  def collection?
+    return false if level.nil?
+
+    level == self.class::COLLECTION_LEVEL
+  end
+
+  def component?
+    key?("component_level_isim")
+  end
+
+  def has_digital_content?
+    has_online_content.present?
+  end
+
+  def component_documents
+    components.map { |component_values| self.class.new(component_values) }
+  end
+
+  def component_attributes
+    component_documents.map(&:attributes)
+  end
+
+  def html_presenter_class
+    ComponentHtmlPresenter
+  end
+
+  def html_presenter
+    html_presenter_class.new(self)
+  end
+  alias presenter html_presenter # Update this for other format-based presenters
+
+  # Transform Solr Document into a JSON Object
+  # @return [Hash]
+  def attributes
+    default_attributes = {}
+    merged = default_attributes.merge(blacklight_attributes)
+    merged = merged.merge(arclight_attributes)
+    merged = merged.merge(pulfalight_attributes)
+    merged.select { |u, _v| self.class.json_attributes.include?(u) }
+  end
+  delegate :to_json, to: :attributes
 
   def aeon_request
     @aeon_request ||= AeonRequest.new(self)

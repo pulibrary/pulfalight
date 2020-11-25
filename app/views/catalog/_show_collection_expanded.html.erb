@@ -41,9 +41,9 @@
       <div class="col-md-4">
         <div class="toc-header">
           <span>Contents and Arrangement</span>
-          <a class="toc-header__expand-button" href="?expanded=true" >
-            <%= image_tag(asset_path('icon-expand-alt-solid.svg'), class: 'expand-collection-icon', "aria-label": "expand the collection view") %>
-            <span>Expanded View</span>
+          <a class="toc-header__expand-button" href="<%= solr_document_url(document) %>">
+            <%= image_tag(asset_path('icon-compress-alt-solid.svg'), class: 'compress-collection-icon', "aria-label": "view the collection in the default mode") %>
+            <span>Collection View</span>
           </a>
         </div>
         <div id="toc" data-turbolinks-permanent></div>
@@ -67,7 +67,7 @@
           </nav>
 
           <div class='tab-pane active' id='summary' role='tabpanel'>
-            <%= render(partial: 'collection_summary') %>
+            <%= render(partial: 'collection_summary_expanded') %>
           </div>
           <div class='tab-pane' id='description' role='tabpanel'>
             <%= render(partial: 'collection_description') %>

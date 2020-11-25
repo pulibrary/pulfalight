@@ -26,6 +26,14 @@ class CatalogController < ApplicationController
       format.html do
         if request.xml_http_request?.nil?
           @search_context = setup_next_and_previous_documents
+          if document_expanded?
+            show_view_config = blacklight_config.show
+            updated_partials = show_view_config[:partials].reject { |p| p == :show }
+            updated_partials << :show_collection_expanded
+            blacklight_config.show[:partials] = updated_partials
+
+            @document_tree = build_document_tree
+          end
         else
           # If a component (rather than an entire collection) is requested, this ensures that the component has no child nodes
           minimal_attributes = @document.attributes
@@ -95,7 +103,7 @@ class CatalogController < ApplicationController
     # }
 
     config.default_document_solr_params = {
-      fl: "*,[child]"
+      fl: "*, [child limit=1000000]"
     }
 
     # solr field configuration for search results/index views
@@ -436,5 +444,18 @@ class CatalogController < ApplicationController
     # Compact index view
     config.view.compact
     config.view.compact.partials = %i[arclight_index_compact]
+  end
+
+  private
+
+  def document_expanded?
+    @document_expanded ||= begin
+                             expanded_param = request.params["expanded"]
+                             @document.collection? && expanded_param.present? && expanded_param.downcase.strip == "true"
+                           end
+  end
+
+  def build_document_tree
+    SolrDocumentTree.new(root: @document)
   end
 end

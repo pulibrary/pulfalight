@@ -1,0 +1,72 @@
+
+.blacklight-collection {
+  .toc-header {
+    span:first-child {
+      margin-right: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    &__expand-button {
+      color: inherit;
+      display: inline-flex;
+      align-items: center;
+
+      &:hover {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
+
+        width: 0.85rem;
+      }
+
+      span {
+        margin-left: 0.2rem;
+        margin-right: 0.2rem;
+      }
+    }
+  }
+
+  .content-container {
+    .collection-tree-block {
+
+      &--child {
+        margin-left: 2rem;
+
+        .document-title {
+          display: inline-flex;
+          align-items: bottom;
+          width: 100%;
+
+          a {
+            display: inline-block;
+          }
+
+          .document-attributes {
+            margin-left: auto;
+            align-items: center;
+          }
+        }
+
+        .document-scope-note {
+
+          &__label {
+            font-weight: 600;
+            white-space: nowrap;
+          }
+
+          p {
+            display: inline;
+          }
+        }
+
+        .document-arrangement {
+          margin-top: 1.4rem;
+        }
+      }
+    }
+  }
+}
