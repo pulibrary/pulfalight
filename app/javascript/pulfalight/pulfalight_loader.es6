@@ -9,14 +9,22 @@ import AddToCartButton from '../components/AddToCartButton'
 import CartViewToggle from '../components/CartViewToggle'
 import TocBuilder from "../pulfalight/toc.es6"
 import LibCalHours from "../pulfalight/lib_cal_hours.es6"
+import QueryFiggy from "../pulfalight/query_figgy.es6"
 
-export default class PulfalightLoader {
+export default class {
   run() {
     this.setup_toc()
     this.setup_vue()
     this.setup_lib_cal_hours()
     this.setup_range_limit()
     this.setup_form_modal()
+    this.query_figgy()
+  }
+
+  query_figgy(){
+    const query = new QueryFiggy()
+    const component_id = query.component_id()
+    query.checkFiggy(component_id)
   }
 
   setup_lib_cal_hours() {
