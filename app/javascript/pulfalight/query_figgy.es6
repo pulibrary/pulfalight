@@ -35,7 +35,7 @@ export default class QueryFiggy {
     const figgyUrl = 'https://figgy.princeton.edu/'
     iframeElement.setAttribute("allowFullScreen", "true")
     iframeElement.id = 'uv_iframe'
-    const src = "https://figgy.princeton.edu/uv/uv#?manifest=" + manifestURL
+    const src = "https://figgy.princeton.edu/viewer#?manifest=" + manifestURL
     iframeElement.src = src;
 
     return iframeElement;
@@ -84,9 +84,7 @@ export default class QueryFiggy {
               var figgy_id = json.data.resourcesByOrangelightId[0].id;
               var manifestURL = "https://figgy.princeton.edu/concern/scanned_resources/" + figgy_id + "/manifest"
 
-              var myRequest = new Request(manifestURL, {credentials: 'include'});
-
-              fetch(myRequest).then(function(response) {
+              return fetch(manifestURL, {credentials: 'include'}).then(function(response) {
                 if(response.status == 401) { that.addLoginLink() } else if(response.status == 200) { that.renderReadingRoom(manifestURL) }
               }).catch(function(e) {
                 console.log(e);
