@@ -95,15 +95,19 @@ jobs:
           PULFALIGHT_DB_HOST: localhost
           PULFALIGHT_DB_USERNAME: pulfalight
           PULFALIGHT_DB_PASSWORD: ""
-          SOLR_URL: http://localhost:8983/solr/pulfalight-core-test
+          SOLR_URL: http://solr:SolrRocks@localhost:8983/solr/pulfalight-core-test
+      - image: zookeeper:3.4
       - image: postgres:10.6-alpine
         environment:
           POSTGRES_USER: pulfalight
           POSTGRES_DB: pulfalight_test
           # POSTGRES_PASSWORD: ""
           POSTGRES_HOST_AUTH_METHOD: trust
-      - image: jrgriffiniii/pulfalight-solr:latest
-        command: solr-precreate pulfalight-core-test /opt/solr/server/solr/configsets/pulfalight
+      - image: solr:8.4
+        command:
+          - "sh"
+          - "-c"
+          - wget -O /tmp/security.json "https://gist.githubusercontent.com/eliotjordan/a27be341dc2e7a532bad99203e0f55b7/raw/5866efab9242f953764c1b03d17763309e22948f/security.json" && server/scripts/cloud-scripts/zkcli.sh -zkhost localhost:2181 -cmd putfile /security.json /tmp/security.json && bin/solr -cloud -noprompt -f -p 8983 -z localhost:2181
     steps:
       - attach_workspace:
           at: '~/pulfalight'
@@ -111,6 +115,16 @@ jobs:
       - run:
           name: Wait for PostgreSQL
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Wait for Solr
+          command: dockerize -wait tcp://localhost:8983 -timeout 1m
+      - run:
+          name: Load config into solr
+          command: |
+            cd solr/conf
+            zip -1 -r solr_config.zip ./*
+            curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://solr:SolrRocks@127.0.0.1:8983/solr/admin/configs?action=UPLOAD&name=pulfalight"
+            curl -H 'Content-type: application/json' http://solr:SolrRocks@127.0.0.1:8983/api/collections/ -d '{create: {name: pulfalight-core-test, config: pulfalight, numShards: 1}}'
       - run:
           name: Update bundler
           command: |
