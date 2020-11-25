@@ -23,9 +23,7 @@ export default class {
 
   query_figgy(){
     const query = new QueryFiggy()
-    let component_id = $("#document div:first").attr('id').replace('doc_aspace_', '')
-    let doc_aspace_component_id = document.getElementById('document').getElementsByTagName('div')[0]
-    let component_id = doc_aspace_component_id.getAttribute('id').replace('doc_aspace_', '')
+    const component_id = query.component_id()
     query.checkFiggy(component_id)
   }
 

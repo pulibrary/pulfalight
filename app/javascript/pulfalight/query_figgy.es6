@@ -2,8 +2,14 @@ export default class QueryFiggy {
 
   addLoginLink() {
     let readingRoom = document.getElementById("readingroom")
+    let cssStyle = "border-radius: 3px; background: #fee7ba; padding: 20px; margin-bottom: 2em;"
+    this.addStyle(readingRoom, cssStyle)
     readingRoom.innerHTML = "<p>Access to this material is limited to specific classes. <button id='login' class='btn' >Use your Princeton credentials to login.</button></p>";
     $('#readingroom #login').click(this.login)
+  }
+
+  addStyle(el, cssStyle) {
+    el.setAttribute("style", cssStyle)
   }
 
   removeLoginLink() {
@@ -44,6 +50,22 @@ export default class QueryFiggy {
     viewerElement.appendChild(iFrameElement)
 
     return viewerElement;
+  }
+
+  uppercaseChar(str,underscorePosition) {
+    let component_id_upperCase = ''
+    for (let i = 0; i < underscorePosition; i++) {
+      component_id_upperCase += str.charAt(i).toUpperCase();
+    }
+    return component_id_upperCase;
+  }
+
+  component_id() {
+    let doc_aspace_component_id = document.getElementById('document').getElementsByTagName('div')[0]
+    let component_id = doc_aspace_component_id.getAttribute('id').replace('doc_aspace_', '')
+    let underscorePosition = component_id.indexOf('_')
+    component_id = this.uppercaseChar(component_id,underscorePosition) + component_id.slice(underscorePosition)
+    return component_id;
   }
 
   checkFiggy(component_id) {

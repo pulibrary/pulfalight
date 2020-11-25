@@ -20,7 +20,7 @@ const createMockSuccessXHR = responseJSON => {
 describe('QueryFiggy', function() {
   const oldXMLHttpRequest = window.XMLHttpRequest;
   let mockSuccessXHR = null;
-  let component_id = "C1491_c4";
+  let component_id = "c1491_c4";
 
   beforeEach(() => {
     mockSuccessXHR = createMockSuccessXHR();
@@ -35,11 +35,17 @@ describe('QueryFiggy', function() {
     expect(QueryFiggy).not.toBe(undefined)
   })
 
-  test('add the Log in button when it finds the component_id in figgy', async () => {
+  test('Adds the Log in button when it finds the component_id in figgy', async () => {
     const query = new QueryFiggy
     const reqPromise = query.checkFiggy(component_id);
 
     expect(mockSuccessXHR.send).toHaveBeenCalled();
     await jest.setTimeout(7000)
+  })
+
+  test("component_id() Capitalizes alphabetic characters before the underscore", () => {
+    document.body.innerHTML = '<div id="document" class="document blacklight-file" itemscope="" itemtype="http://schema.org/Thing"><div id="doc_aspace_c1491_c4"></div></div>'
+    const query = new QueryFiggy
+    expect(query.component_id(component_id)).toEqual("C1491_c4")
   })
 })
