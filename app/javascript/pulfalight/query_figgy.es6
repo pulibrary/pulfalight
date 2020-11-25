@@ -1,4 +1,4 @@
-export default class QueryFiggy {
+export default class {
 
   addLoginLink() {
     let readingRoom = document.getElementById("readingroom")
