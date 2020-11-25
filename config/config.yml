@@ -16,6 +16,7 @@ test:
 
 production:
   <<: *defaults
+  archivespace_url: <%= ENV["ASPACE_URL"] || "https://asqa.lyrtech.org/staff/api" %>
 
 staging:
   <<: *defaults
