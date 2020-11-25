@@ -2,6 +2,8 @@
 @import "variables/colors";
 @import "variables/typography";
 
+$search-box-form-height: calc(1.75em + 0.75rem + 2px);
+
 header .navbar-form .input-group .custom-select {
     width: auto;
   }
@@ -99,7 +101,7 @@ header .navbar-form .input-group .input-group-btn {
 
 .search-q.form-control,
 .search-btn {
-  height: 42px;
+  height: $search-box-form-height;
 }
 
 @media (min-width: $bp-large) {
@@ -172,7 +174,7 @@ select::-ms-expand {
 }
 
 #search_field.custom-select, #within_collection {
-  height: calc(1.75em + 0.75rem + 2px);
+  height: $search-box-form-height;
 
   @media (min-width: 575px) {
     border-top-right-radius: 0;
