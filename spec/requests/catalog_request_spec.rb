@@ -34,54 +34,6 @@ describe "controller requests", type: :request do
     end
   end
 
-  context "when an AJAX request is transmitted for a collection document" do
-    it "renders a minimal HTML template in the response" do
-      get("/catalog/WC064", xhr: true)
-
-      expect(response.body).to include("<div id=\"document-minimal-WC064\"")
-      html_tree = Nokogiri::HTML(response.body)
-      field_name_elements = html_tree.css("#document-minimal-WC064 .document-minimal-field-name")
-      expect(field_name_elements).not_to be_empty
-      first_field_element = field_name_elements.first
-      expect(first_field_element.text).to eq "id"
-      second_field_element = field_name_elements[1]
-      expect(second_field_element.text).to eq "has_digital_content"
-
-      field_value_elements = html_tree.css("#document-minimal-WC064 .document-minimal-field-value")
-      expect(field_value_elements).not_to be_empty
-      first_field_element = field_value_elements.first
-      expect(first_field_element.text).to eq "WC064"
-      second_field_element = field_value_elements[1]
-      expect(second_field_element.text).to eq "true"
-
-      component_field_elements = field_name_elements.select { |element| element.text == "components" }
-      expect(component_field_elements).not_to be_empty
-      component_field_element = component_field_elements.first
-      component_tree_element = component_field_element.parent
-      child_component_elements = component_tree_element.css("#document-minimal-aspace_WC064_c1")
-      expect(child_component_elements).not_to be_empty
-    end
-
-    context "when requesting a component with child component nodes" do
-      it "renders a minimal HTML template in the response without child components" do
-        get("/catalog/WC064", xhr: true)
-
-        expect(response.body).to include("<div id=\"document-minimal-WC064\"")
-        html_tree = Nokogiri::HTML(response.body)
-        field_name_elements = html_tree.css("#document-minimal-WC064 .document-minimal-field-name")
-        expect(field_name_elements).not_to be_empty
-
-        component_field_elements = field_name_elements.select { |element| element.text == "components" }
-        expect(component_field_elements).not_to be_empty
-        component_field_element = component_field_elements.first
-        component_tree_element = component_field_element.parent
-        child_component_elements = component_tree_element.css(".document-minimal-field-value")
-        expect(child_component_elements).not_to be_empty
-        expect(child_component_elements.first.text).to eq("aspace_WC064_c1")
-      end
-    end
-  end
-
   context "when requesting a component with child component nodes" do
     before do
       get "/catalog/MC148?expanded=true"

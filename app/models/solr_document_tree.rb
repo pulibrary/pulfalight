@@ -12,7 +12,7 @@ class SolrDocumentTree
     # Generate the Solr Child Document Transformer parameter for the query results
     # @return [Array<String>]
     def self.solr_child_doc_transformer
-      ["child", "fl=*", "limit=1000000"]
+      ["child", "fl=id,normalized_title_ssm,scopecontent_ssm,extent_ssm,arrangement_ssm,component_level_isim", "limit=1000000"]
     end
 
     # Generate the Solr Document Transformers for the query results
@@ -24,7 +24,7 @@ class SolrDocumentTree
     # Generate the necessary Solr Document fields
     # @return [Array<String>]
     def self.solr_fields
-      ["*", "components"]
+      ["id,normalized_title_ssm,scopecontent_ssm,extent_ssm,arrangement_ssm,components,level_ssm,component_level_isim"]
     end
 
     # Generate the field list parameter for the Solr Query

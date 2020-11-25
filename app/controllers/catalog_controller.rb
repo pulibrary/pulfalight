@@ -24,22 +24,14 @@ class CatalogController < ApplicationController
 
     respond_to do |format|
       format.html do
-        if request.xml_http_request?.nil?
-          @search_context = setup_next_and_previous_documents
-          if document_expanded?
-            show_view_config = blacklight_config.show
-            updated_partials = show_view_config[:partials].reject { |p| p == :show }
-            updated_partials << :show_collection_expanded
-            blacklight_config.show[:partials] = updated_partials
+        @search_context = setup_next_and_previous_documents
+        if document_expanded?
+          show_view_config = blacklight_config.show
+          updated_partials = show_view_config[:partials].reject { |p| p == :show }
+          updated_partials << :show_collection_expanded
+          blacklight_config.show[:partials] = updated_partials
 
-            @document_tree = build_document_tree
-          end
-        else
-          # If a component (rather than an entire collection) is requested, this ensures that the component has no child nodes
-          minimal_attributes = @document.attributes
-          minimal_attributes["components"] = [] unless @document.collection?
-
-          render "catalog/_minimal", locals: { attributes: minimal_attributes }
+          @document_tree = build_document_tree
         end
       end
       format.json do
@@ -103,7 +95,7 @@ class CatalogController < ApplicationController
     # }
 
     config.default_document_solr_params = {
-      fl: "*, [child limit=1000000]"
+      fl: "*"
     }
 
     # solr field configuration for search results/index views
