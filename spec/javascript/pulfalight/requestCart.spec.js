@@ -21,6 +21,7 @@ describe("RequestCart.vue", () => {
         }
       },
     }
+
     const { getByRole, getByTestId, container } = render(RequestCart, {
       store: customStore,
       props: {
@@ -45,7 +46,6 @@ describe("RequestCart.vue", () => {
 
     // shadow form was submitted
     expect(submitEvent).toHaveBeenCalled()
-
 
     // cart is empty
     const button = container.querySelector("button[type='submit']")
