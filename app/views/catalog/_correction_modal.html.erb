@@ -8,7 +8,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body form-wrapper">
           <%= render partial: "correction_form", locals: { form: SuggestACorrectionForm.new(location_code: @document.fetch("repository_code_ssm", []).first, context: request.original_url) } %>
         </div>
       </div>

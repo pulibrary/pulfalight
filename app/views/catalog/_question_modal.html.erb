@@ -1,0 +1,34 @@
+<% content_for :question_modal do %>
+  <script src="https://api2.libanswers.com/1.0/widgets/850"></script>
+  <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-label="Ask a Question" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="questionModalTitle">Ask a Question</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div id="questionForm" class="form-wrapper">
+              <%= render partial: "ask_a_question_form", locals: { form: AskAQuestionForm.new(location_code: @document.fetch("repository_code_ssm", []).first, context: request.original_url, title: @document.collection.first) } %>
+            </div>
+            <div id="questionFAQ">
+              <h6>
+                Quick Answers
+              </h6>
+              <p>Has your question already been answered?</p>
+              <div id="s-la-widget-850"></div>
+              <div class="faq-set" style="padding-top: 10px;">
+                <p class="faq"><a href="https://faq.library.princeton.edu/rbsc/faq/26972" target="_blank">How can I access Princeton University Library special collections?</a></p>
+                <p class="faq"><a href="https://faq.library.princeton.edu/rbsc/faq/64876" target="_blank">How can I purchase copies from rare books and special collections?</a></p>
+                <p class="faq"><a href="https://faq.library.princeton.edu/rbsc/faq/56766" target="_blank">Do I need permission to quote or publish from rare books and special collections?</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

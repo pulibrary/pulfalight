@@ -57,19 +57,22 @@ export default class PulfalightLoader {
     }
   }
 
-  // Set up Suggest a Correction modal. Rails UJS submits as a remote form, and
-  // ContactController#suggest returns the form partial in response to the
+  // Set up Suggest a Correction/Ask a Question modals. Rails UJS submits as a remote form, and
+  // ContactController#suggest/#question returns the form partial in response to the
   // request.
   setup_form_modal() {
-    $("#correctionModal").on("show.bs.modal", function() {
-      $("#correctionModal form").show()
-      $("#correctionModal .alert").hide()
-    })
-    $("#correctionModal").on("ajax:error", function(event) {
-      $("#correctionModal .modal-body").html(event.detail[0].body)
-    }).on("ajax:success", function(event) {
-      $("#correctionModal .modal-body").html(event.detail[0].body)
-      $("#correctionModal form").hide()
+    ["#correctionModal", "#questionModal"].forEach((selector) => {
+      $(`${selector}`).on("show.bs.modal", function() {
+        $(`${selector} form`).show()
+        $(`${selector} .alert`).hide()
+      })
+      $(`${selector}`).on("ajax:error", function(event) {
+        $(`${selector} .form-wrapper`).html(event.detail[0].body)
+      }).on("ajax:success", function(event) {
+        $(`${selector} .form-wrapper`).html(event.detail[0].body)
+        $(`${selector} .form-wrapper form`).hide()
+        $(`${selector} .form-wrapper .is-valid`).removeClass("is-valid")
+      })
     })
   }
 }

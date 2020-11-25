@@ -39,4 +39,5 @@ Rails.application.routes.draw do
   get "/hours", to: "hours#hours"
   get "/research_help", to: "research_help#research_help"
   post "/contact/suggest", to: "contact#suggest"
+  post "/contact/question", to: "contact#question"
 end

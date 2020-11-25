@@ -1,0 +1,11 @@
+#questionModal {
+  .modal-dialog {
+    min-width: 800px;
+  }
+  #questionFAQ {
+    @extend .col-6;
+  }
+  #questionForm {
+    @extend .col-6;
+  }
+}
