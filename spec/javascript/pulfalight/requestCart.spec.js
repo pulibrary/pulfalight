@@ -1,5 +1,5 @@
 import RequestCart from "components/RequestCart"
-import { cartState, cartMutations, cartActions } from "store/cart/index"
+import { cartMutations, cartActions } from "store/cart/index"
 import { render, fireEvent } from '@testing-library/vue'
 
 describe("RequestCart.vue", () => {
@@ -22,7 +22,7 @@ describe("RequestCart.vue", () => {
       },
     }
 
-    const { getByRole, getByTestId, container } = render(RequestCart, {
+    const { container } = render(RequestCart, {
       store: customStore,
       props: {
         configuration: {}
