@@ -207,6 +207,7 @@ export default {
     clearForm() {
       this.shadowRequests = this.requests
       this.$store.commit("SET_CART", [])
+      // ensure shadowform is re-rendered with items before submission
       this.$nextTick(() => {
         this.$refs.shadowForm.submit()
       })
