@@ -326,6 +326,11 @@
    <copyField source="names_ssim" dest="name_tsim"/>
    <copyField source="access_subjects_ssim" dest="subject_tsim"/>
 
+   <!-- relevancy searches -->
+   <copyField source="containers_ssim" dest="containers_tesim"/>
+   <copyField source="physloc_ssm" dest="physloc_ssim"/>
+   <copyField source="physloc_ssm" dest="physloc_tesim"/>
+
    <!-- The catch all `text` field -->
    <!-- grab the fielded searches -->
    <copyField source="normalized_title_ssm" dest="text" />
@@ -361,6 +366,7 @@
    <copyField source="unitid_ssm" dest="text" />
    <copyField source="unitid_ssm" dest="unitid_identifier_match" />
    <copyField source="parent_ssm" dest="parent_identifier_match" />
+   <copyField source="parent_ssm" dest="parent_ssim" />
    <copyField source="ref_ssm" dest="ref_identifier_match" />
 
    <!-- sort fields -->
