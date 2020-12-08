@@ -2,6 +2,11 @@
   margin-bottom: 20px;
   max-height: 800px;
   overflow-y: scroll;
+  i {
+    &:focus {
+      background-color: $foam;
+    }
+  }
   a {
     background-color: $light;
     padding: 8px;
@@ -10,6 +15,9 @@
       background-color: $hawkes-blue;
     }
     &:hover {
+      background-color: $foam;
+    }
+    &:focus {
       background-color: $foam;
     }
 
