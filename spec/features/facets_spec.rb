@@ -29,7 +29,6 @@ describe "faceted searches", type: :feature, js: true do
     it "displays access values and is always open" do
       expect(page).to have_selector("h3.facet-field-heading:first-child button", text: "Access", visible: false)
       expect(page).to have_selector("#facet-has_online_content_ssim.show", visible: false)
-      expect(page).to have_selector("a.facet-select", text: "In the Library", visible: false)
       expect(page).to have_selector("a.facet-select", text: "Online", visible: false)
     end
   end
