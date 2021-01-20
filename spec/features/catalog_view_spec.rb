@@ -161,11 +161,8 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page.body).to include "Missionaries"
       expect(page.body).to include "Genre Terms"
       expect(page.body).to include "Correspondence"
-      # Commented out these two - names are not currently in our aspace
-      # instance data.
-      # TODO: Put these back.
-      # expect(page.body).to include "Names"
-      # expect(page.body).to include "Foreign Service Institute"
+      expect(page.body).to include "Names"
+      expect(page.body).to include "Foreign Service Institute"
       expect(page.body).to include "Places"
       expect(page.body).to include "Middle East -- Politics"
     end
@@ -299,7 +296,6 @@ describe "viewing catalog records", type: :feature, js: true do
         end
       end
       it "shows Creator" do
-        pending "Pending until names are back in ASpace EADs"
         visit "/catalog/C1408"
         within("#summary") do
           expect(page).to have_selector "dt.blacklight-creators_ssim", text: "Creator"
