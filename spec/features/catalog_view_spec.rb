@@ -187,6 +187,10 @@ describe "viewing catalog records", type: :feature, js: true do
       url = "https://webspace.princeton.edu/users/mudd/Digitization/MC148/MC148_c07608.pdf"
       expect(page).to have_selector("a[href=\"#{url}\"]", text: "View Content")
     end
+
+    it "does not render a div for loading from figgy" do
+      expect(page).not_to have_selector("#readingroom")
+    end
   end
 
   context "when a component has a digital object with a relative pdf link" do
