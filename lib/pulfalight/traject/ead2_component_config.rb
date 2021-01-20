@@ -471,7 +471,7 @@ to_field "sponsor_ssm" do |_record, accumulator, context|
 end
 
 # For collection access tab
-to_field "accessrestrict_ssm" do |record, accumulator, context|
+to_field "accessrestrict_ssm" do |_record, accumulator, context|
   if context.output_hash["accessrestrict_ssm"].blank?
     parent = context.clipboard[:parent] || settings[:root]
     value = parent.output_hash["accessrestrict_ssm"] || []
