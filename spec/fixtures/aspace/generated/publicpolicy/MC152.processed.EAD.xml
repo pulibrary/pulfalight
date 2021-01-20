@@ -1,43 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/4f16c285f">MC152</eadid><filedesc><titlestmt><titleproper>Barr Ferree Collection, 1880s-1920s: Preliminary Finding Aid <num>MC152</num></titleproper><author>Tal Eisenzweig</author></titlestmt><publicationstmt><publisher>Public Policy Papers</publisher><p><date>2007</date></p><address><addressline>Seeley G. Mudd Manuscript Library</addressline><addressline>65 Olden Street</addressline><addressline>Princeton 08540</addressline><addressline>mudd@princeton.edu</addressline><addressline>URL: <extptr href="http://www.princeton.edu/mudd" show="new" title="http://www.princeton.edu/mudd" type="simple"/></addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2020-11-13 17:06:36 -0500</date>.</creation><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T16:37:46.273-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/4f16c285f">MC152</eadid><filedesc><titlestmt><titleproper>Barr Ferree Collection, 1880s-1920s: Preliminary Finding Aid <num>MC152</num></titleproper><author>Tal Eisenzweig</author></titlestmt><publicationstmt><publisher>Public Policy Papers</publisher><p><date>2007</date></p><address><addressline>Seeley G. Mudd Manuscript Library</addressline><addressline>65 Olden Street</addressline><addressline>Princeton 08540</addressline><addressline>mudd@princeton.edu</addressline><addressline>URL: <extptr href="http://www.princeton.edu/mudd" show="new" title="http://www.princeton.edu/mudd" type="simple"/></addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-20 14:19:01 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T16:37:46.273-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
   <did>
     <repository>
       <corpname>Public Policy Papers</corpname>
     </repository>
     <unittitle>Barr Ferree collection</unittitle>
+    <origination label="Creator">
+      <persname authfilenumber="https://viaf.org/viaf/20050689" role="cre" rules="dacs" source="viaf">Ferree, Barr, 1862-1924</persname>
+    </origination>
     <unitid>MC152</unitid>
     <physdesc altrender="whole">
       <extent altrender="materialtype spaceoccupied">23 boxes</extent>
     </physdesc>
-    <unitdate certainty="approximate" normal="1880/1929" type="inclusive">1880s-1920s</unitdate>
-    <abstract id="aspace_6a047a12d12e9deb78cc1b3f4d3cad13">Consists of two groups of material collected by Ferree: 1) copies of government reports, resolutions, proclamations, statements, and clippings concerning foreign relations, the entry of the United States into World War I, and other varied issues during the administration of Woodrow Wilson.</abstract>
-    <physloc id="aspace_70a622f2dec2557a0d034cfdc8ef5712">mudd</physloc>
+    <unitdate certainty="approximate" datechar="creation" normal="1880/1929" type="inclusive">1880s-1920s</unitdate>
+    <abstract id="aspace_7354ee0a8fc194ef9409848a3950d794">Consists of two groups of material collected by Ferree: 1) copies of government reports, resolutions, proclamations, statements, and clippings concerning foreign relations, the entry of the United States into World War I, and other varied issues during the administration of Woodrow Wilson.</abstract>
+    <physloc id="aspace_69ded84da9c1fc1d10805e88f9cbd644">mudd</physloc>
     <langmaterial>
       <language langcode="eng">English</language>
 .    </langmaterial>
   </did>
-  <scopecontent id="aspace_21fcd6c11f06212fa375b76a64bea58f">
+  <scopecontent id="aspace_936b43ec60305062d353c02ab2feffd1">
     <head>Scope and Contents</head>
 <p>Consists of two groups of material collected by Ferree: 1) copies of government reports, resolutions, proclamations, statements, and clippings concerning foreign relations, the entry of the United States into World War I, and other varied issues during the administration of Woodrow Wilson. Included are replies to Ferree's requests from the president's secretary, Joseph P. Tumulty. 2) The larger group consists of correspondence and ephemera relating to these general subjects: architecture, cathedrals of France, devastated France (after World War I), Egypt, flags, Germany, (World War I, the sinking of the Lusitania, etc.), libraries, London, museums, national politics (U.S.), New York, painting, Greece and Rome, and sculpture. Many of the letters are responses to Ferree's inquiries as secretary of the Pennsylvania Society of New York, which he founded.</p>  </scopecontent>
-  <arrangement id="aspace_9cc9fc221d72aa8fb854bdb0c58c1a62">
+  <arrangement id="aspace_ca806ebb36f5d7c5902366d895d96e67">
     <head>Arrangement</head>
 <p>The scrapbook material is arranged in subjects (from scrapbook spine titles) in alphabetical order: architecture, cathedrals of France, devastated France, Egypt, flags, Germany, libraries, London, museums, national, New York, painting, Greece and Rome, and sculpture.</p>  </arrangement>
-  <accessrestrict id="aspace_f69741f72722c892b22fc71d5ad67141">
+  <accessrestrict id="aspace_608b49c18d76563d1a27a3c88063a8ab">
     <head>Conditions Governing Access</head>
 <p>The collection is open for research.</p>  </accessrestrict>
-  <userestrict id="aspace_553bb0aa745e36c28d96aa8053e49bfd">
+  <userestrict id="aspace_a876c105f78d14d08bea01aaf7729b7c">
     <head>Conditions Governing Use</head>
 <p>Single photocopies may be made for research purposes. For quotations that are fair use as defined under <extref href="http://copyright.princeton.edu/basics/fair-use" type="simple">U. S. Copyright Law</extref>, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use.</p>  </userestrict>
-  <acqinfo id="aspace_dace6df8bdd4493c2d08fba8dd9dcf23">
+  <acqinfo id="aspace_3784a642083968d9859513a6d85ce43b">
     <head>Immediate Source of Acquisition</head>
 <p>There is no specific information about the acquisition of this collection. However, available information indicates that a large collection of books and materials were donated to Princeton's Marquand Library in 1925; it is possible that the materials that make up the Barr Ferree collection were part of this original gift.</p>  </acqinfo>
-  <appraisal id="aspace_9f6c533caba08e0ba71ce313bc8905f0">
+  <appraisal id="aspace_1d8330285bb5be8e200e9b867b26b98d">
     <head>Appraisal</head>
 <p>Ther is no information about appraisal available for this collection.</p>  </appraisal>
-  <prefercite id="aspace_b57e78a8cec3af050e74d6e32843610f">
+  <prefercite id="aspace_0c598bbb35129d4ceed45d569a40a2f9">
     <head>Preferred Citation</head>
 <p>Identification of specific item; Date (if known); Collection Title, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
-  <processinfo id="aspace_4bf3be114ec3fd169a8f63877a7c6ad7">
+  <processinfo id="aspace_a8cc29366ae9a59b45342257c8637370">
     <head>Processing Information</head>
 <p>A file-level inventory was created by Tal Eisenzweig in August 2008.</p>  </processinfo>
   <controlaccess>
@@ -60,7 +63,11 @@
     <subject source="local">American history/20th century</subject>
     <subject source="local">American politics and government</subject>
     <subject source="local">World War I</subject>
+    <persname authfilenumber="viaf.org/viaf/89457467" source="lcnaf">Wilson, Woodrow, 1856-1924 -- Views on Politics.</persname>
+    <persname authfilenumber="http://viaf.org/viaf/37293278" source="viaf">Tumulty, Joseph P. (Joseph Patrick), 1879-1954.</persname>
+    <corpname authfilenumber="http://viaf.org/viaf/140026758" source="viaf">Lusitania (Steamship)</corpname>
+    <corpname source="lcnaf">Pennsylvania Society of New York.</corpname>
   </controlaccess>
-  <dsc><c id="aspace_MC152_c001" level="file"><did><unittitle>Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc.</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent></physdesc><unitdate normal="1881-01-01/1921-12-31" type="inclusive">1881-1921</unitdate></did><c id="aspace_MC152_c003" level="file"><did><unittitle>Wilson, Woodrow</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent></physdesc><unitdate normal="1913-01-01/1921-12-31" type="inclusive">1913-1921</unitdate></did><c id="aspace_MC152_c009" level="file"><did><unittitle>Wilson, Woodrow</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate normal="1920/1921" type="inclusive">1920-1921</unitdate><container altrender="mudd" id="aspace_896f6597682df60edae502449f7793b6" label="Mixed Materials [32101106209651]" type="box">1</container><container id="aspace_2ebc67cb37bd6f319956bd75785f9337" parent="aspace_896f6597682df60edae502449f7793b6" type="folder">7</container></did><scopecontent id="aspace_3deb4d48e626ccb2a132c02b6ae5e81f"><head>Scope and Contents</head><p>Includes Suffrage Amendment, August-September 1920</p></scopecontent></c></c></c><c id="aspace_MC152_c010" level="file"><did><unittitle>Cartoons/Cartoonists (+Posters)</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate>dates not examined</unitdate><container altrender="mudd" id="aspace_a96810e3806776c2a2c4f695f9a3438c" label="Mixed Materials [32101106209669]" type="box">2</container><container id="aspace_06dd1cad45e13da1cdb44516af2c8c3c" parent="aspace_a96810e3806776c2a2c4f695f9a3438c" type="folder">1</container></did></c></dsc>
+  <dsc><c id="aspace_MC152_c001" level="file"><did><unittitle>Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc.</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent></physdesc><unitdate datechar="creation" normal="1881-01-01/1921-12-31" type="inclusive">1881-1921</unitdate></did><accessrestrict id="aspace_1bbfaf38d8a6117387f40f71bb6da702"><head>Conditions Governing Access</head><p>The collection is open for research.</p></accessrestrict><c id="aspace_MC152_c003" level="file"><did><unittitle>Wilson, Woodrow</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent></physdesc><unitdate datechar="creation" normal="1913-01-01/1921-12-31" type="inclusive">1913-1921</unitdate></did><accessrestrict id="aspace_55348215b408b7e0e93648c72c9f49af"><head>Conditions Governing Access</head><p>The collection is open for research.</p></accessrestrict><c id="aspace_MC152_c009" level="file"><did><unittitle>Wilson, Woodrow</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate datechar="creation" normal="1920/1921" type="inclusive">1920-1921</unitdate><container altrender="mudd" id="aspace_e70c6b25c5e457aff6bea2792319cce1" label="Mixed Materials [32101106209651]" type="box">1</container><container id="aspace_3c2faece186acc04121161e7debaa986" parent="aspace_e70c6b25c5e457aff6bea2792319cce1" type="folder">7</container></did><accessrestrict id="aspace_3a4ef6c594e8560a959e02110be69c61"><head>Conditions Governing Access</head><p>The collection is open for research.</p></accessrestrict><scopecontent id="aspace_4e492c41ac211e63bc0a3d580fead408"><head>Scope and Contents</head><p>Includes Suffrage Amendment, August-September 1920</p></scopecontent></c></c></c><c id="aspace_MC152_c010" level="file"><did><unittitle>Cartoons/Cartoonists (+Posters)</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate datechar="creation">dates not examined</unitdate><container altrender="mudd" id="aspace_f5a33bb5be06e387dce54d47c1221685" label="Mixed Materials [32101106209669]" type="box">2</container><container id="aspace_37547e5bce28340a7faa9523ca8f087d" parent="aspace_f5a33bb5be06e387dce54d47c1221685" type="folder">1</container></did><accessrestrict id="aspace_301110b7f6f41cc4babdd37cf3a8e5cb"><head>Conditions Governing Access</head><p>The collection is open for research.</p></accessrestrict></c></dsc>
 </archdesc>
 </ead>

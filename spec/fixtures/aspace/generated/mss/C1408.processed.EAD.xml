@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/x059c8081">C1408</eadid><filedesc><titlestmt><titleproper>Tēlemachos Alaveras Papers and Nea Poreia Archives, 1989-2010: Finding Aid <num>C1408</num></titleproper><author>Kalliopi Balatsouka</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2013</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Rd.</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2020-11-13 17:43:36 -0500</date>.</creation><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2014-04-17T11:57:00.289-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/x059c8081">C1408</eadid><filedesc><titlestmt><titleproper>Tēlemachos Alaveras Papers and Nea Poreia Archives, 1989-2010: Finding Aid <num>C1408</num></titleproper><author>Kalliopi Balatsouka</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2013</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Rd.</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-20 14:20:32 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2014-04-17T11:57:00.289-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
   <did>
     <repository>
       <corpname>Manuscripts Division </corpname>
     </repository>
     <unittitle>Tēlemachos Alaveras Papers and Nea Poreia Archives</unittitle>
+    <origination label="Creator">
+      <persname authfilenumber="https://viaf.org/viaf/275849784" role="cre" rules="dacs" source="lcnaf">Alaveras, Tēlemachos</persname>
+    </origination>
     <unitid>C1408</unitid>
     <physdesc altrender="part">
       <extent altrender="materialtype spaceoccupied">97 boxes</extent>
@@ -15,11 +18,11 @@
     <physdesc altrender="whole">
       <extent altrender="materialtype spaceoccupied">39.3 linear feet</extent>
     </physdesc>
-    <unitdate normal="1889/2010" type="inclusive">1889-2010</unitdate>
-    <abstract id="aspace_eec529991a52d7bbc7cbee05b7cf5264">Consists of personal papers of Tēlemachos Alaveras, a prolific Modern Greek writer and editor of the literary magazine Nea Poreia for more than fifty years. He was also the president of the Literary Society of Thessalonikē and member of boards of many other organizations. Included also are the archives of Nea Poreia, as well as the personal papers of Alaveras's father, Chrēstos Alaveras.</abstract>
-    <physloc id="aspace_5a893a3a7a9a7f85694966f6e4362d3c">mss</physloc>
-    <physloc id="aspace_bedeedc19f9d4c466a332757b23cf1fb">rcpxm</physloc>
-    <physloc id="aspace_d82c4f9f8d78f085347e83a84f857ccc">This collection is stored partially onsite (Boxes 14, 40, 46-47, 82, 85) at Firestone Library and partially offsite (rest of the boxes) at the ReCAP facility.</physloc>
+    <unitdate datechar="creation" normal="1889/2010" type="inclusive">1889-2010</unitdate>
+    <abstract id="aspace_e7203371013866c1211b5d78de03cc11">Consists of personal papers of Tēlemachos Alaveras, a prolific Modern Greek writer and editor of the literary magazine Nea Poreia for more than fifty years. He was also the president of the Literary Society of Thessalonikē and member of boards of many other organizations. Included also are the archives of Nea Poreia, as well as the personal papers of Alaveras's father, Chrēstos Alaveras.</abstract>
+    <physloc id="aspace_cc07985a1e5c31e94f003b05d3f0f946">mss</physloc>
+    <physloc id="aspace_7774aa062fa3702c80319c5294cef9b4">rcpxm</physloc>
+    <physloc id="aspace_dd5948764074b0f6add345d009424979">This collection is stored partially onsite (Boxes 14, 40, 46-47, 82, 85) at Firestone Library and partially offsite (rest of the boxes) at the ReCAP facility.</physloc>
     <langmaterial>
       <language langcode="gre">Greek, Modern (1453-)</language>
 ,       <language langcode="eng">English</language>
@@ -27,28 +30,28 @@
 ,       <language langcode="bul">Bulgarian</language>
 .    </langmaterial>
   </did>
-  <scopecontent id="aspace_bdb710e1506f4d9fc4e18ecec2daf130">
+  <scopecontent id="aspace_eed6e43ba5c0305112f21164787e20e3">
     <head>Scope and Contents</head>
 <p>The collection comprises ninety-seven boxes of autograph manuscripts and typescripts, correspondence, printed material, audio-visual material, and photographs pertaining to Tēlemachos Alaveras as a Greek writer and as an editor of the literary magazine Nea Poreia. The papers include personal correspondence with major Greek writers and poets, such as Rita Boumē Papa, Dinos Christianopoulos, Margarita Dalmatē, Nikos Dēmou, Giōrgos Iōannou, Timos Malanos, Michalēs Meraklēs, Takēs Papatsōnēs, Pantelēs Prevelakēs, Apostolos Sachinēs, Helenē Vakalo, Giōrgos Veēs, and Chrysanthē Zitsaia. Included also are Alaveras's first writings, notebooks, talks, book reviews, interviews, and awards; writings by other people; the archives of the magazine Nea Poreia; material of other Greek associations or organizations where Alaveras was a board member or president; and finally, personal papers of Chrēstos Alaveras, Tēlemachos Alaveras's father.</p>  </scopecontent>
-  <arrangement id="aspace_9399a07ba2237ce5a16369aeb5acc783">
+  <arrangement id="aspace_f73dbee8201a595416497aae2ca020fa">
     <head>Arrangement</head>
 <p>Organized into the following series:</p>  </arrangement>
-  <accessrestrict id="aspace_ac52043b3b009e3055ddd9ba53f78ee9">
+  <accessrestrict id="aspace_29126bafcc8299efdbcb502adffe58ed">
     <head>Conditions Governing Access</head>
 <p>This collection is open for research.</p>  </accessrestrict>
-  <userestrict id="aspace_ba86585393439625c7810adfd0a0263f">
+  <userestrict id="aspace_d99479c4a22d5593749ded4231768bc2">
     <head>Conditions Governing Use</head>
 <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref href="https://library.princeton.edu/special-collections/ask-us" type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
-  <acqinfo id="aspace_81f5f827a1463f8b97108160f17bb508">
+  <acqinfo id="aspace_e1ca0379f2d90019d31d848feef2764e">
     <head>Immediate Source of Acquisition</head>
 <p>Gift of the Program in Hellenic Studies with the support of the Stanley J. Seeger Hellenic Fund.</p>  </acqinfo>
-  <appraisal id="aspace_108c9c90f89e93e58d0dcd4482f53a72">
+  <appraisal id="aspace_cc1a480a948e9a9b28a9c77d1c9adb65">
     <head>Appraisal</head>
 <p>Nothing was removed from the collection.</p>  </appraisal>
-  <prefercite id="aspace_1819970c09fabda32049667c49cfe575">
+  <prefercite id="aspace_679a68ce5dba5ead902ba16b31a7485d">
     <head>Preferred Citation</head>
 <p>Identification of specific item; Date (if known); Tēlemachos Alaveras Papers and Nea Poreia Archives, Box and Folder Number; Manuscripts Division, Special Collections, Princeton University Library.</p>  </prefercite>
-  <processinfo id="aspace_c2d617a06de5fb250389f1b77cf9b865">
+  <processinfo id="aspace_3a977b33ef19bda0ed777852c2ad47ea">
     <head>Processing Information</head>
 <p>This collection was processed by Kalliopi Balatsouka in 2013. Finding aid written by Kalliopi Balatsouka in 2013.</p>  </processinfo>
   <controlaccess>
@@ -64,7 +67,12 @@
     <genreform source="aat">Photographs -- 19th century</genreform>
     <genreform source="aat">Photographs--20th century.</genreform>
     <subject source="local">Hellenic studies</subject>
+    <persname source="lcnaf">Prevelakēs, Pantelēs, 1909- -- Correspondence.</persname>
+    <persname authfilenumber="https://viaf.org/viaf/61655025" rules="local" source="uncontrolled">Christianopoulos, D̲inos</persname>
+    <persname rules="dacs" source="lcnaf">Boumē Papa, Rita, 1906-1984</persname>
+    <persname authfilenumber="https://viaf.org/viaf/16368382" rules="dacs" source="uncontrolled">Dalmatê, Margarita.</persname>
+    <persname authfilenumber="https://viaf.org/viaf/22545370" rules="dacs" source="lcnaf">Alavera, Roula</persname>
   </controlaccess>
-  <dsc><c id="aspace_C1408_c1" level="series"><did><unittitle>Series 1: Tēlemachos Alaveras Papers</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">47 boxes</extent></physdesc><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2 items</extent></physdesc><unitdate normal="1889/2010" type="inclusive">1889-2010</unitdate></did><scopecontent id="aspace_88f34a826e129870e9409795a4c8ff63"><head>Scope and Contents</head><p>This series consists of Tēlemachos Alaveras's autograph and typed manuscript drafts of his writings; correspondence with his friends, colleagues, and acquaintants; documents; writings by others; personal photographs or in connection with Nea Poreia ; audio-visual material; and clippings of newspapers and literary magazines.</p></scopecontent><arrangement id="aspace_ea64e1722486051b19aff68fc230b3f1"><head>Arrangement</head><p>This series has been organized into ten subseries: A. Correspondence; B. Works by Alaveras; C. Talks, Questionnaires, TV Series, and Interviews; D. Conferences and Meetings; European Programs; E. Literary Competitions and Awards; F. Documents; G. Writings by Others; H. Photographs; I. Audio-Visual Material; Designs; and K. Printed Material.</p></arrangement><c id="aspace_C1408_c2" level="subseries"><did><unittitle>Subseries 1A: Correspondence</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">14 boxes</extent></physdesc><unitdate normal="1924/2010" type="inclusive">1924-2010</unitdate></did><scopecontent id="aspace_ef8ae3d3c2209f4f382e74a71ab11294"><head>Scope and Contents</head><p>This subseries consists of incoming and outgoing correspondence with Tēlemachos Alaveras's close friends, colleagues, acquaintances, institutions, organizations, and foundations.</p></scopecontent><arrangement id="aspace_f827b68be16bbf2cedf69a5c14b31518"><head>Arrangement</head><p>This subseries has been arranged in a chronological order by last name of individual or institution.</p></arrangement><c id="aspace_C1408_c3" level="file"><did><unittitle>A (General)</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate normal="1956/1982" type="inclusive">1956-1982</unitdate><container altrender="rcpxm" id="aspace_15e082a2c8ff8d6914e3362b0a9b4637" label="Mixed Materials [32101080595406]" type="box">1</container><container id="aspace_bdc47f9a5dee590b75062239c157ce1e" parent="aspace_15e082a2c8ff8d6914e3362b0a9b4637" type="folder">1</container></did><scopecontent id="aspace_bcf4afbc27c6949c2d1b9d3258a76df7"><head>Scope and Contents</head><p>Includes incoming correspondence from: Atzakas, Giannēs; Asprogerakas-Grivas, Kōnstantinos; Alexiou, Ellē; Anagnōstakēs, Manolēs; Andriōtēs, N. P. (Nikolaos P.); and Andrikopoulos, Giannēs.</p></scopecontent></c></c></c></dsc>
+  <dsc><c id="aspace_C1408_c1" level="series"><did><unittitle>Series 1: Tēlemachos Alaveras Papers</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">47 boxes</extent></physdesc><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2 items</extent></physdesc><unitdate datechar="creation" normal="1889/2010" type="inclusive">1889-2010</unitdate></did><accessrestrict id="aspace_e95235f87ce6e7585459c4d120f37571"><head>Conditions Governing Access</head><p>This collection is open for research.</p></accessrestrict><scopecontent id="aspace_4ce923f08d9b2cb4d10db77aa75d5002"><head>Scope and Contents</head><p>This series consists of Tēlemachos Alaveras's autograph and typed manuscript drafts of his writings; correspondence with his friends, colleagues, and acquaintants; documents; writings by others; personal photographs or in connection with Nea Poreia ; audio-visual material; and clippings of newspapers and literary magazines.</p></scopecontent><arrangement id="aspace_8fc521edc37fa20736424c7e5df887a0"><head>Arrangement</head><p>This series has been organized into ten subseries: A. Correspondence; B. Works by Alaveras; C. Talks, Questionnaires, TV Series, and Interviews; D. Conferences and Meetings; European Programs; E. Literary Competitions and Awards; F. Documents; G. Writings by Others; H. Photographs; I. Audio-Visual Material; Designs; and K. Printed Material.</p></arrangement><c id="aspace_C1408_c2" level="subseries"><did><unittitle>Subseries 1A: Correspondence</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">14 boxes</extent></physdesc><unitdate datechar="creation" normal="1924/2010" type="inclusive">1924-2010</unitdate></did><accessrestrict id="aspace_5c50ecfd38ffc6c30e997870f2b6e12b"><head>Conditions Governing Access</head><p>This collection is open for research.</p></accessrestrict><scopecontent id="aspace_0c5be9ee9d750f3748c8da46a62b6368"><head>Scope and Contents</head><p>This subseries consists of incoming and outgoing correspondence with Tēlemachos Alaveras's close friends, colleagues, acquaintances, institutions, organizations, and foundations.</p></scopecontent><arrangement id="aspace_f78c757c976cf0f3026e7576f388d2e2"><head>Arrangement</head><p>This subseries has been arranged in a chronological order by last name of individual or institution.</p></arrangement><c id="aspace_C1408_c3" level="file"><did><unittitle>A (General)</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate datechar="creation" normal="1956/1982" type="inclusive">1956-1982</unitdate><container altrender="rcpxm" id="aspace_9c5762ea780dcb4291bc128304f8f8ae" label="Mixed Materials [32101080595406]" type="box">1</container><container id="aspace_5cf69fd7c2612f0069c461d8585823a6" parent="aspace_9c5762ea780dcb4291bc128304f8f8ae" type="folder">1</container></did><accessrestrict id="aspace_875f5c69f44b77ee622c943ec63643a8"><head>Conditions Governing Access</head><p>This collection is open for research.</p></accessrestrict><scopecontent id="aspace_46f9bce9bb453ad4373cbf8825f75fcd"><head>Scope and Contents</head><p>Includes incoming correspondence from: Atzakas, Giannēs; Asprogerakas-Grivas, Kōnstantinos; Alexiou, Ellē; Anagnōstakēs, Manolēs; Andriōtēs, N. P. (Nikolaos P.); and Andrikopoulos, Giannēs.</p></scopecontent></c></c></c></dsc>
 </archdesc>
 </ead>
