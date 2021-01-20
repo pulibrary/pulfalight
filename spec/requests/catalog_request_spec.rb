@@ -126,4 +126,11 @@ describe "controller requests", type: :request do
       expect(assigns.fetch(:document_list, []).map(&:id).first).to eq "aspace_MC221_c0004"
     end
   end
+
+  describe "searching for a collection name", js: false do
+    it "boosts collections" do
+      get "/catalog", params: { q: "Lilienthal", search_field: "all_fields" }
+      expect(assigns.fetch(:document_list, []).map(&:id).first).to eq "MC148"
+    end
+  end
 end
