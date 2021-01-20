@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/4j03cz668">C0257</eadid><filedesc><titlestmt><titleproper>Princeton University Library Collection of Ashbel Green Materials, 1744-1958 (bulk 1783-1848): Finding Aid <num>C0257</num></titleproper><author>Casey Babcock</author><sponsor>These papers were processed with an operating support grant from the New Jersey Historical Commission, a division of the Department of State.</sponsor></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2007</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Rd.</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2020-11-19 14:45:19 -0500</date>.</creation><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T12:48:41.803-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/4j03cz668">C0257</eadid><filedesc><titlestmt><titleproper>Princeton University Library Collection of Ashbel Green Materials, 1744-1958 (bulk 1783-1848): Finding Aid <num>C0257</num></titleproper><author>Casey Babcock</author><sponsor>These papers were processed with an operating support grant from the New Jersey Historical Commission, a division of the Department of State.</sponsor></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2007</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Rd.</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-20 14:27:11 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T12:48:41.803-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
   <did>
     <repository>
       <corpname>Manuscripts Division </corpname>
     </repository>
     <unittitle>Princeton University Library Collection of Ashbel Green Materials</unittitle>
+    <origination label="Creator">
+      <persname authfilenumber="http://viaf.org/viaf/30969299" source="viaf">Green, Ashbel, 1762-1848.</persname>
+    </origination>
     <unitid>C0257</unitid>
     <physdesc altrender="whole">
       <extent altrender="materialtype spaceoccupied">13 boxes</extent>
@@ -12,42 +15,45 @@
     <physdesc altrender="whole">
       <extent altrender="materialtype spaceoccupied">4.84 linear feet</extent>
     </physdesc>
-    <unitdate normal="1744/1958" type="inclusive">1744-1958</unitdate>
-    <unitdate normal="1783/1844" type="bulk">1783-1844</unitdate>
-    <abstract id="aspace_34f3568de7d872bc255fe3cc99030434">Ashbel Green (1762-1848) was a prominent Presbyterian minister, eighth president of the College of New Jersey, and co-founder of the Princeton Theological Seminary. The bulk of the papers consist of Green's personal writings, including diaries and sermons. The papers of Green's father, the Reverend Jacob Green (1722-1790) are also included.</abstract>
-    <physloc id="aspace_368879aca9e85b026b5ef360e38c9015">mss</physloc>
+    <unitdate datechar="creation" normal="1744/1958" type="inclusive">1744-1958</unitdate>
+    <unitdate datechar="creation" normal="1783/1844" type="bulk">1783-1844</unitdate>
+    <abstract id="aspace_beba6481beb3f22fb451db388e76f9d0">Ashbel Green (1762-1848) was a prominent Presbyterian minister, eighth president of the College of New Jersey, and co-founder of the Princeton Theological Seminary. The bulk of the papers consist of Green's personal writings, including diaries and sermons. The papers of Green's father, the Reverend Jacob Green (1722-1790) are also included.</abstract>
+    <physloc id="aspace_a96e06ed2aee7db276105dbaa939e5f3">mss</physloc>
     <langmaterial>
       <language langcode="eng">English</language>
 .    </langmaterial>
   </did>
-  <scopecontent id="aspace_6cb214b409115efa77705f5915f27730">
+  <bioghist id="aspace_C0257_b1">
+    <head>Biographical / Historical</head>
+<p>Born in Hanover, New Jersey, on July 6, 1762, Ashbel Green was the son of the Reverend Jacob Green, minister of the Presbyterian congregation in Hanover. Taught at home by his father, Green adopted many of his father's religious and political convictions. Green credited his father with adequately preparing him for college. He entered the College of New Jersey (now Princeton University) as a member of the Class of 1783 during that class's junior year. He graduated as valedictorian and delivered the valedictory oration. After graduation, Green spent two years as a tutor at the college followed by a year and a half as the chair of the Mathematics and Natural Philosophy department. While working at the college, Green was also studying theology with Professor John Witherspoon with the goal of becoming a minister in mind. Green would also marry his first wife, Elizabeth Stockton, while at the College of New Jersey. Elizabeth was the daughter of prominent Princetonian Robert Stockton. They had three children together – Robert Stockton, Jacob, and James Sprout.</p><p> Green was licensed to preach by the Presbytery of New Brunswick in February 1786. He was ordained and installed minister at Philadelphia's Second Presbyterian Church in May of 1787, where he remained until 1812. While a minister in Philadelphia, Green's stature began to grow. He became a member of the Presbyterian General Assembly, later serving as its Stated Clerk from 1790 to 1803. He achieved national prominence when he was elected chaplain to the U.S. House of Representatives in 1792, where he served until the end of President Washington's second term in 1800. He was a member of the committee which planned the Theological Seminary at Princeton and maintained a close relationship with the institution until his death.</p><p> Green was elected president of the College of New Jersey in August 1812, succeeding Samuel Stanhope Smith (1751-1819). Unhappy with the direction the previous administration had taken the college, Green sought to reestablish order and discipline and the importance of religious education. The campus underwent a modest religious revival not long after he took office. Frequent student riots had plagued the college during President Smith's tenure, prompting Green to implement a firm code of discipline. Though student discontent persisted, Green was successful in increasing enrollment during his tenure. He resigned in September of 1822, prompted by the trustees' attempts to push his son Jacob out of his professorship. Green also cited illness and age as contributing factors. After leaving Princeton, Green returned to Philadelphia to edit the Christian Advocate and continue his career as an influential theologian.</p><p> Green's first wife died in January of 1807. In October 1809, Green married Christina Anderson, daughter of Colonel Alexander Anderson. Ashbel and Christina had one child, Ashbel, Jr. Christina passed away in 1814. In 1815 he married a third time to Mary McCulloh, who died in 1817. Green lived to age 86, passing away on May 19, 1848, in Philadelphia.</p>  </bioghist>
+  <scopecontent id="aspace_d41c4c54563d58e35e8c60b0df63ee38">
     <head>Scope and Contents</head>
 <p>The collection consists of writings, correspondence, printed documents, and other materials of Green. Included are Green's original diaries (with typed transcriptions), covering the period from 1790 to 1848, as well as holograph reports, sermons, and addresses. The reports were delivered to the faculty and trustees of the College of New Jersey and describe the state of the college in a given year. Most of the sermons, numbered and dated and noting a specific Bible verse, were intended for Green's congregation in Philadelphia.</p><p> Correspondence documents Green's personal and professional activities through letters exchanged over the course of his life with family, friends, and colleagues. Correspondents include Green's wives, children, work associates, and fellow clergymen, as well as several prominent Americans of the time, such as Francis Scott Key, Dr. Benjamin Rush, and Jedediah Morse.</p><p> In addition, the papers include printed material, such as copies of The Life of Ashbel Green (1849) and a collection of sermons from the Christian Advocate. There are also documents created by Green's father, Jacob Green (1722-1790), and various other family members.</p>  </scopecontent>
-  <accessrestrict id="aspace_06e0e76cb55d4e956663d5b770083ba3">
+  <accessrestrict id="aspace_ef06a1752ed1682ccea24caa23223186">
     <head>Conditions Governing Access</head>
 <p>The collection is open for research.</p>  </accessrestrict>
-  <userestrict id="aspace_281e4383b79ae6cfd40177f5a30cc256">
+  <userestrict id="aspace_36564e212d2e5d973b9189ac9ab88719">
     <head>Conditions Governing Use</head>
 <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref href="https://library.princeton.edu/special-collections/ask-us" type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
-  <acqinfo id="aspace_81bc5fbd67cde61471d619d04c121203">
+  <acqinfo id="aspace_dbb00a16f8a1554730d0254ab5e4f738">
     <head>Immediate Source of Acquisition</head>
 <p>The initial accession occurred in <date type="acquisition" normal="1958-03">March 1958</date> when the bulk of the Jacob Green and some Ashbel Green material was given to Princeton as a gift from James L. and Beverly Green. Several Ashbel Green letters were added in <date type="acquisition" normal="1976">1976</date> as a gift from Mr. and Mrs. Joseph Outerbridge. In <date type="acquisition" normal="1977">1977</date>, Princeton received letters and documents related to Ashbel Green and Dr. Samuel McCulloh as a gift from Mary McCulloch. The Ashbel Green diaries, transcripts, genealogical sketch, the copy of The Life of Ashbel Green, and 8 letters from Green to various family members was purchased by Princeton from Geoffrey Stockton Green in <date type="acquisition" normal="1989-08">August 1989</date>. "Resolutions on entering on duty of president, Princeton College" and "Extract of minutes of meetings of the Synod of New York and New Jersey" were purchased in <date type="acquisition" normal="2006">2006</date> from a private dealer.</p>  </acqinfo>
-  <accruals id="aspace_fbc0d88d84d71bc2b851c7d35446aa85">
+  <accruals id="aspace_0aacfa079d23c2034156f4faefc60781">
     <head>Accruals</head>
 <p>No accruals are expected.</p>  </accruals>
-  <appraisal id="aspace_0eb60ff2043964746835bd49fac73f57">
+  <appraisal id="aspace_481565ced36b6b72246812b8da3cf1f4">
     <head>Appraisal</head>
 <p>No appraisal information is available.</p>  </appraisal>
-  <relatedmaterial id="aspace_61facd0f74057e356e582c35e34a2324">
+  <relatedmaterial id="aspace_f35ff7cb7e460b92e6f35caddafac861">
     <head>Related Materials</head>
 <p>The Seeley G. Mudd Manuscript Library holds material related to Ashbel Green in the Office of the President Records.</p>  </relatedmaterial>
-  <prefercite id="aspace_b52c84542e9383ff24b6967b7f122ee9">
+  <prefercite id="aspace_00015dad8c89c00ffb2022e9e658071f">
     <head>Preferred Citation</head>
 <p>Identification of specific item; Date (if known); Princeton University Library Collection of Ashbel Green Materials, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
-  <processinfo id="aspace_d93964858e267bd6a5e9c7704d59f283">
+  <processinfo id="aspace_171dd84ebd3708bd8a826e5627f4db78">
     <head>Processing Information</head>
 <p>This collection was processed by Casey Babcock in 2007. Finding aid written by Casey Babcock in 2007.</p>  </processinfo>
-  <bibliography id="aspace_6233e614206697d287378e05d1c9d71f">
+  <bibliography id="aspace_bb055551b8ab7829c5832917a21ff082">
     <head>Bibliography</head>
 <p>A Princeton Companion (Princeton: Princeton University Press, 1978) and The Life of Ashbel Green, V.D.M. (New York: Robert Carter and Brothers, 1849) were consulted during preparation of biographical note.</p>  </bibliography>
   <controlaccess>
@@ -63,6 +69,12 @@
     <genreform source="aat">Sermons, American -- 19th century.</genreform>
     <subject source="local">American history/Early national</subject>
     <subject source="local">Princeton University</subject>
+    <persname authfilenumber="http://viaf.org/viaf/38439978" source="viaf">Green, Ashbel, 1825-1898.</persname>
+    <persname authfilenumber="http://viaf.org/viaf/15202225" source="viaf">Green, Jacob, 1722-1790.</persname>
+    <corpname authfilenumber="http://viaf.org/viaf/130187381" source="viaf">Presbyterian Church in the U.S.A.</corpname>
+    <corpname source="lcnaf">Princeton University -- Alumni and alumnae -- 18th century.</corpname>
+    <corpname source="lcnaf">Princeton University -- Faculty -- 19th century.</corpname>
+    <corpname source="lcnaf">Princeton University -- Presidents -- 19th century.</corpname>
   </controlaccess>
   <dsc/>
 </archdesc>

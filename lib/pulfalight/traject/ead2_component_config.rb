@@ -384,7 +384,12 @@ to_field "containers_ssim" do |record, accumulator|
 end
 
 Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
-  to_field "#{selector}_ssm", extract_xpath("./#{selector}/*[local-name()!='head']")
+  sanitizer = Rails::Html::SafeListSanitizer.new
+  to_field "#{selector}_ssm", extract_xpath("./#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
+    accumulator.map! do |element|
+      sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip
+    end
+  end
   to_field "#{selector}_heading_ssm", extract_xpath("./#{selector}/head")
   to_field "#{selector}_teim", extract_xpath("./#{selector}/*[local-name()!='head']")
 end
@@ -467,9 +472,11 @@ end
 
 # For collection access tab
 to_field "accessrestrict_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
-  value = parent.output_hash["accessrestrict_ssm"] || []
-  accumulator.concat(value)
+  if context.output_hash["accessrestrict_ssm"].blank?
+    parent = context.clipboard[:parent] || settings[:root]
+    value = parent.output_hash["accessrestrict_ssm"] || []
+    accumulator.concat(value)
+  end
 end
 
 # For collection access tab
