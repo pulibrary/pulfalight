@@ -160,6 +160,11 @@ class CatalogController < ApplicationController
     config.add_facet_field "places_ssim", label: "Places", show: false
     config.add_facet_field "access_subjects_ssim", label: "Subject", limit: 10
 
+    # Facet label configuration for links in component show page.
+    config.add_facet_field "topics_ssim", label: "Topics", show: false
+    config.add_facet_field "subject_terms_ssim", label: "Subject Terms", show: false
+    config.add_facet_field "genreform_ssim", label: "Genre Terms", show: false
+
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
     # handler defaults, or have no facets.
