@@ -11,11 +11,10 @@
   </div>
   <% if document.direct_digital_objects.present? && document.direct_digital_objects.first.role.present? %>
     <%= render_universal_viewer %>
-  <% else%>
-    <div id="readingroom"></div>
-  <% end %>
-  <% if display_simple_link? %>
+  <% elsif display_simple_link? %>
     <%= render_simple_link %>
+  <% else %>
+    <div id="readingroom"></div>
   <% end %>
   <%= render(partial: 'show_upper_metadata_default') %>
 </div>
