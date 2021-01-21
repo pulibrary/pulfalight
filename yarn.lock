@@ -5909,10 +5909,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lux-design-system@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-3.0.1.tgz#2b86fe2bb33076f26b24966f332fbc3d384d8ca6"
-  integrity sha512-6OJKzHhVKu+DIzsObrLsueWtvs57n2IP5sQ0B29qGfyiV03HEn4Xxe2CF5VJJCWXJtJBwbxAYEJaoEXIpO90SQ==
+lux-design-system@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-3.0.2.tgz#4c6c7500fb9bc31965b4b12bf87957bbabfa5e0f"
+  integrity sha512-ThSbLqdbmNygK/a0/l8cY4EN8EMcIjBTuAM6/ipPS3nrnhv0ErsEozu1McqCBZnnA6EHaheb7HH/N0ExhdrYGg==
   dependencies:
     lodash "^4.17.11"
     mini-css-extract-plugin "^0.4.5"
