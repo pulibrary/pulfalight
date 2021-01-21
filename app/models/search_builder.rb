@@ -14,6 +14,6 @@ class SearchBuilder < Blacklight::SearchBuilder
 
   def boost_collections(solr_params)
     solr_params[:bq] ||= []
-    solr_params[:bq] << "level_ssm:collection^5"
+    solr_params[:bq] << "level_ssm:collection^20"
   end
 end
