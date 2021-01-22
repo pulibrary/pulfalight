@@ -34,6 +34,13 @@ describe "controller requests", type: :request do
           }
         ]
       end
+      it "renders just the location code if it can't find a string" do
+        allow(Pulfalight::LocationCode).to receive(:registered?).and_return(false)
+        get "/catalog/aspace_WC064_c1.json"
+        json_body = JSON.parse(response.body)
+
+        expect(json_body["heldBy"]).to eq ["mss"]
+      end
     end
     context "for a collection" do
       it "renders sufficient JSON for Figgy to use" do
