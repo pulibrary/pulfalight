@@ -40,7 +40,7 @@ describe "EAD 2 traject indexing", type: :feature do
     it "id" do
       expect(result["id"].first).to eq "MC152"
       component_ids = result["components"].map { |component| component["id"].first }
-      expect(component_ids).to include "aspace_MC152_c001"
+      expect(component_ids).to include "MC152_c001"
     end
   end
 
@@ -82,18 +82,18 @@ describe "EAD 2 traject indexing", type: :feature do
         child_component_trees = components.select { |c| c["components"].present? }
         child_component_tree = child_component_trees.first
         expect(child_component_tree).to include("id")
-        expect(child_component_tree["id"]).to include("aspace_C0251_c0001")
+        expect(child_component_tree["id"]).to include("C0251_c0001")
         nested_component_trees = child_component_tree["components"]
         expect(nested_component_trees).not_to be_empty
         nested_component_tree = nested_component_trees.first
         expect(nested_component_tree).to include("id")
-        expect(nested_component_tree["id"]).to include("aspace_C0251_c0002")
+        expect(nested_component_tree["id"]).to include("C0251_c0002")
       end
 
       it "doesn't index them as top-level components" do
         components = result["components"]
         expect(components.length).to eq 6
-        expect(components.group_by { |x| x["id"].first }["aspace_C0251_c0002"]).to be_blank
+        expect(components.group_by { |x| x["id"].first }["C0251_c0002"]).to be_blank
       end
 
       it "doesn't leave empty arrays around" do
@@ -112,7 +112,7 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(component["parent_ssm"]).to eq ["MC152"]
 
       child_component = component["components"].last
-      expect(child_component["parent_ssm"]).to eq ["MC152", "aspace_MC152_c001"]
+      expect(child_component["parent_ssm"]).to eq ["MC152", "MC152_c001"]
       expect(child_component["parent_unittitles_ssm"]).to eq ["Barr Ferree collection, 1880-1929", "Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc., 1881-1921"]
       expect(child_component["parent_unnormalized_unittitles_ssm"]).to eq ["Barr Ferree collection", "Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc."]
     end
@@ -159,7 +159,7 @@ describe "EAD 2 traject indexing", type: :feature do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC085.processed.EAD.xml")
       end
-      let(:component) { result["components"].find { |c| c["id"] == ["aspace_MC085_c01084"] }["components"][0]["components"][0] }
+      let(:component) { result["components"].find { |c| c["id"] == ["MC085_c01084"] }["components"][0]["components"][0] }
 
       it "gets the digital objects with role: null" do
         json = JSON.generate(
@@ -258,7 +258,7 @@ describe "EAD 2 traject indexing", type: :feature do
           Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
         end
         it "doesn't index" do
-          component = find_component(result, "aspace_C1491_c5621")
+          component = find_component(result, "C1491_c5621")
           expect(component["physloc_ssm"]).to eq ["Box 330, Folder 5-6"]
         end
       end
@@ -384,8 +384,8 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(components.first).to include("components")
       child_components = components.first["components"]
       expect(child_components.length).to eq(2)
-      expect(child_components.first).to include("id" => ["aspace_MC148_c00002"])
-      expect(child_components.last).to include("id" => ["aspace_MC148_c00018"])
+      expect(child_components.first).to include("id" => ["MC148_c00002"])
+      expect(child_components.last).to include("id" => ["MC148_c00018"])
 
       expect(result).to include("extent_ssm")
       expect(result["extent_ssm"].length).to eq(2)

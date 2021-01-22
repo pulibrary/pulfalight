@@ -33,7 +33,7 @@ to_field "ref_ssi" do |record, accumulator, context|
                    record["id"] = hexdigest
                    hexdigest
                  else
-                   record.attribute("id")&.value&.strip&.gsub(".", "-")
+                   record.attribute("id")&.value&.strip&.gsub(".", "-")&.gsub("aspace_", "")
                  end
 end
 to_field "ref_ssm" do |_record, accumulator, context|
@@ -91,7 +91,7 @@ to_field "parent_ssm" do |record, accumulator, context|
   ids = parent.output_hash["id"]
   if ids.present?
     accumulator << ids.first
-    accumulator.concat Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new.is_component(record.ancestors).reverse.map { |n| n.attribute("id")&.value&.strip&.gsub(".", "-") }
+    accumulator.concat Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new.is_component(record.ancestors).reverse.map { |n| n.attribute("id")&.value&.strip&.gsub(".", "-")&.gsub("aspace_", "") }
   end
 end
 
@@ -133,7 +133,9 @@ to_field "parent_levels_ssm" do |_record, accumulator, context|
   end
 end
 
-to_field "unitid_ssm", extract_xpath("./did/unitid")
+to_field "unitid_ssm" do |record, accumulator, _context|
+  accumulator.concat record.xpath("./did/unitid").map(&:text).map { |x| x.gsub("aspace_", "") }
+end
 to_field "collection_unitid_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
   next unless parent

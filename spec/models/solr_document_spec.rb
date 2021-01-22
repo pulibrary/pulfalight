@@ -120,7 +120,7 @@ RSpec.describe Arclight::SolrDocument do
       expect(built).to include("components")
       expect(built["components"]).not_to be_empty
       first_child = built["components"].first
-      expect(first_child).to include("id" => "aspace_WC064_c1")
+      expect(first_child).to include("id" => "WC064_c1")
       expect(first_child).to include("has_digital_content" => true)
     end
   end
