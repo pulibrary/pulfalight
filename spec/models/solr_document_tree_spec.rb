@@ -15,9 +15,9 @@ RSpec.describe SolrDocumentTree do
         expect(solr_document_tree.children).not_to be_empty
         expect(solr_document_tree.children.first).to be_a described_class
         expect(solr_document_tree.children.first.root).to be_a SolrDocument
-        expect(solr_document_tree.children.first.root.id).to eq("aspace_MC152_c001")
+        expect(solr_document_tree.children.first.root.id).to eq("MC152_c001")
         expect(solr_document_tree.children.last.root).to be_a SolrDocument
-        expect(solr_document_tree.children.last.root.id).to eq("aspace_MC152_c010")
+        expect(solr_document_tree.children.last.root.id).to eq("MC152_c010")
       end
     end
   end

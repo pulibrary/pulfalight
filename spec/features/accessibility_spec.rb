@@ -79,7 +79,7 @@ describe "accessibility", type: :feature, js: true do
 
   context "component show page" do
     it "complies with WCAG" do
-      visit "/catalog/aspace_MC148_c07608"
+      visit "/catalog/MC148_c07608"
 
       expect(page).to be_axe_clean
         .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
@@ -90,7 +90,7 @@ describe "accessibility", type: :feature, js: true do
 
   context "suggest a correction modal" do
     it "complies with WCAG" do
-      visit "/catalog/aspace_MC148_c07608"
+      visit "/catalog/MC148_c07608"
 
       # Click button for suggest a correction and wait for modal
       click_link(href: "#correction")
@@ -105,7 +105,7 @@ describe "accessibility", type: :feature, js: true do
 
   context "ask a question modal" do
     it "complies with WCAG" do
-      visit "/catalog/aspace_MC148_c07608"
+      visit "/catalog/MC148_c07608"
 
       # Click button for suggest a correction and wait for modal
       click_link(href: "#question")
@@ -120,7 +120,7 @@ describe "accessibility", type: :feature, js: true do
 
   context "request cart" do
     it "complies with WCAG" do
-      visit "/catalog/aspace_MC148_c07608"
+      visit "/catalog/MC148_c07608"
 
       # Click request button and wait for request cart div
       find(".add-to-cart-block > button").click
