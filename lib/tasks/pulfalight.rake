@@ -85,7 +85,7 @@ namespace :pulfalight do
       ].uniq
       or_query = test_eadids.join(" OR ")
       client = Aspace::Client.new
-      client.recent_repositories.each do |repository|
+      client.repositories.each do |repository|
         repository_uri = repository["uri"][1..-1]
         repo_code = repository["repo_code"]
         uris = client.get("#{repository_uri}/search", query: { q: "identifier:(#{or_query})", type: ["resource"], fields: ["uri"], page: 1 }).parsed["results"].map { |x| x["uri"] }

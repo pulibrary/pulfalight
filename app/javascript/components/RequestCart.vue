@@ -49,6 +49,7 @@
             <th>Title</th>
             <th>Call Number</th>
             <th colspan="2">Containers</th>
+            <th class="action-header" colspan="1"></th>
           </tr>
         </thead>
 
@@ -501,12 +502,51 @@ $space-base: 24px;
 table {
   margin-top: 2em;
 }
+
 /*
  * Custom Styling
  */
+.request-cart {
+  .action-header {
+    display: none;
+  }
+
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+    height: 100%;
+    top: 0%;
+  }
+
+  @media screen and (max-width: 640px) {
+    th {
+      display: none;
+
+      &.action-header {
+        display: table-cell;
+        min-width: 100%;
+      }
+    }
+
+    th:first-child {
+      display: table-cell;
+    }
+  }
+}
+
 .request {
-  &__location, &__location-notes {
+  @media screen and (max-width: 640px) {
     td {
+      display: none;
+    }
+
+    td:first-child, td:last-child {
+      display: table-cell;
+      min-width: 100%;
+    }
+  }
+
+  &__location, &__location-notes {
+  td {
       border-top-width: 0px;
       border-bottom-width: 0px;
       color: #707070;
