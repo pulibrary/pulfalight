@@ -5,44 +5,44 @@ require "rails_helper"
 describe "viewing catalog records", type: :feature, js: true do
   context "when viewing a component show page" do
     it "renders a collection title as a link without a separate date element" do
-      visit "catalog/aspace_MC221_c0059"
+      visit "catalog/MC221_c0059"
       expect(page).to have_css(".collection.title a span", text: "Harold B. Hoskins Papers, 1822-1982")
       expect(page).not_to have_css(".collection-attributes h2.media span.col")
     end
     it "renders a component title with a correctly formatted date" do
-      visit "catalog/aspace_C1588_c9"
+      visit "catalog/C1588_c9"
       expect(page).to have_css(".document-title > h3", text: "Unused AIC Supply Request Form, circa 1885")
     end
     it "has a suggest a correction form", js: false do
-      visit "catalog/aspace_MC221_c0059"
+      visit "catalog/MC221_c0059"
 
       expect(page).to have_field "suggest_a_correction_form_location_code", visible: false, type: :hidden, with: "publicpolicy"
-      expect(page).to have_field "suggest_a_correction_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/aspace_MC221_c0059"
+      expect(page).to have_field "suggest_a_correction_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221_c0059"
     end
     it "has an ask a question form", js: false do
-      visit "catalog/aspace_MC221_c0059"
+      visit "catalog/MC221_c0059"
 
       expect(page).to have_selector "h5", text: "Ask a Question"
       expect(page).to have_field "ask_a_question_form_location_code", visible: false, type: :hidden, with: "publicpolicy"
-      expect(page).to have_field "ask_a_question_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/aspace_MC221_c0059"
+      expect(page).to have_field "ask_a_question_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221_c0059"
       expect(page).to have_field "ask_a_question_form_title", visible: false, type: :hidden, with: "Harold B. Hoskins Papers, 1822-1982"
     end
   end
   context "when viewing a component which can be requested from Aeon" do
     it "renders a request button which opens a request cart form" do
-      visit "/catalog/aspace_MC148_c00002"
+      visit "/catalog/MC148_c00002"
 
       find(".add-to-cart-block > button").click
       within(".request-cart") do
         expect(page).to have_selector "button.denied-button"
-        expect(page).to have_selector "#item-aspace_MC148_c00002"
+        expect(page).to have_selector "#item-MC148_c00002"
         expect(page).to have_selector "td", text: /1918/
-        expect(page).to have_selector "td", text: /aspace_MC148_c00002/
+        expect(page).to have_selector "td", text: /MC148_c00002/
         expect(page).to have_selector "td", text: /Box 1/
         expect(page).to have_selector "button[type='submit']", text: /Request 1 Item/
 
         # Click the remove item button
-        find("#item-aspace_MC148_c00002 > td > button").click
+        find("#item-MC148_c00002 > td > button").click
       end
 
       # Open the cart again
@@ -58,7 +58,7 @@ describe "viewing catalog records", type: :feature, js: true do
   end
   context "with a component show page" do
     before do
-      visit "/catalog/aspace_MC221_c0060"
+      visit "/catalog/MC221_c0060"
     end
 
     it "has a table of contents element" do
@@ -103,7 +103,7 @@ describe "viewing catalog records", type: :feature, js: true do
     end
     context "which has a viewer", js: false do
       before do
-        visit "/catalog/aspace_MC221_c0094"
+        visit "/catalog/MC221_c0094"
       end
       it "displays the viewer" do
         expect(page).to have_css(".uv__overlay")
@@ -169,7 +169,7 @@ describe "viewing catalog records", type: :feature, js: true do
   end
   context "when a component has a digital object with a manifest" do
     before do
-      visit "/catalog/aspace_MC221_c0094"
+      visit "/catalog/MC221_c0094"
     end
 
     it "renders the universal viewer" do
@@ -180,7 +180,7 @@ describe "viewing catalog records", type: :feature, js: true do
   end
   context "when a component has a digital object with a link" do
     before do
-      visit "/catalog/aspace_MC148_c07608"
+      visit "/catalog/MC148_c07608"
     end
 
     it "renders a view content link" do
@@ -195,7 +195,7 @@ describe "viewing catalog records", type: :feature, js: true do
 
   context "when a component has a digital object with a relative pdf link" do
     before do
-      visit "/catalog/aspace_C1491_c363"
+      visit "/catalog/C1491_c363"
     end
 
     it "does not render a view content link" do
@@ -306,7 +306,7 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dd.blacklight-creators_ssim", text: "Alaveras, Tēlemachos"
         end
 
-        visit "/catalog/aspace_C1408_c3"
+        visit "/catalog/C1408_c3"
         within("#summary") do
           expect(page).to have_selector "dt.blacklight-collection_creator_ssm", text: "Collection Creator"
           expect(page).to have_selector "dd.blacklight-collection_creator_ssm", text: "Alaveras, Tēlemachos"
