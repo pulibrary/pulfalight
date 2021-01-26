@@ -37,6 +37,7 @@ class AeonRequest
       "ItemInfo1_#{request_id}": access_restrictions,
       "ItemInfo2_#{request_id}": solr_document.extent,
       "ItemInfo3_#{request_id}": folder,
+      "ItemInfo4_#{request_id}": container_profile,
       "ItemInfo5_#{request_id}": url,
       "Location_#{request_id}": container_locations
     }.merge(grouping_options)
@@ -44,6 +45,13 @@ class AeonRequest
 
   def container_locations
     solr_document.fetch("container_location_codes_ssim", []).map { |code| translate_location_code(code) }.join(", ")
+  end
+
+  def container_profile
+    solr_document.fetch("container_information_ssm", []).map do |container|
+      container = JSON.parse(container)
+      container["profile"]
+    end.join(", ")
   end
 
   def translate_location_code(code)
