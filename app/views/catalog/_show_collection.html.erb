@@ -56,14 +56,14 @@
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
-                <a href="#question" data-toggle="modal" data-target="#questionModal">
+                <a id="ask" href="#question" data-toggle="modal" data-target="#questionModal">
                   <%= image_tag(asset_path('icon-question.svg'), "aria-label": "ask a question icon") %>
                   Ask a question
                 </a>
                 <%= render "question_modal" %>
               </div>
               <div class="col-md-4">
-                <a href="#correction" data-toggle="modal" data-target="#correctionModal">
+                <a id="suggest" href="#correction" data-toggle="modal" data-target="#correctionModal">
                   <%= image_tag(asset_path('icon-correction.svg'), "aria-label": "suggest correction icon") %>
                   Suggest a correction
                 </a>
