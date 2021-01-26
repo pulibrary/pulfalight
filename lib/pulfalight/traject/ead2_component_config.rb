@@ -201,10 +201,11 @@ to_field "container_information_ssm" do |record, accumulator|
   record.xpath("./did/container").each do |container_element|
     container_location_code = container_element.attributes["altrender"].to_s
     container_profile = container_element.attributes["encodinganalog"].to_s
+    next if container_location_code.blank?
     accumulator << {
       location_code: container_location_code,
       profile: container_profile
-    }.to_json if container_location_code.present?
+    }.to_json
   end
 end
 

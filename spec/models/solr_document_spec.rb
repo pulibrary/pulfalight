@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require "arclight/traject/nokogiri_namespaceless_reader"
 
 RSpec.describe Arclight::SolrDocument do
   subject(:document) { SolrDocument.new(values) }
@@ -178,6 +179,26 @@ RSpec.describe Arclight::SolrDocument do
         expect(request.form_attributes[:"Location_#{request_id}"]).to eq "ReCAP"
       end
     end
+    let(:indexer) do
+      Traject::Indexer::NokogiriIndexer.new(indexer_settings).tap do |i|
+        i.load_config_file(Rails.root.join("lib", "pulfalight", "traject", "ead2_config.rb"))
+      end
+    end
+    context "when there's a container profile" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1588.EAD.xml")
+      end
+      it "adds the container profile as ItemInfo4" do
+        result = indexer.map_record(record)
+        component = result["components"].first["components"].first["components"].first
+        document = SolrDocument.new(component)
+
+        request = document.aeon_request
+        request_id = request.form_attributes[:Request]
+        expect(request.form_attributes[:"Location_#{request_id}"]).to eq "mss"
+        expect(request.form_attributes[:"ItemInfo4_#{request_id}"]).to eq "NBox"
+      end
+    end
     it "returns an object with all the necessary attributes" do
       # The following fixture is generated from a fixture exported from our
       # local system. It's created via `rake
@@ -225,9 +246,6 @@ RSpec.describe Arclight::SolrDocument do
       # findingaids, which would mean this is "1 box"
       expect(request.form_attributes[:"ItemInfo2_#{request_id}"]).to eq "1 folder"
       expect(request.form_attributes[:"ItemInfo3_#{request_id}"]).to eq "Folder 1"
-      # I don't know what ItemInfo4 should be. Seems to be the physloc of some
-      # higher component in the tree, it's just a comma for this component in
-      # FA.
       expect(request.form_attributes[:"Location_#{request_id}"]).to eq "mss"
       expect(request.form_attributes[:"ItemInfo5_#{request_id}"]).to eq "http://localhost:3000/catalog/aspace_C1588_c3"
       expect(request.form_attributes[:SubmitButton]).to eq "Submit Request"
