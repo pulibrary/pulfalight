@@ -26,6 +26,8 @@ describe "controller requests", type: :request do
       get "/catalog/C1619_c24"
 
       expect(response.body).to include "This file group includes drafts"
+      get "/catalog/C0033_c001"
+      expect(response.body).to include "Chabert, Marie Claire, 1769-1847"
     end
   end
 

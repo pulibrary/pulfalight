@@ -334,12 +334,14 @@ class CatalogController < ApplicationController
     # ==========================
 
     # Component Show Page - Metadata Section
+    config.add_component_field "creator_ssm", label: "Creator"
     config.add_component_field "collection_creator_ssm", label: "Collection Creator"
     config.add_component_field "unitdate_inclusive_ssm", label: "Dates"
     config.add_component_field "physloc_ssm", label: "Located In"
     config.add_component_field "extent_ssm", label: "Extent"
     config.add_component_field "language_ssm", label: "Languages"
     config.add_component_field "scopecontent_ssm", label: "Description"
+    config.add_component_field "bioghist_ssm", label: "Biography"
     config.add_component_field "parent_access_restrict_ssm", label: "Access Restrictions"
     config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
 
@@ -348,7 +350,7 @@ class CatalogController < ApplicationController
     # =================================
     config.add_collection_description_field "collection_description_ssm", label: "Description", helper_method: :paragraph_separator
     config.add_collection_description_field "arrangement_ssm", label: "Arrangement", helper_method: :paragraph_separator
-    config.add_collection_description_field "bioghist_ssm", label: "Collection Creator Biography", helper_method: :paragraph_separator
+    config.add_collection_description_field "collection_bioghist_ssm", label: "Collection Creator Biography", helper_method: :paragraph_separator
     config.add_collection_description_field "odd_ssm", label: "Note", helper_method: :paragraph_separator, accessor: :fetch_html_safe
 
     # =============================
