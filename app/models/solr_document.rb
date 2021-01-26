@@ -29,7 +29,17 @@ class SolrDocument
       :id,
       :unittitle,
       :has_digital_content,
-      :components
+      :components,
+      :title,
+      :language,
+      :date_created,
+      :created,
+      :extent,
+      :container,
+      :heldBy,
+      :creator,
+      :publisher,
+      :memberOf
     ]
   end
 
@@ -250,6 +260,55 @@ class SolrDocument
     StorageNotes.for(fetch("physloc_ssm", []).first).to_a.map(&:html_safe)
   end
 
+  def language
+    fetch("language_ssm", []).map(&:strip)
+  end
+
+  def date_created
+    fetch("unitdate_inclusive_ssm", [])
+  end
+
+  def created
+    fetch("normalized_date_ssm", [])
+  end
+
+  def extent_and_dimensions
+    extent = fetch("extent_ssm", [])
+    dimensions = fetch("dimensions_ssm", [])
+    extent.zip(dimensions).map do |dimension_extent_arr|
+      dimension_extent_arr.compact.join("; ")
+    end.map(&:strip)
+  end
+
+  def container
+    Array.wrap(containers.join(", "))
+  end
+
+  def held_by
+    return location_code if location_code.present? && collection?
+    fetch("container_location_codes_ssim", []).map do |code|
+      if Pulfalight::LocationCode.registered?(code)
+        Pulfalight::LocationCode.map(code)
+      else
+        code
+      end
+    end
+  end
+
+  def publisher
+    fetch("collection_creator_ssm", [])
+  end
+
+  def member_of
+    return if collection?
+    [
+      {
+        title: collection_name,
+        identifier: collection_unitid
+      }
+    ]
+  end
+
   private
 
   def pulfalight_attributes
@@ -268,7 +327,15 @@ class SolrDocument
       places: places,
       access_subjects: access_subjects,
       acqinfo: acqinfo,
-      scopecontent: scopecontent
+      scopecontent: scopecontent,
+      language: language,
+      date_created: date_created,
+      created: created,
+      extent: extent_and_dimensions,
+      container: container,
+      heldBy: held_by,
+      publisher: publisher,
+      memberOf: member_of
     }
   end
 

@@ -187,6 +187,9 @@ end
 to_field "extent_ssm", extract_xpath("./did/physdesc/extent")
 to_field "extent_teim", extract_xpath("./did/physdesc/extent")
 
+to_field "dimensions_ssm", extract_xpath("./did/physdesc/dimensions")
+to_field "dimensions_teim", extract_xpath("./did/physdesc/dimensions")
+
 to_field "container_location_codes_ssim" do |record, accumulator|
   record.xpath("./did/container").each do |container_element|
     container_location_code = container_element.attributes["altrender"].to_s
