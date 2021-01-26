@@ -64,6 +64,13 @@ describe "EAD 2 traject indexing", type: :feature do
       component = components.first["components"].first["components"].first
       expect(component["container_location_codes_ssim"]).to eq ["mss"]
     end
+    it "indexes container_information_ssm" do
+      components = result["components"]
+      component = components.first["components"].first["components"].first
+      json = JSON.parse(component["container_information_ssm"][0])
+      expect(json["location_code"]).to eq "mss"
+      expect(json["profile"]).to eq "NBox"
+    end
     it "indexes barcodes" do
       components = result["components"]
       component = components.first["components"].first["components"].first

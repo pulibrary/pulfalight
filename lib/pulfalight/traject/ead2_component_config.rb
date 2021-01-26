@@ -197,6 +197,17 @@ to_field "container_location_codes_ssim" do |record, accumulator|
   end
 end
 
+to_field "container_information_ssm" do |record, accumulator|
+  record.xpath("./did/container").each do |container_element|
+    container_location_code = container_element.attributes["altrender"].to_s
+    container_profile = container_element.attributes["encodinganalog"].to_s
+    accumulator << {
+      location_code: container_location_code,
+      profile: container_profile
+    }.to_json if container_location_code.present?
+  end
+end
+
 to_field "physloc_code_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
   next unless parent
