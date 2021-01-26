@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/f7623h50q">C1619</eadid><filedesc><titlestmt><titleproper>José Emilio Pacheco Papers, circa 1940s-2010s: Finding Aid <num>C1619</num></titleproper><author>Armando Suárez</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2019</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Rd.</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-26 18:05:15 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard."</descrules></profiledesc><revisiondesc><change><date>2019-04-02T12:35:10.927-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Manuscripts Division </corpname>
+    </repository>
+    <unittitle>José Emilio Pacheco Papers</unittitle>
+    <origination label="Creator">
+      <persname authfilenumber="http://viaf.org/viaf/112087397" source="virtual international authority file">Pacheco, José Emilio‏ </persname>
+    </origination>
+    <unitid>C1619</unitid>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">58 boxes</extent>
+    </physdesc>
+    <unitdate certainty="approximate" datechar="creation" normal="1940/2014" type="inclusive">circa 1940s-2010s</unitdate>
+    <abstract id="aspace_13e42a576af2fe18c93ddcabd22a89f6">Consists of the papers (circa 1940s-2010s) of Mexican poet, essayist, novelist and short story writer, José Emilio Pacheco. Materials include notebooks, diaries and journals, writings, correspondence, printed materials, and other items.</abstract>
+    <physloc id="aspace_9f19a4b4cabeb6b8818bb8a973bd9303">mss</physloc>
+    <langmaterial>
+      <language langcode="spa">Spanish; Castilian</language>
+,       <language langcode="eng">English</language>
+.    </langmaterial>
+  </did>
+  <bioghist id="aspace_C1619_b1">
+    <head>Biographical / Historical</head>
+<p>José Emilio Pacheco was a poet, essayist, novelist and short story writer. He was born in Mexico City on June 30, 1939. Pacheco attended the National Autonomous University of Mexico, where he studied law and literature and worked for literary publications but did not earn a degree. He later taught at various universities in Mexico, United States, Canada, and England, including the University of Maryland at College Park, and the University of Essex, England. Pacheco also worked as director and editor of various journals and cultural supplements. He was given various awards during his lifetime, including the Premio Reina Sofía de Poesía Iberoamericana, and the Premio Miguel de Cervantes, both in 2009. He died in Mexico City on January 26, 2014.</p>  </bioghist>
+  <scopecontent id="aspace_328db922f5f793dc7c45a102f6bf808d">
+    <head>Scope and Contents</head>
+<p>The papers consist of José Emilio Pacheco's handwritten notebooks, in which Pacheco appears to have recorded draft iterations of his writings, miscellaneous notes, and other information related to his creative process; diaries and journals containing handwritten dated entries; writings, such as drafts, excerpts, addenda, and final versions, including poetry, short stories, scripts, screenplays, essays, articles, and translations; a few writings by others; correspondence from various colleagues, publishers, family, and friends, including Octavio Paz, Juan Vicente Melo, Carlos Fuentes, José Miguel Oviedo, Sergio Galindo, Bruno Arcudi, Félix Grande, Guillermo Cabrera Infante, Homero Aridjis, Carlos Monsivaís, Rosario Castellanos, José Bianco, and Vicente Rojo; printed materials, including periodicals, newspaper clippings, articles, publications, and broadsides; and other materials, including photographs, biographical documents, certificates, and materials related to awards given to Pacheco.</p>  </scopecontent>
+  <arrangement id="aspace_e6a0c5f8e7830f59f32ddcee6d27e34d">
+    <head>Arrangement</head>
+<p>As no original order was discernible, materials were arranged in file groups by type of materials. Additionally, a large number of the writings were undated, untitled, unattributed, and in many cases, drafts and fragments mixed together, which were impossible to separate and identify given the disorganized state of the material upon receipt.</p>  </arrangement>
+  <accessrestrict id="aspace_79423fb203d1a5db53d54f90d7dc2095">
+    <head>Conditions Governing Access</head>
+<p>Open for research. Materials in the "Diaries and Journals" file group (boxes B-001261 to B-001268) are restricted for a period of five years, until 2024, as requested by Cristina Pacheco.</p>  </accessrestrict>
+  <userestrict id="aspace_64727a059dcb49ff49efb793a0000a28">
+    <head>Conditions Governing Use</head>
+<p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref href="https://library.princeton.edu/special-collections/ask-us" type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
+  <acqinfo id="aspace_364b85449cccd1316b2870ca683c8e2b">
+    <head>Immediate Source of Acquisition</head>
+<p>Purchased from Cristina Pacheco in <date normal="2018/2018" type="acquisition">2018</date> (AM 2019-64).</p>  </acqinfo>
+  <appraisal id="aspace_79afe181256fd58c2631e6a852e9c70e">
+    <head>Appraisal</head>
+<p>No materials were removed from the collection during 2019 processing beyond routine appraisal practices.</p>  </appraisal>
+  <processinfo id="aspace_b453668d3b68dbe88045086275bb8bb5">
+    <head>Processing Information</head>
+<p>This collection was processed by Armando Suárez in April 2019. Finding aid written by Armando Suárez in April 2019</p>  </processinfo>
+  <processinfo id="aspace_f24d671db13dd7f831f9936c0f9a8966">
+    <head>Processing Information</head>
+<p>Materials in this collection, particularly materials from: Box B-001275, Folder 1, were treated for mold during April 2019 processing.</p>  </processinfo>
+  <controlaccess>
+    <subject source="lcsh">Mexican literature.</subject>
+    <subject source="lcsh">Mexican essays.</subject>
+    <subject source="lcsh">Mexican poetry.</subject>
+    <subject source="lcsh">Poets, Mexican.</subject>
+    <geogname source="lcsh">Mexico.</geogname>
+    <genreform source="lcsh">Notebooks.</genreform>
+    <genreform source="lcsh">Diaries.</genreform>
+    <genreform source="aat">Letters (correspondence).</genreform>
+    <genreform source="aat">Manuscripts (documents).</genreform>
+    <subject source="local">Latin American literature</subject>
+    <persname authfilenumber="http://viaf.org/viaf/41844743" source="virtual international authority file">Paz, Octavio, 1914-1998</persname>
+    <persname authfilenumber="http://viaf.org/viaf/46820695" source="viaf">Melo, Juan Vicente, 1932-1996</persname>
+    <persname authfilenumber="http://viaf.org/viaf/68955242" source="viaf">Oviedo, José Miguel</persname>
+    <persname authfilenumber="http://viaf.org/viaf/102007168" source="viaf">Galindo, Sergio</persname>
+    <persname authfilenumber="https://viaf.org/viaf/43057803" rules="dacs" source="viaf">Fuentes, Carlos</persname>
+  </controlaccess>
+  <dsc><c id="aspace_C1619_c24" level="file"><did><unittitle>Writings</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">22 boxes</extent></physdesc><unitdate certainty="approximate" datechar="creation" normal="1940-01-01/2019-12-31" type="inclusive">1940-2010s</unitdate></did><accessrestrict id="aspace_c5a0624e9277a4f43fc5dc5d3be6c9ac"><head>Conditions Governing Access</head><p>Open for research. Materials in the "Diaries and Journals" file group (boxes B-001261 to B-001268) are restricted for a period of five years, until 2024, as requested by Cristina Pacheco.</p></accessrestrict><scopecontent id="aspace_b4c2fba83af360055952060a77a0b894"><head>Scope and Contents</head><p>This file group includes drafts, excerpts, addenda, and final versions of various writings by Pacheco, including poetry, short stories, scripts, screenplays, essays, articles, translations, and others. Also included are writings by other authors, including translations of Pacheco's works. A large number of writings were undated, untitled, unattributed, and in many cases, drafts and fragments mixed together, which were impossible to separate and identify given the disorganized state of the material upon receipt.</p></scopecontent></c></dsc>
+</archdesc>
+</ead>

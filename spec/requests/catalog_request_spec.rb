@@ -11,7 +11,7 @@ describe "controller requests", type: :request do
       expect(response.body).to have_selector ".request-cart-block request-cart"
     end
   end
-  context "when requesting to view a component" do
+  context "when requesting to view a component", js: false do
     it "renders containers within component" do
       get "/catalog/C1588_c15"
       expect(response).to render_template(:show)
@@ -21,6 +21,11 @@ describe "controller requests", type: :request do
       get "/catalog/C1408"
       expect(response.body).to include("Tēlemachos")
       expect(response.body).to include("Thessalonikē")
+    end
+    it "renders component-level notes" do
+      get "/catalog/C1619_c24"
+
+      expect(response.body).to include "This file group includes drafts"
     end
   end
 
