@@ -15,7 +15,7 @@ describe "controller requests", type: :request do
   describe "/catalog/:id JSON" do
     context "for a component" do
       it "renders sufficient JSON for Figgy to use" do
-        get "/catalog/aspace_WC064_c1.json"
+        get "/catalog/WC064_c1.json"
         json_body = JSON.parse(response.body)
 
         expect(json_body["title"]).to eq ["American Indian man wearing traditional clothing with three white children"]
@@ -36,7 +36,7 @@ describe "controller requests", type: :request do
       end
       it "renders just the location code if it can't find a string" do
         allow(Pulfalight::LocationCode).to receive(:registered?).and_return(false)
-        get "/catalog/aspace_WC064_c1.json"
+        get "/catalog/WC064_c1.json"
         json_body = JSON.parse(response.body)
 
         expect(json_body["heldBy"]).to eq ["mss"]
