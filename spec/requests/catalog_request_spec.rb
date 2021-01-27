@@ -140,4 +140,15 @@ describe "controller requests", type: :request do
       expect(assigns.fetch(:document_list, []).map(&:id).first).to eq "MC148"
     end
   end
+
+  describe "searching with quotes", js: false do
+    it "returns results as if you didn't search with quotes" do
+      get "/catalog", params: { q: "Marie Claire Chabert", search_field: "all_fields" }
+      no_quote_results = assigns.fetch(:document_list).map(&:id)
+
+      get "/catalog", params: { q: '"Marie Claire Chabert"', search_field: "all_fields" }
+
+      expect(assigns.fetch(:document_list).map(&:id)).to eq no_quote_results
+    end
+  end
 end
