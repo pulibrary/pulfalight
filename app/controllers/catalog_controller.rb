@@ -148,8 +148,8 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field "has_online_content_ssim", label: "Access", collapse: false, query: {
-      online: { label: "Online", fq: "has_online_content_ssim:true" }
+    config.add_facet_field "has_direct_online_content_ssim", label: "Access", collapse: false, query: {
+      online: { label: "Online", fq: "has_direct_online_content_ssim:true" }
     }
     config.add_facet_field "collection_sim", label: "Collection", limit: 10
     config.add_facet_field "creator_ssim", label: "Creator", limit: 10

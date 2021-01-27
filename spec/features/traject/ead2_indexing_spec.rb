@@ -154,6 +154,8 @@ describe "EAD 2 traject indexing", type: :feature do
             )
           ]
         )
+        expect(component["has_online_content_ssim"]).to eq [true]
+        expect(component["has_direct_online_content_ssim"]).to eq [true]
       end
     end
 
