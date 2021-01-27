@@ -24,11 +24,11 @@
                 width="1em"
                 height="1em"
                 viewBox="0 0 16 16"
-                aria-labelledby="close cart"
+                aria-labelledby="closeCart"
                 role="img"
                 fill="#6e757c"
                 >
-                <title id="denied" lang="en">close cart</title>
+                <title id="closeCart" lang="en">close cart</title>
                 <x-circle-icon></x-circle-icon>
               </svg>
             </div>
