@@ -46,7 +46,7 @@ describe "viewing catalog records", type: :feature, js: true do
       end
 
       # Open the cart again
-      find(".cart-view-toggle-block > div > button").click
+      find(".cart-view-toggle-block > div > button", visible: false).click
       within(".request-cart") do
         # Check that it is empty
         expect(page).to have_selector "button[type='submit']", text: /No Items in Your Cart/
