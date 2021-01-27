@@ -45,14 +45,14 @@ class SearchBuilder < Blacklight::SearchBuilder
     ]
     solr_params[:ps2] = 3
     solr_params[:ps] = 3
-    add_exactish_matching(solr_params)
+    boost_matching_collections(solr_params)
   end
 
-  def add_exactish_matching(solr_params)
+  def boost_matching_collections(solr_params)
     return unless solr_params["q"]
     solr_params["q1"] = solr_params["q"]
     solr_params["q"] = "_query_:\"{!edismax v=$q1 bq=$bq1}\""
-    solr_params["bq1"] = "_query_:\"{!edismax v=$q1 mm='100%'}\"^20"
+    solr_params["bq1"] = "_query_:\"{!edismax v=$q1 mm='90%' fl='collection_title_tesim'}\"^20"
     solr_params["uf"] = "_query_"
   end
 end
