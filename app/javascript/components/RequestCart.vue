@@ -14,7 +14,7 @@
             type="button"
             variation="text"
             class="denied-button"
-            aria-labelledby="denied"
+            aria-labelledby="closeCart"
             focused
             >
 
