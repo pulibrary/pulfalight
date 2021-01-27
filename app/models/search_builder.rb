@@ -52,11 +52,8 @@ class SearchBuilder < Blacklight::SearchBuilder
 
   def boost_exact_matches(solr_params)
     return unless solr_params["q"]
-    solr_params["q1"] = solr_params["q"]
-    solr_params["boostQueryQf"] = "collection_title_tesim title_tesim^10"
-    solr_params["bq"] << "_val_:\"{!edismax qf=$boostQueryQf mm=100% v=$q fq='level_sim:collection' bq=}\"^100"
-    # solr_params["bq1"] = "_query_:\"{!edismax v=$q1 mm='100%' qf='collection_tesim' fq='level_ssm:collection'}\"^100"
-    # solr_params["q"] = "_query_:\"{!edismax v=$q1 bq=$bq1 mm='75%'}\""
+    solr_params["boostQueryQf"] = "title_tesim"
+    solr_params["bq"] << "_val_:\"{!edismax qf=$boostQueryQf mm=100% v=$q bq=}\"^10"
     solr_params["uf"] = "_val_"
   end
 end
