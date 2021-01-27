@@ -47,13 +47,5 @@ class SearchBuilder < Blacklight::SearchBuilder
     solr_params[:ps2] = 3
     solr_params[:ps] = 3
     solr_params[:mm] = "75"
-    boost_exact_matches(solr_params)
-  end
-
-  def boost_exact_matches(solr_params)
-    return unless solr_params["q"]
-    solr_params["boostQueryQf"] = "title_tesim"
-    solr_params["bq"] << "_val_:\"{!edismax qf=$boostQueryQf mm=100% v=$q bq=}\"^10"
-    solr_params["uf"] = "_val_"
   end
 end
