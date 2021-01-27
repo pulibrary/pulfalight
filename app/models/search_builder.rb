@@ -46,7 +46,7 @@ class SearchBuilder < Blacklight::SearchBuilder
     ]
     solr_params[:ps2] = 3
     solr_params[:ps] = 3
-    solr_params[:mm] = "0"
+    solr_params[:mm] = "75"
     boost_exact_matches(solr_params)
   end
 
