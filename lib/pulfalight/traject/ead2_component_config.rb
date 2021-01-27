@@ -447,13 +447,6 @@ to_field "collection_description_ssm" do |_record, accumulator, context|
   accumulator.concat(value)
 end
 
-# For collection description tab
-to_field "bioghist_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
-  value = parent.output_hash["bioghist_ssm"] || []
-  accumulator.concat(value)
-end
-
 # For collection history tab
 to_field "custodhist_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]

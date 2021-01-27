@@ -341,6 +341,9 @@ to_field "sponsor_ssm", extract_xpath("/ead/eadheader/filedesc/titlestmt/sponsor
 to_field "collection_description_ssm" do |_record, accumulator, context|
   accumulator.concat(context.output_hash["scopecontent_ssm"] || [])
 end
+to_field "collection_bioghist_ssm" do |_record, accumulator, context|
+  accumulator.concat(context.output_hash["bioghist_ssm"] || [])
+end
 
 # For collection history tab
 sanitizer = Rails::Html::SafeListSanitizer.new
