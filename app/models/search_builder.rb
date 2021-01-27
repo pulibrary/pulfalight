@@ -52,7 +52,7 @@ class SearchBuilder < Blacklight::SearchBuilder
     return unless solr_params["q"]
     solr_params["q1"] = solr_params["q"]
     solr_params["q"] = "_query_:\"{!edismax v=$q1 bq=$bq1}\""
-    solr_params["bq1"] = "_query_:\"{!edismax v=$q1 mm='90%' fl='collection_title_tesim'}\"^20"
+    solr_params["bq1"] = "_query_:\"{!edismax v=$q1 mm='90%' qf='collection_ssi'}\"^20"
     solr_params["uf"] = "_query_"
   end
 end
