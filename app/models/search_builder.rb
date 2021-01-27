@@ -21,7 +21,8 @@ class SearchBuilder < Blacklight::SearchBuilder
     solr_params[:qf] = [
       "ead_ssi^100",
       "collection_title_tesim^10",
-      "physloc_teim",
+      "physloc_tesim",
+      "location_info_tesim",
       "containers_tesim",
       "physloc_tesim",
       "collection_title_tesim",
@@ -41,18 +42,19 @@ class SearchBuilder < Blacklight::SearchBuilder
       "subject_tsim^2"
     ]
     solr_params[:pf2] = [
-      "physloc_tesim^20"
+      "location_info_tesim^20"
     ]
     solr_params[:ps2] = 3
     solr_params[:ps] = 3
-    boost_matching_collections(solr_params)
+    solr_params[:mm] = "0"
+    boost_exact_matches(solr_params)
   end
 
-  def boost_matching_collections(solr_params)
+  def boost_exact_matches(solr_params)
     return unless solr_params["q"]
     solr_params["q1"] = solr_params["q"]
-    solr_params["q"] = "_query_:\"{!edismax v=$q1 bq=$bq1}\""
-    solr_params["bq1"] = "_query_:\"{!edismax v=$q1 mm='90%' qf='collection_ssi'}\"^20"
+    solr_params["bq1"] = "_query_:\"{!edismax v=$q1 mm='100%'}\"^10"
+    solr_params["q"] = "_query_:\"{!edismax v=$q1 bq=$bq mm='75%'}\""
     solr_params["uf"] = "_query_"
   end
 end
