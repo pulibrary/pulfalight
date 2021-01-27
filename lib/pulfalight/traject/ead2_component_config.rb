@@ -265,6 +265,9 @@ end
 to_field "has_online_content_ssim", extract_xpath(".//dao") do |_record, accumulator|
   accumulator.replace([accumulator.any?])
 end
+to_field "has_direct_online_content_ssim", extract_xpath("./did/dao") do |_record, accumulator|
+  accumulator.replace([accumulator.any?])
+end
 to_field "child_component_count_isim" do |record, accumulator|
   accumulator << Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new.is_component(record.children).count
 end
