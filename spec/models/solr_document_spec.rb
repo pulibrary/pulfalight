@@ -98,7 +98,7 @@ RSpec.describe Arclight::SolrDocument do
 
   describe "#to_json" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "rarebooks", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
     let(:values) do
       indexer.map_record(record)
@@ -128,7 +128,7 @@ RSpec.describe Arclight::SolrDocument do
 
   describe "#collection?" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "rarebooks", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
     let(:values) do
       indexer.map_record(record)

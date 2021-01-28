@@ -405,7 +405,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#physloc_code_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "rarebooks", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "resolves and indexes the physical location code" do
@@ -424,7 +424,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#location_code_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "rarebooks", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "resolves and indexes the location code" do
@@ -435,7 +435,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#location_note_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "rarebooks", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "indexes the location note" do
@@ -478,7 +478,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#names_ssim" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "rarebooks", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "does not include staff names" do
