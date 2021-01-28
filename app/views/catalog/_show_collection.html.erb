@@ -52,22 +52,25 @@
 
       <div class="col-md-8">
         <div class="tab-content">
-          <nav class="navbar sticky-top">
+          <nav class="navbar sticky-top lux">
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-4">
-                <a id="ask" href="#question" data-toggle="modal" data-target="#questionModal">
-                  <%= image_tag(asset_path('icon-question.svg'), "aria-label": "ask a question icon") %>
+                <input-button id="ask" type="button" variation="text" data-toggle="modal" data-target="#questionModal">
+                  <lux-icon-base icon-name="question" width="16" height="16">
+                      <lux-icon-question></lux-icon-question>
+                  </lux-icon-base>
                   Ask a question
-                </a>
+                </input-button>
                 <%= render "question_modal" %>
               </div>
               <div class="col-md-4">
-                <a id="suggest" href="#correction" data-toggle="modal" data-target="#correctionModal">
-                  <%= image_tag(asset_path('icon-correction.svg'), "aria-label": "suggest correction icon") %>
+                <input-button id="suggest" type="button" variation="text" data-toggle="modal" data-target="#correctionModal">
+                  <lux-icon-base icon-name="exclamation" width="16" height="16">
+                      <lux-icon-exclamation></lux-icon-exclamation>
+                  </lux-icon-base>
                   Suggest a correction
-                </a>
-
+                </input-button>
                 <%= render "correction_modal" %>
               </div>
             </div><!-- .row -->

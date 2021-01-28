@@ -93,7 +93,7 @@ describe "accessibility", type: :feature, js: true do
       visit "/catalog/MC148_c07608"
 
       # Click button for suggest a correction and wait for modal
-      click_link(href: "#correction")
+      find("#correction-button").click
       expect(page).to have_css("#suggest_a_correction_form_box_number")
 
       expect(page).to be_axe_clean
@@ -108,7 +108,7 @@ describe "accessibility", type: :feature, js: true do
       visit "/catalog/MC148_c07608"
 
       # Click button for suggest a correction and wait for modal
-      click_link(href: "#question")
+      find("#question-button").click
       expect(page).to have_css("#ask_a_question_form_name")
 
       expect(page).to be_axe_clean
@@ -123,7 +123,7 @@ describe "accessibility", type: :feature, js: true do
       visit "/catalog/MC148_c07608"
 
       # Click request button and wait for request cart div
-      find(".add-to-cart-block > button").click
+      find(".add-to-cart-block").click
       expect(page).to have_css("div.request-cart")
 
       expect(page).to be_axe_clean
