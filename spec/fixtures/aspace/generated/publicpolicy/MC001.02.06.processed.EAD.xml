@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/c534fn94m">MC001.02.06</eadid><filedesc><titlestmt><titleproper>American Civil Liberties Union Records: Subgroup 2, Audiovisual Materials Series, 1947-1995: Finding Aid <num>MC001.02.06</num></titleproper><sponsor>These papers were processed with the generous support of the National Historical Publications and Records Commission and the John Foster and Janet Avery Dulles Fund.</sponsor></titlestmt><publicationstmt><publisher>Public Policy Papers</publisher><p><date>2003</date></p><address><addressline>Seeley G. Mudd Manuscript Library</addressline><addressline>65 Olden Street</addressline><addressline>Princeton 08540</addressline><addressline>mudd@princeton.edu</addressline><addressline>URL: <extptr href="http://www.princeton.edu/mudd" show="new" title="http://www.princeton.edu/mudd" type="simple"/></addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-26 13:57:43 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T16:18:52.305-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-06-20T16:18:51.225-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="series">
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/c534fn94m">MC001.02.06</eadid><filedesc><titlestmt><titleproper>American Civil Liberties Union Records: Subgroup 2, Audiovisual Materials Series, 1947-1995: Finding Aid <num>MC001.02.06</num></titleproper><sponsor>These papers were processed with the generous support of the National Historical Publications and Records Commission and the John Foster and Janet Avery Dulles Fund.</sponsor></titlestmt><publicationstmt><publisher>Public Policy Papers</publisher><p><date>2003</date></p><address><addressline>Seeley G. Mudd Manuscript Library</addressline><addressline>65 Olden Street</addressline><addressline>Princeton, New Jersey 08540</addressline><addressline>mudd@princeton.edu</addressline><addressline>URL: <extptr href="http://www.princeton.edu/mudd" show="new" title="http://www.princeton.edu/mudd" type="simple"/></addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-29 14:28:22 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T16:18:52.305-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-06-20T16:18:51.225-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="series">
   <did>
     <repository>
       <corpname>Public Policy Papers</corpname>
     </repository>
     <unittitle>American Civil Liberties Union Records: Subgroup 2, Audiovisual Materials Series</unittitle>
     <origination label="Creator">
-      <corpname role="cre" rules="dacs" source="virtual international authority file">American Civil Liberties Union</corpname>
+      <corpname authfilenumber="https://viaf.org/viaf/124191829" role="cre" source="viaf">American civil liberties union</corpname>
+    </origination>
+    <origination label="Creator">
+      <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="col" source="viaf">Princeton University. Library. Special Collections</corpname>
     </origination>
     <unitid>MC001.02.06</unitid>
     <physdesc altrender="part">
@@ -19,43 +22,43 @@
       <extent altrender="materialtype spaceoccupied">2 items</extent>
     </physdesc>
     <unitdate datechar="creation" normal="1947/1995" type="inclusive">1947-1995</unitdate>
-    <abstract id="aspace_63fb0946988d26c7001e4d386f27f2c3">The American Civil Liberties Union Records document the activities of the Union in protecting individual rights from 1920 through 1995. The files contain materials on freedom of speech, expression, and association; due process of law; equality before the law; legal case files; and organizational records. Within these categories files reflect subject areas such as academic freedom, censorship, racial discrimination, aliens' rights, privacy concerns, labor concerns, amnesty, and government loyalty and security. The files reflect work on litigation, advocacy and public policy, and subject files on various areas of interest connected with civil liberties. Materials include correspondence, court documents, memoranda, printed matter, minutes, reports, briefs, and legal files. Also included are materials from ACLU affiliate organizations, and the Lawyers Constitutional Defense Committee.</abstract>
-    <physloc id="aspace_1cd068860be034026eaf89920988fb50">mudd</physloc>
+    <abstract id="aspace_61d9896c54c3ebfaa3c98a5827afad22">The American Civil Liberties Union Records document the activities of the Union in protecting individual rights from 1920 through 1995. The files contain materials on freedom of speech, expression, and association; due process of law; equality before the law; legal case files; and organizational records. Within these categories files reflect subject areas such as academic freedom, censorship, racial discrimination, aliens' rights, privacy concerns, labor concerns, amnesty, and government loyalty and security. The files reflect work on litigation, advocacy and public policy, and subject files on various areas of interest connected with civil liberties. Materials include correspondence, court documents, memoranda, printed matter, minutes, reports, briefs, and legal files. Also included are materials from ACLU affiliate organizations, and the Lawyers Constitutional Defense Committee.</abstract>
+    <physloc id="aspace_e52d82e1d4236ff3ce233994c6083ad1">mudd</physloc>
     <langmaterial>
       <language langcode="eng">English</language>
 .    </langmaterial>
   </did>
-  <scopecontent id="aspace_d54ff10722010423d73819d9c1326952">
+  <scopecontent id="aspace_98afe35140f91b02ae77f048c8591262">
     <head>Scope and Contents</head>
 <p>These Records document the activities of the American Civil Liberties Union (ACLU) in protecting individual rights between 1947 and 1995. The collection contains correspondence, clippings, court documents, memoranda, printed matter, minutes, reports, briefs, legal files, exhibit materials, and audio-visual materials. Also included are materials from ACLU affiliate organizations, the Lawyers Constitutional Defense Committee and national office legal department records (1945-1960).</p><p> Due to the exceptionally large volume within the ACLU Records, succinct series and subseries descriptions have been written, providing a basic outline of the records available. The researcher should always consult the folder list to ascertain if the records contain a topic of interest since not all subjects are mentioned in these brief descriptions.</p><p> The researcher should also be aware that many topics may be covered in more than one series or subseries. For instance, materials concerning freedom of the press are located in both the Mass Communications and Censorship subseries. Often the series descriptions note similar materials found in other parts of this collection. Due to limitations in processing time, not every file is in exact chronological or alphabetical order.</p>  </scopecontent>
-  <accessrestrict id="aspace_27a2261ee82b96c7225a3f7221b5f8dc">
+  <accessrestrict id="aspace_647707e9fcc91552200bc51d1fe6c948">
     <head>Conditions Governing Access</head>
 <p>Subgroup 2 is open for research use.</p>  </accessrestrict>
-  <phystech id="aspace_ee2bbc9b5b624a4e519a04dc8b0ff9f8">
+  <phystech id="aspace_8057d28f9225e4fd769f2bcef84e3725">
     <head>Physical Characteristics and Technical Requirements</head>
 <p>Access to this material follows the Mudd Manuscript Library <extref href="http://rbsc.princeton.edu/policies/mudd-library-imaging-guidelines-and-price-list#Audio%20visual" type="simple">policy for preservation and access to audiovisual materials</extref>.</p>  </phystech>
-  <userestrict id="aspace_93b61446f0f296df0f52da35046fcb06">
+  <userestrict id="aspace_b9f19d370f21547151d9824db809cb1b">
     <head>Conditions Governing Use</head>
 <p>Single photocopies may be made for research purposes. For quotations that are fair use as defined under <extref href="http://copyright.princeton.edu/basics/fair-use" type="simple">U. S. Copyright Law</extref>, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use.</p>  </userestrict>
-  <otherfindaid id="aspace_6a650660095a92832c166cd21fff46e3">
+  <otherfindaid id="aspace_edd047a79017f93a865e5c95551b764a">
     <head>Other Finding Aids</head>
 <p>This finding aid describes a portion of the American Civil Liberties Union Records held at the Seeley G. Mudd Manuscript Library. For an overview of the entire collection, instructions on searching the collection and requesting materials, and other information, please see the <extref href="http://libguides.princeton.edu/mudd_aclu" type="simple">Guide to the American Civil Liberties Union Records</extref>.</p>  </otherfindaid>
-  <appraisal id="aspace_c02e291e71dd8b0cbaf4826ffc6f0175">
+  <appraisal id="aspace_7e22902f7bccaccff7e18651dca81e11">
     <head>Appraisal</head>
 <p>During the processing of this collection, many items were discarded, including newspaper clippings from the New York Times and other major newspapers, government publications, well- known serial publications, and publications and large distribution memoranda from well-known and well-documented organizations such as the American Jewish Committee or Americans United for the Separation of Church and State.</p>  </appraisal>
-  <altformavail id="aspace_a29622cad349862d9460ffd7f35dee61">
+  <altformavail id="aspace_475667ea2cf99b896a736c2a8fb9b54b">
     <head>Existence and Location of Copies</head>
 <p>Public records of the ACLU from 1917 to 1989, have been microfilmed by the Microfilming Corporation of America (MCA) and University Microfilms International (UMI). These records include minutes of the board of directors, mailings to the board of directors, biennial conference papers, policy guides, the national legal docket, organization manuals, constitution and bylaws, legal briefs, and publications. The American Civil Liberties Union Records and Publications 1917-1975: A Guide to the Microfilm Edition and succeeding guides to these materials are available in the reference room, and the microfilm itself is located in the microforms reading room.</p><p> The bound volumes of ACLU records covering 1917 through 1946 (volumes 1-2762) have been microfilmed and researchers must use the microfilm in order to prevent further deterioration of the these fragile volumes. Researchers should consult the finding aid to the earlier ACLU records (1917-1946) for their description and arrangement.</p>  </altformavail>
-  <relatedmaterial id="aspace_d62b2acf9e426ce06dbebd51a32b2d7a">
+  <relatedmaterial id="aspace_b9b0a42a33f591a4708fb81ff7f12326">
     <head>Related Materials</head>
 <p>American Civil Liberties Union, Washington, D.C. Office Records</p><p> American United for the Separation of Church and State Records</p><p> Roger N. Baldwin Papers</p><p> Osmond K. Fraenkel Diaries</p><p> Fund for the Republic Records</p><p> Arthur Garfield Hays Papers</p><p> Peggy Lamson Collection on Roger N. Baldwin</p><p> Law Students Civil Rights Research Council Records</p><p> PEN American Center Records (at Firestone Library)</p>  </relatedmaterial>
-  <prefercite id="aspace_a09ba7df1a6c8e6b6ebb988df2128aff">
+  <prefercite id="aspace_0cf76d96a1c648ea73544499a8f5b9a8">
     <head>Preferred Citation</head>
 <p>Identification of specific item; Date (if known); American Civil Liberties Union Records, Box and Folder Number; Public Policy Papers, Special Collections, Princeton University Library.</p>  </prefercite>
-  <processinfo id="aspace_5a4e386299c4f6e6c916ace2e4118f0b">
+  <processinfo id="aspace_1806eab6ca7b24c0be493a57a09e0cbc">
     <head>Processing Information</head>
 <p>This collection was processed by Paula Jabloner in 1994-1996 with the assistance of Assistant Archivist for Technical Services Daniel Linke, Special Collections Assistants Amy Escott, Claire Johnston, Alison McCuaig, and Tom Rosko, and students Laurie Alexander, Christina Aragon, Laura Burt, Jue Chen, Clement Doyle, Joe Faber, Said Farah, Boyd Goodson, Naomi Harlin, Janet Hine, Matthew Honahan, Katherine Johnson, Damian Long, Theresa Marchitto, Laura Myones, Olivia Kew, Grace Koo, Dan Sack, Bijan Salehizadeh, Tina Wang, Kyle Weston, and Elizabeth Williamson.</p>  </processinfo>
-  <bibliography id="aspace_79dbfa5052af0c4e823b005461238ccc">
+  <bibliography id="aspace_03f32b9c6659bc1f4a29d7df51363269">
     <head>Bibliography</head>
 <p>Historical sketch based on In Defense of American Liberties: A History of the ACLU by Samuel Walker. See also Samuel Walker's The American Civil Liberties Union: An Annotated Bibliography.</p>  </bibliography>
   <controlaccess>
@@ -64,7 +67,7 @@
     <subject source="lcsh">African Americans -- Legal status, laws, etc. -- 20th century.</subject>
     <subject source="lcsh">Aliens -- United States -- Civil rights -- 20th century.</subject>
     <subject source="lcsh">Amnesty -- United States -- 20th century.</subject>
-    <subject source="lcsh">Anti-communist movements -- United States -- History -- 20th century.</subject>
+    <subject source="lcsh">Anti-Communist movements -- United States -- History -- 20th century.</subject>
     <subject source="lcsh">Apportionment (Election law) -- United States -- 20th century.</subject>
     <subject source="lcsh">Assembly, Right of -- United States -- 20th century.</subject>
     <subject source="lcsh">Censorship -- United States -- 20th century.</subject>
@@ -72,7 +75,7 @@
     <subject source="lcsh">Citizen suits (Civil procedure) -- United States -- 20th century.</subject>
     <subject source="lcsh">Civil rights -- United States -- 20th century.</subject>
     <subject source="lcsh">Civil rights movements -- United States -- 20th century.</subject>
-    <subject source="lcsh">Civil rights workers -- United States -- 20th century -- Correspondence.</subject>
+    <subject source="lcsh">Civil rights workers -- United States -- 20th Century -- Correspondence.</subject>
     <subject source="lcsh">Communism -- United States -- 20th century.</subject>
     <subject source="lcsh">Conscientious objectors -- United States -- 20th century.</subject>
     <subject source="lcsh">Constitutional law -- United States -- 20th century.</subject>
@@ -129,41 +132,41 @@
     <subject source="local">Public policy/20th century</subject>
     <subject source="local">World War II</subject>
     <subject source="local">World War I</subject>
-    <persname source="lcnaf">Gault, Gerald Francis, 1949 or 50- -- Trials, litigation, etc.</persname>
-    <persname source="lcnaf">Gideon, Clarence Earl -- Trials, litigation, etc.</persname>
-    <persname source="lcnaf">Griswold, Estelle -- Trials, litigation, etc.</persname>
-    <persname source="lcnaf">Hays, Arthur Garfield, 1881-1954 - Contributions to civil rights.</persname>
-    <persname source="lcnaf">Holtzman, Elizabeth -- Trials, litigation, etc.</persname>
-    <persname source="lcnaf">Jacobellis, Nico -- Trials, litigation, etc.</persname>
-    <persname source="lcnaf">Levy, Herbert Monte, 1923 -- Contributions to civil rights.</persname>
-    <persname source="lcnaf">Malin, Patrick Murphy, 1903-1964 -- Contributions to civil rights.</persname>
-    <persname source="lcnaf">Miranda, Ernesto -- Trials, litigation, etc.</persname>
-    <persname source="lcnaf">Neier, Aryeh, 1937 -- Contributions to civil rights.</persname>
-    <persname source="lcnaf">Neuborne, Burt -- Contributions to civil rights.</persname>
-    <persname authfilenumber="viaf.org/viaf/44303100" source="lcnaf">Nixon, Richard M. (Richard Milhous), 1913-1994 -- Adversaries.</persname>
-    <persname source="lcnaf">Pemberton, John de J. -- Contributions to civil rights.</persname>
-    <persname source="lcnaf">Perry, Richard L. -- Trials, litigation, etc.</persname>
-    <persname authfilenumber="viaf.org/viaf/24606774" source="lcnaf">Pound, Ezra, 1885-1972 -- Imprisonment.</persname>
-    <persname authfilenumber="viaf.org/viaf/47647785" source="lcnaf">Powell, John A. (John Anthony) -- Contributions to civil rights.</persname>
-    <persname authfilenumber="viaf.org/viaf/18518249" source="lcnaf">Reitman, Alan -- Contributions to civil rights.</persname>
-    <persname source="lcnaf">Schempp, Edward L. -- Trials, litigation, etc.</persname>
-    <persname source="lcnaf">Schwarzschild, Henry -- Contributions to civil rights.</persname>
-    <persname source="lcnaf">Scopes, John Thomas, 1900-1970 --Trials, litigation, etc.</persname>
-    <persname source="lcnaf">Seeger, Daniel A. -- Trials, litigation, etc.</persname>
-    <persname source="lcnaf">Tinker, John Frederick -- Trials, litigation, etc.</persname>
-    <persname source="lcnaf">Wulf, Melvin A. -- Contributions to civil rights.</persname>
-    <corpname source="lcnaf">Marshall Civil Liberties Trust Fund.</corpname>
-    <corpname authfilenumber="http://viaf.org/viaf/144120496" source="viaf">National Civil Liberties Bureau (U.S.).</corpname>
-    <corpname source="lcnaf">New York Times Company -- Trials, litigation, etc.</corpname>
-    <corpname source="lcnaf">United States. Constitution. 1st-10th Amendments.</corpname>
-    <corpname authfilenumber="https://viaf.org/viaf/134951307" rules="dacs" source="viaf">American Union Against Militarism</corpname>
-    <persname authfilenumber="https://viaf.org/viaf/109866015" rules="dacs" source="viaf">Baldwin, Roger N. (Roger Nash), 1884-1981</persname>
-    <persname authfilenumber="https://viaf.org/viaf/108321613" rules="dacs" source="viaf">Dorsen, Norman</persname>
-    <persname authfilenumber="https://viaf.org/viaf/62342717" rules="dacs" source="viaf">Dulles, John Foster, 1888-1959.</persname>
-    <persname authfilenumber="https://viaf.org/viaf/62786381" rules="dacs" source="viaf">Ennis, Bruce J., 1941-</persname>
-    <persname authfilenumber="https://viaf.org/viaf/73168501" rules="dacs" source="lcnaf">Epperson, Susan</persname>
-    <persname rules="dacs" source="lcnaf">Escobedo, Danny</persname>
-    <persname rules="dacs" source="lcnaf">Everson, Arch R.</persname>
+    <corpname authfilenumber="https://viaf.org/viaf/134951307" source="viaf">American Union Against Militarism</corpname>
+    <corpname rules="lcnaf" source="local">United States. | Constitution. 1st-10th Amendments</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/168245714" source="viaf">National Civil Liberties Bureau (U.S.)</corpname>
+    <corpname rules="lcnaf" source="local">Marshall Civil Liberties Trust Fund</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/192149064" source="viaf">New York Times company</corpname>
+    <persname authfilenumber="https://viaf.org/viaf/109866015" source="viaf">Baldwin, Roger N. (Roger Nash), 1884-1981</persname>
+    <persname authfilenumber="https://viaf.org/viaf/108321613" source="viaf">Dorsen, Norman</persname>
+    <persname authfilenumber="https://viaf.org/viaf/62342717" source="viaf">Dulles, John Foster, 1888-1959.</persname>
+    <persname authfilenumber="https://viaf.org/viaf/62786381" source="viaf">Ennis, Bruce J., 1941-</persname>
+    <persname authfilenumber="https://viaf.org/viaf/73168501" source="viaf">Epperson, Susan</persname>
+    <persname rules="lcnaf" source="local">Escobedo, Danny</persname>
+    <persname rules="lcnaf" source="local">Everson, Arch R.</persname>
+    <persname rules="lcnaf" source="local">Gault, Gerald Francis, 1949 or 50-</persname>
+    <persname authfilenumber="https://viaf.org/viaf/16014417" source="viaf">Gideon, Clarence Earl</persname>
+    <persname authfilenumber="https://viaf.org/viaf/41094475" source="viaf">Griswold, Estelle</persname>
+    <persname authfilenumber="http://viaf.org/viaf/11182237" source="viaf">Hays, Arthur Garfield, 1881-1954</persname>
+    <persname authfilenumber="https://viaf.org/79426346" source="viaf">Holtzman, Elizabeth.</persname>
+    <persname rules="lcnaf" source="local">Jacobellis, Nico</persname>
+    <persname authfilenumber="https://viaf.org/viaf/70267189" source="viaf">Levy, Herbert Monte, 1923-</persname>
+    <persname authfilenumber="https://viaf.org/viaf/44691882" source="viaf">Malin, Patrick Murphy, 1903-1964</persname>
+    <persname rules="lcnaf" source="local">Miranda, Ernesto</persname>
+    <persname authfilenumber="https://viaf.org/viaf/273017674" source="viaf">Neier, Aryeh, 1937- </persname>
+    <persname authfilenumber="https://viaf.org/viaf/77597758" source="viaf">Neuborne, Burt, 1941-</persname>
+    <persname authfilenumber="https://viaf.org/viaf/44303100" source="viaf">Nixon, Richard M. Richard Milhous 1913-1994</persname>
+    <persname authfilenumber="https://viaf.org/viaf/7244585" source="viaf">Pemberton, John de J., Jr., 1919-2009</persname>
+    <persname authfilenumber="https://viaf.org/viaf/18767616" source="viaf">Perry, Richard L.</persname>
+    <persname authfilenumber="https://viaf.org/viaf/24606774" source="viaf">Pound, Ezra, 1885-1972.</persname>
+    <persname authfilenumber="https://viaf.org/viaf/47647785" source="viaf">Powell, John A. (John Anthony)</persname>
+    <persname authfilenumber="https://viaf.org/viaf/18518249" source="viaf">Reitman, Alan</persname>
+    <persname rules="lcnaf" source="local">Schempp, Edward L.</persname>
+    <persname authfilenumber="https://viaf.org/viaf/43465470" source="viaf">Schwarzschild, Henry</persname>
+    <persname rules="lcnaf" source="local">Scopes, John Thomas, 1900-1970</persname>
+    <persname authfilenumber="https://viaf.org/viaf/1639216" source="viaf">Seeger, Daniel A.</persname>
+    <persname authfilenumber="https://viaf.org/viaf/4128475" source="viaf">Tinker, John Frederick</persname>
+    <persname rules="rda" source="lcnaf">Wulf, Melvin A.</persname>
   </controlaccess>
   <dsc/>
 </archdesc>

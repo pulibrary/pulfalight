@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/f1881k932">C0274</eadid><filedesc><titlestmt><titleproper>John Witherspoon Collection, 1765-1903 (bulk 1767-1798): Finding Aid <num>C0274</num></titleproper></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2002</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Rd.</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-26 13:59:25 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T15:03:39.408-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/f1881k932">C0274</eadid><filedesc><titlestmt><titleproper>John Witherspoon Collection, 1765-1903 (bulk 1767-1798): Finding Aid <num>C0274</num></titleproper></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2002</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-29 14:29:03 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T15:03:39.408-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
   <did>
     <repository>
       <corpname>Manuscripts Division </corpname>
     </repository>
     <unittitle>John Witherspoon Collection</unittitle>
     <origination label="Creator">
-      <persname authfilenumber="http://viaf.org/viaf/67264669" source="viaf">Witherspoon, John, 1723-1794.</persname>
+      <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="col" source="viaf">Princeton University. Library. Special Collections</corpname>
+    </origination>
+    <origination label="Creator">
+      <persname authfilenumber="https://viaf.org/viaf/67264669" role="cre" source="viaf">Witherspoon, John, 1723-1794</persname>
     </origination>
     <unitid>C0274</unitid>
     <physdesc altrender="whole">
@@ -14,34 +17,31 @@
     </physdesc>
     <unitdate datechar="creation" normal="1765/1903" type="inclusive">1765-1903</unitdate>
     <unitdate datechar="creation" normal="1767/1790" type="bulk">1767-1790</unitdate>
-    <abstract id="aspace_f2bca1a8f8879bb924763bb5ebacf62c">Consists of selected manuscripts, correspondence, and documents of John Witherspoon, who was sixth president of the College of New Jersey (now Princeton University) and a signer of the Declaration of Independence.</abstract>
-    <physloc id="aspace_b37b1ae32a131b2663816b551b43abdf">mss</physloc>
+    <abstract id="aspace_c80471aef871cd6e04837949a3d21504">Consists of selected manuscripts, correspondence, and documents of John Witherspoon, who was sixth president of the College of New Jersey (now Princeton University) and a signer of the Declaration of Independence.</abstract>
+    <physloc id="aspace_ffb9ce1286beff3650f31c0c51a5265a">mss</physloc>
     <langmaterial>
       <language langcode="eng">English</language>
 .    </langmaterial>
   </did>
-  <bioghist id="aspace_C0274_b1">
-    <head>Biographical / Historical</head>
-<p>Born at Gifford, Scotland, in 1723, and a descendant of John Knox, John Witherspoon became the leader of the conservative group of the Church of Scotland. Persuaded by Benjamin Rush and Richard Stockton, both trustees of the College of New Jersey (now Princeton University), to come to America, he became the sixth president of the College of New Jersey (1768 to 1794) as well as a member of the Continental Congress (1776-1782) and the only active clergyman or college president to sign the Declaration of Independence. Witherspoon also helped organize Nassau Presbyterian Church in Princeton, New Jersey.</p>  </bioghist>
-  <scopecontent id="aspace_dc3722e3d9c8834b99410f244696ac11">
+  <scopecontent id="aspace_668e9c3abed5aa3dd5cc095482be640a">
     <head>Scope and Contents</head>
 <p>The collection consists of selected manuscripts, correspondence, and documents of Witherspoon, as well as material about him. Among the manuscripts are a Latin address (1783) to the trustees at Princeton, a Latin oration (1794), and fragments of a sermon (undated). There are receipts (1779) for four Scottish prisoners-of-war, for whom Witherspoon made himself accountable; over twenty letters (1767-1768) by Witherspoon to Benjamin Rush, who was then a medical student in Edinburgh, Scotland; and letters to John Bayard, Henry Lee, James Madison, Jonathan Sergeant, George Washington, and others. One letter (1787) to St. George Tucker discusses Witherspoon's theory of education and the establishment of a grammar school. A signed circular letter (1784) to the Presbytery of New Brunswick seeks funding support in order to deal with consequences of the American Revolution on the College of New Jersey (now Princeton University) campus. Also included are receipts and bills from the Treasurer's Office of the College of New Jersey, two deeds, and notes taken by Abel Johnson (Princeton Class of 1784) of Witherspoon's history lectures. There are also documents regarding a case filed by Witherspoon in a court in the City of New York, dated 4 June 1793, against Lewis Morris for money owed to Witherspoon.</p><p> Additional accessions include material of John Witherspoon as well as material of members of his family. Included are letters by Witherspoon--one to his son David, another addressed "To the Public" (1774), and a letter to Aaron Burr--and material related to the legal suit of Witherspoon vs. Lewis Morris. There are deeds for land signed by Witherspoon's second wife, Ann, to satisfy debts against his estate. Also among the additions are some correspondence of his daughter Marianne Witherspoon Woods and her children, John Witherspoon Woods, Francis W. Woods, James S. Woods, and Margaret J. Woods, a receipt of Witherspoon's son David, and correspondence of other members of his family.</p>  </scopecontent>
-  <accessrestrict id="aspace_79710090176ce4776d7d56862adee69b">
+  <accessrestrict id="aspace_f65b3f0a304b3b5a194c3f23b4d42396">
     <head>Conditions Governing Access</head>
 <p>Collection is open for research use.</p>  </accessrestrict>
-  <userestrict id="aspace_b0b94d5e07d08582b553b491fad86d2c">
+  <userestrict id="aspace_d394a57d02a048e56d7d9f1cdeb4148e">
     <head>Conditions Governing Use</head>
 <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref href="https://library.princeton.edu/special-collections/ask-us" type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
-  <acqinfo id="aspace_fe20f43145feed4350efe84b7ea62e46">
+  <acqinfo id="aspace_19947fe9d7fb9ddde78ef9c898127d5c">
     <head>Immediate Source of Acquisition</head>
 <p>Letters from Potter to Davis and Ewing are a gift og F.S. Acton. Letter to Van Dyke is a gift of Clement R. Hoopes. Notes on Witherspoon lectures are a gift of Thomas A. Gleason. Letters and Portrait of Witherspoon are a gift of Harold T. Shapiro. The remainder purchased in 1978-2010.</p>  </acqinfo>
-  <appraisal id="aspace_30291eab267322cd35049c23042b858d">
+  <appraisal id="aspace_5895cdfd70a56aa45db689b8ffa87a4e">
     <head>Appraisal</head>
 <p>No appraisal information is available.</p>  </appraisal>
-  <originalsloc id="aspace_08bd71bffbd7b8a3c8df48c08b02c24e">
+  <originalsloc id="aspace_4a4af2473efb20d08b327441bcd2438f">
     <head>Existence and Location of Originals</head>
 <p>One box of the collection consists entirely of photocopies of correspondence, documents, and other papers, the originals of which can be found in the collection, the Library of Congress, the Presbyterian Historical Society, and other locations.</p>  </originalsloc>
-  <prefercite id="aspace_f2e313cb0f7fe51fd06292bfe54dd4bc">
+  <prefercite id="aspace_7b456776e57cba63afa7c7ab5ef2c293">
     <head>Preferred Citation</head>
 <p>Identification of specific item; Date (if known); John Witherspoon Collection, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
   <controlaccess>
@@ -52,14 +52,12 @@
     <genreform source="aat">Documents -- 18th century.</genreform>
     <genreform source="aat">Family papers -- 18th century.</genreform>
     <genreform source="aat">Receipts -- 18th century.</genreform>
-    <subject source="local">Princeton University</subject>
     <subject source="local">New Jerseyana</subject>
     <subject source="local">Religion</subject>
-    <persname source="lcnaf">Rush, Benjamin, 1745-1813 -- Correspondence.</persname>
-    <corpname source="lcnaf">Presbyterian Church in the U.S.A. -- Clergy -- 18th century.</corpname>
-    <corpname source="lcnaf">Princeton University -- Presidents -- 18th century.</corpname>
-    <corpname rules="dacs" source="virtual international authority file">College of New Jersey (Princeton, N.J.)</corpname>
-    <corpname rules="dacs" source="virtual international authority file">College of New Jersey (Princeton, N.J.)</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/124979307" source="viaf">College of New Jersey (Princeton, N.J.)</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/130187381" source="viaf">Presbyterian church in the U.S.A.</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/142470589" source="viaf">Princeton university</corpname>
+    <persname authfilenumber="https://viaf.org/viaf/84813377" source="viaf">Rush, Benjamin, 1746-1813</persname>
   </controlaccess>
   <dsc/>
 </archdesc>

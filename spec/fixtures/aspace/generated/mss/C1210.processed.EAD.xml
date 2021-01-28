@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/zw12z533x">C1210</eadid><filedesc><titlestmt><titleproper>Princeton University Library Collection on Slavery in the Americas, 1700-1888 (bulk 1790-1863): Finding Aid <num>C1210</num></titleproper></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2007</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Rd.</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-26 13:59:37 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2013-01-28T14:15:44.666-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-01-07T16:47:15.302-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/zw12z533x">C1210</eadid><filedesc><titlestmt><titleproper>Princeton University Library Collection on Slavery in the Americas, 1700-1888 (bulk 1790-1863): Finding Aid <num>C1210</num></titleproper></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2007</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-29 14:29:17 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2013-01-28T14:15:44.666-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-01-07T16:47:15.302-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
   <did>
     <repository>
       <corpname>Manuscripts Division </corpname>
     </repository>
     <unittitle>Princeton University Library Collection on Slavery in the Americas</unittitle>
     <origination label="Creator">
-      <corpname authfilenumber="http://viaf.org/viaf/168350386" source="viaf">Princeton University Library. Special Collections.</corpname>
+      <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="col" source="viaf">Princeton University. Library. Special Collections</corpname>
+    </origination>
+    <origination label="Creator">
+      <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="cre" source="viaf">Princeton University. Library. Special Collections</corpname>
     </origination>
     <unitid>C1210</unitid>
     <physdesc altrender="whole">
@@ -17,39 +20,35 @@
     </physdesc>
     <unitdate datechar="creation" normal="1700/1888" type="inclusive">1700-1888</unitdate>
     <unitdate datechar="creation" normal="1790/1863" type="bulk">1790-1863</unitdate>
-    <abstract id="aspace_f5e4009da9ade63c96ea990437250b19">Consists of a closed collection of documents related to slavery, the trade of enslaved persons, and the colonial plantation economy, particularly in the United States, the Caribbean, and Brazil in the 18th and 19th centuries.</abstract>
-    <physloc id="aspace_2df24b66941754cd4eb02ccfe3e8e120">mss</physloc>
-    <langmaterial>
-      <language langcode="eng">English</language>
-,       <language langcode="fre">French</language>
-,       <language langcode="por">Portuguese</language>
-.    </langmaterial>
+    <abstract id="aspace_2cc034db3193500de52e2c397ec174f5">Consists of a closed collection of documents related to slavery, the trade of enslaved persons, and the colonial plantation economy, particularly in the United States, the Caribbean, and Brazil in the 18th and 19th centuries.</abstract>
+    <physloc id="aspace_da543ae6e9da56718fc1eeb1646e533a">mss</physloc>
+    <langmaterial id="aspace_62b619026989c5a295b5bf44777f85fc"><language langcode="por"/></langmaterial>
   </did>
-  <scopecontent id="aspace_60b4a1d7a9ec033bf9824111bcd1394d">
+  <scopecontent id="aspace_a870caca76ba1b9d84824169441e94a2">
     <head>Scope and Contents</head>
 <p>Consists of a closed collection of documents related to slavery, the trade of enslaved persons, and the colonial plantation economy, particularly in the United States, the Caribbean, and Brazil in the 18th and 19th centuries. This miscellaneous collection provides a way of locating small accessions of slavery-related material acquired by the Library from various sources.</p><p> The majority of the collection consists of bills of sale, plantation inventories, and other records created by European colonists documenting the sale and valuation of enslaved men, women, and children in the United States, including New Jersey, New York, Tennessee, Louisiana, Kentucky, South Carolina, Georgia, and Mississippi; the Three Mile River Estate in Westmoreland, Jamaica; the Mount Charles (Middleton) Plantation in Saint Thomas Parish, Jamaica, which was owned by Sir Henry Clinton (1738?-1795); and the plantation estate of John Lavicount in Antigua. Also present is a document containing statistics on enslaved populations for each state copied from the United States Census of 1790, as well as a 1820 deed of freedom for a formerly enslaved man in Brazil.</p><p> There are also several indentures for domestic apprenticeship or enslavement of African American and multiracial children in Delaware, Massachusetts, New Jersey, and New York, which date from the 1790s through the 1820s, including for two children apprenticed to United States Representative Killian K. Van Rensselaer (1763-1845) of New York.</p><p> Materials related to ships involved in the transatlantic trade in enslaved Africans include a price list taken from the log of the English merchant ship Daniel and Henry, which was employed along the Gold Coast of West Africa (1700); an account book for the French privateer ship Républicaine (1798-1799); and a sales agreement and invoice for the cargo of the American ship Favourite (1804).</p><p> Additional letters and documents pertain to efforts to extend slavery throughout the Americas, including copied documents regarding the status of enslaved and free people of color following the British capture of Martinique from French colonial rule in 1794; a letter between French generals working to suppress revolutionary efforts during the Haitian Revolution; and a letter between United States politicians regarding congressional debates over the expansion of slavery into the California and New Mexico territories in the late 1840s.</p><p> The Documents on Slavery in Brazil file group consists of 77 miscellaneous legal and other documents, as well as one book, dating from 1758 to 1888, pertaining to the history of the history of slavery in Brazil as a Portuguese colony and later as the Empire of Brazil, until the abolition of slavery in 1887. Titles and description are transcribed exactly as they are on the dealer's inventory received with the materials. The folder numbers correspond with the item number in the dealer's inventory.</p><p> This collection was formerly referred to as the "Miscellaneous Slavery Collection." No additions will be made to this collection. Accessions relating to this topic will be added to the General Manuscripts Miscellaneous Collection (C0140).</p>  </scopecontent>
-  <arrangement id="aspace_5e44413a3520f75a57b6bde12b01027e">
+  <arrangement id="aspace_36df65ac7beec058dbf9b40003937c73">
     <head>Arrangement</head>
 <p>Materials are grouped by accession.</p>  </arrangement>
-  <accessrestrict id="aspace_06a7cea7ce95c95cd05b5f0a0a76ce98">
+  <accessrestrict id="aspace_ab87f92832da6a409abdaa396b9bfd76">
     <head>Conditions Governing Access</head>
 <p>Open for research.</p>  </accessrestrict>
-  <userestrict id="aspace_482febcebaf84c17fad9672c43b85741">
+  <userestrict id="aspace_d36d4509135ad01b0d03e834d5d43993">
     <head>Conditions Governing Use</head>
 <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref href="https://library.princeton.edu/special-collections/ask-us" type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
-  <acqinfo id="aspace_89d772d1e46461bfc6fa6b19c0c92484">
+  <acqinfo id="aspace_30704353b9272ac11a41a6490ec0d2a2">
     <head>Immediate Source of Acquisition</head>
 <p>This collection was formed in 2007 as a result of a departmental practice of combining into one collection material of various accessions relating to a particular person, family, or subject. Materials have been acquired through multiple purchases and gifts.</p>  </acqinfo>
-  <appraisal id="aspace_057938a348dc627fed0e529a5f9a3f4e">
+  <appraisal id="aspace_ef2b86ada74121bf86df686b40951005">
     <head>Appraisal</head>
 <p>No material was removed from the collection during 2017-2019 processing.</p>  </appraisal>
-  <separatedmaterial id="aspace_98717489f058c46c0321c17a338905ae">
+  <separatedmaterial id="aspace_cba9eb33f8cee5b73b42645d3e8daad1">
     <head>Separated Materials</head>
 <p>During 2017 processing, materials that did not fit into the topical scope of slavery in the Americas were separated and placed into different collections. Simeon Johnson materials (AM 16859) were separated and made into a collection: <extref href="http://arks.princeton.edu/ark:/88435/qv33s091p" type="simple">Simeon Johnson Papers (C1589)</extref>. Two Frederick Douglass <extref href="https://findingaids.princeton.edu/collections/C0140/c03358" type="simple">letters</extref> (AM 12182), a William Ellery <extref href="https://findingaids.princeton.edu/collections/C0140/c03361" type="simple">manuscript</extref> (AM 2013-59), and military <extref href="https://findingaids.princeton.edu/collections/C0140/c03362" type="simple">correspondence</extref> regarding African American soldiers in Tennessee after the Civil War (AM 12182) were separated and placed into the General Manuscripts Miscellaneous Collection (C0140).</p>  </separatedmaterial>
-  <prefercite id="aspace_efa3316b195cd7ee306797d28930358c">
+  <prefercite id="aspace_c615bb00695ca336b4f1f4ee3858471f">
     <head>Preferred Citation</head>
 <p>Identification of specific item; Date (if known); Princeton University Library Collection on Slavery in the Americas, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
-  <processinfo id="aspace_a83fd90672ccfe857fe0aa0876eb7009">
+  <processinfo id="aspace_aef94b86b7de0ca9a81b7bc17ba1052e">
     <head>Processing Information</head>
 <p>This collection was processed by Dina Britain on August 20, 2007. Finding aid written by Traci Ballou-Broadnax on September 5, 2007.</p><p> Finding aid revised by Kelly Bolding in 2017 to improve description of enslaved people and separate materials that did not fit within the collection scope. Finding updated with new material by Kelly Bolding in February 2018, September 2018, October 2018, April 2019, June 2019, August 2019, September 2019, and January 2020.</p><p> Finding aid updated with new acquisition by Armando Suarez in January 2019.</p><p> No additions will be made to this collection. Accessions relating to this topic will be added to the General Manuscripts Miscellaneous Collection (C0140).</p>  </processinfo>
   <controlaccess>
@@ -105,7 +104,6 @@
     <subject source="local">Black history</subject>
     <subject source="local">European history</subject>
     <persname authfilenumber="https://viaf.org/viaf/75667421" source="viaf">Van Rensselaer, K. K. (Killian Killian), 1763-1845</persname>
-    <persname authfilenumber="https://viaf.org/viaf/24977713" source="virtual international authority file">Clinton, Henry, Sir</persname>
   </controlaccess>
   <dsc/>
 </archdesc>
