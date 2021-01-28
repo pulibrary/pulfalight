@@ -389,6 +389,14 @@ to_field "physloc_ssm" do |_record, accumulator, context|
   values = context.output_hash["physloc_sim"]
   accumulator.concat(values)
 end
+to_field "location_info_tesim" do |_record, accumulator, context|
+  values = context.output_hash["physloc_sim"]
+  collection_unitid = Array.wrap(context.output_hash["collection_unitid_ssm"]).first
+  values = values.map do |value|
+    "#{collection_unitid} #{value}"
+  end
+  accumulator.concat(values)
+end
 
 to_field "language_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
