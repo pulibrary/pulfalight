@@ -5872,7 +5872,7 @@ loglevel@^1.6.8:
   resolved "https://registry.yarnpkg.com/loglevel/-/loglevel-1.7.0.tgz#728166855a740d59d38db01cf46f042caa041bb0"
   integrity sha512-i2sY04nal5jDcagM3FMfG++T69GEEM8CYuOfeOIvmXzOIcwE9a/CJPR0MFM97pYMj/u10lzz7/zd7+qwhrBTqQ==
 
-loose-envify@^1.0.0:
+loose-envify@^1.0.0, loose-envify@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -5909,10 +5909,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lux-design-system@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-3.0.2.tgz#4c6c7500fb9bc31965b4b12bf87957bbabfa5e0f"
-  integrity sha512-ThSbLqdbmNygK/a0/l8cY4EN8EMcIjBTuAM6/ipPS3nrnhv0ErsEozu1McqCBZnnA6EHaheb7HH/N0ExhdrYGg==
+lux-design-system@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-3.1.0.tgz#73a8d16f43836a657384ff52a69fc7f0f4ab8fb0"
+  integrity sha512-oOype2ZW9mQnqngxO7bdEs7x87PfjyHHj8R2K8AMd9GeZ7Rt7lm+CePw1+DysH8BVYMztRucZxBY0HFdWyjmLQ==
   dependencies:
     lodash "^4.17.11"
     mini-css-extract-plugin "^0.4.5"
@@ -5925,6 +5925,7 @@ lux-design-system@^3.0.2:
     v-calendar "^0.9.7"
     vue "^2.5.18"
     vue-cookies "^1.7.4"
+    vue-focus "^2.1.0"
     vue-lodash "^2.0.0"
     vue-meta "^1.5.6"
     vue-router "^3.0.2"
@@ -9560,6 +9561,13 @@ vue-cookies@^1.7.4:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/vue-cookies/-/vue-cookies-1.7.4.tgz#d241d0a0431da0795837651d10b4d73e7c8d3e8d"
   integrity sha512-mOS5Btr8V9zvAtkmQ7/TfqJIropOx7etDAgBywPCmHjvfJl2gFbH2XgoMghleLoyyMTi5eaJss0mPN7arMoslA==
+
+vue-focus@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/vue-focus/-/vue-focus-2.1.0.tgz#7a0337ce9074d5ef03d15a4b5b862cf45e5e04e3"
+  integrity sha1-egM3zpB01e8D0VpLW4Ys9F5eBOM=
+  dependencies:
+    loose-envify "^1.2.0"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"

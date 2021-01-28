@@ -45,6 +45,7 @@ describe "viewing catalog records", type: :feature, js: true do
         find("#item-MC148_c00002 > td > button").click
       end
 
+      expect(page).to have_selector ".cart-view-toggle-block > div > button"
       # Open the cart again
       find(".cart-view-toggle-block > div > button").click
       within(".request-cart") do

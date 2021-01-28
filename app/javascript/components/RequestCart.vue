@@ -14,7 +14,8 @@
             type="button"
             variation="text"
             class="denied-button"
-            aria-labelledby="denied"
+            aria-labelledby="closeCart"
+            focused
             >
 
             <div class="lux-icon">
@@ -23,11 +24,11 @@
                 width="1em"
                 height="1em"
                 viewBox="0 0 16 16"
-                aria-labelledby="denied"
+                aria-labelledby="closeCart"
                 role="img"
                 fill="#6e757c"
                 >
-                <title id="denied" lang="en">denied</title>
+                <title id="closeCart" lang="en">close cart</title>
                 <x-circle-icon></x-circle-icon>
               </svg>
             </div>
@@ -171,6 +172,14 @@ export default {
       set() {
         this.$store.commit("TOGGLE_VISIBILITY")
       }
+    }
+  },
+  watch: {
+    isVisible (newIsVisible, oldIsVisible) {
+      if(newIsVisible){
+        console.log(this.$refs.close)
+      }
+      // console.log(`Are we visible? Answer: ${newIsVisible}`)
     }
   },
   methods: {
