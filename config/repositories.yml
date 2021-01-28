@@ -9,7 +9,7 @@ cotsen:
   zip: '08544'
   country: 'USA'
   phone: '(609) 258-1148'
-  contact_info: 'aimmel [at] princeton [dot] edu'
+  contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
   visit_note: ""
 
@@ -24,7 +24,7 @@ eng:
   zip: '08540'
   country: 'USA'
   phone: '(609) 258-3200'
-  contact_info: 'englib [at] princeton [dot] edu'
+  contact_info: 'englib@princeton.edu'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/eng.jpg"
   visit_note: ""
 
@@ -39,7 +39,7 @@ ga:
   zip: '08544'
   country: 'USA'
   phone: '(609) 258-3184'
-  contact_info: 'rbsc [at] princeton [dot] edu'
+  contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
   visit_note: ""
 
@@ -54,7 +54,7 @@ lae:
   zip: '08544'
   country: 'USA'
   phone: '(609) 258-5964'
-  contact_info: 'refdesk [at] princeton [dot] edu'
+  contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
   visit_note: ""
 
@@ -69,7 +69,7 @@ mss:
   zip: '08544'
   country: 'USA'
   phone: '(609) 258-3184'
-  contact_info: 'rbsc [at] princeton [dot] edu'
+  contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
   visit_note: ""
 
@@ -84,7 +84,7 @@ publicpolicy:
   zip: '08540'
   country: 'USA'
   phone: '(609) 258-6345'
-  contact_info: 'mudd [at] princeton [dot] edu'
+  contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/publicpolicy.jpg"
   visit_note: ""
 
@@ -99,7 +99,7 @@ rarebooks:
   zip: '08544'
   country: 'USA'
   phone: '(609) 258-3184'
-  contact_info: 'rbsc [at] princeton [dot] edu'
+  contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
   visit_note: ""
 
@@ -114,7 +114,7 @@ selectors:
   zip: '08544'
   country: 'USA'
   phone: '(609) 258-1470'
-  contact_info: 'refdesk [at] princeton [dot] edu'
+  contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
   visit_note: ""
 
@@ -129,7 +129,7 @@ selectors:
   zip: '08544'
   country: 'USA'
   phone: '(609) 258-1470'
-  contact_info: 'refdesk [at] princeton [dot] edu'
+  contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
 
 univarchives:
@@ -142,6 +142,6 @@ univarchives:
   zip: '08540'
   country: 'USA'
   phone: '(609) 258-6345'
-  contact_info: 'mudd [at] princeton [dot] edu'
+  contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/univarchives.jpg"
   visit_note: ""
