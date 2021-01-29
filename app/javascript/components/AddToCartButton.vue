@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <button @click="addToCart">
-      <slot />
-    </button>
-  </div>
+  <input-button type="button" variation="text" v-on:button-clicked="addToCart">
+    <slot />
+  </input-button>
 </template>
 
 <script>

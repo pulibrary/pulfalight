@@ -32,7 +32,7 @@ describe "viewing catalog records", type: :feature, js: true do
     it "renders a request button which opens a request cart form" do
       visit "/catalog/MC148_c00002"
 
-      find(".add-to-cart-block > button").click
+      find(".add-to-cart-block").click
       within(".request-cart") do
         expect(page).to have_selector "button.denied-button"
         expect(page).to have_selector "#item-MC148_c00002"

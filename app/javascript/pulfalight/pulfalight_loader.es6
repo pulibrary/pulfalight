@@ -6,6 +6,7 @@ import "lux-design-system/dist/system/tokens/tokens.scss"
 import store from '../store'
 import RequestCart from '../components/RequestCart'
 import AddToCartButton from '../components/AddToCartButton'
+import AddToCartIcon from '../components/AddToCartIcon'
 import CartViewToggle from '../components/CartViewToggle'
 import TocBuilder from "../pulfalight/toc.es6"
 import LibCalHours from "../pulfalight/lib_cal_hours.es6"
@@ -59,6 +60,7 @@ export default class {
         components: {
           'request-cart': RequestCart,
           'add-to-cart-button': AddToCartButton,
+          'add-to-cart-icon': AddToCartIcon,
           'cart-view-toggle': CartViewToggle
         }
       })
