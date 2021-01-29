@@ -245,7 +245,7 @@ describe "viewing catalog records", type: :feature, js: true do
         within("#access") do
           # Access Restrictions
           expect(page).to have_selector "dt.blacklight-accessrestrict_ssm", text: "Access Restrictions"
-          expect(page).to have_selector "dd.blacklight-accessrestrict_ssm", text: /LINKED DIGITAL CONTENT NOTE:/
+          expect(page).to have_selector "dd.blacklight-accessrestrict_ssm", text: /Collection is open for research use./
           # Use Restrictions
           expect(page).to have_selector "dt.blacklight-userestrict_ssm", text: "Conditions for Reproduction and Use"
           expect(page).to have_selector "dd.blacklight-userestrict_ssm", text: /Single photocopies/
