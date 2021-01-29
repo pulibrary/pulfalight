@@ -265,11 +265,11 @@ class SolrDocument
   end
 
   def date_created
-    fetch("unitdate_inclusive_ssm", [])
+    fetch("normalized_date_ssm", [])
   end
 
   def created
-    fetch("normalized_date_ssm", [])
+    fetch("unitdate_inclusive_ssm", [])
   end
 
   def extent_and_dimensions
