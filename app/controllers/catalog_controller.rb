@@ -321,6 +321,7 @@ class CatalogController < ApplicationController
     config.add_summary_field "creators_ssim", label: "Creator", link_to_facet: true
     config.add_summary_field "title_ssm", label: "Title"
     config.add_summary_field "repository_ssm", label: "Repository"
+    config.add_summary_field "ark_tsim", label: "Permanent URL", helper_method: :ark_link
     config.add_summary_field "normalized_date_ssm", label: "Dates"
     config.add_summary_field "extent_ssm", label: "Size"
     config.add_summary_field "storage_notes", label: "Storage Note", accessor: :storage_notes

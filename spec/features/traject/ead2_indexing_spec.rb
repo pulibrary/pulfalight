@@ -76,6 +76,9 @@ describe "EAD 2 traject indexing", type: :feature do
       component = components.first["components"].first["components"].first
       expect(component["barcodes_ssim"]).to eq ["32101080851049"]
     end
+    it "indexes ark" do
+      expect(result["ark_tsim"]).to eq ["http://arks.princeton.edu/ark:/88435/xp68kk489"]
+    end
   end
 
   describe "container indexing" do
