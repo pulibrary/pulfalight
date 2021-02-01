@@ -42,12 +42,10 @@ for information regarding the configuration of repositories in ArcLight.
 
 #### Configuring ASpace
 
-Create a .env file in the root of the project with the following information
 
-```
-ASPACE_USER=yourusername
-ASPACE_PASSWORD=yourpassword
-```
+1. `brew install lastpass-cli`
+2. `lpass login emailhere`
+3. `bundle exec rake pulfalight:setup_keys`
 
 #### Index "Interesting" EADs
 A sub-section of all our collections have been identified and can be queued up

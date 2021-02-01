@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/9c67wm83b">C0033</eadid><filedesc><titlestmt><titleproper>Felix Limongi Collection of Louisiana Slavery and Civil War Materials, 1722-1872 (bulk 1802-1872): Finding Aid <num>C0033</num></titleproper><author>Karla J. Vecchia</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2004</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Rd.</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-26 18:18:29 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T12:59:42.684-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-08-29T16:55:57.957-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/9c67wm83b">C0033</eadid><filedesc><titlestmt><titleproper>Felix Limongi Collection of Louisiana Slavery and Civil War Materials, 1722-1872 (bulk 1802-1872): Finding Aid <num>C0033</num></titleproper><author>Karla J. Vecchia</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2004</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-29 14:29:30 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T12:59:42.684-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-08-29T16:55:57.957-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
   <did>
     <repository>
       <corpname>Manuscripts Division </corpname>
     </repository>
     <unittitle>Felix Limongi Collection of Louisiana Slavery and Civil War Materials</unittitle>
     <origination label="Creator">
-      <persname rules="rda" source="uncontrolled">Limongi, Felix</persname>
+      <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="col" source="viaf">Princeton University. Library. Special Collections</corpname>
+    </origination>
+    <origination label="Creator">
+      <persname authfilenumber="https://viaf.org/viaf/65734429" role="col" source="viaf">Limongi, Felix</persname>
     </origination>
     <unitid>C0033</unitid>
     <physdesc altrender="whole">
@@ -17,48 +20,41 @@
     </physdesc>
     <unitdate datechar="creation" normal="1722/1872" type="inclusive">1722-1872</unitdate>
     <unitdate datechar="creation" normal="1802/1872" type="bulk">1802-1872</unitdate>
-    <abstract id="aspace_fbca9d64b6b4c5c70fdc83782722c763">Consists of several small groups of papers regarding slavery, the American Civil War, and related legal matters in Louisiana, primarily during the 19th century, which were assembled by collector Felix Limongi. Materials include estate records of Marie Claire Chabert (1769-1847), a formerly enslaved free African American woman who purchased and manumitted her family members and owned land in New Orleans; correspondence of Benjamin F. Butler (1818-1893); papers of the law firm Durant &amp; Hornor regarding legal cases brought against the Union Army after the Civil War; as well as some miscellaneous documents and correspondence pertaining to Louisiana history.</abstract>
-    <physloc id="aspace_efdb28b8b9192ff844ae4f3454cbc54c">mss</physloc>
-    <langmaterial>
-      <language langcode="eng">English</language>
-,       <language langcode="fre">French</language>
-,       <language langcode="spa">Spanish; Castilian</language>
-.    </langmaterial>
+    <abstract id="aspace_fc1b8058cd1e69ac3bccae5491ec4513">Consists of several small groups of papers regarding slavery, the American Civil War, and related legal matters in Louisiana, primarily during the 19th century, which were assembled by collector Felix Limongi. Materials include estate records of Marie Claire Chabert (1769-1847), a formerly enslaved free African American woman who purchased and manumitted her family members and owned land in New Orleans; correspondence of Benjamin F. Butler (1818-1893); papers of the law firm Durant &amp; Hornor regarding legal cases brought against the Union Army after the Civil War; as well as some miscellaneous documents and correspondence pertaining to Louisiana history.</abstract>
+    <physloc id="aspace_b1d6bbe41996a2d0ec689a461f4669be">mss</physloc>
+    <langmaterial id="aspace_e6d569ba4cc2745750ba490f84f4c94f"><language langcode="spa"/></langmaterial>
   </did>
-  <bioghist id="aspace_C0033_b1">
-    <head>Biographical / Historical</head>
-<p>Felix Limongi (1865-1929) was a merchant and stamp collector who lived in New Orleans and Covington, Louisiana. His father was Francis Limongi (1838–1914), an Italian immigrant and grocer who settled in New Orleans, and his mother was Louisa Saillard (1846–1909).</p>  </bioghist>
-  <scopecontent id="aspace_16aa0064387c3f6e6ed0c1dae65112a8">
+  <scopecontent id="aspace_23eb322887bff8605a48ea2c2a0b5090">
     <head>Scope and Contents</head>
 <p>The collection consists of several small groups of papers regarding slavery, the American Civil War, and related legal matters in New Orleans, Louisiana, primarily in the 19th century. Assembled by collector Felix Limongi, many of the papers originate from the law firm Durant &amp; Hornor during the time it was based on Carondelet Street in New Orleans. The collection sheds light on black families and black familial slaveholding in 19th century Louisiana, as well as on Reconstruction-era legal cases over property seized by the Union Army during the Civil War.</p><p> One group of papers (1805-1864) consists of the estate records of Marie Claire Chabert (1769-1847), an African American woman who was born into slavery, purchased and manumitted by Jacques Tisserand (a free black man who was formerly enslaved on the same plantation), and lived as a free black woman ("négresse libre") who owned property in the Faubourg Ste. Marie neighborhood of New Orleans from the 1810s to the 1840s. The records, which include deeds of manumission, bills of sale, purchase and tax receipts, wills, and other legal and financial documents, pertain to Chabert's own manumission, her activities managing the estate of Tisserand which he bequeathed to her, her acquisition of land, and her efforts to purchase and manumit her own family members, including several nieces and her husband Michel Bouligny.</p><p> Durant &amp; Hornor papers (1854-1872) consist of correspondence and documents of Philadelphia-born attorneys Thomas Jefferson Durant (1817-1882) and Charles West Hornor (1813-1905) that date to the early Reconstruction period. Most of this material regards various Civil War claims and cases of civilians against the Union Army to recover property or receive damages. Of note is a group of correspondence pertaining to a case brought by James Cosgrove against Benjamin F. Butler (1818-1893) over the seizure of property from his store.</p><p> There are also some miscellaneous correspondence and documents about early Louisiana history collected by Limonge, including letters from William C. C. Claiborne (1775-1817), Edmund Pendleton Gaines (1777–1849), Henry Clay (1777-1852), and Ulysses S. Grant (1822-1885), as well as manuscripts by Charles René Bougués (1722) and General V. Beaufort (1802), broadsides, and printed documents reporting on events in Louisiana.</p><p> This collection was formerly referred to as the "Louisiana Slavery and Civil War Collection."</p>  </scopecontent>
-  <arrangement id="aspace_5ad305d44960a1af1d09c519bb152c3c">
+  <arrangement id="aspace_e790b1f943131ad411f2a3a3839a45d2">
     <head>Arrangement</head>
 <p>The collection has been organized into four primary groupings, each of which is mostly arranged chronologically.</p>  </arrangement>
-  <accessrestrict id="aspace_015a9610158629ae29fd5799c1241189">
+  <accessrestrict id="aspace_78fc0538b3bedc6ce3c5ae17ec2eff8f">
     <head>Conditions Governing Access</head>
 <p>Collection is open for research use.</p>  </accessrestrict>
-  <userestrict id="aspace_c5548cb791f91c22e776f7cd090ef49c">
+  <userestrict id="aspace_e45839c1417ade29719a815bf8189eac">
     <head>Conditions Governing Use</head>
 <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref href="https://library.princeton.edu/special-collections/ask-us" type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
-  <custodhist id="aspace_d57729c10e1f69eb0c943b537f5a33db">
+  <custodhist id="aspace_95d17237b6d62a3acafebddc27cfc3b8">
     <head>Custodial History</head>
 <p>Mr. Gest acquired the collection from Felix Limongi. Limongi acquired many of the papers from the offices of the New Orleans law firm Durant &amp; Hornor, though he may have added some material from other sources. A note left by Limongi states that he came across the Marie Claire Chabert records sometime before March 1926 while collecting postage stamps, though it is unclear from available documentation if he also acquired them via Durant &amp; Hornor.</p>  </custodhist>
-  <acqinfo id="aspace_883b117eb34c612abb9645efecbd8265">
+  <acqinfo id="aspace_c7c905ebd17adcac422df4fd2b1a7153">
     <head>Immediate Source of Acquisition</head>
 <p>The collection was purchased from Mr. Gest in August 1948 (AM 13719).</p>  </acqinfo>
-  <appraisal id="aspace_edd3e35dd561644c8e1a0bbc21bca7ea">
+  <appraisal id="aspace_3d67629a4d053c6be20d575f7512c9fe">
     <head>Appraisal</head>
 <p>No materials were separated from the collection during 2018 reprocessing.</p>  </appraisal>
-  <relatedmaterial id="aspace_e3f3e573eda24f284a6a84fd0e001fcf">
+  <relatedmaterial id="aspace_d0d64725cd0aa55f379bd157d0a4a94a">
     <head>Related Materials</head>
 <p>Library of Congress Manuscript Division: Felix Limongi Collection. MMC-0380. <extref type="simple" href="https://lccn.loc.gov/mm79049221">https://lccn.loc.gov/mm79049221</extref></p>  </relatedmaterial>
-  <prefercite id="aspace_f42d3763ead223f9d9ccd3a52086ef68">
+  <prefercite id="aspace_0544f07d7c9d0788b19637e42fa6aed9">
     <head>Preferred Citation</head>
 <p>Identification of specific item; Date (if known); Felix Limongi Collection of Louisiana Slavery and Civil War Materials, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
-  <processinfo id="aspace_3f69d1328af492c4b4d95212274c5ce8">
+  <processinfo id="aspace_4fbb648b3034c036c8cb35fb40da9d18">
     <head>Processing Information</head>
 <p>This collection was processed by Karla J. Vecchia in 2004. Finding aid written by Karla J. Vecchia in 2004.</p><p> This collection was reprocessed and the description was enhanced by Kelly Bolding in October 2018. A biographical note about Marie Claire Chabert was added at this time.</p>  </processinfo>
-  <bibliography id="aspace_bc8eb9328d5a6db5026ad853d859132f">
+  <bibliography id="aspace_abff8dad45237b623014dd98168fca32">
     <head>Bibliography</head>
 <p>The following sources were consulted during preparation of the finding aid and biographical note for Marie Claire Chabert: Inventories of Estates, C Surnames, Cabouret, 1846 - Cornu, 1849. Louisiana, Orleans Parish Estate Files. New Orleans (Louisiana) City Archives. Sharafi, Mitra. "The Slaves and Slavery of Marie Claire Chabert: Familial Black Slaveholding in Antebellum Louisiana." Journal of Civil Law Studies 4.1 (2011): 187-215.</p>  </bibliography>
   <controlaccess>
@@ -84,14 +80,14 @@
     <genreform source="aat">Wills -- 19th century.</genreform>
     <subject source="local">American history/Civil War and Reconstruction</subject>
     <subject source="local">Black history</subject>
-    <persname authfilenumber="http://viaf.org/viaf/66505625" source="viaf">Grant, Ulysses S. (Ulysses Simpson), 1822-1885.</persname>
-    <persname rules="rda" source="uncontrolled">Hornor, Charles West, 1813-1905</persname>
-    <persname rules="rda" source="uncontrolled">Tisserand, Jacques, -1808</persname>
-    <corpname rules="dacs" source="viaf">Durant &amp;Hornor</corpname>
-    <persname rules="rda" source="uncontrolled">Chabert, Marie Claire, 1769-1847</persname>
-    <persname authfilenumber="https://viaf.org/viaf/64804990" rules="dacs" source="viaf">Butler, Benjamin F. (Benjamin Franklin), 1818-1893.</persname>
-    <persname authfilenumber="https://viaf.org/viaf/68071762" rules="dacs" source="viaf">Durant, Thomas J. (Thomas Jefferson), 1817-1882</persname>
+    <corpname rules="viaf" source="local">Durant &amp; Hornor</corpname>
+    <persname authfilenumber="https://viaf.org/viaf/64804990" source="viaf">Butler, Benjamin F. (Benjamin Franklin), 1818-1893.</persname>
+    <persname rules="rda" source="lcnaf">Chabert, Marie Claire, 1769-1847</persname>
+    <persname authfilenumber="https://viaf.org/viaf/68071762" source="viaf">Durant, Thomas J. (Thomas Jefferson), 1817-1882</persname>
+    <persname authfilenumber="https://viaf.org/viaf/66505625" source="viaf">Grant, Ulysses S. (Ulysses Simpson), 1822-1885.</persname>
+    <persname rules="rda" source="lcnaf">Hornor, Charles West, 1813-1905</persname>
+    <persname rules="rda" source="lcnaf">Tisserand, Jacques, -1808</persname>
   </controlaccess>
-  <dsc><c id="aspace_C0033_c001" level="series"><did><unittitle>Marie Claire Chabert Estate Records</unittitle><origination label="Creator"><persname rules="rda" source="uncontrolled">Chabert, Marie Claire, 1769-1847</persname></origination><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent></physdesc><unitdate datechar="creation" normal="1805-02-11/1864-12-31" type="inclusive">1805 February 11-1864</unitdate></did><accessrestrict id="aspace_6c307477e2584a2cc45fe6a31bdc8fe5"><head>Conditions Governing Access</head><p>Collection is open for research use.</p></accessrestrict><scopecontent id="aspace_f0715c07ca01d76d10649119656563ca"><head>Scope and Contents</head><p>Consists of estate records of Marie Claire Chabert (1769-1847), a free African American woman and property owner living in 19th century New Orleans prior to the Civil War. The earliest materials consist of records of Jacques Tisserand documenting his purchase and manumission of Chabert, as well as her management of his estate, which he bequeathed to her. Documents related to Chabert's own property in New Orleans include an act of sale and survey of two lots of land she purchased from Joseph Bocage in 1810, a certificate regarding a sidewalk survey conducted in 1841, as well as her tax receipts from 1811 to 1845. There are also a number of legal records, including bills of sale, manumission papers, and wills documenting her efforts to purchase and manumit her own family members, including several nieces (Marie Jeanne, Martine, Adélaïde, and Louise), a woman named Rosalie, and Michel Bouligny, a man whom she later married. There are also bills for funeral expenses Chabert paid following the deaths of Rosalie and her husband. The two separate versions of Chabert's will present in the collection document her efforts to manumit and bequeath her property to her remaining family members while navigating legal prohibitions on enslaved persons' ability to inherit.</p><p> There is also a narrative account of Chabert's life and description of the papers, which was written and inserted later by collector Felix Limongi.</p></scopecontent><arrangement id="aspace_0b6ca333f9ca23ec7aa0daf22e171b98"><head>Arrangement</head><p>Limongi's account is followed by papers of Marie Claire Chabert arranged chronologically. Tax receipts are filed together at the end of the chronological run.</p></arrangement></c></dsc>
+  <dsc><c id="aspace_C0033_c001" level="series"><did><unittitle>Marie Claire Chabert Estate Records</unittitle><origination label="Creator"><persname role="cre" rules="rda" source="lcnaf">Chabert, Marie Claire, 1769-1847</persname></origination><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent></physdesc><unitdate datechar="creation" normal="1805-02-11/1864-12-31" type="inclusive">1805 February 11-1864</unitdate></did><accessrestrict id="aspace_0b3856897e9aa73a14d02bddc14d4163"><head>Conditions Governing Access</head><p>Collection is open for research use.</p></accessrestrict><scopecontent id="aspace_e9a1739e58a1fc73ae4a5f28f6735f5b"><head>Scope and Contents</head><p>Consists of estate records of Marie Claire Chabert (1769-1847), a free African American woman and property owner living in 19th century New Orleans prior to the Civil War. The earliest materials consist of records of Jacques Tisserand documenting his purchase and manumission of Chabert, as well as her management of his estate, which he bequeathed to her. Documents related to Chabert's own property in New Orleans include an act of sale and survey of two lots of land she purchased from Joseph Bocage in 1810, a certificate regarding a sidewalk survey conducted in 1841, as well as her tax receipts from 1811 to 1845. There are also a number of legal records, including bills of sale, manumission papers, and wills documenting her efforts to purchase and manumit her own family members, including several nieces (Marie Jeanne, Martine, Adélaïde, and Louise), a woman named Rosalie, and Michel Bouligny, a man whom she later married. There are also bills for funeral expenses Chabert paid following the deaths of Rosalie and her husband. The two separate versions of Chabert's will present in the collection document her efforts to manumit and bequeath her property to her remaining family members while navigating legal prohibitions on enslaved persons' ability to inherit.</p><p> There is also a narrative account of Chabert's life and description of the papers, which was written and inserted later by collector Felix Limongi.</p></scopecontent><arrangement id="aspace_cbe3a2ffeef5cee411cebc89d73f7e86"><head>Arrangement</head><p>Limongi's account is followed by papers of Marie Claire Chabert arranged chronologically. Tax receipts are filed together at the end of the chronological run.</p></arrangement></c></dsc>
 </archdesc>
 </ead>

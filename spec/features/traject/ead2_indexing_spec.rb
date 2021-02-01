@@ -319,7 +319,7 @@ describe "EAD 2 traject indexing", type: :feature do
         # Description, do not propagate.
         expect(result["scopecontent_ssm"]).to eq ["The Harold B. Hoskins Papers consist of correspondence, diaries, notes, photographs, publications, maps, and professional files that document Hoskins' personal and professional activities, as well as the Hoskins family. See individual series descriptions for more specific information on each series."]
         # Access restriction, propagate
-        expect(result["accessrestrict_ssm"]).to eq ["LINKED DIGITAL CONTENT NOTE: Please note that some previously linked digital content is temporarily unavailable while the data is being migrated from an outdated access service. If you would like to access this content, please send a request to <a href=\"https://library.princeton.edu/special-collections/ask-us\">Mudd Library</a>.", "The collection is open for research use."]
+        expect(result["accessrestrict_ssm"]).to eq ["The collection is open for research use."]
         expect(result["components"][0]["accessrestrict_ssm"]).to eq result["accessrestrict_ssm"]
         # Use restriction, propagate
         expect(result["userestrict_ssm"]).to eq ["Single photocopies may be made for research purposes. For quotations that are fair use as defined under <a href=\"http://copyright.princeton.edu/basics/fair-use\">U. S. Copyright Law</a>, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use."]
@@ -408,7 +408,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#physloc_code_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "rarebooks", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "resolves and indexes the physical location code" do
@@ -427,7 +427,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#location_code_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "rarebooks", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "resolves and indexes the location code" do
@@ -438,7 +438,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#location_note_ssm" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "rarebooks", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "indexes the location note" do
@@ -481,7 +481,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
   describe "#names_ssim" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "rarebooks", "WC064.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
     end
 
     it "does not include staff names" do

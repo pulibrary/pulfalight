@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/z029p473t">C0841</eadid><filedesc><titlestmt><titleproper>Noël Riley Fitch Papers, 1858-2012 (bulk 1965-1995): Finding Aid <num>C0841</num></titleproper><author>Barabara Voz</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2005</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Rd.</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-26 13:59:41 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T14:53:31.99-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/z029p473t">C0841</eadid><filedesc><titlestmt><titleproper>Noël Riley Fitch Papers, 1858-2012 (bulk 1965-1995): Finding Aid <num>C0841</num></titleproper><author>Barabara Voz</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2005</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-01-29 14:29:21 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T14:53:31.99-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
   <did>
     <repository>
       <corpname>Manuscripts Division </corpname>
     </repository>
     <unittitle>Noël Riley Fitch Papers</unittitle>
     <origination label="Creator">
-      <persname authfilenumber="http://viaf.org/viaf/41854941" role="cre" source="virtual international authority file">Fitch, Noël Riley</persname>
+      <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="col" source="viaf">Princeton University. Library. Special Collections</corpname>
+    </origination>
+    <origination label="Creator">
+      <persname authfilenumber="https://viaf.org/viaf/41854941" role="cre" source="viaf">Fitch, Noël Riley</persname>
     </origination>
     <unitid>C0841</unitid>
     <physdesc altrender="part">
@@ -20,43 +23,43 @@
     </physdesc>
     <unitdate datechar="creation" normal="1858/2012" type="inclusive">1858-2012</unitdate>
     <unitdate datechar="creation" normal="1965/1995" type="bulk">1965-1995</unitdate>
-    <abstract id="aspace_497566de0131da19e603ff4182914d73">Consists of the writings, correspondence, interviews, printed works, and other additional papers of the American educator and author Noël Riley Fitch (1937- ). Also included are a selection of Sylvia Beach papers that Fitch consulted for her book Sylvia Beach and the Lost Generation: A History of Literary Paris in the Twenties and Thirties (1983).</abstract>
-    <physloc id="aspace_9e8de055f1ef6fca796ecc8a0275eede">mss</physloc>
+    <abstract id="aspace_cdef6de550d4ee2a0de863145d79e42d">Consists of the writings, correspondence, interviews, printed works, and other additional papers of the American educator and author Noël Riley Fitch (1937- ). Also included are a selection of Sylvia Beach papers that Fitch consulted for her book Sylvia Beach and the Lost Generation: A History of Literary Paris in the Twenties and Thirties (1983).</abstract>
+    <physloc id="aspace_3942ba30bff64b72de936b2cc2adc202">mss</physloc>
     <langmaterial>
       <language langcode="eng">English</language>
 .    </langmaterial>
   </did>
-  <scopecontent id="aspace_744c82b156f0bafc331dd236e7cef127">
+  <scopecontent id="aspace_35f894826162d66919c2559786d9efb7">
     <head>Scope and Contents</head>
 <p>This collection primarily consists of papers of Noël Riley Fitch relating to her two books Sylvia Beach and the Lost Generation: A History of Literary Paris in the Twenties and Thirties(1983) and Walks in Hemingway's Paris: A Guide for the Literary Traveler(1990), as well as her thesis, dissertation, and other writings about Sylvia Beach (1887-1962), the American proprietress of the bookshop Shakespeare and Company in Paris, France. Included are research files, notes, typescripts, and galleys for Fitch's biography of Beach; correspondence and transcripts of interviews with former friends and associates of Beach, such as Berenice Abbott, Morrill Cody, Malcolm Cowley, Janet Flanner, Marcelle Fournier, Maurice Saillet, and others; correspondence with Richard McDougall, the poet and writer on the life of Adrienne Monnier, and typed copies of McDougall's A Selection of Poems(1957); as well as audiotapes (1969-1982) of Fitch's interviews with Elizabeth Bishop, Frederic Dennis, Helen Eddy, Marthiel Mathews, François Valéry, Priscilla Veitch, and others reminiscing about Beach and Paris in the 1920s and 1930s. There are also notes, manuscript drafts, and galleys of Fitch's Walks in Hemingway's Paris: A Guide for the Literary Traveler, and a cassette tape of an interview with Dutch journalists about the book and Ernest Hemingway (1990). Furthermore, the collection includes articles and book reviews concerning Djuna Barnes; assorted articles and lectures by Fitch; a copy of Lisa MacFarlane's Princeton University thesis on Sylvia Beach entitled "For Who is Silvier" (1979); four unpublished writings by Fitch (1988); additional correspondence between Fitch and her literary agents, friends, and fans primarily relating to Fitch's books concerning Lost Generation authors; and a photograph of photographs hanging in Shakespeare and Company.</p><p> The original papers of Sylvia Beach include letters by Beach to her parents and sisters (1898-1952); letters by other family members and friends (1858-1954); a photograph album showing Sylvia and Holly Beach in Italy and Serbia (1917-1920); scrapbook pages of photographs and memorabilia (ca.1932-1949); a typescript draft, with autograph corrections (removed from Fitch's research files), and revised galleys for Beach's book Shakespeare and Company(1959); reviews of the book; cassette tapes of Beach's interview with Jackson Mathews for the Kenyon Review (1960); a scrapbook of obituaries(1962); letters sent to Holly Beach (Mrs. Frederic Dennis) (1962-1964); and correspondence regarding Sylvia Beach's estate (1962-1962).</p><p> An additional accession consists of several typescript versions of "Voyage to Ithaca: William Carlos Williams in Paris," with holograph corrections, annotations, and additions by Fitch; and correspondence with Else Albrecht-Carrie, Donald Gallup, James Laughlin, Marilyn V. Schuler, Emily Wallace, and Mrs. William Carlos Williams, regarding the above manuscript, which was published in the Princeton University Library Chronicle (spring 1979).</p>  </scopecontent>
-  <arrangement id="aspace_a9e5a59d96751daf4ed1b2ed81998e7c">
+  <arrangement id="aspace_85fdba83509bebe87920d989560df135">
     <head>Arrangement</head>
 <p>The collection has been arranged in the following series:</p>  </arrangement>
-  <accessrestrict id="aspace_34c7322b884d21ecdccbe098bd1e0fef">
+  <accessrestrict id="aspace_2ece06811cee6fd9ac2223b08730130d">
     <head>Conditions Governing Access</head>
 <p>The audiotapes (cassettes and reel-to-reel) of interviews conducted by Noël Riley Fitch about Sylvia Beach are restricted due to their age and fragile condition. In order to listen to these tapes, researchers must request copies through the Department's duplication process.</p>  </accessrestrict>
-  <userestrict id="aspace_32b0e553ecd0a1f70878087ce872c3d2">
+  <userestrict id="aspace_7d3172277d04dd0a1429117351a680cf">
     <head>Conditions Governing Use</head>
 <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref href="https://library.princeton.edu/special-collections/ask-us" type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
-  <acqinfo id="aspace_c9b9e810def2685e5549f8d4bd21382a">
+  <acqinfo id="aspace_9dbb2fcaeb3eb49d3114524aa5a2038b">
     <head>Immediate Source of Acquisition</head>
 <p>Gift of Noël Riley Fitch in several installments, in <date type="acquisition" normal="1998/2002">1998, 1999, and 2002</date>.</p>  </acqinfo>
-  <appraisal id="aspace_373666ef31d9844997f615b07f9227cf">
+  <appraisal id="aspace_e5ae5d44fca3bbb85616845924c4883d">
     <head>Appraisal</head>
 <p>No appraisal information is available.</p>  </appraisal>
-  <altformavail id="aspace_ea414b59f9009ed3de2b4d5af46011d6">
+  <altformavail id="aspace_f70c91d407c11bdb287f0d24907a7a6f">
     <head>Existence and Location of Copies</head>
 <p>Some of the manuscripts and notes found in draft form in the collection came to print in the following publications: Sylvia Beach and the Lost Generation: A History of Literary Paris in the Twenties and Thirties(New York: W. W. Norton, 1983), and Walks in Hemingway's Paris: A Guide for the Literary Traveler(New York: St. Martins, 1990) by Noël Riley Fitch; and Shakespeare and Company (London: Faber and Faber, 1959) by Sylvia Beach.</p>  </altformavail>
-  <relatedmaterial id="aspace_507fa7dc847d8027e3af63cefa401dd5">
+  <relatedmaterial id="aspace_3cea3e7ccb01ce7cd0c290c0d99f85a2">
     <head>Related Materials</head>
 <p>Researchers working with the papers of Noël Riley Fitch Papers may also be interested to consult the Sylvia Beach Papers (C0108).</p>  </relatedmaterial>
-  <odd id="aspace_4d4eccdfad9a3663963a0b36d8580529">
+  <odd id="aspace_e121aadc0c674ab8c3e6ed7737442fcd">
     <head>General</head>
 <p>Location of Printed Books Removed for Cataloging</p><p> Ex Balzac: La Femme de Trente Ans(1912), front cover torn off, inscribed "To Sylvia with love from Mother, Christmas 1913."</p><p> Ex Balzac: Ursule Mirouët(1913), front cover torn torn off, inscribed "Eleanor Beach from Sylvester, Christmas 1913, Princeton."</p><p> Ex Balzac: La Fausse Maitresse(1912), poor condition, signed "Sylvia Beach, Princeton, 1915."</p><p> Ex Beckett, Samuel and others: Our Exagmination Round His Factification for Incamination of Work in Progress(London: Faber and Faber, 1961), inscribed "For Holly with the ex-publishers love, Sylvia, February 1962."</p><p> Ex Beach Comité Walt Whitman de Paris: "Exposition Walt Whitman, du 20 avril au 20 juin 1926" (Paris: Shakespeare and Co., 1926).</p><p> Ex Mervine, William M.: Harris, Dunlop, Valentine and Allied Families: Compiled for Mary (Harris) Morris(Philadelphia: Edward S. Paret Co., printed for private circulation only, 1920), copy no. 21 of 100 printed; [Mary (Harris) Morris was SB's aunt, from the library of Holly Beach Dennis].</p><p> Ex Archives Record of the Class of Eighteen Hundred and Seventy-Six of Princeton College, No. V. 1876-1891 (Rev. Sylvester W. Beach).</p><p> Archives Record of the Class of Eighteen Hundred and Seventy-Six of Princeton University, No. VII. 1876-1901 (Rev. Sylvester W. Beach).</p><p> Ex Weld, John: Fly Away Home(Santa Barbara: Mission Pub., 1991), presentation copy to NRF by the author.</p>  </odd>
-  <prefercite id="aspace_5b0b3f917bd4d0c74e6f64f8179f8f40">
+  <prefercite id="aspace_a6700e1c06895d0606c79295f313ea80">
     <head>Preferred Citation</head>
 <p>Citations should be as follows: Noël Riley Fitch Papers, Box #, Folder #, Special Collections, Princeton University Library.</p>  </prefercite>
-  <processinfo id="aspace_5a15924785ddacdb365d2d7fba24ac1e">
+  <processinfo id="aspace_0c36ce96605fc0bf0dc0842d8a8e04e6">
     <head>Processing Information</head>
 <p>This collection was processed by Barbara Volz in 1998 . Finding aid written by Barabara Voz in 1998, with additions by Karla J. Vecchia in 2002 .</p>  </processinfo>
   <controlaccess>
@@ -77,12 +80,12 @@
     <genreform source="aat">Interviews.</genreform>
     <genreform source="aat">Manuscripts.</genreform>
     <subject source="local">American literature</subject>
-    <persname authfilenumber="viaf.org/viaf/97006051" source="lcsh">Hemingway, Ernest, 1899-1961.</persname>
-    <persname source="lcnaf">McDougall, Richard.</persname>
-    <corpname source="lcnaf">Shakespeare and Company.</corpname>
-    <persname authfilenumber="https://viaf.org/viaf/35247539" rules="dacs" source="lcsh">Beach, Sylvia</persname>
-    <persname authfilenumber="https://viaf.org/viaf/35247539" rules="dacs" source="lcsh">Beach, Sylvia</persname>
-    <persname authfilenumber="https://viaf.org/viaf/35247539" rules="dacs" source="lcsh">Beach, Sylvia</persname>
+    <corpname authfilenumber="https://viaf.org/viaf/169399659" source="viaf">Shakespeare and Company (Paris, France)</corpname>
+    <persname authfilenumber="https://viaf.org/viaf/35247539" source="viaf">Beach, Sylvia</persname>
+    <persname authfilenumber="https://viaf.org/viaf/35247539" source="viaf">Beach, Sylvia</persname>
+    <persname authfilenumber="https://viaf.org/viaf/35247539" source="viaf">Beach, Sylvia</persname>
+    <persname authfilenumber="https://viaf.org/97006051" source="viaf">Hemingway, Ernest, 1899-1961.</persname>
+    <persname authfilenumber="https://viaf.org/viaf/305010829" source="viaf">McDougall, Richard</persname>
   </controlaccess>
   <dsc/>
 </archdesc>

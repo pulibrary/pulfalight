@@ -160,11 +160,17 @@ end
 to_field "geogname_ssm", extract_xpath("/ead/archdesc/controlaccess/geogname")
 to_field "geogname_sim", extract_xpath("/ead/archdesc/controlaccess/geogname")
 
-to_field "creator_ssm", extract_xpath("/ead/archdesc/did/origination")
-to_field "creator_sim", extract_xpath("/ead/archdesc/did/origination")
-to_field "creator_ssim", extract_xpath("/ead/archdesc/did/origination")
+to_field "creator_ssm", extract_xpath("/ead/archdesc/did/origination") do |_record, accumulator|
+  accumulator.uniq!
+end
+to_field "creator_sim", extract_xpath("/ead/archdesc/did/origination") do |_record, accumulator|
+  accumulator.uniq!
+end
+to_field "creator_ssim", extract_xpath("/ead/archdesc/did/origination") do |_record, accumulator|
+  accumulator.uniq!
+end
 to_field "creator_sort" do |record, accumulator|
-  accumulator << record.xpath("/ead/archdesc/did/origination").map { |c| c.text.strip }.join(", ")
+  accumulator << record.xpath("/ead/archdesc/did/origination").map { |c| c.text.strip }.uniq.join(", ")
 end
 
 to_field "creator_persname_ssm", extract_xpath("/ead/archdesc/did/origination/persname")
