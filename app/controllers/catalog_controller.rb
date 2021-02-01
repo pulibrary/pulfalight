@@ -321,6 +321,7 @@ class CatalogController < ApplicationController
     config.add_summary_field "creators_ssim", label: "Creator", link_to_facet: true
     config.add_summary_field "title_ssm", label: "Title"
     config.add_summary_field "repository_ssm", label: "Repository"
+    config.add_summary_field "ark_tsim", label: "Permanent URL", helper_method: :ark_link
     config.add_summary_field "normalized_date_ssm", label: "Dates"
     config.add_summary_field "extent_ssm", label: "Size"
     config.add_summary_field "storage_notes", label: "Storage Note", accessor: :storage_notes
@@ -372,6 +373,7 @@ class CatalogController < ApplicationController
     config.add_access_field "phystech_ssm", label: "Special Requirements for Access", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_access_field "otherfindaid_ssm", label: "Other Finding Aids", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_access_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
+    config.add_access_field "ark_tsim", label: "Permanent URL", helper_method: :ark_link
     config.add_access_field "repository_ssm", if: :repository_config_present, label: "Location", helper_method: :context_access_tab_repository
     # Using ID because we know it will always exist
     config.add_access_field "id", if: :before_you_visit_note_present, label: "Before you visit", helper_method: :context_access_tab_visit_note

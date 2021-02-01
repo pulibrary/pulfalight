@@ -68,6 +68,12 @@ module PulfalightHelper
     "container-fluid"
   end
 
+  def ark_link(_context)
+    ark = document.fetch("ark_tsim", []).first
+    return if ark.blank?
+    link_to ark, ark
+  end
+
   private
 
   def repository_thumbnail_path

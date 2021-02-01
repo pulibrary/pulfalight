@@ -41,6 +41,9 @@ to_field "title_teim", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "subtitle_ssm", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "subtitle_teim", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "ead_ssi", extract_xpath("/ead/eadheader/eadid")
+to_field "ark_tsim", extract_xpath("/ead/eadheader/eadid/@url", to_text: false) do |_record, accumulator|
+  accumulator.replace(accumulator.map(&:text))
+end
 
 # Use normal attribute value of unitdate. Text values are unreliable and potentially very different.
 # E.g. <unitdate normal="1670/1900" type="inclusive">1600s-1900s</unitdate>

@@ -129,14 +129,15 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_field "suggest_a_correction_form_location_code", visible: false, type: :hidden, with: "publicpolicy"
     end
 
-    it "has overview and abstract summary sections" do
-      # Collection name records not in aspace data yet.
-      # expect(page).to have_css(".blacklight-creators_ssim a", text: "Hoskins")
+    it "has overview and abstract summary sections", js: false do
+      expect(page).to have_css(".blacklight-creators_ssim a", text: "Hoskins")
       expect(page).to have_css("dd.blacklight-title_ssm", text: "Harold B. Hoskins Papers")
       expect(page).to have_css("dd.blacklight-normalized_date_ssm", text: "1822-1982")
       expect(page).to have_css("dd.blacklight-extent_ssm", text: "17 boxes")
       expect(page).to have_text("Harold Boies Hoskins was a businessman")
       expect(page).to have_text "unavailable until further notice"
+      expect(page).to have_css("dd.blacklight-ark_tsim", text: "http://arks.princeton.edu/ark:/88435/q524jn80g")
+      expect(page).to have_link("http://arks.princeton.edu/ark:/88435/q524jn80g", href: "http://arks.princeton.edu/ark:/88435/q524jn80g")
     end
     it "has a language property in the overview summary section" do
       expect(page).to have_css("dd.blacklight-language_ssm", text: "English")
