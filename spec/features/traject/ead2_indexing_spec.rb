@@ -81,6 +81,22 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  context "when given otherlevel text components" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0744.04.processed.EAD.xml")
+    end
+    it "indexes them as components" do
+      components = result["components"]
+      component = components.first["components"].first
+      expect(component["title_ssm"]).to eq ["Prayer against Shotälay"]
+      # Inherit container information from parents.
+      expect(component["container_location_codes_ssim"]).to eq ["hsvm"]
+      expect(component["container_information_ssm"]).not_to be_blank
+      expect(component["barcodes_ssim"]).not_to be_blank
+      expect(component["physloc_sim"][0]).not_to be_blank
+    end
+  end
+
   describe "container indexing" do
     context "when indexing a collection with deeply nested components" do
       let(:fixture_path) do
