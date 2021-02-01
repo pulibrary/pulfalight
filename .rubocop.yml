@@ -68,3 +68,6 @@ RSpec/VerifiedDoubles:
 RSpec/DescribeClass:
   Exclude:
     - 'spec/views/**/*.rb'
+Rails/OutputSafety:
+  Exclude:
+    - 'config/initializers/repository_contact_info_patch.rb'
