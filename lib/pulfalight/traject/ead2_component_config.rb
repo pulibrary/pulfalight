@@ -190,25 +190,6 @@ to_field "extent_teim", extract_xpath("./did/physdesc/extent")
 to_field "dimensions_ssm", extract_xpath("./did/physdesc/dimensions")
 to_field "dimensions_teim", extract_xpath("./did/physdesc/dimensions")
 
-to_field "container_location_codes_ssim" do |record, accumulator|
-  record.xpath("./did/container").each do |container_element|
-    container_location_code = container_element.attributes["altrender"].to_s
-    accumulator << container_location_code if container_location_code.present?
-  end
-end
-
-to_field "container_information_ssm" do |record, accumulator|
-  record.xpath("./did/container").each do |container_element|
-    container_location_code = container_element.attributes["altrender"].to_s
-    container_profile = container_element.attributes["encodinganalog"].to_s
-    next if container_location_code.blank?
-    accumulator << {
-      location_code: container_location_code,
-      profile: container_profile
-    }.to_json
-  end
-end
-
 to_field "physloc_code_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
   next unless parent
@@ -286,6 +267,99 @@ to_field "level_sim" do |_record, accumulator, context|
   next unless context.output_hash["level_ssm"]
 
   accumulator.concat context.output_hash["level_ssm"]&.map(&:capitalize)
+end
+
+to_field "container_location_codes_ssim" do |record, accumulator, context|
+  if context.output_hash["level_ssm"] == ["Text"]
+    # Text records have no container information, but can be requested. Copy the
+    # container info from the parent.
+    parent = context.clipboard[:parent] || settings[:parent]
+    accumulator.replace(parent.output_hash["container_location_codes_ssim"])
+  else
+    record.xpath("./did/container").each do |container_element|
+      container_location_code = container_element.attributes["altrender"].to_s
+      accumulator << container_location_code if container_location_code.present?
+    end
+  end
+end
+
+to_field "container_information_ssm" do |record, accumulator, context|
+  if context.output_hash["level_ssm"] == ["Text"]
+    # Text records have no container information, but can be requested. Copy the
+    # container info from the parent.
+    parent = context.clipboard[:parent] || settings[:parent]
+    accumulator.replace(parent.output_hash["container_information_ssm"])
+  else
+    record.xpath("./did/container").each do |container_element|
+      container_location_code = container_element.attributes["altrender"].to_s
+      container_profile = container_element.attributes["encodinganalog"].to_s
+      next if container_location_code.blank?
+      accumulator << {
+        location_code: container_location_code,
+        profile: container_profile
+      }.to_json
+    end
+  end
+end
+
+to_field "containers_ssim" do |record, accumulator, context|
+  if context.output_hash["level_ssm"] == ["Text"]
+    # Text records have no container information, but can be requested. Copy the
+    # container info from the parent.
+    parent = context.clipboard[:parent] || settings[:parent]
+    accumulator.replace(parent.output_hash["containers_ssim"])
+  else
+    record.xpath("./did/container").each do |node|
+      accumulator << [node.attribute("type"), node.text].join(" ").strip
+    end
+  end
+end
+
+to_field "barcodes_ssim" do |record, accumulator, context|
+  if context.output_hash["level_ssm"] == ["Text"]
+    # Text records have no container information, but can be requested. Copy the
+    # container info from the parent.
+    parent = context.clipboard[:parent] || settings[:parent]
+    accumulator.replace(parent.output_hash["barcodes_ssim"])
+  else
+    record.xpath("./did/container[@label]").each do |node|
+      label = node.attr("label")
+      barcode_match = label.match(/\[(\d+?)\]/)
+      accumulator << barcode_match[1] if barcode_match
+    end
+  end
+end
+
+# TODO: Add for otherlevel=text
+to_field "physloc_sim" do |record, accumulator, context|
+  if context.output_hash["level_ssm"] == ["Text"]
+    # Text records have no container information, but can be requested. Copy the
+    # container info from the parent.
+    parent = context.clipboard[:parent] || settings[:parent]
+    accumulator.replace(parent.output_hash["physloc_sim"])
+  else
+    values = []
+    container_elements = record.xpath("./did/container")
+    container_elements.each do |container_element|
+      next unless container_element["type"]
+
+      container_type = container_element["type"].capitalize
+      container_value = container_element.text
+      values << "#{container_type} #{container_value}"
+    end
+    values = Array.wrap(values.join(", "))
+
+    if values.empty?
+      parent = context.clipboard[:parent] || settings[:root]
+      values = parent.output_hash["physloc_sim"]
+    end
+
+    accumulator.concat(values)
+  end
+end
+to_field "physloc_ssm" do |_record, accumulator, context|
+  values = context.output_hash["physloc_sim"]
+  accumulator.concat(values)
 end
 
 to_field "sort_ii" do |_record, accumulator, context|
@@ -366,29 +440,6 @@ to_field "acqinfo_ssm" do |_record, accumulator, context|
   accumulator.concat(context.output_hash.fetch("acqinfo_ssim", []))
 end
 
-to_field "physloc_sim" do |record, accumulator, context|
-  values = []
-  container_elements = record.xpath("./did/container")
-  container_elements.each do |container_element|
-    next unless container_element["type"]
-
-    container_type = container_element["type"].capitalize
-    container_value = container_element.text
-    values << "#{container_type} #{container_value}"
-  end
-  values = Array.wrap(values.join(", "))
-
-  if values.empty?
-    parent = context.clipboard[:parent] || settings[:root]
-    values = parent.output_hash["physloc_sim"]
-  end
-
-  accumulator.concat(values)
-end
-to_field "physloc_ssm" do |_record, accumulator, context|
-  values = context.output_hash["physloc_sim"]
-  accumulator.concat(values)
-end
 to_field "location_info_tesim" do |_record, accumulator, context|
   values = context.output_hash["physloc_sim"]
   collection_unitid = Array.wrap(context.output_hash["collection_unitid_ssm"]).first
@@ -403,12 +454,6 @@ to_field "language_ssm" do |_record, accumulator, context|
   parent_languages = parent.output_hash["language_ssm"]
 
   accumulator.concat(parent_languages)
-end
-
-to_field "containers_ssim" do |record, accumulator|
-  record.xpath("./did/container").each do |node|
-    accumulator << [node.attribute("type"), node.text].join(" ").strip
-  end
 end
 
 Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
@@ -545,16 +590,8 @@ to_field "genreform_ssim" do |_record, accumulator, context|
   accumulator.concat(value&.first)
 end
 
-to_field "barcodes_ssim" do |record, accumulator|
-  record.xpath("./did/container[@label]").each do |node|
-    label = node.attr("label")
-    barcode_match = label.match(/\[(\d+?)\]/)
-    accumulator << barcode_match[1] if barcode_match
-  end
-end
-
 to_field "components" do |record, accumulator, context|
-  child_components = record.xpath("./*[is_component(.)][@level != 'otherlevel']", NokogiriXpathExtensions.new)
+  child_components = record.xpath("./*[is_component(.)]", NokogiriXpathExtensions.new)
   child_components.each do |child_component|
     root_context = settings[:root]
     component_indexer = build_component_indexer(root_context, context)

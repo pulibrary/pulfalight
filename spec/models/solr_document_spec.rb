@@ -199,6 +199,23 @@ RSpec.describe Arclight::SolrDocument do
         expect(request.form_attributes[:"ItemInfo4_#{request_id}"]).to eq "NBox"
       end
     end
+    context "when it's an item component" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0744.04.processed.EAD.xml")
+      end
+      it "is requestable as a child of the parent component" do
+        result = indexer.map_record(record)
+        component = result["components"].first["components"].first
+        document = SolrDocument.new(component)
+
+        request = document.aeon_request
+        request_id = request.form_attributes[:Request]
+        expect(request.form_attributes[:"Location_#{request_id}"]).to eq "hsvm"
+        expect(request.form_attributes[:"ItemInfo4_#{request_id}"]).to eq "NBox"
+        expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Box 1"
+        expect(request.form_attributes[:"ItemNumber_#{request_id}"]).to eq "32101038557656"
+      end
+    end
     it "returns an object with all the necessary attributes" do
       # The following fixture is generated from a fixture exported from our
       # local system. It's created via `rake
