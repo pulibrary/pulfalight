@@ -42,14 +42,20 @@ class TableOfContentsBuilder
   def content(component)
     {
       id: component["id"],
-      text: component["normalized_title_ssm"].first,
+      text: text(component),
       has_children: component["components"].present?,
       state: { opened: @expanded } # This applies to every node in the tree
     }
   end
 
+  def text(component)
+    title = component["normalized_title_ssm"].first
+    return title unless component["has_online_content_ssim"]&.first == "true"
+    "#{title} <span class=\"media-body al-online-content-icon\" aria-hidden=\"true\">#{ActionController::Base.helpers.blacklight_icon(:online)}</span>"
+  end
+
   def field_list
-    "id, normalized_title_ssm, level_ssm, components, [child limit=1000000]"
+    "id, normalized_title_ssm, level_ssm, components, has_online_content_ssim, [child limit=1000000]"
   end
 
   def find_node(root_node, id)
