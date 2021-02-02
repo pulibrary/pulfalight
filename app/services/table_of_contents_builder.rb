@@ -39,12 +39,6 @@ class TableOfContentsBuilder
     document.fetch("parent_ssm", [document.id]).first
   end
 
-  def document_children_ids
-    document.fetch("components", []).map do |component|
-      component["id"]
-    end
-  end
-
   def content(component)
     {
       id: component["id"],
