@@ -63,6 +63,7 @@ RSpec.describe TableOfContentsBuilder do
 
       # Return all child documents
       expect(toc_hash.count).to eq 52
+      expect(toc_hash[0]["state"]["opened"]).to eq false
 
       child_component = toc_hash[1]
       expect(child_component["id"]).to eq "MC221_c0003"

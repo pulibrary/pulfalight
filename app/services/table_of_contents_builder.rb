@@ -19,14 +19,14 @@ class TableOfContentsBuilder
 
   private
 
-  def build_tree(solr_docs, level: 0, full: false)
+  def build_tree(solr_docs)
     return [] unless solr_docs
     # Ensure that the docs object is an array. Solr will return a single
     # hash rather than an array if there is a single component.
     solr_docs = Array.wrap(solr_docs)
     solr_docs.map do |doc|
-      node = Tree::TreeNode.new(doc["id"], content(doc, full: full, level: level))
-      children = build_tree(doc["components"], level: level + 1, full: full)
+      node = Tree::TreeNode.new(doc["id"], content(doc))
+      children = build_tree(doc["components"])
       children.each do |child|
         node << child
       end
@@ -39,25 +39,25 @@ class TableOfContentsBuilder
     document.fetch("parent_ssm", [document.id]).first
   end
 
-  def component_level
-    document.fetch("component_level_isim", ["0"]).first.to_i
+  def document_children_ids
+    document.fetch("components", []).map do |component|
+      component["id"]
+    end
   end
 
-  def component_ancestry
-    document.fetch("parent_ssm", [])
-  end
-
-  def content(component, level: 0, full: false)
+  def content(component)
     {
       id: component["id"],
       text: text(component),
       has_children: component["components"].present?,
-      state: { opened: @expanded || (full && expand?(component, level)) } # This applies to every node in the tree
+      state: { opened: @expanded || expand?(component) } # This applies to every node in the tree
     }
   end
 
-  def expand?(component, current_level)
-    component["id"] == document["id"] || (component_ancestry.include?(component["id"]) && current_level < component_level + 1)
+  # Expand if the component is an ancestor or itself.
+  def expand?(component)
+    return true if component["id"] == document["id"]
+    document.parent.include?(component["id"])
   end
 
   def text(component)
@@ -89,7 +89,7 @@ class TableOfContentsBuilder
 
   def toc_single_node
     solr_doc = solr_response(document.id)
-    tree = build_tree(solr_doc, level: 0).first
+    tree = build_tree(solr_doc).first
     prune_children(tree)
 
     # Transform child nodes into jqtree json document
@@ -99,7 +99,7 @@ class TableOfContentsBuilder
 
   def toc_full
     solr_doc = solr_response(collection_id)
-    tree = build_tree(solr_doc, level: 0, full: true).first
+    tree = build_tree(solr_doc).first
     selected_node = find_node(tree, document.id)
     prune_children(selected_node)
     prune_siblings(selected_node)
