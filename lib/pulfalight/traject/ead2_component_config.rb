@@ -270,35 +270,33 @@ to_field "level_sim" do |_record, accumulator, context|
 end
 
 to_field "container_location_codes_ssim" do |record, accumulator, context|
-  if context.output_hash["level_ssm"] == ["Text"]
+  record.xpath("./did/container").each do |container_element|
+    container_location_code = container_element.attributes["altrender"].to_s
+    accumulator << container_location_code if container_location_code.present?
+  end
+  if context.output_hash["level_ssm"] == ["Text"] && accumulator.blank?
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
     parent = context.clipboard[:parent] || settings[:parent]
-    accumulator.replace(parent.output_hash["container_location_codes_ssim"])
-  else
-    record.xpath("./did/container").each do |container_element|
-      container_location_code = container_element.attributes["altrender"].to_s
-      accumulator << container_location_code if container_location_code.present?
-    end
+    accumulator.replace(parent.output_hash["container_location_codes_ssim"] || [])
   end
 end
 
 to_field "container_information_ssm" do |record, accumulator, context|
-  if context.output_hash["level_ssm"] == ["Text"]
+  record.xpath("./did/container").each do |container_element|
+    container_location_code = container_element.attributes["altrender"].to_s
+    container_profile = container_element.attributes["encodinganalog"].to_s
+    next if container_location_code.blank?
+    accumulator << {
+      location_code: container_location_code,
+      profile: container_profile
+    }.to_json
+  end
+  if context.output_hash["level_ssm"] == ["Text"] && accumulator.blank?
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
     parent = context.clipboard[:parent] || settings[:parent]
-    accumulator.replace(parent.output_hash["container_information_ssm"])
-  else
-    record.xpath("./did/container").each do |container_element|
-      container_location_code = container_element.attributes["altrender"].to_s
-      container_profile = container_element.attributes["encodinganalog"].to_s
-      next if container_location_code.blank?
-      accumulator << {
-        location_code: container_location_code,
-        profile: container_profile
-      }.to_json
-    end
+    accumulator.replace(parent.output_hash["container_information_ssm"] || [])
   end
 end
 
@@ -307,7 +305,7 @@ to_field "containers_ssim" do |record, accumulator, context|
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
     parent = context.clipboard[:parent] || settings[:parent]
-    accumulator.replace(parent.output_hash["containers_ssim"])
+    accumulator.replace(parent.output_hash["containers_ssim"] || [])
   else
     record.xpath("./did/container").each do |node|
       accumulator << [node.attribute("type"), node.text].join(" ").strip
@@ -316,45 +314,43 @@ to_field "containers_ssim" do |record, accumulator, context|
 end
 
 to_field "barcodes_ssim" do |record, accumulator, context|
-  if context.output_hash["level_ssm"] == ["Text"]
+  record.xpath("./did/container[@label]").each do |node|
+    label = node.attr("label")
+    barcode_match = label.match(/\[(\d+?)\]/)
+    accumulator << barcode_match[1] if barcode_match
+  end
+  if context.output_hash["level_ssm"] == ["Text"] && accumulator.blank?
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
     parent = context.clipboard[:parent] || settings[:parent]
-    accumulator.replace(parent.output_hash["barcodes_ssim"])
-  else
-    record.xpath("./did/container[@label]").each do |node|
-      label = node.attr("label")
-      barcode_match = label.match(/\[(\d+?)\]/)
-      accumulator << barcode_match[1] if barcode_match
-    end
+    accumulator.replace(parent.output_hash["barcodes_ssim"] || [])
   end
 end
 
 # TODO: Add for otherlevel=text
 to_field "physloc_sim" do |record, accumulator, context|
-  if context.output_hash["level_ssm"] == ["Text"]
+  values = []
+  container_elements = record.xpath("./did/container")
+  container_elements.each do |container_element|
+    next unless container_element["type"]
+
+    container_type = container_element["type"].capitalize
+    container_value = container_element.text
+    values << "#{container_type} #{container_value}"
+  end
+  values = Array.wrap(values.join(", "))
+
+  if values.empty?
+    parent = context.clipboard[:parent] || settings[:root]
+    values = parent.output_hash["physloc_sim"]
+  end
+
+  accumulator.concat(values)
+  if context.output_hash["level_ssm"] == ["Text"] && accumulator.select(&:present?).blank?
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
     parent = context.clipboard[:parent] || settings[:parent]
-    accumulator.replace(parent.output_hash["physloc_sim"])
-  else
-    values = []
-    container_elements = record.xpath("./did/container")
-    container_elements.each do |container_element|
-      next unless container_element["type"]
-
-      container_type = container_element["type"].capitalize
-      container_value = container_element.text
-      values << "#{container_type} #{container_value}"
-    end
-    values = Array.wrap(values.join(", "))
-
-    if values.empty?
-      parent = context.clipboard[:parent] || settings[:root]
-      values = parent.output_hash["physloc_sim"]
-    end
-
-    accumulator.concat(values)
+    accumulator.replace(parent.output_hash["physloc_sim"] || [])
   end
 end
 to_field "physloc_ssm" do |_record, accumulator, context|

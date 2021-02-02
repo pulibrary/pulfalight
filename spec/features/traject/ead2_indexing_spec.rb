@@ -95,6 +95,24 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(component["barcodes_ssim"]).not_to be_blank
       expect(component["physloc_sim"][0]).not_to be_blank
     end
+    context "which don't have container information" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0744.03.processed.EAD.xml")
+      end
+      it "can index them" do
+        components = result["components"]
+        expect(components).not_to be_blank
+      end
+      it "doesn't lose container information from that level" do
+        components = result["components"]
+        component = components.first["components"].first["components"].first
+        expect(component["title_ssm"]).to eq ["Prayer for Driving Away Evil Spirits"]
+        expect(component["container_location_codes_ssim"]).to eq ["review"]
+        expect(component["container_information_ssm"]).to eq ["{\"location_code\":\"review\",\"profile\":\"NBox\"}"]
+        expect(component["barcodes_ssim"]).to be_blank
+        expect(component["physloc_sim"]).to eq ["Box 101"]
+      end
+    end
   end
 
   describe "container indexing" do
