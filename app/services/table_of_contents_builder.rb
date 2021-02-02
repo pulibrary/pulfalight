@@ -43,13 +43,21 @@ class TableOfContentsBuilder
     document.fetch("component_level_isim", ["0"]).first.to_i
   end
 
+  def component_ancestry
+    document.fetch("parent_ssm", [])
+  end
+
   def content(component, level: 0, full: false)
     {
       id: component["id"],
       text: text(component),
       has_children: component["components"].present?,
-      state: { opened: @expanded || (full && level < component_level + 1) } # This applies to every node in the tree
+      state: { opened: @expanded || (full && expand?(component, level)) } # This applies to every node in the tree
     }
+  end
+
+  def expand?(component, current_level)
+    component["id"] == document["id"] || (component_ancestry.include?(component["id"]) && current_level < component_level + 1)
   end
 
   def text(component)

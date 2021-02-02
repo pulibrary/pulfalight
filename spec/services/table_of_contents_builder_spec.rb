@@ -11,6 +11,7 @@ RSpec.describe TableOfContentsBuilder do
       # Ancestor series component
       series_level_components = toc_hash
       series_level_component = series_level_components[0]
+      expect(series_level_components[1]["state"]["opened"]).to eq false
       expect(series_level_component["children"].count).to eq 52
       expect(series_level_component["id"]).to eq "MC221_c0001"
       expect(series_level_component["children"]).not_to be_empty
