@@ -19,14 +19,14 @@ class TableOfContentsBuilder
 
   private
 
-  def build_tree(solr_docs)
+  def build_tree(solr_docs, level: 0, full: false)
     return [] unless solr_docs
     # Ensure that the docs object is an array. Solr will return a single
     # hash rather than an array if there is a single component.
     solr_docs = Array.wrap(solr_docs)
     solr_docs.map do |doc|
-      node = Tree::TreeNode.new(doc["id"], content(doc))
-      children = build_tree(doc["components"])
+      node = Tree::TreeNode.new(doc["id"], content(doc, full: full, level: level))
+      children = build_tree(doc["components"], level: level + 1, full: full)
       children.each do |child|
         node << child
       end
@@ -39,12 +39,16 @@ class TableOfContentsBuilder
     document.fetch("parent_ssm", [document.id]).first
   end
 
-  def content(component)
+  def component_level
+    document.fetch("component_level_isim", ["0"]).first.to_i
+  end
+
+  def content(component, level: 0, full: false)
     {
       id: component["id"],
       text: text(component),
       has_children: component["components"].present?,
-      state: { opened: @expanded } # This applies to every node in the tree
+      state: { opened: @expanded || (full && level < component_level + 1) } # This applies to every node in the tree
     }
   end
 
@@ -77,7 +81,7 @@ class TableOfContentsBuilder
 
   def toc_single_node
     solr_doc = solr_response(document.id)
-    tree = build_tree(solr_doc).first
+    tree = build_tree(solr_doc, level: 0).first
     prune_children(tree)
 
     # Transform child nodes into jqtree json document
@@ -87,7 +91,7 @@ class TableOfContentsBuilder
 
   def toc_full
     solr_doc = solr_response(collection_id)
-    tree = build_tree(solr_doc).first
+    tree = build_tree(solr_doc, level: 0, full: true).first
     selected_node = find_node(tree, document.id)
     prune_children(selected_node)
     prune_siblings(selected_node)

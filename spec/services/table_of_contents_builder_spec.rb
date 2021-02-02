@@ -35,6 +35,22 @@ RSpec.describe TableOfContentsBuilder do
       expect(selected_component["id"]).to eq "MC221_c0004"
       expect(selected_component["text"]).to eq "National War College, 1949 November 1"
       expect(selected_component["children"]).to be_nil
+      # Ensure that the ToC node you request is opened.
+      expect(selected_component["state"]["opened"]).to eq true
+    end
+  end
+
+  context "when requesting toc data for a full tree, with a middle level component selected" do
+    it "generates a full JSON document, but only opens the correct level" do
+      document = SolrDocument.find("MC221_c0001")
+      output = described_class.build(document)
+      toc_hash = JSON.parse(output)
+
+      # Ancestor series component
+      series_level_components = toc_hash
+      series_level_component = series_level_components[0]
+      expect(series_level_component["state"]["opened"]).to eq true
+      expect(series_level_component["children"][0]["state"]["opened"]).to eq false
     end
   end
 
@@ -50,6 +66,9 @@ RSpec.describe TableOfContentsBuilder do
       child_component = toc_hash[1]
       expect(child_component["id"]).to eq "MC221_c0003"
       expect(child_component["text"]).to eq "Speeches, 1949 November-1960 February"
+      # Ensure it doesn't load it as opened when requesting a single node - this
+      # happens when clicking the "arrow"
+      expect(child_component["state"]["opened"]).to eq false
       # No deeply nested child components
       expect(child_component["children"]).to be_truthy
     end
