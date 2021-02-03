@@ -221,7 +221,7 @@ class SolrDocument
   end
 
   def has_digital_content?
-    has_online_content.present?
+    has_online_content.present? && has_online_content.first != "false"
   end
 
   def component_documents
