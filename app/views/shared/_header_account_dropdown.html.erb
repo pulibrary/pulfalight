@@ -1,37 +1,29 @@
 <% if has_user_authentication_provider? %>
     <% if current_user %>
-    <li class="dropdown dropdown-account">
-      <button type="button" class="dropdown-toggle btn-account" data-toggle="dropdown">
-        <%= current_user.to_s %> <span class="caret"></span>
-      </button>
-      <ul class="account-dropdown dropdown-menu dropdown-menu-right" role="menu">
-        <li class="dropdown-partial">
-          <%= render partial: 'blacklight/nav/bookmark' %>
-        </li>
-        <li>
-          <%= link_to t('blacklight.header_links.search_history'), blacklight.search_history_path %>
-        </li>
-        <li>
-          <%= link_to t('blacklight.header_links.logout'), main_app.destroy_user_session_path, :method => :delete %>
-        </li>
-      </ul>
-    </li>
+    <menu-bar type="main-menu" :menu-items="[
+        {name: 'Research Help', component: 'Help', href: '/research_help/'},
+        {name: 'Your Account', component: 'Account', href: '/account/', children: [
+          {name: '<%= t('blacklight.header_links.logout')%>',
+            component: '<%= t('blacklight.header_links.logout')%>',
+            href: '<%= main_app.destroy_user_session_path %>',
+            method: 'delete',
+            authenticity_token: '<%= form_authenticity_token %>'},
+          {name: 'Bookmarks', component: 'Bookmarks', href: '/bookmarks/'},
+          {name: '<%= t('blacklight.header_links.search_history')%>', component: 'History', href: '<%= blacklight.search_history_path %>'},
+        ]}
+      ]"
+    ></menu-bar>
     <% else %>
-    <li>
-      <button type="button" class="dropdown-toggle btn-account" data-toggle="dropdown">
-        <%= t('blacklight.header_links.account_page') %> <span class="caret"></span>
-      </button>
-      <ul class="account-dropdown dropdown-menu dropdown-menu-right" role="menu">
-        <li>
-          <%= link_to t('blacklight.header_links.login'), new_user_session_path %>
-        </li>
-        <li class="dropdown-partial">
-          <%= render partial: 'blacklight/nav/bookmark' %>
-        </li>
-        <li>
-          <%= link_to t('blacklight.header_links.search_history'), blacklight.search_history_path %>
-        </li>
-      </ul>
-    </li>
+    <menu-bar type="main-menu" :menu-items="[
+        {name: 'Research Help', component: 'Help', href: '/research_help/'},
+        {name: 'Your Account', component: 'Account', href: '/account/', children: [
+          {name: '<%= t('blacklight.header_links.login')%>',
+            component: '<%= t('blacklight.header_links.login')%>',
+            href: '<%= new_user_session_path %>'},
+          {name: 'Bookmarks', component: 'Bookmarks', href: '/bookmarks/'},
+          {name: '<%= t('blacklight.header_links.search_history')%>', component: 'History', href: '<%= blacklight.search_history_path %>'},
+        ]}
+      ]"
+    ></menu-bar>
     <% end %>
 <% end %>

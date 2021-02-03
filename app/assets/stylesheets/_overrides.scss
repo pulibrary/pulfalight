@@ -21,3 +21,7 @@ $container-max-widths: (
 a {
   color: $blue;
 }
+
+.twitter-typeahead {
+    z-index: 998 !important;
+}
