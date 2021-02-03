@@ -118,6 +118,12 @@ describe "viewing catalog records", type: :feature, js: true do
       end
     end
   end
+  context "with a no-digital-content collection show page" do
+    it "doesn't display Has Online Content", js: false do
+      visit "/catalog/MC152"
+      expect(page).not_to have_selector(".document-access.online-content", text: "Has Online Content")
+    end
+  end
   context "with a collection show page" do
     before do
       visit "/catalog/MC221"
