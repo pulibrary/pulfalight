@@ -178,7 +178,7 @@ class CatalogController < ApplicationController
     config.add_index_field "normalized_date_ssm", label: "Date"
     config.add_index_field "creator_ssm", label: "Creator"
     config.add_index_field "language_ssm", label: "Language"
-    config.add_index_field "scopecontent_ssm", label: "Description"
+    config.add_index_field "scopecontent_ssm", label: "Description", helper_method: :paragraph_separator
     config.add_index_field "extent_ssm", label: "Physical Description"
     config.add_index_field "accessrestrict_ssm", label: "Conditions Governing Access"
     config.add_index_field "collection_ssm", label: "Collection Title"
@@ -341,7 +341,7 @@ class CatalogController < ApplicationController
     config.add_component_field "physloc_ssm", label: "Located In"
     config.add_component_field "extent_ssm", label: "Extent"
     config.add_component_field "language_ssm", label: "Languages"
-    config.add_component_field "scopecontent_ssm", label: "Description"
+    config.add_component_field "scopecontent_ssm", label: "Description", helper_method: :paragraph_separator
     config.add_component_field "bioghist_ssm", label: "Biography", helper_method: :paragraph_separator
     config.add_component_field "parent_access_restrict_ssm", label: "Access Restrictions"
     config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
