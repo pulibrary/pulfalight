@@ -86,6 +86,7 @@ gem "sidekiq"
 gem "twitter-typeahead-rails", "0.11.1.pre.corejavascript"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "webpacker", "~> 4.0"
+gem "whenever", require: false
 
 gem "dotenv-rails", groups: [:development, :test]
 

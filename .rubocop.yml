@@ -71,3 +71,6 @@ RSpec/DescribeClass:
 Rails/OutputSafety:
   Exclude:
     - 'config/initializers/repository_contact_info_patch.rb'
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'app/services/aspace/indexer.rb'
