@@ -44,8 +44,14 @@ class TableOfContentsBuilder
       id: component["id"],
       text: text(component),
       has_children: component["components"].present?,
-      state: { opened: @expanded } # This applies to every node in the tree
+      state: { opened: @expanded || expand?(component) } # This applies to every node in the tree
     }
+  end
+
+  # Expand if the component is an ancestor or itself.
+  def expand?(component)
+    return true if component["id"] == document["id"]
+    document.parent.include?(component["id"])
   end
 
   def text(component)
