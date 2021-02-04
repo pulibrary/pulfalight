@@ -234,6 +234,7 @@ describe "viewing catalog records", type: :feature, js: true do
         within("#description") do
           expect(page).to have_selector "dt.blacklight-odd_ssm", text: "Note"
           expect(page).to have_selector "dd.blacklight-odd_ssm", text: /Location of Printed Books Removed for Cataloging/
+          expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm", text: /Noël Riley Fitch was born on December 24, 1937/
         end
       end
       it "shows all the relevant notes" do
