@@ -1,0 +1,9 @@
+<% if query_has_constraints? && facet_field_in_params?("collection_sim") %>
+
+  <wrapper class="search-results-heading" maxWidth="1125">
+    <h1 class="top-content-title">
+      <%= t(render_search_to_page_header(params)) %>
+    </h1>
+  </wrapper>
+
+<% end %>
