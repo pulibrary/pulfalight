@@ -12,6 +12,7 @@ class Aspace::Indexer
   def index_new
     client.ead_urls(modified_since: modified_since).each do |repository, urls|
       urls.each do |url|
+        Rails.logger.info("Queued #{url} in repository #{repository} for indexing.")
         AspaceIndexJob.perform_later(resource_descriptions_uri: url, repository_id: repository)
       end
     end

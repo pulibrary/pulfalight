@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11"
 
@@ -41,8 +42,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push("log", "vendor/bundle", "public/u
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
-set :pulfa_dir_path, fetch(:pulfa_dir_path, '/var/opt/pulfa')
-set :pulfa_collections, fetch(:pulfa_collections, %w{cotsen ea eng ga lae mss mudd rarebooks})
+set :pulfa_dir_path, fetch(:pulfa_dir_path, "/var/opt/pulfa")
+set :pulfa_collections, fetch(:pulfa_collections, %w[cotsen ea eng ga lae mss mudd rarebooks])
 
 namespace :sidekiq do
   task :quiet do
@@ -60,11 +61,23 @@ end
 task :robots_txt do
   on roles(:app) do
     within release_path do
-      execute :rake, 'pulfalight:robots_txt'
+      execute :rake, "pulfalight:robots_txt"
     end
   end
 end
 
-after 'deploy:reverted', 'sidekiq:restart'
-after 'deploy:starting', 'sidekiq:quiet'
-after 'deploy:published', 'sidekiq:restart'
+namespace :deploy do
+  desc "Generate the crontab tasks using Whenever"
+  task :whenever do
+    on roles(:db) do |host|
+      within release_path do
+        execute("cd #{release_path} && bundle exec whenever --update-crontab #{fetch :application} --set environment=#{fetch :rails_env, fetch(:stage, 'production')} --user=deploy --roles=#{host.roles_array.join(',')}")
+      end
+    end
+  end
+end
+
+after "deploy:reverted", "sidekiq:restart"
+after "deploy:starting", "sidekiq:quiet"
+after "deploy:published", "sidekiq:restart"
+before "deploy:assets:precompile", "deploy:whenever"
