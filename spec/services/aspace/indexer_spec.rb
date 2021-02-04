@@ -43,15 +43,11 @@ RSpec.describe Aspace::Indexer do
       allow(AspaceIndexJob).to receive(:perform_later)
       Timecop.freeze(Time.zone.parse("2020-01-09"))
 
-      # Never run before - it should index everything, and keep track of when it
-      # last indexed.
       described_class.full_reindex
       event = Event.first
 
       Timecop.freeze(Time.zone.parse("2020-01-10"))
 
-      # It's running again, and knows when it last indexed, so it should only
-      # ask for those after the last time.
       described_class.full_reindex
 
       # Ensure the event time still gets updated
