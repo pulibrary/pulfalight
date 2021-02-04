@@ -79,13 +79,8 @@ module PulfalightHelper
   # @return [String]
   def render_search_to_page_header(params)
     constraints = []
-
-    if params['f'].present?
-      if params['f']['collection_sim'].present?
-        constraints += params['f']['collection_sim']
-      end
-    end
-    constraints.join(' / ')
+    constraints += (params.dig("f", "collection_sim") || [])
+    constraints.join(" / ")
   end
 
   private
