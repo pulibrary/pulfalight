@@ -44,9 +44,11 @@ describe PulfalightHelper, type: :helper do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC152.processed.EAD.xml")
     end
+    let(:facet_params) { instance_double(ActionController::Parameters) }
 
     before do
       allow(helper).to receive(:document).and_return(component_document)
+      allow(params).to receive(:dig).with("f", "collection_sim").and_return(["Harold B. Hoskins Papers, 1822-1982"])
     end
 
     describe "#html_presenter" do
@@ -61,6 +63,12 @@ describe PulfalightHelper, type: :helper do
       it "generates the HTML markup" do
         expect(helper.component_notes_formatter).to include("<p>Consists of two groups of material collected by Ferree: 1) copies of government reports,")
         expect(helper.component_notes_formatter).to include("</p>")
+      end
+    end
+
+    describe "#render_search_to_page_header" do
+      it "generates the correct collection name" do
+        expect(helper.render_search_to_page_header(params)).to include("Harold B. Hoskins Papers, 1822-1982")
       end
     end
 
