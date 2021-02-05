@@ -9,7 +9,7 @@
         <ul class='nav nav-tabs nav-fill' role='tablist' aria-label='<%= t('arclight.views.show.tablist_nav') %>'>
 
           <li class='nav-item flex-fill' role='tab'>
-            <a class='nav-link active' data-toggle='tab' href='#summary' role='tab' aria-selected="true">
+            <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>' role='tab'>
               Overview
             </a>
           </li>
