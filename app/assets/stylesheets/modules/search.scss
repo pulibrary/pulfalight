@@ -8,6 +8,11 @@ header .navbar-form .input-group .custom-select {
     width: auto;
   }
 
+.search-results-heading h1   {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 @media (max-width: 575px) {
   header .navbar-form .input-group .custom-select {
     width: 100%;

@@ -74,6 +74,15 @@ module PulfalightHelper
     link_to ark, ark
   end
 
+  # Render an html <title> appropriate string for a set of search parameters
+  # @param [ActionController::Parameters] params2
+  # @return [String]
+  def render_search_to_page_header(params)
+    constraints = []
+    constraints += (params.dig("f", "collection_sim") || [])
+    constraints.join(" / ")
+  end
+
   private
 
   def repository_thumbnail_path
