@@ -6,7 +6,7 @@ namespace :pulfalight do
       Rails.logger = Logger.new(STDOUT)
       Aspace::Indexer.index_new
     end
-    task full: :Environment do
+    task full: :environment do
       Rails.logger = Logger.new(STDOUT)
       Aspace::Indexer.full_reindex
     end
