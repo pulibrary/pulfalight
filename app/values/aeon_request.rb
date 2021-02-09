@@ -64,7 +64,14 @@ class AeonRequest
   end
 
   def folder
-    solr_document.containers.last
+    return if non_box_containers.blank?
+    non_box_containers.join(", ")
+  end
+
+  def non_box_containers
+    solr_document.containers.reject do |container|
+      container.to_s.downcase.include?("box")
+    end
   end
 
   def access_restrictions
