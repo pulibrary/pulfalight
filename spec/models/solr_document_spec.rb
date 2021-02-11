@@ -214,6 +214,8 @@ RSpec.describe Arclight::SolrDocument do
         expect(request.form_attributes[:"ItemInfo4_#{request_id}"]).to eq "NBox"
         expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Box 1"
         expect(request.form_attributes[:"ItemNumber_#{request_id}"]).to eq "32101038557656"
+        # There's no folder for this item.
+        expect(request.form_attributes[:"ItemInfo3_#{request_id}"]).to be_nil
       end
     end
     it "returns an object with all the necessary attributes" do
