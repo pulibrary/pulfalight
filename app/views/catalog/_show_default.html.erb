@@ -2,41 +2,10 @@
 
 <div class='row'>
   <div class='col-md-12'>
+    <!-- Tabs -->
+    <%= render(partial: 'show_tabs') %>
 
-    <!-- The content tab navigation -->
-    <div class='row content-navigation'>
-      <div class='col-md-12'>
-        <ul class='nav nav-tabs nav-fill' role='tablist' aria-label='<%= t('arclight.views.show.tablist_nav') %>'>
-
-          <li class='nav-item flex-fill' role='tab'>
-            <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>' role='tab'>
-              Overview
-            </a>
-          </li>
-          <li class='nav-item flex-fill' role='tab'>
-            <a class='nav-link ' data-toggle='tab' href='#description' role='tab'>
-              Collection Description & Creator Information
-            </a>
-          </li>
-          <li class='nav-item flex-fill' role='tab'>
-            <a class='nav-link ' data-toggle='tab' href='#access' role='tab'>
-              <%= t 'arclight.views.show.access' %>
-            </a>
-          </li>
-          <li class='nav-item flex-fill' role='tab'>
-            <a class='nav-link ' data-toggle='tab' href='#collection-history' role='tab'>
-              Collection History
-            </a>
-          </li>
-          <li class='nav-item flex-fill' role='tab'>
-            <a class='nav-link ' data-toggle='tab' href='#find-more' role='tab'>
-              Find Related Materials
-            </a>
-          </li>
-        </ul>
-      </div><!-- /.col-md-12 -->
-    </div><!-- /.row.content-navigation -->
-
+    <!-- Contents and Arrangement -->
     <div class="row content-container">
       <div class="col-md-4">
         <div class="toc-header">
@@ -47,70 +16,7 @@
       </div>
 
       <div class="col-md-8">
-
-        <div class="tab-content">
-
-<nav class="navbar sticky-top">
-        <div class="row lux">
-          <div class="col-md-4">
-            <% if @document.aeon_request.requestable? %>
-              <add-to-cart-button
-                class="add-to-cart-block"
-                <% @document.aeon_request.attributes.each_pair do |key, value| %>
-                  <% unless value.nil? || value.empty? %>
-                    <%= key %>="<%= value %>"
-                  <% end %>
-                <% end %>
-                :form-params="<%= JSON.generate(@document.aeon_request.form_attributes) %>"
-                >
-                <lux-icon-base icon-name="add-to-cart" width="20" height="20">
-                    <add-to-cart-icon></add-to-cart-icon>
-                </lux-icon-base>
-                Request this box
-              </add-to-cart-button>
-            <% end %>
-          </div>
-          <div class="col-md-4">
-            <input-button id="question-button" type="button" variation="text" data-toggle="modal" data-target="#questionModal">
-              <lux-icon-base icon-name="question" width="16" height="16">
-                  <lux-icon-question></lux-icon-question>
-              </lux-icon-base>
-              Ask a question
-            </input-button>
-            <%= render "question_modal" %>
-          </div>
-          <div class="col-md-4">
-            <input-button id="correction-button" type="button" variation="text" data-toggle="modal" data-target="#correctionModal">
-              <lux-icon-base icon-name="exclamation" width="16" height="16">
-                  <lux-icon-exclamation></lux-icon-exclamation>
-              </lux-icon-base>
-              Suggest a correction
-            </input-button>
-            <%= render "correction_modal" %>
-          </div>
-        </div><!-- .row -->
-      </nav>
-
-          <div class='tab-pane active' id='summary' role='tabpanel'>
-            <%= render(partial: 'component_summary') %>
-          </div>
-          <div class='tab-pane' id='description' role='tabpanel'>
-            <%= render(partial: 'collection_description') %>
-          </div>
-          <div class='tab-pane' id='collection-history' role='tabpanel'>
-            <%= render(partial: 'collection_history') %>
-          </div>
-
-          <div class='tab-pane' id='access' role='tabpanel'>
-            <%= render(partial: 'collection_access') %>
-          </div>
-
-          <div class='tab-pane' id='find-more' role='tabpanel'>
-            <%= render(partial: 'collection_find_more') %>
-          </div>
-
-
-        </div><!-- .tab-content -->
+        <%= render(partial: 'show_tab_panes') %>
       </div><!-- .col-md-8 -->
 
     </div><!-- .row.content-container -->

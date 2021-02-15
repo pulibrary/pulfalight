@@ -4,38 +4,34 @@
   <div class='col-md-12'>
 
     <!-- The content tab navigation -->
-    <div class='row content-navigation'>
-      <div class='col-md-12'>
-        <ul class='nav nav-tabs nav-fill' role='tablist' aria-label='<%= t('arclight.views.show.tablist_nav') %>'>
-
-          <li class='nav-item flex-fill' role='tab'>
-            <a class='nav-link active' data-toggle='tab' href='#summary' role='tab' aria-selected="true">
-              Overview
-            </a>
-          </li>
-          <li class='nav-item flex-fill' role='tab'>
-            <a class='nav-link ' data-toggle='tab' href='#description' role='tab'>
-              Collection Description & Creator Information
-            </a>
-          </li>
-          <li class='nav-item flex-fill' role='tab'>
-            <a class='nav-link ' data-toggle='tab' href='#access' role='tab'>
-              <%= t 'arclight.views.show.access' %>
-            </a>
-          </li>
-          <li class='nav-item flex-fill' role='tab'>
-            <a class='nav-link ' data-toggle='tab' href='#collection-history' role='tab'>
-              Collection History
-            </a>
-          </li>
-          <li class='nav-item flex-fill' role='tab'>
-            <a class='nav-link ' data-toggle='tab' href='#find-more' role='tab'>
-              Find Related Materials
-            </a>
-          </li>
-        </ul>
-      </div><!-- /.col-md-12 -->
-    </div><!-- /.row.content-navigation -->
+    <!-- Tabs -->
+      <ul class="lux-tabs-container">
+        <li id="summary-tab" class="lux-tabs-item">
+          <a class='nav-link' href='#summary' role='tab'>
+            Collection Overview
+          </a>
+        </li>
+        <li id="description-tab" class="lux-tabs-item">
+          <a class='nav-link' href='#description' role='tab'>
+          Collection Description & Creator Information
+          </a>
+        </li>
+        <li id="access-tab" class="lux-tabs-item">
+          <a class='nav-link' href='#access' role='tab'>
+            <%= t 'arclight.views.show.access' %>
+          </a>
+        </li>
+        <li id="collection-history-tab" class="lux-tabs-item">
+          <a class='nav-link ' href='#collection-history' role='tab'>
+            Collection History
+          </a>
+        </li>
+        <li id="find-more-tab" class="lux-tabs-item">
+          <a class='nav-link ' data-toggle='tab' href='#find-more' role='tab'>
+            Find Related Materials
+          </a>
+        </li>
+      </ul>
 
     <div class="row content-container">
       <div class="col-md-4">
@@ -76,21 +72,44 @@
             </div><!-- .row -->
           </nav>
 
-          <div class='tab-pane active' id='summary' role='tabpanel'>
+          <div class='tab-pane active' id='component-summary' role='tabpanel'>
+            <%= render(partial: 'component_summary') %>
+          </div>
+
+          <div class='tab-pane' id='summary' role='tabpanel'>
+            <div class="document-title">
+              <h2>Collection Overview</h2>
+            </div>
             <%= render(partial: 'collection_summary') %>
           </div>
+
           <div class='tab-pane' id='description' role='tabpanel'>
+            <div class="document-title">
+              <h2>Collection Description &amp; Creator Information</h2>
+            </div>
             <%= render(partial: 'collection_description') %>
           </div>
           <div class='tab-pane' id='collection-history' role='tabpanel'>
+            <div class="document-title">
+              <h2>Collection History</h2>
+            </div>
             <%= render(partial: 'collection_history') %>
           </div>
+
           <div class='tab-pane' id='access' role='tabpanel'>
+            <div class="document-title">
+              <h2>Access &amp; Use </h2>
+            </div>
             <%= render(partial: 'collection_access') %>
           </div>
+
           <div class='tab-pane' id='find-more' role='tabpanel'>
+            <div class="document-title">
+              <h2>Find More</h2>
+            </div>
             <%= render(partial: 'collection_find_more') %>
           </div>
+          
         </div><!-- .tab-content -->
       </div><!-- .col-md-8 -->
     </div><!-- .row.content-container -->

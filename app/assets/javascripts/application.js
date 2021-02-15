@@ -28,3 +28,4 @@
 // this:
 //= require 'blacklight_range_limit'
 //= require 'focus'
+//= require 'tabs'
