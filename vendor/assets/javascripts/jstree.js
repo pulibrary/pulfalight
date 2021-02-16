@@ -84,7 +84,7 @@
 		idregex : /[\\:&!^|()\[\]<>@*'+~#";.,=\- \/${}%?`]/g,
 		root : '#'
 	};
-	
+
 	/**
 	 * creates a jstree instance
 	 * @name $.jstree.create(el [, options])
@@ -602,7 +602,7 @@
 					return this.nodeType === 3 && (!this.nodeValue || /^\s+$/.test(this.nodeValue));
 				})
 				.remove();
-			this.element.html("<"+"ul class='jstree-container-ul jstree-children' role='group'><"+"li id='j"+this._id+"_loading' class='jstree-initial-node jstree-loading jstree-leaf jstree-last' role='presentation'><i class='jstree-icon jstree-ocl'></i><"+"a class='jstree-anchor' role='treeitem' href='#'><i class='jstree-icon jstree-themeicon-hidden'></i>" + this.get_string("Loading ...") + "</a></li></ul>");
+			this.element.html("<"+"ul class='jstree-container-ul jstree-children' role='group'><"+"li id='j"+this._id+"_loading' class='jstree-initial-node jstree-loading jstree-leaf jstree-last' role='treeitem'><i class='jstree-icon jstree-ocl'></i><i class='jstree-icon jstree-themeicon-hidden'></i><"+"a class='jstree-anchor' role='treeitem' href='#'>" + this.get_string("Loading ...") + "</a></li></ul>");
 			this.element.attr('aria-activedescendant','j' + this._id + '_loading');
 			this._data.core.li_height = this.get_container_ul().children("li").first().outerHeight() || 24;
 			this._data.core.node = this._create_prototype_node();
@@ -643,7 +643,7 @@
 		 */
 		_create_prototype_node : function () {
 			var _node = document.createElement('LI'), _temp1, _temp2;
-			_node.setAttribute('role', 'presentation');
+			_node.setAttribute('role', 'treeitem');
 			_temp1 = document.createElement('I');
 			_temp1.className = 'jstree-icon jstree-ocl';
 			_temp1.setAttribute('role', 'presentation');
@@ -653,11 +653,11 @@
 			_temp1.setAttribute('href','#');
 			_temp1.setAttribute('tabindex','-1');
 			_temp1.setAttribute('role', 'treeitem');
+			_node.appendChild(_temp1);
 			_temp2 = document.createElement('I');
 			_temp2.className = 'jstree-icon jstree-themeicon';
 			_temp2.setAttribute('role', 'presentation');
-			_temp1.appendChild(_temp2);
-			_node.appendChild(_temp1);
+			_node.appendChild(_temp2);
 			_temp1 = _temp2 = null;
 
 			return _node;
@@ -3617,7 +3617,7 @@
 
 			var c = this.get_container_ul()[0].className;
 			if(!skip_loading) {
-				this.element.html("<"+"ul class='"+c+"' role='group'><"+"li class='jstree-initial-node jstree-loading jstree-leaf jstree-last' role='presentation' id='j"+this._id+"_loading'><i class='jstree-icon jstree-ocl'></i><"+"a class='jstree-anchor' role='treeitem' href='#'><i class='jstree-icon jstree-themeicon-hidden'></i>" + this.get_string("Loading ...") + "</a></li></ul>");
+				this.element.html("<"+"ul class='"+c+"' role='group'><"+"li class='jstree-initial-node jstree-loading jstree-leaf jstree-last' role='treeitem' id='j"+this._id+"_loading'><i class='jstree-icon jstree-ocl'></i><"+"a class='jstree-anchor' role='treeitem' href='#'>" + this.get_string("Loading ...") + "</a></li></ul>");
 				this.element.attr('aria-activedescendant','j'+this._id+'_loading');
 			}
 			this.load_node($.jstree.root, function (o, s) {
@@ -5416,9 +5416,9 @@
 			this.element.find('.jstree-closed').not(':has(.jstree-children)')
 				.each(function () {
 					var tmp = tt.get_node(this), tmp2;
-					
+
 					if(!tmp) { return; }
-					
+
 					if(!tmp.state.loaded) {
 						if(tmp.original && tmp.original.state && tmp.original.state.undetermined && tmp.original.state.undetermined === true) {
 							if(o[tmp.id] === undefined && tmp.id !== $.jstree.root) {
@@ -5802,7 +5802,7 @@
 				this.trigger('uncheck_node', { 'node' : obj, 'selected' : this._data.checkbox.selected, 'event' : e });
 			}
 		};
-		
+
 		/**
 		 * checks all nodes in the tree (only if tie_selection in checkbox settings is false, otherwise select_all will be called internally)
 		 * @name check_all()
@@ -6030,7 +6030,7 @@
 		 * * `_disabled` - a boolean indicating if this action should be disabled
 		 * * `label` - a string - the name of the action (could be a function returning a string)
 		 * * `title` - a string - an optional tooltip for the item
-		 * * `action` - a function to be executed if this item is chosen, the function will receive 
+		 * * `action` - a function to be executed if this item is chosen, the function will receive
 		 * * `icon` - a string, can be a path to an icon or a className, if using an image that is in the current directory use a `./` prefix, otherwise it will be detected as a class
 		 * * `shortcut` - keyCode which will trigger the action if the menu is open (for example `113` for rename, which equals F2)
 		 * * `shortcut_label` - shortcut label (like for example `F2` for rename)
@@ -7321,7 +7321,7 @@
 	 *		"id1" : [{ "text" : "Child of ID1", "id" : "c1" }, { "text" : "Another child of ID1", "id" : "c2" }],
 	 *		"id2" : [{ "text" : "Child of ID2", "id" : "c3" }]
 	 *	}
-	 * 
+	 *
 	 * @name $.jstree.defaults.massload
 	 * @plugin massload
 	 */
@@ -7332,7 +7332,7 @@
 			parent.init.call(this, el, options);
 		};
 		this._load_nodes = function (nodes, callback, is_callback, force_reload) {
-			var s = this.settings.massload,				
+			var s = this.settings.massload,
 				toLoad = [],
 				m = this._model.data,
 				i, j, dom;
