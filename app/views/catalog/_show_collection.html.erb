@@ -5,33 +5,8 @@
 
     <!-- The content tab navigation -->
     <!-- Tabs -->
-      <ul class="lux-tabs-container">
-        <li id="summary-tab" class="lux-tabs-item">
-          <a class='nav-link' href='#summary' role='tab'>
-            Collection Overview
-          </a>
-        </li>
-        <li id="description-tab" class="lux-tabs-item">
-          <a class='nav-link' href='#description' role='tab'>
-          Collection Description & Creator Information
-          </a>
-        </li>
-        <li id="access-tab" class="lux-tabs-item">
-          <a class='nav-link' href='#access' role='tab'>
-            <%= t 'arclight.views.show.access' %>
-          </a>
-        </li>
-        <li id="collection-history-tab" class="lux-tabs-item">
-          <a class='nav-link ' href='#collection-history' role='tab'>
-            Collection History
-          </a>
-        </li>
-        <li id="find-more-tab" class="lux-tabs-item">
-          <a class='nav-link ' data-toggle='tab' href='#find-more' role='tab'>
-            Find Related Materials
-          </a>
-        </li>
-      </ul>
+    <!-- Tabs -->
+    <%= render(partial: 'show_tabs') %>
 
     <div class="row content-container">
       <div class="col-md-4">
@@ -47,70 +22,7 @@
       </div>
 
       <div class="col-md-8">
-        <div class="tab-content">
-          <nav class="navbar sticky-top lux">
-            <div class="row">
-              <div class="col-md-4"></div>
-              <div class="col-md-4">
-                <input-button id="ask" type="button" variation="text" data-toggle="modal" data-target="#questionModal">
-                  <lux-icon-base icon-name="question" width="16" height="16">
-                      <lux-icon-question></lux-icon-question>
-                  </lux-icon-base>
-                  Ask a question
-                </input-button>
-                <%= render "question_modal" %>
-              </div>
-              <div class="col-md-4">
-                <input-button id="suggest" type="button" variation="text" data-toggle="modal" data-target="#correctionModal">
-                  <lux-icon-base icon-name="exclamation" width="16" height="16">
-                      <lux-icon-exclamation></lux-icon-exclamation>
-                  </lux-icon-base>
-                  Suggest a correction
-                </input-button>
-                <%= render "correction_modal" %>
-              </div>
-            </div><!-- .row -->
-          </nav>
-
-          <div class='tab-pane active' id='component-summary' role='tabpanel'>
-            <%= render(partial: 'component_summary') %>
-          </div>
-
-          <div class='tab-pane' id='summary' role='tabpanel'>
-            <div class="document-title">
-              <h2>Collection Overview</h2>
-            </div>
-            <%= render(partial: 'collection_summary') %>
-          </div>
-
-          <div class='tab-pane' id='description' role='tabpanel'>
-            <div class="document-title">
-              <h2>Collection Description &amp; Creator Information</h2>
-            </div>
-            <%= render(partial: 'collection_description') %>
-          </div>
-          <div class='tab-pane' id='collection-history' role='tabpanel'>
-            <div class="document-title">
-              <h2>Collection History</h2>
-            </div>
-            <%= render(partial: 'collection_history') %>
-          </div>
-
-          <div class='tab-pane' id='access' role='tabpanel'>
-            <div class="document-title">
-              <h2>Access &amp; Use </h2>
-            </div>
-            <%= render(partial: 'collection_access') %>
-          </div>
-
-          <div class='tab-pane' id='find-more' role='tabpanel'>
-            <div class="document-title">
-              <h2>Find More</h2>
-            </div>
-            <%= render(partial: 'collection_find_more') %>
-          </div>
-          
-        </div><!-- .tab-content -->
+        <%= render(partial: 'show_tab_panes') %>
       </div><!-- .col-md-8 -->
     </div><!-- .row.content-container -->
   </div>

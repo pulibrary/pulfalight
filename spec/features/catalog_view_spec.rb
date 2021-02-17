@@ -331,9 +331,9 @@ describe "viewing catalog records", type: :feature, js: true do
         end
 
         visit "/catalog/C1408_c3"
-        within("#summary") do
-          expect(page).to have_selector "dt.blacklight-creator_ssm", text: "Collection Creator"
-          expect(page).to have_selector "dd.blacklight-creator_ssm", text: "Alaveras, Tēlemachos"
+        within("#component-summary") do
+          expect(page).to have_selector "dt.blacklight-collection_creator_ssm", text: "Collection Creator"
+          expect(page).to have_selector "dd.blacklight-collection_creator_ssm", text: "Alaveras, Tēlemachos"
         end
       end
       it "shows originalsloc" do
