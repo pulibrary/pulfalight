@@ -11,7 +11,7 @@ describe "viewing catalog records", type: :feature, js: true do
     end
     it "renders a component title with a correctly formatted date" do
       visit "catalog/C1588_c9"
-      expect(page).to have_css(".document-title > h3", text: "Unused AIC Supply Request Form, circa 1885")
+      expect(page).to have_css(".document-title > h2", text: "Unused AIC Supply Request Form, circa 1885")
     end
     it "has a suggest a correction form", js: false do
       visit "catalog/MC221_c0059"
@@ -130,14 +130,14 @@ describe "viewing catalog records", type: :feature, js: true do
     end
 
     it "has an ask a question button", js: false do
-      expect(page).to have_selector "#ask"
+      expect(page).to have_selector "#question-button"
       expect(page).to have_field "ask_a_question_form_location_code", visible: false, type: :hidden, with: "publicpolicy"
       expect(page).to have_field "ask_a_question_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221"
       expect(page).to have_field "ask_a_question_form_title", visible: false, type: :hidden, with: "Harold B. Hoskins Papers, 1822-1982"
     end
 
     it "has a suggest a correction form", js: false do
-      expect(page).to have_selector "#suggest"
+      expect(page).to have_selector "#correction-button"
       expect(page).to have_field "suggest_a_correction_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221"
       expect(page).to have_field "suggest_a_correction_form_location_code", visible: false, type: :hidden, with: "publicpolicy"
     end
@@ -331,7 +331,7 @@ describe "viewing catalog records", type: :feature, js: true do
         end
 
         visit "/catalog/C1408_c3"
-        within("#summary") do
+        within("#component-summary") do
           expect(page).to have_selector "dt.blacklight-collection_creator_ssm", text: "Collection Creator"
           expect(page).to have_selector "dd.blacklight-collection_creator_ssm", text: "Alaveras, Tēlemachos"
         end

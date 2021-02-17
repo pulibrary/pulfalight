@@ -1,10 +1,10 @@
 /* bootstrap overrides */
 @import "variables/colors";
 
-.nav.nav-tabs .nav-item .nav-link:not(.active) {
-  background: inherit;
-  border-color: #dee2e6;
-}
+// .nav.nav-tabs .nav-item .nav-link:not(.active) {
+//   background: inherit;
+//   border-color: #dee2e6;
+// }
 
 $container-max-widths: (
   sm: 540px,
@@ -24,4 +24,35 @@ a {
 
 .twitter-typeahead {
     z-index: 998 !important;
+}
+
+.lux-tabs-container {
+  display: flex;
+  flex-flow: row wrap;
+
+  justify-content: space-around;
+  align-items: baseline;
+
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.lux-tabs-item {
+  background: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  border-bottom: 5px solid #dee2e6;
+  padding: 0px 0px 0px 0px;
+  width: auto;
+  margin-top: 10px;
+  line-height: 3.5rem;
+  color: black;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.lux-tabs-container .active {
+  background: white;
 }
