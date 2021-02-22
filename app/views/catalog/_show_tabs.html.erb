@@ -1,26 +1,26 @@
 <ul class="lux-tabs-container" role="tablist" aria-label="Collection Notes">
   <li id="summary-tab" class="lux-tabs-item" role='tab'>
-    <a class='nav-link' href='#summary'>
-      Collection Overview
+    <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>'>
+    Collection Overview
     </a>
   </li>
   <li id="description-tab" class="lux-tabs-item" role='tab'>
-    <a class='nav-link' href='#description'>
+    <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>#description'>
     Collection Description & Creator Information
     </a>
   </li>
   <li id="access-tab" class="lux-tabs-item" role='tab'>
-    <a class='nav-link' href='#access'>
+    <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>#access'>
       <%= t 'arclight.views.show.access' %>
     </a>
   </li>
   <li id="collection-history-tab" class="lux-tabs-item" role='tab'>
-    <a class='nav-link ' href='#collection-history'>
+    <a class='nav-link ' href='<%= solr_document_path(document.http_safe_ead) %>#collection-history'>
       Collection History
     </a>
   </li>
   <li id="find-more-tab" class="lux-tabs-item" role='tab'>
-    <a class='nav-link' href='#find-more'>
+    <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>#find-more'>
       Find Related Materials
     </a>
   </li>
