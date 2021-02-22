@@ -62,7 +62,7 @@ export default class {
 
   component_id() {
     let doc_aspace_component_id = document.getElementById('document').getElementsByTagName('div')[0]
-    let component_id = doc_aspace_component_id.getAttribute('id').replace('doc_aspace_', '')
+    let component_id = doc_aspace_component_id.getAttribute('id').replace('doc_', '')
     let underscorePosition = component_id.indexOf('_')
     component_id = this.uppercaseChar(component_id,underscorePosition) + component_id.slice(underscorePosition)
     return component_id;
