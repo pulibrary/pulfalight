@@ -5,7 +5,7 @@
   <div v-if="isVisible" :class="['request-cart']">
 
     <div class="panel">
-      <table :class="['lux-data-table']">
+      <table :class="['lux-data-table', 'fixed-header']">
 
         <caption>
 
@@ -47,10 +47,10 @@
 
         <thead>
           <tr>
-            <th>Title</th>
-            <th>Call Number</th>
-            <th colspan="2">Containers</th>
-            <th class="action-header" colspan="1"></th>
+            <th width="275rem">Title</th>
+            <th width="150rem">Call Number</th>
+            <th width="150rem">Containers</th>
+            <th class="action-header">&nbsp;</th>
           </tr>
         </thead>
 
@@ -62,9 +62,9 @@
               :id="'item-' + item.callnumber"
               class="lux-cartItem request"
               >
-              <td>{{ item.title }}</td>
-              <td>{{ item.callnumber }}</td>
-              <td>
+              <td width="275rem">{{ item.title }}</td>
+              <td width="150rem">{{ item.callnumber }}</td>
+              <td width="150rem">
                 {{ item.containers }}
               </td>
               <td>
@@ -274,17 +274,39 @@ export default {
     font-size: 1.777em;
   }
 }
+
+
+.lux-data-table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.lux-data-table tbody{
+  display:block;
+  width: 100%;
+  overflow: auto;
+  height: 40rem;
+}
+
+.lux-data-table tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
 .lux-data-table thead {
-  display: table-header-group;
   vertical-align: middle;
+  width: 100%;
 }
 .lux-data-table thead tr {
+  display: table;
   background-color: #f5f5f5;
   color: #001123;
 }
 .lux-data-table th {
   line-height: 22px;
-  padding: 20px;
+
   font-weight: 600;
   font-family: franklin-gothic-urw, Helvetica, Arial, sans-serif;
   font-size: 12px;
@@ -516,9 +538,6 @@ table {
  * Custom Styling
  */
 .request-cart {
-  .action-header {
-    display: none;
-  }
 
   @media screen and (max-width: 1024px) {
     width: 100%;
@@ -533,6 +552,7 @@ table {
       &.action-header {
         display: table-cell;
         min-width: 100%;
+        width:100%;
       }
     }
 
@@ -563,4 +583,5 @@ table {
     }
   }
 }
+
 </style>
