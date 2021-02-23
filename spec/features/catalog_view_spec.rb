@@ -70,38 +70,6 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).not_to have_css("ol.breadcrumb")
     end
 
-    it "has a collection history tab" do
-      expect(page.body).to include "Scott Rodman approved the gifting to Mudd"
-      expect(page.body).to include "Gifted to the American Heritage Center"
-      expect(page.body).to include "boxes of books were separated during processing in 2007"
-      expect(page.body).to include "A preliminary inventory list, MARC record and collection-level description"
-      expect(page.body).to include "These papers were processed with the generous support"
-    end
-
-    it "has a collection access tab", js: false do
-      # accessrestrict
-      expect(page.body).to include "The collection is open for research use."
-      # userestrict
-      expect(page.body).to include "Conditions for Reproduction and Use"
-      expect(page.body).to include "Single photocopies may be made for research purposes"
-      expect(page.body).to include "Public Policy Papers, Department of Special Collections"
-      expect(page.body).to include "65 Olden Street"
-      expect(page.body).to include "(609) 258-6345"
-      expect(page.body).to have_link "U. S. Copyright Law", href: "http://copyright.princeton.edu/basics/fair-use", visible: false
-    end
-
-    it "has a find related materials tab" do
-      expect(page.body).to include "Topics"
-      expect(page.body).to include "20th century"
-      expect(page.body).to include "Subject Terms"
-      expect(page.body).to include "Missionaries"
-      expect(page.body).to include "Genre Terms"
-      expect(page.body).to include "Correspondence"
-      expect(page.body).to include "Names"
-      expect(page.body).to include "Foreign Service Institute"
-      expect(page.body).to include "Places"
-      expect(page.body).to include "Middle East -- Politics"
-    end
     context "which has a viewer", js: false do
       before do
         visit "/catalog/MC221_c0094"
