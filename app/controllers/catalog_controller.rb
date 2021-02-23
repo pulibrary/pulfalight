@@ -337,14 +337,45 @@ class CatalogController < ApplicationController
     # Component Show Page - Metadata Section
     config.add_component_field "creator_ssm", label: "Creator"
     config.add_component_field "collection_creator_ssm", label: "Collection Creator"
-    config.add_component_field "unitdate_inclusive_ssm", label: "Dates"
+    config.add_component_field "normalized_date_ssm", label: "Dates"
     config.add_component_field "physloc_ssm", label: "Located In"
     config.add_component_field "extent_ssm", label: "Extent"
     config.add_component_field "language_ssm", label: "Languages"
     config.add_component_field "scopecontent_ssm", label: "Description", helper_method: :paragraph_separator
     config.add_component_field "bioghist_ssm", label: "Biography", helper_method: :paragraph_separator
     config.add_component_field "parent_access_restrict_ssm", label: "Access Restrictions"
+    config.add_component_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator
     config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
+
+    config.add_component_field "topics_ssim", label: "Topics", link_to_facet: true, separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
+    }
+
+    config.add_component_field "subject_terms_ssim", label: "Subject Terms", link_to_facet: true, separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
+    }
+
+    config.add_component_field "genreform_ssim", label: "Genre Terms", link_to_facet: true, separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
+    }
+
+    config.add_component_field "names_coll_ssim", label: "Names", separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
+    }, helper_method: :link_to_name_facet
+
+    config.add_component_field "places_ssim", label: "Places", link_to_facet: true, separator_options: {
+      words_connector: "<br/>",
+      two_words_connector: "<br/>",
+      last_word_connector: "<br/>"
+    }
 
     # =================================
     # COLLECTION DESCRIPTION TAB FIELDS
