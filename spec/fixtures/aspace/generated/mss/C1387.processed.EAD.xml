@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/zk51vg854">C1387</eadid><filedesc><titlestmt><titleproper>Phillips Family Papers, circa 1880-1973: Finding Aid <num>C1387</num></titleproper><author>Faith Charlton</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2015</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-02-23 14:54:37 -0500</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2015-06-24T13:22:20.882-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Manuscripts Division </corpname>
+    </repository>
+    <unittitle>Phillips Family Papers</unittitle>
+    <origination label="Creator">
+      <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="col" source="viaf">Princeton University. Library. Special Collections</corpname>
+    </origination>
+    <origination label="Creator">
+      <persname role="cre" rules="lcnaf" source="local">Phillips family</persname>
+    </origination>
+    <unitid>C1387</unitid>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">6 boxes</extent>
+    </physdesc>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">4.0 linear feet</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1900/1940" type="bulk">1900-1940</unitdate>
+    <unitdate certainty="approximate" datechar="creation" normal="1880/1973" type="inclusive">circa 1880-1973</unitdate>
+    <abstract id="aspace_5bc1218da3edd412016f551c7c3c3634">Consists of photographs, manuscripts, diaries, and ephemera relating to Edward H. Phillips (1868-1944), his wife Marie Kempton Phillips (1881-1946), and their daughter Jean Sarah Phillips (1908–1985) that document ranch life in and around Montana around the turn of the 20th century as well as Ed Phillips' involvement in Wild West shows, including Buffalo Bill's Wild West Show, and his career as a Hollywood actor.</abstract>
+    <physloc id="aspace_14e0b358c4ec4cd56f65627541842a80">rcpxr</physloc>
+    <physloc id="aspace_9a379a064b8a0d8d490c5908904c5ccc">mss</physloc>
+    <physloc id="aspace_838fafcba448de8f8bf1a378e874c26b">This collection is stored partially (Boxes 1-2, 5-6) on-site at Firestone Library and partially off-site (Boxes 3-4) at ReCAP.</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+.    </langmaterial>
+  </did>
+  <scopecontent id="aspace_49f2c5688c62187cd99016aba5e76e75">
+    <head>Scope and Contents</head>
+<p>This collection consists of photographs, manuscripts, diaries, and ephemera relating to Edward Phillips, his wife Marie Kempton Phillips, and their daughter Jean Phillips that document the family, in particular Edward Phillips' career as a cattle rancher, Wild West show performer, and Hollywood actor. Notably, there are over 550 negatives (available in digital form) taken by Marie Kempton Phillips with a hand-held camera dating from circa 1904 to 1938, many of which depict life on a Montana ranch, novelty steer riding and rodeo scenes, horse races and other performances, branding, cattle, wagon trains, horse-breaking, and more.</p><p> Also of special interest are Marie's diary for 1904 documenting the period when her and her husband traveled back and forth from Montana to New York working various jobs at cattle ranches and performing in contests and a Wild West show in Coney Island; photographs of Kempton family members (some with stamps from Miles City, Montana, the studio of frontier photographer L. A. Huffman); a letter from Ed and Marie Phillips and a short diary written while on board the U.S.M.S. "St. Louis," describing the voyage to England with the cast of Buffalo Bill's Wild West Show; a draft of an unpublished autobiography by Ed Phillips and his daughter Jean; and Jean Phillips' 1939 diary that documents her father's time working for Columbia Studios.</p><p> Also included in the collection are research materials about the Phillips family, the Kempton family and ranch, and related topics.</p>  </scopecontent>
+  <accessrestrict id="aspace_83587d4b94bca4f4d56bdf27297e0fbc">
+    <head>Conditions Governing Access</head>
+<p>Marie Kempton Phillips and Jean Phillips' negatives are closed to researchers.</p>  </accessrestrict>
+  <userestrict id="aspace_72477f58b3753baef42b99e6e6c50d3b">
+    <head>Conditions Governing Use</head>
+<p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref href="https://library.princeton.edu/special-collections/ask-us" type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
+  <acqinfo id="aspace_e1da4ef23ff016cff3b1790c8a7cf62e">
+    <head>Immediate Source of Acquisition</head>
+<p>Purchase, <date normal="2010" type="acquisition">2010</date>. (AM 2011-104).</p>  </acqinfo>
+  <appraisal id="aspace_c2957a19cf5740f4b115500d0f4397b5">
+    <head>Appraisal</head>
+<p>Published materials were removed from the collection during 2015 processing.</p>  </appraisal>
+  <relatedmaterial id="aspace_7bd17a69c48112c1647a2f7cc6966a89">
+    <head>Related Materials</head>
+<p><extref href="http://arks.princeton.edu/ark:/88435/tt44pm932" type="simple">Evelyn Cameron Photographs (C1404)</extref> </p><p>  <extref href="http://beta.worldcat.org/archivegrid/collection/data/693950736" type="simple">Montana Historical Society Research Center: James B. Kempton papers, 1892-1952</extref></p>  </relatedmaterial>
+  <prefercite id="aspace_4c2ba4cff5726729f46b867275314fe3">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); Phillips Family Papers, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_68bc0ecb753eeb70ef9cd0bca0ac0342">
+    <head>Processing Information</head>
+<p>This collection was processed by Faith Charlton in May 2015. Finding aid written by Faith Charlton in May 2015.</p>  </processinfo>
+  <bioghist id="aspace_4c0dc9d3e6d86c1510f6b8662515bd23">
+    <head>Biographical / Historical</head>
+<p>The Princeton University musical tradition dates back to as early as commencement 1759, when students sang an ode by James Lyon, a graduate that year who went on to a career in music composition. Since that time, the University has been host to a wide array of musical performances on a regular basis. Concerts and recitals by the University's many musical clubs and organizations, as well as performers from outside the University have been standard fare over the years. In the last several decades these performances have been funded in large part by the Friends of Music at Princeton.</p> <p>Instrumental music entered the musical scene at Princeton in the 1760's with the purchase of an organ. It soon proved to be an unpopular choice, however, for Princeton was a Presbyterian school at the time, and this was the first organ installed in a Presbyterian place of worship. It was never heavily used, and organ and vesper recitals did not become regular campus events until the installation of an organ in the Graduate College dining hall, which opened in 1913. Instrumental music in general only gained a popular following on campus in the mid-to-late 19th century. The Instrumental Club, the first of its kind on campus, was founded in 1876. Later additions included the Banjo Club, Mandolin Club, University Orchestra and University Band.</p> <p>The Princeton University Glee Club was founded in 1874. An offshoot of the now-extinct University Quartette, the Glee Club is the oldest singing group at the University. In the years following its formation, the Glee Club often collaborated and performed with the University instrumental clubs. The Glee Club began touring the country in the 1890s. More recently, they have spread their talent abroad through tours of Europe, Asia, and South America. In 1913, the Princeton Glee Club first performed with the Glee Clubs of Harvard and Yale, an annual tradition that endures to the present day.</p> <p>In 1894 the Princeton University Concerts series was founded by Philenas Fobes Fine (wife of Henry Burchard Fine, a professor and dean) and the Ladies' Musical Committee. In 1929 the Princeton University Concerts Committee was established and took control, which in conjunction with the Friends of Music has guided the concerts series ever since.</p> <p>Friends of Music at Princeton is a donor-supported organization that sponsors a wide variety of concerts at Princeton University. The concerts, usually in the Frank E. Taplin '37 auditorium in Fine Hall, are open to the public and free of charge, and feature professional musicians as well as talented amateur and student musicians. Friends of Music at Princeton was founded in the 1940s by Professor Roy Dickinson Welch, who was also the first chair of the Department of Music. Administrative support for the Friends of Music and the Princeton University Concerts Committee is provided by the Princeton University Concert Office, which handles accounting, event planning, and artist coordination.</p>  </bioghist>
+  <bioghist id="aspace_67169469d1cb8e8591693d67c9f275b2">
+    <head>Biographical / Historical</head>
+<p>Born in Saline, Kansas, Edward (Ed) Harford Phillips (1868-1944) moved west in 1882 to pursue cattle ranching. He primarily worked as a horse handler on multiple ranches, including James B. Kempton's XIT ranch near Terry, Montana, one of the largest cattle ranches in eastern Montana. A skilled horseman and steer roper, Phillips joined the cast of Buffalo Bill's Wild West show in New York in 1900 as a stunt horse rider. In 1902, Phillips married Mary (Marie) N. Kempton (1881–1946) with whom he had two children: Jean Sarah Phillips (1908–1985), who also performed in Wild West shows, and Joseph Edward Phillips (1913–1972).</p> <p>Marie Kempton Phillips, an accomplished horsewoman and relay rider, joined her husband as a performer in Buffalo Bill's Wild West show. The couple celebrated their honeymoon in London while touring with the show during its four-month run at the Olympia Building beginning in December 1902. Over the next couple of years, the Phillips traveled back and forth from Montana to New York working various jobs at cattle ranches, farms, and race tracks, and performing in rodeo and horse-racing contests, and a Wild West show in Coney Island. From 1906 to 1912, the Phillips family lived at Cross L. ranch in Medora, North Dakota before moving back to Terry, Montana.</p> <p>In 1919, the family moved to Los Angeles, California, and Ed Phillips joined Tom Mix's stock acting company. He left after a year to work with cowboy stars such as Buck Jones, Harry Carey, Fred Thompson, William S. Hart, and Hoot Gibson, and others. From 1922 to 1930, the Phillips family lived and worked a farm in Merced before returning to Los Angeles where Ed again worked as a film actor and consultant for westerns. During his Hollywood career, Phillips was in movies made by Leo D. Maloney (1888-1929) and had minor roles in the movies "Gun Play" (1935) and "In Old Chicago" (1938), among others. His movie career ended with Columbia Studios (1939-1942). Phillips was an honorary member of the Chuck Wagon Trailers.</p> <p>Photographs and some information about Ed Phillips and the Kempton ranch can be found in Mark H. Brown and W. R. Felton's book, Before barbed wire; L. A. Huffman, photographer on horseback (New York, Holt [1956]). The Kempton ranch and family, including Ed and Marie Phillips, were also documented by photographer Evelyn Cameron whose farm sat adjacent to the Kempton's property.</p>  </bioghist>
+  <controlaccess>
+    <subject source="lcsh">Motion picture actors and actresses--United States--20th century--Biography.</subject>
+    <subject source="lcsh">Ranching -- Montana -- 19th century.</subject>
+    <subject source="lcsh">Ranching -- Montana -- 20th century.</subject>
+    <subject source="lcsh">Wild west shows -- United States -- 1890-1900.</subject>
+    <subject source="lcsh">Wild west shows -- United States -- 1900-1910.</subject>
+    <genreform source="aat">black-and-white negatives.</genreform>
+    <genreform source="aat">Diaries.</genreform>
+    <subject source="local">Western Americana</subject>
+    <famname rules="lcnaf" source="local">Kempton family</famname>
+    <famname rules="lcnaf" source="local">Phillips family</famname>
+    <corpname authfilenumber="https://viaf.org/viaf/136128171" source="viaf">Buffalo Bill's Wild West Show</corpname>
+    <persname rules="rda" source="lcnaf">Phillips, Edward Harford, 1868-1944</persname>
+    <persname rules="rda" source="lcnaf">Phillips, Jean Sarah, 1908–1985</persname>
+    <persname rules="rda" source="lcnaf">Phillips, Marie Kempton, 1881-1946</persname>
+  </controlaccess>
+  <dsc/>
+</archdesc>
+</ead>
