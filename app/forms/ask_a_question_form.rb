@@ -38,15 +38,7 @@ class AskAQuestionForm
   end
 
   def routed_mail_to
-    case location_code
-    when "rbsc", "lae", "mss", "rarebooks"
-      "rbsc@princeton.edu"
-    when "mudd", "publicpolicy", "univarchives"
-      "mudd@princeton.edu"
-    when "engineering library", "eng"
-      "wdressel@princeton.edu"
-    when "ga"
-      "jmellby@princeton.edu"
-    end
+    return "wdressel@princeton.edu" if ["eng", "engineering library"].include?(location_code)
+    "specialcollections@princeton.libanswers.com"
   end
 end
