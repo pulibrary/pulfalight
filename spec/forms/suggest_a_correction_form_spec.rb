@@ -61,21 +61,11 @@ RSpec.describe SuggestACorrectionForm do
   end
 
   describe "#routed_mail_to" do
-    ["mss", "cotsen", "eng", "lae", "rarebooks", "selectors"].each do |location_code|
-      it "routes to mssdiv@princeton.edu for #{location_code}" do
+    ["mss", "cotsen", "eng", "lae", "rarebooks", "selectors", "mudd", "publicpolicy", "univarchives", "rbsc"].each do |location_code|
+      it "routes to suggestacorrection@princeton.libanswers.com for #{location_code}" do
         form = described_class.new(valid_attributes.merge("location_code" => location_code))
-        expect(form.routed_mail_to).to eq "mssdiv@princeton.edu"
+        expect(form.routed_mail_to).to eq "suggestacorrection@princeton.libanswers.com"
       end
-    end
-    ["mudd", "publicpolicy", "univarchives"].each do |location_code|
-      it "routes to muddts@princeton.edu for #{location_code}" do
-        form = described_class.new(valid_attributes.merge("location_code" => location_code))
-        expect(form.routed_mail_to).to eq "muddts@princeton.edu"
-      end
-    end
-    it "routes to rbsc@princeton.edu for rbsc" do
-      form = described_class.new(valid_attributes.merge("location_code" => "rbsc"))
-      expect(form.routed_mail_to).to eq "rbsc@princeton.edu"
     end
     it "routes to wdressel@princeton.edu for engineering library" do
       form = described_class.new(valid_attributes.merge("location_code" => "engineering library"))
