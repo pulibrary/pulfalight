@@ -6,7 +6,7 @@ RSpec.describe ResearchHelpController, type: :controller do
     it "routes to the help page" do
       get :research_help
 
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 end
