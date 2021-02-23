@@ -3,6 +3,10 @@ require "rails_helper"
 
 RSpec.describe StorageNotes do
   describe ".for" do
+    it "returns a combined note if it's two locations" do
+      notes = described_class.for(["rcpph", "flm"]).to_a
+      expect(notes.first).to eq "This collection is stored at ReCAP and Firestone Library."
+    end
     it "returns a Mudd note for mudd/rcpph" do
       notes = described_class.for("mudd").to_a
       notes2 = described_class.for("rcpph").to_a
