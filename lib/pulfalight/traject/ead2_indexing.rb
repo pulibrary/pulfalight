@@ -66,6 +66,16 @@ module Pulfalight
       end
     end
 
+    # Returns if DAO should be indexed.
+    # @param [Nokogiri::XML::Element] dao
+    # @return [Boolean]
+    def index_dao?(dao)
+      href = (dao.attributes["href"] || dao.attributes["xlink:href"])&.value
+      return true if href.blank?
+      # Exclude DAOs that are relative paths.
+      href.include?("://")
+    end
+
     ##
     # Used for evaluating xpath components to find
     class NokogiriXpathExtensions

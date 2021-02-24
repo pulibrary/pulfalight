@@ -238,11 +238,11 @@ to_field "collection_creator_ssm" do |_record, accumulator, context|
 
   accumulator.concat Array.wrap(parent.output_hash["creator_ssm"])
 end
-to_field "has_online_content_ssim", extract_xpath(".//dao") do |_record, accumulator|
-  accumulator.replace([accumulator.any?])
+to_field "has_online_content_ssim", extract_xpath(".//dao", to_text: false) do |_record, accumulator|
+  accumulator.replace([accumulator.any? { |dao| index_dao?(dao) }])
 end
-to_field "has_direct_online_content_ssim", extract_xpath("./did/dao") do |_record, accumulator|
-  accumulator.replace([accumulator.any?])
+to_field "has_direct_online_content_ssim", extract_xpath("./did/dao", to_text: false) do |_record, accumulator|
+  accumulator.replace([accumulator.any? { |dao| index_dao?(dao) }])
 end
 to_field "child_component_count_isim" do |record, accumulator|
   accumulator << Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new.is_component(record.children).count
@@ -373,22 +373,24 @@ end
 
 to_field "digital_objects_ssm", extract_xpath(".//dao", to_text: false) do |_record, accumulator|
   accumulator.map! do |dao|
+    next unless index_dao?(dao)
     label = dao.attributes["title"]&.value ||
             dao.xpath("daodesc/p")&.text
     href = (dao.attributes["href"] || dao.attributes["xlink:href"])&.value
     role = (dao.attributes["role"] || dao.attributes["xlink:role"])&.value
     Arclight::DigitalObject.new(label: label, href: href, role: role).to_json
-  end
+  end.compact
 end
 
 to_field "direct_digital_objects_ssm", extract_xpath("./did/dao", to_text: false) do |_record, accumulator|
   accumulator.map! do |dao|
+    next unless index_dao?(dao)
     label = dao.attributes["title"]&.value ||
             dao.xpath("daodesc/p")&.text
     href = (dao.attributes["href"] || dao.attributes["xlink:href"])&.value
     role = (dao.attributes["role"] || dao.attributes["xlink:role"])&.value
     Arclight::DigitalObject.new(label: label, href: href, role: role).to_json
-  end
+  end.compact
 end
 
 to_field "date_range_sim", extract_xpath("./did/unitdate/@normal", to_text: false) do |_record, accumulator|

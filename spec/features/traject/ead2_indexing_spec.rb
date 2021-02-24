@@ -167,6 +167,22 @@ describe "EAD 2 traject indexing", type: :feature do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0776.processed.EAD.xml")
     end
 
+    context "when dao is a relative URL path" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
+      end
+      it "doesn't index it" do
+        expect(result["has_online_content_ssim"]).to eq [false]
+        expect(result["digital_objects_ssm"]).to be_blank
+        component = result["components"][0]
+        expect(component["has_online_content_ssim"]).to eq [false]
+        leaf_component = component["components"][0]["components"][0]["components"][0]
+        expect(leaf_component["has_direct_online_content_ssim"]).to eq [false]
+        expect(component["digital_objects_ssm"]).to be_blank
+        expect(leaf_component["direct_digital_objects_ssm"]).to be_blank
+      end
+    end
+
     context "when <dao> is child of the <did> in a <c0x> component" do
       let(:components) { result["components"] }
       let(:dao_components) { components.select { |c| c["digital_objects_ssm"] } }
