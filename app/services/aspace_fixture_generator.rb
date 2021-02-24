@@ -23,7 +23,8 @@ class AspaceFixtureGenerator
     "C0033",
     "C0744.04",
     "C0744.03",
-    "C1387"
+    "C1387",
+    "C0140"
   ].freeze
 
   # List components per EAD which are used in tests to make processing those
@@ -75,7 +76,8 @@ class AspaceFixtureGenerator
     "C0033" => ["aspace_C0033_c001"],
     "C0744.04" => ["aspace_C0744.04_c0120"],
     "C0744.03" => ["aspace_C0744.03_c0516", "aspace_C0744.03_c0512"],
-    "C1387" => []
+    "C1387" => [],
+    "C0140" => ["aspace_C0140_c03411"]
   }.freeze
 
   attr_reader :client, :ead_ids, :component_map, :fixture_dir

@@ -25,7 +25,7 @@ describe "controller requests", type: :request do
         expect(json_body["extent"]).to eq ["1 folder; 10 x 7 cm."]
         expect(json_body["container"]).to eq ["Box h1, Folder h0001"]
         expect(json_body["heldBy"]).to eq ["Firestone Library"]
-        expect(json_body["creator"]).to eq "Princeton University. Library. Special Collections"
+        expect(json_body["creator"]).to be_nil
         expect(json_body["publisher"]).to eq ["Princeton University. Library. Special Collections"]
         expect(json_body["memberOf"]).to eq [
           {

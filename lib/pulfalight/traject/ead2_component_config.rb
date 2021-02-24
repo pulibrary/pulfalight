@@ -226,12 +226,7 @@ to_field "physdesc_number_ssm" do |record, accumulator|
   end
 end
 
-to_field "creator_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
-
-  parent_creator = parent.output_hash["creator_ssm"]
-  accumulator.concat(parent_creator) unless parent.nil? || parent_creator.nil?
-end
+to_field "creator_ssm", extract_xpath("./did/origination")
 to_field "creator_ssim", extract_xpath("./did/origination")
 to_field "creators_ssim", extract_xpath("./did/origination")
 to_field "creator_sort" do |record, accumulator|
@@ -428,8 +423,6 @@ to_field "access_subjects_ssm" do |_record, accumulator, context|
   accumulator.concat(context.output_hash.fetch("access_subjects_ssim", []))
 end
 
-to_field "acqinfo_ssim", extract_xpath('/ead/archdesc/acqinfo/*[local-name()!="head"]')
-to_field "acqinfo_ssim", extract_xpath('/ead/archdesc/descgrp/acqinfo/*[local-name()!="head"]')
 to_field "acqinfo_ssim", extract_xpath('./acqinfo/*[local-name()!="head"]')
 to_field "acqinfo_ssim", extract_xpath('./descgrp/acqinfo/*[local-name()!="head"]')
 to_field "acqinfo_ssm" do |_record, accumulator, context|
@@ -556,35 +549,13 @@ to_field "phystech_ssm" do |_record, accumulator, context|
 end
 
 # For find-more tab
-to_field "places_ssim" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
-  value = parent.output_hash["places_ssim"] || []
-  accumulator.concat(value)
-end
-
-# For find-more tab
 to_field "subject_terms_ssim", extract_xpath('./controlaccess/subject[@source="lcsh"]')
-to_field "subject_terms_ssim" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
-  value = parent.output_hash["subject_terms_ssim"] || []
-  accumulator.concat(value&.first)
-end
 
 # For find-more tab
 to_field "topics_ssim", extract_xpath('./controlaccess/subject[@source="local"]')
-to_field "topics_ssim" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
-  value = parent.output_hash["topics_ssim"] || []
-  accumulator.concat(value&.first)
-end
 
 # For find-more tab
 to_field "genreform_ssim", extract_xpath("./controlaccess/genreform")
-to_field "genreform_ssim" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
-  value = parent.output_hash["genreform_ssim"] || []
-  accumulator.concat(value&.first)
-end
 
 to_field "components" do |record, accumulator, context|
   child_components = record.xpath("./*[is_component(.)]", NokogiriXpathExtensions.new)
