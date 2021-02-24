@@ -44,6 +44,19 @@ describe "controller requests", type: :request do
     end
   end
 
+  context "when requesting a URL from the legacy system" do
+    it "redirects requests for '/collections/eadid/componentid' to '/catalog/eadid_componentid'" do
+      get "/collections/C0140/c03411"
+      expect(response.code).to eq "301"
+      expect(response).to redirect_to("http://www.example.com/catalog/C0140_c03411")
+    end
+    it "redirects requests correctly when there are dots in the eadid" do
+      get "/collections/MC001.02.01/c00003"
+      expect(response.code).to eq "301"
+      expect(response).to redirect_to("http://www.example.com/catalog/MC001-02-01_c00003")
+    end
+  end
+
   context "when requesting a JSON serialization of the Document" do
     it "generates the JSON object" do
       get("/catalog/WC064", params: { format: :json })
