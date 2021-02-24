@@ -213,8 +213,8 @@ to_field "access_subjects_ssm" do |_record, accumulator, context|
   accumulator.concat Array.wrap(context.output_hash["access_subjects_ssim"])
 end
 
-to_field "has_online_content_ssim", extract_xpath(".//dao") do |_record, accumulator|
-  accumulator.replace([accumulator.any?])
+to_field "has_online_content_ssim", extract_xpath(".//dao", to_text: false) do |_record, accumulator|
+  accumulator.replace([accumulator.any? { |dao| index_dao?(dao) }])
 end
 
 to_field "digital_objects_ssm", extract_xpath("/ead/archdesc/did/dao|/ead/archdesc/dao", to_text: false) do |_record, accumulator|
