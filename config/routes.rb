@@ -37,7 +37,13 @@ Rails.application.routes.draw do
 
   get "/toc", to: "toc#toc", as: "toc"
   get "/hours", to: "hours#hours"
-  get "/research_help", to: "research_help#research_help"
+  get "/research_help", to: "about#research_help"
+  get "/search_tips", to: "about#search_tips"
+  get "/faq", to: "about#faq"
+  get "/av_materials", to: "about#av_materials"
+  get "/requesting_materials", to: "about#requesting_materials"
+  get "/research_account", to: "about#research_account"
+  get "/archival_language", to: "about#archival_language"
   post "/contact/suggest", to: "contact#suggest"
   post "/contact/question", to: "contact#question"
 end
