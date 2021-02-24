@@ -95,6 +95,13 @@ to_field "parent_ssm" do |record, accumulator, context|
   end
 end
 
+to_field "collection_title_tesim" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:root]
+  next unless parent
+
+  accumulator.concat Array.wrap(parent.output_hash["collection_title_tesim"])
+end
+
 to_field "parent_ssi" do |_record, accumulator, context|
   accumulator << context.output_hash["parent_ssm"].last if context.output_hash["parent_ssm"].present?
 end
