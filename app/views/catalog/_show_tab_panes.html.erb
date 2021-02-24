@@ -42,12 +42,12 @@
   </nav>
 
   <% unless document.collection? %>
-    <div class='tab-pane active' id='component-summary' role='tabpanel'>
+    <div class='tab-pane' id='component-summary' role='tabpanel'>
       <%= render(partial: 'component_summary') %>
     </div>
   <% end %>
 
-    <div class='tab-pane<%= " active" if document.collection? %>' id='summary' role='tabpanel'>
+    <div class='tab-pane' id='summary' role='tabpanel'>
       <div class="document-title">
         <h2>Collection Overview</h2>
       </div>
