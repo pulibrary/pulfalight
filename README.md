@@ -45,7 +45,7 @@ for information regarding the configuration of repositories in ArcLight.
 
 1. `brew install lastpass-cli`
 2. `lpass login emailhere`
-3. `bundle exec rake pulfalight:setup_keys`
+3. `bundle exec rake setup_keys`
 
 #### Index "Interesting" EADs
 A sub-section of all our collections have been identified and can be queued up
