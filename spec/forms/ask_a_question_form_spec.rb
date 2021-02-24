@@ -84,16 +84,10 @@ RSpec.describe AskAQuestionForm do
   end
 
   describe "#routed_mail_to" do
-    ["rbsc", "lae", "mss", "rarebooks"].each do |location_code|
-      it "routes to rbsc@princeton.edu for #{location_code}" do
+    ["mudd", "publicpolicy", "univarchives", "rbsc", "lae", "mss", "rarebooks", "ga"].each do |location_code|
+      it "routes to specialcollections@princeton.libanswers.com for #{location_code}" do
         form = described_class.new(valid_attributes.merge("location_code" => location_code))
-        expect(form.routed_mail_to).to eq "rbsc@princeton.edu"
-      end
-    end
-    ["mudd", "publicpolicy", "univarchives"].each do |location_code|
-      it "routes to mudd@princeton.edu for #{location_code}" do
-        form = described_class.new(valid_attributes.merge("location_code" => location_code))
-        expect(form.routed_mail_to).to eq "mudd@princeton.edu"
+        expect(form.routed_mail_to).to eq "specialcollections@princeton.libanswers.com"
       end
     end
     ["eng", "engineering library"].each do |location_code|
@@ -101,10 +95,6 @@ RSpec.describe AskAQuestionForm do
         form = described_class.new(valid_attributes.merge("location_code" => location_code))
         expect(form.routed_mail_to).to eq "wdressel@princeton.edu"
       end
-    end
-    it "routes to jmellby@princeton.edu for ga" do
-      form = described_class.new(valid_attributes.merge("location_code" => "ga"))
-      expect(form.routed_mail_to).to eq "jmellby@princeton.edu"
     end
   end
 end

@@ -20,15 +20,7 @@ class SuggestACorrectionForm
   end
 
   def routed_mail_to
-    case location_code
-    when "mss", "cotsen", "eng", "lae", "ga", "rarebooks", "selectors"
-      "mssdiv@princeton.edu"
-    when "mudd", "publicpolicy", "univarchives"
-      "muddts@princeton.edu"
-    when "rbsc"
-      "rbsc@princeton.edu"
-    when "engineering library"
-      "wdressel@princeton.edu"
-    end
+    return "wdressel@princeton.edu" if ["engineering library"].include?(location_code)
+    "suggestacorrection@princeton.libanswers.com"
   end
 end
