@@ -22,6 +22,10 @@ describe "catalog searches", type: :feature, js: true do
       expect(page).to have_text("4 items")
       expect(page).to have_text("632 boxes")
     end
+    it "returns all components in that collection", js: false do
+      visit "/?search_field=all_fields&group=false&q=Walter Dundas Bathurst Papers"
+      expect(page).to have_text("17 entries")
+    end
   end
 
   context "when searching using the search form" do

@@ -79,6 +79,10 @@ describe "EAD 2 traject indexing", type: :feature do
     it "indexes ark" do
       expect(result["ark_tsim"]).to eq ["http://arks.princeton.edu/ark:/88435/xp68kk489"]
     end
+    it "indexes collection title" do
+      component = result["components"].first["components"].first["components"].first
+      expect(component["collection_title_tesim"]).to eq ["Walter Dundas Bathurst Papers, 1883-1923"]
+    end
   end
 
   context "when given otherlevel text components" do
