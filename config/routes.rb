@@ -35,6 +35,13 @@ Rails.application.routes.draw do
     end
   end
 
+  # Redirect requests in the form of legacy URL syntax to their new location.
+  # Keep the entire eadid as passed, even if it contains dots. Replace the dots
+  # with dashes in the redirect.
+  get "/collections/:eadid/:componentid", constraints: { eadid: /([^\/])+?/ }, to: redirect { |params, _request|
+    "/catalog/#{params[:eadid].tr('.', '-')}_#{params[:componentid]}"
+  }
+
   get "/toc", to: "toc#toc", as: "toc"
   get "/hours", to: "hours#hours"
   get "/research_help", to: "research_help#research_help"
