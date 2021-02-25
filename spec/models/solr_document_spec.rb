@@ -255,7 +255,7 @@ RSpec.describe Arclight::SolrDocument do
       expect(request.form_attributes[:Site]).to eq "RBSC"
       expect(request.form_attributes[:Location]).to eq "mss"
       expect(request.form_attributes[:ItemTitle]).to eq "Diary"
-      expect(request.form_attributes[:GroupingIdentifier]).to eq "ItemVolume"
+      expect(request.form_attributes[:GroupingIdentifier]).to eq "GroupingField"
       expect(request.form_attributes[:GroupingOption_ReferenceNumber]).to eq "Concatenate"
       expect(request.form_attributes[:GroupingOption_ItemNumber]).to eq "Concatenate"
       expect(request.form_attributes[:GroupingOption_ItemDate]).to eq "FirstValue"
@@ -268,6 +268,8 @@ RSpec.describe Arclight::SolrDocument do
       # https://findingaids.princeton.edu/collections/C1588/c2
       expect(request.form_attributes[:Request]).not_to be_blank
       request_id = request.form_attributes[:Request]
+      # Ensure the box/collection unitid are in as a grouping identifier.
+      expect(request.form_attributes[:"GroupingField_#{request_id}"]).to eq "C1588test-Box B-001180"
       expect(request.form_attributes[:"ItemSubTitle_#{request_id}"]).to eq "Diaries / Diary"
       expect(request.form_attributes[:"ItemTitle_#{request_id}"]).to eq "Walter Dundas Bathurst Papers"
       expect(request.form_attributes[:"ItemAuthor_#{request_id}"]).to eq "Bathurst, Walter Dundas, 1859-1940"
