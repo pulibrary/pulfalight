@@ -1,12 +1,30 @@
 .header__secondary.home-header {
+  position: relative;
+  overflow: hidden;
+  h1 {
+    color: $black-pul;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.header__secondary.home-header::after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.3;
   background-image: image-url("firestone_library_special_collections.png");
   background-position: 50% 55%;
   background-repeat: no-repeat;
   background-size: cover;
-  h1 {
-    color: white;
-  }
 }
+
+
 .home {
   text-align: center;
 
