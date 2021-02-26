@@ -2,9 +2,11 @@
   position: relative;
   overflow: hidden;
   h1 {
-    color: $black-pul;
+    color: #ffffff;
     position: relative;
     z-index: 2;
+    text-shadow: 2px 2px 2px $black-pul;
+    text-align: center;
   }
 }
 
@@ -17,9 +19,9 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  opacity: 0.3;
+  filter: brightness(70%);
   background-image: image-url("firestone_library_special_collections.png");
-  background-position: 50% 55%;
+  background-position: 100% 62%;
   background-repeat: no-repeat;
   background-size: cover;
 }
