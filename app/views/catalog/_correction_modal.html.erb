@@ -9,6 +9,13 @@
           </button>
         </div>
         <div class="modal-body form-wrapper">
+          <div class="suggest_a_correction_instructions">
+            Please use this area to report errors or omissions that appear in the
+            description of this collection. Corrections may include
+            <%= link_to "harmful or offensive language", "/archival_language" %>,
+            misspellings, incorrect or missing dates, misidentified
+            individuals, places, or events, mislabeled folders, misfiled papers, etc.
+          </div>
           <%= render partial: "correction_form", locals: { form: SuggestACorrectionForm.new(location_code: @document.fetch("repository_code_ssm", []).first, context: request.original_url) } %>
         </div>
       </div>
