@@ -31,6 +31,7 @@ Metrics/ClassLength:
     - 'app/models/solr_document.rb'
     - 'app/controllers/catalog_controller.rb'
     - 'app/services/aspace_fixture_generator.rb'
+    - 'app/values/aeon_request.rb'
 Metrics/MethodLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'

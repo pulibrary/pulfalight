@@ -39,8 +39,18 @@ class AeonRequest
       "ItemInfo3_#{request_id}": folder,
       "ItemInfo4_#{request_id}": container_profile,
       "ItemInfo5_#{request_id}": url,
-      "Location_#{request_id}": container_locations
+      "Location_#{request_id}": container_locations,
+      "GroupingField_#{request_id}": grouping_identifier
     }.merge(grouping_options)
+  end
+
+  # Group all box components in the same EAD together.
+  def grouping_identifier
+    "#{ead_id}-#{box}"
+  end
+
+  def ead_id
+    Array.wrap(solr_document.fetch("ead_ssi", [])).first
   end
 
   def container_locations
@@ -106,7 +116,7 @@ class AeonRequest
 
   def grouping_options
     {
-      GroupingIdentifier: "ItemVolume",
+      GroupingIdentifier: "GroupingField",
       GroupingOption_ReferenceNumber: "Concatenate",
       GroupingOption_ItemNumber: "Concatenate",
       GroupingOption_ItemDate: "FirstValue",

@@ -1,7 +1,6 @@
 <% if has_user_authentication_provider? %>
     <% if current_user %>
     <menu-bar type="main-menu" :menu-items="[
-        {name: 'Research Help', component: 'Help', href: '/research_help/'},
         {name: 'Your Account', component: 'Account', href: '/account/', children: [
           {name: '<%= t('blacklight.header_links.logout')%>',
             component: '<%= t('blacklight.header_links.logout')%>',
@@ -15,7 +14,6 @@
     ></menu-bar>
     <% else %>
     <menu-bar type="main-menu" :menu-items="[
-        {name: 'Research Help', component: 'Help', href: '/research_help/'},
         {name: 'Your Account', component: 'Account', href: '/account/', children: [
           {name: '<%= t('blacklight.header_links.login')%>',
             component: '<%= t('blacklight.header_links.login')%>',
