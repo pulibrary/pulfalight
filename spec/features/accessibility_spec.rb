@@ -11,9 +11,9 @@ describe "accessibility", type: :feature, js: true do
 
       expect(page).to be_axe_clean
         .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
-        .excluding(".tt-hint", ".mr-auto") 
-        # tt-hint issue is in typeahead.js library
-        # mr-auto issue is due to axe not aware of dropshadow when checking contrast
+        .excluding(".tt-hint", ".mr-auto")
+      # tt-hint issue is in typeahead.js library
+      # mr-auto issue is due to axe not aware of dropshadow when checking contrast
     end
   end
 
