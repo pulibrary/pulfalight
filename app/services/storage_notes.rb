@@ -15,7 +15,7 @@ class StorageNotes
   end
 
   def to_a
-    Array.wrap(config[location_code] || [])
+    Array.wrap(config[location_code&.downcase] || [])
   end
 
   class Combined
