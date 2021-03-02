@@ -354,4 +354,14 @@ describe "viewing catalog records", type: :feature, js: true do
       end
     end
   end
+
+  describe "child component table", js: true do
+    it "displays for every resource" do
+      visit "/catalog/C1491"
+
+      within(".child-component-table") do
+        expect(page).to have_link "Writings"
+      end
+    end
+  end
 end

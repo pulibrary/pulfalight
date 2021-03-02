@@ -11,6 +11,7 @@ import CartViewToggle from '../components/CartViewToggle'
 import TocBuilder from "../pulfalight/toc.es6"
 import LibCalHours from "../pulfalight/lib_cal_hours.es6"
 import QueryFiggy from "../pulfalight/query_figgy.es6"
+import ChildTable from "../components/ChildTable"
 
 export default class {
   run() {
@@ -26,6 +27,11 @@ export default class {
     const query = new QueryFiggy()
     const component_id = query.component_id()
     query.checkFiggy(component_id)
+  }
+
+  load_child_table() {
+    const childTable = new ChildTable($("#child-table"))
+    childTable.initialize()
   }
 
   setup_lib_cal_hours() {
@@ -61,7 +67,8 @@ export default class {
           'request-cart': RequestCart,
           'add-to-cart-button': AddToCartButton,
           'add-to-cart-icon': AddToCartIcon,
-          'cart-view-toggle': CartViewToggle
+          'cart-view-toggle': CartViewToggle,
+          'child-table': ChildTable
         }
       })
     }
