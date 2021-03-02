@@ -25,15 +25,6 @@ export default {
   },
   data () {
     return {
-      "testcomponents":
-        [
-          {
-            'id': 'C001',
-            'title': { 'value': 'Test', 'link': 'https://library.princeton.edu'},
-            'date': '2010',
-            'container': 'Box 1'
-          }
-      ],
       "columns": [
         { 'name': 'id', 'display_name': 'Select Items', 'align': 'center', 'checkbox': true },
         { 'name': 'title', 'display_name': 'Title', 'align': 'center', 'sortable': true },

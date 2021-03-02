@@ -29,11 +29,6 @@ export default class {
     query.checkFiggy(component_id)
   }
 
-  load_child_table() {
-    const childTable = new ChildTable($("#child-table"))
-    childTable.initialize()
-  }
-
   setup_lib_cal_hours() {
     const elements = document.getElementsByClassName("hours")
     for (var i = 0; i < elements.length; i++) {
