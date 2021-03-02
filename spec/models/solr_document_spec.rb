@@ -288,4 +288,17 @@ RSpec.describe Arclight::SolrDocument do
       expect(request.form_attributes[:SubmitButton]).to eq "Submit Request"
     end
   end
+  context "when it's a component with no physloc mapping (hsvm)" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0187.processed.EAD.xml")
+    end
+    it "defaults to RBSC as the Site" do
+      result = indexer.map_record(record)
+      component = result["components"].first
+      document = SolrDocument.new(component)
+
+      request = document.aeon_request
+      expect(request.form_attributes[:Site]).to eq "RBSC"
+    end
+  end
 end
