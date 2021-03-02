@@ -22,7 +22,7 @@ class AeonRequest
       AeonForm: "EADRequest",
       RequestType: "Loan",
       DocumentType: "Manuscript",
-      Site: solr_document["physloc_code_ssm"]&.first,
+      Site: site,
       Location: container_locations,
       ItemTitle: solr_document.title&.first,
       Request: request_id,
@@ -42,6 +42,10 @@ class AeonRequest
       "Location_#{request_id}": container_locations,
       "GroupingField_#{request_id}": grouping_identifier
     }.merge(grouping_options)
+  end
+
+  def site
+    solr_document["physloc_code_ssm"]&.first || "RBSC"
   end
 
   # Group all box components in the same EAD together.
