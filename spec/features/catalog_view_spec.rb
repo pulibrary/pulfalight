@@ -27,6 +27,12 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_field "ask_a_question_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221_c0059"
       expect(page).to have_field "ask_a_question_form_title", visible: false, type: :hidden, with: "Harold B. Hoskins Papers, 1822-1982"
     end
+    it "has a collection level storage note" do
+      visit "catalog/MC221_c0059"
+      expect(page).to have_content("Storage Note:")
+      expect(page).to have_content("Mudd Library collections are unavailable until further notice due to a renovation.")
+      expect(page).to have_link("our webpage", href: "https://library.princeton.edu/special-collections/policies/access-mudd-library-during-renovation")
+    end
   end
   context "when viewing a component which can be requested from Aeon" do
     it "renders a request button which opens a request cart form" do

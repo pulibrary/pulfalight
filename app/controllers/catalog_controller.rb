@@ -346,6 +346,7 @@ class CatalogController < ApplicationController
     config.add_component_field "parent_access_restrict_ssm", label: "Access Restrictions"
     config.add_component_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator
     config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
+    config.add_component_field "storage_notes", label: "Storage Note", accessor: :component_storage_notes, helper_method: :paragraph_separator
 
     config.add_component_field "topics_ssim", label: "Topics", link_to_facet: true, separator_options: {
       words_connector: "<br/>",
