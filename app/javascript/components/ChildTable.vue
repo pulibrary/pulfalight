@@ -1,6 +1,7 @@
 <template>
   <div class="child-component-table">
-    <data-table
+    <pulfa-data-table
+      width="100%"
       :caption="caption"
       :columns="columns"
       :json-data="components"/>
@@ -9,8 +10,12 @@
 
 <script>
 import system from 'lux-design-system'
+import PulfaDataTable from './PulfaDataTable.vue'
 export default {
   name: "ChildTable",
+  components: {
+    'pulfa-data-table': PulfaDataTable
+  },
   props: {
     components: {
       type: Array,

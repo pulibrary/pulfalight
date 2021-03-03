@@ -222,6 +222,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "lux-design-system/dist/system/tokens/tokens.scss";
+@import "lux-design-system/dist/system/system.utils.scss";
 .lux-data-table {
   table-layout: fixed;
   width: 100%;
@@ -415,26 +417,7 @@ export default {
 .lux-data-table .lux-data-table-right {
   text-align: right;
 }
-/* Copied from upstream */
-@mixin reset {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-/* Copied from upstream */
-@mixin stack-space($value) {
-  margin-bottom: $value;
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
-/* Copied from upstream */
-$font-family-text: "franklin-gothic-urw", Helvetica, Arial, sans-serif;
-$line-height-base: 1.6;
-$color-white: rgb(255, 255, 255);
-$box-shadow-small: 0 0 0 1px rgba(92, 106, 196, 0.1);
-$color-rich-black: rgb(0, 17, 35);
-$space-base: 24px;
+
 /* Copied from upstream */
 .slide-enter-active,
 .slide-leave-active {

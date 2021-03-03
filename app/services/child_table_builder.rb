@@ -25,7 +25,9 @@ class ChildTableBuilder
         link: Rails.application.routes.url_helpers.solr_document_url(id: document.id)
       },
       date: Array.wrap(document.date_created).join(", "),
-      container: Array.wrap(document.container).join(", ")
+      container: Array.wrap(document.container).join(", "),
+      form_params: document.aeon_request.form_attributes,
+      requestable: document.aeon_request.requestable?
     }
   end
 
