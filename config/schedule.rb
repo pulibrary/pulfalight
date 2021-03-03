@@ -8,6 +8,6 @@ set :job_template, "bash -l -c 'export PATH=\"/usr/local/bin/:$PATH\" && :job'"
 job_type :logging_rake, "cd :path && :environment_variable=:environment bundle exec rake :task :output"
 
 # We've disabled DAO synchronization until Pulfalight can handle this.
-every :day, at: "7pm", roles: [:production_db] do
+every :hour, roles: [:production_db] do
   rake "pulfalight:indexing:incremental"
 end
