@@ -51,7 +51,7 @@
       <div class="document-title">
         <h2>Collection Overview</h2>
       </div>
-      <%= render(partial: 'collection_summary') %>
+      <%= render(partial: 'collection_summary') if document.collection? %>
     </div>
 
     <div class='tab-pane' id='description' role='tabpanel'>
