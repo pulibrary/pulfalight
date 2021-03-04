@@ -54,7 +54,7 @@
               :title="lineItem.title.value"
               :callnumber="lineItem.id.value"
               :date="lineItem.date.value"
-              :container="lineItem.container.value"
+              :containers="lineItem.container.value"
               :form-params="lineItem.form_params"
               >
               <lux-icon-base :icon-name="'add-to-cart-icon_'+lineItem.id.value" width="20" height="20">
