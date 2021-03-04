@@ -356,12 +356,26 @@ describe "viewing catalog records", type: :feature, js: true do
   end
 
   describe "child component table", js: true do
+    it "displays for a collection" do
+      visit "/catalog/C1491"
+
+      within(".child-component-table") do
+        expect(page).to have_link "Writings"
+        expect(page).to have_content "1917-2017 April 11"
+      end
+    end
     it "displays for every resource" do
       visit "/catalog/C1491_c3"
 
       within(".child-component-table") do
         expect(page).to have_link "Outlines and Notes"
+        expect(page).to have_content "Box 1, Folder 1"
+        expect(page).to have_content "undated"
+        expect(page).to have_button "add-to-cart-button_C1491_c4"
+        click_button "add-to-cart-button_C1491_c4"
       end
+
+      expect(page).to have_button "Request 1 Item"
     end
   end
 end
