@@ -11,6 +11,7 @@
 
           <input-button
             v-on:button-clicked="toggleCartView($event)"
+            width="26px"
             type="button"
             variation="text"
             class="denied-button"
@@ -464,7 +465,6 @@ $space-base: 24px;
     font-size: 1.5rem;
     padding: 6px;
     display: inline-block;
-    width: 100%;
     text-align: left;
     margin: 0px;
     padding: 0px;
