@@ -32,6 +32,6 @@ class ChildTableBuilder
   end
 
   def solr_response
-    Blacklight.default_index.search(q: "parent_ssi:#{id}", fl: "*")["response"]["docs"]
+    Blacklight.default_index.search(q: "parent_ssi:#{id}", fl: "*", rows: 100_000)["response"]["docs"]
   end
 end
