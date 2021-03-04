@@ -18,7 +18,7 @@
               v-if="col.sortable"
               width="16"
               height="16"
-              :icon-name="iconLabel(col.ascending)"
+              :icon-name="iconLabel(col)"
             >
               <lux-icon-ascending v-if="col.ascending"></lux-icon-ascending>
               <lux-icon-descending v-if="col.ascending === false"></lux-icon-descending>
@@ -34,18 +34,18 @@
       <tr class="row" v-for="(lineItem, index) in rows">
         <td
           v-for="(col, index) in parsedColumns"
-          :class="[
-            { 'lux-data-table-left': isLeft(col.align) },
+          :class="['lux-data-table-left'
+            /* { 'lux-data-table-left': isLeft(col.align) },
             { 'lux-data-table-center': isCenter(col.align) },
             { 'lux-data-table-right': isRight(col.align) },
             { 'lux-data-table-number': isNum(col.datatype) },
-            { 'lux-data-table-currency': isCurrency(col.datatype) },
+            { 'lux-data-table-currency': isCurrency(col.datatype) }, */
           ]"
         >
           <div v-if="col.checkbox">
             <add-to-cart-button
               v-if="lineItem.requestable.value"
-              :id="lineItem.id.value"
+              :id="'add-to-cart-button_'+lineItem.id.value"
               type="checkbox"
               :aria-label="getAriaLabel(lineItem)"
               :name="col.name"
@@ -57,7 +57,7 @@
               :container="lineItem.container.value"
               :form-params="lineItem.form_params"
               >
-              <lux-icon-base icon-name="add-to-cart" width="20" height="20">
+              <lux-icon-base :icon-name="'add-to-cart-icon_'+lineItem.id.value" width="20" height="20">
                   <add-to-cart-icon></add-to-cart-icon>
               </lux-icon-base>
               Request this box
@@ -204,13 +204,13 @@ export default {
       }
       return lines.join(", ")
     },
-    iconLabel(value) {
-      if (value === true) {
-        return "ascending"
-      } else if (value === false) {
-        return "descending"
-      } else if (value === null) {
-        return "unsorted"
+    iconLabel(col) {
+      if (col.ascending === true) {
+        return "ascending_" + col.name
+      } else if (col.ascending === false) {
+        return "descending_" + col.name
+      } else if (col.ascending === null) {
+        return "unsorted_" + col.name
       }
     },
     displayName(col) {
