@@ -357,10 +357,10 @@ describe "viewing catalog records", type: :feature, js: true do
 
   describe "child component table", js: true do
     it "displays for every resource" do
-      visit "/catalog/C1491"
+      visit "/catalog/C1491_c3"
 
       within(".child-component-table") do
-        expect(page).to have_link "Writings"
+        expect(page).to have_link "Outlines and Notes"
       end
     end
   end
