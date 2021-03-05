@@ -156,6 +156,23 @@ RSpec.describe Arclight::SolrDocument do
     end
   end
 
+  describe "#component_storage_notes" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1387.processed.EAD.xml")
+    end
+    let(:values) do
+      indexer.map_record(record)
+    end
+    let(:component) { values["components"].first }
+    let(:document) { SolrDocument.new(component) }
+    it "can create combined storage notes if it's in two locations" do
+      expect(document.component_storage_notes).to eq [
+        "This collection is stored at ReCAP and Firestone Library.",
+        "This collection is stored partially (Boxes 1-2, 5-6) on-site at Firestone Library and partially off-site (Boxes 3-4) at ReCAP."
+      ]
+    end
+  end
+
   describe "#aeon_request" do
     context "#requestable?" do
       it "returns false if it's not a leaf node" do
