@@ -8,8 +8,6 @@ class TocController < ApplicationController
 
   def child_table
     render json: ChildTableBuilder.new(params[:node]).to_a
-  rescue Blacklight::Exceptions::RecordNotFound
-    render json: []
   end
 
   private
