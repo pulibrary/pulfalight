@@ -42,6 +42,10 @@ Rails.application.routes.draw do
     "/catalog/#{params[:eadid].tr('.', '-')}_#{params[:componentid]}"
   }
 
+  get "/collections/:eadid", constraints: { eadid: /([^\/])+?/ }, format: /json|xml|html/, to: redirect { |params, _request|
+    "/catalog/#{params[:eadid].tr('.', '-')}"
+  }
+
   get "/toc", to: "toc#toc", as: "toc"
   get "/hours", to: "hours#hours"
   get "/research_help", to: "about#research_help"

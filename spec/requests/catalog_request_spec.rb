@@ -55,6 +55,11 @@ describe "controller requests", type: :request do
       expect(response.code).to eq "301"
       expect(response).to redirect_to("http://www.example.com/catalog/MC001-02-01_c00003")
     end
+    it "redirects collections too" do
+      get "/collections/MC001.02.01"
+      expect(response.code).to eq "301"
+      expect(response).to redirect_to("http://www.example.com/catalog/MC001-02-01")
+    end
   end
 
   context "when requesting a JSON serialization of the Document" do
