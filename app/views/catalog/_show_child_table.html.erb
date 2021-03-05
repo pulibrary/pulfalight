@@ -2,7 +2,7 @@
   <!-- if components array is empty, don't render -->
   <% unless ChildTableBuilder.new(document.id).to_a.empty? %>
     <child-table
-      :components="<%= JSON.generate(ChildTableBuilder.new(document.id).to_a) %>"
+      :component_id="<%= JSON.generate(document.id) %>"
       :parent-title="<%= JSON.generate(document.title.to_sentence) %>"
     />
   <% end %>

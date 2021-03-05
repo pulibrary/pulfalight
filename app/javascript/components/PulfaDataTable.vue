@@ -278,7 +278,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import "lux-design-system/dist/system/tokens/tokens.scss";
 @import "lux-design-system/dist/system/system.utils.scss";
 .lux-data-table {
