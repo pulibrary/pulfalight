@@ -28,4 +28,20 @@ RSpec.describe TocController, type: :controller do
       end
     end
   end
+
+  describe "#child_table" do
+    it "returns a tree of children for the child table" do
+      get :child_table, params: { node: "MC221" }
+
+      json = JSON.parse(response.body)
+      expect(json.count).to eq 3
+      expect(json[0]["form_params"]).not_to be_blank
+    end
+    context "with a node with no corresponding record" do
+      it "returns an empty JSON object" do
+        get :child_table, params: { node: "not_found" }
+        expect(response.body).to eq "[]"
+      end
+    end
+  end
 end
