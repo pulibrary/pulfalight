@@ -81,7 +81,8 @@ namespace :pulfalight do
         "GC186",
         "LAE001",
         "MC001.01",
-        "RBD1.1"
+        "RBD1.1",
+        "C1387"
       ].uniq
       or_query = test_eadids.join(" OR ")
       client = Aspace::Client.new

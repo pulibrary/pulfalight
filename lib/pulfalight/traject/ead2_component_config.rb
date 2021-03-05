@@ -197,6 +197,13 @@ to_field "extent_teim", extract_xpath("./did/physdesc/extent")
 to_field "dimensions_ssm", extract_xpath("./did/physdesc/dimensions")
 to_field "dimensions_teim", extract_xpath("./did/physdesc/dimensions")
 
+to_field "collection_physloc_ssm" do |_record, accumulator, context|
+  parent = context.clipboard[:parent] || settings[:root]
+  next unless parent
+  collection_physloc = parent.output_hash["physloc_ssm"]
+  accumulator.concat(collection_physloc) if collection_physloc
+end
+
 to_field "physloc_code_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
   next unless parent

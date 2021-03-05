@@ -261,7 +261,7 @@ class SolrDocument
   end
 
   def component_storage_notes
-    StorageNotes.for(fetch("physloc_code_ssm", [])).to_a.concat(fetch("location_note_ssm", [])).map(&:html_safe)
+    StorageNotes.for(fetch("collection_physloc_ssm", [])).to_a.concat(fetch("location_note_ssm", [])).map(&:html_safe)
   end
 
   def language
