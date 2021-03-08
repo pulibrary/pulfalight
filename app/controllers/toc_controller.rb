@@ -6,6 +6,10 @@ class TocController < ApplicationController
     render json: {}
   end
 
+  def child_table
+    render json: ChildTableBuilder.new(params[:node]).to_a
+  end
+
   private
 
   def document

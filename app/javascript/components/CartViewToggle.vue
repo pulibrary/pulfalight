@@ -38,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$font-family-text: "franklin-gothic-urw", Helvetica, Arial, sans-serif;
+@import "lux-design-system/dist/system/tokens/tokens.scss";
 #count {
   font-size: 12px;
   font-family: $font-family-text;

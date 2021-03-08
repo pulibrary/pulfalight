@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   }
 
   get "/toc", to: "toc#toc", as: "toc"
+  get "/toc/:node/child_table", to: "toc#child_table", as: "toc_child_table"
   get "/hours", to: "hours#hours"
   get "/research_help", to: "about#research_help"
   get "/search_tips", to: "about#search_tips"
