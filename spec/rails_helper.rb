@@ -42,6 +42,4 @@ RSpec.configure do |config|
   end
 
   config.infer_spec_type_from_file_location!
-
-
 end
