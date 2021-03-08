@@ -3,6 +3,13 @@ require "rails_helper"
 
 RSpec.describe AspaceIndexJob do
   let(:connection) { Blacklight.default_index.connection }
+
+  after do
+    connection.delete_by_query("ead_ssi:C1588test*")
+    connection.delete_by_query("ead_ssi:C1588testinternal*")
+    connection.commit
+  end
+
   describe "indexing" do
     context "when given a valid existing resource" do
       it "gets it and indexes it" do
