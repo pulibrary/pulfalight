@@ -7,6 +7,7 @@ require File.expand_path("../../config/environment", __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require "rspec/rails"
 require "axe-rspec"
+require "rack/test"
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -32,5 +33,15 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   config.include Devise::Test::ControllerHelpers, type: :controller
 
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium_chrome_headless
+  end
+
   config.infer_spec_type_from_file_location!
+
+
 end
