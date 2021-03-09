@@ -81,13 +81,6 @@ class AeonRequest
     solr_document.fetch("container_location_codes_ssim", []).map { |code| translate_location_code(code) }.join(", ")
   end
 
-  def container_profile
-    solr_document.fetch("container_information_ssm", []).map do |container|
-      container = JSON.parse(container)
-      container["profile"]
-    end.join(", ")
-  end
-
   def container_information
     @container_information ||=
       begin
