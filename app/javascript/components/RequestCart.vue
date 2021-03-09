@@ -105,7 +105,13 @@
           <div class="hidden">
             <template v-for="(request, requestIndex) in requests">
               <template v-for="(form_values, field_name) in request.formParams">
-                <input :id="field_name" :name="field_name" type="hidden"
+                <div v-if="Array.isArray(form_values)">
+                  <template v-for="(value) in form_values">
+                    <input :id="field_name" :name="field_name" type="hidden"
+                                                                      :value="value"></input>
+                  </template>
+                </div>
+                <input v-else :id="field_name" :name="field_name" type="hidden"
                                                            :value="form_values"></input>
               </template>
             </template>
