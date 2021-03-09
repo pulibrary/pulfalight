@@ -114,7 +114,7 @@ describe "EAD 2 traject indexing", type: :feature do
         component = components.first["components"].first["components"].first
         expect(component["title_ssm"]).to eq ["Prayer for Driving Away Evil Spirits"]
         expect(component["container_location_codes_ssim"]).to eq ["review"]
-        expect(component["container_information_ssm"]).to eq ["{\"location_code\":\"review\",\"profile\":\"NBox\",\"barcode\":null}"]
+        expect(component["container_information_ssm"]).to eq ["{\"location_code\":\"review\",\"profile\":\"NBox\",\"barcode\":null,\"label\":\"box 101\"}"]
         expect(component["barcodes_ssim"]).to be_blank
         expect(component["physloc_sim"]).to eq ["Box 101"]
       end
