@@ -124,10 +124,6 @@ class AeonRequest
     end
   end
 
-  def barcode
-    solr_document["barcodes_ssim"]&.first
-  end
-
   def title
     solr_document["parent_unnormalized_unittitles_ssm"]&.first || solr_document.title&.last
   end
