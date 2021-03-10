@@ -19,6 +19,6 @@ class SearchBuilder < Blacklight::SearchBuilder
 
   def strip_quotes(solr_params)
     return unless solr_params[:q]
-    solr_params[:q] = solr_params[:q].tr('"', "")
+    solr_params[:qs] = 2
   end
 end
