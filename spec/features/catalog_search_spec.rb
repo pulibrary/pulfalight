@@ -27,19 +27,4 @@ describe "catalog searches", type: :feature, js: true do
       expect(page).to have_text("17 entries")
     end
   end
-
-  context "when searching using the search form" do
-    it "returns search results grouped by collection as a default" do
-      visit "/?q=&search_field=all_fields"
-      find("#search").click
-      expect(page).to have_current_path(/group=true/)
-    end
-
-    context "when faceting by collection" do
-      it "does not return results grouped by collection" do
-        visit "/?f%5Bcollection_sim%5D%5B%5D=Barr+Ferree+collection%2C+1880-1929&group=true"
-        expect(page).not_to have_selector(".al-grouped-title-bar")
-      end
-    end
-  end
 end
