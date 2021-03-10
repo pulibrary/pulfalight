@@ -263,7 +263,7 @@ RSpec.describe Arclight::SolrDocument do
       document = SolrDocument.new(component)
 
       request = document.aeon_request
-      expect(request.attributes[:callnumber]).to eq "aspace_C1588_c3"
+      expect(request.attributes[:callnumber]).to eq "C1588_c3"
       expect(request.attributes[:title]).to eq "Diary"
       expect(request.attributes[:containers]).to eq "Box B-001180, Folder 1"
       expect(request.form_attributes[:AeonForm]).to eq "EADRequest"
@@ -286,12 +286,12 @@ RSpec.describe Arclight::SolrDocument do
       expect(request.form_attributes[:Request]).not_to be_blank
       request_id = request.form_attributes[:Request]
       # Ensure the box/collection unitid are in as a grouping identifier.
-      expect(request.form_attributes[:"GroupingField_#{request_id}"]).to eq "C1588test-Box B-001180"
+      expect(request.form_attributes[:"GroupingField_#{request_id}"]).to eq "C1588test-box-B-001180"
       expect(request.form_attributes[:"ItemSubTitle_#{request_id}"]).to eq "Diaries / Diary"
       expect(request.form_attributes[:"ItemTitle_#{request_id}"]).to eq "Walter Dundas Bathurst Papers"
-      expect(request.form_attributes[:"ItemAuthor_#{request_id}"]).to eq "Bathurst, Walter Dundas, 1859-1940"
+      # expect(request.form_attributes[:"ItemAuthor_#{request_id}"]).to eq "Bathurst, Walter Dundas, 1859-1940"
       expect(request.form_attributes[:"ItemDate_#{request_id}"]).to eq "1883 December 11-1884 July 26"
-      expect(request.form_attributes[:"ReferenceNumber_#{request_id}"]).to eq "aspace_C1588_c3"
+      expect(request.form_attributes[:"ReferenceNumber_#{request_id}"]).to eq "C1588_c3"
       expect(request.form_attributes[:"CallNumber_#{request_id}"]).to eq "C1588test"
       expect(request.form_attributes[:"ItemNumber_#{request_id}"]).to eq "32101080851049"
       expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Box B-001180"
@@ -301,7 +301,7 @@ RSpec.describe Arclight::SolrDocument do
       expect(request.form_attributes[:"ItemInfo2_#{request_id}"]).to eq "1 folder"
       expect(request.form_attributes[:"ItemInfo3_#{request_id}"]).to eq "Folder 1"
       expect(request.form_attributes[:"Location_#{request_id}"]).to eq "mss"
-      expect(request.form_attributes[:"ItemInfo5_#{request_id}"]).to eq "http://localhost:3000/catalog/aspace_C1588_c3"
+      expect(request.form_attributes[:"ItemInfo5_#{request_id}"]).to eq "http://localhost:3000/catalog/C1588_c3"
       expect(request.form_attributes[:SubmitButton]).to eq "Submit Request"
     end
   end
@@ -316,6 +316,29 @@ RSpec.describe Arclight::SolrDocument do
 
       request = document.aeon_request
       expect(request.form_attributes[:Site]).to eq "RBSC"
+    end
+  end
+  context "when there's two boxes for one component" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0187.processed.EAD.xml")
+    end
+    it "creates two transactions" do
+      result = indexer.map_record(record)
+      component = result["components"][0]["components"][0]["components"][0]
+      document = SolrDocument.new(component)
+
+      request = document.aeon_request
+      expect(request.form_attributes[:Site]).to eq "RBSC"
+      expect(Array.wrap(request.form_attributes[:Request]).length).to eq 2
+      request1 = request.form_attributes[:Request][0]
+      request2 = request.form_attributes[:Request][1]
+
+      expect(request.form_attributes[:"ItemVolume_#{request1}"]).to eq "Box 1"
+      expect(request.form_attributes[:"ItemNumber_#{request1}"]).to eq "32101037597877"
+      expect(request.form_attributes[:"ItemInfo4_#{request1}"]).to eq "NBox"
+      expect(request.form_attributes[:"ItemVolume_#{request2}"]).to eq "Box 2"
+      expect(request.form_attributes[:"ItemNumber_#{request2}"]).to eq "32101037597885"
+      expect(request.form_attributes[:"ItemInfo4_#{request2}"]).to eq "NBox"
     end
   end
 end

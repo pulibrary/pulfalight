@@ -24,24 +24,44 @@ class AeonRequest
       DocumentType: "Manuscript",
       Site: site,
       Location: container_locations,
-      ItemTitle: solr_document.title&.first,
-      Request: request_id,
-      "ItemSubTitle_#{request_id}": subtitle,
-      "ItemTitle_#{request_id}": title,
-      "ItemAuthor_#{request_id}": solr_document.creator,
-      "ItemDate_#{request_id}": date,
-      "ReferenceNumber_#{request_id}": solr_document.id,
-      "CallNumber_#{request_id}": solr_document.eadid,
-      "ItemNumber_#{request_id}": barcode,
-      "ItemVolume_#{request_id}": box,
-      "ItemInfo1_#{request_id}": access_restrictions,
-      "ItemInfo2_#{request_id}": solr_document.extent,
-      "ItemInfo3_#{request_id}": folder,
-      "ItemInfo4_#{request_id}": container_profile,
-      "ItemInfo5_#{request_id}": url,
-      "Location_#{request_id}": container_locations,
-      "GroupingField_#{request_id}": grouping_identifier
-    }.merge(grouping_options)
+      ItemTitle: solr_document.title&.first
+    }.merge(grouping_options).merge(all_request_attributes)
+  end
+
+  def all_request_attributes
+    return request_attributes({}) if box.blank?
+    all_attributes = boxes.map do |local_box|
+      request_attributes(local_box)
+    end
+    # Combine request attributes, but merge duplicate keys - necessary for
+    # Request to end up with an array of values.
+    all_attributes.inject do |combined, request_attributes|
+      combined.merge(request_attributes) do |_key, oldval, newval|
+        Array.wrap(oldval) + [newval]
+      end
+    end
+  end
+
+  # Create one request per box.
+  def request_attributes(box)
+    {
+      Request: request_id(box),
+      "Location_#{request_id(box)}": translate_location_code(box["location_code"]),
+      "GroupingField_#{request_id(box)}": grouping_identifier(box),
+      "ItemSubTitle_#{request_id(box)}": subtitle,
+      "ItemTitle_#{request_id(box)}": title,
+      "ItemAuthor_#{request_id(box)}": solr_document.creator,
+      "ItemDate_#{request_id(box)}": date,
+      "ReferenceNumber_#{request_id(box)}": solr_document.id,
+      "CallNumber_#{request_id(box)}": solr_document.eadid,
+      "ItemNumber_#{request_id(box)}": box["barcode"],
+      "ItemVolume_#{request_id(box)}": box["label"]&.upcase_first,
+      "ItemInfo1_#{request_id(box)}": access_restrictions,
+      "ItemInfo2_#{request_id(box)}": solr_document.extent,
+      "ItemInfo3_#{request_id(box)}": folder,
+      "ItemInfo4_#{request_id(box)}": box["profile"],
+      "ItemInfo5_#{request_id(box)}": url
+    }
   end
 
   def site
@@ -49,8 +69,8 @@ class AeonRequest
   end
 
   # Group all box components in the same EAD together.
-  def grouping_identifier
-    "#{ead_id}-#{box}"
+  def grouping_identifier(box)
+    "#{ead_id}-#{box['label'].to_s.tr(' ', '-')}"
   end
 
   def ead_id
@@ -61,15 +81,17 @@ class AeonRequest
     solr_document.fetch("container_location_codes_ssim", []).map { |code| translate_location_code(code) }.join(", ")
   end
 
-  def container_profile
-    solr_document.fetch("container_information_ssm", []).map do |container|
-      container = JSON.parse(container)
-      container["profile"]
-    end.join(", ")
+  def container_information
+    @container_information ||=
+      begin
+        solr_document.fetch("container_information_ssm", []).map do |container|
+          JSON.parse(container)
+        end
+      end
   end
 
   def translate_location_code(code)
-    return "ReCAP" if code.downcase.start_with?("rcp")
+    return "ReCAP" if code.to_s.downcase.start_with?("rcp")
     code
   end
 
@@ -96,8 +118,10 @@ class AeonRequest
     solr_document["containers_ssim"]&.first&.upcase_first
   end
 
-  def barcode
-    solr_document["barcodes_ssim"]&.first
+  def boxes
+    container_information.select do |container|
+      container["label"].to_s.downcase.include?("box")
+    end
   end
 
   def title
@@ -112,8 +136,12 @@ class AeonRequest
     [solr_document["parent_unnormalized_unittitles_ssm"]&.last, solr_document.title&.last].compact.join(" / ")
   end
 
-  def request_id
-    @request_id ||= SecureRandom.hex(14).to_i(16).to_s
+  def request_id(box)
+    "#{static_request_id}#{box['label'].to_s.tr(' ', '-')}"
+  end
+
+  def static_request_id
+    @static_request_id ||= SecureRandom.hex(14).to_i(16).to_s
   end
 
   private
