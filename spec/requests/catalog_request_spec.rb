@@ -172,13 +172,12 @@ describe "controller requests", type: :request do
   end
 
   describe "searching with quotes", js: false do
-    it "returns results as if you didn't search with quotes" do
-      get "/catalog", params: { q: "Marie Claire Chabert", search_field: "all_fields" }
-      no_quote_results = assigns.fetch(:document_list).map(&:id)
+    it "returns a match for names in the wrong order" do
+      get "/catalog", params: { q: '"Frederick Vinton"', search_field: "all_fields" }
 
-      get "/catalog", params: { q: '"Marie Claire Chabert"', search_field: "all_fields" }
+      results = assigns.fetch(:document_list).map(&:id)
 
-      expect(assigns.fetch(:document_list).map(&:id)).to eq no_quote_results
+      expect(results.length).to eq 1
     end
   end
 end
