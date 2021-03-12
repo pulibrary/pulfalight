@@ -300,11 +300,13 @@ to_field "container_information_ssm" do |record, accumulator, context|
     barcode_match = barcode_label.match(/\[(\d+?)\]/)
     barcode = barcode_match[1] if barcode_match
     text = [container_element.attribute("type"), container_element.text].join(" ").strip
+    note = container_element.attribute("note")
     accumulator << {
       location_code: container_location_code,
       profile: container_profile,
       barcode: barcode,
-      label: text
+      label: text,
+      note: note.to_s
     }.to_json
   end
   if context.output_hash["level_ssm"] == ["Text"] && accumulator.blank?

@@ -60,9 +60,13 @@ class AeonRequest
       "ItemInfo1_#{request_id(box)}": access_restrictions,
       "ItemInfo2_#{request_id(box)}": solr_document.extent,
       "ItemInfo3_#{request_id(box)}": folder,
-      "ItemInfo4_#{request_id(box)}": box["profile"],
+      "ItemInfo4_#{request_id(box)}": box_locator(box),
       "ItemInfo5_#{request_id(box)}": url
     }
+  end
+
+  def box_locator(box)
+    [box["profile"], box["note"]].select(&:present?).join(" ")
   end
 
   def site
