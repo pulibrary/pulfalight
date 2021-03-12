@@ -490,7 +490,8 @@ to_field "prefercite_ssm" do |_record, accumulator, context|
   parent_id = parent_ids.first
   parent_titles = parent.output_hash["title_ssm"]
   parent_title = parent_titles.first
-  output = "#{parent_title}, #{parent_id}, "
+  component_title = context.output_hash["title_ssm"].first
+  output = "#{component_title}; #{parent_title}, #{parent_id}, "
   citation = CitationResolverService.resolve(repository_id: settings["repository"])
   if citation
     output += citation
