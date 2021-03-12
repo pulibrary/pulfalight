@@ -434,9 +434,9 @@ describe "EAD 2 traject indexing", type: :feature do
       component = components.first
 
       expect(component).to include("prefercite_ssm")
-      expect(component["prefercite_ssm"]).to include("Barr Ferree collection, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library")
+      expect(component["prefercite_ssm"]).to include("Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc.; Barr Ferree collection, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library")
       expect(component).to include("prefercite_teim")
-      expect(component["prefercite_teim"]).to include("Barr Ferree collection, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library")
+      expect(component["prefercite_teim"]).to include("Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc.; Barr Ferree collection, MC152, Public Policy Papers, Department of Special Collections, Princeton University Library")
     end
   end
 
