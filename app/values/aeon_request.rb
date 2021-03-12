@@ -33,7 +33,7 @@ class AeonRequest
     all_attributes = boxes.map do |local_box|
       request_attributes(local_box)
     end
-    return {} if all_attributes.blank?
+    return request_attributes({}) if all_attributes.blank?
     # Combine request attributes, but merge duplicate keys - necessary for
     # Request to end up with an array of values.
     all_attributes.inject do |combined, request_attributes|

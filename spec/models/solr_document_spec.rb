@@ -30,6 +30,17 @@ RSpec.describe Arclight::SolrDocument do
     records.first
   end
 
+  def find_component(component_id:, record:)
+    return if record.blank?
+    return record if record["id"][0] == component_id
+    return if record["components"].blank?
+    record["components"].each do |component|
+      result = find_component(component_id: component_id, record: component)
+      return result if result.present?
+    end
+    nil
+  end
+
   describe "custom accessors" do
     it { expect(document).to respond_to(:parent_ids) }
     it { expect(document).to respond_to(:parent_labels) }
@@ -248,15 +259,20 @@ RSpec.describe Arclight::SolrDocument do
       end
     end
 
-    def find_component(component_id:, record:)
-      return if record.blank?
-      return record if record["id"][0] == component_id
-      return if record["components"].blank?
-      record["components"].each do |component|
-        result = find_component(component_id: component_id, record: component)
-        return result if result.present?
+    context "when there's one oversize folder and no box" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC053.processed.EAD.xml")
       end
-      nil
+      it "still requests the title and other non-box related data" do
+        result = indexer.map_record(record)
+        component = find_component(component_id: "AC053_c4917", record: result)
+        document = SolrDocument.new(component)
+
+        request = document.aeon_request
+        request_id = request.form_attributes[:Request]
+        expect(request.form_attributes[:"ItemSubTitle_#{request_id}"]).to eq "Plates and drawings displayed at the World's Columbian Exhibition / Drawing by Logan Coleman *1896"
+        expect(request.form_attributes[:"ReferenceNumber_#{request_id}"]).to eq "AC053_c4917"
+      end
     end
     context "when it's an item component" do
       let(:fixture_path) do
