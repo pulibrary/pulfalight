@@ -30,7 +30,7 @@ class AeonRequest
 
   def all_request_attributes
     return request_attributes({}) if box.blank?
-    all_attributes = boxes.map do |local_box|
+    all_attributes = requesting_containers.map do |local_box|
       request_attributes(local_box)
     end
     return request_attributes({}) if all_attributes.blank?
@@ -41,6 +41,11 @@ class AeonRequest
         Array.wrap(oldval) + [newval]
       end
     end
+  end
+
+  def requesting_containers
+    return boxes if boxes.present?
+    non_boxes
   end
 
   # Create one request per box.
@@ -126,6 +131,12 @@ class AeonRequest
   def boxes
     container_information.select do |container|
       container["label"].to_s.downcase.include?("box")
+    end
+  end
+
+  def non_boxes
+    container_information.select do |container|
+      !container["label"].to_s.downcase.include?("box")
     end
   end
 
