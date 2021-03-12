@@ -232,6 +232,32 @@ RSpec.describe Arclight::SolrDocument do
         expect(request.form_attributes[:"ItemInfo4_#{request_id}"]).to eq "NBox"
       end
     end
+    context "when there's a container note" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
+      end
+      it "adds the note to ItemInfo4" do
+        result = indexer.map_record(record)
+        component = find_component(component_id: "C1491_c68", record: result)
+        document = SolrDocument.new(component)
+
+        request = document.aeon_request
+        request_id = request.form_attributes[:Request]
+        expect(request.form_attributes[:"Location_#{request_id}"]).to eq "mss"
+        expect(request.form_attributes[:"ItemInfo4_#{request_id}"]).to eq "NBox D-zone"
+      end
+    end
+
+    def find_component(component_id:, record:)
+      return if record.blank?
+      return record if record["id"][0] == component_id
+      return if record["components"].blank?
+      record["components"].each do |component|
+        result = find_component(component_id: component_id, record: component)
+        return result if result.present?
+      end
+      nil
+    end
     context "when it's an item component" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0744.04.processed.EAD.xml")
