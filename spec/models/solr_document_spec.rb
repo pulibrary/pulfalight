@@ -274,6 +274,20 @@ RSpec.describe Arclight::SolrDocument do
         expect(request.form_attributes[:"ReferenceNumber_#{request_id}"]).to eq "AC053_c4917"
       end
     end
+    context "when there's an oversize folder with notes" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC154.processed.EAD.xml")
+      end
+      it "adds the notes to ItemInfo4" do
+        result = indexer.map_record(record)
+        component = find_component(component_id: "AC154_c03425", record: result)
+        document = SolrDocument.new(component)
+
+        request = document.aeon_request
+        request_id = request.form_attributes[:Request]
+        expect(request.form_attributes[:"ItemInfo4_#{request_id}"]).to eq "NBox cabinet 3 drawer 15"
+      end
+    end
     context "when it's an item component" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0744.04.processed.EAD.xml")
