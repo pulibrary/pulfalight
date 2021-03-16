@@ -34,6 +34,8 @@ describe("RequestCart.vue", () => {
     expect(form.querySelector("input[name='AeonForm'][value='EADRequest']")).not.toBe(null)
     expect(form.querySelector("input[name='Request'][value='1']")).not.toBe(null)
     expect(form.querySelector("input[name='Request'][value='2']")).not.toBe(null)
+    const noteInput = form.querySelector("textarea[name='Notes']")
+    noteInput.value = "Test Note"
 
     const shadowForm = container.querySelector("form#shadow-form")
     const submitMock = jest.fn()
@@ -47,6 +49,7 @@ describe("RequestCart.vue", () => {
 
     // shadow form is populated
     expect(shadowForm.querySelector("input[name='AeonForm'][value='EADRequest']")).not.toBe(null)
+    expect(shadowForm.querySelector("input[name='Notes']")).not.toBe(null)
 
     // shadow form was submitted
     expect(submitMock).toHaveBeenCalled()

@@ -16,7 +16,6 @@
             variation="text"
             class="denied-button"
             aria-labelledby="closeCart"
-            focused
             >
 
             <div class="lux-icon">
@@ -117,6 +116,19 @@
             </template>
           </div>
 
+          <div id="request-notes-wrapper">
+            <input-text
+              id="request-notes"
+              label="Notes"
+              name="Notes"
+              :hide-label="true"
+              placeholder="Notes"
+              width="expand"
+              type="textarea"
+              rows=2
+              v-model="note"
+            />
+          </div>
           <input-button type="submit" variation="solid" :disabled="requests.length == 0" block>
             {{ requestButtonText() }}
           </input-button>
@@ -139,6 +151,7 @@
                                                               :value="form_values"></input>
           </template>
         </template>
+        <input name="Notes" type="hidden" :value="note" />
       </div>
     </form>
 
@@ -164,7 +177,8 @@ export default {
   },
   data() {
     return {
-      shadowRequests: []
+      shadowRequests: [],
+      note: ""
     }
   },
   props: {
@@ -237,6 +251,14 @@ export default {
 <style lang="scss" scoped>
 @import "lux-design-system/dist/system/tokens/tokens.scss";
 @import "lux-design-system/dist/system/system.utils.scss";
+#request-notes-wrapper {
+  width: 100%;
+  margin-left: 0.25rem;
+  margin-right: -0.25rem;
+  margin-bottom: 9px;
+  max-height: 50px;
+  overflow: hidden;
+}
 .lux-data-table {
   table-layout: fixed;
   width: 100%;
@@ -301,7 +323,7 @@ export default {
   display:block;
   width: 100%;
   overflow: auto;
-  height: 40rem;
+  height: calc(100% - 162px);
 }
 
 .lux-data-table tr {
@@ -444,8 +466,6 @@ export default {
 }
 /* Component Styling */
 .request-cart {
-  padding-left: 0.8rem;
-  padding-right: 0.8rem;
   /* Custom */
   position: fixed;
   z-index: 2020;
@@ -473,6 +493,8 @@ export default {
 .lux-data-table {
   width: 100%;
   margin-top: 0px;
+  display: block;
+  height: 100%;
   caption {
     caption-side: inherit;
     margin-bottom: 0px;
@@ -480,38 +502,25 @@ export default {
     padding-bottom: 0px;
   }
 }
-.panel-wrap {
-  position: fixed;
-  top: 0px;
-  bottom: 0;
-  right: 0;
-  width: 38em;
-  transform: translateX(0%);
-  z-index: 1000; /* Stay on top */
-}
 .panel {
   @include reset;
   @include stack-space($space-base);
+  padding-left: 0.8rem;
+  padding-right: 0.8rem;
+  padding-top: 0.8rem;
   font-family: $font-family-text;
   line-height: $line-height-base;
   background: $color-white;
   box-shadow: $box-shadow-small;
   color: $color-rich-black;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   overflow: hidden;
-  padding: 1em;
+  height: calc(100% - 120px);
+  margin-bottom: 0px;
 }
 .cart-actions {
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
   background: $color-rich-black;
   color: $color-white;
-  height: 80px;
+  height: 120px;
   width: 100%;
 }
 .center {
