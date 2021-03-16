@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/8g84mm27q">C1165</eadid><filedesc><titlestmt><titleproper>Princeton University Library Collection of Patrick Henry Materials, 1743-1796: Finding Aid <num>C1165</num></titleproper><author>Faith Charlton; Kelly Bolding</author><sponsor>The majority of materials in this collection were purchased with support from The Barksdale-Dabney-Henry Fund for Research and Teaching on Patrick Henry and Early Americana</sponsor></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2007</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-03-16 15:17:43 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2013-06-12T14:46:19.071-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2013-12-18T11:37:35.469-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Manuscripts Division </corpname>
+    </repository>
+    <unittitle>Princeton University Library Collection of Patrick Henry Materials</unittitle>
+    <origination label="Creator">
+      <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="col" source="viaf">Princeton University. Library. Special Collections</corpname>
+    </origination>
+    <origination label="Creator">
+      <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="cre" source="viaf">Princeton University. Library. Special Collections</corpname>
+    </origination>
+    <origination label="Creator">
+      <persname authfilenumber="http://viaf.org/viaf/73875491" role="cre" source="viaf">Henry, Patrick, 1736-1799</persname>
+    </origination>
+    <unitid>C1165</unitid>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">1 box</extent>
+    </physdesc>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">0.2 linear feet</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1743/1796" type="inclusive">1743-1796</unitdate>
+    <abstract id="aspace_35a05cb381867fb06887ae0ee00563d8">Consists of selected manuscript material by and about American attorney, politician, and planter Patrick Henry (1736-1799).</abstract>
+    <physloc id="aspace_16140fa2bc40e95c59af02c91055b4c1">mss</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+.    </langmaterial>
+  </did>
+  <scopecontent id="aspace_7e17d8430696b9266d5e03279793b3e3">
+    <head>Scope and Contents</head>
+<p>The collection consists of selected manuscript material by and about Patrick Henry (1736-1799), including signed autograph letters to family and associates; documents and notes regarding legal, property, and financial matters; and engraved portraits of Henry.</p>  </scopecontent>
+  <arrangement id="aspace_47442ccb78070125ffa9d6ce0907e798">
+    <head>Arrangement</head>
+<p>Items are arranged by accession.</p>  </arrangement>
+  <accessrestrict id="aspace_e37591b3908b5dc0756331c07e48ca90">
+    <head>Conditions Governing Access</head>
+<p>The collection is open for research use.</p>  </accessrestrict>
+  <userestrict id="aspace_e2593488c3d5d3bc259ab3d852f958ca">
+    <head>Conditions Governing Use</head>
+<p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref href="https://library.princeton.edu/special-collections/ask-us" type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
+  <custodhist id="aspace_44ce2661fc95065ae2e26502cfaba502">
+    <head>Custodial History</head>
+<p>The collection was formed as a result of a Departmental practice of combining into one collection material of various accessions relating to a particular person, family, or subject.</p>  </custodhist>
+  <acqinfo id="aspace_fba21a833698f13c8bebf7b688a55153">
+    <head>Immediate Source of Acquisition</head>
+<p>Promissory Note in the Hand of Patrick Henry, Signed by Jacob Puckett was a gift of Pierre F. Cook (1892) in <date type="acquistion" normal="1931">1931</date>. (AM 9875).</p><p> Letter to Thomas Madison and receipt dated June 8, 1765, were a gift of Cyrus H. McCormick in <date normal="1947-04" type="acquisition">April 1947</date>. (AM 13366)</p><p> Letter to Robert Carter and receipts for October 1764 and May 1765 were a gift of David S. Elkind (1973), in <date normal="2006-10" type="acquisition">October 2006</date>. (AM 2007-37)</p><p> Purchases from 2007 to the present have been made with support from The Barksdale-Dabney-Henry Fund for Research and Teaching on Patrick Henry and Early Americana (AM 2007-66, AM 2008-66, AM 2009-34, AM 2009-40, AM 2009-115, AM 2010-26, AM 2014-59, AM 2016-23, AM 2017-62, AM 2018-44, AM 2019-129, AM 2020-72).</p>  </acqinfo>
+  <appraisal id="aspace_b5da26ea3b17e79a0c2e70ad0ae8a913">
+    <head>Appraisal</head>
+<p>No material was separated during 2013-2020 processing.</p>  </appraisal>
+  <prefercite id="aspace_e08d2081920b6b89b23edd6269145fdf">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); Princeton University Library Collection of Patrick Henry Materials, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_79dbd260036618ac67d29276a706c883">
+    <head>Processing Information</head>
+<p>This collection was processed by Dina Britain on January 29, 2007. Finding aid written by Dina Britain on January 29, 2007.</p><p> Folder inventory added by Nicholas Williams '2015 in 2012.</p><p> Finding aid updated by Faith Charlton in October 2015 and by Kelly Bolding in November 2016, November 2017, June 2019, and March 2020.</p>  </processinfo>
+  <controlaccess>
+    <subject source="lcsh">Revolutionaries -- United States -- 18th century .</subject>
+    <subject source="lcsh">Slaveholders -- Virginia -- 18th century .</subject>
+    <subject source="lcsh">Slavery -- Virginia -- 18th century -- Sources.</subject>
+    <geogname source="lcnaf">Virginia -- History -- 1775-1865 -- Sources.</geogname>
+    <genreform source="aat">Correspondence -- 18th century.</genreform>
+    <genreform source="aat">Documents -- 18th century.</genreform>
+    <persname authfilenumber="http://viaf.org/viaf/73875491" source="viaf">Henry, Patrick, 1736-1799</persname>
+  </controlaccess>
+  <dsc/>
+</archdesc>
+</ead>

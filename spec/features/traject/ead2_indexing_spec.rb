@@ -544,4 +544,13 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(result["names_ssim"]).not_to include "Heather Shannon"
     end
   end
+
+  describe "creator_ssim" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1165.processed.EAD.xml")
+    end
+    it "separates creators and collectors" do
+      expect(result["creators_ssim"]).to eq ["Henry, Patrick, 1736-1799", "Princeton University. Library. Special Collections"]
+    end
+  end
 end
