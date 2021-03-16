@@ -544,4 +544,13 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(result["names_ssim"]).not_to include "Heather Shannon"
     end
   end
+
+  describe "bioghist indexing" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0292.processed.EAD.xml")
+    end
+    it "indexes it such that it can split out bioghists" do
+      expect(result["bioghist_ssm"].length).to eq 2
+    end
+  end
 end

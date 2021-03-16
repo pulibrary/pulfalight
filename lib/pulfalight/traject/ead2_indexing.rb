@@ -11,7 +11,6 @@ module Pulfalight
       appraisal
       arrangement
       bibliography
-      bioghist
       custodhist
       fileplan
       note

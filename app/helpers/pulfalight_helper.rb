@@ -83,6 +83,15 @@ module PulfalightHelper
     constraints.join(" / ")
   end
 
+  def hr_separator(args)
+    # Indent
+    # safe_join(args[:value].map { |val| tag.span(val, class: "metadata-note") })
+    # Horizontal Rule
+    # safe_join(args[:value], "<hr />".html_safe)
+    # Bullets
+    tag.ul(safe_join(args[:value].map { |val| tag.li(val) }))
+  end
+
   private
 
   def repository_thumbnail_path
