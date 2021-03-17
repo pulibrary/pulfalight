@@ -15,6 +15,7 @@
             type="button"
             variation="text"
             class="denied-button"
+            ref="closeCart"
             aria-labelledby="closeCart"
             >
 
@@ -202,12 +203,13 @@ export default {
     }
   },
   watch: {
-    isVisible (newIsVisible, oldIsVisible) {
+    isVisible(newIsVisible, oldIsVisible) {
       if(newIsVisible){
-        console.log(this.$refs.close)
+          this.$nextTick(()=>{
+            this.$refs.closeCart.$el.focus()
+          })
       }
-      // console.log(`Are we visible? Answer: ${newIsVisible}`)
-    }
+    },
   },
   methods: {
     displayContainers(containers) {
