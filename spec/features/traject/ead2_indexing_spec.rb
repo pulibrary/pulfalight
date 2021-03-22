@@ -551,6 +551,7 @@ describe "EAD 2 traject indexing", type: :feature do
     end
     it "separates creators and collectors" do
       expect(result["creators_ssim"]).to eq ["Henry, Patrick, 1736-1799", "Princeton University. Library. Special Collections"]
+      expect(result["collectors_ssim"]).to eq ["Princeton University. Library. Special Collections"]
     end
   end
 end

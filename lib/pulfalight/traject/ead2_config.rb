@@ -189,6 +189,8 @@ to_field "creators_ssim" do |_record, accumulator, context|
   accumulator.concat context.output_hash["creator_famname_ssm"] if context.output_hash["creator_famname_ssm"]
 end
 
+to_field "collectors_ssim", extract_xpath("/ead/archdesc/did/origination/*[@role='col']")
+
 to_field "places_sim", extract_xpath("/ead/archdesc/controlaccess/geogname")
 to_field "places_ssim", extract_xpath("/ead/archdesc/controlaccess/geogname")
 to_field "places_ssm", extract_xpath("/ead/archdesc/controlaccess/geogname")

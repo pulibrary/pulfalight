@@ -154,6 +154,7 @@ class CatalogController < ApplicationController
     config.add_facet_field "collection_sim", label: "Collection", limit: 10
     config.add_facet_field "creator_ssim", label: "Creator", limit: 10
     config.add_facet_field "creators_ssim", label: "Creator", show: false
+    config.add_facet_field "collectors_ssim", label: "Collector", show: false
     config.add_facet_field "date_range_sim", label: "Date range", range: true
     config.add_facet_field "names_ssim", label: "Names", limit: 10
     config.add_facet_field "repository_sim", label: "Repository", limit: 10
@@ -319,6 +320,7 @@ class CatalogController < ApplicationController
 
     # Collection Show Page - Summary Section
     config.add_summary_field "creators_ssim", label: "Creator", link_to_facet: true
+    config.add_summary_field "collectors_ssim", label: "Collector", link_to_facet: true
     config.add_summary_field "title_ssm", label: "Title"
     config.add_summary_field "repository_ssm", label: "Repository"
     config.add_summary_field "ark_tsim", label: "Permanent URL", helper_method: :ark_link
