@@ -28,6 +28,9 @@ describe "controller requests", type: :request do
       expect(response.body).to include "This file group includes drafts"
       get "/catalog/C0033_c001"
       expect(response.body).to include "Chabert, Marie Claire, 1769-1847"
+
+      get "/catalog/AC187_c00654"
+      expect(response.body).to have_selector("#component-summary", text: "[RESTRICTED]")
     end
     it "renders all the appropriate component metadata" do
       get "/catalog/C0140_c03411"
