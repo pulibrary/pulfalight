@@ -180,4 +180,14 @@ describe "controller requests", type: :request do
       expect(results.length).to eq 1
     end
   end
+
+  describe "searching hierarchy", js: false do
+    it "returns a match for separate parts in the hierarchy" do
+      get "/catalog", params: { q: "wilson suffrage", search_fields: "all_fields" }
+
+      results = assigns.fetch(:document_list).map(&:id)
+
+      expect(results).to include("MC168_c02041")
+    end
+  end
 end
