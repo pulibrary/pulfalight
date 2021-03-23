@@ -160,26 +160,26 @@ end
 to_field "geogname_ssm", extract_xpath("/ead/archdesc/controlaccess/geogname")
 to_field "geogname_sim", extract_xpath("/ead/archdesc/controlaccess/geogname")
 
-to_field "creator_ssm", extract_xpath("/ead/archdesc/did/origination") do |_record, accumulator|
+to_field "creator_ssm", extract_xpath("/ead/archdesc/did/origination[@label='Creator']") do |_record, accumulator|
   accumulator.uniq!
 end
-to_field "creator_sim", extract_xpath("/ead/archdesc/did/origination") do |_record, accumulator|
+to_field "creator_sim", extract_xpath("/ead/archdesc/did/origination[@label='Creator']") do |_record, accumulator|
   accumulator.uniq!
 end
-to_field "creator_ssim", extract_xpath("/ead/archdesc/did/origination") do |_record, accumulator|
+to_field "creator_ssim", extract_xpath("/ead/archdesc/did/origination[@label='Creator']") do |_record, accumulator|
   accumulator.uniq!
 end
 to_field "creator_sort" do |record, accumulator|
-  accumulator << record.xpath("/ead/archdesc/did/origination").map { |c| c.text.strip }.uniq.join(", ")
+  accumulator << record.xpath("/ead/archdesc/did/origination[@label='Creator']").map { |c| c.text.strip }.uniq.join(", ")
 end
 
-to_field "creator_persname_ssm", extract_xpath("/ead/archdesc/did/origination/persname")
-to_field "creator_persname_ssim", extract_xpath("/ead/archdesc/did/origination/persname")
-to_field "creator_corpname_ssm", extract_xpath("/ead/archdesc/did/origination/corpname")
-to_field "creator_corpname_sim", extract_xpath("/ead/archdesc/did/origination/corpname")
-to_field "creator_corpname_ssim", extract_xpath("/ead/archdesc/did/origination/corpname")
-to_field "creator_famname_ssm", extract_xpath("/ead/archdesc/did/origination/famname")
-to_field "creator_famname_ssim", extract_xpath("/ead/archdesc/did/origination/famname")
+to_field "creator_persname_ssm", extract_xpath("/ead/archdesc/did/origination/persname[@role='cre']")
+to_field "creator_persname_ssim", extract_xpath("/ead/archdesc/did/origination/persname[@role=\"cre\"]")
+to_field "creator_corpname_ssm", extract_xpath("/ead/archdesc/did/origination/corpname[@role='cre']")
+to_field "creator_corpname_sim", extract_xpath("/ead/archdesc/did/origination/corpname[@role='cre']")
+to_field "creator_corpname_ssim", extract_xpath("/ead/archdesc/did/origination/corpname[@role='cre']")
+to_field "creator_famname_ssm", extract_xpath("/ead/archdesc/did/origination/famname[@role='cre']")
+to_field "creator_famname_ssim", extract_xpath("/ead/archdesc/did/origination/famname[@role='cre']")
 
 to_field "persname_sim", extract_xpath("//persname")
 
@@ -188,6 +188,8 @@ to_field "creators_ssim" do |_record, accumulator, context|
   accumulator.concat context.output_hash["creator_corpname_ssm"] if context.output_hash["creator_corpname_ssm"]
   accumulator.concat context.output_hash["creator_famname_ssm"] if context.output_hash["creator_famname_ssm"]
 end
+
+to_field "collectors_ssim", extract_xpath("/ead/archdesc/did/origination/*[@role='col']")
 
 to_field "places_sim", extract_xpath("/ead/archdesc/controlaccess/geogname")
 to_field "places_ssim", extract_xpath("/ead/archdesc/controlaccess/geogname")
