@@ -59,7 +59,8 @@ class AspaceIndexJob < ApplicationJob
     logger.info("Successfully indexed the EAD")
   end
 
-  # Delete documents which are suddenly marked internal.
+  # Delete documents which are marked internal, in case they've been unpublished
+  # from ASpace, but were previously published.
   def delete_document(xml_document)
     ead_id = xml_document.xpath("//eadid").first.text
     blacklight_connection.delete_by_id(ead_id)
