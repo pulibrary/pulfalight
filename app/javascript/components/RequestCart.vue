@@ -123,7 +123,7 @@
               label="Notes"
               name="Notes"
               :hide-label="true"
-              placeholder="Notes"
+              placeholder="Notes to Special Collections Staff"
               width="expand"
               type="textarea"
               rows=2
