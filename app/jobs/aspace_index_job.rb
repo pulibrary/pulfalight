@@ -46,7 +46,7 @@ class AspaceIndexJob < ApplicationJob
     ead_content = aspace_client.get("#{resource_descriptions_uri}.xml", query: { include_daos: true, include_unpublished: false }, timeout: 1200).body.force_encoding("UTF-8")
     xml_documents = Nokogiri::XML.parse(ead_content)
     xml_documents.remove_namespaces!
-    return if xml_documents.children[0]["audience"] == "internal"
+    return delete_document(xml_documents) if xml_documents.children[0]["audience"] == "internal"
 
     @repository_id = repository_id.try(&:downcase)
     solr_documents = EADArray.new
@@ -57,5 +57,12 @@ class AspaceIndexJob < ApplicationJob
     logger.info("Requesting a batch Solr update...")
     blacklight_connection.add(solr_documents)
     logger.info("Successfully indexed the EAD")
+  end
+
+  # Delete documents which are marked internal, in case they've been unpublished
+  # from ASpace, but were previously published.
+  def delete_document(xml_document)
+    ead_id = xml_document.xpath("//eadid").first.text
+    blacklight_connection.delete_by_id(ead_id)
   end
 end
