@@ -85,7 +85,7 @@ class AspaceFixtureGenerator
     "C0744.04" => ["aspace_C0744.04_c0120"],
     "C0744.03" => ["aspace_C0744.03_c0516", "aspace_C0744.03_c0512"],
     "C1387" => ["aspace_C1387_c1"],
-    "C0140" => ["aspace_C0140_c03411"],
+    "C0140" => ["aspace_C0140_c03411", "aspace_C0140_c29843-01832"],
     "C0187" => ["aspace_C0187_c00003"],
     "C0269" => ["aspace_C0269_c00693"],
     "AC053" => ["aspace_AC053_c4917"],

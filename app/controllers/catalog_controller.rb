@@ -368,7 +368,7 @@ class CatalogController < ApplicationController
       last_word_connector: "<br/>"
     }
 
-    config.add_component_field "names_coll_ssim", label: "Names", separator_options: {
+    config.add_component_field "names_ssim", label: "Names", separator_options: {
       words_connector: "<br/>",
       two_words_connector: "<br/>",
       last_word_connector: "<br/>"
