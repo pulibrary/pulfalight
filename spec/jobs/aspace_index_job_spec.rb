@@ -39,6 +39,19 @@ RSpec.describe AspaceIndexJob do
         items = connection.get("select", params: { q: "collection_unitid_ssm:C1588testinternal" })
         expect(items["response"]["numFound"]).to eq 0
       end
+      it "can delete an EAD with a period in it" do
+        stub_aspace_login
+        stub_aspace_ead(resource_descriptions_uri: "repositories/13/resources/5396", ead: "mss/C1588-internal-period.xml")
+
+        connection.add({ id: "C1588testinternal-01", components: { id: "test1", collection_unitid_ssm: "C1588testinternal-01" } })
+        described_class.perform_now(resource_descriptions_uri: "repositories/13/resources/5396", repository_id: "mss")
+        connection.commit
+
+        items = connection.get("select", params: { q: "id:C1588testinternal-01" })
+        expect(items["response"]["numFound"]).to eq 0
+        items = connection.get("select", params: { q: "collection_unitid_ssm:C1588testinternal-01" })
+        expect(items["response"]["numFound"]).to eq 0
+      end
     end
     context "when given an internal EAD" do
       it "doesn't index it" do
