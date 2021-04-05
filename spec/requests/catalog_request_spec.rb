@@ -197,5 +197,22 @@ describe "controller requests", type: :request do
 
       expect(results).to include("MC168_c02041")
     end
+    it "returns a match for series titles", js: false do
+      get "/catalog", params: { q: "Bernard Baruch", search_fields: "all_fields" }
+
+      results = assigns.fetch(:document_list).map(&:id)
+
+      expect(results).to include("MC016_c1866")
+    end
+  end
+
+  describe "searching with possessives", js: false do
+    it "returns a match even if there's no 's" do
+      get "/catalog", params: { q: "Woodrow Wilson", search_fields: "all_fields", per_page: 100 }
+
+      results = assigns.fetch(:document_list).map(&:id)
+
+      expect(results).to include "AC259_c005"
+    end
   end
 end

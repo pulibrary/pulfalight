@@ -99,6 +99,8 @@
          ref_identifier_match
          parent_identifier_match
          prefercite_teim
+         text_en
+         parent_unittitles_teim
          text
        </str>
        <str name="pf">
