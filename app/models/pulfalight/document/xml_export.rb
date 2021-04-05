@@ -5,7 +5,10 @@ module Pulfalight::Document::XMLExport
   end
 
   def export_as_xml
-    client.get_xml(eadid: eadid)
+    content = client.get_xml(eadid: eadid)
+    return content if collection?
+    document = Nokogiri::XML.parse(content)
+    document.xpath("//*[@id='#{id}']")[0].to_xml
   end
 
   def client
