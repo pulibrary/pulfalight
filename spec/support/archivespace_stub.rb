@@ -23,8 +23,8 @@ module AspaceStubbing
   end
 
   def stub_search(repository_id:, resource_ids:)
-    resource_ids.each do |resource_id|
-      all_repository_ids.each do |curr_repo_id|
+    resource_ids.flat_map do |resource_id|
+      all_repository_ids.map do |curr_repo_id|
         if curr_repo_id == repository_id
           stub_request(:get, "https://aspace.test.org/staff/api/repositories/#{repository_id}/search?fields%5B%5D=identifier&fields%5B%5D=uri&page=1&q=identifier:#{resource_id}&type%5B%5D=resource")
             .to_return(status: 200, body: resource_response(repository_id, resource_id).to_json, headers: { "Content-Type": "application/json" })

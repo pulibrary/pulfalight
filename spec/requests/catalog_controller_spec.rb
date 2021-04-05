@@ -17,8 +17,8 @@ describe "controller requests", type: :request do
       it "returns the full finding aid from ASpace" do
         stub_aspace_login
         stub_aspace_repositories
-        stub_aspace_resource_ids(repository_id: "13", resource_ids: ["WC064"])
-        stub_aspace_ead(resource_descriptions_uri: "repositories/13/resource_descriptions/WC064", ead: "generated/mss/WC064.processed.EAD.xml")
+        search_stub = stub_search(repository_id: "13", resource_ids: ["WC064"]).last
+        ead_stub = stub_aspace_ead(resource_descriptions_uri: "repositories/13/resource_descriptions/WC064", ead: "generated/mss/WC064.processed.EAD.xml")
 
         get "/catalog/WC064.xml"
 
@@ -26,6 +26,11 @@ describe "controller requests", type: :request do
         doc = Nokogiri::XML.parse(response.body)
         doc.remove_namespaces!
         expect(doc.xpath("//eadid").first.text).to eq "WC064"
+
+        # Ensure caching is working
+        get "/catalog/WC064.xml"
+        expect(ead_stub).to have_been_requested.once
+        expect(search_stub).to have_been_requested.once
       end
     end
   end
