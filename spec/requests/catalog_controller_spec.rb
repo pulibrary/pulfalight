@@ -26,6 +26,7 @@ describe "controller requests", type: :request do
         doc = Nokogiri::XML.parse(response.body)
         doc.remove_namespaces!
         expect(doc.xpath("//eadid").first.text).to eq "WC064"
+        expect(doc.xpath("//c").first["id"]).to eq "WC064_c1"
 
         # Ensure caching is working
         get "/catalog/WC064.xml"
