@@ -113,7 +113,7 @@ describe "controller requests", type: :request do
       get "/catalog/MC221"
       expect(response).to render_template(:show)
       expect(response.body).to include("Credit this material")
-      expect(response.body).to include("Harold B. Hoskins Papers, Box and Folder Number; Public Policy Papers, Special Collections, Princeton University Library.")
+      expect(response.body).to include("Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections, Princeton University Library")
     end
   end
 

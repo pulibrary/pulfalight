@@ -247,6 +247,9 @@ describe "viewing catalog records", type: :feature, js: true do
           # Special Requirements
           expect(page).to have_selector "dt.blacklight-phystech_ssm", text: "Special Requirements for Access"
           expect(page).to have_selector "dd.blacklight-phystech_ssm", text: /Access to audiovisual material/
+          # Citation Note
+          expect(page).to have_selector "dd.blacklight-prefercite_ssm", text: /David E. Lilienthal Papers;/
+          expect(page).not_to have_content "Identification of specific item;"
         end
 
         # Collection History

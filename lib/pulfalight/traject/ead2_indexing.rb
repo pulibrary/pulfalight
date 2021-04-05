@@ -19,7 +19,6 @@ module Pulfalight
       originalsloc
       otherfindaid
       phystech
-      prefercite
       processinfo
       relatedmaterial
       scopecontent
