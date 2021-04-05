@@ -62,7 +62,7 @@ class AspaceIndexJob < ApplicationJob
   # Delete documents which are marked internal, in case they've been unpublished
   # from ASpace, but were previously published.
   def delete_document(xml_document)
-    ead_id = xml_document.xpath("//eadid").first.text
+    ead_id = xml_document.xpath("//eadid").first.text.strip.tr(".", "-")
     blacklight_connection.delete_by_id(ead_id)
   end
 end
