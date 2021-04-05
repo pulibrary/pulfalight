@@ -22,6 +22,11 @@ describe "controller requests", type: :request do
       expect(response.body).to include("Tēlemachos")
       expect(response.body).to include("Thessalonikē")
     end
+    it "renders component-level names" do
+      get "/catalog/C0140_c29843-01832"
+
+      expect(response.body).to include "Gallatin, Albert, 1761-1849"
+    end
     it "renders component-level notes" do
       get "/catalog/C1619_c24"
 

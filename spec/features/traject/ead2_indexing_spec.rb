@@ -36,6 +36,14 @@ describe "EAD 2 traject indexing", type: :feature do
     Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC152.processed.EAD.xml")
   end
 
+  def find_component(result, component_id)
+    all_components(result).find { |x| Array.wrap(x["id"]).include?(component_id) }
+  end
+
+  def all_components(result)
+    [result] + result.fetch("components", []).flat_map { |x| all_components(x) }
+  end
+
   describe "solr fields" do
     it "id" do
       expect(result["id"].first).to eq "MC152"
@@ -302,14 +310,6 @@ describe "EAD 2 traject indexing", type: :feature do
       )
     end
 
-    def find_component(result, component_id)
-      all_components(result).find { |x| Array.wrap(x["id"]).include?(component_id) }
-    end
-
-    def all_components(result)
-      [result] + result.fetch("components", []).flat_map { |x| all_components(x) }
-    end
-
     describe "collection notes indexing" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC221.processed.EAD.xml")
@@ -552,6 +552,16 @@ describe "EAD 2 traject indexing", type: :feature do
     it "separates creators and collectors" do
       expect(result["creators_ssim"]).to eq ["Henry, Patrick, 1736-1799", "Princeton University. Library. Special Collections"]
       expect(result["collectors_ssim"]).to eq ["Princeton University. Library. Special Collections"]
+    end
+  end
+
+  describe "names_coll_ssim" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0140.processed.EAD.xml")
+    end
+    it "indexes names" do
+      component = find_component(result, "C0140_c29843-01832")
+      expect(component["names_ssim"]).to eq ["United States. Navy. Mediterranean Squadron", "Gallatin, Albert, 1761-1849"]
     end
   end
 end
