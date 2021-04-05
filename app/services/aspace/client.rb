@@ -41,5 +41,14 @@ module Aspace
         { result["uri"][1..-1].gsub("resources", "resource_descriptions") => code }
       end.to_a.compact.last
     end
+
+    def get_xml(eadid:, cached: true)
+      url = ead_url_for_eadid(eadid: eadid).keys.first
+      get_resource_description_xml(resource_descriptions_uri: url, cached: cached)
+    end
+
+    def get_resource_description_xml(resource_descriptions_uri:, cached: true)
+      get("#{resource_descriptions_uri}.xml", query: { include_daos: true, include_unpublished: false }, timeout: 1200).body.force_encoding("UTF-8")
+    end
   end
 end
