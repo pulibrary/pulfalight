@@ -23,6 +23,10 @@ RSpec.describe AspaceIndexJob do
         items = connection.get("select", params: { q: "id:C1588test" })
         expect(items["response"]["numFound"]).to eq 1
         expect(items["response"]["docs"].first["repository_ssm"]).to eq ["Manuscripts Division"]
+
+        cache = XmlCache.first
+        expect(cache.ead_id).to eq "C1588test"
+        expect(cache.resource_descriptions_uri).to eq "repositories/13/resources/5396"
       end
     end
     context "when given an EAD which is suddenly internal" do

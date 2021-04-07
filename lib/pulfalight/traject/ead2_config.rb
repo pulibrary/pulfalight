@@ -360,9 +360,9 @@ end
 sanitizer = Rails::Html::SafeListSanitizer.new
 ["processing", "conservation"].each do |processinfo_type|
   selector = if processinfo_type == "processing"
-               "processinfo[@id!='aspace_conservation']"
+               "processinfo[@id!='conservation']"
              else
-               "processinfo[@id='aspace_conservation']"
+               "processinfo[@id='conservation']"
              end
   to_field "processinfo_#{processinfo_type}_ssm", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
     accumulator.map! do |element|

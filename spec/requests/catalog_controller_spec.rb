@@ -12,6 +12,49 @@ describe "controller requests", type: :request do
     end
   end
 
+  describe "/catalog/:id XML" do
+    context "for a collection" do
+      it "returns the full finding aid from ASpace" do
+        stub_aspace_login
+        stub_aspace_repositories
+        search_stub = stub_search(repository_id: "13", resource_ids: ["WC064"]).last
+        ead_stub = stub_aspace_ead(resource_descriptions_uri: "repositories/13/resource_descriptions/WC064", ead: "generated/mss/WC064.processed.EAD.xml")
+
+        get "/catalog/WC064.xml"
+
+        expect(response).to be_successful
+        doc = Nokogiri::XML.parse(response.body)
+        doc.remove_namespaces!
+        expect(doc.xpath("//eadid").first.text).to eq "WC064"
+        expect(doc.xpath("//c").first["id"]).to eq "WC064_c1"
+
+        # Ensure caching is working
+        get "/catalog/WC064.xml"
+        expect(ead_stub).to have_been_requested.once
+        expect(search_stub).to have_been_requested.once
+      end
+    end
+    context "for a component" do
+      it "shows the component XML" do
+        stub_aspace_login
+        stub_aspace_repositories
+        search_stub = stub_search(repository_id: "13", resource_ids: ["WC064"]).last
+        ead_stub = stub_aspace_ead(resource_descriptions_uri: "repositories/13/resource_descriptions/WC064", ead: "generated/mss/WC064.processed.EAD.xml")
+
+        get "/catalog/WC064_c1.xml"
+
+        expect(response).to be_successful
+        doc = Nokogiri::XML.parse(response.body)
+        expect(doc.children[0]["id"]).to eq "WC064_c1"
+
+        # Ensure caching is working
+        get "/catalog/WC064_c1.xml"
+        expect(ead_stub).to have_been_requested.once
+        expect(search_stub).to have_been_requested.once
+      end
+    end
+  end
+
   describe "/catalog/:id JSON" do
     context "for a component" do
       it "renders sufficient JSON for Figgy to use" do

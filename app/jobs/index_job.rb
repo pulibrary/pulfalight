@@ -39,7 +39,7 @@ class IndexJob < ApplicationJob
   # @return [Array<Nokogiri::XML::Document>]
   def xml_documents
     @xml_documents ||= @file_paths.map do |file_path|
-      doc_string = File.open(file_path)
+      doc_string = File.read(file_path).gsub("aspace_", "")
       document = Nokogiri::XML.parse(doc_string)
       document.remove_namespaces!
       document
