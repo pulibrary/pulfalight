@@ -24,7 +24,7 @@ class AeonRequest
       DocumentType: "Manuscript",
       Site: site,
       Location: container_locations,
-      ItemTitle: solr_document.title&.first
+      ItemTitle: title
     }.merge(grouping_options).merge(all_request_attributes)
   end
 

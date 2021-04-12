@@ -327,7 +327,7 @@ RSpec.describe Arclight::SolrDocument do
       expect(request.form_attributes[:DocumentType]).to eq "Manuscript"
       expect(request.form_attributes[:Site]).to eq "RBSC"
       expect(request.form_attributes[:Location]).to eq "mss"
-      expect(request.form_attributes[:ItemTitle]).to eq "Diary"
+      expect(request.form_attributes[:ItemTitle]).to eq "Walter Dundas Bathurst Papers"
       expect(request.form_attributes[:GroupingIdentifier]).to eq "GroupingField"
       expect(request.form_attributes[:GroupingOption_ReferenceNumber]).to eq "Concatenate"
       expect(request.form_attributes[:GroupingOption_ItemNumber]).to eq "Concatenate"
