@@ -33,6 +33,21 @@ describe "controller requests", type: :request do
         expect(ead_stub).to have_been_requested.once
         expect(search_stub).to have_been_requested.once
       end
+      it "can be requested to not include containers" do
+        stub_aspace_login
+        stub_aspace_repositories
+        stub_search(repository_id: "13", resource_ids: ["WC064"]).last
+        stub_aspace_ead(resource_descriptions_uri: "repositories/13/resource_descriptions/WC064", ead: "generated/mss/WC064.processed.EAD.xml")
+
+        get "/catalog/WC064.xml?containers=false"
+
+        expect(response).to be_successful
+        doc = Nokogiri::XML.parse(response.body)
+        doc.remove_namespaces!
+        expect(doc.xpath("//eadid").first.text).to eq "WC064"
+        expect(doc.xpath("//c").first["id"]).to eq "WC064_c1"
+        expect(doc.xpath("//container").length).to eq 0
+      end
     end
     context "for a component" do
       it "shows the component XML" do
