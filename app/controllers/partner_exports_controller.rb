@@ -4,7 +4,7 @@ class PartnerExportsController < ApplicationController
   # no containers.
   def pacscl
     @collections = collections
-    render layout: false
+    render layout: "empty"
   end
 
   def collections
