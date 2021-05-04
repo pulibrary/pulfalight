@@ -34,6 +34,7 @@ class CatalogController < ApplicationController
           @document_tree = build_document_tree
         end
       end
+      @document.suppress_xml_containers! if params[:containers].to_s == "false"
       format.json do
         render json: @document.to_json
       end
