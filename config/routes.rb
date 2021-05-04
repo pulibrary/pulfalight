@@ -58,4 +58,6 @@ Rails.application.routes.draw do
   get "/archival_language", to: "about#archival_language"
   post "/contact/suggest", to: "contact#suggest"
   post "/contact/question", to: "contact#question"
+
+  get "/pacscl/production", to: "partner_exports#pacscl"
 end
