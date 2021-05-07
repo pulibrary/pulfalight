@@ -1,6 +1,6 @@
 <div id="links">
   <% @collections.each do |collection| %>
-    <%= link_to collection["normalized_title_ssm"].first, solr_document_path(id: collection["id"], format: :xml, containers: "false") %>
+    <%= link_to collection["normalized_title_ssm"].first, pacscl_redirect_path(id: collection["id"], format: :xml) %>
     <br/>
   <% end %>
 </div>
