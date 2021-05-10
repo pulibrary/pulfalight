@@ -10,7 +10,7 @@ class PartnerExportsController < ApplicationController
   # PACSCL needs links that end in .xml, and absolutely can't follow redirects,
   # so we provide a special getter for them here.
   def pacscl_xml
-    document = Blacklight.default_index.search(q: "id:WC064")&.dig("response", "docs")&.first
+    document = Blacklight.default_index.search(q: "id:#{params[:id]}")&.dig("response", "docs")&.first
     document = SolrDocument.new(document)
     document.suppress_xml_containers!
     respond_to do |format|
