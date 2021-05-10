@@ -60,4 +60,5 @@ Rails.application.routes.draw do
   post "/contact/question", to: "contact#question"
 
   get "/pacscl/production", to: "partner_exports#pacscl"
+  get "/pacscl/production/:id", to: "partner_exports#pacscl_xml", as: :pacscl_xml
 end
