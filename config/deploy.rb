@@ -4,7 +4,6 @@ lock "~> 3.11"
 
 set :application, "pulfalight"
 set :repo_url, "https://github.com/pulibrary/pulfalight.git"
-set :passenger_restart_with_touch, true
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
