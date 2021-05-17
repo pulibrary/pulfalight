@@ -61,4 +61,6 @@ Rails.application.routes.draw do
 
   get "/pacscl/production", to: "partner_exports#pacscl"
   get "/pacscl/production/:id", to: "partner_exports#pacscl_xml", as: :pacscl_xml
+
+  match "*unmatched", to: "application#route_not_found", via: :all
 end
