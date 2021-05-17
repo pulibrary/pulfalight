@@ -28,7 +28,7 @@ jobs:
       # Restore bundle cache
       - restore_cache:
           keys:
-            - pulfalight-{{ checksum "Gemfile.lock" }}
+            - pulfalight-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
       - run: sudo apt update && sudo apt install postgresql-client
       - run:
           name: Update bundler
@@ -39,7 +39,7 @@ jobs:
           name: Install dependencies
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: pulfalight-{{ checksum "Gemfile.lock" }}
+          key: pulfalight-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
           paths:
             - ./vendor/bundle
       - run:
@@ -76,7 +76,7 @@ jobs:
           name: Install dependencies
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: pulfalight-{{ checksum "Gemfile.lock" }}
+          key: pulfalight-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
           paths:
             - ./vendor/bundle
 
@@ -134,7 +134,7 @@ jobs:
           name: Install dependencies
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: pulfalight-{{ checksum "Gemfile.lock" }}
+          key: pulfalight-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
           paths:
             - ./vendor/bundle
 
