@@ -484,6 +484,10 @@ class CatalogController < ApplicationController
     config.view.compact.partials = %i[arclight_index_compact]
   end
 
+  rescue_from Blacklight::Exceptions::RecordNotFound do
+    render "record_not_found", status: :not_found
+  end
+
   private
 
   def document_expanded?
