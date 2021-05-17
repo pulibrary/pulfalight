@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "Errors", type: :request do
-  describe ":not found" do
+  describe "unmatched routes" do
     before(:all) { get "/nonexistent_resource" }
 
     it "has an http status of 404" do
@@ -12,6 +12,18 @@ RSpec.describe "Errors", type: :request do
 
     it "redirects to the custom not_found error page" do
       expect(response.body).to include("The page you were looking for doesn't exist.")
+    end
+  end
+
+  # Blacklight::Exceptions::RecordNotFound
+  describe "record not found" do
+    it "renders a 404 page" do
+      params = { id: "unknown_work" }
+      get "/catalog/#{params[:id]}"
+
+      expect(response.status).to eq(404)
+      expect(response.body).to include("The page you were looking for doesn't exist.")
+      expect(response.body).to include("unknown_work")
     end
   end
 end
