@@ -33,14 +33,26 @@ configure_before
 # ==================
 
 # rubocop:disable Performance/StringReplacement
-to_field "id", extract_xpath("/ead/eadheader/eadid"), strip, gsub(".", "-")
+# to_field "id", extract_xpath("/ead/eadheader/eadid"), strip, gsub(".", "-").split('|').first
+to_field "id", extract_xpath("/ead/eadheader/eadid", to_text: false) do |_record, accumulator|
+  string_array = accumulator.map(&:text)
+  string_array = string_array.map { |a| a.gsub(".", "-") }
+  string_array = string_array.map { |a| a.split("|").first }
+  accumulator.replace(string_array)
+end
+to_field "ead_ssi", extract_xpath("/ead/eadheader/eadid", to_text: false) do |_record, accumulator|
+  string_array = accumulator.map(&:text)
+  string_array = string_array.map { |a| a.gsub(".", "-") }
+  string_array = string_array.map { |a| a.split("|").first }
+  accumulator.replace(string_array)
+end
 # rubocop:enable Performance/StringReplacement
+
 to_field "title_filing_si", extract_xpath('/ead/eadheader/filedesc/titlestmt/titleproper[@type="filing"]')
 to_field "title_ssm", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "title_teim", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "subtitle_ssm", extract_xpath("/ead/archdesc/did/unittitle")
 to_field "subtitle_teim", extract_xpath("/ead/archdesc/did/unittitle")
-to_field "ead_ssi", extract_xpath("/ead/eadheader/eadid")
 to_field "ark_tsim", extract_xpath("/ead/eadheader/eadid/@url", to_text: false) do |_record, accumulator|
   accumulator.replace(accumulator.map(&:text))
 end

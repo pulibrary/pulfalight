@@ -52,6 +52,18 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  # Sometimes there are unexpected characters in eadid and componentid that keep
+  # the page from rendering as expected
+  context "malformed eadid and componentid" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "corner_cases", "MC99999.processed.EAD.xml")
+    end
+    it "drops anything after a pipe in an eadid" do
+      expect(result["id"].first).to eq "MC121"
+      expect(result["ead_ssi"].first).to eq "MC121"
+    end
+  end
+
   describe "repository indexing" do
     context "when a Repository has been before the collection is indexed" do
       it "retrieves an existing Repository model and indexes this into Solr" do
