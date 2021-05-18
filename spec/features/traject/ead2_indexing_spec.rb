@@ -59,8 +59,13 @@ describe "EAD 2 traject indexing", type: :feature do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "corner_cases", "MC99999.processed.EAD.xml")
     end
     it "drops anything after a pipe in an eadid" do
-      expect(result["id"].first).to eq "MC121"
-      expect(result["ead_ssi"].first).to eq "MC121"
+      expect(result["id"].first).to eq "MC99999"
+      expect(result["ead_ssi"].first).to eq "MC99999"
+    end
+    it "drops anything after a space in a componentid" do
+      expect(result["id"].first).to eq "MC99999"
+      component_ids = result["components"].map { |component| component["id"].first }
+      expect(component_ids).to include "MC99999_c001"
     end
   end
 
