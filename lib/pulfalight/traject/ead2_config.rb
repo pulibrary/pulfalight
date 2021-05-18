@@ -33,7 +33,7 @@ configure_before
 # ==================
 
 # rubocop:disable Performance/StringReplacement
-# to_field "id", extract_xpath("/ead/eadheader/eadid"), strip, gsub(".", "-").split('|').first
+# TODO: These should be combined into a single method
 to_field "id", extract_xpath("/ead/eadheader/eadid", to_text: false) do |_record, accumulator|
   string_array = accumulator.map(&:text)
   string_array = string_array.map { |a| a.gsub(".", "-") }
