@@ -183,7 +183,7 @@ GEM
       activesupport (>= 4.2.0)
     hashdiff (1.0.1)
     hashie (3.6.0)
-    honeybadger (4.5.2)
+    honeybadger (4.8.0)
     http (3.3.0)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
