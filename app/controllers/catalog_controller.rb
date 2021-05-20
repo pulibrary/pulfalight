@@ -345,6 +345,7 @@ class CatalogController < ApplicationController
     config.add_component_field "extent_ssm", label: "Extent"
     config.add_component_field "language_ssm", label: "Languages"
     config.add_component_field "scopecontent_ssm", label: "Description", helper_method: :paragraph_separator
+    config.add_component_field "altformavail_ssm", label: "Alternative Form Available", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "bioghist_ssm", label: "Biography", helper_method: :paragraph_separator
     config.add_component_field "accessrestrict_ssm", label: "Access Restrictions"
     config.add_component_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator
