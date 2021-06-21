@@ -166,7 +166,9 @@ class AeonRequest
     {
       GroupingIdentifier: "GroupingField",
       GroupingOption_ReferenceNumber: "Concatenate",
-      GroupingOption_ItemNumber: "Concatenate",
+      # Items are grouped by box, and every box only has one barcode, so just
+      # pick the first one.
+      GroupingOption_ItemNumber: "FirstValue",
       GroupingOption_ItemDate: "FirstValue",
       GroupingOption_CallNumber: "FirstValue",
       GroupingOption_ItemVolume: "FirstValue",
