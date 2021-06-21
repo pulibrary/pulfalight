@@ -322,8 +322,6 @@ class SolrDocument
     end
   end
 
-  private
-
   def container_information
     @container_information ||=
       begin
@@ -332,6 +330,8 @@ class SolrDocument
         end
       end
   end
+
+  private
 
   def pulfalight_attributes
     {
