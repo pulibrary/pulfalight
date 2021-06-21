@@ -341,7 +341,7 @@ class CatalogController < ApplicationController
     config.add_component_field "creator_ssm", label: "Creator"
     config.add_component_field "collection_creator_ssm", label: "Collection Creator"
     config.add_component_field "normalized_date_ssm", label: "Dates"
-    config.add_component_field "physloc_ssm", label: "Located In"
+    config.add_component_field "physloc_ssm", label: "Located In", accessor: :rendered_component_physloc
     config.add_component_field "extent_ssm", label: "Extent"
     config.add_component_field "language_ssm", label: "Languages"
     config.add_component_field "scopecontent_ssm", label: "Description", helper_method: :paragraph_separator
