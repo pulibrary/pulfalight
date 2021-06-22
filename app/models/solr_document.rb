@@ -314,6 +314,23 @@ class SolrDocument
     ]
   end
 
+  def rendered_component_physloc
+    container_information.map do |container|
+      label = container["label"]
+      label += " (#{container['note']})" if container["note"]
+      label
+    end
+  end
+
+  def container_information
+    @container_information ||=
+      begin
+        fetch("container_information_ssm", []).map do |container|
+          JSON.parse(container)
+        end
+      end
+  end
+
   private
 
   def pulfalight_attributes
