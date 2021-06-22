@@ -330,7 +330,7 @@ RSpec.describe Arclight::SolrDocument do
       expect(request.form_attributes[:ItemTitle]).to eq "Walter Dundas Bathurst Papers"
       expect(request.form_attributes[:GroupingIdentifier]).to eq "GroupingField"
       expect(request.form_attributes[:GroupingOption_ReferenceNumber]).to eq "Concatenate"
-      expect(request.form_attributes[:GroupingOption_ItemNumber]).to eq "Concatenate"
+      expect(request.form_attributes[:GroupingOption_ItemNumber]).to eq "FirstValue"
       expect(request.form_attributes[:GroupingOption_ItemDate]).to eq "FirstValue"
       expect(request.form_attributes[:GroupingOption_CallNumber]).to eq "FirstValue"
       expect(request.form_attributes[:GroupingOption_ItemVolume]).to eq "FirstValue"
