@@ -91,6 +91,15 @@ class AeonRequest
     solr_document.fetch("container_location_codes_ssim", []).map { |code| translate_location_code(code) }.join(", ")
   end
 
+  def container_information
+    @container_information ||=
+      begin
+        solr_document.fetch("container_information_ssm", []).map do |container|
+          JSON.parse(container)
+        end
+      end
+  end
+
   def translate_location_code(code)
     return "ReCAP" if code.to_s.downcase.start_with?("rcp")
     code
@@ -120,13 +129,13 @@ class AeonRequest
   end
 
   def boxes
-    solr_document.container_information.select do |container|
+    container_information.select do |container|
       container["label"].to_s.downcase.include?("box")
     end
   end
 
   def non_boxes
-    solr_document.container_information.select do |container|
+    container_information.select do |container|
       !container["label"].to_s.downcase.include?("box")
     end
   end

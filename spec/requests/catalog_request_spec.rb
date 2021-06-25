@@ -17,10 +17,6 @@ describe "controller requests", type: :request do
       expect(response).to render_template(:show)
       expect(response.body).to include("Folder 11")
     end
-    it "renders full container notes" do
-      get "/catalog/AC154_c03425"
-      expect(response.body).to include "Oversize folder 103 (cabinet 3 drawer 15)"
-    end
     it "renders a component with diacritics" do
       get "/catalog/C1408"
       expect(response.body).to include("Tēlemachos")
