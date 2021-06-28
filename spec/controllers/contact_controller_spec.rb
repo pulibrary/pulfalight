@@ -34,7 +34,7 @@ RSpec.describe ContactController do
         delivery = ActionMailer::Base.deliveries.first
         expect(delivery.subject).to eq "Suggest a Correction"
         expect(delivery.to).to eq ["suggestacorrection@princeton.libanswers.com"]
-        expect(delivery.from).to eq ["no-reply@localhost"]
+        expect(delivery.from).to eq ["thescienceguy@example.com"]
         expect(delivery.body).to include "Bill Nye"
         expect(delivery.body).to include "This record needs more science."
         expect(delivery.body).to include "http://example.com/example"
@@ -74,7 +74,7 @@ RSpec.describe ContactController do
         delivery = ActionMailer::Base.deliveries.first
         expect(delivery.subject).to eq "[PULFA] stuff"
         expect(delivery.to).to eq ["specialcollections@princeton.libanswers.com"]
-        expect(delivery.from).to eq ["no-reply@localhost"]
+        expect(delivery.from).to eq ["thescienceguy@example.com"]
         expect(delivery.body).to include "Bill Nye"
         expect(delivery.body).to include "This record needs more science."
         expect(delivery.body).to include "http://example.com/example"

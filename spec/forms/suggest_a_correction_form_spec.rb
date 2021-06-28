@@ -39,6 +39,8 @@ RSpec.describe SuggestACorrectionForm do
       expect(form.location_code).to eq "mss"
       expect(form.context).to eq "http://example.com/catalog/1"
       expect(form).to be_submitted
+      mail = ActionMailer::Base.deliveries.first
+      expect(mail.from).to eq ["test@test.org"]
     end
   end
   describe "validations" do
