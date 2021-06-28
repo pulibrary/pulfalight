@@ -68,7 +68,7 @@ group :development, :test do
   gem "database_cleaner"
 end
 
-gem "archivesspace-client", github: "pulibrary/archivesspace-client", branch: "fix_login"
+gem "archivesspace-client"
 gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
 gem "blacklight_range_limit", "~> 7.1"
 gem "bootstrap", ">= 4.3.1"
