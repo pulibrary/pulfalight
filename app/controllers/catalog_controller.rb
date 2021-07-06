@@ -490,7 +490,7 @@ class CatalogController < ApplicationController
   end
 
   rescue_from BlacklightRangeLimit::InvalidRange do
-    redirect_to '/', flash: { error: 'The start year must be before the end year.' }
+    redirect_to "/", flash: { error: "The start year must be before the end year." }
   end
 
   private
