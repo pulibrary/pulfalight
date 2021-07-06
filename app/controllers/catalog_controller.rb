@@ -489,6 +489,10 @@ class CatalogController < ApplicationController
     render "record_not_found", status: :not_found
   end
 
+  rescue_from BlacklightRangeLimit::InvalidRange do
+    redirect_to "/", flash: { error: "The start year must be before the end year." }
+  end
+
   private
 
   def document_expanded?
