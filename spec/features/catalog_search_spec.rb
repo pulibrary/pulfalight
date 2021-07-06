@@ -42,4 +42,11 @@ describe "catalog searches", type: :feature, js: true do
       end
     end
   end
+
+  context "when searching by date" do
+    it "provides a helpful message if the date query is invalid" do
+      visit "/?utf8=%E2%9C%93&group=true&search_field=all_fields&q=&range%5Bdate_range_sim%5D%5Bbegin%5D=1900&range%5Bdate_range_sim%5D%5Bend%5D=1800&commit=Limit"
+      expect(page).to have_text("The start year must be before the end year.")
+    end
+  end
 end
