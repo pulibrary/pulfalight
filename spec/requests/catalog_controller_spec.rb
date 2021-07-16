@@ -33,6 +33,24 @@ describe "controller requests", type: :request do
         expect(ead_stub).to have_been_requested.once
         expect(search_stub).to have_been_requested.once
       end
+      it "works with caching for periods" do
+        stub_aspace_login
+        stub_aspace_repositories
+        search_stub = stub_search(repository_id: "13", resource_ids: ["C0744.03"]).last
+        ead_stub = stub_aspace_ead(resource_descriptions_uri: "repositories/13/resource_descriptions/C0744.03", ead: "generated/mss/C0744.03.processed.EAD.xml")
+
+        get "/catalog/C0744-03.xml"
+
+        expect(response).to be_successful
+        doc = Nokogiri::XML.parse(response.body)
+        doc.remove_namespaces!
+        expect(doc.xpath("//eadid").first.text).to eq "C0744.03"
+
+        # Ensure caching is working
+        get "/catalog/C0744-03.xml"
+        expect(ead_stub).to have_been_requested.once
+        expect(search_stub).to have_been_requested.once
+      end
       it "can be requested to not include containers" do
         stub_aspace_login
         stub_aspace_repositories

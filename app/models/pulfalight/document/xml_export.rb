@@ -5,7 +5,7 @@ module Pulfalight::Document::XMLExport
   end
 
   def export_as_xml
-    content = client.get_xml(eadid: eadid)
+    content = client.get_xml(eadid: collection_unitid || unitid)
     content = strip_containers(content) unless export_xml_containers?
     return content if collection?
     document = Nokogiri::XML.parse(content)
