@@ -182,7 +182,7 @@ class CatalogController < ApplicationController
     config.add_index_field "language_ssm", label: "Language"
     config.add_index_field "scopecontent_ssm", label: "Description", helper_method: :paragraph_separator
     config.add_index_field "extent_ssm", label: "Physical Description"
-    config.add_index_field "accessrestrict_ssm", label: "Conditions Governing Access"
+    config.add_index_field "accessrestrict_ssm", label: "Conditions Governing Access", accessor: :fetch_html_safe
     config.add_index_field "collection_ssm", label: "Collection Title"
     config.add_index_field "geogname_ssm", label: "Place"
 
@@ -404,7 +404,7 @@ class CatalogController < ApplicationController
     # =================
     # ACCESS TAB FIELDS
     # =================
-    config.add_access_field "accessrestrict_ssm", label: "Access Restrictions", helper_method: :paragraph_separator
+    config.add_access_field "accessrestrict_ssm", label: "Access Restrictions", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_access_field "userestrict_ssm", label: "Conditions for Reproduction and Use", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_access_field "phystech_ssm", label: "Special Requirements for Access", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_access_field "otherfindaid_ssm", label: "Other Finding Aids", helper_method: :paragraph_separator, accessor: :fetch_html_safe

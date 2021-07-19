@@ -361,6 +361,11 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dd.blacklight-bibliography_ssm", text: /Historical sketch based on/
         end
       end
+      it "shows HTML in the accessrestrict field" do
+        visit "/catalog/AC198"
+
+        expect(page).to have_link "University Archives Access Policy"
+      end
     end
   end
 
