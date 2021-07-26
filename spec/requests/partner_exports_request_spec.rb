@@ -6,7 +6,7 @@ RSpec.describe PartnerExportsController do
     it "outputs links to every finding aid's XML without containers" do
       get "/pacscl/production"
 
-      expect(response.body).to have_selector("#links a", count: 34)
+      expect(response.body).to have_selector("#links a", count: 33)
       expect(response.body).to have_link("Toni Morrison Papers, 1908-2017, bulk 1970/2015", href: "/pacscl/production/C1491.xml")
     end
   end
