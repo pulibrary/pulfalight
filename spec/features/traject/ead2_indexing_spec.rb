@@ -56,7 +56,7 @@ describe "EAD 2 traject indexing", type: :feature do
   # the page from rendering as expected
   context "malformed eadid and componentid" do
     let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "corner_cases", "MC99999.processed.EAD.xml")
+      Rails.root.join("spec", "fixtures", "aspace", "corner_cases", "MC99999.processed.EAD.xml")
     end
     it "drops anything after a pipe in an eadid" do
       expect(result["id"].first).to eq "MC99999"

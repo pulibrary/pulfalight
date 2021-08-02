@@ -299,8 +299,8 @@ RSpec.describe Arclight::SolrDocument do
         document = SolrDocument.new(component)
 
         request = document.aeon_request
-        request_id = request.form_attributes[:Request]
-        expect(request.form_attributes[:"ItemInfo4_#{request_id}"]).to eq "NBox cabinet 3 drawer 15"
+        request_id = request.form_attributes[:Request].first
+        expect(request.form_attributes[:"ItemInfo4_#{request_id}"]).to eq "Mudd OS folder cabinet 3 drawer 15"
       end
     end
     context "when it's an item component" do
