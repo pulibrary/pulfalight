@@ -35,7 +35,8 @@ class AspaceFixtureGenerator
     "AC259",
     "MC016",
     "AC198",
-    "C1629"
+    "C1629",
+    "AC136"
   ].freeze
 
   # List components per EAD which are used in tests to make processing those
@@ -99,7 +100,8 @@ class AspaceFixtureGenerator
     "AC187" => ["aspace_AC187_c00654"],
     "AC259" => ["aspace_AC259_c005"],
     "MC016" => ["aspace_MC016_c1866"],
-    "AC198" => []
+    "AC198" => [],
+    "AC136" => ["aspace_AC136_c2889"]
   }.freeze
 
   attr_reader :client, :ead_ids, :component_map, :fixture_dir

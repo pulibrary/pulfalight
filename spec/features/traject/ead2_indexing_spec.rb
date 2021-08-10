@@ -581,4 +581,36 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(component["names_ssim"]).to eq ["United States. Navy. Mediterranean Squadron", "Gallatin, Albert, 1761-1849"]
     end
   end
+
+  describe "access_ssi" do
+    context "for records with no restrictions" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1629.EAD.xml")
+      end
+      it "is open" do
+        component = find_component(result, "C1629_c1")
+        expect(component["access_ssi"]).to eq ["open"]
+      end
+    end
+    context "for components whose series is restricted" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "corner_cases", "AC136.noaccess.EAD.xml")
+      end
+      it "is restricted" do
+        component = find_component(result, "AC136_c2889")
+        expect(component["access_ssi"]).to eq ["restricted"]
+      end
+      it "marks the collection as some-restricted" do
+        expect(result["access_ssi"]).to eq ["some-restricted"]
+      end
+    end
+    context "for a collection which is entirely restricted" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0187.processed.EAD.xml")
+      end
+      it "marks the parent and all children restricted" do
+        expect(result["access_ssi"]).to eq ["restricted"]
+      end
+    end
+  end
 end
