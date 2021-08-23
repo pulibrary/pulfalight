@@ -4,6 +4,26 @@ require Rails.root.join("app", "jobs", "application_job")
 require Rails.root.join("app", "jobs", "index_job")
 require Rails.root.join("app", "services", "robots_generator_service")
 
+namespace :servers do
+  task initialize: :environment do
+    Rake::Task["db:create"].invoke
+    Rake::Task["db:migrate"].invoke
+    Rake::Task["pulfalight:seed"].invoke
+  end
+
+  desc "Start solr and postgres servers using lando."
+  task start: :environment do
+    system("lando start")
+    system("rake servers:initialize")
+    system("rake servers:initialize RAILS_ENV=test")
+  end
+
+  desc "Stop lando solr and postgres servers."
+  task stop: :environment do
+    system("lando stop")
+  end
+end
+
 namespace :pulfalight do
   namespace :aspace do
     desc "Index EADIDs defined by stakeholders as representatives."
@@ -146,26 +166,6 @@ namespace :pulfalight do
           File.open(File.join(solr_dir, "conf", file), "wb") { |f| f.write(response.body) }
         end
       end
-    end
-  end
-
-  namespace :server do
-    task initialize: :environment do
-      Rake::Task["db:create"].invoke
-      Rake::Task["db:migrate"].invoke
-      Rake::Task["pulfalight:seed"].invoke
-    end
-
-    desc "Start solr and postgres servers using lando."
-    task start: :environment do
-      system("lando start")
-      system("rake pulfalight:server:initialize")
-      system("rake pulfalight:server:initialize RAILS_ENV=test")
-    end
-
-    desc "Stop lando solr and postgres servers."
-    task stop: :environment do
-      system("lando stop")
     end
   end
 

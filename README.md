@@ -21,9 +21,9 @@ yarn install
 We use lando to run services required for both test and development
 environments.
 
-Start and initialize solr and database services with `rake pulfalight:server:start`
+Start and initialize solr and database services with `rake servers:start`
 
-To stop solr and database services: `rake pulfalight:server:stop` or `lando stop`
+To stop solr and database services: `rake servers:stop` or `lando stop`
 
 #### Run tests
 `bundle exec rspec`
