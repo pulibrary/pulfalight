@@ -479,11 +479,11 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
-  context "collection component physfacet value" do
+  context "indexing collection component physdesc/physfacet" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
     end
-    it "indexes the physfacet" do
+    it "indexes physfacet" do
       component = find_component(result, "C1491_c5239")
       expect(component["physfacet_ssm"]).to eq ["10 audio cassettes"]
       expect(component["physfacet_teim"]).to eq ["10 audio cassettes"]

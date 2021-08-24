@@ -206,6 +206,17 @@ describe "viewing catalog records", type: :feature, js: true do
     end
   end
 
+  context "when a component has a Physical Description" do
+    before do
+      visit "/catalog/C1491_c5239"
+    end
+
+    it "renders it with the right label" do
+      expect(page.body).to include "Physical Description"
+      expect(page.body).to include "10 audio cassettes"
+    end
+  end
+
   describe "notes", js: false do
     context "on a collection page" do
       it "shows note" do
