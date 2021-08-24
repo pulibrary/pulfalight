@@ -197,6 +197,9 @@ to_field "extent_teim", extract_xpath("./did/physdesc/extent")
 to_field "dimensions_ssm", extract_xpath("./did/physdesc/dimensions")
 to_field "dimensions_teim", extract_xpath("./did/physdesc/dimensions")
 
+to_field "physfacet_ssm", extract_xpath("./did/physdesc/physfacet")
+to_field "physfacet_teim", extract_xpath("./did/physdesc/physfacet")
+
 to_field "collection_physloc_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
   next unless parent

@@ -74,6 +74,7 @@ class AspaceFixtureGenerator
     "MC001.02.06" => [],
     "C1491" => [
       "aspace_C1491_c5621",
+      "aspace_C1491_c5239",
       "aspace_C1491_c363",
       "aspace_C1491_c4",
       "aspace_C1491_c68"
