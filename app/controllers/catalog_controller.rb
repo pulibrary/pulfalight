@@ -343,6 +343,7 @@ class CatalogController < ApplicationController
     config.add_component_field "normalized_date_ssm", label: "Dates"
     config.add_component_field "physloc_ssm", label: "Located In"
     config.add_component_field "extent_ssm", label: "Extent"
+    config.add_component_field "physfacet_ssm", label: "Physical Description"
     config.add_component_field "language_ssm", label: "Languages"
     config.add_component_field "scopecontent_ssm", label: "Description", helper_method: :paragraph_separator
     config.add_component_field "altformavail_ssm", label: "Alternative Form Available", helper_method: :paragraph_separator, accessor: :fetch_html_safe
