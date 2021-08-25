@@ -44,6 +44,9 @@ Layout/LineLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
     - 'config/initializers/simple_form_bootstrap.rb'
+    - 'spec/features/catalog_view_spec.rb'
+    - 'spec/helpers/pulfalight_helper_spec.rb'
+    - 'spec/requests/catalog_request_spec.rb'
 Naming/PredicateName:
   Exclude:
     - 'app/models/solr_document.rb'

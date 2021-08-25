@@ -434,4 +434,24 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_content "Item Number"
     end
   end
+
+  describe "collection bioghist notes", js: true do
+    it "displays for a collection" do
+      visit "/catalog/C0292"
+      find("#description-tab a").click
+
+      expect(page).to have_selector "dt.blacklight-collection_bioghist_ssm"
+      expect(page).to have_content("Collection Creator Biography:")
+
+      expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm"
+
+      expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm p.personal-name", text: "Thorp, Margaret Farrand, 1891-1970"
+      expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm p.head", text: "Biographical / Historical"
+      expect(page).to have_content("Margaret Louise Farrand Thorp (1891-1970), scholar, author, critic, and journalist, was born in East Orange, New Jersey, on December 3, 1891.")
+
+      expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm hr"
+      expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm p.personal-name", text: "Thorp, Willard, 1899-1990"
+      expect(page).to have_content("William Willard Thorp (1899-1990), literary historian, editor, educator, author, and critic, was born on April 20 in Sydney, New York.")
+    end
+  end
 end
