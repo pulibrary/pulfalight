@@ -42,8 +42,8 @@ class AspaceIndexJob < ApplicationJob
     @aspace_client ||= Aspace::Client.new
   end
 
-  def perform(resource_descriptions_uri:, repository_id: nil)
-    ead_content = aspace_client.get_resource_description_xml(resource_descriptions_uri: resource_descriptions_uri, cached: false)
+  def perform(resource_descriptions_uri:, repository_id: nil, soft: false)
+    ead_content = aspace_client.get_resource_description_xml(resource_descriptions_uri: resource_descriptions_uri, cached: soft)
     xml_documents = Nokogiri::XML.parse(ead_content)
     xml_documents.remove_namespaces!
     return delete_document(xml_documents) if xml_documents.children[0]["audience"] == "internal"
