@@ -667,4 +667,35 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(result["language_ssm"]).to eq ["Greek, Modern"]
     end
   end
+
+  describe "bioghist indexing" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0292.processed.EAD.xml")
+    end
+
+    it "indexes it such that it can split out bioghists" do
+      expect(result).to include("bioghist_ssm")
+
+      values = result["bioghist_ssm"]
+      expect(values.length).to eq(2)
+
+      expect(values.first).to include("Margaret Louise Farrand Thorp (1891-1970), scholar, author, critic, and journalist, was born in East Orange, New Jersey, on December 3, 1891.")
+      expect(values.first).to include("<p class=\"personal-name\">Thorp, Margaret Farrand, 1891-1970</p>")
+      expect(values.first).to include("<p class=\"head\">Biographical / Historical</p>")
+
+      expect(values.last).to include("William Willard Thorp (1899-1990), literary historian, editor, educator, author, and\n            critic, was born on April 20 in Sydney, New York.")
+      expect(values.last).to include("<p class=\"personal-name\">Thorp, Willard, 1899-1990</p>")
+      expect(values.last).to include("<p class=\"head\">Biographical / Historical</p>")
+    end
+
+    it "indexes it such that it can split out collection_bioghist_ssm" do
+      expect(result).to include("bioghist_ssm")
+      child_values = result["bioghist_ssm"]
+      expect(result).to include("collection_bioghist_ssm")
+      values = result["collection_bioghist_ssm"]
+
+      expect(values.length).to eq(2)
+      expect(values).to eq(child_values)
+    end
+  end
 end
