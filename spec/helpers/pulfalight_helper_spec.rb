@@ -97,4 +97,18 @@ describe PulfalightHelper, type: :helper do
       expect(helper.available_request_types).to include(:aeon_external_request_endpoint)
     end
   end
+
+  describe "#hr_separator" do
+    it "generates the markup for the Document field values" do
+      helper_args = {
+        value: [
+          "<p class=\"personal-name\">Thorp, Margaret Farrand, 1891-1970</p><p class=\"head\">Biographical / Historical</p>\n<p>\n         William Willard Thorp (1899-1990), literary historian, editor, educator, author, and\n            critic, was born on April 20 in Sydney, New York."
+        ]
+      }
+
+      markup = helper.hr_separator(helper_args)
+      expect(markup).not_to be nil
+      expect(markup.to_s).to include("<p>\n         William Willard Thorp (1899-1990)")
+    end
+  end
 end

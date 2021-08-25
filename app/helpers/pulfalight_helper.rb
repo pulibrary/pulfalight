@@ -80,6 +80,13 @@ module PulfalightHelper
     constraints.join(" / ")
   end
 
+  def hr_separator(args)
+    values = args[:value]
+    children = values.map(&:html_safe)
+    separator = "<hr />".html_safe
+    safe_join(children, separator)
+  end
+
   private
 
   def repository_thumbnail_path
