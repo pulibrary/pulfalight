@@ -10,5 +10,9 @@ namespace :pulfalight do
       Rails.logger = Logger.new(STDOUT)
       Aspace::Indexer.full_reindex
     end
+    task soft_full: :environment do
+      Rails.logger = Logger.new(STDOUT)
+      Aspace::Indexer.soft_full_reindex
+    end
   end
 end

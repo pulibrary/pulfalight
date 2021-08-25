@@ -8,6 +8,10 @@ class Aspace::Indexer
     new(client: Aspace::Client.new).full_reindex
   end
 
+  def self.soft_full_reindex
+    new(client: Aspace::Client.new).soft_full_reindex
+  end
+
   attr_reader :client
   def initialize(client:)
     @client = client
@@ -15,6 +19,10 @@ class Aspace::Indexer
 
   def index_new
     reindex(modified: modified_since)
+  end
+
+  def soft_full_reindex
+    reindex(modified: nil, soft: true)
   end
 
   def full_reindex
@@ -27,11 +35,11 @@ class Aspace::Indexer
 
   private
 
-  def reindex(modified:)
+  def reindex(modified:, soft: false)
     client.ead_urls(modified_since: modified).each do |repository, urls|
       urls.each do |url|
         Rails.logger.info("Queued #{url} in repository #{repository} for indexing.")
-        AspaceIndexJob.perform_later(resource_descriptions_uri: url, repository_id: repository)
+        AspaceIndexJob.perform_later(resource_descriptions_uri: url, repository_id: repository, soft: soft)
       end
     end
     Event.find_or_create_by(name: "index").touch

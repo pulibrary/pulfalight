@@ -26,9 +26,28 @@ RSpec.describe Aspace::Indexer do
 
       expect(Event.first.updated_at).not_to eq event.updated_at
 
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/1", repository_id: "mss").exactly(1).times
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/2", repository_id: "mss").exactly(1).times
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/3", repository_id: "mss").exactly(2).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/1", repository_id: "mss", soft: false).exactly(1).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/2", repository_id: "mss", soft: false).exactly(1).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/3", repository_id: "mss", soft: false).exactly(2).times
+    end
+  end
+
+  describe ".soft_full_reindex" do
+    before do
+      stub_aspace_login
+      stub_aspace_repositories
+      stub_aspace_resource_ids(repository_id: "13", resource_ids: ["1"])
+    end
+    it "reindexes everything by using the XML Cache" do
+      resource_ead_stub = stub_aspace_ead(resource_descriptions_uri: "repositories/13/resource_descriptions/1", ead: "mss/C1588.xml")
+      allow(AspaceIndexJob).to receive(:perform_later).and_call_original
+      # Full reindex to populate the XML cache.
+      described_class.full_reindex
+
+      described_class.soft_full_reindex
+
+      expect(resource_ead_stub).to have_been_made.times(1)
+      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/1", repository_id: "mss", soft: true).exactly(1).times
     end
   end
 
@@ -54,9 +73,9 @@ RSpec.describe Aspace::Indexer do
       expect(Event.first.updated_at).not_to eq event.updated_at
 
       # Full reindexes will queue more jobs no matter what.
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/1", repository_id: "mss").exactly(2).times
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/2", repository_id: "mss").exactly(2).times
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/3", repository_id: "mss").exactly(2).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/1", repository_id: "mss", soft: false).exactly(2).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/2", repository_id: "mss", soft: false).exactly(2).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/3", repository_id: "mss", soft: false).exactly(2).times
     end
   end
 end
