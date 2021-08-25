@@ -217,6 +217,11 @@ class SolrDocument
     level == self.class::COLLECTION_LEVEL
   end
 
+  def collection_document
+    return self if collection?
+    @collection_document ||= self.class.find(ead)
+  end
+
   def component?
     key?("component_level_isim")
   end
@@ -312,6 +317,14 @@ class SolrDocument
         identifier: collection_unitid
       }
     ]
+  end
+
+  def restricted?
+    fetch("access_ssi", nil) == "restricted"
+  end
+
+  def some_restricted?
+    fetch("access_ssi", nil) == "some-restricted"
   end
 
   private

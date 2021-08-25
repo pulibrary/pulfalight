@@ -98,6 +98,17 @@ describe "viewing catalog records", type: :feature, js: true do
       end
     end
   end
+  context "when given something with access restrictions", js: false do
+    it "displays 'Restricted' at the collection level" do
+      visit "/catalog/C0187"
+      expect(page).to have_selector(".document-access.restricted", text: "Restricted Content")
+    end
+    it "displays 'Some Restricted' at the collection level and restricted at the component level" do
+      visit "/catalog/AC136_c2889"
+      expect(page).to have_selector(".document-access.some-restricted", text: "Some Restricted Content")
+      expect(page).to have_selector("#component-summary .document-access.restricted", text: "Restricted Content")
+    end
+  end
   context "with a no-digital-content collection show page" do
     it "doesn't display Has Online Content", js: false do
       visit "/catalog/MC152"

@@ -562,6 +562,14 @@ to_field "accessrestrict_ssm" do |_record, accumulator, context|
   end
 end
 
+to_field "access_ssi" do |record, accumulator, _context|
+  value = record.xpath("./accessrestrict")&.first&.attributes&.fetch("rights-restriction", nil)&.value&.downcase
+  parent = settings[:parent]
+  value ||= parent.output_hash["access_ssi"]&.first
+  value ||= "open"
+  accumulator << value
+end
+
 # For collection access tab
 to_field "userestrict_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]

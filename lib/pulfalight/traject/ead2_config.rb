@@ -405,6 +405,12 @@ to_field "genreform_ssim" do |record, accumulator|
   accumulator << values.sort
 end
 
+to_field "access_ssi" do |record, accumulator, _context|
+  value = record.xpath("./ead/archdesc/accessrestrict")&.first&.attributes&.fetch("rights-restriction", nil)&.value&.downcase
+  value ||= "open"
+  accumulator << value
+end
+
 to_field "components" do |record, accumulator, context|
   xpath = if record.is_a?(Nokogiri::XML::Document)
             "/ead/archdesc/dsc/*[is_component(.)][@level != 'otherlevel']"
@@ -417,6 +423,15 @@ to_field "components" do |record, accumulator, context|
     output = component_indexer.map_record(child_component)
     accumulator << output
   end
+end
+
+to_field "access_ssi" do |_record, _accumulator, context|
+  component_access = context.output_hash.fetch("components", []).map do |component|
+    component["access_ssi"].first
+  end
+  combined_access_types = (component_access + context.output_hash["access_ssi"]).uniq
+  # If there's both open and restricted this is "some restricted"
+  context.output_hash["access_ssi"] = ["some-restricted"] if ["open", "restricted"].all? { |e| combined_access_types.include?(e) }
 end
 
 # Configure the settings after the Document is indexed
