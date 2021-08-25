@@ -596,8 +596,11 @@ to_field "genreform_ssim", extract_xpath("./controlaccess/genreform")
 to_field "components" do |record, accumulator, context|
   child_components = record.xpath("./*[is_component(.)]", NokogiriXpathExtensions.new)
   child_components.each do |child_component|
-    root_context = settings[:root]
-    component_indexer = build_component_indexer(root_context, context)
+    component_indexer.settings do
+      provide :parent, context
+      provide :root, context.settings[:root]
+      provide :repository, context.settings[:repository]
+    end
     output = component_indexer.map_record(child_component)
     accumulator << output
   end

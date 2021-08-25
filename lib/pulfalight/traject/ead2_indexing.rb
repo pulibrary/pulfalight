@@ -34,8 +34,8 @@ module Pulfalight
 
     def configure_before
       settings do
-        provide "reader_class_name", "Arclight::Traject::NokogiriNamespacelessReader"
-        provide "solr_writer.commit_on_close", "true"
+        provide "reader_class_name", "Traject::NokogiriReader"
+        provide "solr_writer.commit_on_close", "false"
         provide "repository", ENV["REPOSITORY_ID"]
         provide "logger", Logger.new($stderr)
       end
@@ -57,12 +57,14 @@ module Pulfalight
       end
     end
 
-    def build_component_indexer(root_context, parent = nil)
-      config_file_path = Rails.root.join("lib", "pulfalight", "traject", "ead2_component_config.rb")
-      indexer_settings = { parent: parent, repository: settings["repository"], root: root_context }
-      Traject::Indexer::NokogiriIndexer.new(indexer_settings).tap do |i|
-        i.load_config_file(config_file_path)
-      end
+    def component_indexer
+      @component_indexer ||=
+        begin
+          config_file_path = Rails.root.join("lib", "pulfalight", "traject", "ead2_component_config.rb")
+          Traject::Indexer::NokogiriIndexer.new.tap do |i|
+            i.load_config_file(config_file_path)
+          end
+        end
     end
 
     # Returns if DAO should be indexed.

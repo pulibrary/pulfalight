@@ -413,13 +413,17 @@ end
 
 to_field "components" do |record, accumulator, context|
   xpath = if record.is_a?(Nokogiri::XML::Document)
-            "/ead/archdesc/dsc/*[is_component(.)][@level != 'otherlevel']"
+            "/ead/archdesc/dsc/c[@level != 'otherlevel']"
           else
-            "./*[is_component(.)][@level != 'otherlevel']"
+            "./c[@level != 'otherlevel']"
           end
   child_components = record.xpath(xpath, Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new)
   child_components.each do |child_component|
-    component_indexer = build_component_indexer(context, context)
+    component_indexer.settings do
+      provide :parent, context
+      provide :root, context
+      provide :repository, context.settings[:repository]
+    end
     output = component_indexer.map_record(child_component)
     accumulator << output
   end
