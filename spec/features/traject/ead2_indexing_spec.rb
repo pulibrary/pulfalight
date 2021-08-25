@@ -581,4 +581,14 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(component["names_ssim"]).to eq ["United States. Navy. Mediterranean Squadron", "Gallatin, Albert, 1761-1849"]
     end
   end
+
+  describe "bioghist indexing" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0292.EAD.xml")
+    end
+
+    it "indexes it such that it can split out bioghists" do
+      expect(result["bioghist_ssm"].length).to eq(2)
+    end
+  end
 end

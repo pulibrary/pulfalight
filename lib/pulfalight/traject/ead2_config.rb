@@ -264,6 +264,17 @@ SEARCHABLE_NOTES_FIELDS.map do |selector|
   to_field "#{selector}_teim", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']")
 end
 
+to_field "bioghist_ssm", extract_xpath("/ead/archdesc/bioghist", to_text: false) do |_record, accumulator|
+  sanitizer = Rails::Html::SafeListSanitizer.new
+
+  accumulator.map! do |element|
+    element_html = element.to_html
+    sanitized = sanitizer.sanitize(element_html, tags: %w[extref p])
+    anchored = sanitized.gsub("extref", "a")
+    anchored.strip
+  end
+end
+
 DID_SEARCHABLE_NOTES_FIELDS.map do |selector|
   to_field "#{selector}_ssm", extract_xpath("/ead/archdesc/did/#{selector}") do |_record, accumulator|
     accumulator.map!(&:strip)

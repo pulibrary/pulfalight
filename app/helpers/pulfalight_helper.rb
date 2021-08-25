@@ -83,6 +83,11 @@ module PulfalightHelper
     constraints.join(" / ")
   end
 
+  def hr_separator(args)
+    # Horizontal Rule
+    safe_join(args[:value], "<hr />".html_safe)
+  end
+
   private
 
   def repository_thumbnail_path
