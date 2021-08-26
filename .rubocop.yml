@@ -75,3 +75,6 @@ Rails/OutputSafety:
 Rails/SkipsModelValidations:
   Exclude:
     - 'app/services/aspace/indexer.rb'
+Lint/SuppressedException:
+  Exclude:
+    - 'lib/tasks/performance.rake'
