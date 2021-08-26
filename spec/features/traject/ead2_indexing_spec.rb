@@ -146,6 +146,18 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  context "Oversize folders with cabinet and drawer locations" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC154.processed.EAD.xml")
+    end
+
+    it "includes the cabinet and drawer in the physical location" do
+      expected_value = "Folder Oversize folder 103 cabinet 3 drawer 15, Folder 104 cabinet 3 drawer 15, Folder 105 cabinet 3 drawer 15, Folder 106 cabinet 3 drawer 15"
+      physical_location_with_notes = result["components"].first["components"].first["physloc_sim"]
+      expect(physical_location_with_notes).to contain_exactly expected_value
+    end
+  end
+
   describe "container indexing" do
     context "when indexing a collection with deeply nested components" do
       let(:fixture_path) do
@@ -344,7 +356,7 @@ describe "EAD 2 traject indexing", type: :feature do
         end
         it "doesn't index" do
           component = find_component(result, "C1491_c5621")
-          expect(component["physloc_ssm"]).to eq ["Box 330, Folder 5-6"]
+          expect(component["physloc_ssm"]).to eq ["Box 330 D-zone, Folder 5-6"]
         end
       end
 

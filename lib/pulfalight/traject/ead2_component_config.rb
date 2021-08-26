@@ -356,7 +356,8 @@ to_field "physloc_sim" do |record, accumulator, context|
 
     container_type = container_element["type"].capitalize
     container_value = container_element.text
-    values << "#{container_type} #{container_value}"
+    container_note = container_element["note"]
+    values << "#{container_type} #{container_value} #{container_note}".strip
   end
   values = Array.wrap(values.join(", "))
 
