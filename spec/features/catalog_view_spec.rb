@@ -39,6 +39,11 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_content("This collection is stored at ReCAP and Firestone Library.")
       expect(page).to have_content("This collection is stored partially (Boxes 1-2, 5-6) on-site at Firestone Library and partially off-site (Boxes 3-4) at ReCAP.")
     end
+    it "displays cabinet and drawer locations when those exist" do
+      visit "catalog/AC154_c03425"
+      expect(page).to have_content("Located In:")
+      expect(page).to have_content("Folder Oversize folder 103 cabinet 3 drawer 15, Folder 104 cabinet 3 drawer 15, Folder 105 cabinet 3 drawer 15, Folder 106 cabinet 3 drawer 15")
+    end
   end
   context "when viewing a component which can be requested from Aeon" do
     it "renders a request button which opens a request cart form" do
