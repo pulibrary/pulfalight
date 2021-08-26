@@ -1,9 +1,9 @@
 ---
 ## Mudd locations temporarily closed.
 mudd: &mudd_note >-
-  This collection is stored at the Mudd Manuscript Library. Requests will be delivered to the <a href='https://library.princeton.edu/special-collections/mudd'>Special Collections Mudd Reading Room</a>.
-rcpph: >-
-  This collection is stored at ReCAP. Some or all of this collection is stored offsite, which may delay delivery time. Requests will be delivered to the <a href='https://library.princeton.edu/special-collections/mudd'>Special Collections Mudd Reading Room</a>.
+    Mudd Library collections are unavailable until further notice due to a renovation.
+    See <a href="https://library.princeton.edu/special-collections/policies/access-mudd-library-during-renovation">our webpage</a> for the most current information.
+rcpph: *mudd_note
 ## ReCAP
 rcppf: &recap_note >-
   This collection is stored offsite at the ReCAP facility.

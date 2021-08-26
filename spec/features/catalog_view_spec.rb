@@ -30,8 +30,8 @@ describe "viewing catalog records", type: :feature, js: true do
     it "has a collection level storage note when there is only one location" do
       visit "catalog/MC221_c0059"
       expect(page).to have_content("Storage Note:")
-      expect(page).to have_content("This collection is stored at the Mudd Manuscript Library.")
-      expect(page).to have_link("Special Collections Mudd Reading Room", href: "https://library.princeton.edu/special-collections/mudd")
+      expect(page).to have_content("Mudd Library collections are unavailable until further notice due to a renovation.")
+      expect(page).to have_link("our webpage", href: "https://library.princeton.edu/special-collections/policies/access-mudd-library-during-renovation")
     end
     it "has a collection level storage note when there are multiple storage notes" do
       visit "catalog/C1387_c1"
@@ -144,6 +144,7 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_css("dd.blacklight-normalized_date_ssm", text: "1822-1982")
       expect(page).to have_css("dd.blacklight-extent_ssm", text: "17 boxes")
       expect(page).to have_text("Harold Boies Hoskins was a businessman")
+      expect(page).to have_text "unavailable until further notice"
       expect(page).to have_css("dd.blacklight-ark_tsim", text: "http://arks.princeton.edu/ark:/88435/q524jn80g")
       expect(page).to have_link("http://arks.princeton.edu/ark:/88435/q524jn80g", href: "http://arks.princeton.edu/ark:/88435/q524jn80g")
     end

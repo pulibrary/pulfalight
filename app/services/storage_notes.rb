@@ -25,19 +25,9 @@ class StorageNotes
     end
 
     def to_a
-      return [mudd_note] if mudd_combined?
       [
         "This collection is stored at #{location_strings.to_sentence}."
       ]
-    end
-
-    def mudd_note
-      "This collection is stored at the Mudd Manuscript Library and ReCAP. Some of this collection is stored offsite, which may delay delivery time." \
-        " Requests will be delivered to the <a href='https://library.princeton.edu/special-collections/mudd'>Special Collections Mudd Reading Room</a>."
-    end
-
-    def mudd_combined?
-      location_codes.include?("mudd") && location_codes.include?("rcpph")
     end
 
     def location_strings
