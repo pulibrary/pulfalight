@@ -243,6 +243,20 @@ RSpec.describe Arclight::SolrDocument do
         expect(request.form_attributes[:"ItemInfo4_#{request_id}"]).to eq "NBox"
       end
     end
+    context "when there's a UnitID" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC362.processed.EAD.xml")
+      end
+      it "adds it to the ItemVolume" do
+        result = indexer.map_record(record)
+        component = find_component(component_id: "AC362_c01738", record: result)
+        document = SolrDocument.new(component)
+        request = document.aeon_request
+        request_id = request.form_attributes[:Request]
+
+        expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Item Number: 1032 Box 1"
+      end
+    end
     context "when there's a container note" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
