@@ -12,8 +12,26 @@ RSpec.describe StorageNotes do
       notes2 = described_class.for("rcpph").to_a
 
       expect(notes.length).to eq 1
-      expect(notes[0]).to start_with("Mudd Library collections are unavailable until further notice due to a renovation.")
-      expect(notes).to eq notes2
+      expect(notes[0]).to eq(
+        "This collection is stored at the Mudd Manuscript Library." \
+        " Requests will be delivered to the <a href='https://library.princeton.edu/special-collections/mudd'>Special Collections Mudd Reading Room</a>."
+      )
+      expect(notes2[0]).to eq(
+        "This collection is stored at ReCAP." \
+        " Some or all of this collection is stored offsite, which may delay delivery time." \
+        " Requests will be delivered to the <a href='https://library.princeton.edu/special-collections/mudd'>Special Collections Mudd Reading Room</a>."
+      )
+    end
+    it "returns a special note if it's in both mudd/rcpph" do
+      notes = described_class.for(["mudd", "rcpph"]).to_a
+
+      expect(notes.length).to eq 1
+
+      expect(notes[0]).to eq(
+        "This collection is stored at the Mudd Manuscript Library and ReCAP." \
+        " Some of this collection is stored offsite, which may delay delivery time." \
+        " Requests will be delivered to the <a href='https://library.princeton.edu/special-collections/mudd'>Special Collections Mudd Reading Room</a>."
+      )
     end
     it "returns a ReCAP note for recap locations" do
       ["rcppf", "rcpxg", "rcpxm", "rcpxr", "rcppa"].each do |code|
