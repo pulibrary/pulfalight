@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/1831ck02d">AC362</eadid><filedesc><titlestmt><titleproper>Broadcast Center Recordings, circa 1980-2017 : Finding Aid <num>AC362</num></titleproper><author>Annalise Berdini</author></titlestmt><publicationstmt><publisher>University Archives</publisher><p><date>2009</date></p><address><addressline>Seeley G. Mudd Manuscript Library</addressline><addressline>65 Olden Street</addressline><addressline>Princeton 08540</addressline><addressline>mudd@princeton.edu</addressline><addressline>URL: <extptr xlink:href="http://www.princeton.edu/mudd" xlink:show="new" xlink:title="http://www.princeton.edu/mudd" xlink:type="simple"/></addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-08-26 16:56:19 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T15:34:55.571-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2013-11-06T15:49:15.405-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2017-11-30T15:45:30.542-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2017-12-12T14:50:06.064-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2017-12-18T14:19:20.039-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2017-12-21T16:11:39.621-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-01-02T13:49:33.279-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-01-02T13:59:52.487-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-01-02T14:16:42.492-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-01-02T14:28:28.675-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-01-02T15:09:14.064-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-01-24T13:27:56.145-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-11-11T14:46:50.237-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2020-03-04T14:16:58.033-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>University Archives</corpname>
+    </repository>
+    <unittitle>Broadcast Center Recordings</unittitle>
+    <origination label="Creator">
+      <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="col" source="viaf">Princeton University. Library. Special Collections</corpname>
+    </origination>
+    <origination label="Creator">
+      <corpname role="cre" rules="lcnaf" source="local">Princeton University. Office of Information Technology. Broadcast Center.</corpname>
+    </origination>
+    <unitid>AC362</unitid>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">74 boxes</extent>
+    </physdesc>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">760 items</extent>
+    </physdesc>
+    <unitdate certainty="approximate" datechar="creation" normal="1980/2016" type="inclusive">circa 1980-2016</unitdate>
+    <abstract id="aspace_5fe76b9e9ed03ef35ce1805c56b78cfa">The Broadcast Center operates a full TV/audio production studio and supports recording of events, classes, and interviews at the studio and on campus. The collection includes over 2,300 video recordings of Princeton-related lectures, conferences, symposia, events, ceremonies and creative works.</abstract>
+    <physloc id="aspace_93c5fea4e6452586a97d6790f60afabf">rcpph</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+.    </langmaterial>
+  </did>
+  <scopecontent id="aspace_30aea9ffce94e6fb74e83c1e6d2fabc3">
+    <head>Scope and Contents</head>
+<p>The collection includes over 2,300 video recordings of Princeton-related lectures, conferences, symposia, events, ceremonies and creative works. These recordings feature a variety of speakers, including politicians, celebrities, and activists, as well as scholars and professors from Princeton and around the world. Topics include religion, finance, gender, technology, philosophy, science, sports, and other issues. Also included is a series of Campus Shots, which capture daily life at Princeton, documenting various activities on campus.</p>  </scopecontent>
+  <accessrestrict id="aspace_a65d4fba2abb9293d534f8aca7f24573">
+    <head>Conditions Governing Access</head>
+<p>The collection is open for research use.</p>  </accessrestrict>
+  <phystech id="aspace_c10dc799b79a8e8b0398ea1571fdced0">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>Access to recordings follows Mudd Manuscript Library <extref xlink:href="https://library.princeton.edu/special-collections/policies/mudd-library-digitization-guidelines-and-price-list" xlink:type="simple">policy for preservation and access to audiovisual materials</extref>. This collection contains both analog and digital collections.</p>  </phystech>
+  <userestrict id="aspace_543533ec452a05b404af20d5d829d863">
+    <head>Conditions Governing Use</head>
+<p>Single photocopies may be made for research purposes. For quotations that are fair use as defined under <extref xlink:href="http://copyright.princeton.edu/basics/fair-use" xlink:type="simple">U. S. Copyright Law</extref> , no permission to cite or publish is required. The Trustees of Princeton University hold copyright to all materials generated by Princeton University employees in the course of their work. If copyright is held by Princeton University, researchers will not need to obtain permission, complete any forms, or receive a letter to move forward with non-commercial use of materials from the Mudd Library. For materials where the copyright is not held by the University, researchers are responsible for determining who may hold the copyright and obtaining approval from them. If you have a question about who owns the copyright for an item, you may request clarification by contacting us through the <extref xlink:href="https://library.princeton.edu/special-collections/ask-us" xlink:type="simple">Ask Us! form</extref>.</p>  </userestrict>
+  <acqinfo id="aspace_97b11862c0a772b33cedc974082ff87c">
+    <head>Immediate Source of Acquisition</head>
+<p>Transferred to the University Archives in 2009, 2010 [AR.2009.130], 2013 [AR.2013.103], 2014 [AR.2014.107], 2016 [AR.2016.055], 2017 [AR.2019.095], and 2019 [AR.2019.009].</p>  </acqinfo>
+  <appraisal id="aspace_2b185d56eb7565b9b6ec29c6f63c2c7e">
+    <head>Appraisal</head>
+<p>No materials were separated from this collection during processing in 2016 or 2019. No prior information about appraisal is available.</p>  </appraisal>
+  <processinfo id="aspace_e13d5d01addf4e1507d857e30c045e88">
+    <head>Processing Information</head>
+<p>The born-digital materials in this collection have been processed according to Princeton University Library's Born-Digital Processing Workflows. For more information on the workflow, please read our full Born-Digital Processing Information Note .</p><p> This finding aid was updated and split into series by Lynn Durgin in December 2017. Information about prior processing is not available. This finding aid was updated in November 2019 by Annalise Berdini .</p>  </processinfo>
+  <prefercite id="aspace_834d320b373f195ea6337f507147d2e5">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); (Collection Title), Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
+  <bioghist id="aspace_c05808f08ef09a7f3bee44a6b1b9519b">
+    <head>Biographical / Historical</head>
+<p>The Broadcast Center operates a full TV/audio production studio and supports recording of events, classes, and interviews at the studio and on campus. Previous to its establishement in 2008, Media Services performed this role. Established in 1984, Media Services expanded on the responsibilities of the Audio-Visual Center.</p>  </bioghist>
+  <controlaccess>
+    <subject source="lcsh">Rites and ceremonies -- New Jersey -- Princeton.</subject>
+    <subject source="lcsh">Education, Higher -- New Jersey.</subject>
+    <genreform source="aat">Lectures.</genreform>
+    <genreform source="aat">Audiovisual materials.</genreform>
+    <genreform source="aat">VHS (TM).</genreform>
+    <genreform source="aat">Betacam (TM).</genreform>
+    <genreform source="aat">Betacam-SP.</genreform>
+    <genreform source="aat">DVDs.</genreform>
+    <genreform source="aat">Born digital.</genreform>
+    <corpname rules="lcnaf" source="local">Princeton University Faculty.</corpname>
+    <corpname rules="viaf" source="local">Princeton University Students.</corpname>
+    <corpname rules="lcnaf" source="local">Princeton University. Office of Information Technology. Broadcast Center.</corpname>
+  </controlaccess>
+  <dsc><c id="aspace_AC362_c3047" level="series"><did><unittitle>Series 1: Broadcast Center Recordings</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">37 boxes</extent></physdesc><unitdate datechar="creation">undated</unitdate></did><accessrestrict id="aspace_ca8b6c9a5f874bc5dee689e5d692f242"><head>Conditions Governing Access</head><p>The collection is open for research use.</p></accessrestrict><scopecontent id="aspace_e8fc1e7281fd1a171634c1f9c057e33a"><head>Scope and Contents</head><p>Includes video recordings of Princeton-related lectures, conferences, symposia, events, ceremonies and creative works. The media that these videos were stored on did not indicate the date of recording.</p></scopecontent><arrangement id="aspace_5a056b00155bcb1fa7fdcb525e9bfa0d"><head>Arrangement</head><p>No arrangement scheme has been imposed on this series.</p></arrangement><c id="aspace_AC362_c01738" level="item"><did><unittitle>College preview</unittitle><unitid>1032</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent></physdesc><unitdate datechar="creation">undated</unitdate><container altrender="rcpph" encodinganalog="NBox" id="aspace_53dbdd01c34fc57c4d6e83f941acb34f" label="Mixed Materials [32101074966670]" type="box">1</container></did><accessrestrict id="aspace_d4ca2a704481aea1aca38dbe4062bc40"><head>Conditions Governing Access</head><p>The collection is open for research use.</p></accessrestrict><phystech id="aspace_376a8d1b8d12a706ddaffcec68538cd2"><head>Physical Characteristics and Technical Requirements</head><p>3/4"</p></phystech></c></c></dsc>
+</archdesc>
+</ead>

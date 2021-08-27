@@ -419,4 +419,13 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_button "Request 1 Item"
     end
   end
+
+  context "when a component has a unit ID", js: false do
+    it "displays it" do
+      visit "/catalog/AC362_c01738"
+
+      expect(page).to have_content "1032"
+      expect(page).to have_content "Item Number"
+    end
+  end
 end

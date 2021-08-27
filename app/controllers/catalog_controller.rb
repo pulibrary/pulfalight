@@ -338,6 +338,7 @@ class CatalogController < ApplicationController
     # ==========================
 
     # Component Show Page - Metadata Section
+    config.add_component_field "unitid_ssm", label: "Item Number"
     config.add_component_field "creator_ssm", label: "Creator"
     config.add_component_field "collection_creator_ssm", label: "Collection Creator"
     config.add_component_field "normalized_date_ssm", label: "Dates"

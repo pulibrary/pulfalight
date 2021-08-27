@@ -61,13 +61,22 @@ class AeonRequest
       "ReferenceNumber_#{request_id(box)}": solr_document.id,
       "CallNumber_#{request_id(box)}": solr_document.eadid,
       "ItemNumber_#{request_id(box)}": box["barcode"],
-      "ItemVolume_#{request_id(box)}": box["label"]&.upcase_first,
+      "ItemVolume_#{request_id(box)}": item_volume(box),
       "ItemInfo1_#{request_id(box)}": access_restrictions,
       "ItemInfo2_#{request_id(box)}": solr_document.extent,
       "ItemInfo3_#{request_id(box)}": folder,
       "ItemInfo4_#{request_id(box)}": box_locator(box),
       "ItemInfo5_#{request_id(box)}": url
     }
+  end
+
+  def item_volume(box)
+    [item_number_label, box["label"]&.upcase_first].compact.join(" ")
+  end
+
+  def item_number_label
+    return if solr_document.unitid.blank?
+    "Item Number: #{solr_document.unitid}"
   end
 
   def box_locator(box)
