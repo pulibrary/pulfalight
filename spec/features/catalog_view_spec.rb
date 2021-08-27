@@ -392,4 +392,20 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_button "Request 1 Item"
     end
   end
+
+  describe "collection bioghist notes", js: true do
+    it "displays for a collection" do
+      visit "/catalog/C0269"
+      find("#description-tab a").click
+
+      expect(page).to have_selector "dt.blacklight-collection_bioghist_ssm"
+      expect(page).to have_content("Collection Creator Biography:")
+
+      expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm"
+      expect(page).to have_content("Allan Marquand was born on December 10, 1853, the son of Henry Gurdon Marquand, a prominent New York banker who was an original benefactor and co-founder of the Metropolitan Museum of Art.")
+
+      expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm hr"
+      expect(page).to have_content("As a professor at Princeton, Marquand founded Princeton's Department of Art and Archaeology.")
+    end
+  end
 end

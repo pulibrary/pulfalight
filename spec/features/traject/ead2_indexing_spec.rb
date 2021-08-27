@@ -590,5 +590,10 @@ describe "EAD 2 traject indexing", type: :feature do
     it "indexes it such that it can split out bioghists" do
       expect(result["bioghist_ssm"].length).to eq(2)
     end
+
+    it "indexes it such that it can split out collection_bioghist_ssm" do
+      expect(result["collection_bioghist_ssm"].length).to eq(2)
+      expect(result["collection_bioghist_ssm"]).to eq(result["bioghist_ssm"])
+    end
   end
 end

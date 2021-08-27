@@ -84,14 +84,18 @@ namespace :pulfalight do
         "RBD1.1",
         "C1387"
       ].uniq
+
+      # test_eadids = ["C0292"]
       or_query = test_eadids.join(" OR ")
       client = Aspace::Client.new
       client.repositories.each do |repository|
         repository_uri = repository["uri"][1..-1]
         repo_code = repository["repo_code"]
+
         uris = client.get("#{repository_uri}/search", query: { q: "identifier:(#{or_query})", type: ["resource"], fields: ["uri"], page: 1 }).parsed["results"].map { |x| x["uri"] }
         uris.each do |uri|
-          AspaceIndexJob.perform_later(resource_descriptions_uri: uri[1..-1].gsub("resources", "resource_descriptions"), repository_id: repo_code.split("-").first)
+          # AspaceIndexJob.perform_later(resource_descriptions_uri: uri[1..-1].gsub("resources", "resource_descriptions"), repository_id: repo_code.split("-").first)
+          AspaceIndexJob.perform_now(resource_descriptions_uri: uri[1..-1].gsub("resources", "resource_descriptions"), repository_id: repo_code.split("-").first)
         end
       end
     end
