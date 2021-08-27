@@ -477,7 +477,7 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
   sanitizer = Rails::Html::SafeListSanitizer.new
   to_field "#{selector}_ssm", extract_xpath("./#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
     accumulator.map! do |element|
-      sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip
+      CGI.unescapeHTML(sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip)
     end
   end
   to_field "#{selector}_heading_ssm", extract_xpath("./#{selector}/head")

@@ -416,6 +416,16 @@ describe "EAD 2 traject indexing", type: :feature do
         # Accruals - unable to find
       end
 
+      context "when names and descriptions contain ampersands" do
+        let(:fixture_path) do
+          Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0140.processed.EAD.xml")
+        end
+        it "escapes them before indexing" do
+          component = find_component(result, "C0140_c83445-31032")
+          expect(component["scopecontent_ssm"].first).to match(/J.P Ball & Son/)
+        end
+      end
+
       it "indexes all note fields from the <archdesc> child elements for the child components" do
         components = result["components"]
         component = components.first
