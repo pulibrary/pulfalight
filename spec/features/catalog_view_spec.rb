@@ -396,6 +396,14 @@ describe "viewing catalog records", type: :feature, js: true do
     end
   end
 
+  context "when displaying fields that have their own headers" do
+    it "displays headings", js: false do
+      visit "/catalog/C1664"
+
+      expect(page).to have_content "Conservation"
+    end
+  end
+
   describe "child component table", js: true do
     it "displays for a collection" do
       visit "/catalog/C1491"
