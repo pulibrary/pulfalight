@@ -391,6 +391,9 @@ describe "viewing catalog records", type: :feature, js: true do
         visit "/catalog/AC198"
 
         expect(page).to have_link "University Archives Access Policy"
+
+        visit "/catalog/AC317_c36874-31598"
+        expect(page).to have_link "policy on digitization of photographs"
       end
     end
   end
