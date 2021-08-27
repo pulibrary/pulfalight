@@ -344,13 +344,13 @@ class CatalogController < ApplicationController
     config.add_component_field "normalized_date_ssm", label: "Dates"
     config.add_component_field "physloc_ssm", label: "Located In"
     config.add_component_field "extent_ssm", label: "Extent"
-    config.add_component_field "physfacet_ssm", label: "Physical Description"
+    config.add_component_field "physfacet_ssm", label: "Physical Description", accessor: :fetch_html_safe
     config.add_component_field "language_ssm", label: "Languages"
-    config.add_component_field "scopecontent_ssm", label: "Description", helper_method: :paragraph_separator
+    config.add_component_field "scopecontent_ssm", label: "Description", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "altformavail_ssm", label: "Alternative Form Available", helper_method: :paragraph_separator, accessor: :fetch_html_safe
-    config.add_component_field "bioghist_ssm", label: "Biography", helper_method: :paragraph_separator
-    config.add_component_field "accessrestrict_ssm", label: "Access Restrictions"
-    config.add_component_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator
+    config.add_component_field "bioghist_ssm", label: "Biography", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_component_field "accessrestrict_ssm", label: "Access Restrictions", accessor: :fetch_html_safe
+    config.add_component_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
     config.add_component_field "storage_notes", label: "Storage Note", accessor: :component_storage_notes, helper_method: :paragraph_separator
 
