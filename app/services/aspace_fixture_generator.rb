@@ -2,6 +2,7 @@
 class AspaceFixtureGenerator
   # EAD IDs to pull down from ArchivesSpace.
   EAD_IDS = [
+    "C0062",
     "C0251",
     "C0776",
     "MC085",
@@ -44,6 +45,7 @@ class AspaceFixtureGenerator
   # List components per EAD which are used in tests to make processing those
   # EADs in the test suite faster.
   COMPONENT_MAP = {
+    "C0062" => [],
     "C0776" => [
       "aspace_C0776_c00071"
     ],
