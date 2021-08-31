@@ -13,7 +13,7 @@ describe "catalog searches", type: :feature, js: true do
     end
   end
 
-  context "when searching for a specific collection by title" do
+  context "when searching for a specific collection by title", js: false do
     before do
       visit "/?search_field=all_fields&q=david+e.+lilienthal+papers%2C+1900-1981"
     end
@@ -21,6 +21,9 @@ describe "catalog searches", type: :feature, js: true do
     it "renders all collection extents in the collection search results" do
       expect(page).to have_text("4 items")
       expect(page).to have_text("632 boxes")
+    end
+    it "renders the call number" do
+      expect(page).to have_content "MC148"
     end
     it "returns all components in that collection", js: false do
       visit "/?search_field=all_fields&group=false&q=Walter Dundas Bathurst Papers"

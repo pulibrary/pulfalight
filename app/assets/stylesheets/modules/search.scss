@@ -13,6 +13,14 @@ header .navbar-form .input-group .custom-select {
   padding-bottom: 1rem;
 }
 
+.al-grouped-title-bar h3 a {
+  vertical-align: middle;
+}
+
+.document-title-heading a {
+  vertical-align: middle;
+}
+
 @media (max-width: 575px) {
   header .navbar-form .input-group .custom-select {
     width: 100%;

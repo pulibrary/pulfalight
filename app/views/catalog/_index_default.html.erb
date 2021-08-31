@@ -2,6 +2,10 @@
   <%= document.creator %>
 <% end if document.creator %>
 
+<%= content_tag('div', class: 'al-document-call-number') do %>
+  <%= document.eadid %>
+<% end if document.collection? %>
+
 <%= content_tag('div', class: 'al-document-extent') do %>
   <%= document.extent %>
 <% end if document.extent %>
