@@ -15,7 +15,7 @@ describe "catalog searches", type: :feature, js: true do
 
   context "when searching for a specific collection by title" do
     before do
-      visit "/?search_field=all_fields&q=david+e.+lilienthal+papers%2C+1900-1981%2C+bulk+1950%2F1981"
+      visit "/?search_field=all_fields&q=david+e.+lilienthal+papers%2C+1900-1981"
     end
 
     it "renders all collection extents in the collection search results" do

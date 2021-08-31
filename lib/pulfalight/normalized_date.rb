@@ -9,8 +9,7 @@ module Pulfalight
     # @param other [Array<String>, String]
     def initialize(inclusive, bulk = nil, other = nil)
       @inclusive = process_inclusive(inclusive)
-      bulk_date = Array.wrap(bulk).first
-      @bulk = bulk_date.strip if bulk_date.present?
+      @bulk = process_bulk(bulk)
       other_date = Array.wrap(other).first
       @other = other_date.strip if other_date.present?
     end
@@ -28,6 +27,21 @@ module Pulfalight
       end
     end
 
+    # Process bulk dates value(s).
+    # Assume we'll only ever have one "bulk" date.
+    # @param value [Array<String>, String]
+    # @return [String]
+    def process_bulk(value)
+      return if value.nil?
+
+      unprocessed_date = value.first
+      if valid_ranges?(Array.wrap(unprocessed_date))
+        YearRange.new(value.include?("/") ? value : value.map { |v| v.tr("-", "/") }).to_s
+      else
+        unprocessed_date.strip.tr("/", "-")
+      end
+    end
+
     # Tests if all dates in an array are a valid date range
     # Valid: YYYY-YYYY
     # Valid: YYYY/YYYY
@@ -40,6 +54,21 @@ module Pulfalight
       end
 
       true
+    end
+
+    # Override from Arclight::NormalizedDate
+    # @see http://www2.archivists.org/standards/DACS/part_I/chapter_2/4_date for rules
+    def normalize
+      if inclusive.present?
+        result = inclusive.to_s
+        result << " (mostly #{bulk})" if bulk.present?
+      elsif other.present?
+        result = other.to_s
+      else
+        result = nil
+      end
+
+      result&.strip
     end
   end
 end

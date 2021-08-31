@@ -44,6 +44,10 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_content("Located In:")
       expect(page).to have_content("Folder Oversize folder 103 cabinet 3 drawer 15, Folder 104 cabinet 3 drawer 15, Folder 105 cabinet 3 drawer 15, Folder 106 cabinet 3 drawer 15")
     end
+    it "formats a 'mostly' date" do
+      visit "catalog/C0062"
+      expect(page).to have_content("Booth Tarkington Papers, 1812-1956 (mostly 1899-1946)")
+    end
   end
   context "when viewing a component which can be requested from Aeon" do
     it "renders a request button which opens a request cart form" do

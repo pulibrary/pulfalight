@@ -339,6 +339,16 @@ describe "EAD 2 traject indexing", type: :feature do
       )
     end
 
+    context "a collection with 'mostly' dates" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0062.processed.EAD.xml")
+      end
+
+      it "does not repeat the dates, and formats the mostly" do
+        expect(result["normalized_title_ssm"]).to contain_exactly "Booth Tarkington Papers, 1812-1956 (mostly 1899-1946)"
+      end
+    end
+
     describe "collection notes indexing" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC221.processed.EAD.xml")

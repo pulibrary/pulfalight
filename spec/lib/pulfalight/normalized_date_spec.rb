@@ -20,4 +20,15 @@ describe Pulfalight::NormalizedDate do
       end
     end
   end
+
+  context "when there is a 'bulk' date" do
+    let(:inclusive) { ["1812/1956"] }
+    let(:bulk) { ["1899/1946"] }
+    let(:other) { nil }
+    let(:normalized_date) { described_class.new(inclusive, bulk, other) }
+
+    it "constructs a normalized date using 'mostly' language" do
+      expect(normalized_date.to_s).to eq("1812-1956 (mostly 1899-1946)")
+    end
+  end
 end

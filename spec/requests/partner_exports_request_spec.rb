@@ -7,7 +7,7 @@ RSpec.describe PartnerExportsController do
       get "/pacscl/production"
 
       expect(response.body).to have_selector("#links a")
-      expect(response.body).to have_link("Toni Morrison Papers, 1908-2017, bulk 1970/2015", href: "/pacscl/production/C1491.xml")
+      expect(response.body).to have_link("Toni Morrison Papers, 1908-2017 (mostly 1970-2015)", href: "/pacscl/production/C1491.xml")
     end
   end
 
