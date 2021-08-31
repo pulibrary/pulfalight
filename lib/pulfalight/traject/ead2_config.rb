@@ -128,7 +128,6 @@ to_field "normalized_title_ssm" do |_record, accumulator, context|
     context.output_hash["unitdate_bulk_ssim"],
     context.output_hash["unitdate_other_ssim"]
   ).to_s
-
   titles = context.output_hash["title_ssm"]
   if titles.present?
     title = titles.first

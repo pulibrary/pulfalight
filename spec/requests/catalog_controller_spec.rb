@@ -105,7 +105,7 @@ describe "controller requests", type: :request do
         expect(json_body["publisher"]).to eq ["Princeton University. Library. Special Collections"]
         expect(json_body["memberOf"]).to eq [
           {
-            "title" => "Princeton University Library Collection of Western Americana Photographs, 1840-1998, bulk 1870/1915",
+            "title" => "Princeton University Library Collection of Western Americana Photographs, 1840-1998 (mostly 1870-1915)",
             "identifier" => "WC064"
           }
         ]
@@ -125,7 +125,7 @@ describe "controller requests", type: :request do
 
         expect(json_body["title"]).to eq ["Princeton University Library Collection of Western Americana Photographs"]
         expect(json_body["language"]).to eq ["English"]
-        expect(json_body["date_created"]).to eq ["1840-1998, bulk 1870/1915"]
+        expect(json_body["date_created"]).to eq ["1840-1998 (mostly 1870-1915)"]
         expect(json_body["created"]).to eq ["1840/1998"]
         expect(json_body["extent"]).to eq ["144 boxes", "123 linear feet"]
         expect(json_body["heldBy"]).to eq ["Firestone Library"]
