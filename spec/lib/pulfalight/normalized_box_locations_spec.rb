@@ -16,7 +16,8 @@ describe Pulfalight::NormalizedBoxLocations do
     "This collection is stored in multiple locations.  Firestone Library (hsvm): Boxes 1-11; 13-17; 221; 323 Firestone Library (mss): Boxes 12; 20-21; 292-293; P-000145 ReCAP (rcpxm): Boxes 105; 114; 255; 266"
   end
 
-  # Per conversation with
+  # Per conversation with Christa Cleeton, include translated location name and code
+  # so that end users and staff can both get the info they need.
   it "translates the location codes" do
     expect(normalized_box_locations.locations).to contain_exactly("Firestone Library (hsvm)", "Firestone Library (mss)", "ReCAP (rcpxm)")
   end
