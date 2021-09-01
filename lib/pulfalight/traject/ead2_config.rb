@@ -300,7 +300,11 @@ to_field "language_sim" do |record, accumulator, _context|
   values = []
   elements.each do |element|
     value = element.text
-    value = value.gsub(/[[:space:]]+?[[:punct:]]/, "")
+    segments = value.split
+
+    filtered = segments.reject { |e| e =~ /^[[:punct:]]/ }
+    value = filtered.join(" ")
+
     values << value
   end
 
