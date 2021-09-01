@@ -117,8 +117,8 @@ describe "EAD 2 traject indexing", type: :feature do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
     end
 
-    it "constructs a summary physical location" do
-      summary_message = result["magic_physloc_ssm"].first
+    it "constructs a summary storage note" do
+      summary_message = result["summary_storage_note_ssm"].first
       expect(summary_message).to match(/This collection is stored in multiple locations/)
       expect(summary_message).to match(/Firestone Library \(hsvm\): Boxes 1; 32/)
       expect(summary_message).to match(/Firestone Library \(mss\): Boxes 12; 330/)

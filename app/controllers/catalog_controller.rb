@@ -327,7 +327,7 @@ class CatalogController < ApplicationController
     config.add_summary_field "ark_tsim", label: "Permanent URL", helper_method: :ark_link
     config.add_summary_field "normalized_date_ssm", label: "Dates"
     config.add_summary_field "extent_ssm", label: "Size"
-    config.add_summary_field "storage_notes", label: "Storage Note", accessor: :storage_notes, helper_method: :paragraph_separator
+    config.add_summary_field "summary_storage_note_ssm", label: "Storage Note"
     config.add_summary_field "language_ssm", label: "Language"
 
     # Collect Show Page - Abstract Section

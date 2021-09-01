@@ -103,7 +103,7 @@ to_field "physloc_code_ssm" do |record, accumulator|
   end
 end
 
-to_field "magic_physloc_ssm" do |record, accumulator|
+to_field "summary_storage_note_ssm" do |record, accumulator|
   locations = {}
 
   record.xpath("//container[@type='box']").each do |box|
