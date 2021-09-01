@@ -22,8 +22,11 @@ describe "catalog searches", type: :feature, js: true do
       expect(page).to have_text("4 items")
       expect(page).to have_text("632 boxes")
     end
-    it "renders the call number" do
+    it "renders the call number/title" do
       expect(page).to have_content "MC148"
+      within first("h3") do
+        expect(page).to have_content "David E. Lilienthal Papers"
+      end
     end
     it "returns all components in that collection", js: false do
       visit "/?search_field=all_fields&group=false&q=Walter Dundas Bathurst Papers"
