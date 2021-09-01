@@ -17,6 +17,7 @@ require "arclight/missing_id_strategy"
 require "arclight/traject/nokogiri_namespaceless_reader"
 require_relative "../normalized_title"
 require_relative "../normalized_date"
+require_relative "../normalized_box_locations"
 require_relative "../year_range"
 require Rails.root.join("lib", "pulfalight", "traject", "ead2_indexing")
 require Rails.root.join("app", "values", "pulfalight", "location_code")
@@ -100,6 +101,18 @@ to_field "physloc_code_ssm" do |record, accumulator|
       accumulator << physical_location_code.to_s
     end
   end
+end
+
+to_field "magic_physloc_ssm" do |record, accumulator|
+  locations = {}
+
+  record.xpath("//container[@type='box']").each do |box|
+    location_code = box["altrender"]
+    locations[location_code] = [] if locations[location_code].nil?
+    locations[location_code] << box.text
+  end
+
+  accumulator << Pulfalight::NormalizedBoxLocations.new(locations).to_s
 end
 
 to_field "location_code_ssm" do |record, accumulator|

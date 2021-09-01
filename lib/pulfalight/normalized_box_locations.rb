@@ -18,9 +18,14 @@ module Pulfalight
       @normalized_locations = {}
 
       box_locations.keys.each do |location|
-        translated_location = "#{Pulfalight::LocationCode.resolve(location)} (#{location})"
-        @normalized_locations[translated_location] = calculate_box_ranges(box_locations[location])
+        @normalized_locations[translate_location(location)] = calculate_box_ranges(box_locations[location])
       end
+    end
+
+    def translate_location(location)
+      "#{Pulfalight::LocationCode.resolve(location)} (#{location})"
+    rescue Pulfalight::UnrecognizedLocationError
+      location
     end
 
     def locations

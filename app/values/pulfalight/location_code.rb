@@ -22,7 +22,7 @@ module Pulfalight
     end
 
     def self.map(value)
-      raise("Location code #{value} is not supported.") unless config.key?(value)
+      raise Pulfalight::UnrecognizedLocationError, "Location code #{value} is not supported." unless config.key?(value)
 
       config[value]
     end

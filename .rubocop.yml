@@ -40,16 +40,19 @@ Metrics/MethodLength:
     - 'lib/pulfalight/traject/ead2_component_config.rb'
     - 'lib/tasks/pulfalight.rake'
     - 'app/values/aeon_request.rb'
+    - 'lib/pulfalight/normalized_box_locations.rb'
 Layout/LineLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
     - 'config/initializers/simple_form_bootstrap.rb'
+    - 'spec/lib/pulfalight/normalized_box_locations_spec.rb'
 Naming/PredicateName:
   Exclude:
     - 'app/models/solr_document.rb'
 Metrics/CyclomaticComplexity:
   Exclude:
     - 'lib/pulfalight/traject/ead2_component_config.rb'
+    - 'lib/pulfalight/normalized_box_locations.rb'
 Metrics/ModuleLength:
   Exclude:
     - 'lib/pulfalight/traject/ead2_component_config.rb'

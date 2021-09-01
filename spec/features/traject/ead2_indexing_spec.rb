@@ -112,6 +112,20 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  context "magic physloc" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
+    end
+
+    it "constructs a summary physical location" do
+      summary_message = result["magic_physloc_ssm"].first
+      expect(summary_message).to match(/This collection is stored in multiple locations/)
+      expect(summary_message).to match(/Firestone Library \(hsvm\): Boxes 1; 32/)
+      expect(summary_message).to match(/Firestone Library \(mss\): Boxes 12; 330/)
+      expect(summary_message).to match(/ReCAP \(rcpxm\): Boxes 232/)
+    end
+  end
+
   context "when given otherlevel text components" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0744.04.processed.EAD.xml")
