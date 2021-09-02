@@ -34,6 +34,14 @@ describe "catalog searches", type: :feature, js: true do
     end
   end
 
+  context "when displaying grouped results", js: false do
+    it "renders components with their descriptions" do
+      visit "/?search_field=all_fields&group=true&q=david+e.+lilienthal+papers%2C+1900-1981"
+
+      expect(page).to have_content "mostly professional correspondence to and from Lilienthal"
+    end
+  end
+
   context "when searching using the search form" do
     it "returns search results grouped by collection as a default" do
       visit "/?q=&search_field=all_fields"
