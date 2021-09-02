@@ -47,4 +47,15 @@ describe Pulfalight::NormalizedBoxLocations do
       expect(normalized_box_locations.locations).to contain_exactly("review")
     end
   end
+
+  context "when there is only one location" do
+    let(:box_locations) do
+      {
+        "mudd" => ["1", "2", "3"]
+      }
+    end
+    it "does not say that the collection is in multiple locations." do
+      expect(normalized_box_locations.to_s).not_to match(/multiple locations/)
+    end
+  end
 end

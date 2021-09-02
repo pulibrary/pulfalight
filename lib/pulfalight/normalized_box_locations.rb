@@ -89,7 +89,7 @@ module Pulfalight
     # @return [String]
     def normalize
       message_strings = []
-      message_strings << "This collection is stored in multiple locations. "
+      message_strings << "This collection is stored in multiple locations. " if locations.size > 1
       @normalized_locations.keys.each do |location|
         m = "#{location}: Boxes #{@normalized_locations[location].join('; ')}"
         message_strings << m
