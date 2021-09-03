@@ -27,17 +27,9 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_field "ask_a_question_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221_c0059"
       expect(page).to have_field "ask_a_question_form_title", visible: false, type: :hidden, with: "Harold B. Hoskins Papers, 1822-1982"
     end
-    it "has a component level storage note when there is only one location" do
+    it "has a component level storage note" do
       visit "catalog/MC221_c0059"
-      expect(page).to have_content("Storage Note:")
-      expect(page).to have_content("This collection is stored at the Mudd Manuscript Library.")
-      expect(page).to have_link("Special Collections Mudd Reading Room", href: "https://library.princeton.edu/special-collections/mudd")
-    end
-    it "has a component level storage note when there are multiple storage notes" do
-      visit "catalog/C1387_c1"
-      expect(page).to have_content("Storage Note:")
-      expect(page).to have_content("This collection is stored at ReCAP and Firestone Library.")
-      expect(page).to have_content("This collection is stored partially (Boxes 1-2, 5-6) on-site at Firestone Library and partially off-site (Boxes 3-4) at ReCAP.")
+      expect(page).to have_css("dd.blacklight-summary_storage_note_ssm", text: "Mudd Manuscript Library (mudd): Box 3")
     end
     it "displays cabinet and drawer locations when those exist" do
       visit "catalog/AC154_c03425"
@@ -310,7 +302,7 @@ describe "viewing catalog records", type: :feature, js: true do
       it "displays the summary storage notes at the collection level" do
         visit "catalog/C1491"
         expect(page).to have_content("Storage Note:")
-        expect(page).to have_content("This collection is stored in multiple locations. Firestone Library (hsvm): Boxes 1; 32 Firestone Library (mss): Boxes 12; 330 ReCAP (rcpxm): Boxes 232")
+        expect(page).to have_content("This is stored in multiple locations. Firestone Library (hsvm): Boxes 1; 32 Firestone Library (mss): Boxes 12; 330 ReCAP (rcpxm): Box 232")
       end
       it "shows separatedmaterial" do
         visit "/catalog/C1210"

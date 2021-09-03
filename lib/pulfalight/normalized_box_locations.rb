@@ -85,13 +85,19 @@ module Pulfalight
       range
     end
 
+    def box_or_boxes(location)
+      boxes = @normalized_locations[location]
+      return "Box" if boxes.size == 1 && boxes.first != ~ /-/
+      "Boxes"
+    end
+
     # Generate a human readable summary of the box locations
     # @return [String]
     def normalize
       message_strings = []
-      message_strings << "This collection is stored in multiple locations. " if locations.size > 1
+      message_strings << "This is stored in multiple locations. " if locations.size > 1
       @normalized_locations.keys.each do |location|
-        m = "#{location}: Boxes #{@normalized_locations[location].join('; ')}"
+        m = "#{location}: #{box_or_boxes(location)} #{@normalized_locations[location].join('; ')}"
         message_strings << m
       end
       message_strings.join(" ")

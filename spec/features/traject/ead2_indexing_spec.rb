@@ -117,12 +117,17 @@ describe "EAD 2 traject indexing", type: :feature do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
     end
 
-    it "constructs a summary storage note" do
+    it "constructs a collection level summary storage note" do
       summary_message = result["summary_storage_note_ssm"].first
-      expect(summary_message).to match(/This collection is stored in multiple locations/)
+      expect(summary_message).to match(/This is stored in multiple locations/)
       expect(summary_message).to match(/Firestone Library \(hsvm\): Boxes 1; 32/)
       expect(summary_message).to match(/Firestone Library \(mss\): Boxes 12; 330/)
-      expect(summary_message).to match(/ReCAP \(rcpxm\): Boxes 232/)
+      expect(summary_message).to match(/ReCAP \(rcpxm\): Box 232/)
+    end
+    it "constructs component and series level summary storage notes" do
+      components = result["components"]
+      component = components.first["components"].first
+      expect(component["summary_storage_note_ssm"]).to eq ["This is stored in multiple locations.  Firestone Library (hsvm): Boxes 1; 32 Firestone Library (mss): Box 12"]
     end
   end
 
