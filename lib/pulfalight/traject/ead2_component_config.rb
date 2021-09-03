@@ -347,6 +347,18 @@ to_field "barcodes_ssim" do |record, accumulator, context|
   end
 end
 
+# Component level summary storage a.k.a. "magic physloc"
+to_field "summary_storage_note_ssm" do |record, accumulator, _context|
+  locations = {}
+  record.xpath(".//container[@type='box']").each do |box|
+    location_code = box["altrender"]
+    locations[location_code] = [] if locations[location_code].nil?
+    locations[location_code] << box.text
+  end
+
+  accumulator << Pulfalight::NormalizedBoxLocations.new(locations).to_s
+end
+
 # TODO: Add for otherlevel=text
 to_field "physloc_sim" do |record, accumulator, context|
   values = []

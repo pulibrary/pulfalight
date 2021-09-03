@@ -322,7 +322,7 @@ class CatalogController < ApplicationController
     config.add_summary_field "ark_tsim", label: "Permanent URL", helper_method: :ark_link
     config.add_summary_field "normalized_date_ssm", label: "Dates"
     config.add_summary_field "extent_ssm", label: "Size"
-    config.add_summary_field "storage_notes", label: "Storage Note", accessor: :storage_notes, helper_method: :paragraph_separator
+    config.add_summary_field "summary_storage_note_ssm", label: "Storage Note"
     config.add_summary_field "language_ssm", label: "Language"
 
     # Collect Show Page - Abstract Section
@@ -347,7 +347,7 @@ class CatalogController < ApplicationController
     config.add_component_field "accessrestrict_ssm", label: "Access Restrictions", accessor: :fetch_html_safe
     config.add_component_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
-    config.add_component_field "storage_notes", label: "Storage Note", accessor: :component_storage_notes, helper_method: :paragraph_separator
+    config.add_component_field "summary_storage_note_ssm", label: "Storage Note"
 
     config.add_component_field "topics_ssim", label: "Topics", link_to_facet: true, separator_options: {
       words_connector: "<br/>",
