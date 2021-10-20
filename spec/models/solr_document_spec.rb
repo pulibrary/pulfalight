@@ -403,6 +403,20 @@ RSpec.describe Arclight::SolrDocument do
       expect(request.form_attributes[:Site]).to eq "RBSC"
     end
   end
+  context "when it's a component with rcpph mapping" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC014.processed.EAD.xml")
+    end
+    it "sets mudd as the site, and leaves ReCAP as the location" do
+      result = indexer.map_record(record)
+      component = find_component(component_id: "MC014_c03682", record: result)
+      document = SolrDocument.new(component)
+
+      request = document.aeon_request
+      expect(request.form_attributes[:Site]).to eq "MUDD"
+      expect(request.form_attributes[:Location]).to eq "ReCAP"
+    end
+  end
   context "when there's two boxes for one component" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0187.processed.EAD.xml")
