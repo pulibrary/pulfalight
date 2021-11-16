@@ -14,6 +14,9 @@ module Aspace
     def initialize
       super(self.class.config)
       login
+    rescue ArchivesSpace::ConnectionError => e
+      shortened_message = e.message.split(" ")[0..-2].join(" ")
+      raise ArchivesSpace::ConnectionError, shortened_message
     end
 
     def ead_urls(modified_since: nil)
