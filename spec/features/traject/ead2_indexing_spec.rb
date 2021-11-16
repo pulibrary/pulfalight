@@ -676,6 +676,15 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  context "when there's no collection notes" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "cotsen", "COTSEN4.EAD.xml")
+    end
+    it "indexes" do
+      expect(result).not_to include "collection_notes_ssm"
+    end
+  end
+
   describe "language_ssm" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0879.processed.EAD.xml")
