@@ -523,7 +523,7 @@ end
 
 to_field "collection_notes_ssm" do |_record, accumulator, context|
   parent = context.clipboard[:parent] || settings[:root]
-  accumulator.concat(parent.output_hash["collection_notes_ssm"])
+  accumulator.concat(parent.output_hash["collection_notes_ssm"] || [])
 end
 
 # For collection description tab
