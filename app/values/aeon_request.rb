@@ -183,6 +183,7 @@ class AeonRequest
       GroupingOption_ItemVolume: "FirstValue",
       GroupingOption_ItemInfo1: "FirstValue",
       GroupingOption_ItemInfo3: "Concatenate",
+      GroupingOption_ItemInfo4: "FirstValue",
       GroupingOption_Location: "FirstValue",
       SubmitButton: "Submit Request"
     }

@@ -364,6 +364,7 @@ RSpec.describe Arclight::SolrDocument do
       expect(request.form_attributes[:GroupingOption_CallNumber]).to eq "FirstValue"
       expect(request.form_attributes[:GroupingOption_ItemVolume]).to eq "FirstValue"
       expect(request.form_attributes[:GroupingOption_ItemInfo1]).to eq "FirstValue"
+      expect(request.form_attributes[:GroupingOption_ItemInfo4]).to eq "FirstValue"
       expect(request.form_attributes[:GroupingOption_Location]).to eq "FirstValue"
 
       # The following attributes are copied from
