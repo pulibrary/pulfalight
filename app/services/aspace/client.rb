@@ -2,13 +2,15 @@
 module Aspace
   class Client < ArchivesSpace::Client
     def self.config
-      ArchivesSpace::Configuration.new({
-                                         base_uri: Pulfalight.config["archivespace_url"],
-                                         username: Pulfalight.config["archivespace_user"],
-                                         password: Pulfalight.config["archivespace_password"],
-                                         page_size: 50,
-                                         throttle: 0
-                                       })
+      ArchivesSpace::Configuration.new(
+        {
+          base_uri: Pulfalight.config["archivespace_url"],
+          username: Pulfalight.config["archivespace_user"],
+          password: Pulfalight.config["archivespace_password"],
+          page_size: 50,
+          throttle: 0
+        }
+      )
     end
 
     def initialize
