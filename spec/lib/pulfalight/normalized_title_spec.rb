@@ -12,5 +12,12 @@ describe Pulfalight::NormalizedTitle do
     it "de-duplicates the date" do
       expect(normalized_title.to_s).to eq("Booth Tarkington Papers, 1812-1956 (mostly 1899-1946)")
     end
+
+    context "when there is no title" do
+      let(:title) { nil }
+      it "just returns the date" do
+        expect(normalized_title.to_s).to eq("1812-1956 (mostly 1899-1946)")
+      end
+    end
   end
 end

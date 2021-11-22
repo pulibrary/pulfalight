@@ -8,7 +8,7 @@ module Pulfalight
     # Generates the normalized title
     # @return [String]
     def normalize
-      title_with_stripped_date = title.gsub(/, \d{4}-\d{4}/, "")
+      title_with_stripped_date = title&.gsub(/, \d{4}-\d{4}/, "")
       result = [title_with_stripped_date, date].compact.join(", ")
       result = title if result.blank?
       result
