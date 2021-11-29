@@ -277,8 +277,11 @@ SEARCHABLE_NOTES_FIELDS.map do |selector|
 end
 
 DID_SEARCHABLE_NOTES_FIELDS.map do |selector|
-  to_field "#{selector}_ssm", extract_xpath("/ead/archdesc/did/#{selector}") do |_record, accumulator|
-    accumulator.map!(&:strip)
+  sanitizer = Rails::Html::SafeListSanitizer.new
+  to_field "#{selector}_ssm", extract_xpath("/ead/archdesc/did/#{selector}", to_text: false) do |_record, accumulator|
+    accumulator.map! do |element|
+      sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip
+    end
   end
 end
 

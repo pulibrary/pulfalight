@@ -2,6 +2,7 @@
 class AspaceFixtureGenerator
   # EAD IDs to pull down from ArchivesSpace.
   EAD_IDS = [
+    "C0662",
     "C0062",
     "C0251",
     "C0776",
