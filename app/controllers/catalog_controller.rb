@@ -321,8 +321,8 @@ class CatalogController < ApplicationController
     config.add_summary_field "repository_ssm", label: "Repository"
     config.add_summary_field "ark_tsim", label: "Permanent URL", helper_method: :ark_link
     config.add_summary_field "normalized_date_ssm", label: "Dates"
-    config.add_summary_field "extent_ssm", label: "Size"
-    config.add_summary_field "summary_storage_note_ssm", label: "Storage Note"
+    config.add_summary_field "extent_ssm", label: "Size", accessor: :fetch_html_safe
+    config.add_summary_field "summary_storage_note_ssm", label: "Storage Note", accessor: :fetch_html_safe
     config.add_summary_field "language_ssm", label: "Language"
 
     # Collect Show Page - Abstract Section
@@ -346,7 +346,7 @@ class CatalogController < ApplicationController
     config.add_component_field "bioghist_ssm", label: "Biography", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "accessrestrict_ssm", label: "Access Restrictions", accessor: :fetch_html_safe
     config.add_component_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator, accessor: :fetch_html_safe
-    config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
+    config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "summary_storage_note_ssm", label: "Storage Note"
 
     config.add_component_field "topics_ssim", label: "Topics", link_to_facet: true, separator_options: {
@@ -390,11 +390,11 @@ class CatalogController < ApplicationController
     # =============================
     # COLLECTION HISTORY TAB FIELDS
     # =============================
-    config.add_collection_history_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator
-    config.add_collection_history_field "custodhist_ssm", label: "Custodial History", helper_method: :paragraph_separator
-    config.add_collection_history_field "accruals_ssm", label: "Additions", helper_method: :paragraph_separator
-    config.add_collection_history_field "appraisal_ssm", label: "Archival Appraisal Information", helper_method: :paragraph_separator
-    config.add_collection_history_field "sponsor_ssm", label: "Sponsorship", helper_method: :paragraph_separator
+    config.add_collection_history_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_collection_history_field "custodhist_ssm", label: "Custodial History", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_collection_history_field "accruals_ssm", label: "Additions", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_collection_history_field "appraisal_ssm", label: "Archival Appraisal Information", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_collection_history_field "sponsor_ssm", label: "Sponsorship", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_collection_history_field "processinfo_processing_ssm", label: "Processing Information", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_collection_history_field "processinfo_conservation_ssm", label: "Conservation", helper_method: :paragraph_separator, accessor: :fetch_html_safe
 
