@@ -326,7 +326,7 @@ class CatalogController < ApplicationController
     config.add_summary_field "language_ssm", label: "Language"
 
     # Collect Show Page - Abstract Section
-    config.add_abstract_field "abstract_ssm", label: "Abstract", helper_method: :paragraph_separator
+    config.add_abstract_field "abstract_ssm", label: "Abstract", helper_method: :paragraph_separator, accessor: :fetch_html_safe
 
     # ==========================
     # COMPONENT SHOW PAGE FIELDS
