@@ -379,6 +379,17 @@ describe "EAD 2 traject indexing", type: :feature do
         ]
       end
 
+      context "with did searchable notes" do
+        let(:fixture_path) do
+          Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0662.EAD.xml")
+        end
+        it "indexes extref as links" do
+          expect(result["abstract_ssm"]).to eq [
+            "Consists primarily of photostatic copies of the letters (1815-1828, 1844-1851) by American banker Daniel Wadsworth Coit to his family in Connecticut--from Lima, Peru, and various cities in Europe, and from the Western United States, Mexico, and San Francisco, California.\n\nImages of this collection are online at\n<a href=\"https://dpul.princeton.edu/catalog/gf06g270t\">https://dpul.princeton.edu/catalog/gf06g270t</a>."
+          ]
+        end
+      end
+
       context "when given a staff-only physloc code" do
         let(:fixture_path) do
           Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
