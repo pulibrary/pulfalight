@@ -45,16 +45,13 @@ module PulfalightHelper
     SimpleLinkRenderer.render(document)
   end
 
-  def render_universal_viewer
-    UniversalViewerRenderer.render(document)
-  end
-
   def generic_should_render_field?(config_field, document, field)
     super && show_presenter(document).with_field_group(config_field).field_value(field).present?
   end
 
   def display_simple_link?
     dao = document.direct_digital_objects
+    return if document.direct_digital_objects&.first&.role.present?
     return if dao.blank?
     uri = URI.parse(dao.first&.href)
     uri.is_a?(URI::HTTP)
