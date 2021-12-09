@@ -10,9 +10,7 @@
       <%= render partial: "restricted_badge", locals: { document: document } %>
     </div>
   </div>
-  <% if document.direct_digital_objects.present? && document.direct_digital_objects.first.role.present? %>
-    <%= render_universal_viewer %>
-  <% elsif display_simple_link? %>
+  <% if display_simple_link? %>
     <%= render_simple_link %>
   <% else %>
     <div id="readingroom"></div>

@@ -87,8 +87,8 @@ describe "viewing catalog records", type: :feature, js: true do
       before do
         visit "/catalog/MC221_c0094"
       end
-      it "displays the viewer" do
-        expect(page).to have_css(".uv__overlay")
+      it "renders a place for javascript to enter a viewer" do
+        expect(page).to have_css("#readingroom")
       end
       it "displays 'Has Online Content' at the collection level" do
         visit "/catalog/MC221"
@@ -186,10 +186,8 @@ describe "viewing catalog records", type: :feature, js: true do
       visit "/catalog/MC221_c0094"
     end
 
-    it "renders the universal viewer" do
-      manifest_url = "https://figgy.princeton.edu/concern/scanned_resources/3359153c-82da-4078-ae51-e301f4c5e38b/manifest"
-      iframe = "<iframe src=\"https://figgy.princeton.edu/viewer#?manifest=#{manifest_url}\" allowfullscreen=\"true\"></iframe>"
-      expect(page.body).to include iframe
+    it "renders a place for JS to check for a viewer" do
+      expect(page).to have_selector "#readingroom"
     end
   end
   context "when a component has a digital object with a link" do
