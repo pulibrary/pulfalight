@@ -382,9 +382,9 @@ class CatalogController < ApplicationController
     # =================================
     # COLLECTION DESCRIPTION TAB FIELDS
     # =================================
-    config.add_collection_description_field "collection_description_ssm", label: "Description", helper_method: :paragraph_separator
-    config.add_collection_description_field "arrangement_ssm", label: "Arrangement", helper_method: :paragraph_separator
-    config.add_collection_description_field "collection_bioghist_ssm", label: "Collection Creator Biography", helper_method: :paragraph_separator
+    config.add_collection_description_field "collection_description_ssm", label: "Description", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_collection_description_field "arrangement_ssm", label: "Arrangement", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_collection_description_field "collection_bioghist_ssm", label: "Collection Creator Biography", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_collection_description_field "odd_ssm", label: "Note", helper_method: :paragraph_separator, accessor: :fetch_html_safe
 
     # =============================
