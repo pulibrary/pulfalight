@@ -59,6 +59,7 @@ end
 group :test do
   gem "axe-core-rspec"
   gem "capybara", ">= 3.18"
+  gem "rspec_junit_formatter"
   gem "simplecov", require: false
   gem "timecop"
   gem "webdrivers"
