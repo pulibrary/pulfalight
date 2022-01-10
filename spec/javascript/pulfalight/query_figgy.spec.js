@@ -46,7 +46,7 @@ describe('QueryFiggy', function() {
     const query = new QueryFiggy
     await query.checkFiggy(component_id);
     expect(mockSuccessXHR.send).toHaveBeenCalled();
-    expect(document.getElementById('readingroom').innerHTML).toBe('<p>Access to this material is limited to specific classes. <button id="login" class="btn">Use your Princeton credentials to login.</button></p>')
+    expect(document.getElementById('readingroom').innerHTML).toBe('<p>Please contact Special Collections staff through the <a href="https://library.princeton.edu/special-collections/ask-us">Ask Us! form</a> for access to this collection. <button id="login" class="btn">Use your Princeton credentials to login.</button></p>')
   })
 
   test('Loads an iframe when they have permission to see the manifest in figgy', async () => {
