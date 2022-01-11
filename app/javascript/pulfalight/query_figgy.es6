@@ -4,7 +4,7 @@ export default class {
     let readingRoom = document.getElementById("readingroom")
     let cssStyle = "border-radius: 3px; background: #fee7ba; padding: 20px; margin-bottom: 2em;"
     this.addStyle(readingRoom, cssStyle)
-    readingRoom.innerHTML = "<p>Access to this material is limited to specific classes. <button id='login' class='btn' >Use your Princeton credentials to login.</button></p>";
+    readingRoom.innerHTML = "<p>Please contact Special Collections staff through the <a href='https://library.princeton.edu/special-collections/ask-us'>Ask Us! form</a> for access to this collection. <button id='login' class='btn' >Use your Princeton credentials to login.</button></p>";
     $('#readingroom #login').click(this.login)
   }
 
