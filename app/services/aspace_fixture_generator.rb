@@ -2,6 +2,7 @@
 class AspaceFixtureGenerator
   # EAD IDs to pull down from ArchivesSpace.
   EAD_IDS = [
+    "MC147",
     "C0662",
     "C0062",
     "C0251",
@@ -112,7 +113,8 @@ class AspaceFixtureGenerator
     "AC136" => ["aspace_AC136_c2889"],
     "AC362" => ["aspace_AC362_c01738"],
     "AC317" => ["aspace_AC317_c36874-31598"],
-    "MC014" => ["aspace_MC014_c03682"]
+    "MC014" => ["aspace_MC014_c03682"],
+    "MC147" => ["aspace_MC147_c07283-24964"]
   }.freeze
 
   attr_reader :client, :ead_ids, :component_map, :fixture_dir
