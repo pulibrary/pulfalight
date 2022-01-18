@@ -23,7 +23,7 @@ to_field "ref_ssi" do |record, accumulator, context|
   accumulator << if record.attribute("id").blank?
                    strategy = Arclight::MissingIdStrategy.selected
                    hexdigest = strategy.new(record).to_hexdigest
-                   parent_id = context.clipboard[:parent].output_hash["id"].first
+                   parent_id = settings[:parent].output_hash["id"].first
                    logger.warn("MISSING ID WARNING") do
                      [
                        "A component in #{parent_id} did not have an ID so one was minted using the #{strategy} strategy.",
@@ -45,7 +45,7 @@ to_field "id" do |_record, accumulator, context|
 end
 
 to_field "ead_ssi" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   ead_ids = parent.output_hash["ead_ssi"]
@@ -85,18 +85,18 @@ to_field "component_level_isim" do |record, accumulator|
 end
 
 to_field "parent_ssm" do |record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   ids = parent.output_hash["id"]
   if ids.present?
+    accumulator.concat parent.output_hash["parent_ssm"] if parent.output_hash["parent_ssm"]
     accumulator << ids.first
-    accumulator.concat Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new.is_component(record.ancestors).reverse.map { |n| n.attribute("id")&.value&.strip&.gsub(".", "-")&.gsub("aspace_", "") }
   end
 end
 
 to_field "collection_title_tesim" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   accumulator.concat Array.wrap(parent.output_hash["collection_title_tesim"])
@@ -108,7 +108,7 @@ end
 
 to_field "parent_unittitles_ssm" do |_rec, accumulator, context|
   # top level document
-  parent = context.clipboard[:parent] || settings[:parent]
+  parent = settings[:parent] || settings[:parent]
   next unless parent
   accumulator.concat parent.output_hash["parent_unittitles_ssm"] if parent.output_hash["parent_unittitles_ssm"]
   accumulator.concat parent.output_hash["normalized_title_ssm"] if parent.output_hash["normalized_title_ssm"].present?
@@ -116,7 +116,7 @@ end
 
 to_field "parent_unnormalized_unittitles_ssm" do |_rec, accumulator, context|
   # top level document
-  parent = context.clipboard[:parent] || settings[:parent]
+  parent = settings[:parent] || settings[:parent]
   next unless parent
   accumulator.concat parent.output_hash["parent_unnormalized_unittitles_ssm"] if parent.output_hash["parent_unnormalized_unittitles_ssm"]
   accumulator.concat parent.output_hash["title_ssm"] if parent.output_hash["title_ssm"].present?
@@ -128,7 +128,7 @@ end
 
 to_field "parent_levels_ssm" do |_record, accumulator, context|
   ## Top level document
-  parent = context.clipboard[:parent] || settings[:parent]
+  parent = settings[:parent] || settings[:parent]
   next unless parent
 
   accumulator.concat parent.output_hash["level_ssm"]
@@ -144,19 +144,19 @@ to_field "unitid_ssm" do |record, accumulator, _context|
   accumulator.concat record.xpath("./did/unitid").map(&:text).map { |x| x.gsub("aspace_", "") }
 end
 to_field "collection_unitid_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   accumulator.concat Array.wrap(parent.output_hash["unitid_ssm"])
 end
 to_field "repository_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   accumulator << parent.clipboard[:repository]
 end
 to_field "repository_sim" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   accumulator << parent.clipboard[:repository]
@@ -167,7 +167,7 @@ to_field "repository_code_ssm" do |_record, accumulator, context|
 end
 
 to_field "collection_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   normalized_title = parent.output_hash["normalized_title_ssm"]
@@ -175,7 +175,7 @@ to_field "collection_ssm" do |_record, accumulator, context|
   accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
 end
 to_field "collection_sim" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   normalized_title = parent.output_hash["normalized_title_ssm"]
@@ -183,7 +183,7 @@ to_field "collection_sim" do |_record, accumulator, context|
   accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
 end
 to_field "collection_ssi" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   normalized_title = parent.output_hash["normalized_title_ssm"]
@@ -201,14 +201,14 @@ to_field "physfacet_ssm", extract_xpath("./did/physdesc/physfacet")
 to_field "physfacet_teim", extract_xpath("./did/physdesc/physfacet")
 
 to_field "collection_physloc_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
   collection_physloc = parent.output_hash["physloc_ssm"]
   accumulator.concat(collection_physloc) if collection_physloc
 end
 
 to_field "physloc_code_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   physloc_code = parent.output_hash["physloc_code_ssm"]
@@ -216,7 +216,7 @@ to_field "physloc_code_ssm" do |_record, accumulator, context|
 end
 
 to_field "location_code_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   physloc_code = parent.output_hash["location_code_ssm"]
@@ -224,7 +224,7 @@ to_field "location_code_ssm" do |_record, accumulator, context|
 end
 
 to_field "location_note_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   physloc_code = parent.output_hash["location_note_ssm"]
@@ -250,7 +250,7 @@ to_field "creator_sort" do |record, accumulator|
   accumulator << record.xpath("./did/origination").map(&:text).join(", ")
 end
 to_field "collection_creator_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   accumulator.concat Array.wrap(parent.output_hash["creator_ssm"])
@@ -289,7 +289,7 @@ to_field "container_location_codes_ssim" do |record, accumulator, context|
   if context.output_hash["level_ssm"] == ["Text"] && accumulator.blank?
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
-    parent = context.clipboard[:parent] || settings[:parent]
+    parent = settings[:parent] || settings[:parent]
     accumulator.replace(parent.output_hash["container_location_codes_ssim"] || [])
   end
 end
@@ -315,7 +315,7 @@ to_field "container_information_ssm" do |record, accumulator, context|
   if context.output_hash["level_ssm"] == ["Text"] && accumulator.blank?
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
-    parent = context.clipboard[:parent] || settings[:parent]
+    parent = settings[:parent] || settings[:parent]
     accumulator.replace(parent.output_hash["container_information_ssm"] || [])
   end
 end
@@ -324,7 +324,7 @@ to_field "containers_ssim" do |record, accumulator, context|
   if context.output_hash["level_ssm"] == ["Text"]
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
-    parent = context.clipboard[:parent] || settings[:parent]
+    parent = settings[:parent] || settings[:parent]
     accumulator.replace(parent.output_hash["containers_ssim"] || [])
   else
     record.xpath("./did/container").each do |node|
@@ -342,7 +342,7 @@ to_field "barcodes_ssim" do |record, accumulator, context|
   if context.output_hash["level_ssm"] == ["Text"] && accumulator.blank?
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
-    parent = context.clipboard[:parent] || settings[:parent]
+    parent = settings[:parent] || settings[:parent]
     accumulator.replace(parent.output_hash["barcodes_ssim"] || [])
   end
 end
@@ -374,7 +374,7 @@ to_field "physloc_sim" do |record, accumulator, context|
   values = Array.wrap(values.join(", "))
 
   if values.empty?
-    parent = context.clipboard[:parent] || settings[:root]
+    parent = settings[:parent] || settings[:root]
     values = parent.output_hash["physloc_sim"]
   end
 
@@ -382,7 +382,7 @@ to_field "physloc_sim" do |record, accumulator, context|
   if context.output_hash["level_ssm"] == ["Text"] && accumulator.select(&:present?).blank?
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
-    parent = context.clipboard[:parent] || settings[:parent]
+    parent = settings[:parent] || settings[:parent]
     accumulator.replace(parent.output_hash["physloc_sim"] || [])
   end
 end
@@ -479,7 +479,7 @@ to_field "location_info_tesim" do |_record, accumulator, context|
 end
 
 to_field "language_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   parent_languages = parent.output_hash["language_ssm"]
 
   accumulator.concat(parent_languages)
@@ -501,7 +501,7 @@ end
 to_field "did_note_ssm", extract_xpath("./did/note")
 
 to_field "prefercite_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   parent_ids = parent.output_hash["id"]
   parent_id = parent_ids.first
   parent_titles = parent.output_hash["title_ssm"]
@@ -522,46 +522,46 @@ to_field "prefercite_teim" do |_record, accumulator, context|
 end
 
 to_field "collection_notes_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   accumulator.concat(parent.output_hash["collection_notes_ssm"] || [])
 end
 
 # For collection description tab
 to_field "collection_description_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   value = parent.output_hash["collection_description_ssm"] || []
   accumulator.concat(value)
 end
 
 # For collection history tab
 to_field "custodhist_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   value = parent.output_hash["custodhist_ssm"] || []
   accumulator.concat(value)
 end
 
 # For collection history tab
 to_field "appraisal_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   value = parent.output_hash["appraisal_ssm"] || []
   accumulator.concat(value)
 end
 
 # For collection history tab
 to_field "processinfo_processing_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   value = parent.output_hash["processinfo_processing_ssm"] || []
   accumulator.concat(value)
 end
 to_field "processinfo_conservation_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   value = parent.output_hash["processinfo_conservation_ssm"] || []
   accumulator.concat(value)
 end
 
 # For collection history tab
 to_field "sponsor_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   value = parent.output_hash["sponsor_ssm"] || []
   accumulator.concat(value)
 end
@@ -569,7 +569,7 @@ end
 # For collection access tab
 to_field "accessrestrict_ssm" do |_record, accumulator, context|
   if context.output_hash["accessrestrict_ssm"].blank?
-    parent = context.clipboard[:parent] || settings[:root]
+    parent = settings[:parent] || settings[:root]
     value = parent.output_hash["accessrestrict_ssm"] || []
     accumulator.concat(value)
   end
@@ -585,14 +585,14 @@ end
 
 # For collection access tab
 to_field "userestrict_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   value = parent.output_hash["userestrict_ssm"] || []
   accumulator.concat(value)
 end
 
 # For collection access tab
 to_field "phystech_ssm" do |_record, accumulator, context|
-  parent = context.clipboard[:parent] || settings[:root]
+  parent = settings[:parent] || settings[:root]
   value = parent.output_hash["phystech_ssm"] || []
   accumulator.concat(value)
 end
