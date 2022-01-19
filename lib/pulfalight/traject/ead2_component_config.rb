@@ -19,7 +19,7 @@ require Rails.root.join("lib", "pulfalight", "traject", "ead2_indexing")
 
 extend TrajectPlus::Macros
 
-to_field "ref_ssi" do |record, accumulator, context|
+to_field "ref_ssi" do |record, accumulator, _context|
   accumulator << if record.attribute("id").blank?
                    strategy = Arclight::MissingIdStrategy.selected
                    hexdigest = strategy.new(record).to_hexdigest
@@ -44,7 +44,7 @@ to_field "id" do |_record, accumulator, context|
   accumulator.concat context.output_hash["ref_ssi"]
 end
 
-to_field "ead_ssi" do |_record, accumulator, context|
+to_field "ead_ssi" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   next unless parent
 
@@ -84,7 +84,7 @@ to_field "component_level_isim" do |record, accumulator|
   accumulator << 1 + Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new.is_component(record.ancestors).count
 end
 
-to_field "parent_ssm" do |record, accumulator, context|
+to_field "parent_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   next unless parent
 
@@ -95,8 +95,8 @@ to_field "parent_ssm" do |record, accumulator, context|
   end
 end
 
-to_field "collection_title_tesim" do |_record, accumulator, context|
-  parent = settings[:parent] || settings[:root]
+to_field "collection_title_tesim" do |_record, accumulator, _context|
+  parent = settings[:root]
   next unless parent
 
   accumulator.concat Array.wrap(parent.output_hash["collection_title_tesim"])
@@ -106,17 +106,17 @@ to_field "parent_ssi" do |_record, accumulator, context|
   accumulator << context.output_hash["parent_ssm"].last if context.output_hash["parent_ssm"].present?
 end
 
-to_field "parent_unittitles_ssm" do |_rec, accumulator, context|
+to_field "parent_unittitles_ssm" do |_rec, accumulator, _context|
   # top level document
-  parent = settings[:parent] || settings[:parent]
+  parent = settings[:parent] || settings[:root]
   next unless parent
   accumulator.concat parent.output_hash["parent_unittitles_ssm"] if parent.output_hash["parent_unittitles_ssm"]
   accumulator.concat parent.output_hash["normalized_title_ssm"] if parent.output_hash["normalized_title_ssm"].present?
 end
 
-to_field "parent_unnormalized_unittitles_ssm" do |_rec, accumulator, context|
+to_field "parent_unnormalized_unittitles_ssm" do |_rec, accumulator, _context|
   # top level document
-  parent = settings[:parent] || settings[:parent]
+  parent = settings[:parent] || settings[:root]
   next unless parent
   accumulator.concat parent.output_hash["parent_unnormalized_unittitles_ssm"] if parent.output_hash["parent_unnormalized_unittitles_ssm"]
   accumulator.concat parent.output_hash["title_ssm"] if parent.output_hash["title_ssm"].present?
@@ -128,7 +128,7 @@ end
 
 to_field "parent_levels_ssm" do |_record, accumulator, context|
   ## Top level document
-  parent = settings[:parent] || settings[:parent]
+  parent = settings[:parent] || settings[:root]
   next unless parent
 
   accumulator.concat parent.output_hash["level_ssm"]
@@ -143,19 +143,19 @@ end
 to_field "unitid_ssm" do |record, accumulator, _context|
   accumulator.concat record.xpath("./did/unitid").map(&:text).map { |x| x.gsub("aspace_", "") }
 end
-to_field "collection_unitid_ssm" do |_record, accumulator, context|
-  parent = settings[:parent] || settings[:root]
+to_field "collection_unitid_ssm" do |_record, accumulator, _context|
+  parent = settings[:root]
   next unless parent
 
   accumulator.concat Array.wrap(parent.output_hash["unitid_ssm"])
 end
-to_field "repository_ssm" do |_record, accumulator, context|
+to_field "repository_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   next unless parent
 
   accumulator << parent.clipboard[:repository]
 end
-to_field "repository_sim" do |_record, accumulator, context|
+to_field "repository_sim" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   next unless parent
 
@@ -166,24 +166,24 @@ to_field "repository_code_ssm" do |_record, accumulator, context|
   accumulator << context.settings[:repository]
 end
 
-to_field "collection_ssm" do |_record, accumulator, context|
-  parent = settings[:parent] || settings[:root]
+to_field "collection_ssm" do |_record, accumulator, _context|
+  parent = settings[:root]
   next unless parent
 
   normalized_title = parent.output_hash["normalized_title_ssm"]
 
   accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
 end
-to_field "collection_sim" do |_record, accumulator, context|
-  parent = settings[:parent] || settings[:root]
+to_field "collection_sim" do |_record, accumulator, _context|
+  parent = settings[:root]
   next unless parent
 
   normalized_title = parent.output_hash["normalized_title_ssm"]
 
   accumulator.concat normalized_title unless parent.nil? || normalized_title.nil?
 end
-to_field "collection_ssi" do |_record, accumulator, context|
-  parent = settings[:parent] || settings[:root]
+to_field "collection_ssi" do |_record, accumulator, _context|
+  parent = settings[:root]
   next unless parent
 
   normalized_title = parent.output_hash["normalized_title_ssm"]
@@ -200,14 +200,14 @@ to_field "dimensions_teim", extract_xpath("./did/physdesc/dimensions")
 to_field "physfacet_ssm", extract_xpath("./did/physdesc/physfacet")
 to_field "physfacet_teim", extract_xpath("./did/physdesc/physfacet")
 
-to_field "collection_physloc_ssm" do |_record, accumulator, context|
-  parent = settings[:parent] || settings[:root]
+to_field "collection_physloc_ssm" do |_record, accumulator, _context|
+  parent = settings[:root]
   next unless parent
   collection_physloc = parent.output_hash["physloc_ssm"]
   accumulator.concat(collection_physloc) if collection_physloc
 end
 
-to_field "physloc_code_ssm" do |_record, accumulator, context|
+to_field "physloc_code_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   next unless parent
 
@@ -215,7 +215,7 @@ to_field "physloc_code_ssm" do |_record, accumulator, context|
   accumulator.concat(physloc_code) if physloc_code
 end
 
-to_field "location_code_ssm" do |_record, accumulator, context|
+to_field "location_code_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   next unless parent
 
@@ -223,7 +223,7 @@ to_field "location_code_ssm" do |_record, accumulator, context|
   accumulator.concat(physloc_code) if physloc_code
 end
 
-to_field "location_note_ssm" do |_record, accumulator, context|
+to_field "location_note_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   next unless parent
 
@@ -249,8 +249,8 @@ to_field "creators_ssim", extract_xpath("./did/origination")
 to_field "creator_sort" do |record, accumulator|
   accumulator << record.xpath("./did/origination").map(&:text).join(", ")
 end
-to_field "collection_creator_ssm" do |_record, accumulator, context|
-  parent = settings[:parent] || settings[:root]
+to_field "collection_creator_ssm" do |_record, accumulator, _context|
+  parent = settings[:root]
   next unless parent
 
   accumulator.concat Array.wrap(parent.output_hash["creator_ssm"])
@@ -478,7 +478,7 @@ to_field "location_info_tesim" do |_record, accumulator, context|
   accumulator.concat(values)
 end
 
-to_field "language_ssm" do |_record, accumulator, context|
+to_field "language_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   parent_languages = parent.output_hash["language_ssm"]
 
@@ -501,7 +501,7 @@ end
 to_field "did_note_ssm", extract_xpath("./did/note")
 
 to_field "prefercite_ssm" do |_record, accumulator, context|
-  parent = settings[:parent] || settings[:root]
+  parent = settings[:root]
   parent_ids = parent.output_hash["id"]
   parent_id = parent_ids.first
   parent_titles = parent.output_hash["title_ssm"]
@@ -521,46 +521,46 @@ to_field "prefercite_teim" do |_record, accumulator, context|
   accumulator.concat Array.wrap(context.output_hash["prefercite_ssm"])
 end
 
-to_field "collection_notes_ssm" do |_record, accumulator, context|
-  parent = settings[:parent] || settings[:root]
+to_field "collection_notes_ssm" do |_record, accumulator, _context|
+  parent = settings[:root]
   accumulator.concat(parent.output_hash["collection_notes_ssm"] || [])
 end
 
 # For collection description tab
-to_field "collection_description_ssm" do |_record, accumulator, context|
-  parent = settings[:parent] || settings[:root]
+to_field "collection_description_ssm" do |_record, accumulator, _context|
+  parent = settings[:root]
   value = parent.output_hash["collection_description_ssm"] || []
   accumulator.concat(value)
 end
 
 # For collection history tab
-to_field "custodhist_ssm" do |_record, accumulator, context|
+to_field "custodhist_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   value = parent.output_hash["custodhist_ssm"] || []
   accumulator.concat(value)
 end
 
 # For collection history tab
-to_field "appraisal_ssm" do |_record, accumulator, context|
+to_field "appraisal_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   value = parent.output_hash["appraisal_ssm"] || []
   accumulator.concat(value)
 end
 
 # For collection history tab
-to_field "processinfo_processing_ssm" do |_record, accumulator, context|
+to_field "processinfo_processing_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   value = parent.output_hash["processinfo_processing_ssm"] || []
   accumulator.concat(value)
 end
-to_field "processinfo_conservation_ssm" do |_record, accumulator, context|
+to_field "processinfo_conservation_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   value = parent.output_hash["processinfo_conservation_ssm"] || []
   accumulator.concat(value)
 end
 
 # For collection history tab
-to_field "sponsor_ssm" do |_record, accumulator, context|
+to_field "sponsor_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   value = parent.output_hash["sponsor_ssm"] || []
   accumulator.concat(value)
@@ -584,14 +584,14 @@ to_field "access_ssi" do |record, accumulator, _context|
 end
 
 # For collection access tab
-to_field "userestrict_ssm" do |_record, accumulator, context|
+to_field "userestrict_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   value = parent.output_hash["userestrict_ssm"] || []
   accumulator.concat(value)
 end
 
 # For collection access tab
-to_field "phystech_ssm" do |_record, accumulator, context|
+to_field "phystech_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   value = parent.output_hash["phystech_ssm"] || []
   accumulator.concat(value)
