@@ -706,4 +706,16 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(result["language_ssm"]).to eq ["Greek, Modern"]
     end
   end
+
+  describe "ref_ssi" do
+    context "for components" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0744.04.processed.EAD.xml")
+      end
+      it "indexes it with periods" do
+        record = find_component(result, "C0744-04_c0120")
+        expect(record["ref_ssi"]).to eq ["C0744.04_c0120"]
+      end
+    end
+  end
 end

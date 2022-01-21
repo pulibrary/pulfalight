@@ -61,7 +61,7 @@ describe('QueryFiggy', function() {
   })
 
   test("component_id() Capitalizes alphabetic characters before the underscore", () => {
-    document.body.innerHTML = '<div id="document" class="document blacklight-file" itemscope="" itemtype="http://schema.org/Thing"><div id="doc_c1491_c4"></div></div>'
+    document.body.innerHTML = '<div id="document" class="document blacklight-file" itemscope="" itemtype="http://schema.org/Thing"><div data-component-id="C1491_c4"></div></div>'
     const query = new QueryFiggy
     expect(query.component_id(component_id)).toEqual("C1491_c4")
   })

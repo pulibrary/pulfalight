@@ -33,7 +33,7 @@ to_field "ref_ssi" do |record, accumulator, context|
                    record["id"] = hexdigest
                    hexdigest
                  else
-                   record.attribute("id")&.value&.strip&.gsub(".", "-")&.gsub("aspace_", "")&.split(" ")&.first
+                   record.attribute("id")&.value&.strip&.gsub("aspace_", "")&.split(" ")&.first
                  end
 end
 to_field "ref_ssm" do |_record, accumulator, context|
@@ -41,7 +41,7 @@ to_field "ref_ssm" do |_record, accumulator, context|
 end
 
 to_field "id" do |_record, accumulator, context|
-  accumulator.concat context.output_hash["ref_ssi"]
+  accumulator.concat context.output_hash["ref_ssi"].map { |x| x.tr(".", "-") }
 end
 
 to_field "ead_ssi" do |_record, accumulator, context|

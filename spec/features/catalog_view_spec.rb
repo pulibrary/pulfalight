@@ -79,6 +79,10 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_css("#toc")
     end
 
+    it "has an element with the component id", js: false do
+      expect(page).to have_selector("*[data-component-id='MC221_c0060']")
+    end
+
     it "does not have breadcrumbs" do
       expect(page).not_to have_css("ol.breadcrumb")
     end
