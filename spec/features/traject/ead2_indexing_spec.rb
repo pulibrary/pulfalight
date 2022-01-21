@@ -112,6 +112,16 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  describe "#accessrestrict" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC147.processed.EAD.xml")
+    end
+    it "inherits down from direct parents" do
+      component = find_component(result, "MC147_c07283-24964")
+      expect(component["accessrestrict_ssm"]).to eq ["All records in Series 1 are open for research use."]
+    end
+  end
+
   context "magic physloc" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
