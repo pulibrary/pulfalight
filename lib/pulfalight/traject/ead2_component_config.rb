@@ -614,6 +614,7 @@ to_field "components" do |record, accumulator, context|
       provide :root, context.settings[:root]
       provide :repository, context.settings[:repository]
     end
+    component_indexer.settings[:parent] = context
     output = component_indexer.map_record(child_component)
     accumulator << output
   end
