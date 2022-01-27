@@ -219,6 +219,12 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(component["scopecontent_ssm"].length).to eq(1)
         expect(component["scopecontent_ssm"].first).not_to be_empty
       end
+
+      it "indexes parent_ssi correctly" do
+        component = find_component(result, "C0251_c0103")
+
+        expect(component["parent_ssm"]).to eq ["C0251", "C0251_c0101", "C0251_c0102"]
+      end
     end
 
     it "indexes deep children without periods" do
