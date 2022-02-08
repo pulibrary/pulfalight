@@ -199,11 +199,15 @@ describe "EAD 2 traject indexing", type: :feature do
         child_component_tree = child_component_trees.first
         expect(child_component_tree).to include("id")
         expect(child_component_tree["id"]).to include("C0251_c0001")
+        expect(child_component_tree["repository_ssm"]).to eq ["Public Policy Papers"]
+        expect(child_component_tree["repository_sim"]).to eq ["Public Policy Papers"]
         nested_component_trees = child_component_tree["components"]
         expect(nested_component_trees).not_to be_empty
         nested_component_tree = nested_component_trees.first
         expect(nested_component_tree).to include("id")
         expect(nested_component_tree["id"]).to include("C0251_c0002")
+        expect(nested_component_tree["repository_ssm"]).to eq ["Public Policy Papers"]
+        expect(nested_component_tree["repository_sim"]).to eq ["Public Policy Papers"]
       end
 
       it "doesn't index them as top-level components" do
