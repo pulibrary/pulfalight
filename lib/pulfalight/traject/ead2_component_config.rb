@@ -150,16 +150,10 @@ to_field "collection_unitid_ssm" do |_record, accumulator, _context|
   accumulator.concat Array.wrap(parent.output_hash["unitid_ssm"])
 end
 to_field "repository_ssm" do |_record, accumulator, _context|
-  parent = settings[:parent] || settings[:root]
-  next unless parent
-
-  accumulator << parent.clipboard[:repository]
+  accumulator.concat settings[:root].output_hash["repository_ssm"]
 end
 to_field "repository_sim" do |_record, accumulator, _context|
-  parent = settings[:parent] || settings[:root]
-  next unless parent
-
-  accumulator << parent.clipboard[:repository]
+  accumulator.concat settings[:root].output_hash["repository_sim"]
 end
 
 to_field "repository_code_ssm" do |_record, accumulator, context|
