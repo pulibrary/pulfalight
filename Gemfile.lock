@@ -89,15 +89,15 @@ GEM
       rubocop-performance
       rubocop-rails
       rubocop-rspec
-    blacklight (7.23.0)
+    blacklight (7.19.0)
       deprecation
       globalid
       i18n (>= 1.7.0)
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
       ostruct (>= 0.3.2)
-      rails (>= 5.1, < 7.1)
-      view_component (~> 2.43)
+      rails (>= 5.1, < 7)
+      view_component (>= 2.28.0)
     blacklight_range_limit (7.1.0)
       blacklight (>= 7.0)
       rails (>= 3.0)
@@ -533,6 +533,7 @@ DEPENDENCIES
   axe-core-rspec
   benchmark-ips
   bixby (~> 3.0)
+  blacklight (= 7.19.0)
   blacklight_range_limit (~> 7.1)
   bootsnap (>= 1.1.0)
   bootstrap (>= 4.3.1)

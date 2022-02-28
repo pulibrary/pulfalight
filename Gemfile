@@ -73,6 +73,7 @@ end
 
 gem "archivesspace-client"
 gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
+gem "blacklight", "7.19.0"
 gem "blacklight_range_limit", "~> 7.1"
 gem "bootstrap", ">= 4.3.1"
 gem "devise", ">= 4.7.1"
