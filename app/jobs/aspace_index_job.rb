@@ -57,6 +57,8 @@ class AspaceIndexJob < ApplicationJob
     logger.info("Requesting a batch Solr update...")
     blacklight_connection.add(solr_documents)
     logger.info("Successfully indexed the EAD")
+  rescue Pulfalight::MissingRepositoryError
+    Honeybadger.notify("An Arclight::Repository was not found for repository_id #{repository_id} when indexing #{resource_descriptions_uri}. Check configuration in config/repositories.yml")
   end
 
   # Delete documents which are marked internal, in case they've been unpublished

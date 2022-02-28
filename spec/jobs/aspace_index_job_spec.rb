@@ -29,6 +29,7 @@ RSpec.describe AspaceIndexJob do
         expect(cache.resource_descriptions_uri).to eq "repositories/13/resources/5396"
       end
     end
+
     context "when given an EAD which is suddenly internal" do
       it "deletes the existing record and its children from solr" do
         stub_aspace_login
@@ -57,6 +58,7 @@ RSpec.describe AspaceIndexJob do
         expect(items["response"]["numFound"]).to eq 0
       end
     end
+
     context "when given an internal EAD" do
       it "doesn't index it" do
         stub_aspace_login
@@ -68,6 +70,22 @@ RSpec.describe AspaceIndexJob do
 
         items = connection.get("select", params: { q: "id:C1588testinternal" })
         expect(items["response"]["numFound"]).to eq 0
+      end
+    end
+
+    context "when given an EAD for a repository that's not configured" do
+      it "doesn't index it, alerts via Honeybadger" do
+        stub_aspace_login
+        stub_aspace_ead(resource_descriptions_uri: "repositories/13/resources/5396", ead: "mss/C1588.xml")
+        allow(Honeybadger).to receive(:notify)
+
+        connection.delete_by_query("id:C1588test")
+        described_class.perform_now(resource_descriptions_uri: "repositories/13/resources/5396", repository_id: "test")
+        connection.commit
+
+        items = connection.get("select", params: { q: "id:C1588test" })
+        expect(items["response"]["numFound"]).to eq 0
+        expect(Honeybadger).to have_received(:notify)
       end
     end
   end
