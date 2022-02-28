@@ -1,3 +1,16 @@
 @import 'bootstrap';
 
 @import 'blacklight/blacklight';
+
+.blacklight-icons svg {
+  height: 1rem;
+  width: 1rem;
+  top: 0.125rem;
+  position: relative;
+}
+
+.blacklight-icons {
+  display: inline-flex;
+  height: 1rem;
+  width: 1rem;
+}
