@@ -242,11 +242,6 @@ class SolrDocument
     ComponentHtmlPresenter
   end
 
-  def html_presenter
-    html_presenter_class.new(self)
-  end
-  alias presenter html_presenter # Update this for other format-based presenters
-
   # Transform Solr Document into a JSON Object
   # @return [Hash]
   def attributes

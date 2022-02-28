@@ -14,7 +14,7 @@ module PulfalightHelper
   alias component_document document
 
   def html_presenter
-    document.presenter
+    ComponentHtmlPresenter.new(document, self)
   end
 
   def component_notes_formatter(*_args)

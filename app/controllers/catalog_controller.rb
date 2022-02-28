@@ -26,10 +26,10 @@ class CatalogController < ApplicationController
       format.html do
         @search_context = setup_next_and_previous_documents
         if document_expanded?
-          show_view_config = blacklight_config.show
-          updated_partials = show_view_config[:partials].reject { |p| p == :show }
+          show_view_config = blacklight_config.view_config(:show)
+          updated_partials = show_view_config.partials.reject { |p| p == :show }
           updated_partials << :show_collection_expanded
-          blacklight_config.show[:partials] = updated_partials
+          blacklight_config.view_config(:show).partials = updated_partials
 
           @document_tree = build_document_tree
         end
