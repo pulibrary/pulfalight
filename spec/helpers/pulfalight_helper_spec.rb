@@ -48,6 +48,9 @@ describe PulfalightHelper, type: :helper do
 
     before do
       allow(helper).to receive(:document).and_return(component_document)
+      without_partial_double_verification do
+        allow(helper).to receive(:blacklight_config).and_return(CatalogController.blacklight_config)
+      end
       allow(params).to receive(:dig).with("f", "collection_sim").and_return(["Harold B. Hoskins Papers, 1822-1982"])
     end
 
