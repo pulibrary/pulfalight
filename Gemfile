@@ -85,7 +85,7 @@ gem "popper_js"
 gem "rsolr", ">= 1.0", "< 3"
 gem "rubytree"
 gem "rubyzip", ">= 1.3.0"
-gem "sidekiq"
+gem "sidekiq", "~> 5.0"
 gem "twitter-typeahead-rails", "0.11.1.pre.corejavascript"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "webpacker", "~> 4.0"
