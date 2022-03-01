@@ -19,6 +19,7 @@ require_relative "../normalized_title"
 require_relative "../normalized_date"
 require_relative "../normalized_box_locations"
 require_relative "../year_range"
+require_relative "../missing_repository_error"
 require Rails.root.join("lib", "pulfalight", "traject", "ead2_indexing")
 require Rails.root.join("app", "values", "pulfalight", "location_code")
 require Rails.root.join("app", "values", "pulfalight", "physical_location_code")
@@ -170,7 +171,9 @@ to_field "collection_title_tesim" do |_record, accumulator, context|
 end
 
 to_field "repository_ssm" do |_record, accumulator, context|
-  accumulator << context.clipboard[:repository]
+  repository = context.clipboard[:repository]
+  raise Pulfalight::MissingRepositoryError unless repository
+  accumulator << repository
 end
 
 to_field "repository_sim" do |_record, accumulator, context|

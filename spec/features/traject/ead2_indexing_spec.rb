@@ -3,6 +3,7 @@
 # https://github.com/projectblacklight/arclight/blob/2336c81e2857f0538dfb57a1297967c29096f9ea/spec/features/traject/ead2_indexing_spec.rb
 
 require "rails_helper"
+require Rails.root.join("lib", "pulfalight", "missing_repository_error")
 
 describe "EAD 2 traject indexing", type: :feature do
   subject(:result) do
@@ -70,12 +71,24 @@ describe "EAD 2 traject indexing", type: :feature do
   end
 
   describe "repository indexing" do
-    context "when a Repository has been before the collection is indexed" do
+    context "when a Repository has been encountered before the collection is indexed" do
       it "retrieves an existing Repository model and indexes this into Solr" do
         expect(result).to include("repository_ssm" => ["Public Policy Papers"])
         expect(result).to include("repository_sim" => ["Public Policy Papers"])
         expect(result["repository_code_ssm"]).to eq ["publicpolicy"]
         expect(result["components"][0]["repository_code_ssm"]).to eq ["publicpolicy"]
+      end
+    end
+
+    context "when there's not a corresponding Arclight::Repository" do
+      let(:settings) do
+        {
+          repository: "test"
+        }
+      end
+
+      it "raises a descriptive error" do
+        expect { result }.to raise_error(Pulfalight::MissingRepositoryError)
       end
     end
   end

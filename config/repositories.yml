@@ -145,3 +145,7 @@ univarchives:
   contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
   thumbnail_url: "https://findingaids.princeton.edu/repositories/univarchives.jpg"
   visit_note: ""
+
+ea:
+  name: 'East Asian Collection'
+  contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
