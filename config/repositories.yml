@@ -148,4 +148,14 @@ univarchives:
 
 ea:
   name: 'East Asian Collection'
+  building: 'Firestone Library'
+  address1: 'One Washington Road'
+  address2: ''
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08540'
+  country: 'USA'
+  phone: ''
   contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
+  thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+  visit_note: ""
