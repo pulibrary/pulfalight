@@ -23,7 +23,10 @@ class SimpleLinkRenderer
   private
 
   def digital_object
-    document.direct_digital_objects.first
+    # Filter out panopto download - we render a viewer for that.
+    document.direct_digital_objects.find do |dao|
+      dao.href != document.panopto_digital_object&.href
+    end
   end
 
   def partial_path

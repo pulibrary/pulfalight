@@ -137,6 +137,19 @@ RSpec.describe Arclight::SolrDocument do
     end
   end
 
+  describe "#render_panopto?" do
+    context "when then there's a panopto DAO" do
+      let(:fixture_path) { Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC302.processed.EAD.xml") }
+      it "returns true" do
+        result = indexer.map_record(record)
+        component = find_component(component_id: "MC302_c21357-52777", record: result)
+        doc = SolrDocument.new(component)
+
+        expect(doc.render_panopto?).to eq true
+      end
+    end
+  end
+
   describe "#collection?" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")

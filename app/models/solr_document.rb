@@ -322,6 +322,22 @@ class SolrDocument
     fetch("access_ssi", nil) == "some-restricted"
   end
 
+  def render_panopto?
+    panopto_digital_object.present?
+  end
+
+  def panopto_digital_object
+    @panopto_digital_object ||=
+      begin
+        found_dao = direct_digital_objects.find do |dao|
+          dao.href.include?("princeton.hosted.panopto.com")
+        end
+        return if found_dao.nil?
+        # Decorate functionality for getting ID.
+        PanoptoDao.new(found_dao)
+      end
+  end
+
   private
 
   def pulfalight_attributes
