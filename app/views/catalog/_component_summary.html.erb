@@ -10,6 +10,9 @@
       <%= render partial: "restricted_badge", locals: { document: document } %>
     </div>
   </div>
+  <% if document.render_panopto? %>
+    <%= render(partial: 'panopto_viewer', locals: { document: document }) %>
+  <% end %>
   <% if display_simple_link? %>
     <%= render_simple_link %>
   <% else %>

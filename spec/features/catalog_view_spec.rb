@@ -201,11 +201,28 @@ describe "viewing catalog records", type: :feature, js: true do
 
     it "renders a view content link" do
       url = "https://webspace.princeton.edu/users/mudd/Digitization/MC148/MC148_c07608.pdf"
-      expect(page).to have_selector("a[href=\"#{url}\"]", text: "View Content")
+      expect(page).to have_selector("a[href=\"#{url}\"]", text: "View Digital Content")
     end
 
     it "does not render a div for loading from figgy" do
       expect(page).not_to have_selector("#readingroom")
+    end
+  end
+
+  context "when a component has a panopto link and download link", js: false do
+    it "renders a panopto viewer" do
+      visit "/catalog/MC302_c21357-52777"
+
+      expect(page).to have_selector(
+        "iframe#panopto[src='https://princeton.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=18d84eb8-cd46-45c6-9922-ae5400e2fdfb&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all']"
+      )
+    end
+    it "renders the non-panopto download link", js: true do
+      visit "/catalog/MC302_c21357-52777"
+
+      expect(page).to have_selector(
+        "a[href='https://figgy.princeton.edu/downloads/0e1a7e69-c032-460e-9518-9efb46621b5f/file/13a78648-5994-4b45-990b-89ca1d3b952f']", text: "Download Video"
+      )
     end
   end
 
