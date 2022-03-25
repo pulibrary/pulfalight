@@ -18,7 +18,11 @@ class SimpleLinkRenderer
     )
   end
 
-  delegate :href, :label, to: :digital_object
+  delegate :href, to: :digital_object
+
+  def label
+    digital_object.label.titleize
+  end
 
   private
 
