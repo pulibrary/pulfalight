@@ -4,17 +4,20 @@ services:
     type: solr:8.4
     portforward: true
     core: pulfalight-core-test
+    app_mount: false
     config:
       dir: "solr/conf"
   pulfalight_development_solr:
     type: solr:8.4
     portforward: true
     core: pulfalight-core-dev
+    app_mount: false
     config:
       dir: "solr/conf"
   pulfalight_database:
     type: postgres:10
     portforward: true
+    app_mount: false
 proxy:
   pulfalight_test_solr:
     - pulfalight.test.solr.lndo.site:8983
