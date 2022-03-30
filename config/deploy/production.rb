@@ -9,6 +9,9 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 server "pulfalight-prod1", user: "deploy", roles: %w[app db web production_db]
 server "pulfalight-prod2", user: "deploy", roles: %w[app web]
+server "pulfalight-prod3", user: "deploy", roles: %w[app web]
+server "pulfalight-prod4", user: "deploy", roles: %w[app web]
+server "pulfalight-prod5", user: "deploy", roles: %w[app web]
 server "pulfalight-worker1", user: "deploy", roles: %w[app worker]
 
 # role-based syntax
