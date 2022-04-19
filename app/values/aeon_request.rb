@@ -23,8 +23,7 @@ class AeonRequest
       RequestType: "Loan",
       DocumentType: "Manuscript",
       Site: site,
-      Location: container_locations,
-      ItemTitle: title
+      Location: container_locations
     }.merge(grouping_options).merge(all_request_attributes)
   end
 
@@ -177,6 +176,7 @@ class AeonRequest
       GroupingOption_ReferenceNumber: "Concatenate",
       # Items are grouped by box, and every box only has one barcode, so just
       # pick the first one.
+      GroupingOption_ItemTitle: "FirstValue",
       GroupingOption_ItemNumber: "FirstValue",
       GroupingOption_ItemDate: "FirstValue",
       GroupingOption_CallNumber: "FirstValue",
