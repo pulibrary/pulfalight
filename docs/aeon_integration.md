@@ -28,7 +28,7 @@ items are requested all the fields are submitted. Relevant files in code:
 * https://github.com/pulibrary/pulfalight/blob/a0fde8db6374ee3220d07f1f82f80de6c274c705/app/models/solr_document.rb#L256-L258
 * And lots of vue stuff
 
-### Development / Troubleshooting tips
+### Development / Testing / Troubleshooting tips
 
 One way to see what's happening is to open the browser's inspector and check the
 network tab to see exactly what's getting submitted to the Aeon.dll endpoint
@@ -39,3 +39,7 @@ are actually pulled and delivered. You can also put a note that it's a test.
 There is a test user account we could try using, the creds for which are in
 lastpass.
 
+We can't mock the interaction with Aeon in tests, so specs just test that the
+correct values are sent to the Aeon endpoint. We need to submit
+an actual request manually when we make changes since we don't have automated end-to-end
+testing of this feature.
