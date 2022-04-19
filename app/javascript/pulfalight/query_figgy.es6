@@ -12,12 +12,6 @@ export default class {
     el.setAttribute("style", cssStyle)
   }
 
-  removeLoginLink() {
-    let readingRoom = document.getElementById("readingroom")
-    readingRoom.innerHTML = "";
-    readingRoom.style.display = 'none';
-  }
-
   login() {
     let child = window.open('https://figgy.princeton.edu/users/auth/cas?login_popup=true')
 
@@ -28,28 +22,6 @@ export default class {
       }
     }
     let timer = setInterval(checkChild, 200)
-  }
-
-  constructIframe(manifestURL) {
-    const iframeElement = document.createElement("iframe")
-    const figgyUrl = 'https://figgy.princeton.edu/'
-    iframeElement.setAttribute("allowFullScreen", "true")
-    iframeElement.id = 'uv_iframe'
-    const src = "https://figgy.princeton.edu/viewer#?manifest=" + manifestURL
-    iframeElement.src = src;
-
-    return iframeElement;
-  }
-
-  constructViewerElement(manifestURL) {
-    const viewerElement = document.createElement("div")
-    viewerElement.setAttribute("class", "intrinsic-container intrinsic-container-16x9")
-    viewerElement.id = 'uv_div'
-    viewerElement.classList.add('uv__overlay')
-    const iFrameElement = this.constructIframe(manifestURL)
-    viewerElement.appendChild(iFrameElement)
-
-    return viewerElement;
   }
 
   uppercaseChar(str,underscorePosition) {
@@ -64,51 +36,61 @@ export default class {
     return document.querySelector("*[data-component-id]").getAttribute('data-component-id')
   }
 
-  checkFiggy(component_id) {
-    var xhr = new XMLHttpRequest();
+  async checkFiggy(component_id) {
     var url = "https://figgy.princeton.edu/graphql";
-    const that = this;
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4){
-          if(xhr.status === 200) {
-            var json = JSON.parse(xhr.responseText);
-            if (json.data.resourcesByOrangelightId === undefined || json.data.resourcesByOrangelightId.length == 0) {
-              that.removeLoginLink();
-            } else {
-              var figgy_id = json.data.resourcesByOrangelightId[0].id;
-              var manifestURL = "https://figgy.princeton.edu/concern/scanned_resources/" + figgy_id + "/manifest"
-
-              return fetch(manifestURL, {credentials: 'include'}).then(function(response) {
-                if(response.status == 401) { that.addLoginLink() } else if(response.status == 200) { that.renderReadingRoom(manifestURL) }
-              }).catch(function(e) {
-                console.log(e);
-              });
-
-           }
-         }
-        }
-    };
     var data = JSON.stringify({ query:`{
        resourcesByOrangelightId(id: "` + component_id + `"){
          id,
-         label,
-         sourceMetadataIdentifier,
-         url
+         embed {
+          type,
+          content,
+          status
+        }
        }
      }`
     })
-    xhr.send(data);
+
+    return fetch(url,
+      {
+        method: "POST",
+        credentials: 'include',
+        body: data,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    )
+    .then((response) => response.json().data.resourcesByOrangelightId[0])
+    .then((result) => this.embedContent(result))
   }
 
-  renderReadingRoom(manifestURL) {
-    var readingroom = document.getElementById("readingroom");
-    if(readingroom){
-      readingroom.innerHTML = "";
-      readingroom.style.backgroundColor = '#ffffff';
-      var viewerElement = this.constructViewerElement(manifestURL);
-      document.getElementById("readingroom").appendChild(viewerElement);
+  embedContent(json) {
+    if(json.embed.content === null && json.embed.status === "unauthenticated") {
+      this.addLoginLink()
+    } else if(json.embed.status === "authorized") {
+      if(this.readingRoom){
+        if(json.embed.type === "html") {
+          this.readingRoom.innerHTML = json.embed.content
+        } else if(json.embed.type === "link") {
+          this.readingRoom.innerHTML = `<a href="${json.embed.content}" class="lux-link button solid large">${this.linkLabel(json.embed.content)}</a>`
+        }
+      }
     }
+  }
+
+  get readingRoom() {
+    return document.getElementById("readingroom");
+  }
+
+  linkLabel(figgyLink) {
+    let daoLabel = this.readingRoom.dataset.daoLabel
+    if(daoLabel === '' || figgyLink != this.daoLink) {
+      return "Download Content"
+    }
+    return daoLabel
+  }
+
+  get daoLink() {
+    return this.readingRoom.dataset.daoLink
   }
 }

@@ -338,6 +338,15 @@ class SolrDocument
       end
   end
 
+  def figgy_digital_objects
+    @figgy_digital_objects ||=
+      begin
+        direct_digital_objects.select do |dao|
+          dao.href.to_s.include?(Pulfalight.config["figgy_url"])
+        end
+      end
+  end
+
   private
 
   def pulfalight_attributes

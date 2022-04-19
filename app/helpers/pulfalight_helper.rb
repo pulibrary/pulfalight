@@ -49,10 +49,13 @@ module PulfalightHelper
     super && show_presenter(document).with_field_group(config_field).field_value(field).present?
   end
 
+  # A DAO for a IIIF manifest has a uri in the role property
+  # If it's not a manifest we render the button instead of the viewer
   def display_simple_link?
     dao = document.direct_digital_objects
     return if document.direct_digital_objects&.first&.role.present?
     return if dao.blank?
+    return if document.figgy_digital_objects.present?
     uri = URI.parse(dao.first&.href)
     uri.is_a?(URI::HTTP)
   end

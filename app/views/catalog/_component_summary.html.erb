@@ -16,7 +16,10 @@
   <% if display_simple_link? %>
     <%= render_simple_link %>
   <% else %>
-    <div id="readingroom"></div>
+    <%# This is the viewer container %>
+    <%# If it's a figgy DAO, put data in this div %>
+    <%= content_tag(:div, id: "readingroom", data: { "dao-label" => document.figgy_digital_objects.first&.label, "dao-link" => document.figgy_digital_objects.first&.href }) do %>
+    <% end %>
   <% end %>
   <%= render(partial: 'show_upper_metadata_default') %>
   <%= render(partial: "show_child_table") %>

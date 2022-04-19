@@ -221,8 +221,14 @@ describe "viewing catalog records", type: :feature, js: true do
       visit "/catalog/MC302_c21357-52777"
 
       expect(page).to have_selector(
-        "a[href='https://figgy.princeton.edu/downloads/0e1a7e69-c032-460e-9518-9efb46621b5f/file/13a78648-5994-4b45-990b-89ca1d3b952f']", text: "Download Video"
+        "#readingroom" \
+          "[data-dao-label='Download Video']" \
+          "[data-dao-link='https://figgy.princeton.edu/downloads/0e1a7e69-c032-460e-9518-9efb46621b5f/file/13a78648-5994-4b45-990b-89ca1d3b952f']"
       )
+
+      # expect(page).to have_selector(
+      #   "a[href='https://figgy.princeton.edu/downloads/0e1a7e69-c032-460e-9518-9efb46621b5f/file/13a78648-5994-4b45-990b-89ca1d3b952f']", text: "Download Video"
+      # )
     end
   end
 

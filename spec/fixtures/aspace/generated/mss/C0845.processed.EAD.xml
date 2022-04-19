@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/cj82k731x">C0845</eadid><filedesc><titlestmt><titleproper>Stamo Papadaki Papers, 1922-1990 (bulk 1930-1970): Finding Aid <num>C0845</num></titleproper><author>Barbara Volz</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>1998</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2022-04-19 15:08:45 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T14:48:25.082-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Manuscripts Division </corpname>
+    </repository>
+    <unittitle>Stamo Papadaki Papers</unittitle>
+    <origination label="Creator">
+      <corpname role="asn" rules="viaf" source="local">Mouseio Synchronēs Technēs (Andros Island, Greece).</corpname>
+    </origination>
+    <origination label="Creator">
+      <persname authfilenumber="https://viaf.org/viaf/57116259" role="cre" source="viaf">Papadaki, Stamo.</persname>
+    </origination>
+    <unitid>C0845</unitid>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">36 boxes</extent>
+    </physdesc>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">24 items</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1922/1990" type="inclusive">1922-1990</unitdate>
+    <unitdate datechar="creation" normal="1930/1970" type="bulk">1930-1970</unitdate>
+    <abstract id="aspace_f3a0846cad0e2085e67ffd3d163d2bff">Consists of papers of architect, poet, editor, and author Stamo Papadaki. Included is correspondence (1922-1990) with many architects from the United States, Europe, Greece, and Brazil, as well as correspondence with organizations, artists, friends, and family. Also included are various manuscripts, articles, blueprints and plans, printed matter, photographs, and subject files on Papadaki's works.</abstract>
+    <physloc id="aspace_f7bba7363e0196c33c7a6bc62ca255dd">mss</physloc>
+    <langmaterial id="aspace_72f607257db6dcaf1f7140afca587945"><language langcode="gre"/></langmaterial>
+  </did>
+  <scopecontent id="aspace_c3609ff31340bb99dff0e534fd4899db">
+    <head>Scope and Contents</head>
+<p>The collection consists of papers of Papadaki. Included is correspondence (1922-1990) with many architects from the United States, Europe, Greece, and Brazil, such as Jorge Amado, Charles S. Ascher, Leonidas Cheferrino, Serge Chermayeff, Lucio Costa, Marcel Gautherot, Matila Ghyka, Siegfried Giedion, Walter Gropius, Jean Helion, Le Corbusier (Charles Edouard Jeanneret), Lazlo Moholy-Nagy, Oscar Niemeyer, Amedee Ozenfant, Eugene C. Petit, Alberto Sartoris, Jose Sert, and Frank Lloyd Wright. There is also correspondence with organizations, artists, friends, and family, including the Architectural Forum, Alexander Calder, John Dale, Macmillan Company, the Museum of Modern Art (N.Y.), CIAM, Michales Tompros, and Henry Yannilos, and a lengthy correspondence (1939-1979) with his sisters, Maria and Photeine, in Greece.</p><p> Works include manuscripts and photographs for his book Le Corbusier, Architect, Painter, Writer, an unpublished work entitled The Compass and the Unicorn: Modulations of the Inhabited Space (circa 1962), various articles, book reviews, and two compilations of poetry, "Les Jeux et Les Jours" and "De Trebizonde a Metaponte et au Dela" (1972).</p><p> Subject files contain correspondence, photographs, articles, notes, drawings, and printed matter relating to the development of Brasilia, his work on various projects for the CIAM, and plans for a Le Corbusier exhibition; drawings, notes, and manuscripts of his research with Le Corbusier and Le Corbusier's own writings for Le Modular (1954), a system of harmonious measurement for architects and mechanics (the papers also include an original, hand-drawn, colored, and signed "modulor" tape by Le Corbusier); covers and layouts for the magazines Plus and Progressive Architecture; plans and articles on prefabricated houses and mountain shelters; and many plans, blueprints, drawings, elevations, and photographs for other architectural projects, including the New York World's Fair pavilion, the New York International Airport, a seaside villa near Athens, office buildings on Park Avenue, exhibitions for IBEC and UNESCO, designs and photographs (circa 1981) for the Museum of Modern Art on Andros Island, Greece, and houses and commercial buildings in Greece, Brazil, and the United States.</p><p> Also present are blueprints and plans (1940s) for Papadaki's home in Washington, Connecticut, original drawings and works of abstract art, furniture designs by Papadaki and Le Corbusier, photographs of Papadaki and Le Corbusier, including a photograph of Le Corbusier with Albert Einstein, diplomas and award certificates, printed matter, including copies of the Brazilian newspaper Para Todos and publications in Greek, and articles or designs of other people such as Siegfried Giedion, Fernand Leger, Vladimir Bodiansky, Alberto Sartoris, and Andre Wogenscky.</p>  </scopecontent>
+  <accessrestrict id="aspace_b54ed9809969a3d5c44d83321218ecd9">
+    <head>Conditions Governing Access</head>
+<p>Collection is open for research use.</p>  </accessrestrict>
+  <userestrict id="aspace_b2d6c19f01b5379fb80911ec9ab41596">
+    <head>Conditions Governing Use</head>
+<p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref xlink:href="https://library.princeton.edu/special-collections/ask-us" xlink:type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
+  <acqinfo id="aspace_19de5f63a6a86de2fc1f2d12bae90b77">
+    <head>Immediate Source of Acquisition</head>
+<p>Gift of Audrey Papadaki.</p>  </acqinfo>
+  <appraisal id="aspace_a5c705bf4ceb2c6ff4b1d086a0c73228">
+    <head>Appraisal</head>
+<p>No appraisal information is available.</p>  </appraisal>
+  <prefercite id="aspace_c581e161475912172dcaf7a66379c7b9">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); Stamo Papadaki Papers, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_200fde6a841350a76bbd43edfd38b59f">
+    <head>Processing Information</head>
+<p>This collection was processed by Barbara Volz in 1998. Finding aid written by Barbara Volz in 1998.</p>  </processinfo>
+  <bioghist id="aspace_52d165f43fcf53b26ec5463f27c20bc3">
+    <note label="personal-name">Papadaki, Stamo.</note>
+    <head>Biographical / Historical</head>
+<p>Architect Stamo Papadaki was born in Athens, Greece, in 1906. He attended Athens Polytechnic and then moved to France, where he studied under Auguste Perret and others, and received his Diplome d'Architecte et d'Urbaniste in 1929. In 1935 Papadaki went to New York as the designer for American Houses, Inc., which specialized in prefabricated houses. His clients included the French government, UNESCO, and the New York Port Authority, for which he served as planner for the Idlewild (now John F. Kennedy) Airport. He also won a design competition for a pavilion for the New York World's Fair (1939-1940), served (1938-1946) on the Architectural Committee of the Museum of Modern Art (N.Y.), was an active member of CIAM (International Congress of Modern Art), and was one of the three foreign judges of the planning competition (1957) for the new Brazilian capital of Brasilia. In addition to his practice as an architect Papadaki also worked as art editor (1948-1960) for the Architectural Forum, was Professor of Architecture and Design (1948-1960) at Brooklyn College of the City University of New York, was editor of the publications Plus and Progressive Architecture, wrote two books on the Brazilian architect Oscar Niemeyer, edited Le Corbusier, Architect, Painter, Writer (1948), and authored many articles, book reviews, and works of poetry.</p>  </bioghist>
+  <controlaccess>
+    <subject source="lcsh">Architecture -- Designs and plans -- Brazil -- 20th century.</subject>
+    <subject source="lcsh">Architecture -- Designs and plans -- Greece -- 20th century.</subject>
+    <subject source="lcsh">Architecture -- Designs and plans -- United States -- 20th century.</subject>
+    <subject source="lcsh">Architecture, Domestic -- Greece -- 20th century.</subject>
+    <subject source="lcsh">Architecture, Domestic -- United States -- 20th century.</subject>
+    <subject source="lcsh">Architecture, Modern -- 20th century -- Brazil.</subject>
+    <subject source="lcsh">Architecture, Modern -- 20th century -- Greece.</subject>
+    <subject source="lcsh">Architecture, Modern -- 20th century -- United States.</subject>
+    <subject source="lcsh">Furniture design -- 20th century.</subject>
+    <subject source="lcsh">Modular coordination (Architecture).</subject>
+    <subject source="lcsh">Prefabricated houses.</subject>
+    <subject source="lcsh">Public architecture -- Brazil -- 20th century.</subject>
+    <subject source="lcsh">Seaside architecture -- Greece -- 20th century.</subject>
+    <geogname source="lcsh">Brasília (Brazil) -- Design.</geogname>
+    <geogname source="lcsh">John F. Kennedy Interantional Airport (N.Y.).</geogname>
+    <geogname source="lcsh">New York International Airport.</geogname>
+    <genreform source="aat">Architectural drawings.</genreform>
+    <genreform source="aat">Blueprints.</genreform>
+    <genreform source="aat">Correspondence.</genreform>
+    <genreform source="aat">Manuscripts.</genreform>
+    <genreform source="aat">Photographs.</genreform>
+    <occupation source="lcsh">Greek American architects -- 20th century.</occupation>
+    <famname rules="lcnaf" source="local">Papadaki family</famname>
+    <corpname rules="viaf" source="local">Mouseio Synchronēs Technēs (Andros Island, Greece).</corpname>
+    <persname authfilenumber="https://viaf.org/viaf/56612471" source="viaf">Le Corbusier, 1887-1965</persname>
+    <persname authfilenumber="https://viaf.org/viaf/95725437" source="viaf">Niemeyer, Oscar, 1907-2012</persname>
+    <persname rules="lcnaf" source="local">Papadaki, Maria</persname>
+  </controlaccess>
+  <dsc><c id="aspace_C0845_c0001" level="series"><did><unittitle>Series 1: Correspondence</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">4 boxes</extent></physdesc><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">20 items</extent></physdesc><unitdate datechar="creation" normal="1920-01-01/1992-12-31" type="inclusive">1920-1992</unitdate></did><scopecontent id="aspace_9ced585fb392249b5c7a373e240e410c"><head>Scope and Contents</head><p>The count of letters in parentheses includes letters to Papadaki and carbons of his replies when they occur.</p></scopecontent><arrangement id="aspace_cd87ac8c212a35302af5f793b5d77149"><head>Arrangement</head><p>Arranged alphabetically by correspondent.</p></arrangement><c id="aspace_C0845_c0023" level="file"><did><unittitle>Association Internationale des Critiques D'Art</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate datechar="creation" normal="1959/1959" type="inclusive">1959</unitdate><container altrender="mss" encodinganalog="NBox" id="aspace_cc7bd255cb54f60a1e5f8f31caca9e8d" label="Mixed Materials [32101037507546]" type="box">1</container><container id="aspace_9e9cd4d55d46c7152391fa8368a03f1e" parent="aspace_cc7bd255cb54f60a1e5f8f31caca9e8d" type="folder">5</container></did></c></c></dsc>
+</archdesc>
+</ead>
