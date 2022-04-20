@@ -292,8 +292,7 @@ to_field "bioghist_ssm", extract_xpath("/ead/archdesc/bioghist", to_text: false)
 
     head_nodes = element.xpath("./head")
     head_nodes.each do |head_node|
-      head_node.name = "p"
-      head_node["class"] = "head"
+      head_node.remove
     end
 
     element_html = element.to_html

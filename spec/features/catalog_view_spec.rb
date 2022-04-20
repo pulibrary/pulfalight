@@ -462,7 +462,6 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm"
 
       expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm p.personal-name", text: "Thorp, Margaret Farrand, 1891-1970"
-      expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm p.head", text: "Biographical / Historical"
       expect(page).to have_content("Margaret Louise Farrand Thorp (1891-1970), scholar, author, critic, and journalist, was born in East Orange, New Jersey, on December 3, 1891.")
 
       expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm hr"
