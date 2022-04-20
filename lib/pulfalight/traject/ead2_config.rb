@@ -291,9 +291,7 @@ to_field "bioghist_ssm", extract_xpath("/ead/archdesc/bioghist", to_text: false)
     end
 
     head_nodes = element.xpath("./head")
-    head_nodes.each do |head_node|
-      head_node.remove
-    end
+    head_nodes.each(&:remove)
 
     element_html = element.to_html
     sanitized = sanitizer.sanitize(element_html, tags: %w[extref p])
