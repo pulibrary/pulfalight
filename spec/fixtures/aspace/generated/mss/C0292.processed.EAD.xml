@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/fq977t79q">C0292</eadid><filedesc><titlestmt><titleproper>Willard Thorp and Margaret Farrand Thorp Papers, 1886-1981 (bulk 1930-1970): Finding Aid <num>C0292</num></titleproper><author>Jennifer Lindabury; Karla J. Vecchia; Faith Charlton</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>1993</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2021-09-01 15:45:55 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T13:49:33.781-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2021-06-03</date><item>Added barcodes for digitized audio. (KCB)</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Manuscripts Division </corpname>
+    </repository>
+    <unittitle>Willard Thorp and Margaret Farrand Thorp Papers</unittitle>
+    <origination label="Creator">
+      <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="col" source="viaf">Princeton University. Library. Special Collections</corpname>
+    </origination>
+    <origination label="Creator">
+      <persname authfilenumber="https://viaf.org/viaf/118489471" role="cre" source="viaf">Thorp, Margaret Farrand, 1891-1970</persname>
+    </origination>
+    <origination label="Creator">
+      <persname authfilenumber="https://viaf.org/viaf/110033000" role="cre" source="viaf">Thorp, Willard, 1899-1990</persname>
+    </origination>
+    <unitid>C0292</unitid>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">33 boxes</extent>
+    </physdesc>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">14.1 linear feet</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1886/1981" type="inclusive">1886-1981</unitdate>
+    <unitdate datechar="creation" normal="1930/1970" type="bulk">1930-1970</unitdate>
+    <abstract id="aspace_76803bcbf509b7b22ddb22f1d1dbe8ca">Consists of material which reflects the long careers of American educators, authors, and literary critics Willard and Margaret Thorp. Willard's papers (1923-1981) include correspondence, writings, class lecture notes, documents, journals and diaries, printed matter, photographs, and papers of others during his writing and teaching years at Princeton University. Margaret's papers (1917-1960) include writings, correspondence, journals, notebooks, and family sketchbooks and photographs.</abstract>
+    <physloc id="aspace_d08f0a8890f5da5d62313e2e6a0b4c8d">mss</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+.    </langmaterial>
+  </did>
+  <scopecontent id="aspace_f5efe8711cd8906092e539b115beb4da">
+    <head>Scope and Contents</head>
+<p>The collection consists of papers reflective of both Willard and Margaret Thorp's careers as authors and critics, Willard's years as a professor of English at Princeton University, and Margaret's early career in journalism. The bulk of the collection dates from the years (1930-1970) when they published the majority of their articles, reviews and books, gave their speeches, and when Willard taught his classes and was acting chairman of Princeton's English Department.</p><p> Willard's papers consist mainly of correspondence with professional colleagues; friends, particularly Allen Tate and Caroline Gordon, but also including T. S. Eliot, William Meredith, James Meriwether, Robert Penn Warren, Robert Lowell, Archibald MacLiesh, and John Berryman; organizations, such as the Modern Language Association, and the Association of Princeton Graduate Alumni; and publishers of his works, including the American Book Company, Charles Scribner's Sons, and the J. B. Lippincott Company. Much of the correspondence relates to books he wrote or contributed to, such as Modern Writing, The Lives of Eighteen from Princeton, Great Short Works of American Realism, and A Southern Reader. There are also manuscripts of articles and speeches Willard wrote, as well as class lecture notes of the courses he taught at Princeton (1932-1967), miscellaneous material regarding a senior poetry seminar, several diaries, publisher's contracts, photographs, printed matter, papers of others, and four recording of conversations with Thorp. Included is an album of original poems dedicated to Willard by seven Princeton poets, presumably his former students. A later accession consists of over 100 offprints of articles by contemporary literary scholars and critics; many of these pamphlets are inscribed to Thorp.</p><p> Margaret's papers consist of drafts of Charles Kingsley, 1819-1875 and Female Persuasion: Six Strong-Minded Women, speeches, articles, notebooks, correspondence with Allen Tate and Caroline Gordon, Vivienne Heigh (Mrs. T. S. Eliot), family letters and correspondence with her publishers, and family sketchbooks and photographs.</p>  </scopecontent>
+  <accessrestrict id="aspace_9faf41caf681817e8ddb6d56c19297e0">
+    <head>Conditions Governing Access</head>
+<p>Collection is open for research use.</p>  </accessrestrict>
+  <userestrict id="aspace_580030305bc592befc40589eb40208d1">
+    <head>Conditions Governing Use</head>
+<p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref xlink:href="https://library.princeton.edu/special-collections/ask-us" xlink:type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
+  <acqinfo id="aspace_32529db41b6919670227f37dba679e0e">
+    <head>Immediate Source of Acquisition</head>
+<p>Willard and Margaret Thorp both donated their works to Princeton University in installments over the years 1948-1989; when Margaret died in 1970, Willard donated her work as well as his own. A small amount of material in Willard's correspondence and documents sections are photostats (the location of the originals is unknown) and, for preservation purposes, some old newspaper clippings have been Xeroxed and the originals destroyed.</p>  </acqinfo>
+  <appraisal id="aspace_4f3e76aeaf9a997c9887c625481600e9">
+    <head>Appraisal</head>
+<p>No appraisal information is available.</p>  </appraisal>
+  <prefercite id="aspace_8a7c46ef8e403e4c7e26206d7ccf4a62">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); Willard Thorp Papers, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_b7f8431e80ca01dc5e4c5b7d8ac64958">
+    <head>Processing Information</head>
+<p>This collection was processed by Jennifer Lindabury and Karla J. Vecchia in 1993. Finding aid written by Jennifer Lindabury and Karla J. Vecchia in 1993.</p><p> Finding aid updated by Faith Charlton in 2020 to elucidate Margaret Farrand Thorp's role as one of the collection's creators per inclusive description-related work.</p>  </processinfo>
+  <bioghist id="aspace_530b68d528ffa8b2c7436176b4b1779d">
+    <note label="personal-name">Thorp, Margaret Farrand, 1891-1970</note>
+    <head>Biographical / Historical</head>
+<p>Margaret Louise Farrand Thorp (1891-1970), scholar, author, critic, and journalist, was born in East Orange, New Jersey, on December 3, 1891. She graduated from Smith College in 1914, received her M.A. from Smith in 1926, and her Ph.D. from Yale in 1934.</p><p> After receiving her B.A., Margaret worked on the staff of The Independent under the editorship of Hamilton Holt. A firm believer in the cause of the Allies, she was eager to get to France to serve in any way she could. The American Fund for French Wounded accepted her, and in late October 1917 she sailed for France on the Rochambeau. Once there, she edited The Weekly Bulletin issued by the Fund Cooperating with the American Red Cross for circulation in the United States. (Alice B. Toklas was one of its frequent contributors.) In her spare time Margaret worked in the canteens and as an unofficial nurse's aide in several hospitals. In March 1918 she transferred to the American Red Cross where she continued to do publicity work until after the Armistice. She was also a special correspondent to the Newark Evening Times and wrote faithfully in her own journals, recording all her experiences.</p><p> After returning from France, between 1921 and 1929, Margaret was Director of Publicity and Assistant Professor of English at Smith College. Also during this time she was a regular contributor to such publications as The Smith Alumnae Quarterly, the Christian Science Monitor, Scribner's Magazine, and the New York Evening Post. In 1929 she went to Yale to earn her Ph.D., and on June 12 of the following year married Willard Thorp, then an assistant professor at Princeton University.</p><p> Although Margaret did not continue teaching after her marriage, she continued to pursue her writing career. In 1937 she published Charles Kingsley, 1819-1875 with Princeton University Press. In 1969 Yale University Press published her popular film study, America at the Movies. In 1944 she collaborated with Willard on a textbook, Modern Writing, followed by another biography, Female Persuasion: Six Strong-Minded Women in 1949. Later writings include Neilson of Smith (1956), The Literary Sculptors (1965), and Sara Orne Jewett (1966).</p><p> In 1957 Smith College made Margaret Thorp an honorary Doctor of Letters. She died in Princeton on October 2, 1970, at the age of 79. She was a niece of Beatrix Farrand, Princeton's landscape artist.</p>  </bioghist>
+  <bioghist id="aspace_478c944a570cf2a66fab8c832a2aeadf">
+    <note label="personal-name">Thorp, Willard, 1899-1990</note>
+    <head>Biographical / Historical</head>
+<p>
+         William Willard Thorp (1899-1990), literary historian, editor, educator, author, and
+            critic, was born on April 20 in Sydney, New York. He graduated Phi Beta Kappa from
+            Hamilton College in 1920, received an A.M. the following year from Harvard, and his
+            Ph.D. in 1926 from Princeton University. That year he joined the faculty of Princeton
+            and advanced from instructor of English in 1926 to the Holmes Professor of Belles
+            Lettres in 1952, and was chairman of the English department from 1958-1963.</p><p>
+         During his years at Princeton, Willard Thorp published a number of books, innumerable
+            literary reviews and essays in philogical journals, and established himself as an
+            editor. Included among his books are The Triumph of Realism in
+               Elizabethan Drama (1928), Lives of Eighteen from
+               Princeton (1946), A Southern Reader (1955), and
+               American Writing in the 20th Century (1960). One of his
+            best-known essays is "The Well of English, Now Defiled, or, Why Johnny Can't Write," a
+            humorous piece with serious undertones in which Thorp laments the state of affairs of
+            college writing. He edited with Howard Lowry the Oxford Anthology
+               of English Poetry (Oxford University Press, 1935), and with various others
+            edited Herman Melville, Representative Selections (American
+            Book Company, 1938), and the widely-used Herman Melville,
+               Moby-Dick (Oxford University Press, 1948), Literary
+               History of the United States (first published in 1948), and Great Short Works of American Realism (Harper, 1968).</p><p>
+         Aside from his literary accomplishments and his popularity with undergraduates, one of
+            Willard Thorp's greatest contributions to Princeton University was the development in
+            1942 of the special program in American civilization, now called the American Studies
+            Program. He directed this for the first thirteen years, and strove to bring American
+            civilization to light through studying culture, institution, intellectual tradition, and
+            relationships among groups. The program grew until it included faculty and
+            undergraduates from nine cooperating departments. One of the special interest courses
+            taught by Thorp in this program was "The Age of Dryden."</p><p>
+         Willard Thorp also kept busy traveling to various universities as a visiting professor.
+            He went to the University of Virginia in 1947, was the Anderson Visiting Professor at
+            the Rice Institute in 1952-1953, and taught summers at the University of Hawaii,
+            University of Washington, Seattle, and Duke University.</p><p>
+         Thorp retired from Princeton University in 1967, remaining in Princeton until his death
+            at age 90 in 1990. He was honored in 1972 with the establishment of the Willard Thorp
+            Thesis Prize in American Civilization, and in 1978 was awarded an L.H.D.</p><p>
+         <chronlist>
+            <chronitem>
+               <date normal="1899">1899</date>
+               <event>Born in Sidney, New York, on April 20</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1920">1920</date>
+               <event>A.B., Hamilton College</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1921">1921</date>
+               <event>A.M., Harvard University</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1921/1924">1921-1924</date>
+               <event>instructor, then became assistant professor, Smith College</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1926">1926</date>
+               <event>Ph.D., Princeton University</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1926/1928">1926-1928</date>
+               <event>instructor in English, Princeton University</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1928">1928</date>
+               <event>published The Triumph of Realism in Elizabethan
+                     Drama, Princeton University Press </event>
+            </chronitem>
+            <chronitem>
+               <date normal="1928/1939">1928-1939</date>
+               <event>assistant professor, Princeton University</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1930">1930</date>
+               <event>married Margaret Farrand on June 12</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1931/1932">1931-1932</date>
+               <event>Fellow, American Council of Learned Societies</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1932">1932</date>
+               <event>published Poetry of the Transition, 1850-1914
+                  with Thomas M. Parrott, Oxford University Press </event>
+            </chronitem>
+            <chronitem>
+               <date normal="1934">1934</date>
+               <event>published Songs from the Restoration Theater,
+                  Princeton University Press </event>
+            </chronitem>
+            <chronitem>
+               <date normal="1935">1935</date>
+               <event>published Oxford Anthology of English Poetry with
+                  Howard Lowry, Oxford University Press </event>
+            </chronitem>
+            <chronitem>
+               <date normal="1936">1936</date>
+               <event>summer professor, University of Hawaii</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1938">1938</date>
+               <event>published Herman Melville, Representative
+                     Selections, American Book Company </event>
+            </chronitem>
+            <chronitem>
+               <date normal="1939/1944">1939-1944</date>
+               <event>associate professor, Princeton University</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1944">1944</date>
+               <event>published Modern Writing with Margaret Farrand
+                  Thorp, American Book Company </event>
+            </chronitem>
+            <chronitem>
+               <date normal="1944">1944</date>
+               <event>professor, Princeton University</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1944/1949">1944-1949</date>
+               <event>Fellow of American Letters, Library of Congress</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1946">1946</date>
+               <event>published Lives of Eighteen from Princeton,
+                  Princeton University Press </event>
+            </chronitem>
+            <chronitem>
+               <date normal="1947">1947</date>
+               <event>Honorary Litt. D. from Hamilton College</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1948">1948</date>
+               <event>published Herman Melville, Moby-Dick, Oxford
+                  University Press </event>
+            </chronitem>
+            <chronitem>
+               <date normal="1950/1957">1950-1957</date>
+               <event>member of the editorial board, American Literature</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1952">1952</date>
+               <event>Holmes Professor of Belles Lettres, Princeton University</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1952/1953">1952-1953</date>
+               <event>Anderson Visiting Professor, Rice Institute, Texas</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1954/1957">1954-1957</date>
+               <event>executive council, Modern Language Association</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1955">1955</date>
+               <event>published A Southern Reader, Alfred A. Knopf
+               </event>
+            </chronitem>
+            <chronitem>
+               <date normal="1958/1959">1958-1959</date>
+               <event>president, American Studies Association</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1958/1963">1958-1963</date>
+               <event>chairman, Department of English, Princeton University</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1960">1960</date>
+               <event>published American Writing in the Twentieth
+                     Century, Harvard University Press </event>
+            </chronitem>
+            <chronitem>
+               <date normal="1960">1960</date>
+               <event>L.H.D. from Kalamazoo College</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1966/1967">1966-1967</date>
+               <event>Guggenheim fellow</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1967">1967</date>
+               <event>retired from Princeton University</event>
+            </chronitem>
+            <chronitem>
+               <date normal="1968">1968</date>
+               <event>published Great Short Works of the American
+                     Renaissance, Harper </event>
+            </chronitem>
+            <chronitem>
+               <date normal="1968">1968</date>
+               <event>published Great Short Works of American Realism,
+                  Harper </event>
+            </chronitem>
+            <chronitem>
+               <date normal="1990">1990</date>
+               <event>died in Princeton, February 15, at 90 years old</event>
+            </chronitem>
+         </chronlist>
+      </p>  </bioghist>
+  <controlaccess>
+    <subject source="lcsh">American poetry -- 20th century.</subject>
+    <subject source="lcsh">American poetry -- Study and teaching -- New Jersey -- Princeton -- 20th century.</subject>
+    <subject source="lcsh">Authors and publishers -- United States -- 20th century -- Correspondence.</subject>
+    <subject source="lcsh">Critics -- United States -- Correspondence.</subject>
+    <subject source="lcsh">Women authors, American--20th century.</subject>
+    <subject source="lcsh">Women in journalism—United States—History—20th century.</subject>
+    <subject source="lcsh">Women journalists—United States.</subject>
+    <genreform source="aat">American diaries -- 20th century.</genreform>
+    <genreform source="aat">Correspondence.</genreform>
+    <genreform source="aat">Notebooks.</genreform>
+    <genreform source="aat">Photographs.</genreform>
+    <corpname authfilenumber="https://viaf.org/viaf/142586770" source="viaf">Modern language association of America</corpname>
+    <persname authfilenumber="https://viaf.org/viaf/111626048" source="viaf">Gordon, Caroline, 1895-1981</persname>
+    <persname authfilenumber="https://viaf.org/viaf/44325423" source="viaf">Tate, Allen, 1899-1979</persname>
+  </controlaccess>
+  <dsc/>
+</archdesc>
+</ead>
