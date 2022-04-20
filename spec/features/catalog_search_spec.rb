@@ -30,7 +30,7 @@ describe "catalog searches", type: :feature, js: true do
     end
     it "returns all components in that collection", js: false do
       visit "/?search_field=all_fields&group=false&q=Walter Dundas Bathurst Papers"
-      expect(page).to have_text("17 entries")
+      expect(page).to have_text("34 entries")
     end
   end
 
