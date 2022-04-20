@@ -185,7 +185,7 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page.body).to include "Middle East -- Politics"
     end
   end
-  context "when a component has a digital object with a manifest" do
+  context "when a component has a digital object with a manifest", js: false do
     before do
       visit "/catalog/MC221_c0094"
     end
