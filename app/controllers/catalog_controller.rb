@@ -348,6 +348,7 @@ class CatalogController < ApplicationController
     config.add_component_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "summary_storage_note_ssm", label: "Storage Note"
+    config.add_component_field "processinfo_ssm", label: "Processing Information", helper_method: :paragraph_separator, accessor: :fetch_html_safe
 
     config.add_component_field "topics_ssim", label: "Topics", link_to_facet: true, separator_options: {
       words_connector: "<br/>",
