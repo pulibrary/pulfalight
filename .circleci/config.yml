@@ -1,13 +1,16 @@
-version: 2
+version: 2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.2.5
 jobs:
   build:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: circleci/ruby:2.7.5-node-browsers
+      - image: cimg/ruby:2.7.5-browsers
         environment:
           RAILS_ENV: test
     steps:
+      - browser-tools/install-browser-tools
       - checkout
       - run:
           name: Install node@lts/erbium (need right version for `yarn`)
@@ -60,7 +63,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: circleci/ruby:2.7.5-node-browsers
+      - image: cimg/ruby:2.7.5-browsers
         environment:
           RAILS_ENV: test
     steps:
@@ -89,7 +92,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: circleci/ruby:2.7.5-node-browsers
+      - image: cimg/ruby:2.7.5-browsers
         environment:
           RAILS_ENV: test
           PULFALIGHT_DB_HOST: localhost
@@ -111,6 +114,7 @@ jobs:
     environment:
       SPEC_OPTS: --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
     steps:
+      - browser-tools/install-browser-tools
       - attach_workspace:
           at: '~/pulfalight'
       # project database settings
@@ -170,7 +174,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: circleci/ruby:2.7.5-node-browsers
+      - image: cimg/ruby:2.7.5-browsers
         environment:
           RAILS_ENV: test
     steps:
