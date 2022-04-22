@@ -22,7 +22,6 @@ class AeonRequest
       AeonForm: "EADRequest",
       RequestType: "Loan",
       DocumentType: "Manuscript",
-      Site: site,
       Location: container_locations
     }.merge(grouping_options).merge(all_request_attributes)
   end
@@ -51,6 +50,7 @@ class AeonRequest
   def request_attributes(box)
     {
       Request: request_id(box),
+      "Site_#{request_id(box)}": site,
       "Location_#{request_id(box)}": translate_location_code(box["location_code"]),
       "GroupingField_#{request_id(box)}": grouping_identifier(box),
       "ItemSubTitle_#{request_id(box)}": subtitle,

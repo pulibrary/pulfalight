@@ -208,7 +208,6 @@ RSpec.describe AeonRequest do
       expect(request.form_attributes[:AeonForm]).to eq "EADRequest"
       expect(request.form_attributes[:RequestType]).to eq "Loan"
       expect(request.form_attributes[:DocumentType]).to eq "Manuscript"
-      expect(request.form_attributes[:Site]).to eq "RBSC"
       expect(request.form_attributes[:Location]).to eq "mss"
       expect(request.form_attributes[:GroupingIdentifier]).to eq "GroupingField"
       expect(request.form_attributes[:GroupingOption_ReferenceNumber]).to eq "Concatenate"
@@ -255,7 +254,8 @@ RSpec.describe AeonRequest do
       document = SolrDocument.new(component)
 
       request = document.aeon_request
-      expect(request.form_attributes[:Site]).to eq "RBSC"
+      request_id = request.form_attributes[:Request]
+      expect(request.form_attributes[:"Site_#{request_id}"]).to eq "RBSC"
     end
   end
   context "when it's a component with rcpph mapping" do
@@ -268,7 +268,8 @@ RSpec.describe AeonRequest do
       document = SolrDocument.new(component)
 
       request = document.aeon_request
-      expect(request.form_attributes[:Site]).to eq "MUDD"
+      request_id = request.form_attributes[:Request]
+      expect(request.form_attributes[:"Site_#{request_id}"]).to eq "MUDD"
       expect(request.form_attributes[:Location]).to eq "ReCAP"
     end
   end
@@ -282,11 +283,12 @@ RSpec.describe AeonRequest do
       document = SolrDocument.new(component)
 
       request = document.aeon_request
-      expect(request.form_attributes[:Site]).to eq "RBSC"
       expect(Array.wrap(request.form_attributes[:Request]).length).to eq 2
       request1 = request.form_attributes[:Request][0]
       request2 = request.form_attributes[:Request][1]
 
+      expect(request.form_attributes[:"Site_#{request1}"]).to eq "RBSC"
+      expect(request.form_attributes[:"Site_#{request2}"]).to eq "RBSC"
       expect(request.form_attributes[:"ItemVolume_#{request1}"]).to eq "Box 1"
       expect(request.form_attributes[:"ItemNumber_#{request1}"]).to eq "32101037597877"
       expect(request.form_attributes[:"ItemInfo4_#{request1}"]).to eq "NBox"
