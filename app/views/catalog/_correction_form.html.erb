@@ -1,6 +1,11 @@
 <% if form.submitted? %>
-  <div class="alert alert-success" role="alert">
-    Thank you for your submission.
+  <div class="suggest_a_correction_instructions">
+  Dear Researcher<br><br>
+  Thank you for submitting a message through the Suggest a Correction form on the Princeton University Library Finding Aids site. Our staff will review your suggestion and assess the practicality of its implementation, as well as its conformance to national and international standards for archival description and current best practices in the field. You may not hear back from us, but, rest assured, we assess each suggestion we receive carefully before determining if and how to implement it.
+  <br>
+  <br>
+  Sincerely,<br>
+  Archival Description and Processing Team
   </div>
 <% end %>
 <%= simple_form_for form, url: contact_suggest_path, remote: true do |f| %>
