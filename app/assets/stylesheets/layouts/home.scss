@@ -133,3 +133,58 @@
     }
   }
 }
+
+.ask-us-widget-float-btn {
+    border: none;
+    padding: 0.75em 0.75em 0.5em 0.75em;
+    border-radius: 5px;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    flex: 0 0 auto;
+    box-shadow: 0.1em 0.2em 0.5em #ccc;
+    font-size: .9em;
+    background-color: #E77500 !important;
+    color: #ffffff !important;
+    letter-spacing: .1em;
+    height: auto;
+    z-index: 501;
+}
+
+.ask-us-widget-float {
+    position: fixed;
+    bottom: 1px;
+    right: 1px;
+    z-index: 1000;
+    padding: 1em;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-content: flex-end;
+    align-items: flex-end;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.lux-main-menu {
+    margin-bottom: 0px !important;
+}
+
+nav li.lux-has-children:nth-child(2) > button::before {
+  background-image: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20xmlns%3Axlink%3D%22http%3A//www.w3.org/1999/xlink%22%3E%0A%20%20%20%20%3Cg%20fill%3D%22%23e87411%22%3E%0A%20%20%20%20%20%20%20%20%3Cpath%20d%3D%22M23.5%2C0h-23c-0.276%2C0%20-0.5%2C0.224%20-0.5%2C0.5v16c0%2C0.276%200.224%2C0.5%200.5%2C0.5h6.5v3.5c0%2C0.444%200.54%2C0.668%200.853%2C0.354l3.854%2C-3.854h11.793c0.276%2C0%200.5%2C-0.224%200.5%2C-0.5v-16c0%2C-0.276%20-0.224%2C-0.5%20-0.5%2C-0.5Z%22%20transform%3D%22translate%280%2C%201%29%22%3E%3C/path%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%20%20%3Cpath%20fill%3D%22none%22%20d%3D%22M0%2C0h24v24h-24Z%22%3E%3C/path%3E%0A%3C/svg%3E);
+  color: #e87411;
+  content: "";
+  display: inline-block;
+  height: 18px;
+  margin-right: 0.5em;
+  text-decoration: none;
+  vertical-align: middle;
+  width: 18px;
+}
+
+.feedback-container {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
