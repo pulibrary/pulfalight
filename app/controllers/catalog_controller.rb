@@ -45,7 +45,7 @@ class CatalogController < ApplicationController
   def show_query_params
     # Remove all filter queries from show - allows JSON for unpublished views to
     # be shown, for Figgy synchronizing.
-    if request.format == :json
+    if request.format == :json && params[:auth_token].to_s == Pulfalight.config["unpublished_auth_token"]
       { fq: [] }
     else
       {}

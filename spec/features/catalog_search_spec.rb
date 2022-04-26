@@ -22,8 +22,12 @@ describe "catalog searches", type: :feature, js: true do
       visit "/catalog/C0744-04"
       expect(page).to have_content "The page you were looking for doesn't exist."
     end
-    it "has a JSON endpoint" do
+    it "doesn't normally return JSON" do
       visit "/catalog/C0744-04_c0117.json"
+      expect(page).to have_content "Not Found"
+    end
+    it "returns JSON if given an auth token" do
+      visit "/catalog/C0744-04_c0117.json?auth_token=#{Pulfalight.config['unpublished_auth_token']}"
       expect(page).to have_content "Garrett Ethiopic Magic Scroll No. 23"
     end
   end
