@@ -16,7 +16,7 @@ class CatalogController < ApplicationController
 
   # @see Blacklight::Catalog#show
   def show
-    deprecated_response, @document = search_service.fetch(params[:id])
+    deprecated_response, @document = search_service.fetch(params[:id], show_query_params)
     @response = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(deprecated_response, "The @response instance variable is deprecated; use @document.response instead.")
 
     # If the item can be requested, construct the request
@@ -42,6 +42,16 @@ class CatalogController < ApplicationController
     end
   end
 
+  def show_query_params
+    # Remove all filter queries from show - allows JSON for unpublished views to
+    # be shown, for Figgy synchronizing.
+    if request.format == :json
+      { fq: [] }
+    else
+      {}
+    end
+  end
+
   def index
     query_param = params[:q]
     match = /^(aspace_)?(?<identifier>[A-z]{1,2}\d{3,4})([.-].*)?(_c.*)?$/.match(query_param)
@@ -49,13 +59,11 @@ class CatalogController < ApplicationController
 
     # Try and take the user directly to the show page
     id = query_param.tr(".", "-").gsub(match[:identifier], match[:identifier].upcase)
-    server_response = Blacklight.default_index.connection.get("select", params: { q: "id:#{id.tr('.', '-')}" })
-    solr_response = server_response["response"]
-    docs = solr_response["docs"]
-    return super if docs.empty?
-
-    @document = SolrDocument.new(docs.first)
+    _response, doc = search_service.fetch(id)
+    @document = doc
     redirect_to solr_document_path(id: @document)
+  rescue Blacklight::Exceptions::RecordNotFound
+    super
   end
 
   # This overrides Arclight::FieldConfigHelpers#item_requestable?
@@ -98,7 +106,9 @@ class CatalogController < ApplicationController
     # }
 
     config.default_document_solr_params = {
-      fl: "*"
+      fl: "*",
+      # Block unpublished EADs from being navigated to.
+      fq: ["audience_ssi:[* TO *] -audience_ssi:internal"]
     }
 
     # solr field configuration for search results/index views

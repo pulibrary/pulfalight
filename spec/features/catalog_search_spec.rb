@@ -13,6 +13,21 @@ describe "catalog searches", type: :feature, js: true do
     end
   end
 
+  context "when searching for an unpublished collection", js: false do
+    it "does not return it" do
+      visit "/?search_field=all_fields&q=c0744.04"
+      expect(page).to have_content "No results found for your search"
+    end
+    it "doesn't return a show page" do
+      visit "/catalog/C0744-04"
+      expect(page).to have_content "The page you were looking for doesn't exist."
+    end
+    it "has a JSON endpoint" do
+      visit "/catalog/C0744-04_c0117.json"
+      expect(page).to have_content "Garrett Ethiopic Magic Scroll No. 23"
+    end
+  end
+
   context "when searching for a specific collection by title", js: false do
     before do
       visit "/?search_field=all_fields&q=david+e.+lilienthal+papers%2C+1900-1981"

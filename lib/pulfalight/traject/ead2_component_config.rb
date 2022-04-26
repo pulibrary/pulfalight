@@ -52,6 +52,10 @@ to_field "ead_ssi" do |_record, accumulator, _context|
   accumulator << ead_ids.first if ead_ids.present?
 end
 
+to_field "audience_ssi" do |_record, accumulator, _context|
+  accumulator.concat settings[:root].output_hash["audience_ssi"]
+end
+
 to_field "title_filing_si", extract_xpath("./did/unittitle"), first_only
 to_field "title_ssm", extract_xpath("./did/unittitle")
 to_field "title_teim", extract_xpath("./did/unittitle")

@@ -4,7 +4,7 @@ class SearchBuilder < Blacklight::SearchBuilder
   include Arclight::SearchBehavior
   include BlacklightRangeLimit::RangeLimitBuilder
 
-  self.default_processor_chain += [:remove_grouping, :boost_collections, :strip_quotes]
+  self.default_processor_chain += [:remove_grouping, :boost_collections, :strip_quotes, :filter_unpublished]
 
   def remove_grouping(solr_params)
     # Remove grouping parameters if faceting by collection
@@ -20,5 +20,10 @@ class SearchBuilder < Blacklight::SearchBuilder
   def strip_quotes(solr_params)
     return unless solr_params[:q]
     solr_params[:qs] = 2
+  end
+
+  def filter_unpublished(solr_params)
+    solr_params[:fq] ||= []
+    solr_params[:fq] << "-audience_ssi:internal"
   end
 end
