@@ -108,7 +108,7 @@ class CatalogController < ApplicationController
     config.default_document_solr_params = {
       fl: "*",
       # Block unpublished EADs from being navigated to.
-      fq: ["audience_ssi:[* TO *] -audience_ssi:internal"]
+      fq: ["id:[* TO *] -audience_ssi:internal"]
     }
 
     # solr field configuration for search results/index views
