@@ -4,6 +4,7 @@ defaults: &defaults
   archivespace_user: <%= ENV["ASPACE_USER"] %>
   archivespace_password: <%= ENV["ASPACE_PASSWORD"] %>
   aeon_url: 'https://lib-aeon.princeton.edu/aeon/Aeon.dll'
+  unpublished_auth_token: <%= ENV["UNPUBLISHED_AUTH_TOKEN"] %>
 
 development:
   <<: *defaults
@@ -13,6 +14,7 @@ test:
   archivespace_url: "https://aspace.test.org/staff/api"
   archivespace_user: "test"
   archivespace_password: "password"
+  unpublished_auth_token: "123456"
 
 production:
   <<: *defaults
