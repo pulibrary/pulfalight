@@ -138,14 +138,12 @@ class AeonRequest
 
   def boxes
     container_information.select do |container|
-      container["label"].to_s.downcase.include?("box")
+      container["label"].to_s.downcase.include?("box") || container["profile"].include?("OS folder")
     end
   end
 
   def non_boxes
-    container_information.select do |container|
-      !container["label"].to_s.downcase.include?("box")
-    end
+    container_information - boxes
   end
 
   def title
