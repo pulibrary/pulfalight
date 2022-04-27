@@ -779,5 +779,19 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(values.length).to eq(2)
       expect(values).to eq(child_values)
     end
+
+    context "when given component bioghists" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0140.processed.EAD.xml")
+      end
+      it "indexes them" do
+        record = find_component(result, "C0140_c80184-00264")
+
+        values = record["bioghist_ssm"]
+
+        expect(values.first).to include("Pierre Samuel Du Pont de Nemours (1739-1817)")
+        expect(values.first).to include("<p class=\"personal-name\">Du Pont de Nemours</p>")
+      end
+    end
   end
 end

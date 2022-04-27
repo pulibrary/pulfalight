@@ -604,6 +604,10 @@ to_field "topics_ssim", extract_xpath('./controlaccess/subject[@source="local"]'
 # For find-more tab
 to_field "genreform_ssim", extract_xpath("./controlaccess/genreform")
 
+to_field "bioghist_ssm", extract_xpath("./bioghist", to_text: false) do |_record, accumulator|
+  build_bioghist(accumulator)
+end
+
 to_field "components" do |record, accumulator, context|
   child_components = record.xpath("./*[is_component(.)]", NokogiriXpathExtensions.new)
   child_components.each do |child_component|

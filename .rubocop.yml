@@ -41,6 +41,7 @@ Metrics/MethodLength:
     - 'lib/tasks/pulfalight.rake'
     - 'app/values/aeon_request.rb'
     - 'lib/pulfalight/normalized_box_locations.rb'
+    - 'lib/pulfalight/traject/ead2_indexing.rb'
 Layout/LineLength:
   Exclude:
     - 'spec/features/traject/ead2_indexing_spec.rb'
