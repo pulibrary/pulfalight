@@ -40,7 +40,8 @@ class AspaceFixtureGenerator
     "AC198",
     "C1629",
     "AC136",
-    "AC362",
+    "AC362",  # has james baker components
+    "MC197",  # collection is called james baker
     "AC317",
     "MC014",
     "COTSEN4",
@@ -114,7 +115,8 @@ class AspaceFixtureGenerator
     "MC016" => ["aspace_MC016_c1866"],
     "AC198" => [],
     "AC136" => ["aspace_AC136_c2889"],
-    "AC362" => ["aspace_AC362_c01738"],
+    "AC362" => ["aspace_AC362_c01738", "aspace_AC362_c00815"],
+    "MC197" => ["aspace_MC197_c04517"],
     "AC317" => ["aspace_AC317_c36874-31598"],
     "MC014" => ["aspace_MC014_c03682"],
     "MC147" => ["aspace_MC147_c07283-24964"],

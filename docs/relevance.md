@@ -13,7 +13,7 @@ correct type of field.
 
 ## Current relevance functionality
 
-* [#146](https://github.com/pulibrary/pulfalight/issues/146), [#560](https://github.com/pulibrary/pulfalight/issues/560) Any collection title that contains the search terms should have prioritized ranking, and if the collection title starts with the search terms, it should have highest ranking.
+* [#146](https://github.com/pulibrary/pulfalight/issues/146), [#560](https://github.com/pulibrary/pulfalight/issues/560), [#982](https://github.com/pulibrary/pulfalight/issues/982) Any collection title that contains the search terms should have prioritized ranking, and if the collection title starts with the search terms, it should have highest ranking.
   * For example, a search for `John Foster Dulles` should put the John Foster Dulles Collection at the top
 * [#557](https://github.com/pulibrary/pulfalight/issues/557) A keyword search for a name should only return results that match the name completely
   * For example, a search for `Frederick Vinton` should have a small result set, only returning records containing both words

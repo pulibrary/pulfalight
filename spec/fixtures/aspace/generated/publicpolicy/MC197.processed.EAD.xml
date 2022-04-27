@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/tm70mv18x">MC197</eadid><filedesc><titlestmt><titleproper>James A. Baker III Papers, 1957-2011 (bulk 1972-1992): Finding Aid <num>MC197</num></titleproper><author>Daniel A. Santamaria</author><sponsor>These papers were processed with the generous support of David M. Rubenstein.</sponsor></titlestmt><publicationstmt><publisher>Public Policy Papers</publisher><p><date>2005</date></p><address><addressline>Seeley G. Mudd Manuscript Library</addressline><addressline>65 Olden Street</addressline><addressline>Princeton, New Jersey 08540</addressline><addressline>mudd@princeton.edu</addressline><addressline>URL: <extptr xlink:href="http://www.princeton.edu/mudd" xlink:show="new" xlink:title="http://www.princeton.edu/mudd" xlink:type="simple"/></addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2022-04-27 10:21:31 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T16:34:46.386-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2012-12-18T12:52:43.248-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2013-08-06T10:47:06.035-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2015-05-28T09:44:49.544-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-11-08T15:51:04.61-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-12-20T15:51:56.122-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Public Policy Papers</corpname>
+    </repository>
+    <unittitle>James A. Baker III Papers</unittitle>
+    <origination label="Creator">
+      <persname authfilenumber="https://viaf.org/viaf/50034099" role="cre" source="viaf">Baker, James Addison, 1930-</persname>
+    </origination>
+    <unitid>MC197</unitid>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">340 boxes</extent>
+    </physdesc>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">4 items</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1957/2011" type="inclusive">1957-2011</unitdate>
+    <unitdate datechar="creation" normal="1972/1992" type="bulk">1972-1992</unitdate>
+    <abstract id="aspace_af379fa80d258350e1360a4d6d5d3566">James A. Baker III served in senior government positions under three United States Presidents and was a central figure in the administrations of Ronald Reagan and George Bush in the 1980s and early 1990s. Baker also led presidential campaigns for Presidents Gerald Ford, Reagan and Bush over the course of five consecutive presidential elections from 1976 to 1992. The papers document nearly every stage of Baker's career, including his work on presidential campaigns, his time as White House Chief of Staff for both Reagan and Bush, and his terms as Secretary of the Treasury under Reagan and Secretary of State under Bush.</abstract>
+    <physloc id="aspace_c4a69fb24dd41b3546965e2dcbac2de2">mudd</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+.    </langmaterial>
+  </did>
+  <scopecontent id="aspace_7fe318535d4efe1dd2c39e1feb9c555f">
+    <head>Scope and Contents</head>
+<p>The James A. Baker III Papers document nearly every aspect of Baker's long career in politics and public service, including his time as White House Chief of Staff and Secretary of the Treasury under President Ronald Reagan, his term as Secretary of State under George H.W. Bush, and his work leading the presidential campaigns of Presidents Ford, Reagan, and Bush. Little documentation of Baker's time as Chief of Staff to President Bush from August 1992 to January 1993 is present in the papers.</p><p> The collection includes a variety of correspondence, memos, handwritten notes, speech transcripts, video and audio tapes, and other material related to Baker's positions in government and on political campaigns. The collection also includes material documenting Baker's legal career and early political efforts, including a substantial amount of correspondence with future President George H.W. Bush, written between Baker and Bush in the 1960s and 1970s. Substantial documentation of the 1978 Texas Attorney General Campaign, the only time Baker ran for political office himself, also exists.</p><p> Please see individual series descriptions for detailed information about the scope of each series.</p>  </scopecontent>
+  <accessrestrict id="aspace_224ff2f375409c6fb53d4fb53b85b11e">
+    <head>Conditions Governing Access</head>
+<p>Collection is open for research use, with the following exceptions:</p><p> Interview transcripts in Series 12: The Politics of Diplomacy are closed unless permission, specific to each transcript, is granted by Secretary Baker as well as the person who gave the interview. Please contact the library for additional details. Audio cassette tapes of the same interviews in Series 14: Audiovisual Materials are also restricted; audio interviews related to The Politics of Diplomacy are closed unless permission, specific to each interview, is granted by Secretary Baker as well as the person who gave the interview.</p>  </accessrestrict>
+  <phystech id="aspace_b3721b878605e096a351628b946ae890">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>The audiovisual series includes videotapes on VHS and various other formats. Access to these materials follows the Mudd Manuscript Library <extref xlink:href="http://rbsc.princeton.edu/policies/mudd-library-imaging-guidelines-and-price-list#Audio%20visual" xlink:type="simple">policy for preservation and access to audiovisual materials</extref>.</p>  </phystech>
+  <userestrict id="aspace_fee7273e2d11fba15cf41d37e9a44129">
+    <head>Conditions Governing Use</head>
+<p>Single photocopies may be made for research purposes. For quotations that are fair use as defined under <extref xlink:href="http://copyright.princeton.edu/basics/fair-use" xlink:type="simple">U. S. Copyright Law</extref>, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use.</p>  </userestrict>
+  <custodhist id="aspace_df403d36127bb267fd7645756d7d58ee">
+    <head>Custodial History</head>
+<p>The Baker Papers were housed at the Woodson Research Center, Fondren Library, at Rice University until December 2002. Material donated in October 2004 was previously kept at the Baker Institute for Public Policy at Rice University and Baker Botts law firm in Houston.</p>  </custodhist>
+  <acqinfo id="aspace_5ba6e51dfd9e0db291818d20cd4e0e5a">
+    <head>Immediate Source of Acquisition</head>
+<p>The collection was donated by James A. Baker III in <date type="aquisition" normal="2002/2002">2002</date>. Additional accessions were donated in <date type="aquisition" normal="2004-10-18">October 2004</date>, <date type="aquisition" normal="2011-02">February 2011</date> and <date type="aquisition" normal="2011-08">August 2011</date>.</p>  </acqinfo>
+  <appraisal id="aspace_0986aa6d71d72b678471967d031fb0e9">
+    <head>Appraisal</head>
+<p>Duplicates, material of little evidential or information value, and strictly personal documents have been returned to Secretary Baker. A large volume of newspaper clippings from major American newspapers have also been returned.</p><p> The February 2011 accession originally included four additional series, which were subsequently separated.</p><p> A series of board membership records spanned Baker's pre- and post-Washington career (additionally, some files from his work on the boards of regional organizations during the 1960's and '70s were interspersed throughout his personal financial records). Board participation during his post-Washington career includes work with St. Luke's hospital, Rice University, the Howard Hughes Medical Institute, the University of Bremen, Electronic Data Systems, Radiant Energy Corporation, and King Ranch. These records encompassed twenty linear feet, were non-unique, and of extremely limited research value.</p><p> A series called soft costs documented accounting within Baker Botts of how to expense Baker's political work using Baker Botts resources was also removed from the collection. The series of two boxes consisted of spreadsheets of phone logs and billing codes, and no material regarding the substance of Baker's political work.</p><p> A series of campaign contributions from Baker's 1978 Attorney General campaign included two boxes of index cards of campaign contributors' contact information.</p><p> Finally, the "Income Tax Records" series is the only surviving part of what was once a series of personal financial records, spanning the 1960s through the beginning of the Reagan administration, which included cancelled checks, financial statements from investments, receipts, tax returns, trust statements, documentation from family legal issues and statements from charitable organizations. Because these records included personally identifiable information and were of limited research value, the vast majority were separated from the collection, although Baker's tax returns were retained.</p>  </appraisal>
+  <accruals id="aspace_b1a4e3ac9b1f0a3bcdc0f73707381506">
+    <head>Accruals</head>
+<p>Accruals may occur at a later date.</p>  </accruals>
+  <altformavail id="aspace_a079fe9962522cb1eb6bc82280e675ce">
+    <head>Existence and Location of Copies</head>
+<p>Microfilm of the collection will be available at the Woodson Research Center, Fondren Library, at Rice University.</p>  </altformavail>
+  <relatedmaterial id="aspace_652e958cb74eb482317474fa34a3f9e3">
+    <head>Related Materials</head>
+<p>Collections of related material are available at the presidential libraries of Presidents Ford, Reagan, and George H.W. Bush. The Reagan library includes a collection of Baker's White House files (BAKER, JAMES A. III: Files, 1981-1985). The library also has a number of collections related to Baker's assistants, including James Cicconi, Richard Darman, Frank Hodsoll, and Margaret Tutwiler, which contain a large amount of material documenting his work.</p><p> The Baker Institute for Public Policy maintains a collection of memorabilia, political cartoons, and select documents, as well as a large number of photographs. Many photographs of Baker may also be found in Official White House photograph collections available through the Reagan and Bush Libraries.</p><p> Researchers may also wish to contact the National Archives and Records Administration, as well as the Office of the Historian at the Department of State.</p>  </relatedmaterial>
+  <prefercite id="aspace_015bb5dccf39b5fd9c26c2bf2dbeeb23">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); James A. Baker Papers, Box and Folder Number; Public Policy Papers, Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_f728338b3c2203a8eb212ede1c293cd3">
+    <head>Processing Information</head>
+<p>This collection was processed by Daniel A. Santamaria and Joanna Peery Polyn in 2004, and updated in 2011 by Maureen Callahan. Finding aid written by Daniel A. Santamaria in 2004 and updated in 2011.</p>  </processinfo>
+  <bioghist id="aspace_c0b35bdf4e23dc8e4c8638d6bf07e3ae">
+    <note label="personal-name">Baker, James Addison, 1930-</note>
+    <head>Biographical / Historical</head>
+<p>The Leadership Documentary Project was created by PS Productions, a five-person multi-media production company that included Executive Producer Andrew M. Ling, Producer and Director Townley Patton, and PS Communication's director Phil Schwenk. In addition to the existing PS Production team, Mark Higbie was hired as Associate Producer and Coordinator, David Paton as the writer, and Jose A. Salgado as a videographer.</p><p> The documentary was the company's first major production and had the approval of James A. Baker III, a close friend of Townley Paton's father, David Paton '52.</p>  </bioghist>
+  <bibliography id="aspace_b4b42e09fd2788449ac6d9d37571d2d2">
+    <head>Bibliography</head>
+<p>The following works were consulted during preparation of the biographical note: Baker, James A. III, The Politics of Diplomacy: Revolution, War and Peace, 1989-1992. New York: George G. Putnam &amp; Sons, 1995. Newhouse, John, "Profiles: The Tactician," [James A. Baker III], The New Yorker, 7 May 1990, pp/ 50-82.</p>  </bibliography>
+  <controlaccess>
+    <subject source="lcsh">Diplomacy.</subject>
+    <subject source="lcsh">Finance, Public--United States.</subject>
+    <subject source="lcsh">German reunification question (1949-1990).</subject>
+    <subject source="lcsh">Nuclear disarmament.</subject>
+    <subject source="lcsh">Legislation--United States.</subject>
+    <subject source="lcsh">Persian Gulf War, 1991.</subject>
+    <subject source="lcsh">Political campaigns--United States--20th century.</subject>
+    <subject source="lcsh">Political candidates--United States.</subject>
+    <subject source="lcsh">Post-communism.</subject>
+    <subject source="lcsh">Presidents--Election.</subject>
+    <subject source="lcsh">Presidential candidates.</subject>
+    <subject source="lcsh">Presidents--United States--Election--1972.</subject>
+    <subject source="lcsh">Presidents--United States--Election--1976.</subject>
+    <subject source="lcsh">Presidents--United States--Election--1980.</subject>
+    <subject source="lcsh">Presidents--United States--Election--1984.</subject>
+    <subject source="lcsh">Presidents--United States--Election--1988.</subject>
+    <subject source="lcsh">Presidents--United States--Election--1992.</subject>
+    <subject source="lcsh">Presidents--United States--Election--1996.</subject>
+    <subject source="lcsh">Presidents--United States--Election--2000.</subject>
+    <subject source="lcsh">Presidents--United States--Staff.</subject>
+    <subject source="lcsh">Presidents--United States--Transition periods.</subject>
+    <subject source="lcsh">Statesmen--United States--Biography.</subject>
+    <subject source="lcsh">Statesmen--United States--Correspondence.</subject>
+    <subject source="lcsh">Tax reform.</subject>
+    <subject source="lcsh">World politics--1945-1989.</subject>
+    <subject source="lcsh">World politics--1989-</subject>
+    <geogname source="lcnaf">Texas--Politics and government--20th century.</geogname>
+    <geogname source="lcnaf">United States--Foreign policy--1981-</geogname>
+    <geogname source="lcnaf">United States--Foreign relations--1981-1993.</geogname>
+    <geogname source="lcnaf">United States--Foreign relations--Soviet Union--20th century.</geogname>
+    <geogname source="lcnaf">United States--Foreign relations--Middle East.</geogname>
+    <geogname source="lcnaf">United States--Politics and government--1981-1989.</geogname>
+    <geogname source="lcnaf">United States--Politics and government--1989-1993.</geogname>
+    <genreform source="aat">Correspondence.</genreform>
+    <genreform source="aat">Interviews.</genreform>
+    <genreform source="aat">Memorandums.</genreform>
+    <genreform source="aat">Reports.</genreform>
+    <genreform source="aat">Scrapbooks</genreform>
+    <genreform source="aat">Sound recordings.</genreform>
+    <genreform source="aat">Speeches.</genreform>
+    <genreform source="aat">Videotapes.</genreform>
+    <genreform source="aat">Born digital.</genreform>
+    <corpname authfilenumber="https://viaf.org/viaf/125408196" source="viaf">United States. Department of State</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/123076976" source="viaf">United States. Department of the Treasury</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/121006328" source="viaf">United States. President (1974-1977 : Ford)</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/121008994" source="viaf">United States. President (1981-1989 : Reagan)</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/121020907" source="viaf">United States. President (1989-1993 : Bush)</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/134908692" source="viaf">United States. White House Office</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/125793013" source="viaf">United States. White House Office. Office of Legislative Affairs</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/129903808" source="viaf">Middle East Peace Conference (1991 : Madrid, Spain)</corpname>
+    <corpname authfilenumber="https://viaf.org/viaf/142470589" source="viaf">Princeton University</corpname>
+    <persname authfilenumber="https://viaf.org/viaf/50034099" source="viaf">Baker, James Addison, 1930-</persname>
+    <persname authfilenumber="https://viaf.org/viaf/71559485" source="viaf">Bush, George W. (George Walker), 1946-</persname>
+    <persname authfilenumber="https://viaf.org/viaf/102345968" source="viaf">Bush, George, 1924-2018.</persname>
+    <persname authfilenumber="https://viaf.org/viaf/247888433" source="viaf">Carter, Jimmy, 1924-</persname>
+    <persname authfilenumber="https://viaf.org/viaf/28500333" source="viaf">Darman, Richard Gordon, 1943-2008</persname>
+    <persname authfilenumber="https://viaf.org/viaf/84478569" source="viaf">Dole, Robert J., 1923- </persname>
+    <persname authfilenumber="https://viaf.org/viaf/110300539" source="viaf">Ford, Gerald R., 1913-2006.</persname>
+    <persname authfilenumber="https://viaf.org/62882362" source="viaf">Hodsoll, Francis Samuel Monaise</persname>
+    <persname authfilenumber="https://viaf.org/viaf/79411369" source="viaf">Meese, Edwin</persname>
+    <persname authfilenumber="https://viaf.org/viaf/53714543" source="viaf">Moore, Preston, 1931-</persname>
+    <persname authfilenumber="https://viaf.org/viaf/44303100" source="viaf">Nixon, Richard M. Richard Milhous 1913-1994</persname>
+    <persname authfilenumber="https://viaf.org/viaf/104204147" source="viaf">Reagan, Nancy, 1921-2016</persname>
+    <persname authfilenumber="https://viaf.org/viaf/76321889" source="viaf">Reagan, Ronald</persname>
+    <persname authfilenumber="https://viaf.org/viaf/35399637" source="viaf">Rove, Karl</persname>
+    <persname authfilenumber="https://viaf.org/viaf/102304407" source="viaf">Scowcroft, Brent</persname>
+    <persname authfilenumber="https://viaf.org/viaf/79100057" source="viaf">Tower, John G. (John Goodwin), 1925-1991</persname>
+  </controlaccess>
+  <dsc><c id="aspace_MC197_c03760" level="series"><did><unittitle>Series 16: February 2011 Accession</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">22 boxes</extent></physdesc><unitdate datechar="creation" normal="1957-01-01/2007-07-11" type="inclusive">1957-2007 July 11</unitdate></did><acqinfo id="aspace_991c8831cbbefe1a731d7675601264fb"><head>Immediate Source of Acquisition</head><p>ML.2011.002</p></acqinfo><accessrestrict id="aspace_4f28fb7477bcc467f7dd00a69b19cfeb" rights-restriction="Open"><head>Conditions Governing Access</head><p>This series is open for research use.</p></accessrestrict><scopecontent id="aspace_11c9809ca5285d9e68517a3de220a8d8"><head>Scope and Contents</head><p>These records, transferred to Princeton University in February 2011, contain correspondence, Baker's personal tax returns from the 1950's through the beginning of the Reagan Administration, records of events Baker attended in the 1990s, and records documenting the writing of Baker's memoir.</p></scopecontent><arrangement id="aspace_40c5ec296c35ca036fe661ce6ca78261"><head>Arrangement</head><p>Most subseries within this series are arranged chronologically; subseries 16C (Memoir research) maintains Darrell Hancock's original order, which organizes materials by chapter.</p></arrangement><c id="aspace_MC197_c04322" level="subseries"><did><unittitle>Subseries 16C. Memoir Research</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">4 boxes</extent></physdesc><unitdate datechar="creation" normal="1986-01-01/2007-07-11" type="inclusive">1986-2007 July 11</unitdate></did><arrangement id="aspace_b53aab6d418f73f1e18f3fa37c0f2455"><head>Arrangement</head><p>The materials in this collection have been maintained in the original order in which they were accessioned, as have the folder titles as assigned by Darrell Hancock. Empty folders were discarded. One box of galley proofs for the finished book was removed from this series.</p></arrangement><scopecontent id="aspace_dcb09e40504a2928008e17ed55bd9995"><head>Scope and Contents</head><p>This series includes records from Darrell Hancock, a key member of the team that researched and edited James Baker's 2009 memoir, Work Hard, Study... and Stay out of Politics!.</p></scopecontent><c id="aspace_MC197_c04517" level="file"><did><unittitle>Reviews / "James Baker's" / Houston Chronicle</unittitle><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent></physdesc><unitdate datechar="creation" normal="2006-10-23/2006-10-23">2006 October 23</unitdate><container altrender="mudd" encodinganalog="NBox" id="aspace_7cece4bde19b951696466bd55e650a1d" label="Mixed Materials [32101106128356]" type="box">284</container></did></c></c></c></dsc>
+</archdesc>
+</ead>
