@@ -289,7 +289,6 @@ namespace :pulfalight do
   end
 
   # Index a directory of PULFA EAD-XML Document into Solr
-  # Note: This assumes that the documents have been checked out into eads/pulfa
   # @param [String] relative_path
   def index_directory(name:, root_path: nil, enqueue: true)
     root_path ||= pulfa_root

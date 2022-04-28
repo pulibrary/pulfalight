@@ -331,6 +331,7 @@
    <copyField source="containers_ssim" dest="containers_tesim"/>
    <copyField source="physloc_ssm" dest="physloc_ssim"/>
    <copyField source="physloc_ssm" dest="physloc_tesim"/>
+   <copyField source="collection_sim" dest="collection_title_tesim"/>
 
    <!-- The catch all `text` field -->
    <!-- grab the fielded searches -->
