@@ -42,8 +42,8 @@ class AeonRequest
   end
 
   def requesting_containers
-    return boxes if boxes.present?
-    non_boxes
+    return top_containers if top_containers.present?
+    non_top_containers
   end
 
   # Create one request per box.
@@ -136,16 +136,15 @@ class AeonRequest
     solr_document["containers_ssim"]&.first&.upcase_first
   end
 
-  def boxes
+  # Top containers are boxes and oversize folders.
+  def top_containers
     container_information.select do |container|
-      container["label"].to_s.downcase.include?("box")
+      container["label"].to_s.downcase.include?("box") || container["profile"].include?("OS folder")
     end
   end
 
-  def non_boxes
-    container_information.select do |container|
-      !container["label"].to_s.downcase.include?("box")
-    end
+  def non_top_containers
+    container_information - top_containers
   end
 
   def title

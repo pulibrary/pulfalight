@@ -297,4 +297,34 @@ RSpec.describe AeonRequest do
       expect(request.form_attributes[:"ItemInfo4_#{request2}"]).to eq "NBox"
     end
   end
+  context "when there's two oversize folders for one component" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC154.processed.EAD.xml")
+    end
+
+    it "creates multiple transactions" do
+      result = indexer.map_record(record)
+      component = find_component(component_id: "AC154_c03425", record: result)
+      document = SolrDocument.new(component)
+
+      request = document.aeon_request
+      expect(Array.wrap(request.form_attributes[:Request]).length).to eq 4
+      request1 = request.form_attributes[:Request][0]
+      request2 = request.form_attributes[:Request][1]
+      request3 = request.form_attributes[:Request][2]
+      request4 = request.form_attributes[:Request][3]
+
+      expect(request.form_attributes[:"Site_#{request1}"]).to eq "MUDD"
+      expect(request.form_attributes[:"Site_#{request2}"]).to eq "MUDD"
+      expect(request.form_attributes[:"Site_#{request3}"]).to eq "MUDD"
+      expect(request.form_attributes[:"Site_#{request4}"]).to eq "MUDD"
+      expect(request.form_attributes[:"ItemVolume_#{request1}"]).to eq "Folder Oversize folder 103"
+      expect(request.form_attributes[:"ItemVolume_#{request2}"]).to eq "Folder 104"
+      expect(request.form_attributes[:"ItemVolume_#{request3}"]).to eq "Folder 105"
+      expect(request.form_attributes[:"ItemVolume_#{request4}"]).to eq "Folder 106"
+      expect(request.form_attributes[:"ItemVolume_#{request4}"]).to eq "Folder 106"
+      expect(request.form_attributes[:"GroupingField_#{request1}"]).to eq "AC154-folder-Oversize-folder-103"
+      expect(request.form_attributes[:"GroupingField_#{request2}"]).to eq "AC154-folder-104"
+    end
+  end
 end
