@@ -72,6 +72,7 @@ export default class {
       if(this.readingRoom){
         if(json.embed.type === "html") {
           this.readingRoom.innerHTML = json.embed.content
+          this.readingRoom.firstElementChild.classList.add("intrinsic-container", "intrinsic-container-16x9", "uv__overlay")
         } else if(json.embed.type === "link") {
           this.readingRoom.innerHTML = `<a href="${json.embed.content}" class="lux-link button solid large">${this.linkLabel(json.embed.content)}</a>`
         }
