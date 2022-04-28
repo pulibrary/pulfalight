@@ -14,8 +14,8 @@ describe('QueryFiggy', function() {
     global.fetch = jest.fn(() =>
       Promise.resolve({
         status: 200,
-        json: () => {
-          return {
+        json: () => Promise.resolve(
+          {
             "data": {
               "resourcesByOrangelightId": [
                 {
@@ -25,7 +25,7 @@ describe('QueryFiggy', function() {
               ]
             }
           }
-        }
+        )
       })
     )
   }

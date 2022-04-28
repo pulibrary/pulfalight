@@ -60,7 +60,8 @@ export default class {
         }
       }
     )
-    .then((response) => response.json().data.resourcesByOrangelightId[0])
+    .then((response) => response.json())
+    .then((response) => response.data.resourcesByOrangelightId[0])
     .then((result) => this.embedContent(result))
   }
 
