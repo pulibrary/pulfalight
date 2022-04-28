@@ -12,7 +12,6 @@
       <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="cre" source="viaf">Princeton University. Library. Special Collections</corpname>
     </origination>
     <unitid>C0879</unitid>
-    <unitid audience="internal" identifier="C0879" type="collection">C0879</unitid>
     <physdesc altrender="whole">
       <extent altrender="materialtype spaceoccupied">57 Volumes</extent>
     </physdesc>
