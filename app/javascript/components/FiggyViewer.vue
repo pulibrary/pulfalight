@@ -44,9 +44,12 @@ export default {
     }
   },
   async created() {
-    return this.checkFiggy().then((data) => this.processFiggyResponse(data))
+    return this.updateData()
   },
   methods: {
+    async updateData() {
+      return this.checkFiggy().then((data) => this.processFiggyResponse(data))
+    },
     async checkFiggy() {
       var url = "https://figgy.princeton.edu/graphql";
       var data = JSON.stringify({ query:`{
@@ -84,7 +87,7 @@ export default {
       const checkChild = () => {
         if (child.closed) {
           clearInterval(timer)
-          this.checkFiggy()
+          this.updateData()
         }
       }
       let timer = setInterval(checkChild, 200)

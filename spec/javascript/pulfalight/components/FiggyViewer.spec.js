@@ -45,6 +45,40 @@ describe("FiggyViewer.vue", () => {
     expect(wrapper.html()).toContain('Use your Princeton credentials to login.')
   })
 
+  test("Logging in can switch content to a link", async () => {
+
+    stubQuery({
+      "type": null,
+      "content": null,
+      "status": "unauthenticated"
+    })
+
+    const wrapper = await mount(FiggyViewer, {
+      propsData: {
+        componentId: component_id,
+        daoLabel: "",
+        daoLink: ""
+      }
+    })
+
+    await flushPromises()
+
+    stubQuery({
+      "type": "link",
+      "content": "https://figgy.princeton.edu/download/something/file/78e15d09-3a79-4057-b358-4fde3d884bbb",
+      "status": "authorized"
+    })
+
+    // updateData is called by the login window closing.
+    await wrapper.vm.updateData()
+    await flushPromises()
+
+    expect(wrapper.vm.embedStatus).toBe("authorized")
+
+    expect(wrapper.element.querySelector('a').getAttribute('href')).toBe('https://figgy.princeton.edu/download/something/file/78e15d09-3a79-4057-b358-4fde3d884bbb')
+    expect(wrapper.element.querySelector('a').innerHTML).toBe('Download Content')
+  })
+
 
   test('Loads an iframe when they have permission to see the manifest in figgy', async () => {
     stubQuery({
