@@ -33,7 +33,7 @@
       <origination audience="internal" label="Creator">
         <persname rules="rda" source="uncontrolled">Bathurst, Walter Dundas, 1859-1940</persname>
       </origination>
-      <unitid>C1588</unitid>
+      <unitid>C1588test</unitid>
       <unitid audience="internal" identifier="C1588" type="collection">C1588</unitid>
       <physdesc altrender="whole">
         <extent altrender="materialtype spaceoccupied">1 box</extent>
