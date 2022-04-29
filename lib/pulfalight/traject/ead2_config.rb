@@ -35,18 +35,18 @@ configure_before
 # ==================
 
 # rubocop:disable Performance/StringReplacement
-# TODO: These should be combined into a single method
 to_field "id", extract_xpath("/ead/archdesc/did/unitid", to_text: false) do |_record, accumulator|
-  string_array = accumulator.map(&:text)
-  string_array = string_array.map { |a| a.gsub(".", "-") }
-  string_array = string_array.map { |a| a.split("|").first }
-  accumulator.replace(string_array)
+  accumulator.replace(normalize_id(accumulator))
 end
 to_field "ead_ssi", extract_xpath("/ead/archdesc/did/unitid", to_text: false) do |_record, accumulator|
-  string_array = accumulator.map(&:text)
-  string_array = string_array.map { |a| a.gsub(".", "-") }
-  string_array = string_array.map { |a| a.split("|").first }
-  accumulator.replace(string_array)
+  accumulator.replace(normalize_id(accumulator))
+end
+
+def normalize_id(ids_array)
+  id_str = ids_array[0].text
+  id_str = id_str.gsub(".", "-")
+  id_str = id_str.split("|").first
+  [id_str]
 end
 
 to_field "audience_ssi", extract_xpath("/ead", to_text: false) do |_record, accumulator|
