@@ -10,9 +10,9 @@ import AddToCartIcon from '../components/AddToCartIcon'
 import CartViewToggle from '../components/CartViewToggle'
 import TocBuilder from "../pulfalight/toc.es6"
 import LibCalHours from "../pulfalight/lib_cal_hours.es6"
-import QueryFiggy from "../pulfalight/query_figgy.es6"
 import ChildTable from "../components/ChildTable"
 import PulfaDataTable from "../components/PulfaDataTable"
+import FiggyViewer from "../components/FiggyViewer"
 
 export default class {
   run() {
@@ -21,13 +21,6 @@ export default class {
     this.setup_lib_cal_hours()
     this.setup_range_limit()
     this.setup_form_modal()
-    this.query_figgy()
-  }
-
-  query_figgy(){
-    const query = new QueryFiggy()
-    const component_id = query.component_id()
-    query.checkFiggy(component_id)
   }
 
   setup_lib_cal_hours() {
@@ -65,6 +58,7 @@ export default class {
           'add-to-cart-icon': AddToCartIcon,
           'cart-view-toggle': CartViewToggle,
           'child-table': ChildTable,
+          'figgy-viewer': FiggyViewer
         }
       })
     }

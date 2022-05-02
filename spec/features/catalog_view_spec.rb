@@ -217,11 +217,13 @@ describe "viewing catalog records", type: :feature, js: true do
         "iframe#panopto[src='https://princeton.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=18d84eb8-cd46-45c6-9922-ae5400e2fdfb&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=false&interactivity=all']"
       )
     end
-    it "renders the non-panopto download link", js: true do
+    it "renders the non-panopto download link", js: false do
       visit "/catalog/MC302_c21357-52777"
 
       expect(page).to have_selector(
-        "a[href='https://figgy.princeton.edu/downloads/0e1a7e69-c032-460e-9518-9efb46621b5f/file/13a78648-5994-4b45-990b-89ca1d3b952f']", text: "Download Video"
+        "#readingroom figgy-viewer" \
+          "[dao-label='Download Video']" \
+          "[dao-link='https://figgy.princeton.edu/downloads/0e1a7e69-c032-460e-9518-9efb46621b5f/file/13a78648-5994-4b45-990b-89ca1d3b952f']"
       )
     end
   end

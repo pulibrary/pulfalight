@@ -46,7 +46,10 @@ class AspaceFixtureGenerator
     "MC014",
     "COTSEN4",
     "MC302",
-    "C0292"
+    "C0292",
+    "C0845",
+    "C1436",
+    "MC203"
   ].freeze
 
   # List components per EAD which are used in tests to make processing those
@@ -121,7 +124,10 @@ class AspaceFixtureGenerator
     "MC014" => ["aspace_MC014_c03682"],
     "MC147" => ["aspace_MC147_c07283-24964"],
     "MC302" => ["aspace_MC302_c21357-52777"],
-    "C0292" => []
+    "C0292" => [],
+    "C0845" => ["aspace_C0845_c0023"], # Used to test private Figgy material
+    "C1436" => ["aspace_C1436_c547"], # Reading Room link resource
+    "MC203" => ["aspace_MC203_c0238"] # Public link resource
   }.freeze
 
   attr_reader :client, :ead_ids, :component_map, :fixture_dir
