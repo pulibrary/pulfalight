@@ -9,7 +9,11 @@
       misspellings, incorrect or missing dates, misidentified
       individuals, places, or events, mislabeled folders, misfiled papers, etc.
       </p>
-      <%= render partial: "catalog/correction_form", locals: { form: SuggestACorrectionForm.new(location_code: "General", context: "https://findingaids.princeton.edu") } %>
+      <div id="generalFeedback">
+        <div class="form-wrapper">
+          <%= render partial: "catalog/correction_form", locals: { form: SuggestACorrectionForm.new(location_code: "General", context: "https://findingaids.princeton.edu") } %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

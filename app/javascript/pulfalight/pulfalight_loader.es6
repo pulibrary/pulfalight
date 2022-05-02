@@ -68,7 +68,7 @@ export default class {
   // ContactController#suggest/#question returns the form partial in response to the
   // request.
   setup_form_modal() {
-    ["#correctionModal", "#questionModal"].forEach((selector) => {
+    ["#correctionModal", "#questionModal", "#generalFeedback"].forEach((selector) => {
       $(`${selector}`).on("show.bs.modal", function() {
         $(`${selector} form`).show()
         $(`${selector} .alert`).hide()

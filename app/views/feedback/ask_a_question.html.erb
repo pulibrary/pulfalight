@@ -2,11 +2,15 @@
 <div class="lux feedback-container">
   <heading level="h2" size="h3">Ask a Question</heading>
   <div class="row">
-    <div id="questionForm" class="form-wrapper col">
-      <%= render partial: "catalog/ask_a_question_form", locals: {
-        form: AskAQuestionForm.new(location_code: "general",
-        context: "http://findingaids.princeton.edu",
-        title: "Finding Aids Website Question") } %>
+
+    <div id="generalFeedback" class="form-wrapper col">
+
+      <div class="form-wrapper">
+        <%= render partial: "catalog/ask_a_question_form", locals: {
+          form: AskAQuestionForm.new(location_code: "general",
+          context: "http://findingaids.princeton.edu",
+          title: "Finding Aids Website Question") } %>
+      </div>
     </div>
     <div id="questionFAQ" class="col">
       <h6>
