@@ -86,6 +86,21 @@ describe "controller requests", type: :request do
         expect(search_stub).to have_been_requested.once
       end
     end
+
+    context "for a component EAD with namespaced elements" do
+      it "shows the component XML with namespaces removed" do
+        stub_aspace_login
+        stub_aspace_repositories
+        stub_search(repository_id: "13", resource_ids: ["C1491"]).last
+        stub_aspace_ead(resource_descriptions_uri: "repositories/13/resource_descriptions/C1491", ead: "generated/mss/C1491.processed.EAD.xml")
+
+        get "/catalog/C1491_c4.xml"
+
+        doc = Nokogiri::XML.parse(response.body)
+        expect(doc.children[0]["id"]).to eq "C1491_c4"
+        expect(response.body).not_to include("xlink:title")
+      end
+    end
   end
 
   describe "/catalog/:id JSON" do
