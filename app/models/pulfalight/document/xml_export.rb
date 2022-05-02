@@ -8,7 +8,7 @@ module Pulfalight::Document::XMLExport
     content = client.get_xml(eadid: collection_unitid || unitid)
     content = strip_containers(content) unless export_xml_containers?
     return content if collection?
-    document = Nokogiri::XML.parse(content)
+    document = Nokogiri::XML.parse(content).remove_namespaces!
     document.xpath("//*[@id='#{id}']")[0].to_xml
   end
 
