@@ -44,6 +44,7 @@ RSpec.describe AspaceIndexJob do
         items = connection.get("select", params: { q: "id:C1588testinternal_c1", fl: "audience_ssi" })
         expect(items["response"]["docs"][0]["audience_ssi"]).to eq "internal"
       end
+
       it "can mark an EAD internal with a period in it" do
         stub_aspace_login
         stub_aspace_ead(resource_descriptions_uri: "repositories/13/resources/5396", ead: "mss/C1588-internal-period.xml")
@@ -70,6 +71,35 @@ RSpec.describe AspaceIndexJob do
 
         items = connection.get("select", params: { q: "id:C1588testinternal", fl: "audience_ssi" })
         expect(items["response"]["docs"][0]["audience_ssi"]).to eq "internal"
+      end
+    end
+
+    context "when given an EAD for a collection that is published with components that are not" do
+      it "indexes unpublished components with audience_ssi internal" do
+        stub_aspace_login
+        stub_aspace_ead(resource_descriptions_uri: "repositories/13/resources/3950", ead: "mss/C0140_internal_components.xml")
+
+        connection.delete_by_query("id:C0140_c87678-60535_unpublished")
+        connection.delete_by_query("id:C0140_c00001_published")
+        connection.delete_by_query("id:C0140_c35769-33947_unpublished_elements")
+        connection.delete_by_query("id:C0140")
+        described_class.perform_now(resource_descriptions_uri: "repositories/13/resources/3950", repository_id: "mss")
+        connection.commit
+
+        collection = connection.get("select", params: { q: "id:C0140", fl: "audience_ssi" })
+        expect(collection["response"]["docs"][0]["audience_ssi"]).to eq ""
+
+        unpublished_component = connection.get("select", params: { q: "id:C0140_c87678-60535_unpublished", fl: "audience_ssi" })
+        expect(unpublished_component["response"]["docs"][0]["audience_ssi"]).to eq "internal"
+
+        published_component = connection.get("select", params: { q: "id:C0140_c00001_published", fl: "audience_ssi" })
+        expect(published_component["response"]["docs"][0]["audience_ssi"]).to eq nil
+
+        unpublished_elements = connection.get("select", params: { q: "id:C0140_c35769-33947_unpublished_elements", fl: ["audience_ssi", "repository_ssm", "phystech_ssm", "creator_persname_ssm"] })
+        expect(unpublished_elements["response"]["docs"][0]["repository_ssm"]).to eq ["Manuscripts Division"]
+        expect(unpublished_elements["response"]["docs"][0]["audience_ssi"]).to eq nil
+        expect(unpublished_elements["response"]["docs"][0]["phystech_ssm"]).to eq nil
+        expect(unpublished_elements["response"]["docs"][0]["creator_persname_ssm"]).to eq nil
       end
     end
 

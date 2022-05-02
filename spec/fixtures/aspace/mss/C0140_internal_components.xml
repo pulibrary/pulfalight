@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd">
+  <eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511">
+    <eadid url="http://arks.princeton.edu/ark:/88435/9g54xh73h">C0140</eadid>
+    <filedesc>
+      <titlestmt>
+        <titleproper>General Manuscripts Miscellaneous Collection, 1502-2012 : Finding Aid <num>C0140</num>
+        </titleproper>
+        <author>Lisa Yankowitz; Faith Charlton; Kelly Bolding</author>
+      </titlestmt>
+      <publicationstmt>
+        <publisher>Manuscripts Division </publisher>
+        <p>
+          <date>2011</date>
+        </p>
+        <address>
+          <addressline>Firestone Library</addressline>
+          <addressline>One Washington Road</addressline>
+          <addressline>Princeton, New Jersey 08544</addressline>
+        </address>
+      </publicationstmt>
+    </filedesc>
+    <profiledesc>
+      <creation>This finding aid was produced using ArchivesSpace on <date>2022-04-29 12:19:42 -0400</date>.</creation>
+      <langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage>
+      <descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules>
+    </profiledesc>
+    <revisiondesc>
+      <change>
+        <date>2012-05-02T13:47:31.94-04:00</date>
+        <item>Run through PULFA 2.0 normalization routines.</item>
+      </change>
+    </revisiondesc>
+  </eadheader>
+  <archdesc level="collection">
+    <did>
+      <repository>
+        <corpname>Manuscripts Division </corpname>
+      </repository>
+      <unittitle>General Manuscripts Miscellaneous Collection</unittitle>
+      <origination label="Creator">
+        <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="col" source="viaf">Princeton University. Library. Special Collections</corpname>
+      </origination>
+      <origination label="Creator">
+        <corpname authfilenumber="https://viaf.org/viaf/6943157226626985410004" role="cre" source="viaf">Princeton University. Library. Special Collections</corpname>
+      </origination>
+      <unitid>C0140</unitid>
+      <unitid audience="internal" identifier="C0140" type="collection">C0140</unitid>
+      <physdesc altrender="whole">
+        <extent altrender="materialtype spaceoccupied">107 boxes</extent>
+      </physdesc>
+      <physdesc altrender="whole">
+        <extent altrender="materialtype spaceoccupied">61.4 linear feet</extent>
+      </physdesc>
+      <unitdate datechar="creation" normal="1502/2012" type="inclusive">1502-2012</unitdate>
+      <abstract id="aspace_fd734ef117056155774b586d43366c4f">Consists of over 3000 miscellaneous items of primarily American literary, historical, and political figures, including business and personal letters, manuscripts, drawings, photographs, and official documents.</abstract>
+      <physloc id="aspace_b7c6898f9b11ae188e2be758152bcd49">mss</physloc>
+      <physloc id="aspace_97d9081fb01db4bfd1bfdde4b2627c39">hsvm</physloc>
+      <physloc id="aspace_467f3570d468b11339c630d7e8f47e8e">Boxes 59 and 63 are stored in special vault facilities.</physloc>
+      <langmaterial>
+        <language langcode="eng" scriptcode="Latn">English</language>
+          .    </langmaterial>
+      </did>
+      <scopecontent id="aspace_b605ee83dd399643ca0c7f978521dd62">
+        <head>Scope and Contents</head>
+        <p>The collection consists of over 3000 miscellaneous items of primarily American literary, historical, and political figures, including business and personal letters, cards, manuscripts, drawings, photographs, and official documents (deeds, wills, bonds, etc.). This miscellaneous collection provides a way of locating small accessions of material that are not part of the Manuscripts Division's provenance-based or topical collections.</p>
+        <p> The collection includes documents from United States presidents James Buchanan, Millard Fillmore, Ulysses S. Grant, Warren G. Harding, Rutherford B. Hayes, Herbert Hoover, Richard Nixon, Ronald Reagan, William Howard Taft, and Martin Van Buren. The collection also contains original documents of Alexander Graham Bell, Andrew Carnegie, Winston Churchill, Charles Darwin, Jefferson Davis, Frederick Douglass, Sigmund Freud, Langston Hughes, Victor Hugo, Herman Melville, J. P. Morgan, Samuel Morse, Benito Mussolini, Friedrich Nietzsche, George Orwell, Thomas Paine, Edgar Allan Poe, Paul Revere, J. D. Salinger, Jean-Paul Satre, William Tecumseh Sherman, Upton Sinclair, Henry Morton Stanley, John Steinbeck, Bram Stoker, Alexis de Toqueville, Jules Verne, Booker T. Washington, E. B. White, and Virginia Woolf, to name only a few of the most famous.</p>  </scopecontent>
+      <arrangement id="aspace_97fca9567d0f68b6697d0b4035a11023">
+        <head>Arrangement</head>
+        <p>Arranged alphabetically by the name of the creator, with unattributed materials at the end.</p>  </arrangement>
+      <accessrestrict id="aspace_13c285d72b31022d65a3b8b3058e0f89">
+        <head>Conditions Governing Access</head>
+        <p>Collection is open for research use.</p>  </accessrestrict>
+      <userestrict id="aspace_74c0613c7306ea8683fc6fd3233036c9">
+        <head>Conditions Governing Use</head>
+        <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to RBSC Public Services staff through the <extref xlink:href="https://library.princeton.edu/special-collections/ask-us" xlink:type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
+      <acqinfo id="aspace_4672873cffa7dcbf7ac3e45d1e2fc730">
+        <head>Immediate Source of Acquisition</head>
+        <p>The collection has resulted from miscellaneous purchases and gifts of numerous donors over the years.</p>  </acqinfo>
+      <appraisal id="aspace_461f4480244436b3ab05a7e1dda89b48">
+        <head>Appraisal</head>
+        <p>No material was separated during processing.</p>  </appraisal>
+      <accruals id="aspace_c3727c569d8d1191492e4611f8d3a3c4">
+        <head>Accruals</head>
+        <p>The collection is open and will continue to grow.</p>  </accruals>
+      <altformavail id="aspace_97939d55e1f1a1c0af35e608f4845d01">
+        <head>Existence and Location of Copies</head>
+        <p>Parts of this collection are available on microfilm, cataloged separately as RCPXM-7497696.</p>  </altformavail>
+      <prefercite id="aspace_11ef5ab3a94c54ae3cba7da6c1226131">
+        <head>Preferred Citation</head>
+        <p>Identification of specific item; Date (if known); General Manuscripts Miscellaneous Collection, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
+      <processinfo id="aspace_13e684426bd8b7679096f80cd4fc0c6c">
+        <head>Processing Information</head>
+        <p>This collection was processed by Lisa Yankowitz during the summer and fall of 2010 . The finding aid was written by Lisa Yankowitz in January 2011 and is regularly updated with new acquisitions by Faith Charlton, Kelly Bolding, and Armando Suárez.</p>  </processinfo>
+      <controlaccess>
+        <subject source="lcsh">Authors.</subject>
+        <subject source="lcsh">Poets.</subject>
+        <subject source="lcsh">Politicians -- United States.</subject>
+        <subject source="lcsh">Presidents -- United States.</subject>
+        <genreform source="aat">Documents.</genreform>
+        <genreform source="aat">Letters.</genreform>
+        <genreform source="aat">Manuscripts.</genreform>
+        <genreform source="aat">Photographs.</genreform>
+      </controlaccess>
+      <dsc>
+        <c audience="internal" id="aspace_C0140_c87678-60535_unpublished" level="file">
+          <did>
+            <unittitle>Journal</unittitle>
+            <physdesc altrender="whole">
+              <extent altrender="materialtype spaceoccupied">1 box</extent>
+            </physdesc>
+          </did>
+        </c>
+        <c id="aspace_C0140_c00001_published" level="file">
+          <did>
+            <unittitle>Abbey, Edwin Austin, Mrs., 1852-1911</unittitle>
+            <physdesc altrender="whole">
+              <extent altrender="materialtype spaceoccupied">1 box</extent>
+            </physdesc>
+            <unitdate datechar="creation" normal="1930/1930" type="inclusive">1930</unitdate>
+            <container altrender="mss" encodinganalog="NBox" id="aspace_b3f4d08dc60a3453854ce48223ff3ff6" label="Mixed Materials [32101070780000]" type="box">1</container>
+          </did>
+          <scopecontent id="aspace_8402ac27a0f125aeb1753bdee8161fa3">
+            <head>Scope and Contents</head>
+            <p>ALS to Ms. Meta Harren, 27 August 1930, 2 pp. AM 21233</p>
+          </scopecontent>
+        </c>
+        <c id="aspace_C0140_c35769-33947_unpublished_elements" level="file">
+          <did>
+            <unittitle>Alden, J. C., Pages from American Revolutionary War Orderly Books</unittitle>
+            <origination audience="internal" label="Creator">
+              <persname rules="rda" source="uncontrolled">Name, Personal</persname>
+            </origination>
+            <phystech audience="internal" id="aspace_d570f15c15e638da9e11a12245d46963">
+              <head>Physical Characteristics and Technical Requirements</head>
+              <p>In conservation receiving treatment; fragile condition.</p>
+            </phystech>
+            <physdesc altrender="whole">
+              <extent altrender="materialtype spaceoccupied">1 folder</extent>
+            </physdesc>
+            <unitdate datechar="creation" normal="1775-12-15/1776-01-12" type="inclusive">1775 December 15-1776 January 12</unitdate>
+            <container altrender="mss" encodinganalog="NBox" id="aspace_e82bde45a411873f3a351bb3700054ff" label="Mixed Materials [32101103191043]" type="box">B-001555</container>
+            <container id="aspace_7244fff7f99dad858720f5764690a13c" parent="aspace_e82bde45a411873f3a351bb3700054ff" type="folder">7</container>
+          </did>
+          <acqinfo id="aspace_dbc003c193decb626f0e16c3635392b2">
+            <head>Immediate Source of Acquisition</head>
+            <p>Purchased from William Reese Company in 2021 (AM 2021-52).</p>
+          </acqinfo>
+          <scopecontent id="aspace_60d2ac82b75eb67696614687405b1dff">
+            <head>Scope and Contents</head>
+            <p>Consists of fourteen handwritten pages taken from one or possibly more orderly books kept by aides-de-camp to Generals Artemus Ward and George Washington during the early stages of the American Revolutionary War and the Siege of Boston. The orders contained on these leaves, written during the siege, record a variety of official internal actions taken by the nascent Continental Army and include regimental orders, general orders, notifications of troop movements, records of guard duty, as well as matters relating to discipline, training, supplies, and food. Most notably, they refer to the potential participation of free African American volunteers in military roles. Names mentioned in the orderly book pages include Colonel Read, Colonel Danielson, Major Mitchel, Colonel Alden, Lieutenant Goodwin, Jedediah Huntington, Captain Ingersoll, Major Barnes, General Horatio Gates, and numerous others, some of whom are listed as participants in courts martial proceedings. Regarding authorship, the final page is signed by J. C. (or possibly I. C.) Alden, which could refer to either Ichabod Alden or a fellow member of the Massachusetts Alden family, such as a John or Joseph C. Alden. It is also possible that another person authored some of the leaves since there are at least two different handwriting styles.</p>
+          </scopecontent>
+          <controlaccess>
+            <geogname source="lcsh">United States -- History -- Revolution, 1775-1783 -- Participation, African American -- Sources</geogname>
+            <geogname source="lcsh">United States -- History -- Revolution, 1775-1783 -- Sources</geogname>
+            <geogname source="lcsh">Boston (Mass.) -- History -- Siege, 1775-1776</geogname>
+            <genreform source="aat">Orderly books -- 18th century</genreform>
+            <corpname authfilenumber="https://viaf.org/viaf/154702713" source="viaf">United States. Continental Army</corpname>
+            <persname authfilenumber="https://viaf.org/viaf/31432428" source="viaf">Washington, George, 1732-1799.</persname>
+            <persname authfilenumber="http://viaf.org/viaf/9412178" source="viaf">Ward, Artemas, 1727-1800</persname>
+          </controlaccess>
+        </c>
+      </dsc>
+    </archdesc>
+  </ead>

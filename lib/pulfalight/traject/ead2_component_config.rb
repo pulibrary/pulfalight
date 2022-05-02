@@ -44,16 +44,19 @@ to_field "id" do |_record, accumulator, context|
   accumulator.concat context.output_hash["ref_ssi"].map { |x| x.tr(".", "-") }
 end
 
+to_field "audience_ssi", extract_xpath(".", to_text: false) do |_record, accumulator|
+  parent_audience = settings[:root].output_hash["audience_ssi"].reject(&:blank?)
+  component_audience = [accumulator[0].attributes["audience"].to_s].reject(&:blank?)
+  audience = (parent_audience + component_audience).uniq
+  accumulator.replace(audience)
+end
+
 to_field "ead_ssi" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   next unless parent
 
   ead_ids = parent.output_hash["ead_ssi"]
   accumulator << ead_ids.first if ead_ids.present?
-end
-
-to_field "audience_ssi" do |_record, accumulator, _context|
-  accumulator.concat settings[:root].output_hash["audience_ssi"]
 end
 
 to_field "title_filing_si", extract_xpath("./did/unittitle"), first_only

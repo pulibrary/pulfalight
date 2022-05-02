@@ -13,7 +13,7 @@ describe "catalog searches", type: :feature, js: true do
     end
   end
 
-  context "when searching for an unpublished collection", js: false do
+  context "when searching for an unpublished collection or component", js: false do
     it "does not return it" do
       visit "/?search_field=all_fields&q=c0744.04"
       expect(page).to have_content "No results found for your search"
