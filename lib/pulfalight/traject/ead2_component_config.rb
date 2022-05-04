@@ -49,7 +49,7 @@ to_field "ead_ssi" do |_record, accumulator, _context|
   next unless parent
 
   ead_ids = parent.output_hash["ead_ssi"]
-  accumulator << ead_ids.first if ead_ids.present?
+  accumulator.replace(ead_ids)
 end
 
 to_field "audience_ssi" do |_record, accumulator, _context|

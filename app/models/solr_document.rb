@@ -85,7 +85,7 @@ class SolrDocument
   end
 
   def eadid
-    Array.wrap(super).first
+    Array.wrap(fetch("ead_ssi", nil)).first&.strip
   end
 
   def collection_notes
@@ -345,6 +345,15 @@ class SolrDocument
           dao.href.to_s.include?(Pulfalight.config["figgy_url"])
         end
       end
+  end
+
+  def direct_digital_objects
+    direct_digital_objects_field = fetch("direct_digital_objects_ssm", []).reject(&:empty?)
+    return [] if direct_digital_objects_field.blank?
+
+    direct_digital_objects_field.map do |object|
+      Arclight::DigitalObject.from_json(object)
+    end
   end
 
   private

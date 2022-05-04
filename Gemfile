@@ -3,7 +3,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 5.2"
+gem "rails", "~> 6.0"
 # Use Puma as the app server
 gem "puma", "~> 4.3"
 # Use SCSS for stylesheets
@@ -73,7 +73,7 @@ end
 
 gem "archivesspace-client"
 gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
-gem "blacklight", "7.19.0"
+gem "blacklight", "7.24.0"
 gem "blacklight_range_limit", "~> 7.1"
 gem "bootstrap", ">= 4.3.1"
 gem "devise", ">= 4.7.1"
