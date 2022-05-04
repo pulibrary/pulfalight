@@ -190,6 +190,33 @@ RSpec.describe AeonRequest do
         expect(request.form_attributes[:"ItemInfo3_#{request_id}"]).to be_nil
       end
     end
+    it "returns a grouping option for every field" do
+      fixture = Rails.root.join("spec", "fixtures", "C1588.json")
+      fixture = JSON.parse(fixture.read)
+      component = fixture["components"].first["components"].first["components"].first
+      document = SolrDocument.new(component)
+
+      request = document.aeon_request.form_attributes
+      request_id = request[:Request]
+      fields = request.keys.select do |field|
+        field.to_s.include?(request_id)
+      end
+      fields = fields.map { |field| field.to_s.gsub("_#{request_id}", "").to_sym }
+
+      # These are the fields which stop showing on the call slip if it's
+      # multiple folders together. Everything else should.
+      non_grouped_fields = [
+        :GroupingField,
+        :ItemSubTitle,
+        :ItemAuthor,
+        :ItemInfo2,
+        :ItemInfo5
+      ]
+      fields.each do |field|
+        next if non_grouped_fields.include?(field)
+        expect(request).to have_key :"GroupingOption_#{field}"
+      end
+    end
     it "returns an object with all the necessary attributes" do
       # The following fixture is generated from a fixture exported from our
       # local system. It's created via `rake
