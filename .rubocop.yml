@@ -13,6 +13,11 @@ AllCops:
     - 'spec/support/**/*'
     - 'tmp/**/*'
 
+
+
+Lint/MissingSuper:
+  Exclude:
+    - 'lib/pulfalight/normalized_date.rb'
 Metrics/AbcSize:
   Exclude:
     - 'app/models/pulfalight/requests/aeon_external_request.rb'

@@ -101,10 +101,8 @@ class AeonRequest
 
   def container_information
     @container_information ||=
-      begin
-        solr_document.fetch("container_information_ssm", []).map do |container|
-          JSON.parse(container)
-        end
+      solr_document.fetch("container_information_ssm", []).map do |container|
+        JSON.parse(container)
       end
   end
 

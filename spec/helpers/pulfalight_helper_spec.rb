@@ -92,12 +92,6 @@ describe PulfalightHelper, type: :helper do
     end
   end
 
-  describe "#available_request_types" do
-    it "retrieves the types of requests configured for collections and components" do
-      expect(helper.available_request_types).to include(:aeon_external_request_endpoint)
-    end
-  end
-
   describe "#hr_separator" do
     it "generates the markup for the Document field values" do
       helper_args = {

@@ -178,11 +178,9 @@ class AspaceFixtureGenerator
 
   def fixture_files
     @fixture_files ||=
-      begin
-        ead_ids.lazy.map do |eadid|
-          uri, repo_code = client.ead_url_for_eadid(eadid: eadid)&.first
-          EADContainer.new(eadid: eadid, content: get_content(uri, eadid), repository: repo_code)
-        end
+      ead_ids.lazy.map do |eadid|
+        uri, repo_code = client.ead_url_for_eadid(eadid: eadid)&.first
+        EADContainer.new(eadid: eadid, content: get_content(uri, eadid), repository: repo_code)
       end
   end
 

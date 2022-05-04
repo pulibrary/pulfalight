@@ -85,7 +85,7 @@ class SolrDocument
   end
 
   def eadid
-    Array.wrap(super).first
+    Array.wrap(fetch("ead_ssi", nil)).first&.strip
   end
 
   def collection_notes
@@ -96,10 +96,6 @@ class SolrDocument
     fetch("title_ssm", [])
   end
   alias unittitle title
-
-  def subtitle
-    fetch(:subtitle_ssm, [])
-  end
 
   def places
     fetch("places_ssm", [])
@@ -141,27 +137,9 @@ class SolrDocument
     fetch("geogname_ssm", [])
   end
 
-  def volume
-    fetch(:volume_ssm, [])
-  end
-
-  def location_note
-    fetch(:location_note_ssm, [])
-  end
-
   def location_code
     fetch(:location_code_ssm, [])
   end
-
-  def physical_location_code
-    fetch(:physloc_code_ssm, [])
-  end
-  alias physloc_code physical_location_code
-
-  def physical_description_number
-    fetch(:physdesc_number_ssm, [])
-  end
-  alias physdesc_number physical_description_number
 
   def has_online_content
     fetch("has_online_content_ssim", [])
@@ -340,11 +318,18 @@ class SolrDocument
 
   def figgy_digital_objects
     @figgy_digital_objects ||=
-      begin
-        direct_digital_objects.select do |dao|
-          dao.href.to_s.include?(Pulfalight.config["figgy_url"])
-        end
+      direct_digital_objects.select do |dao|
+        dao.href.to_s.include?(Pulfalight.config["figgy_url"])
       end
+  end
+
+  def direct_digital_objects
+    direct_digital_objects_field = fetch("direct_digital_objects_ssm", []).reject(&:empty?)
+    return [] if direct_digital_objects_field.blank?
+
+    direct_digital_objects_field.map do |object|
+      Arclight::DigitalObject.from_json(object)
+    end
   end
 
   private
