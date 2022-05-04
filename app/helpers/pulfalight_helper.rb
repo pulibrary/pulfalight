@@ -21,16 +21,6 @@ module PulfalightHelper
     html_presenter.collection_notes
   end
 
-  # @return [Class]
-  def aeon_external_request_class
-    Pulfalight::Requests::AeonExternalRequest
-  end
-
-  # This needs to parse the config/aeon.yml file
-  def available_request_types
-    [:aeon_external_request_endpoint]
-  end
-
   def repository_thumbnail
     img_src = if document&.repository_config&.thumbnail_url
                 document.repository_config.thumbnail_url

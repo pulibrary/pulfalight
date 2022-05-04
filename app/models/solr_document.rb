@@ -141,27 +141,9 @@ class SolrDocument
     fetch("geogname_ssm", [])
   end
 
-  def volume
-    fetch(:volume_ssm, [])
-  end
-
-  def location_note
-    fetch(:location_note_ssm, [])
-  end
-
   def location_code
     fetch(:location_code_ssm, [])
   end
-
-  def physical_location_code
-    fetch(:physloc_code_ssm, [])
-  end
-  alias physloc_code physical_location_code
-
-  def physical_description_number
-    fetch(:physdesc_number_ssm, [])
-  end
-  alias physdesc_number physical_description_number
 
   def has_online_content
     fetch("has_online_content_ssim", [])
