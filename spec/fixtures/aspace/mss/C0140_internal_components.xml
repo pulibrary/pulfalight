@@ -120,6 +120,10 @@
             <unitdate datechar="creation" normal="1930/1930" type="inclusive">1930</unitdate>
             <container altrender="mss" encodinganalog="NBox" id="aspace_b3f4d08dc60a3453854ce48223ff3ff6" label="Mixed Materials [32101070780000]" type="box">1</container>
           </did>
+          <acqinfo id="aspace_dbc003c193decb626f0e16c3635392b2">
+            <head>Immediate Source of Acquisition</head>
+            <p>Purchased from William Reese Company in 2021 (AM 2021-52).</p>
+          </acqinfo>
           <scopecontent id="aspace_8402ac27a0f125aeb1753bdee8161fa3">
             <head>Scope and Contents</head>
             <p>ALS to Ms. Meta Harren, 27 August 1930, 2 pp. AM 21233</p>
