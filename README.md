@@ -81,9 +81,20 @@ A subset of collections (the same that are run in specs) can be indexed into
 
 1. Open up `app/services/aspace_fixture_generator.rb`
 1. Add EAD ID to the `AspaceFixtureGenerator::EAD_IDS` constant.
-1. If you're only interested in a subset of components, add them to the
-   `AspaceFixtureGenerator::COMPONENT_MAP` constant.
+   1. comment out the other entries unless you want to regenerate them. it takes
+      a while to run all of them.
+1. If you're only interested in a subset of components, add them to the `AspaceFixtureGenerator::COMPONENT_MAP` constant.
+1. Ensure you're on VPN
 1. `bundle exec rake pulfalight:fixtures:refresh_aspace_fixtures`
+
+##### Troubleshooting Aspace API Connections
+
+If you get an error that the login failed, the most likely explanation is that one or more VPN machines changed IPs and we need to regenerate the list of VPN IPs and send it to Lyrasis support.
+
+You can validate this by running `Aspace::Client.new` on a staging box rails console. If that doesn't error then it's not an issue with the credentials.
+
+[Instructions](https://github.com/pulibrary/pul-the-hard-way/blob/main/services/vpn.md) and [a ruby script for generating the list of ips](https://github.com/pulibrary/pul-the-hard-way/tree/main/services/vpn) are in the pul-the-hard-way repo. Once you have the list of IPs, send it in an email to support@lyrasis.zendesk.com. You can say something like, "I’m having trouble accessing the archivesspace API and I suspect it’s because our VPN changed their backend endpoint IPs again. Can you please make sure the following IPs are allowed to access the API endpoint for aspace.princeton.edu?" If they follow up with more questions, it may be helpful to mention that this list of VPN IPs is in addition to the subnet of IPs for our "on campus" machines, which don't change.
+
 
 ### Citation Formatting
 
