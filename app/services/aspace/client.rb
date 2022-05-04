@@ -54,6 +54,8 @@ module Aspace
       get_resource_description_xml(resource_descriptions_uri: url, cached: cached)
     end
 
+    # @see
+    # https://archivesspace.github.io/archivesspace/api/#get-an-ead-representation-of-a-resource
     def get_resource_description_xml(resource_descriptions_uri:, cached: true)
       cache = XmlCache.find_or_initialize_by(resource_descriptions_uri: resource_descriptions_uri)
       return cache.content if cache.content.present? && cached

@@ -142,7 +142,7 @@
             <container altrender="mss" encodinganalog="NBox" id="aspace_e82bde45a411873f3a351bb3700054ff" label="Mixed Materials [32101103191043]" type="box">B-001555</container>
             <container id="aspace_7244fff7f99dad858720f5764690a13c" parent="aspace_e82bde45a411873f3a351bb3700054ff" type="folder">7</container>
           </did>
-          <acqinfo id="aspace_dbc003c193decb626f0e16c3635392b2">
+          <acqinfo audience="internal" id="aspace_dbc003c193decb626f0e16c3635392b2">
             <head>Immediate Source of Acquisition</head>
             <p>Purchased from William Reese Company in 2021 (AM 2021-52).</p>
           </acqinfo>

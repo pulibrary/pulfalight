@@ -95,10 +95,11 @@ RSpec.describe AspaceIndexJob do
         published_component = connection.get("select", params: { q: "id:C0140_c00001_published", fl: "audience_ssi" })
         expect(published_component["response"]["docs"][0]["audience_ssi"]).to eq nil
 
-        unpublished_elements = connection.get("select", params: { q: "id:C0140_c35769-33947_unpublished_elements", fl: ["audience_ssi", "repository_ssm", "phystech_ssm", "creator_persname_ssm"] })
+        unpublished_elements = connection.get("select", params: { q: "id:C0140_c35769-33947_unpublished_elements", fl: ["audience_ssi", "repository_ssm", "phystech_ssm", "creator_persname_ssm", "acqinfo_ssim"] })
         expect(unpublished_elements["response"]["docs"][0]["repository_ssm"]).to eq ["Manuscripts Division"]
         expect(unpublished_elements["response"]["docs"][0]["audience_ssi"]).to eq nil
         expect(unpublished_elements["response"]["docs"][0]["phystech_ssm"]).to eq nil
+        expect(unpublished_elements["response"]["docs"][0]["acqinfo_ssim"]).to eq nil
         expect(unpublished_elements["response"]["docs"][0]["creator_persname_ssm"]).to eq nil
       end
     end
