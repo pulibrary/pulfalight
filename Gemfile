@@ -67,7 +67,7 @@ group :test do
 end
 
 group :development, :test do
-  gem "bixby", "~> 3.0"
+  gem "bixby", "~> 4.0"
   gem "database_cleaner"
 end
 

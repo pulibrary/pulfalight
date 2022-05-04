@@ -49,7 +49,7 @@ to_field "ead_ssi" do |_record, accumulator, _context|
   next unless parent
 
   ead_ids = parent.output_hash["ead_ssi"]
-  accumulator.replace(ead_ids)
+  accumulator << ead_ids.first if ead_ids.present?
 end
 
 to_field "audience_ssi" do |_record, accumulator, _context|
@@ -287,7 +287,7 @@ to_field "container_location_codes_ssim" do |record, accumulator, context|
   if context.output_hash["level_ssm"] == ["Text"] && accumulator.blank?
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
-    parent = settings[:parent] || settings[:parent]
+    parent = settings[:parent]
     accumulator.replace(parent.output_hash["container_location_codes_ssim"] || [])
   end
 end
@@ -313,7 +313,7 @@ to_field "container_information_ssm" do |record, accumulator, context|
   if context.output_hash["level_ssm"] == ["Text"] && accumulator.blank?
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
-    parent = settings[:parent] || settings[:parent]
+    parent = settings[:parent]
     accumulator.replace(parent.output_hash["container_information_ssm"] || [])
   end
 end
@@ -322,7 +322,7 @@ to_field "containers_ssim" do |record, accumulator, context|
   if context.output_hash["level_ssm"] == ["Text"]
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
-    parent = settings[:parent] || settings[:parent]
+    parent = settings[:parent]
     accumulator.replace(parent.output_hash["containers_ssim"] || [])
   else
     record.xpath("./did/container").each do |node|
@@ -340,7 +340,7 @@ to_field "barcodes_ssim" do |record, accumulator, context|
   if context.output_hash["level_ssm"] == ["Text"] && accumulator.blank?
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
-    parent = settings[:parent] || settings[:parent]
+    parent = settings[:parent]
     accumulator.replace(parent.output_hash["barcodes_ssim"] || [])
   end
 end
@@ -380,7 +380,7 @@ to_field "physloc_sim" do |record, accumulator, context|
   if context.output_hash["level_ssm"] == ["Text"] && accumulator.select(&:present?).blank?
     # Text records have no container information, but can be requested. Copy the
     # container info from the parent.
-    parent = settings[:parent] || settings[:parent]
+    parent = settings[:parent]
     accumulator.replace(parent.output_hash["physloc_sim"] || [])
   end
 end
