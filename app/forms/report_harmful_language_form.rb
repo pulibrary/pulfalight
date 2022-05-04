@@ -23,5 +23,4 @@ class ReportHarmfulLanguageForm
     return "wdressel@princeton.edu" if ["engineering library"].include?(location_code)
     "suggestacorrection@princeton.libanswers.com"
   end
-
 end
