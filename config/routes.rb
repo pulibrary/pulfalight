@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   get "/report", to: "feedback#report"
   post "/contact/suggest", to: "contact#suggest"
   post "/contact/question", to: "contact#question"
+  post "/contact/report", to: "contact#report"
 
   get "/pacscl/production", to: "partner_exports#pacscl"
   get "/pacscl/production/:id", to: "partner_exports#pacscl_xml", as: :pacscl_xml

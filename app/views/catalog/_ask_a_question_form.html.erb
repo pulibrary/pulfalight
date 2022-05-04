@@ -1,6 +1,8 @@
 <% if form.submitted? %>
   <div class="alert alert-success" role="alert">
-    Thank you for your question.
+    Thank you for submitting your question to Special Collections.
+    Someone will reply to you via email soon.
+    We appreciate your patience and look forward to addressing your inquiry.
   </div>
 <% end %>
 <%= simple_form_for form, url: contact_question_path, remote: true do |f| %>
