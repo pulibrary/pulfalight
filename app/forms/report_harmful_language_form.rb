@@ -4,6 +4,7 @@ class ReportHarmfulLanguageForm
   attr_accessor :name, :email, :box_number, :message, :location_code, :context
 
   validates :message, presence: true
+  validates :email, email: true, allow_blank: true
 
   def submit
     ContactMailer.with(form: self).report.deliver
@@ -22,4 +23,5 @@ class ReportHarmfulLanguageForm
     return "wdressel@princeton.edu" if ["engineering library"].include?(location_code)
     "suggestacorrection@princeton.libanswers.com"
   end
+
 end
