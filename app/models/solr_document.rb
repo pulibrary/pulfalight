@@ -97,10 +97,6 @@ class SolrDocument
   end
   alias unittitle title
 
-  def subtitle
-    fetch(:subtitle_ssm, [])
-  end
-
   def places
     fetch("places_ssm", [])
   end
