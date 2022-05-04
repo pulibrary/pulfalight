@@ -56,8 +56,12 @@ Rails.application.routes.draw do
   get "/requesting_materials", to: "about#requesting_materials"
   get "/research_account", to: "about#research_account"
   get "/archival_language", to: "about#archival_language"
+  get "/ask_a_question", to: "feedback#ask_a_question"
+  get "/suggest", to: "feedback#suggest"
+  get "/report", to: "feedback#report"
   post "/contact/suggest", to: "contact#suggest"
   post "/contact/question", to: "contact#question"
+  post "/contact/report", to: "contact#report"
 
   get "/pacscl/production", to: "partner_exports#pacscl"
   get "/pacscl/production/:id", to: "partner_exports#pacscl_xml", as: :pacscl_xml

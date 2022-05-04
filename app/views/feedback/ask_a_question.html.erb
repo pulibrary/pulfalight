@@ -1,0 +1,40 @@
+<script src="https://api2.libanswers.com/1.0/widgets/850"></script>
+<div class="lux feedback-container">
+  <heading level="h2" size="h3">Ask a Question</heading>
+  <div class="row">
+
+    <div id="generalFeedback" class="form-wrapper col">
+
+      <div class="form-wrapper">
+        <%= render partial: "catalog/ask_a_question_form", locals: {
+          form: AskAQuestionForm.new(location_code: "general",
+          context: "http://findingaids.princeton.edu",
+          title: "Finding Aids Website Question") } %>
+      </div>
+    </div>
+    <div id="questionFAQ" class="col">
+      <h6>
+        Quick Answers
+      </h6>
+      <p>Has your question already been answered?</p>
+      <div id="s-la-widget-850"></div>
+      <div class="faq-set" style="padding-top: 10px;">
+        <p class="faq">
+          <a href="https://faq.library.princeton.edu/special-collections/faq/338780?m=p" target="_blank">
+            How can I access Special Collections?
+          </a>
+        </p>
+        <p class="faq">
+          <a href="https://faq.library.princeton.edu/special-collections/faq/64876?m=p" target="_blank">
+            What digitization services do you offer for material in Special Collections?
+          </a>
+        </p>
+        <p class="faq">
+          <a href="https://faq.library.princeton.edu/special-collections/faq/56766?m=p" target="_blank">
+            Do I need permission to quote or publish from Special Collections material?
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

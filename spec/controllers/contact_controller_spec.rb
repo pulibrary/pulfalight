@@ -41,6 +41,43 @@ RSpec.describe ContactController do
       end
     end
   end
+  describe "POST report" do
+    context "when given invalid data AJAX data" do
+      it "returns the form re-rendered" do
+        post :report, params: { report_harmful_language_form: { "name" => "Test" } }
+
+        expect(response.status).to eq 422
+
+        expect(response.body).to have_field "Name"
+        expect(response.body).to have_content "Message can't be blank"
+      end
+    end
+    context "when given valid params" do
+      it "returns a 200 and sends an email appropriately" do
+        post :report, params: {
+          report_harmful_language_form: {
+            "name" => "",
+            "email" => "",
+            "message" => "This record needs more science.",
+            "context" => "http://example.com/example",
+            "location_code" => "mudd"
+          }
+        }
+
+        expect(response.status).to eq 200
+        expect(response.body).to have_content "Thank you for reporting problematic archival description within our collections."
+
+        expect(ActionMailer::Base.deliveries.length).to eq 1
+        delivery = ActionMailer::Base.deliveries.first
+        expect(delivery.subject).to eq "Reporting Harmful Language"
+        expect(delivery.to).to eq ["suggestacorrection@princeton.libanswers.com"]
+        expect(delivery.from).to eq ["anonymous@princeton.edu"]
+        expect(delivery.body).to include ""
+        expect(delivery.body).to include "This record needs more science."
+        expect(delivery.body).to include "http://example.com/example"
+      end
+    end
+  end
   describe "POST question" do
     context "when given invalid data AJAX data" do
       it "returns the form re-rendered" do
@@ -68,7 +105,7 @@ RSpec.describe ContactController do
 
         expect(response.status).to eq 200
         expect(response.body).to have_field "Name", with: ""
-        expect(response.body).to have_content "Thank you for your question."
+        expect(response.body).to have_content "Thank you for submitting your question to Special Collections."
 
         expect(ActionMailer::Base.deliveries.length).to eq 1
         delivery = ActionMailer::Base.deliveries.first

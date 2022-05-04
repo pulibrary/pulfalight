@@ -1,0 +1,19 @@
+<% if form.submitted? %>
+  <div class="suggest_a_correction_instructions">
+  Dear Researcher,<br><br>
+Thank you for reporting problematic archival description within our collections. Staff will review the description and update it in a way that balances the preservation of original context with an awareness of the effect of language on our users. Revisions may include providing additional context and/or replacing problematic terminology. We appreciate your feedback.
+  <br>
+  <br>
+  Sincerely,<br>
+  Archival Description and Processing Team
+  </div>
+<% end %>
+<%= simple_form_for form, url: contact_report_path, remote: true do |f| %>
+  <%= f.input :name %>
+  <%= f.input :email, as: :email %>
+  <%= f.input :box_number, label: "Box/Container Number (optional)" %>
+  <%= f.input :message, as: :text %>
+  <%= f.input :location_code, as: :hidden %>
+  <%= f.input :context, as: :hidden %>
+  <%= f.submit "Send", class: "btn btn-primary" %>
+<% end %>

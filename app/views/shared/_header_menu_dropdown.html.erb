@@ -8,6 +8,11 @@
             method: 'delete',
             authenticity_token: '<%= form_authenticity_token %>'},
           {name: '<%= t('blacklight.header_links.search_history')%>', component: 'History', href: '<%= blacklight.search_history_path %>'},
+        ]},
+        {name: 'Ask Us!', component: 'AskUs', href: '/ask_us/', children: [
+          {name: 'Ask A Question', component: 'AskAQuestion', href: '/ask_a_question/'},
+          {name: 'Suggest a Correction', component: 'Suggest', href: '/suggest/'},
+          {name: 'Report Harmful Language', component: 'Logout', href: '/report/'}
         ]}
       ]"
     ></menu-bar>
@@ -18,6 +23,11 @@
             component: '<%= t('blacklight.header_links.login')%>',
             href: '<%= new_user_session_path %>'},
           {name: '<%= t('blacklight.header_links.search_history')%>', component: 'History', href: '<%= blacklight.search_history_path %>'},
+        ]},
+        {name: 'Ask Us!', component: 'AskUs', href: '/ask_us/', children: [
+          {name: 'Ask A Question', component: 'AskAQuestion', href: '/ask_a_question/'},
+          {name: 'Suggest a Correction', component: 'Suggest', href: '/suggest/'},
+          {name: 'Report Harmful Language', component: 'Logout', href: '/report/'}
         ]}
       ]"
     ></menu-bar>

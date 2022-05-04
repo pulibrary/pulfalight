@@ -9,6 +9,15 @@ class ContactController < ApplicationController
     end
   end
 
+  def report
+    @form = ReportHarmfulLanguageForm.new(report_params)
+    if @form.valid? && @form.submit
+      render partial: "catalog/report_harmful_language_form", locals: { form: @form }
+    else
+      render partial: "catalog/report_harmful_language_form", locals: { form: @form }, status: :unprocessable_entity
+    end
+  end
+
   def question
     @form = AskAQuestionForm.new(question_params)
     if @form.valid? && @form.submit
@@ -20,6 +29,10 @@ class ContactController < ApplicationController
 
   def suggest_params
     params[:suggest_a_correction_form].permit!
+  end
+
+  def report_params
+    params[:report_harmful_language_form].permit!
   end
 
   def question_params
