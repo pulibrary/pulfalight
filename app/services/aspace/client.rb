@@ -59,7 +59,7 @@ module Aspace
     def get_resource_description_xml(resource_descriptions_uri:, cached: true)
       cache = XmlCache.find_or_initialize_by(resource_descriptions_uri: resource_descriptions_uri)
       return cache.content if cache.content.present? && cached
-      content = get("#{resource_descriptions_uri}.xml", query: { include_daos: true, include_unpublished: false }, timeout: 1200).body.force_encoding("UTF-8")
+      content = get("#{resource_descriptions_uri}.xml", query: { include_daos: true, include_unpublished: true }, timeout: 1200).body.force_encoding("UTF-8")
       # Strip prefix from EAD.
       content = content.gsub("aspace_", "")
       cache.content = content
