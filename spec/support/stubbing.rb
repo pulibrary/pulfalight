@@ -8,6 +8,14 @@ module Stubbing
         }
       )
   end
+
+  def stub_refresh_remote_metadata(status_code:)
+    stub_request(:post, "https://figgy.princeton.edu/resources/refresh_remote_metadata")
+      .to_return(
+        body: "",
+        status: status_code
+      )
+  end
 end
 
 RSpec.configure do |config|

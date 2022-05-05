@@ -2,6 +2,7 @@
 require "rails_helper"
 
 RSpec.describe AspaceIndexJob do
+  with_queue_adapter :test
   let(:connection) { Blacklight.default_index.connection }
 
   after do
@@ -11,6 +12,17 @@ RSpec.describe AspaceIndexJob do
   end
 
   describe "indexing" do
+    context "when given sync_to_figgy flag" do
+      it "enqueues the sync to figgy job" do
+        stub_aspace_login
+        stub_aspace_ead(resource_descriptions_uri: "repositories/13/resources/5396", ead: "mss/C1588.xml")
+
+        described_class.perform_now(resource_descriptions_uri: "repositories/13/resources/5396", repository_id: "mss", sync_to_figgy: true)
+
+        expect(SyncToFiggyJob).to have_been_enqueued.with(["C1588test"])
+      end
+    end
+
     context "when given a valid existing resource" do
       it "gets it and indexes it" do
         stub_aspace_login
@@ -27,6 +39,7 @@ RSpec.describe AspaceIndexJob do
         cache = XmlCache.first
         expect(cache.ead_id).to eq "C1588test"
         expect(cache.resource_descriptions_uri).to eq "repositories/13/resources/5396"
+        expect(SyncToFiggyJob).not_to have_been_enqueued
       end
     end
 

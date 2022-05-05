@@ -1,5 +1,5 @@
-
 # frozen_string_literal: true
+
 # Asynchronous job used to index EAD Documents
 class IndexJob < ApplicationJob
   # Class for capturing the output of the Traject indexer
