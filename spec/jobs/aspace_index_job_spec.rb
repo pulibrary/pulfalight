@@ -82,7 +82,7 @@ RSpec.describe AspaceIndexJob do
         connection.delete_by_query("id:C0140_c87678-60535_unpublished")
         connection.delete_by_query("id:C0140_c00001_published")
         connection.delete_by_query("id:C0140_c35769-33947_unpublished_elements")
-        connection.delete_by_query("id:C0140")
+        connection.delete_by_query("id:C0140_custom")
         described_class.perform_now(resource_descriptions_uri: "repositories/13/resources/3950", repository_id: "mss")
         connection.commit
 
