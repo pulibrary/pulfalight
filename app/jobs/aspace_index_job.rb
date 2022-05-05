@@ -46,6 +46,7 @@ class AspaceIndexJob < ApplicationJob
     ead_content = aspace_client.get_resource_description_xml(resource_descriptions_uri: resource_descriptions_uri, cached: soft)
     xml_documents = Nokogiri::XML.parse(ead_content)
     xml_documents.remove_namespaces!
+    xml_documents = remove_unpublished_fields(xml_documents)
 
     @repository_id = repository_id.try(&:downcase)
     solr_documents = EADArray.new
@@ -58,5 +59,14 @@ class AspaceIndexJob < ApplicationJob
     logger.info("Successfully indexed the EAD")
   rescue Pulfalight::MissingRepositoryError
     Honeybadger.notify("An Arclight::Repository was not found for repository_id #{repository_id} when indexing #{resource_descriptions_uri}. Check configuration in config/repositories.yml")
+  end
+
+  private
+
+  def remove_unpublished_fields(xml_documents)
+    xml_documents.search(".//*").each do |node|
+      next if ["ead", "unitid", "c"].include? node.name
+      node.remove if node.attributes["audience"]
+    end
   end
 end
