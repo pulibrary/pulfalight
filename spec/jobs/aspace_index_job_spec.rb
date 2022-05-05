@@ -74,7 +74,7 @@ RSpec.describe AspaceIndexJob do
       end
     end
 
-    context "when given an EAD for a collection that is published with components that are not" do
+    context "when given an EAD for a collection that is published with components or fields that are not" do
       it "indexes unpublished components with audience_ssi internal" do
         stub_aspace_login
         stub_aspace_ead(resource_descriptions_uri: "repositories/13/resources/3950", ead: "mss/C0140_internal_components.xml")
