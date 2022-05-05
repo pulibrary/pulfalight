@@ -5,7 +5,7 @@ module AspaceStubbing
   end
 
   def stub_aspace_ead(resource_descriptions_uri:, ead:)
-    stub_request(:get, "https://aspace.test.org/staff/api/#{resource_descriptions_uri}.xml?include_daos=true&include_unpublished=false")
+    stub_request(:get, "https://aspace.test.org/staff/api/#{resource_descriptions_uri}.xml?include_daos=true&include_unpublished=true")
       .to_return(status: 200, body: File.open(Rails.root.join("spec", "fixtures", "aspace", ead)))
   end
 
