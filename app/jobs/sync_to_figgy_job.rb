@@ -9,7 +9,7 @@ class SyncToFiggyJob < ApplicationJob
       headers: { "Content-Type" => "application/json" }
     )
     response = connection.post("/resources/refresh_remote_metadata") do |req|
-      req.body = { archival_collection_ids: collection_ids }.to_json
+      req.body = { archival_collection_codes: collection_ids }.to_json
     end
 
     raise FiggyError unless response.success?
