@@ -26,9 +26,21 @@ RSpec.describe Aspace::Indexer do
 
       expect(Event.first.updated_at).not_to eq event.updated_at
 
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/1", repository_id: "mss", soft: false).exactly(1).times
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/2", repository_id: "mss", soft: false).exactly(1).times
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/3", repository_id: "mss", soft: false).exactly(2).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(
+        resource_descriptions_uri: "repositories/13/resource_descriptions/1",
+        repository_id: "mss",
+        soft: false, sync_to_figgy: true
+      ).exactly(1).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(
+        resource_descriptions_uri: "repositories/13/resource_descriptions/2",
+        repository_id: "mss", soft: false,
+        sync_to_figgy: true
+      ).exactly(1).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(
+        resource_descriptions_uri: "repositories/13/resource_descriptions/3",
+        repository_id: "mss", soft: false,
+        sync_to_figgy: true
+      ).exactly(2).times
     end
   end
 
@@ -47,7 +59,12 @@ RSpec.describe Aspace::Indexer do
       described_class.soft_full_reindex
 
       expect(resource_ead_stub).to have_been_made.times(1)
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/1", repository_id: "mss", soft: true).exactly(1).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(
+        resource_descriptions_uri: "repositories/13/resource_descriptions/1",
+        repository_id: "mss",
+        soft: true,
+        sync_to_figgy: false
+      ).exactly(1).times
     end
   end
 
@@ -73,9 +90,24 @@ RSpec.describe Aspace::Indexer do
       expect(Event.first.updated_at).not_to eq event.updated_at
 
       # Full reindexes will queue more jobs no matter what.
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/1", repository_id: "mss", soft: false).exactly(2).times
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/2", repository_id: "mss", soft: false).exactly(2).times
-      expect(AspaceIndexJob).to have_received(:perform_later).with(resource_descriptions_uri: "repositories/13/resource_descriptions/3", repository_id: "mss", soft: false).exactly(2).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(
+        resource_descriptions_uri: "repositories/13/resource_descriptions/1",
+        repository_id: "mss",
+        soft: false,
+        sync_to_figgy: false
+      ).exactly(2).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(
+        resource_descriptions_uri: "repositories/13/resource_descriptions/2",
+        repository_id: "mss",
+        soft: false,
+        sync_to_figgy: false
+      ).exactly(2).times
+      expect(AspaceIndexJob).to have_received(:perform_later).with(
+        resource_descriptions_uri: "repositories/13/resource_descriptions/3",
+        repository_id: "mss",
+        soft: false,
+        sync_to_figgy: false
+      ).exactly(2).times
     end
   end
 end
