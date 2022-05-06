@@ -9,7 +9,7 @@ RSpec.describe SyncToFiggyJob do
         described_class.perform_now(["C0001"])
 
         expect(WebMock).to have_requested(:post, "https://figgy.princeton.edu/resources/refresh_remote_metadata")
-          .with(body: { "archival_collection_ids" => ["C0001"] })
+          .with(body: { "archival_collection_codes" => ["C0001"] })
       end
     end
 
