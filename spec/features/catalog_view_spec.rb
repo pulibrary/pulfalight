@@ -27,6 +27,13 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_field "ask_a_question_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221_c0059"
       expect(page).to have_field "ask_a_question_form_title", visible: false, type: :hidden, with: "Harold B. Hoskins Papers, 1822-1982"
     end
+    it "has a report harmful content form", js: false do
+      visit "/catalog/MC221_c0059"
+
+      expect(page).to have_selector "h5", text: "Report Harmful Language"
+      expect(page).to have_field "report_harmful_language_form_location_code", visible: false, type: :hidden, with: "Harmful Language Report"
+      expect(page).to have_field "report_harmful_language_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221_c0059"
+    end
     it "has a component level storage note" do
       visit "catalog/MC221_c0059"
       expect(page).to have_css("dd.blacklight-summary_storage_note_ssm", text: "Mudd Manuscript Library (mudd): Box 3")

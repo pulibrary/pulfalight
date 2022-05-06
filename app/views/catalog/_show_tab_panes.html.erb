@@ -2,10 +2,10 @@
 
   <nav class="navbar sticky-top">
     <div class="row lux">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <% if @document.aeon_request.requestable? %>
           <add-to-cart-button
-            class="add-to-cart-block"
+            class="add-to-cart-block row"
             <% @document.aeon_request.attributes.each_pair do |key, value| %>
               <% unless value.nil? || value.empty? %>
                 <%= key %>="<%= value %>"
@@ -13,30 +13,47 @@
             <% end %>
             :form-params="<%= JSON.generate(@document.aeon_request.form_attributes) %>"
             >
-            <lux-icon-base icon-name="add-to-cart" width="20" height="20">
+            <lux-icon-base class="col-2" icon-name="add-to-cart" width="20" height="20">
                 <add-to-cart-icon></add-to-cart-icon>
             </lux-icon-base>
-            Request this box
+            <span class="col-10">
+              Request this box
+            </span>
           </add-to-cart-button>
         <% end %>
       </div>
-      <div class="col-md-4">
-        <input-button id="question-button" type="button" variation="text" data-toggle="modal" data-target="#questionModal">
-          <lux-icon-base icon-name="question" width="16" height="16">
+      <div class="col-md-3">
+        <input-button class="row" id="question-button" type="button" variation="text" data-toggle="modal" data-target="#questionModal">
+          <lux-icon-base class="col-2" icon-name="question" width="16" height="16">
               <lux-icon-question></lux-icon-question>
           </lux-icon-base>
-          Ask a question
+          <span class="col-10">
+            Ask a question
+          </span>
         </input-button>
         <%= render "question_modal" %>
       </div>
-      <div class="col-md-4">
-        <input-button id="correction-button" type="button" variation="text" data-toggle="modal" data-target="#correctionModal">
-          <lux-icon-base icon-name="exclamation" width="16" height="16">
+      <div class="col-md-3">
+        <input-button class="row" id="correction-button" type="button" variation="text" data-toggle="modal" data-target="#correctionModal">
+          <lux-icon-base class="col-2" icon-name="exclamation" width="16" height="16">
               <lux-icon-exclamation></lux-icon-exclamation>
           </lux-icon-base>
-          Suggest a correction
+          <span class="col-10">
+            Suggest a correction
+          </span>
         </input-button>
         <%= render "correction_modal" %>
+      </div>
+      <div class="col-md-3">
+        <input-button id="harmful-language-button" class="row" type="button" variation="text" data-toggle="modal" data-target="#harmfulLanguageModal">
+          <lux-icon-base class="col-2" icon-name="exclamation" width="16" height="16">
+              <lux-icon-exclamation></lux-icon-exclamation>
+          </lux-icon-base>
+          <span class="col-10">
+            Report Harmful Language
+          </span>
+        </input-button>
+        <%= render "harmful_language_modal" %>
       </div>
     </div><!-- .row -->
   </nav>
