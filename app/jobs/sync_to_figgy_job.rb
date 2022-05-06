@@ -3,7 +3,7 @@
 class SyncToFiggyJob < ApplicationJob
   class FiggyError < StandardError; end
 
-  def perform(collection_ids:)
+  def perform(collection_ids)
     connection = Faraday.new(
       url: Pulfalight.config["figgy_url"],
       headers: { "Content-Type" => "application/json" }

@@ -6,7 +6,7 @@ RSpec.describe SyncToFiggyJob do
     context "when Figgy returns a 2xx response" do
       it "completes" do
         stub_refresh_remote_metadata(status_code: 202)
-        described_class.perform_now(collection_ids: ["C0001"])
+        described_class.perform_now(["C0001"])
 
         expect(WebMock).to have_requested(:post, "https://figgy.princeton.edu/resources/refresh_remote_metadata")
           .with(body: { "archival_collection_ids" => ["C0001"] })
@@ -16,7 +16,7 @@ RSpec.describe SyncToFiggyJob do
     context "when Figgy returns a 500 response" do
       it "raises an exception" do
         stub_refresh_remote_metadata(status_code: 500)
-        expect { described_class.perform_now(collection_ids: ["C0001"]) }.to raise_exception(SyncToFiggyJob::FiggyError)
+        expect { described_class.perform_now(["C0001"]) }.to raise_exception(SyncToFiggyJob::FiggyError)
       end
     end
   end
