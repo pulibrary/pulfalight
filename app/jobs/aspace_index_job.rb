@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 # Asynchronous job used to index EAD Documents
+#
+require "pulfalight/missing_repository_error"
 class AspaceIndexJob < ApplicationJob
   # Class for capturing the output of the Traject indexer
   class EADArray < Array
