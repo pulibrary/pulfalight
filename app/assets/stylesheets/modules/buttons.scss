@@ -21,3 +21,34 @@
   margin-top: 20px;
   background-color: #f6f6f6;
 }
+
+.sticky-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.sticky-button span {
+  text-align: left;
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.sticky-button .lux-icon {
+  align-self: normal;
+}
+
+.sticky-top {
+  flex-wrap: nowrap;
+}
+
+.sticky-top > div {
+  align-self: start;
+}
+
+@media only screen and (max-width: 1100px) {
+  .sticky-top {
+    flex-wrap: wrap;
+  }
+}

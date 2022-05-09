@@ -157,10 +157,7 @@
         width: 100%;
         text-align: center;
 
-        .col-md-4 {
-          padding-left: 0;
-          padding-right: 0;
-
+        .col-md-3, .col-md-4 {
           button {
             color: #767676;
             font-weight: 600;
@@ -171,6 +168,11 @@
               height: 1.6rem;
             }
           }
+        }
+
+        .col-md-4 {
+          padding-left: 0;
+          padding-right: 0;
         }
       }
     }
