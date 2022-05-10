@@ -8,7 +8,7 @@ RSpec.describe SyncToFiggyJob do
         stub_refresh_remote_metadata(status_code: 202)
         described_class.perform_now(["C0001"])
 
-        expect(WebMock).to have_requested(:post, "https://figgy.princeton.edu/resources/refresh_remote_metadata")
+        expect(WebMock).to have_requested(:post, "https://figgy.princeton.edu/resources/refresh_remote_metadata?auth_token=123456")
           .with(body: { "archival_collection_codes" => ["C0001"] })
       end
     end

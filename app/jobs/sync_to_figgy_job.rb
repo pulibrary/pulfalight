@@ -8,7 +8,8 @@ class SyncToFiggyJob < ApplicationJob
       url: Pulfalight.config["figgy_url"],
       headers: { "Content-Type" => "application/json" }
     )
-    response = connection.post("/resources/refresh_remote_metadata") do |req|
+    auth_token = Pulfalight.config["figgy_auth_token"]
+    response = connection.post("/resources/refresh_remote_metadata?auth_token=#{auth_token}") do |req|
       req.body = { archival_collection_codes: collection_ids }.to_json
     end
 
