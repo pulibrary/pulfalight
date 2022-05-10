@@ -5,6 +5,7 @@ defaults: &defaults
   archivespace_password: <%= ENV["ASPACE_PASSWORD"] %>
   aeon_url: 'https://lib-aeon.princeton.edu/aeon/Aeon.dll'
   unpublished_auth_token: <%= ENV["UNPUBLISHED_AUTH_TOKEN"] %>
+  figgy_auth_token: <%= ENV["FIGGY_AUTH_TOKEN"] %>
   figgy_url: "https://figgy.princeton.edu"
 
 development:
@@ -16,6 +17,7 @@ test:
   archivespace_user: "test"
   archivespace_password: "password"
   unpublished_auth_token: "123456"
+  figgy_auth_token: "123456"
 
 production:
   <<: *defaults

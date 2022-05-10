@@ -10,7 +10,7 @@ module Stubbing
   end
 
   def stub_refresh_remote_metadata(status_code:)
-    stub_request(:post, "https://figgy.princeton.edu/resources/refresh_remote_metadata")
+    stub_request(:post, "https://figgy.princeton.edu/resources/refresh_remote_metadata?auth_token=123456")
       .to_return(
         body: "",
         status: status_code
