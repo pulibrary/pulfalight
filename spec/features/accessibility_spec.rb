@@ -4,7 +4,7 @@ require "rails_helper"
 describe "accessibility", type: :feature, js: true do
   context "home page" do
     it "complies with WCAG" do
-      stub_lib_cal(id: "14275")
+      stub_lib_cal(id: "18717")
       stub_lib_cal(id: "12315")
 
       visit "/"
