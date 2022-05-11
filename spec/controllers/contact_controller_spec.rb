@@ -65,7 +65,7 @@ RSpec.describe ContactController do
         }
 
         expect(response.status).to eq 200
-        expect(response.body).to have_content "Thank you for reporting problematic archival description within our collections."
+        expect(response.body).to have_content "Thank you for reporting problematic archival description"
 
         expect(ActionMailer::Base.deliveries.length).to eq 1
         delivery = ActionMailer::Base.deliveries.first
