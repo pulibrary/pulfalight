@@ -6,7 +6,7 @@ RSpec.describe HoursController, type: :controller do
     let(:hours_hash) { JSON.parse(response.body) }
 
     context "with a valid location id" do
-      let(:id) { "14275" }
+      let(:id) { "18717" }
 
       before { stub_lib_cal(id: id) }
 
@@ -43,7 +43,7 @@ RSpec.describe HoursController, type: :controller do
 
     context "with a LibCal connection failure" do
       let(:connection) { instance_double("Faraday::Connection") }
-      let(:id) { "14275" }
+      let(:id) { "18717" }
 
       before do
         stub_lib_cal(id: id)
