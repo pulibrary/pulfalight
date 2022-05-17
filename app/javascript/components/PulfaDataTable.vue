@@ -350,7 +350,7 @@ export default {
     align-items: center;
     margin: 0;
 
-    /deep/ .lux-icon {
+    ::v-deep .lux-icon {
       display: initial;
     }
   }
