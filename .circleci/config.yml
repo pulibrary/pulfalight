@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@1.2.5
+  node: circleci/node@5.0.2
 jobs:
   build:
     working_directory: ~/pulfalight
@@ -12,16 +13,9 @@ jobs:
     steps:
       - browser-tools/install-browser-tools
       - checkout
-      - run:
-          name: Install node@lts/erbium (need right version for `yarn`)
-          command: |
-            set +e
-            touch $BASH_ENV
-            curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
-            echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
-            echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
-            echo 'nvm install lts/erbium' >> $BASH_ENV
-            echo 'nvm alias default lts/erbium' >> $BASH_ENV
+      - node/install:
+          install-yarn: true
+          node-version: '16.15'
       - run:
           name: Check current version of node
           command: node -v
@@ -136,6 +130,13 @@ jobs:
           command: |
             echo 'export BUNDLER_VERSION=2.2.16' >> $BASH_ENV
             gem install bundler -v 2.2.16
+      - node/install:
+          install-yarn: true
+          node-version: '16.15'
+      - run: node --version
+      - run:
+          name: Check current version of node
+          command: node -v
       - run:
           name: Install dependencies
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
