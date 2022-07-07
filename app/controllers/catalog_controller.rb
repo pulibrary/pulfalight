@@ -383,6 +383,8 @@ class CatalogController < ApplicationController
       last_word_connector: "<br/>"
     }
 
+    config.add_component_field "system_identifier_ssm", label: "System Identifier"
+
     # =================================
     # COLLECTION DESCRIPTION TAB FIELDS
     # =================================

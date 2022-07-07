@@ -145,7 +145,10 @@ to_field "parent_levels_ssm" do |_record, accumulator, context|
 end
 
 to_field "unitid_ssm" do |record, accumulator, _context|
-  accumulator.concat record.xpath("./did/unitid").map(&:text).map { |x| x.gsub("aspace_", "") }
+  accumulator.concat record.xpath("./did/unitid[not(@type='aspace_uri')]").map(&:text).map { |x| x.gsub("aspace_", "") }
+end
+to_field "system_identifier_ssm" do |record, accumulator, _context|
+  accumulator.concat record.xpath("./did/unitid[@type='aspace_uri']").map(&:text)
 end
 to_field "collection_unitid_ssm" do |_record, accumulator, _context|
   parent = settings[:root]
