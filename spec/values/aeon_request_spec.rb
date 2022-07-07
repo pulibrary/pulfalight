@@ -111,6 +111,20 @@ RSpec.describe AeonRequest do
         expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Item Number: 1032 Box 1"
       end
     end
+    context "when there's an aspace URI" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC130.processed.EAD.xml")
+      end
+      it "doesn't add it to the ItemVolume" do
+        result = indexer.map_record(record)
+        component = find_component(component_id: "AC130_c8346", record: result)
+        document = SolrDocument.new(component)
+        request = document.aeon_request
+        request_id = request.form_attributes[:Request]
+
+        expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Box 334"
+      end
+    end
     context "when there's a container note" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")

@@ -752,6 +752,19 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  describe "unitid_ssm" do
+    context "for components" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC130.processed.EAD.xml")
+      end
+      it "indexes unitid and system identifier separately" do
+        record = find_component(result, "AC130_c8346")
+        expect(record["unitid_ssm"]).to eq nil
+        expect(record["system_identifier_ssm"]).to eq ["/repositories/4/archival_objects/1382138"]
+      end
+    end
+  end
+
   describe "bioghist indexing" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0292.processed.EAD.xml")
