@@ -243,6 +243,7 @@ end
 
 to_field "creator_ssm", extract_xpath("./did/origination")
 to_field "creator_ssim", extract_xpath("./did/origination")
+to_field "creator_tesim", extract_xpath("./did/origination")
 to_field "creators_ssim", extract_xpath("./did/origination")
 to_field "creator_sort" do |record, accumulator|
   accumulator << record.xpath("./did/origination").map(&:text).join(", ")

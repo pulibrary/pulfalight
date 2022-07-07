@@ -81,7 +81,7 @@ class AspaceFixtureGenerator
       "aspace_C0251_c0101",
       "aspace_C0251_c0103"
     ],
-    "WC064" => ["aspace_WC064_c1"],
+    "WC064" => ["aspace_WC064_c1", "aspace_WC064_c2698"],
     "MC148" => [
       "aspace_MC148_c00002",
       "aspace_MC148_c00018",
