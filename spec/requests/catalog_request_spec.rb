@@ -215,4 +215,12 @@ describe "controller requests", type: :request do
       expect(results).to include "AC259_c005"
     end
   end
+
+  describe "searching by creator", js: false do
+    it "returns components with matching creators" do
+      get "/catalog", params: { q: "O'Sullivan", search_fields: "all_fields", per_page: 100 }
+      results = assigns.fetch(:document_list).map(&:id)
+      expect(results).to include "WC064_c2698"
+    end
+  end
 end
