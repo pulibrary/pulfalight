@@ -43,6 +43,21 @@ RSpec.describe AspaceIndexJob do
       end
     end
 
+    context "when given something with an aspace_uri" do
+      it "indexes it as a system identifier" do
+        stub_aspace_login
+        stub_aspace_ead(resource_descriptions_uri: "repositories/13/resources/5396", ead: "publicpolicy/AC300.xml")
+
+        connection.delete_by_query("id:AC300test")
+        described_class.perform_now(resource_descriptions_uri: "repositories/13/resources/5396", repository_id: "publicpolicy")
+        connection.commit
+
+        items = connection.get("select", params: { q: "id:AC300test_c1", fl: "system_identifier_ssm" })
+        expect(items["response"]["numFound"]).to eq 1
+        expect(items["response"]["docs"].first["system_identifier_ssm"]).to eq ["/repositories/4/archival_objects/683439"]
+      end
+    end
+
     context "when given an EAD which is suddenly internal" do
       it "marks the existing record and its children as internal" do
         stub_aspace_login

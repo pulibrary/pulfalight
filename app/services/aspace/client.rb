@@ -59,7 +59,7 @@ module Aspace
       return cache.content if cache.content.present? && cached
       content = get("#{resource_descriptions_uri}.xml", query: { include_daos: true, include_unpublished: false }, timeout: 1200).body.force_encoding("UTF-8")
       # Strip prefix from EAD.
-      content = content.gsub("aspace_", "")
+      content = content.gsub("id=\"aspace_", "id=\"")
       cache.content = content
       cache.ead_id = Nokogiri::XML.parse(content).remove_namespaces!.xpath("//eadid")[0].text
       cache.save!
