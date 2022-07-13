@@ -33,6 +33,7 @@ module Pulfalight
       protocol: ENV.fetch("APPLICATION_HOST_PROTOCOL", "http")
     }
     config.action_mailer.default_url_options = config.action_controller.default_url_options
+    config.active_record.yaml_column_permitted_classes = [Symbol, Date, Time, Hash, HashWithIndifferentAccess]
   end
 
   Rails.application.routes.default_url_options = {
