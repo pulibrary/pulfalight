@@ -16,14 +16,15 @@ module Pulfalight::Document::XMLExport
   def strip_containers(content)
     document = Nokogiri::XML.parse(content)
     document.xpath("//xmlns:container").each(&:remove)
-    document
+    document.to_s
   end
 
-  def add_pul_to_repository(document)
+  def add_pul_to_repository(content)
+    document = Nokogiri::XML.parse(content)
     document.xpath("//xmlns:repository/xmlns:corpname").each do |node|
       node.inner_html = "Princeton University Library: #{node.text.strip}"
     end
-    document
+    document.to_s
   end
 
   def export_xml_containers?
