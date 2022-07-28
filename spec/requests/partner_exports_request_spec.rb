@@ -12,7 +12,7 @@ RSpec.describe PartnerExportsController do
   end
 
   describe "#pacscl_xml" do
-    it "returns XML without containers" do
+    it "returns XML without containers, and with correct repository names" do
       stub_aspace_login
       stub_aspace_repositories
       stub_search(repository_id: "13", resource_ids: ["WC064"]).last
@@ -26,6 +26,7 @@ RSpec.describe PartnerExportsController do
       expect(doc.xpath("//eadid").first.text).to eq "WC064"
       expect(doc.xpath("//c").first["id"]).to eq "WC064_c1"
       expect(doc.xpath("//container").length).to eq 0
+      expect(doc.xpath("//repository/corpname").first.text).to eq "Princeton University Library: Manuscripts Division"
     end
   end
 end
