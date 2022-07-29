@@ -573,6 +573,7 @@ DEPENDENCIES
   blacklight_range_limit (~> 7.1)
   bootsnap (>= 1.1.0)
   bootstrap (>= 4.3.1)
+  bundler (= 2.3.18)
   byebug
   capistrano (~> 3.10)
   capistrano-passenger
@@ -622,4 +623,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   2.3.17
+   2.3.18
