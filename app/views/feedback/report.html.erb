@@ -15,14 +15,7 @@
             in the paper and digital records within archival collections.
           </p>
           <p>
-            Staff are currently implementing practices to address offensive or
-            harmful language and harmful content as part of routine description work. We recognize
-            that terminology evolves over time and that efforts to create respectful
-            and inclusive description must be ongoing. You can help us address
-            this issue by reporting any <%= link_to "harmful or offensive
-            language", "/archival_language" %> you
-            encounter on this site by using the form below. If you would prefer to
-            report this anonymously, you may leave the name and email fields blank.
+            Staff are currently implementing practices to address offensive or harmful language as part of routine description work. We recognize that terminology evolves over time and that efforts to create respectful and inclusive description must be ongoing. You can help us address this issue by reporting any <%= link_to "harmful or offensive language or content", "/archival_language" %> you encounter on this site by using the form below. If you would prefer to report this anonymously, you may leave the name and email fields blank.
           </p>
             <%= render partial: "catalog/report_harmful_language_form", locals: { form: ReportHarmfulLanguageForm.new(location_code: "Harmful Language Report", context: "https://findingaids.princeton.edu") } %>
         </div>
