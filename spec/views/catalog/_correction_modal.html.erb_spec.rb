@@ -17,6 +17,5 @@ RSpec.describe "catalog/_correction_modal.html.erb" do
     render
     content = view.content_for(:correction_modal)
     expect(content).to have_content("Please use this area to report errors or omissions")
-    expect(content).to have_link("harmful or offensive language", href: "/archival_language")
   end
 end
