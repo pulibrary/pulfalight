@@ -211,6 +211,15 @@ namespace :pulfalight do
     blacklight_connection.commit
   end
 
+  # Delete a single Solr record given Document ID
+  # @param [String] id
+  # @return [Boolean]
+  def delete_by_id(id:) 
+    # blacklight_connection
+    # CONTINUE HERE
+    blacklight_connection.commit
+  end
+
   # Query Solr for a single Document by the ID
   # @param [String] id
   # @return [Hash]
