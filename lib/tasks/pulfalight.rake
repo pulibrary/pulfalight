@@ -141,6 +141,11 @@ namespace :pulfalight do
       delete_by_query("<delete><query>*:*</query></delete>")
     end
 
+    desc "Delete a single Solr document by ID"
+    task delete: :environment do
+      # delete_by_id()
+    end
+
     desc "Index a single EAD file into Solr"
     task :file, [:file] => :environment do |_t, args|
       $stdout.puts "Indexing #{args[:file]}..."
