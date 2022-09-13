@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
   mount Blacklight::Engine => "/"
   mount Arclight::Engine => "/"
+  mount BlacklightDynamicSitemap::Engine => "/"
 
   root to: "catalog#index"
   concern :searchable, Blacklight::Routes::Searchable.new
