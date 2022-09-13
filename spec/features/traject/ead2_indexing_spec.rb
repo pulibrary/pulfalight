@@ -806,5 +806,19 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(values.first).to include("<p class=\"personal-name\">Du Pont de Nemours</p>")
       end
     end
+
+    context "when given lcsh and non-lcsh subjects" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0140.processed.EAD.xml")
+      end
+      it "indexes them" do
+        record = find_component(result, "C0140_c89292-98183")
+
+        values = record["subject_terms_ssim"]
+
+        expect(values).to include("LGBTQ+ relationships")
+        expect(values).to include("French -- California -- History -- 19th century -- Sources")
+      end
+    end
   end
 end

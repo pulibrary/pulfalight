@@ -456,7 +456,7 @@ to_field "places_ssim", extract_xpath("./controlaccess/geogname")
 to_field "access_subjects_ssim", extract_xpath("./controlaccess", to_text: false) do |_record, accumulator|
   accumulator.map! do |element|
     %w[subject function occupation genreform].map do |selector|
-      element.xpath(".//#{selector}").map(&:text)
+      element.xpath(".//#{selector}").map(&:text).map(&:strip)
     end
   end.flatten!
 end
@@ -600,7 +600,9 @@ to_field "phystech_ssm" do |_record, accumulator, _context|
 end
 
 # For find-more tab
-to_field "subject_terms_ssim", extract_xpath('./controlaccess/subject[@source="lcsh"]')
+to_field "subject_terms_ssim", extract_xpath('./controlaccess/subject[not(@source="local")]') do |_record, accumulator|
+  accumulator.map(&:strip!)
+end
 
 # For find-more tab
 to_field "topics_ssim", extract_xpath('./controlaccess/subject[@source="local"]')
