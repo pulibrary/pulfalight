@@ -33,6 +33,9 @@ To watch feature tests run in a browser, make sure chrome is installed and run: 
 - `rails s`
 - Access Pulfalight at http://localhost:3000/
 
+### Production
+Access Pulfalight production site at https://findingaids.princeton.edu/
+
 ### Configuration
 Please see [the ArcLight
 documentation](https://github.com/projectblacklight/arclight/wiki/Indexing-EAD-in-ArcLight#repository-configuration)
