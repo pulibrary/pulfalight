@@ -3,7 +3,7 @@
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=plastic)](./LICENSE)
 
 This is an implementation of ArcLight being implemented as a replacement for the
- Princeton University Finding Aids (PULFA) service.
+ Princeton University Finding Aids (PULFA) service. Accessible at https://findingaids.princeton.edu/.
 
 ### Development
 
