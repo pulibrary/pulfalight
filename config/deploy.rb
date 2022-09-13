@@ -80,4 +80,5 @@ end
 after "deploy:reverted", "sidekiq:restart"
 after "deploy:starting", "sidekiq:quiet"
 after "deploy:published", "sidekiq:restart"
+after "deploy:published", "robots_txt"
 before "deploy:assets:precompile", "deploy:whenever"

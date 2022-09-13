@@ -118,6 +118,9 @@ GEM
       ostruct (>= 0.3.2)
       rails (>= 5.1, < 7.1)
       view_component (~> 2.43)
+    blacklight_dynamic_sitemap (0.6.0)
+      blacklight (> 6.0)
+      rails
     blacklight_range_limit (7.9.1)
       blacklight (~> 7.0)
     bootsnap (1.10.3)
@@ -570,6 +573,7 @@ DEPENDENCIES
   benchmark-ips
   bixby (~> 4.0)
   blacklight (= 7.24.0)
+  blacklight_dynamic_sitemap
   blacklight_range_limit (~> 7.1)
   bootsnap (>= 1.1.0)
   bootstrap (>= 4.3.1)

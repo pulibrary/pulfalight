@@ -1,7 +1,7 @@
 # Configuration file for generation robots.txt
 
 defaults: &defaults
-  sitemap_url: https://pulfalight.princeton.edu/sitemap.xml.gz
+  sitemap_url: https://findingaids.princeton.edu/sitemap.xml
   disallowed_paths:
     - '/*?q=*'
     - '/*?f*'
@@ -29,4 +29,4 @@ production:
 
 staging:
   <<: *defaults
-  sitemap_url: https://pulfalight-staging.princeton.edu/sitemap.xml.gz
+  sitemap_url: https://findingaids-staging.princeton.edu/sitemap.xml

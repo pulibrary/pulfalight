@@ -74,6 +74,7 @@ end
 gem "archivesspace-client"
 gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
 gem "blacklight", "7.24.0"
+gem "blacklight_dynamic_sitemap"
 gem "blacklight_range_limit", "~> 7.1"
 gem "bootstrap", ">= 4.3.1"
 gem "bundler", "2.3.18"

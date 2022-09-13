@@ -30,7 +30,7 @@ RSpec.describe RobotsGeneratorService do
       expect(service_class).to have_received(:new).with(path: path, disallowed_paths: disallowed_paths)
       expect(service).to have_received(:insert_group).with(user_agent: "*")
       expect(service).to have_received(:insert_crawl_delay).with(10)
-      expect(service).to have_received(:insert_sitemap).with("https://pulfalight.princeton.edu/sitemap.xml.gz")
+      expect(service).to have_received(:insert_sitemap).with("https://findingaids.princeton.edu/sitemap.xml")
       expect(service).to have_received(:generate)
       expect(service).to have_received(:write)
     end
@@ -71,12 +71,12 @@ RSpec.describe RobotsGeneratorService do
 
   describe "#insert_sitemap" do
     before do
-      robots.insert_sitemap("https://test.edu/sitemap.xml.gz")
+      robots.insert_sitemap("https://test.edu/sitemap.xml")
       robots.generate
       robots.write
     end
     it "inserts a disallow directive" do
-      expect(file.read).to include("Sitemap: https://test.edu/sitemap.xml.gz")
+      expect(file.read).to include("Sitemap: https://test.edu/sitemap.xml")
     end
   end
 end
