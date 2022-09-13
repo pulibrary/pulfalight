@@ -238,7 +238,7 @@ end
 to_field "access_subjects_ssim", extract_xpath("/ead/archdesc/controlaccess", to_text: false) do |_record, accumulator|
   accumulator.map! do |element|
     %w[subject function occupation genreform].map do |selector|
-      element.xpath(".//#{selector}").map(&:text)
+      element.xpath(".//#{selector}").map(&:text).map(&:strip)
     end
   end.flatten!
 end
@@ -418,13 +418,12 @@ end
 
 # For find-more tab
 to_field "subject_terms_ssim" do |record, accumulator|
-  values = record.xpath('/ead/archdesc/controlaccess/subject[@source="lcsh"]').map(&:text)
+  values = record.xpath('/ead/archdesc/controlaccess/subject[not(@source="local")]').map(&:text)
   occupations = record.xpath("/ead/archdesc/controlaccess/occupation").map(&:text)
   accumulator << (values + occupations).sort
 end
 
 # For find-more tab
-# to_field "topics_ssm", extract_xpath('/ead/archdesc/controlaccess/subject[@source="local"]')
 to_field "topics_ssim" do |record, accumulator|
   values = record.xpath('/ead/archdesc/controlaccess/subject[@source="local"]').map(&:text)
   accumulator << values.sort
