@@ -143,13 +143,9 @@
 
   .content-container {
     .navbar {
-      top: calc(100% - 4rem);
-
-      background: $background-gray;
-      border-top: solid 1px $light-border-gray;
-      border-bottom: solid 1px $light-border-gray;
-      margin-left: 0;
-      margin-right: 0;
+      bottom: 0;
+      background-color: $background-gray;
+      border: solid 1px $light-border-gray;
       padding-left: 0;
       padding-right: 0;
 
@@ -175,6 +171,10 @@
           padding-right: 0;
         }
       }
+    }
+
+    .tab-content {
+      margin-top: 4rem;
     }
 
     .tab-pane {
