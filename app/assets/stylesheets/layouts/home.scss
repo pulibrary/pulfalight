@@ -60,6 +60,7 @@
     @extend .col-lg-4;
     .request-header {
       h2 {
+        @extend .text-left;
         margin-bottom: 0;
       }
     }
@@ -70,7 +71,6 @@
       padding-top: 1.50rem;
 
     #request-registration {
-      @extend .text-justify;
       a {
         @extend .btn;
         @extend .btn-primary;
@@ -84,7 +84,7 @@
     @extend .col-lg-4;
     .feedback-welcome-header {
       h2 {
-        @extend .text-justify;
+        @extend .text-left;
         margin-bottom: 0;
       }
     }
@@ -101,7 +101,7 @@
       > div {
         @extend .col-md-12;
         > h2 {
-          @extend .text-justify;
+          @extend .text-left;
         }
       }
     }
@@ -124,7 +124,7 @@
       }
     }
     #more-hours {
-      @extend .text-justify;
+      @extend .text-left;
       a {
         @extend .btn;
         @extend .btn-primary;
