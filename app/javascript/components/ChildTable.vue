@@ -87,13 +87,16 @@ export default {
 </script>
 
 <style lang="scss">
-  .child-component-table caption {
+.child-component-table {
+  overflow: scroll;
+  caption {
     caption-side: top;
   }
-  .child-component-table table {
+  table {
     width: 100%;
     th.loader {
       text-align: center;
     }
-  }
+}
+}
 </style>
