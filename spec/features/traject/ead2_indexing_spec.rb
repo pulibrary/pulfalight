@@ -907,4 +907,75 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
   end
+
+  describe "#access_subjects_ssim" do
+    context "when given a collection with archaic subject terms" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
+      end
+
+      it "replaces them with change the subject values" do
+        expect(result["access_subjects_ssim"]).to eq(
+          [
+            "Indigenous peoples of Central America -- Photographs.",
+            "Indigenous peoples of Mexico -- Photographs.",
+            "Indigenous peoples of North America -- Photographs.",
+            "Indigenous peoples of South America -- Photographs.",
+            "Photographs."
+          ]
+        )
+      end
+    end
+
+    context "when given a component with archaic subject terms" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
+      end
+
+      it "replaces them with change the subject values" do
+        record = find_component(result, "WC064_c1")
+        values = record["access_subjects_ssim"]
+
+        expect(values).to eq(
+          [
+            "Clothing",
+            "Group portraits",
+            "Indigenous peoples of North America",
+            "Portrait photographs",
+            "Tintypes",
+            "Vintage prints"
+          ]
+        )
+      end
+    end
+  end
+
+  describe "#archaic_subject_terms_ssim" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
+    end
+
+    context "when given a collection with archaic access subjects" do
+      it "contains all terms replaced by change the subject values" do
+        expect(result).to include("archaic_access_subjects_ssim")
+        expect(result["archaic_access_subjects_ssim"]).to eq(
+          [
+            "Indians of Central America -- Photographs.",
+            "Indians of Mexico -- Photographs.",
+            "Indians of North America -- Photographs.",
+            "Indians of South America -- Photographs."
+          ]
+        )
+      end
+    end
+
+    context "when given a component with archaic access subjects" do
+      it "contains all terms replaced by change the subject values" do
+        record = find_component(result, "WC064_c1")
+
+        expect(record).to include("archaic_access_subjects_ssim")
+        expect(record["archaic_access_subjects_ssim"]).to eq(["Indians of North America"])
+      end
+    end
+  end
 end
