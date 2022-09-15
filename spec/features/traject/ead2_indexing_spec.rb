@@ -414,6 +414,8 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(result["userestrict_ssm"]).to eq [
           "Single photocopies may be made for research purposes. For quotations that are fair use as defined under <a href=\"http://copyright.princeton.edu/basics/fair-use\">U. S. Copyright Law</a>, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use."
         ]
+        combined = JSON.parse(result["userestrict_combined_ssm"].first)
+        expect(combined.values.first).to eq result["userestrict_ssm"]
       end
 
       context "with did searchable notes" do
@@ -434,6 +436,24 @@ describe "EAD 2 traject indexing", type: :feature do
         it "doesn't index" do
           component = find_component(result, "C1491_c5621")
           expect(component["physloc_ssm"]).to eq ["Box 330 D-zone, Folder 5-6"]
+        end
+      end
+
+      context "when given a record with mismatched headings/p tags" do
+        let(:fixture_path) do
+          Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
+        end
+        it "indexes a _combined field for notes" do
+          expect(JSON.parse(result["processinfo_combined_ssm"][0]).keys).to eq ["Processing Information"]
+        end
+      end
+
+      context "when given a record with multiple headings" do
+        let(:fixture_path) do
+          Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1664.processed.EAD.xml")
+        end
+        it "indexes a _combined field for notes" do
+          expect(JSON.parse(result["processinfo_combined_ssm"][0]).keys).to eq ["Processing Information", "Conservation"]
         end
       end
 
