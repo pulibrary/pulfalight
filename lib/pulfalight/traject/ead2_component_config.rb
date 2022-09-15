@@ -44,6 +44,10 @@ to_field "id" do |_record, accumulator, context|
   accumulator.concat context.output_hash["ref_ssi"].map { |x| x.tr(".", "-") }
 end
 
+to_field "hashed_id_ssi" do |_record, accumulator, context|
+  accumulator << Digest::MD5.hexdigest(context.output_hash["id"].first)
+end
+
 to_field "ead_ssi" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   next unless parent

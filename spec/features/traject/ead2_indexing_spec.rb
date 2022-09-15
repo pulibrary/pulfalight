@@ -116,6 +116,10 @@ describe "EAD 2 traject indexing", type: :feature do
       component = components.first["components"].first["components"].first
       expect(component["barcodes_ssim"]).to eq ["32101080851049"]
     end
+    it "indexes a hashed_id_ssi" do
+      component = result["components"].first
+      expect(component["hashed_id_ssi"]).to eq ["7ecb96f28e7cc0545bab81ba59b12f08"]
+    end
     it "indexes ark" do
       expect(result["ark_tsim"]).to eq ["http://arks.princeton.edu/ark:/88435/xp68kk489"]
     end
