@@ -35,7 +35,7 @@ class HoursBuilder
     @response ||= begin
                     conn = Faraday.new(url: lib_cal_url)
                     conn.get
-                  rescue Faraday::Error::ConnectionFailed
+                  rescue Faraday::ConnectionFailed
                     Rails.logger.info("Unable to Connect to #{lib_cal_url}")
                     false
                   end

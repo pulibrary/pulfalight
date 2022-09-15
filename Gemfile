@@ -101,3 +101,7 @@ gem "dotenv-rails", groups: [:development, :test]
 gem "email_validator"
 gem "faraday"
 gem "simple_form"
+
+# Added for Ruby 3.1 support
+gem "matrix"
+gem "net-smtp", require: false

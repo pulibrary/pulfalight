@@ -11,7 +11,7 @@ class StorageNotes
   end
 
   def config
-    @config ||= YAML.safe_load(Rails.root.join("config", "storage_notes.yml").read, [], [], true)
+    @config ||= YAML.safe_load(Rails.root.join("config", "storage_notes.yml").read, aliases: true)
   end
 
   def to_a
