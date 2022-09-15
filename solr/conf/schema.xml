@@ -270,6 +270,7 @@
    <field name="timestamp" type="pdate" indexed="true" stored="true" default="NOW" multiValued="false"/>
    <!-- default, catch all search field -->
    <field name="text" type="text" indexed="true" stored="true" multiValued="true"/>
+   <field name="text_hl" type="text" indexed="true" stored="true" multiValued="true"/>
    <field name="text_en" type="text_en" indexed="true" stored="true" multiValued="true"/>
 
    <field name="_root_" type="string" indexed="true" stored="true" docValues="false" />
@@ -339,6 +340,7 @@
    <copyField source="places_ssm" dest="text" />
    <copyField source="names_ssim" dest="text" />
    <copyField source="access_subjects_ssim" dest="text" />
+   <copyField source="archaic_access_subjects_ssim" dest="text" />
    <!-- grab the searchable notes -->
    <copyField source="abstract_teim" dest="text" />
    <copyField source="accessrestricct_teim" dest="text" />
@@ -364,6 +366,37 @@
    <copyField source="scopecontent_teim" dest="text" />
    <copyField source="separatedmaterial_teim" dest="text" />
    <copyField source="userestrict_teim" dest="text" />
+
+   <!-- Field for hit highlighting -->
+   <copyField source="normalized_title_ssm" dest="text_hl" />
+   <copyField source="places_ssm" dest="text_hl" />
+   <copyField source="names_ssim" dest="text_hl" />
+   <copyField source="access_subjects_ssim" dest="text_hl" />
+   <copyField source="abstract_teim" dest="text_hl" />
+   <copyField source="accessrestricct_teim" dest="text_hl" />
+   <copyField source="accruals_teim" dest="text_hl" />
+   <copyField source="acqinfo_teim" dest="text_hl" />
+   <copyField source="altformavail_teim" dest="text_hl" />
+   <copyField source="appraisal_teim" dest="text_hl" />
+   <copyField source="arrangement_teim" dest="text_hl" />
+   <copyField source="bibliography_teim" dest="text_hl" />
+   <copyField source="bioghist_teim" dest="text_hl" />
+   <copyField source="custodhist_teim" dest="text_hl" />
+   <copyField source="did_note_teim" dest="text_hl" />
+   <copyField source="fileplan_teim" dest="text_hl" />
+   <copyField source="materialspec_teim" dest="text_hl" />
+   <copyField source="note_teim" dest="text_hl" />
+   <copyField source="odd_teim" dest="text_hl" />
+   <copyField source="originalsloc_teim" dest="text_hl" />
+   <copyField source="physdesc_teim" dest="text_hl" />
+   <copyField source="physloc_teim" dest="text_hl" />
+   <copyField source="phystech_teim" dest="text_hl" />
+   <copyField source="processinfo_teim" dest="text_hl" />
+   <copyField source="relatedmaterial_teim" dest="text_hl" />
+   <copyField source="scopecontent_teim" dest="text_hl" />
+   <copyField source="separatedmaterial_teim" dest="text_hl" />
+   <copyField source="userestrict_teim" dest="text_hl" />
+
    <!-- grab structured data that's important -->
    <copyField source="unitid_ssm" dest="text" />
    <copyField source="unitid_ssm" dest="unitid_identifier_match" />
@@ -376,6 +409,7 @@
    <copyField source="places_ssm" dest="text_en" />
    <copyField source="names_ssim" dest="text_en" />
    <copyField source="access_subjects_ssim" dest="text_en" />
+   <copyField source="archaic_access_subjects_ssim" dest="text_en" />
    <!-- grab the searchable notes -->
    <copyField source="abstract_teim" dest="text_en" />
    <copyField source="accessrestricct_teim" dest="text_en" />
