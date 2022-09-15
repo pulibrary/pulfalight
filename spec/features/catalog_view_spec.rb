@@ -132,6 +132,12 @@ describe "viewing catalog records", type: :feature, js: true do
       visit "/catalog/MC221"
     end
 
+    it "displays metadata with appropriate headings", js: false do
+      visit "/catalog/C1664"
+      expect(page).to have_css "dt", text: "Processing Information"
+      expect(page).to have_css "dt", text: "Conservation"
+    end
+
     it "has an ask a question button", js: false do
       expect(page).to have_selector "#question-button"
       expect(page).to have_field "ask_a_question_form_location_code", visible: false, type: :hidden, with: "publicpolicy"
@@ -262,7 +268,7 @@ describe "viewing catalog records", type: :feature, js: true do
         visit "/catalog/C0841"
 
         within("#description") do
-          expect(page).to have_selector "dt.blacklight-odd_ssm", text: "Note"
+          expect(page).to have_selector "dt.blacklight-odd_ssm", text: "General"
           expect(page).to have_selector "dd.blacklight-odd_ssm", text: /Location of Printed Books Removed for Cataloging/
           expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm", text: /Noël Riley Fitch was born on December 24, 1937/
         end
@@ -289,13 +295,13 @@ describe "viewing catalog records", type: :feature, js: true do
         # Access
         within("#access") do
           # Access Restrictions
-          expect(page).to have_selector "dt.blacklight-accessrestrict_ssm", text: "Access Restrictions"
+          expect(page).to have_selector "dt.blacklight-accessrestrict_ssm", text: "Conditions Governing Access"
           expect(page).to have_selector "dd.blacklight-accessrestrict_ssm", text: /Collection is open for research use./
           # Use Restrictions
-          expect(page).to have_selector "dt.blacklight-userestrict_ssm", text: "Conditions for Reproduction and Use"
+          expect(page).to have_selector "dt.blacklight-userestrict_ssm", text: "Conditions Governing Use"
           expect(page).to have_selector "dd.blacklight-userestrict_ssm", text: /Single photocopies/
           # Special Requirements
-          expect(page).to have_selector "dt.blacklight-phystech_ssm", text: "Special Requirements for Access"
+          expect(page).to have_selector "dt.blacklight-phystech_ssm", text: "Physical Characteristics and Technical Requirements"
           expect(page).to have_selector "dd.blacklight-phystech_ssm", text: /Access to audiovisual material/
           # Citation Note
           expect(page).to have_selector "dd.blacklight-prefercite_ssm", text: /David E. Lilienthal Papers;/
@@ -308,11 +314,11 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dt.blacklight-acqinfo_ssm", text: "Acquisition"
           expect(page).to have_selector "dd.blacklight-acqinfo_ssm", text: /gift from David E. Lilienthal/
           # Appraisal
-          expect(page).to have_selector "dt.blacklight-appraisal_ssm", text: "Archival Appraisal Information"
+          expect(page).to have_selector "dt.blacklight-appraisal_ssm", text: "Appraisal"
           expect(page).to have_selector "dd.blacklight-appraisal_ssm", text: /No information about appraisal/
           # Processing Information
-          expect(page).to have_selector "dt.blacklight-processinfo_processing_ssm", text: "Processing Information"
-          expect(page).to have_selector "dd.blacklight-processinfo_processing_ssm", text: /There is no processing information available for this collection./
+          expect(page).to have_selector "dt.blacklight-processinfo_ssm", text: "Processing Information"
+          expect(page).to have_selector "dd.blacklight-processinfo_ssm", text: /There is no processing information available for this collection./
         end
         within("#find-more") do
           # Ensure blank labels aren't showing up.
@@ -345,8 +351,8 @@ describe "viewing catalog records", type: :feature, js: true do
         visit "/catalog/C1513"
         within("#collection-history") do
           # Conservation
-          expect(page).to have_selector "dt.blacklight-processinfo_conservation_ssm", text: "Conservation"
-          expect(page).to have_selector "dd.blacklight-processinfo_conservation_ssm", text: /were digitized in 2017./
+          expect(page).to have_selector "dt.blacklight-processinfo_ssm", text: "Processing Information"
+          expect(page).to have_selector "dd.blacklight-processinfo_ssm", text: /were digitized in 2017./
         end
       end
       it "shows accruals, sponsor" do
@@ -354,7 +360,7 @@ describe "viewing catalog records", type: :feature, js: true do
         # Collection History
         within("#collection-history") do
           # Accruals
-          expect(page).to have_selector "dt.blacklight-accruals_ssm", text: "Additions"
+          expect(page).to have_selector "dt.blacklight-accruals_ssm", text: "Accruals"
           expect(page).to have_selector "dd.blacklight-accruals_ssm", text: /No accruals are expected./
           # Sponsor
           expect(page).to have_selector "dt.blacklight-sponsor_ssm", text: "Sponsor"
@@ -386,7 +392,7 @@ describe "viewing catalog records", type: :feature, js: true do
         # Find Related Materials
         within("#find-more") do
           # Alternative Form Available
-          expect(page).to have_selector "dt.blacklight-altformavail_ssm", text: "Alternative Form Available"
+          expect(page).to have_selector "dt.blacklight-altformavail_ssm", text: "Existence and Location of Copies"
           expect(page).to have_selector "dd.blacklight-altformavail_ssm", text: /Many of the items in this collection/
         end
       end
@@ -412,7 +418,7 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dt.blacklight-relatedmaterial_ssm", text: "Related Material"
           expect(page).to have_selector "dd.blacklight-relatedmaterial_ssm", text: /American Civil Liberties Union, Washington, D.C. Office Records/
           # Bibliography
-          expect(page).to have_selector "dt.blacklight-bibliography_ssm", text: "Publication Note"
+          expect(page).to have_selector "dt.blacklight-bibliography_ssm", text: "Bibliography"
           expect(page).to have_selector "dd.blacklight-bibliography_ssm", text: /Historical sketch based on/
         end
       end

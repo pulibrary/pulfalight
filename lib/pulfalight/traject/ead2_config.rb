@@ -2,6 +2,7 @@
 
 require "logger"
 require "traject"
+require "json"
 require "traject/nokogiri_reader"
 require "traject_plus"
 require "traject_plus/macros"
@@ -282,6 +283,18 @@ SEARCHABLE_NOTES_FIELDS.map do |selector|
   end
   to_field "#{selector}_heading_ssm", extract_xpath("/ead/archdesc/#{selector}/head")
   to_field "#{selector}_teim", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']")
+  to_field "#{selector}_combined_ssm", extract_xpath("/ead/archdesc/#{selector}", to_text: false) do |_record, accumulator|
+    content = accumulator.each_with_object({}) do |element, hsh|
+      header = element.xpath("./head")[0].text || "Unknown"
+      values = element.xpath("./p").map do |el|
+        sanitizer.sanitize(el.to_html, tags: %w[extref]).gsub("extref", "a").strip
+      end
+      hsh[header] ||= []
+      hsh[header].concat values
+    end
+    accumulator.clear
+    accumulator << ::JSON.dump(content)
+  end
 end
 
 to_field "bioghist_ssm", extract_xpath("/ead/archdesc/bioghist", to_text: false) do |_record, accumulator|
@@ -397,23 +410,6 @@ to_field "collection_description_ssm" do |_record, accumulator, context|
 end
 to_field "collection_bioghist_ssm" do |_record, accumulator, context|
   accumulator.concat(context.output_hash["bioghist_ssm"] || [])
-end
-
-# For collection history tab
-sanitizer = Rails::Html::SafeListSanitizer.new
-["processing", "conservation"].each do |processinfo_type|
-  selector = if processinfo_type == "processing"
-               "processinfo[@id!='conservation']"
-             else
-               "processinfo[@id='conservation']"
-             end
-  to_field "processinfo_#{processinfo_type}_ssm", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
-    accumulator.map! do |element|
-      sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip
-    end
-  end
-  to_field "processinfo_#{processinfo_type}_heading_ssm", extract_xpath("/ead/archdesc/#{selector}/head")
-  to_field "processinfo_#{processinfo_type}_teim", extract_xpath("/ead/archdesc/#{selector}/*[local-name()!='head']")
 end
 
 # For find-more tab

@@ -500,6 +500,18 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
   end
   to_field "#{selector}_heading_ssm", extract_xpath("./#{selector}/head")
   to_field "#{selector}_teim", extract_xpath("./#{selector}/*[local-name()!='head']")
+  to_field "#{selector}_combined_ssm", extract_xpath("./#{selector}", to_text: false) do |_record, accumulator|
+    content = accumulator.each_with_object({}) do |element, hsh|
+      header = element.xpath("./head")[0].text || "Unknown"
+      values = element.xpath("./p").map do |el|
+        sanitizer.sanitize(el.to_html, tags: %w[extref]).gsub("extref", "a").strip
+      end
+      hsh[header] ||= []
+      hsh[header].concat values
+    end
+    accumulator.clear
+    accumulator << ::JSON.dump(content)
+  end
 end
 (Pulfalight::Ead2Indexing::DID_SEARCHABLE_NOTES_FIELDS - ["physloc"]).map do |selector|
   to_field "#{selector}_ssm", extract_xpath("./did/#{selector}")
