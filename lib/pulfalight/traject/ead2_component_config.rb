@@ -616,8 +616,19 @@ to_field "phystech_ssm" do |_record, accumulator, _context|
 end
 
 # For find-more tab
-to_field "subject_terms_ssim", extract_xpath('./controlaccess/subject[not(@source="local")]') do |_record, accumulator|
-  accumulator.map(&:strip!)
+to_field "subject_terms_ssim" do |record, accumulator|
+  values = record.xpath('./controlaccess/subject[not(@source="local")]').map(&:text)
+  values = ChangeTheSubject.fix(subject_terms: values, separator: " -- ").sort
+  accumulator.concat(values)
+end
+
+# For search only
+to_field "archaic_subject_terms_ssim" do |record, accumulator|
+  values = record.xpath('./controlaccess/subject[not(@source="local")]').map(&:text)
+  processed_values = ChangeTheSubject.fix(subject_terms: values, separator: " -- ")
+
+  # Return array of original archaic values
+  accumulator.concat(values - processed_values)
 end
 
 # For find-more tab

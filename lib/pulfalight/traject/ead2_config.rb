@@ -416,7 +416,18 @@ end
 to_field "subject_terms_ssim" do |record, accumulator|
   values = record.xpath('/ead/archdesc/controlaccess/subject[not(@source="local")]').map(&:text)
   occupations = record.xpath("/ead/archdesc/controlaccess/occupation").map(&:text)
-  accumulator << (values + occupations).sort
+  values = ChangeTheSubject.fix(subject_terms: values + occupations, separator: " -- ").sort
+  accumulator.concat(values)
+end
+
+# For search only
+to_field "archaic_subject_terms_ssim" do |record, accumulator|
+  values = record.xpath('/ead/archdesc/controlaccess/subject[not(@source="local")]').map(&:text)
+  occupations = record.xpath("/ead/archdesc/controlaccess/occupation").map(&:text)
+  processed_values = ChangeTheSubject.fix(subject_terms: values + occupations, separator: " -- ")
+
+  # Return array of original archaic values
+  accumulator.concat(values - processed_values)
 end
 
 # For find-more tab
