@@ -3,7 +3,7 @@
 
 // .nav.nav-tabs .nav-item .nav-link:not(.active) {
 //   background: inherit;
-//   border-color: #dee2e6;
+//   border-color: $light-border-gray;
 // }
 
 $container-max-widths: (
@@ -45,8 +45,8 @@ a {
 
 .lux-tabs-item {
   background: $background-gray;
-  border-top: 1px solid #dee2e6;
-  border-bottom: 1px solid #dee2e6;
+  border-top: 1px solid $light-border-gray;
+  border-bottom: 1px solid $light-border-gray;
   padding: 0px 0px 0px 0px;
   width: auto;
   margin-top: 10px;
@@ -63,6 +63,6 @@ a {
 }
 
 .lux-button.text {
-  color: $blue;
+  color: $bleu-de-france-darker;
 }
 
