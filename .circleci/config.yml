@@ -29,6 +29,7 @@ jobs:
       - run: sudo apt update && sudo apt install postgresql-client
       - run:
           name: Update bundler
+          command: |
             echo 'export BUNDLER_VERSION=2.2.16' >> $BASH_ENV
             gem install bundler -v 2.3.18
       - run:

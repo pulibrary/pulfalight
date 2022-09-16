@@ -27,7 +27,7 @@ class SearchBuilder < Blacklight::SearchBuilder
     solr_params[:fq] << "-audience_ssi:internal"
   end
 
-  # Override highlighting method to add custom highligh field
+  # Override upstream highlighting method to add custom highlight field
   def add_highlighting(solr_params)
     solr_params["hl"] = true
     solr_params["hl.fl"] = "text_hl"
