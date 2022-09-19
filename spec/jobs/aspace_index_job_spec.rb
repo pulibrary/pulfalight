@@ -59,7 +59,7 @@ RSpec.describe AspaceIndexJob do
     end
 
     context "when given an EAD which is suddenly internal" do
-      it "marks the existing record and its children as internal" do
+      it "deletes the existing record and its children from solr" do
         stub_aspace_login
         stub_aspace_ead(resource_descriptions_uri: "repositories/13/resources/5396", ead: "mss/C1588-internal.xml")
 
@@ -67,12 +67,13 @@ RSpec.describe AspaceIndexJob do
         described_class.perform_now(resource_descriptions_uri: "repositories/13/resources/5396", repository_id: "mss")
         connection.commit
 
-        items = connection.get("select", params: { q: "id:C1588testinternal", fl: "audience_ssi" })
-        expect(items["response"]["docs"][0]["audience_ssi"]).to eq "internal"
-        items = connection.get("select", params: { q: "id:C1588testinternal_c1", fl: "audience_ssi" })
-        expect(items["response"]["docs"][0]["audience_ssi"]).to eq "internal"
+        items = connection.get("select", params: { q: "id:C1588testinternal" })
+        expect(items["response"]["numFound"]).to eq 0
+        items = connection.get("select", params: { q: "id:C1588testinternal_c1" })
+        expect(items["response"]["numFound"]).to eq 0
       end
-      it "can mark an EAD internal with a period in it" do
+
+      it "can delete an EAD with a period in it" do
         stub_aspace_login
         stub_aspace_ead(resource_descriptions_uri: "repositories/13/resources/5396", ead: "mss/C1588-internal-period.xml")
 
@@ -80,15 +81,15 @@ RSpec.describe AspaceIndexJob do
         described_class.perform_now(resource_descriptions_uri: "repositories/13/resources/5396", repository_id: "mss")
         connection.commit
 
-        items = connection.get("select", params: { q: "id:C1588testinternal-01", fl: "audience_ssi" })
-        expect(items["response"]["docs"][0]["audience_ssi"]).to eq "internal"
-        items = connection.get("select", params: { q: "collection_unitid_ssm:C1588testinternal-01", fl: "audience_ssi" })
+        items = connection.get("select", params: { q: "id:C1588testinternal-01" })
+        expect(items["response"]["numFound"]).to eq 0
+        items = connection.get("select", params: { q: "collection_unitid_ssm:C1588testinternal-01" })
         expect(items["response"]["numFound"]).to eq 0
       end
     end
 
     context "when given an internal EAD" do
-      it "indexes it with audience_ssi internal" do
+      it "doesn't index it" do
         stub_aspace_login
         stub_aspace_ead(resource_descriptions_uri: "repositories/13/resources/5396", ead: "mss/C1588-internal.xml")
 
@@ -96,8 +97,8 @@ RSpec.describe AspaceIndexJob do
         described_class.perform_now(resource_descriptions_uri: "repositories/13/resources/5396", repository_id: "mss")
         connection.commit
 
-        items = connection.get("select", params: { q: "id:C1588testinternal", fl: "audience_ssi" })
-        expect(items["response"]["docs"][0]["audience_ssi"]).to eq "internal"
+        items = connection.get("select", params: { q: "id:C1588testinternal" })
+        expect(items["response"]["numFound"]).to eq 0
       end
     end
 
