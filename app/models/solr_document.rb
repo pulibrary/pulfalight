@@ -357,6 +357,20 @@ class SolrDocument
     Array.wrap(fetch(heading_key, []))
   end
 
+  # Override highlights method to add custom
+  # highlight field: `text_hl`. Has the same
+  # content as `text`, but excludes archaic subject terms.
+  # The archaic terms are searchable, but won't appear in
+  # highlighted result text.
+  def highlights
+    highlight_response = response[:highlighting]
+    return if highlight_response.blank? ||
+              highlight_response[id].blank? ||
+              highlight_response[id][:text_hl].blank?
+
+    highlight_response[id][:text_hl]
+  end
+
   private
 
   def pulfalight_attributes

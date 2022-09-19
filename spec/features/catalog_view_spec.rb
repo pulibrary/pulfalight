@@ -484,4 +484,13 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_content("William Willard Thorp (1899-1990), literary historian, editor, educator, author, and critic, was born on April 20 in Sydney, New York.")
     end
   end
+
+  describe "record with an archaic subject term" do
+    it "displays a corrected term" do
+      visit "/catalog/WC064_c1"
+
+      expect(page).to have_selector "dd.blacklight-subject_terms_ssim a", text: "Indigenous peoples of North America"
+      expect(page).not_to have_selector "dd.blacklight-subject_terms_ssim a", text: "Indians of North America"
+    end
+  end
 end

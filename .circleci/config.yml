@@ -31,7 +31,7 @@ jobs:
           name: Update bundler
           command: |
             echo 'export BUNDLER_VERSION=2.2.16' >> $BASH_ENV
-            gem install bundler -v 2.2.16
+            gem install bundler -v 2.3.18
       - run:
           name: Install dependencies
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
@@ -68,7 +68,7 @@ jobs:
           name: Update bundler
           command: |
             echo 'export BUNDLER_VERSION=2.2.16' >> $BASH_ENV
-            gem install bundler -v 2.2.16
+            gem install bundler -v 2.3.18
       - run:
           name: Install dependencies
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
@@ -129,7 +129,7 @@ jobs:
           name: Update bundler
           command: |
             echo 'export BUNDLER_VERSION=2.2.16' >> $BASH_ENV
-            gem install bundler -v 2.2.16
+            gem install bundler -v 2.3.18
       - node/install:
           install-yarn: true
           node-version: '16.15'
@@ -186,7 +186,7 @@ jobs:
           name: Update bundler
           command: |
             echo 'export BUNDLER_VERSION=2.2.16' >> $BASH_ENV
-            gem install bundler -v 2.2.16
+            gem install bundler -v 2.3.18
 
       # Analyze coverage report
       - run: gem install simplecov -v '~> 0.16.0'

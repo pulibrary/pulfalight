@@ -223,4 +223,13 @@ describe "controller requests", type: :request do
       expect(results).to include "WC064_c2698"
     end
   end
+
+  describe "searching by an archaic subject term", js: false do
+    it "returns components with matching subject but does not display archaic subject text hightlight" do
+      get "/catalog", params: { q: "Indians of North America", search_fields: "all_fields", per_page: 100 }
+      results = assigns.fetch(:document_list).map(&:id)
+      expect(results).to include "WC064_c1"
+      expect(response.body).not_to have_selector "div.al-document-highlight", text: /Indians of North America/
+    end
+  end
 end

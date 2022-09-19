@@ -236,12 +236,29 @@ to_field "acqinfo_ssm" do |_record, accumulator, context|
   accumulator.concat(context.output_hash.fetch("acqinfo_ssim", []))
 end
 
-to_field "access_subjects_ssim", extract_xpath("/ead/archdesc/controlaccess", to_text: false) do |_record, accumulator|
-  accumulator.map! do |element|
+to_field "access_subjects_ssim" do |record, accumulator|
+  values = record.xpath("/ead/archdesc/controlaccess")
+  values = values.map do |element|
     %w[subject function occupation genreform].map do |selector|
       element.xpath(".//#{selector}").map(&:text).map(&:strip)
     end
   end.flatten!
+  values = ChangeTheSubject.fix(subject_terms: values, separator: " -- ").sort
+  accumulator.concat(values)
+end
+
+# For search only
+to_field "archaic_access_subjects_ssim" do |record, accumulator, context|
+  values = record.xpath("/ead/archdesc/controlaccess")
+  values = values.map do |element|
+    %w[subject function occupation genreform].map do |selector|
+      element.xpath(".//#{selector}").map(&:text).map(&:strip)
+    end
+  end.flatten!
+  processed_values = context.output_hash.fetch("access_subjects_ssim", [])
+
+  # Return array of original archaic values
+  accumulator.concat(Array.wrap(values) - processed_values)
 end
 
 to_field "access_subjects_ssm" do |_record, accumulator, context|
@@ -416,7 +433,20 @@ end
 to_field "subject_terms_ssim" do |record, accumulator|
   values = record.xpath('/ead/archdesc/controlaccess/subject[not(@source="local")]').map(&:text)
   occupations = record.xpath("/ead/archdesc/controlaccess/occupation").map(&:text)
-  accumulator << (values + occupations).sort
+  values = (values + occupations).map(&:strip)
+  values = ChangeTheSubject.fix(subject_terms: values, separator: " -- ").sort
+
+  accumulator.concat(values)
+end
+
+# For search only
+to_field "archaic_subject_terms_ssim" do |record, accumulator, context|
+  values = record.xpath('/ead/archdesc/controlaccess/subject[not(@source="local")]').map(&:text)
+  values = values.map(&:strip)
+  processed_values = context.output_hash.fetch("subject_terms_ssim", [])
+
+  # Return array of original archaic values
+  accumulator.concat(values - processed_values)
 end
 
 # For find-more tab
