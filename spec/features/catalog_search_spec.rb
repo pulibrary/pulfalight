@@ -28,7 +28,9 @@ describe "catalog searches", type: :feature, js: true do
     end
     it "returns JSON if given an auth token" do
       visit "/catalog/C0744-04_c0117.json?auth_token=#{Pulfalight.config['unpublished_auth_token']}"
-      expect(page).to have_content "Garrett Ethiopic Magic Scroll No. 23"
+      json = JSON.parse(page.body)
+      expect(json["id"]).to eq "C0744-04_c0117"
+      expect(json["title"]).to eq ["Garrett Ethiopic Magic Scroll No. 23"]
     end
   end
 
