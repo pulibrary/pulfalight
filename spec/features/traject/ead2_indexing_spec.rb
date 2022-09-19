@@ -405,6 +405,16 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
+    describe "collection history indexing" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC221.processed.EAD.xml")
+      end
+
+      it "indexes acqinfo_teim" do
+        expect(result["acqinfo_teim"]).not_to be_empty
+      end
+    end
+
     describe "collection notes indexing" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC221.processed.EAD.xml")
