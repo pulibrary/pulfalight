@@ -464,7 +464,7 @@ to_field "access_subjects_ssim" do |record, accumulator|
       element.xpath(".//#{selector}").map(&:text).map(&:strip)
     end
   end.flatten!
-  values = ChangeTheSubject.fix(subject_terms: values, separator: " -- ").sort
+  values = ChangeTheSubject.fix(subject_terms: values, separators: [" -- ", "--"]).sort
   accumulator.concat(values)
 end
 
@@ -635,7 +635,7 @@ end
 to_field "subject_terms_ssim" do |record, accumulator|
   values = record.xpath('./controlaccess/subject[not(@source="local")]').map(&:text)
   values = values.map(&:strip)
-  values = ChangeTheSubject.fix(subject_terms: values, separator: " -- ").sort
+  values = ChangeTheSubject.fix(subject_terms: values, separators: [" -- ", "--"]).sort
   accumulator.concat(values)
 end
 
