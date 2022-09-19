@@ -927,6 +927,31 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
+    context "when given a collection with archaic subject terms and a different term separator" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1539.processed.EAD.xml")
+      end
+
+      it "replaces them with change the subject values" do
+        expect(result["access_subjects_ssim"]).to eq(
+          [
+            "Cliff-dwellings -- Arizona -- Photographs.",
+            "Hopi Indians.",
+            "Indian children--North America--History--19th century--Photographs.",
+            "Indigenous peoples of North America--Arizona--1890-1910--Sources.",
+            "Indigenous peoples of North America--New Mexico--1890-1910--Sources.",
+            "Indigenous peoples of North America--Southwest, New--1890-1910 -- Sources.",
+            "Mohave Indians.",
+            "Navajo Indians.",
+            "Paiute Indians.",
+            "Photographs -- 19th century",
+            "Photographs -- 20th century.",
+            "Pueblo Indians."
+          ]
+        )
+      end
+    end
+
     context "when given a component with archaic subject terms" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
