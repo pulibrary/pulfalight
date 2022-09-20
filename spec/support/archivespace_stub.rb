@@ -36,6 +36,11 @@ module AspaceStubbing
     end
   end
 
+  def stub_search_archive(id:)
+    stub_request(:get, "https://aspace.test.org/staff/api/search?fields%5B%5D=identifier&fields%5B%5D=ref_id&fields%5B%5D=title&fields%5B%5D=uri&page=1&q=#{id}")
+      .to_return(status: 200, body: File.open(Rails.root.join("spec", "fixtures", "aspace", "search_archive", "#{id}.json")), headers: { "Content-Type": "application/json" })
+  end
+
   def all_repository_ids
     ["3", "13"]
   end

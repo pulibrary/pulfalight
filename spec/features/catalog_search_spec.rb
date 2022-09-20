@@ -14,24 +14,29 @@ describe "catalog searches", type: :feature, js: true do
   end
 
   context "when searching for an unpublished collection", js: false do
+    let(:id) { "C1545" }
     it "does not return it" do
-      visit "/?search_field=all_fields&q=c0744.04"
+      visit "/?search_field=all_fields&q=#{id}"
       expect(page).to have_content "No results found for your search"
     end
     it "doesn't return a show page" do
-      visit "/catalog/C0744-04"
+      visit "/catalog/#{id}"
       expect(page).to have_content "The page you were looking for doesn't exist."
     end
     it "doesn't normally return JSON" do
-      visit "/catalog/C0744-04_c0117.json"
+      visit "/catalog/#{id}.json"
       expect(page).to have_content "Not Found"
     end
     it "returns JSON if given an auth token" do
-      visit "/catalog/C0744-04_c0117.json?auth_token=#{Pulfalight.config['unpublished_auth_token']}"
+      stub_aspace_login
+      stub_search_archive(id: id)
+      visit "/catalog/#{id}.json?auth_token=#{Pulfalight.config['unpublished_auth_token']}"
       json = JSON.parse(page.body)
-      expect(json["id"]).to eq "C0744-04_c0117"
-      expect(json["title"]).to eq ["Garrett Ethiopic Magic Scroll No. 23"]
+      expect(json["id"]).to eq id
+      expect(json["title"]).to eq "James Daugherty Papers"
     end
+    # TODO: Add similar test for a component.
+    # TODO: Add test for a case where it's not found in aspace.
   end
 
   context "when searching for a specific collection by title", js: false do

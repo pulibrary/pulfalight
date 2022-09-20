@@ -36,6 +36,7 @@ module Aspace
       output
     end
 
+    # returns nil if not found
     def ead_url_for_eadid(eadid:)
       repositories.map do |repository|
         repository_uri = repository["uri"][1..-1]
@@ -64,6 +65,29 @@ module Aspace
       cache.ead_id = Nokogiri::XML.parse(content).remove_namespaces!.xpath("//eadid")[0].text
       cache.save!
       content
+    end
+
+    # This is quicker than doing a bunch of different kinds of calls,
+    # and will get the object whether it's a collection (resource)
+    #   (id will be in `identifier`)
+    # or an archival_object (series, file, item)
+    #   (id will be in `ref_id`)
+    # note this will get the object whether it's published or not
+    # returns nil if nothing found
+    def get_basic_info(id:)
+      content = get(
+        "/search",
+        query: {
+          q: id,
+          page: 1,
+          fields: ["ref_id", "identifier", "uri", "title"]
+        }
+      )
+      parsed = content.parsed
+      return unless parsed["total_hits"].positive?
+      parsed["results"].find do |r|
+        r["ref_id"] == id || r["identifier"] == id
+      end
     end
   end
 end
