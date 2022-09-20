@@ -487,6 +487,8 @@ end
 
 to_field "acqinfo_ssim", extract_xpath('./acqinfo/*[local-name()!="head"]')
 to_field "acqinfo_ssim", extract_xpath('./descgrp/acqinfo/*[local-name()!="head"]')
+to_field "acqinfo_teim", extract_xpath('./acqinfo/*[local-name()!="head"]')
+to_field "acqinfo_teim", extract_xpath('./descgrp/acqinfo/*[local-name()!="head"]')
 to_field "acqinfo_ssm" do |_record, accumulator, context|
   accumulator.concat(context.output_hash.fetch("acqinfo_ssim", []))
 end
