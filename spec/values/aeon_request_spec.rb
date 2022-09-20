@@ -108,7 +108,7 @@ RSpec.describe AeonRequest do
         request = document.aeon_request
         request_id = request.form_attributes[:Request]
 
-        expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Item Number: 1032 Box 1"
+        expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Box 1 Item Number: 1032"
       end
     end
     context "when there's an aspace URI" do
