@@ -70,7 +70,7 @@ class AeonRequest
   end
 
   def item_volume(box)
-    [item_number_label, box["label"]&.upcase_first].compact.join(" ")
+    [box["label"]&.upcase_first, item_number_label].compact.join(" ")
   end
 
   def item_number_label
