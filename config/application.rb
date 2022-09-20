@@ -34,6 +34,12 @@ module Pulfalight
     }
     config.action_mailer.default_url_options = config.action_controller.default_url_options
     config.active_record.yaml_column_permitted_classes = [Symbol, Date, Time, Hash, HashWithIndifferentAccess]
+
+    # Configure user ids that are authorized for admin tasks
+    config.authorization = []
+    authorization = config_for(:authorization)
+    netids = authorization["netids"]
+    config.authorization = netids.split if netids
   end
 
   Rails.application.routes.default_url_options = {

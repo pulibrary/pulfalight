@@ -21,4 +21,9 @@ class User < ApplicationRecord
   def to_s
     uid
   end
+
+  def admin?
+    netids = Rails.application.config.authorization
+    netids.include? uid
+  end
 end
