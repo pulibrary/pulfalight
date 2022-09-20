@@ -1,0 +1,14 @@
+default: &default
+  netids: <%= ENV['ADMIN_NETIDS'] || '' %>
+
+development:
+  <<: *default
+
+test:
+  netids: admin123
+
+production:
+  <<: *default
+
+staging:
+  <<: *default

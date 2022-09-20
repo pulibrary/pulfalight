@@ -199,6 +199,11 @@ GEM
     equalizer (0.0.11)
     erubi (1.10.0)
     execjs (2.7.0)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     faraday (0.15.3)
       multipart-post (>= 1.2, < 3)
     ffi (1.15.5)
@@ -593,6 +598,7 @@ DEPENDENCIES
   devise-guests (~> 0.6)
   dotenv-rails
   email_validator
+  factory_bot_rails
   faraday
   foreman
   honeybadger (~> 4.0)

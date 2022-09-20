@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   concern :exportable, Blacklight::Routes::Exportable.new
 
   require "sidekiq/web"
-  authenticate :user do
+  authenticate :user,  ->(u) { u.admin? } do
     mount Sidekiq::Web => "/sidekiq"
   end
 
