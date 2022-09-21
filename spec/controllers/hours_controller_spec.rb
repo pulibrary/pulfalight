@@ -48,7 +48,7 @@ RSpec.describe HoursController, type: :controller do
       before do
         stub_lib_cal(id: id)
         allow(Faraday).to receive(:new).and_return(connection)
-        allow(connection).to receive(:get).and_raise(Faraday::Error::ConnectionFailed.new("Failed"))
+        allow(connection).to receive(:get).and_raise(Faraday::ConnectionFailed.new("Failed"))
       end
 
       it "returns a hash with a unavailable hours value" do

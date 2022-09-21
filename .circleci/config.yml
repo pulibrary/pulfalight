@@ -7,7 +7,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:2.7.5-browsers
+      - image: cimg/ruby:3.1.0-browsers
         environment:
           RAILS_ENV: test
     steps:
@@ -57,7 +57,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:2.7.5-browsers
+      - image: cimg/ruby:3.1.0-browsers
         environment:
           RAILS_ENV: test
     steps:
@@ -86,7 +86,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:2.7.5-browsers
+      - image: cimg/ruby:3.1.0-browsers
         environment:
           RAILS_ENV: test
           PULFALIGHT_DB_HOST: localhost
@@ -175,7 +175,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:2.7.5-browsers
+      - image: cimg/ruby:3.1.0-browsers
         environment:
           RAILS_ENV: test
     steps:
