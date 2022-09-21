@@ -85,7 +85,7 @@
       border-top: 1px solid;
       border-bottom: 1px solid;
 
-      border-color: #dee2e6;
+      border-color: $light-border-gray;
 
       border-radius: 0px;
 
@@ -119,7 +119,7 @@
   }
 
   .document-title {
-    border-bottom: 3px solid #dee2e6;
+    border-bottom: 3px solid $light-border-gray;
 
     padding-top: 0.6rem;
     padding-bottom: 0.6rem;
@@ -145,11 +145,11 @@
     .navbar {
       top: calc(100% - 4rem);
 
-      background-color: #ffffff;
-      border-top: solid 1px #7f7f7f;
-      border-bottom: solid 1px #7f7f7f;
-      margin-left: 2.05rem;
-      margin-right: 2.05rem;
+      background: $background-gray;
+      border-top: solid 1px $light-border-gray;
+      border-bottom: solid 1px $light-border-gray;
+      margin-left: 0;
+      margin-right: 0;
       padding-left: 0;
       padding-right: 0;
 
@@ -190,7 +190,7 @@
         }
 
         .document-title {
-          border-bottom: 3px solid #dee2e6;
+          border-bottom: 3px solid $light-border-gray;
 
           padding-top: 0.6rem;
           padding-bottom: 0.6rem;
