@@ -13,6 +13,11 @@ $container-max-widths: (
   xl: 1400px
 ) !default;
 
+#main-container {
+  min-height: calc(100vh - 600px);
+  margin-bottom: 20px;
+}
+
 // Make font size for access tab labels and property consistent with other tabs
 #access dl dt {
   font-size: 1rem !important;
