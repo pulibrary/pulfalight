@@ -8,8 +8,8 @@ gem "rails", "~> 6.1"
 gem "puma", "~> 4.3"
 # Use SCSS for stylesheets
 gem "sass-rails", "~> 5.0"
-# Use Uglifier as compressor for JavaScript assets
-gem "uglifier", ">= 1.3.0"
+# Use Terser as compressor for JavaScript assets
+gem "terser"
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
@@ -58,7 +58,8 @@ group :development do
 end
 
 group :test do
-  gem "axe-core-rspec"
+  gem "axe-core-api", "4.0.0"
+  gem "axe-core-rspec", "4.0.0"
   gem "capybara", ">= 3.18"
   gem "rspec_junit_formatter"
   gem "simplecov", require: false
@@ -74,10 +75,10 @@ end
 
 gem "archivesspace-client"
 gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
-gem "blacklight", "7.24.0"
+gem "blacklight", "7.29.0"
 gem "blacklight_dynamic_sitemap"
 gem "blacklight_range_limit", "~> 7.1"
-gem "bootstrap", ">= 4.3.1"
+gem "bootstrap", "~> 4.6"
 gem "bundler", "2.3.18"
 gem "change_the_subject"
 gem "devise", ">= 4.7.1"
