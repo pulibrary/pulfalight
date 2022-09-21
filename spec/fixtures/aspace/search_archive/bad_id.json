@@ -1,0 +1,17 @@
+{
+    "page_size": 30,
+    "first_page": 1,
+    "last_page": 0,
+    "this_page": 1,
+    "offset_first": 1,
+    "offset_last": 0,
+    "total_hits": 0,
+    "results": [],
+    "facets": {
+        "facet_queries": {},
+        "facet_fields": {},
+        "facet_ranges": {},
+        "facet_intervals": {},
+        "facet_heatmaps": {}
+    }
+}

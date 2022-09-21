@@ -41,6 +41,7 @@ class CatalogController < ApplicationController
     raise e unless display_unpublished_aspace_record
   end
 
+  # Check aspace for an unpublished record that wasn't found in the index
   def display_unpublished_aspace_record
     return unless request.format == :json && params[:auth_token].to_s == Pulfalight.config["unpublished_auth_token"]
     client = Aspace::Client.new
@@ -48,9 +49,10 @@ class CatalogController < ApplicationController
     return unless record
     record["id"] = record["ref_id"] || record["identifier"]
     render json: record.to_json
-    # TODO add a log of any errors we get here, b/c they ultimately just show up
-    # as a 404 which is probably right but it might be nice sometimes to know
-    # what the underlying error was
+  rescue StandardError => e
+    # errors pass through as 404s, but let's at least log them.
+    Rails.logger.error e.message
+    raise e
   end
 
   def index
