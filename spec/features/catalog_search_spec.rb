@@ -36,7 +36,19 @@ describe "catalog searches", type: :feature, js: true do
       expect(json["title"]).to eq "James Daugherty Papers"
     end
 
-    context "there's an error connecting to aspace" do
+    context "and the actual collection id contains a dot" do
+      let(:id) { "C0744-02" }
+      it "returns JSON if given an auth token" do
+        stub_aspace_login
+        stub_search_archive(id: id)
+        visit "/catalog/#{id}.json?auth_token=#{Pulfalight.config['unpublished_auth_token']}"
+        json = JSON.parse(page.body)
+        expect(json["id"]).to eq "C0744.02"
+        expect(json["title"]).to eq "Garrett Mesoamerican Manuscripts"
+      end
+    end
+
+    context "and there's an error connecting to aspace" do
       it "logs the error, but still 404s" do
         allow(Aspace::Client).to receive(:new).and_raise(ArchivesSpace::ConnectionError)
         allow(Rails.logger).to receive(:error)

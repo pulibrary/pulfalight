@@ -86,7 +86,7 @@ module Aspace
       parsed = content.parsed
       return unless parsed["total_hits"].positive?
       parsed["results"].find do |r|
-        r["ref_id"] == id || r["identifier"] == id
+        r["ref_id"]&.tr(".", "-") == id || r["identifier"]&.tr(".", "-") == id
       end
     end
   end
