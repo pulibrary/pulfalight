@@ -52,20 +52,6 @@
 
       <div class="col-md-8">
         <div class="tab-content">
-          <nav class="navbar sticky-top">
-            <div class="row">
-              <div class="col-md-4"></div>
-              <div class="col-md-4">
-                <a href="#correction" data-toggle="modal" data-target="#correctionModal">
-                  <%= image_tag(asset_path('icon-correction.svg'), "aria-label": "suggest correction icon") %>
-                  Suggest a correction
-                </a>
-
-                <%= render "correction_modal" %>
-              </div>
-            </div><!-- .row -->
-          </nav>
-
           <div class='tab-pane active' id='summary' role='tabpanel'>
             <%= render(partial: 'collection_summary_expanded') %>
           </div>
@@ -81,6 +67,19 @@
           <div class='tab-pane' id='find-more' role='tabpanel'>
             <%= render(partial: 'collection_find_more') %>
           </div>
+          <nav class="navbar sticky-top">
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-4">
+                <a href="#correction" data-toggle="modal" data-target="#correctionModal">
+                  <%= image_tag(asset_path('icon-correction.svg'), "aria-label": "suggest correction icon") %>
+                  Suggest a correction
+                </a>
+
+                <%= render "correction_modal" %>
+              </div>
+            </div><!-- .row -->
+          </nav>
         </div><!-- .tab-content -->
       </div><!-- .col-md-8 -->
     </div><!-- .row.content-container -->
