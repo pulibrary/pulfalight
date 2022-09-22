@@ -14,13 +14,13 @@ RSpec.describe Aspace::Client do
 
       expect(client.config.base_uri).to eq "https://aspace.test.org/staff/api"
       expect(client.config.username).to eq "test"
-      expect(client.config.password).to eq "password"
+      expect(client.config.password).to eq "secretpassword"
       expect(client.token).to eq "1"
     end
 
-    it "raises shorter message on failed connection" do
-      stub_request(:post, "https://aspace.test.org/staff/api/users/test/login?password=password").to_return(status: 200, body: {}.to_json, headers: { "Content-Type": "application/json" })
-      expect { described_class.new }.to raise_error(ArchivesSpace::ConnectionError, "Failed to connect to ArchivesSpace backend as test")
+    it "does not reveal password in error message on failed connection" do
+      stub_request(:post, "https://aspace.test.org/staff/api/users/test/login?password=secretpassword").to_return(status: 200, body: {}.to_json, headers: { "Content-Type": "application/json" })
+      expect { described_class.new }.to raise_error(ArchivesSpace::ConnectionError, /^((?!secretpassword).)*$/)
     end
   end
 
