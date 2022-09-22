@@ -145,6 +145,10 @@ class SolrDocument
     fetch("has_online_content_ssim", [])
   end
 
+  def has_direct_online_content
+    fetch("has_direct_online_content_ssim", [])
+  end
+
   def extents
     fetch("extent_ssm", [])
   end
@@ -206,6 +210,10 @@ class SolrDocument
 
   def has_digital_content?
     has_online_content.present? && has_online_content.first != "false"
+  end
+
+  def has_direct_digital_content?
+    has_direct_online_content.present? && has_direct_online_content.first != "false"
   end
 
   def component_documents

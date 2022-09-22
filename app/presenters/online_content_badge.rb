@@ -1,0 +1,36 @@
+# frozen_string_literal: true
+
+class OnlineContentBadge
+  include ActionView::Helpers::OutputSafetyHelper
+  include ActionView::Helpers::TagHelper
+
+  attr_reader :document
+  def initialize(document)
+    @document = document
+  end
+
+  def render
+    return unless document.has_digital_content?
+    tag.div(children, class: "document-access online-content")
+  end
+
+  def blacklight_icon
+    ActionController::Base.helpers.blacklight_icon(:online)
+  end
+
+  def children
+    icon_span + label
+  end
+
+  def icon_span
+    tag.span(blacklight_icon, class: "media-body al-online-content-icon", aria: { hidden: true })
+  end
+
+  def label
+    if document.has_direct_digital_content?
+      "Has Online Content"
+    else
+      "Contains Some Online Materials"
+    end
+  end
+end

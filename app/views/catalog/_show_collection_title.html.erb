@@ -22,11 +22,7 @@
   </div>
 
   <div class="collection-attributes">
-    <% if document.has_digital_content? %>
-      <div class="document-access online-content">
-        <span class="media-body al-online-content-icon" aria-hidden="true"><%= blacklight_icon :online %></span> Has Online Content
-      </div>
-    <% end %>
+    <%= OnlineContentBadge.new(document).render %>
     <%= render partial: "restricted_badge", locals: { document: document } %>
   </div>
 </div>
