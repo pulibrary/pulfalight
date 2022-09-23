@@ -6,6 +6,11 @@
 
 .al-grouped-results .al-grouped-title-bar {
   background-color: $background-gray;
+
+  // Online content badge in grouped results
+  .online-content {
+    margin: 8px 0 8px 0;
+  }
 }
 
 .al-grouped-title-bar a {
