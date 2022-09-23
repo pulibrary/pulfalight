@@ -48,6 +48,7 @@ class AspaceIndexJob < ApplicationJob
     ead_content = aspace_client.get_resource_description_xml(resource_descriptions_uri: resource_descriptions_uri, cached: soft)
     xml_documents = Nokogiri::XML.parse(ead_content)
     xml_documents.remove_namespaces!
+    return delete_document(xml_documents) if xml_documents.children[0]["audience"] == "internal"
 
     @repository_id = repository_id.try(&:downcase)
     solr_documents = EADArray.new
@@ -62,5 +63,12 @@ class AspaceIndexJob < ApplicationJob
     SyncToFiggyJob.perform_later(solr_documents.flat_map { |doc| doc["id"] }) if sync_to_figgy
   rescue Pulfalight::MissingRepositoryError
     Honeybadger.notify("An Arclight::Repository was not found for repository_id #{repository_id} when indexing #{resource_descriptions_uri}. Check configuration in config/repositories.yml")
+  end
+
+  # Delete documents which are marked internal, in case they've been unpublished
+  # from ASpace, but were previously published.
+  def delete_document(xml_document)
+    ead_id = xml_document.xpath("//eadid").first.text.strip.tr(".", "-")
+    blacklight_connection.delete_by_id(ead_id)
   end
 end

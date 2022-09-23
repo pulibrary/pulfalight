@@ -16,7 +16,7 @@ class CatalogController < ApplicationController
 
   # @see Blacklight::Catalog#show
   def show
-    deprecated_response, @document = search_service.fetch(params[:id], show_query_params)
+    deprecated_response, @document = search_service.fetch(params[:id])
     @response = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(deprecated_response, "The @response instance variable is deprecated; use @document.response instead.")
 
     respond_to do |format|
@@ -37,16 +37,22 @@ class CatalogController < ApplicationController
       end
       additional_export_formats(@document, format)
     end
+  rescue Blacklight::Exceptions::RecordNotFound => e
+    raise e unless display_unpublished_aspace_record
   end
 
-  def show_query_params
-    # Remove all filter queries from show - allows JSON for unpublished views to
-    # be shown, for Figgy synchronizing.
-    if request.format == :json && params[:auth_token].to_s == Pulfalight.config["unpublished_auth_token"]
-      { fq: [] }
-    else
-      {}
-    end
+  # Check aspace for an unpublished record that wasn't found in the index
+  def display_unpublished_aspace_record
+    return unless request.format == :json && params[:auth_token].to_s == Pulfalight.config["unpublished_auth_token"]
+    client = Aspace::Client.new
+    record = client.get_basic_info(id: params[:id])
+    return unless record
+    record["id"] = record["ref_id"] || record["identifier"]
+    render json: record.to_json
+  rescue StandardError => e
+    # errors pass through as 404s, but let's at least log them.
+    Rails.logger.error e.message
+    raise e
   end
 
   def index

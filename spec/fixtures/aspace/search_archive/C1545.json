@@ -1,0 +1,36 @@
+{
+    "page_size": 30,
+    "first_page": 1,
+    "last_page": 1,
+    "this_page": 1,
+    "offset_first": 1,
+    "offset_last": 3,
+    "total_hits": 3,
+    "results": [
+        {
+            "uri": "/repositories/5/resources/4226",
+            "title": "James Daugherty Papers",
+            "identifier": "C1545",
+            "jsonmodel_type": null
+        },
+        {
+            "uri": "/repositories/5/accessions/3086",
+            "title": "James Daugherty Papers",
+            "identifier": "2017-104",
+            "jsonmodel_type": null
+        },
+        {
+            "uri": "/repositories/5/accessions/3054",
+            "title": "James Daugherty Papers",
+            "identifier": "2017-82",
+            "jsonmodel_type": null
+        }
+    ],
+    "facets": {
+        "facet_queries": {},
+        "facet_fields": {},
+        "facet_ranges": {},
+        "facet_intervals": {},
+        "facet_heatmaps": {}
+    }
+}

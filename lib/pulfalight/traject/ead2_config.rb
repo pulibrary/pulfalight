@@ -49,11 +49,6 @@ to_field "ead_ssi", extract_xpath("/ead/eadheader/eadid", to_text: false) do |_r
   string_array = string_array.map { |a| a.split("|").first }
   accumulator.replace(string_array)
 end
-
-to_field "audience_ssi", extract_xpath("/ead", to_text: false) do |_record, accumulator|
-  audience = accumulator[0].attributes["audience"].to_s
-  accumulator.replace([audience])
-end
 # rubocop:enable Performance/StringReplacement
 
 to_field "title_filing_si", extract_xpath('/ead/eadheader/filedesc/titlestmt/titleproper[@type="filing"]')

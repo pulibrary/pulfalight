@@ -14,21 +14,84 @@ describe "catalog searches", type: :feature, js: true do
   end
 
   context "when searching for an unpublished collection", js: false do
+    let(:id) { "C1545" }
     it "does not return it" do
-      visit "/?search_field=all_fields&q=c0744.04"
+      visit "/?search_field=all_fields&q=#{id}"
       expect(page).to have_content "No results found for your search"
     end
     it "doesn't return a show page" do
-      visit "/catalog/C0744-04"
+      visit "/catalog/#{id}"
       expect(page).to have_content "The page you were looking for doesn't exist."
     end
     it "doesn't normally return JSON" do
-      visit "/catalog/C0744-04_c0117.json"
+      visit "/catalog/#{id}.json"
       expect(page).to have_content "Not Found"
     end
     it "returns JSON if given an auth token" do
-      visit "/catalog/C0744-04_c0117.json?auth_token=#{Pulfalight.config['unpublished_auth_token']}"
-      expect(page).to have_content "Garrett Ethiopic Magic Scroll No. 23"
+      stub_aspace_login
+      stub_search_archive(id: id)
+      visit "/catalog/#{id}.json?auth_token=#{Pulfalight.config['unpublished_auth_token']}"
+      json = JSON.parse(page.body)
+      expect(json["id"]).to eq id
+      expect(json["title"]).to eq "James Daugherty Papers"
+    end
+
+    context "and the actual collection id contains a dot" do
+      let(:id) { "C0744-02" }
+      it "returns JSON if given an auth token" do
+        stub_aspace_login
+        stub_search_archive(id: id)
+        visit "/catalog/#{id}.json?auth_token=#{Pulfalight.config['unpublished_auth_token']}"
+        json = JSON.parse(page.body)
+        expect(json["id"]).to eq "C0744.02"
+        expect(json["title"]).to eq "Garrett Mesoamerican Manuscripts"
+      end
+    end
+
+    context "and there's an error connecting to aspace" do
+      it "logs the error, but still 404s" do
+        allow(Aspace::Client).to receive(:new).and_raise(ArchivesSpace::ConnectionError)
+        allow(Rails.logger).to receive(:error)
+
+        visit "/catalog/#{id}.json?auth_token=#{Pulfalight.config['unpublished_auth_token']}"
+        # expect { }.to raise_error ArchivesSpace::ConnectionError
+        expect(Rails.logger).to have_received(:error).with("ArchivesSpace::ConnectionError")
+        expect(page).to have_content "Not Found"
+      end
+    end
+  end
+
+  context "when searching for an unpublished component", js: false do
+    let(:id) { "C0140_c88205-61643" }
+    it "does not return it" do
+      visit "/?search_field=all_fields&q=#{id}"
+      expect(page).to have_content "No results found for your search"
+    end
+    it "doesn't return a show page" do
+      visit "/catalog/#{id}"
+      expect(page).to have_content "The page you were looking for doesn't exist."
+    end
+    it "doesn't normally return JSON" do
+      visit "/catalog/#{id}.json"
+      expect(page).to have_content "Not Found"
+    end
+    it "returns JSON if given an auth token" do
+      stub_aspace_login
+      stub_search_archive(id: id)
+      visit "/catalog/#{id}.json?auth_token=#{Pulfalight.config['unpublished_auth_token']}"
+      json = JSON.parse(page.body)
+      expect(json["id"]).to eq id
+      expect(json["title"]).to eq "Photograph Album of a Cruise in Mediterranean, 1934 March-April"
+    end
+  end
+
+  context "when searching for a nonexistent collection", js: false do
+    let(:id) { "bad_id" }
+    it "404s even if given an auth token" do
+      stub_aspace_login
+      stub_search_archive(id: id)
+      visit "/catalog/#{id}.json?auth_token=#{Pulfalight.config['unpublished_auth_token']}"
+      expect(page.status_code).to eq 404
     end
   end
 

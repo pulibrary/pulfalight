@@ -1,0 +1,24 @@
+{
+    "page_size": 30,
+    "first_page": 1,
+    "last_page": 1,
+    "this_page": 1,
+    "offset_first": 1,
+    "offset_last": 1,
+    "total_hits": 1,
+    "results": [
+        {
+            "uri": "/repositories/5/archival_objects/1466118",
+            "title": "Photograph Album of a Cruise in Mediterranean, 1934 March-April",
+            "ref_id": "C0140_c88205-61643",
+            "jsonmodel_type": null
+        }
+    ],
+    "facets": {
+        "facet_queries": {},
+        "facet_fields": {},
+        "facet_ranges": {},
+        "facet_intervals": {},
+        "facet_heatmaps": {}
+    }
+}
