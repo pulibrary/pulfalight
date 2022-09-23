@@ -69,9 +69,7 @@ end
 to_field "unitdate_bulk_ssim", extract_xpath('/ead/archdesc/did/unitdate[@type="bulk"]/@normal', to_text: false) do |_record, accumulator|
   accumulator.replace [accumulator&.first&.value]
 end
-to_field "unitdate_inclusive_ssm", extract_xpath('/ead/archdesc/did/unitdate[@type="inclusive"]', to_text: false) do |_record, accumulator|
-  accumulator.replace [accumulator&.first&.value]
-end
+to_field "unitdate_inclusive_ssm", extract_xpath('/ead/archdesc/did/unitdate[@type="inclusive"]') 
 
 to_field "unitdate_other_ssim", extract_xpath("/ead/archdesc/did/unitdate[not(@type)]")
 
