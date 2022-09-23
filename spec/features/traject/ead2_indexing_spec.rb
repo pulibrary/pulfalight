@@ -1030,7 +1030,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
     context "when given a collection" do
       it "indexes non-normal unitdate values" do
-        expect(result).to eq("1722-1872")
+        expect(result["unitdate_inclusive_ssm"]).to eq("1722-1872")
       end
 >>>>>>> cef5da6 (create test to check unitdate non-normal version displayed)
     end
