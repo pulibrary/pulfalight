@@ -11,8 +11,10 @@ class OnlineContentBadge
 
   def render
     return unless document.has_digital_content?
-    tag.div(children, class: "document-access online-content")
+    tag.div(children, class: "document-access online-content #{badge_class}")
   end
+
+  private
 
   def blacklight_icon
     ActionController::Base.helpers.blacklight_icon(:online)
@@ -31,6 +33,14 @@ class OnlineContentBadge
       "HAS ONLINE CONTENT"
     else
       "SOME ONLINE CONTENT"
+    end
+  end
+
+  def badge_class
+    if document.has_direct_digital_content?
+      "online-direct-content"
+    else
+      "online-indirect-content"
     end
   end
 end

@@ -17,8 +17,8 @@ RSpec.describe OnlineContentBadge do
       let(:values) { { has_online_content_ssim: ["true"] } }
 
       it "returns a badge with a some online content label" do
-        expect(badge.render).to include("document-access online-content", "SOME ONLINE CONTENT")
-      tnd
+        expect(badge.render).to include("document-access online-content online-indirect-content", "SOME ONLINE CONTENT")
+      end
     end
 
     context "with a document that has direct online content" do
@@ -30,7 +30,7 @@ RSpec.describe OnlineContentBadge do
       end
 
       it "returns a badge with an online content label" do
-        expect(badge.render).to include("document-access online-content", "HAS ONLINE CONTENT")
+        expect(badge.render).to include("document-access online-content online-direct-content", "HAS ONLINE CONTENT")
       end
     end
   end
