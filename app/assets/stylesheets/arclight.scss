@@ -2,8 +2,14 @@
 *= require arclight/application
 */
 
+@import "variables/colors"; 
+
 .al-grouped-results .al-grouped-title-bar {
-  background-color: #f0f3f4;
+  background-color: $background-gray;
+}
+
+.al-grouped-title-bar a {
+  color: $bleu-de-france-darker;
 }
 
 a.responsiveTruncatorToggle {
