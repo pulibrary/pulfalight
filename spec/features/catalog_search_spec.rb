@@ -151,7 +151,7 @@ describe "catalog searches", type: :feature, js: true do
       it "renders results with an online content badges" do
         visit "/?q=Harold+B.+Hoskins+Papers&search_field=all_fields"
 
-        expect(page).to have_content "Has Online Content"
+        expect(page).to have_content "HAS ONLINE CONTENT"
       end
     end
 
@@ -159,7 +159,7 @@ describe "catalog searches", type: :feature, js: true do
       it "renders results with an online content badges" do
         visit "/??group=true&q=Harold+B.+Hoskins+Papers&search_field=all_fields"
 
-        expect(page).to have_content "Contains Some Online Materials"
+        expect(page).to have_content "SOME ONLINE CONTENT"
       end
     end
   end

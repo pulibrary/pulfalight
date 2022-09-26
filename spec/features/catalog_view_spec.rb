@@ -103,7 +103,7 @@ describe "viewing catalog records", type: :feature, js: true do
       end
       it "displays 'Has Online Content' at the collection level" do
         visit "/catalog/MC221"
-        expect(page).to have_selector(".document-access.online-content", text: "Contains Some Online Materials")
+        expect(page).to have_selector(".document-access.online-content", text: "SOME ONLINE CONTENT")
       end
       it "displays an icon in the table of contents", js: true do
         expect(page).to have_selector "li#MC221_c0094 .al-online-content-icon"
@@ -124,7 +124,7 @@ describe "viewing catalog records", type: :feature, js: true do
   context "with a no-digital-content collection show page" do
     it "doesn't display Has Online Content", js: false do
       visit "/catalog/MC152"
-      expect(page).not_to have_selector(".document-access.online-content", text: "Contains Some Online Materials")
+      expect(page).not_to have_selector(".document-access.online-content", text: "SOME ONLINE CONTENT")
     end
   end
   context "with a collection show page" do

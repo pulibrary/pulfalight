@@ -28,9 +28,9 @@ class OnlineContentBadge
 
   def label
     if document.has_direct_digital_content?
-      "Has Online Content"
+      "HAS ONLINE CONTENT"
     else
-      "Contains Some Online Materials"
+      "SOME ONLINE CONTENT"
     end
   end
 end
