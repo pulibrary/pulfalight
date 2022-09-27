@@ -10,10 +10,22 @@
   gap: 0.4rem;
   align-items: center;
 
-  &.online-content {
-    color: #000000;
-    background-color: #f4fef5;
-    border-color: #d7fcbe;
+  &.online-direct-content {
+    color: #1d8235;
+    background-color: #f4fEf5;
+    border-color: #1d8235;
+    & svg {
+      fill: #1d8235;
+    }
+  }
+
+  &.online-indirect-content {
+    color: #636363;
+    background-color: #e3e0e0;
+    border-color: #c7c4c4;
+    & svg {
+      fill: #636363;
+    }
   }
 
   &.some-restricted {

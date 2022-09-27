@@ -1,4 +1,4 @@
-<div class='al-grouped-title-bar'>
+<div class='al-grouped-title-bar document'>
   <div class='row'>
     <div class='col-md-12'>
       <% if document.repository_config.present? %>
@@ -7,6 +7,11 @@
         </div>
       <% end %>
       <h3><%= link_to_document document, document_show_link_field(document) %></h3>
+
+      <div>
+        <%= OnlineContentBadge.new(document).render %>
+      </div>
+
       <%= content_tag('div', class: 'al-document-extent badge') do %>
         <%= document.eadid %>
       <% end if document.collection? %>

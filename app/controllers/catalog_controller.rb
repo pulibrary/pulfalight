@@ -286,7 +286,6 @@ class CatalogController < ApplicationController
     ##
     # Configuration for index actions
     config.index.document_actions << :containers
-    config.index.document_actions << :online_content_label
     config.index.document_actions.delete(:bookmark)
 
     config.show.metadata_partials = %i[

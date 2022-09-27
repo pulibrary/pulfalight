@@ -145,4 +145,22 @@ describe "catalog searches", type: :feature, js: true do
       expect(page).to have_text("The start year must be before the end year.")
     end
   end
+
+  describe "online content badges" do
+    context "when displaying all results", js: false do
+      it "renders results with an online content badges" do
+        visit "/?q=Harold+B.+Hoskins+Papers&search_field=all_fields"
+
+        expect(page).to have_content "HAS ONLINE CONTENT"
+      end
+    end
+
+    context "when displaying grouped results", js: false do
+      it "renders results with an online content badges" do
+        visit "/??group=true&q=Harold+B.+Hoskins+Papers&search_field=all_fields"
+
+        expect(page).to have_content "SOME ONLINE CONTENT"
+      end
+    end
+  end
 end

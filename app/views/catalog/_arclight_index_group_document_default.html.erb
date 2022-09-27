@@ -8,6 +8,9 @@
       <h4>
         <%= link_to_document document, document_show_link_field(document), counter: document_counter %>
       </h4>
+      <div class="col col-no-left-padding">
+        <%= OnlineContentBadge.new(document).render %>
+      </div>
       <div class='breadcrumb-links media'>
         <% unless breadcrumbs.nil? %>
           <span class="media-body" aria-hidden="true"><%= blacklight_icon :folder, classes: 'al-folder-icon' %></span>
