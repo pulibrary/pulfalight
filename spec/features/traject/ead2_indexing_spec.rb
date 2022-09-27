@@ -352,7 +352,7 @@ describe "EAD 2 traject indexing", type: :feature do
       let(:dates) { result["normalized_date_ssm"] }
       let(:date_range) { result["date_range_sim"] }
       let(:date) { dates.first }
-      let(:years) { date.gsub("s", "").split("-") }
+      let(:years) { date.delete("s").split("-") }
       let(:beginning) { years.first.to_i }
       let(:ending) { years.last.to_i }
 
