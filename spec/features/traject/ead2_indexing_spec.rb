@@ -424,7 +424,7 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(result["userestrict_ssm"]).to eq [
           "Single photocopies may be made for research purposes. For quotations that are fair use as defined under <a href=\"http://copyright.princeton.edu/basics/fair-use\">U. S. Copyright Law</a>, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use."
         ]
-        combined = JSON.parse(result["userestrict_combined_ssm"].first)
+        combined = JSON.parse(result["userestrict_combined_tsm"].first)
         expect(combined.values.first).to eq result["userestrict_ssm"]
       end
 
@@ -454,7 +454,7 @@ describe "EAD 2 traject indexing", type: :feature do
           Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
         end
         it "indexes a _combined field for notes" do
-          expect(JSON.parse(result["processinfo_combined_ssm"][0]).keys).to eq ["Processing Information"]
+          expect(JSON.parse(result["processinfo_combined_tsm"][0]).keys).to eq ["Processing Information"]
         end
       end
 
@@ -463,7 +463,7 @@ describe "EAD 2 traject indexing", type: :feature do
           Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1664.processed.EAD.xml")
         end
         it "indexes a _combined field for notes" do
-          expect(JSON.parse(result["processinfo_combined_ssm"][0]).keys).to eq ["Processing Information", "Conservation"]
+          expect(JSON.parse(result["processinfo_combined_tsm"][0]).keys).to eq ["Processing Information", "Conservation"]
         end
       end
 
@@ -1011,6 +1011,16 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(record).to include("archaic_access_subjects_ssim")
         expect(record["archaic_access_subjects_ssim"]).to eq(["Indians of North America"])
       end
+    end
+  end
+
+  context "when indexing combined fields" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0171.processed.EAD.xml")
+    end
+
+    it "indexes them as text" do
+      expect(result).to include("scopecontent_combined_tsm")
     end
   end
 end

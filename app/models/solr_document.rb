@@ -347,7 +347,7 @@ class SolrDocument
 
   def combined_fields(field_name)
     field_key, = field_name.rpartition("_")
-    fetch("#{field_key}_combined_ssm", []).first
+    fetch("#{field_key}_combined_tsm", []).first
   end
 
   def headings(field_name)
