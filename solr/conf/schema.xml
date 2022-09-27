@@ -299,6 +299,7 @@
    <dynamicField name="*_tesim" type="text_en"   stored="true"  indexed="true"  multiValued="true"  />
    <dynamicField name="*_teim"  type="text_en"   stored="false" indexed="true"  multiValued="true"  />
    <dynamicField name="*_tsim" type="text"   stored="true"  indexed="true"  multiValued="true"  />
+   <dynamicField name="*_tsm" type="text" stored="true" indexed="false" multiValued="true"/>
 
    <dynamicField name="*_si"    type="string"    stored="false" indexed="true"  multiValued="false" />
    <dynamicField name="*_sim"   type="string"    stored="false" indexed="true"  multiValued="true"  />
