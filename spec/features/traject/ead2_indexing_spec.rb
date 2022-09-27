@@ -352,12 +352,12 @@ describe "EAD 2 traject indexing", type: :feature do
       let(:dates) { result["normalized_date_ssm"] }
       let(:date_range) { result["date_range_sim"] }
       let(:date) { dates.first }
-      let(:years) { date.delete("s").split("-") }
+      let(:years) { date.split("-") }
       let(:beginning) { years.first.to_i }
       let(:ending) { years.last.to_i }
 
       it "asserts YearRange normalizer works, that normalized_date_ssm contains start and end in date_range_sim field" do
-        expect(years).to include(
+        expect(date.delete("s").split("-")).to include(
           beginning.to_s,
           ending.to_s
         )
