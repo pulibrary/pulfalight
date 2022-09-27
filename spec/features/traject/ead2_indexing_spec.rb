@@ -1014,7 +1014,6 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
-<<<<<<< HEAD
   context "when indexing combined fields" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0171.processed.EAD.xml")
@@ -1022,17 +1021,6 @@ describe "EAD 2 traject indexing", type: :feature do
 
     it "indexes them as text" do
       expect(result).to include("scopecontent_combined_tsm")
-=======
-  describe "#unitdate_inclusive_ssm" do
-    let(:fixture_path) do
-      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0033.EAD.xml")
-    end
-
-    context "when given a collection" do
-      it "indexes non-normal unitdate values" do
-        expect(result["unitdate_inclusive_ssm"]).to eq(["1722-1872"])
-      end
->>>>>>> cef5da6 (create test to check unitdate non-normal version displayed)
     end
   end
 end
