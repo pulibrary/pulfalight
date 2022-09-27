@@ -52,7 +52,8 @@ class AspaceFixtureGenerator
     "MC203",
     "AC130",
     "C1664",
-    "C1539"
+    "C1539",
+    "C0171"
   ].freeze
 
   # List components per EAD which are used in tests to make processing those
@@ -133,7 +134,8 @@ class AspaceFixtureGenerator
     "MC203" => ["aspace_MC203_c0238"], # Public link resource,
     "AC130" => ["aspace_AC130_c8346"],
     "C1664" => [],
-    "C1539" => []
+    "C1539" => [],
+    "C0171" => []
   }.freeze
 
   attr_reader :client, :ead_ids, :component_map, :fixture_dir
