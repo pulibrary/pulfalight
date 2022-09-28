@@ -33,8 +33,24 @@
 }
 
 .toc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: $botticelli;
   font-weight: 500;
   margin-top: 20px;
-  padding: 15px 0 15px 10px;
+  padding: 15px 10px;
+
+  .toc-toggle {
+    font-size: 28px;
+    align-self: flex-end;
+
+    .collapsed .dropdown-toggle::after{
+      transform: rotate(0deg);
+    }
+
+    .dropdown-toggle::after{
+      transform: rotate(180deg);
+    }
+  }
 }

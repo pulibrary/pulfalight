@@ -21,6 +21,7 @@ export default class {
     this.setup_lib_cal_hours()
     this.setup_range_limit()
     this.setup_form_modal()
+    this.setup_toc_collapse()
   }
 
   setup_lib_cal_hours() {
@@ -43,6 +44,17 @@ export default class {
   setup_toc() {
     const toc = new TocBuilder('#toc')
     toc.build()
+  }
+
+  setup_toc_collapse() {
+    const mediaQuery = window.matchMedia('(max-width: 768px)')
+    function handle_mobile_change(e) {
+      if (e.matches) {
+        $('#toc').collapse('hide')
+      }
+    }
+    mediaQuery.addListener(handle_mobile_change)
+    handle_mobile_change(mediaQuery)
   }
 
   setup_vue() {
