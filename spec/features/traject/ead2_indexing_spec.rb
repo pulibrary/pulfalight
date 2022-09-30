@@ -256,7 +256,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
       child_component = component["components"].last
       expect(child_component["parent_ssm"]).to eq ["MC152", "MC152_c001"]
-      expect(child_component["parent_unittitles_ssm"]).to eq ["Barr Ferree collection, 1880-1929", "Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc., 1881-1921"]
+      expect(child_component["parent_unittitles_ssm"]).to eq ["Barr Ferree collection, 1880s-1920s", "Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc., 1881-1921"]
       expect(child_component["parent_unnormalized_unittitles_ssm"]).to eq ["Barr Ferree collection", "Ferree, James Barr (1862-1924), Presidential messages, Proclamations, etc."]
     end
   end
@@ -357,7 +357,7 @@ describe "EAD 2 traject indexing", type: :feature do
       let(:ending) { years.last.to_i }
 
       it "asserts YearRange normalizer works, that normalized_date_ssm contains start and end in date_range_sim field" do
-        expect(years).to include(
+        expect(date.delete("s").split("-")).to include(
           beginning.to_s,
           ending.to_s
         )
@@ -380,7 +380,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
     it "gets the normalized date" do
       expect(result["normalized_date_ssm"]).to eq(
-        ["1670-1900"]
+        ["1600s-1900s"]
       )
     end
 
