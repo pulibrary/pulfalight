@@ -647,6 +647,19 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(components.first).to include("physloc_code_ssm")
       expect(components.first["physloc_code_ssm"]).to eq(["RBSC"])
     end
+
+    context "when given a sca code" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC066.EAD.xml")
+      end
+      it "strips the sca" do
+        expect(result["physloc_code_ssm"]).to eq(["MUDD"])
+        expect(result["physloc_sim"]).to eq(["Mudd Manuscript Library"])
+        expect(result["location_code_ssm"]).to eq(["Mudd Manuscript Library"])
+        expect(result["components"].first["physloc_code_ssm"]).to eq(["MUDD"])
+        expect(result["components"].first["container_information_ssm"]).to eq(["{\"location_code\":\"mudd\",\"profile\":\"NBox\",\"barcode\":\"32101103111116\",\"label\":\"box 1\",\"note\":\"\"}"])
+      end
+    end
   end
 
   describe "#location_code_ssm" do

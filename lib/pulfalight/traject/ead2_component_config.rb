@@ -298,7 +298,7 @@ end
 
 to_field "container_information_ssm" do |record, accumulator, context|
   record.xpath("./did/container").each do |container_element|
-    container_location_code = container_element.attributes["altrender"].to_s
+    container_location_code = Pulfalight::LocationCode.new(container_element.attributes["altrender"].to_s).value
     container_profile = container_element.attributes["encodinganalog"].to_s
     next if container_location_code.blank?
     barcode_label = container_element.attributes["label"].to_s

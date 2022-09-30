@@ -98,8 +98,9 @@ to_field "unitid_teim", extract_xpath("/ead/archdesc/did/unitid")
 
 to_field "physloc_code_ssm" do |record, accumulator|
   record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
-    if Pulfalight::PhysicalLocationCode.registered?(physloc_element.text)
-      physical_location_code = Pulfalight::PhysicalLocationCode.resolve(physloc_element.text)
+    code = Pulfalight::LocationCode.new(physloc_element.text).value
+    if Pulfalight::PhysicalLocationCode.registered?(code)
+      physical_location_code = Pulfalight::PhysicalLocationCode.resolve(code)
       accumulator << physical_location_code.to_s
     end
   end
@@ -120,8 +121,9 @@ end
 to_field "location_code_ssm" do |record, accumulator|
   values = []
   record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
-    if Pulfalight::LocationCode.registered?(physloc_element.text)
-      location_code = Pulfalight::LocationCode.resolve(physloc_element.text)
+    code = Pulfalight::LocationCode.new(physloc_element.text).value
+    if Pulfalight::LocationCode.registered?(code)
+      location_code = Pulfalight::LocationCode.resolve(code)
       values << location_code.to_s
     end
   end
@@ -131,7 +133,8 @@ end
 
 to_field "location_note_ssm" do |record, accumulator|
   record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
-    accumulator << physloc_element.text if !Pulfalight::PhysicalLocationCode.registered?(physloc_element.text) && !Pulfalight::LocationCode.registered?(physloc_element.text)
+    code = Pulfalight::LocationCode.new(physloc_element.text).value
+    accumulator << physloc_element.text if !Pulfalight::PhysicalLocationCode.registered?(code) && !Pulfalight::LocationCode.registered?(code)
   end
 end
 
@@ -336,8 +339,9 @@ to_field "corpname_sim", extract_xpath("//corpname")
 to_field "physloc_sim" do |record, accumulator, _context|
   values = []
   record.xpath("/ead/archdesc/did/physloc").each do |physloc_element|
-    if Pulfalight::LocationCode.registered?(physloc_element.text)
-      location_code = Pulfalight::LocationCode.resolve(physloc_element.text)
+    code = Pulfalight::LocationCode.new(physloc_element.text).value
+    if Pulfalight::LocationCode.registered?(code)
+      location_code = Pulfalight::LocationCode.resolve(code)
       values << location_code.to_s
     end
   end
