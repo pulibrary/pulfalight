@@ -31,6 +31,10 @@ module PulfalightHelper
     image_tag(img_src, alt: "", class: "img-fluid float-left")
   end
 
+  def repository_link
+    arclight_engine.repository_path(document.repository_config.slug)
+  end
+
   def render_simple_link
     SimpleLinkRenderer.render(document)
   end
