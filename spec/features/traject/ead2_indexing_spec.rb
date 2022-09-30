@@ -156,6 +156,17 @@ describe "EAD 2 traject indexing", type: :feature do
       component = components.first["components"].first
       expect(component["summary_storage_note_ssm"]).to eq ["This is stored in multiple locations.  Firestone Library (hsvm): Boxes 1; 32 Firestone Library (mss): Box 12"]
     end
+
+    context "when given a record with sca locations" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC066.EAD.xml")
+      end
+      it "works" do
+        components = result["components"]
+        component = components.first
+        expect(component["summary_storage_note_ssm"]).to eq ["Mudd Manuscript Library (mudd): Box 1"]
+      end
+    end
   end
 
   context "when given otherlevel text components" do

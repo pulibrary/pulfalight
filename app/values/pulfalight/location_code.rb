@@ -39,7 +39,7 @@ module Pulfalight
     attr_reader :value
 
     def initialize(value)
-      @value = value
+      @value = value_or_alias(value)
     end
 
     def to_s
@@ -48,6 +48,12 @@ module Pulfalight
 
     def resolve
       self.class.map(value)
+    end
+
+    private
+
+    def value_or_alias(val)
+      val.to_s.gsub(/^sca/, "")
     end
   end
 end
