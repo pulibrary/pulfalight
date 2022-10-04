@@ -412,7 +412,6 @@ class CatalogController < ApplicationController
     config.add_access_field "accessrestrict_ssm", label: "Access Restrictions", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_access_field "userestrict_ssm", label: "Conditions for Reproduction and Use", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_access_field "phystech_ssm", label: "Special Requirements for Access", helper_method: :paragraph_separator, accessor: :fetch_html_safe
-    config.add_access_field "otherfindaid_ssm", label: "Other Finding Aids", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_access_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
     config.add_access_field "ark_tsim", label: "Permanent URL", helper_method: :ark_link
     config.add_access_field "repository_ssm", if: :repository_config_present, label: "Location", helper_method: :context_access_tab_repository
@@ -424,6 +423,7 @@ class CatalogController < ApplicationController
     # =================
     config.add_indexed_terms_field "altformavail_ssm", label: "Alternative Form Available", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_indexed_terms_field "relatedmaterial_ssm", label: "Related Material", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_indexed_terms_field "otherfindaid_ssm", label: "Other Finding Aids", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_indexed_terms_field "originalsloc_ssm", label: "Location of Originals", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_indexed_terms_field "separatedmaterial_ssm", label: "Separated Material", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_indexed_terms_field "bibliography_ssm", label: "Publication Note", helper_method: :paragraph_separator, accessor: :fetch_html_safe
