@@ -407,16 +407,14 @@ describe "viewing catalog records", type: :feature, js: true do
       end
       it "shows otherfindaid, related materials" do
         visit "/catalog/MC001-02-06"
-        # Access Restrictions
-        within("#access") do
-          expect(page).to have_selector "dt.blacklight-otherfindaid_ssm", text: "Other Finding Aids"
-          expect(page).to have_selector "dd.blacklight-otherfindaid_ssm", text: /This finding aid describes a portion/
-        end
         # Find Related Materials
         within("#find-more") do
           # relatedmaterial
           expect(page).to have_selector "dt.blacklight-relatedmaterial_ssm", text: "Related Material"
           expect(page).to have_selector "dd.blacklight-relatedmaterial_ssm", text: /American Civil Liberties Union, Washington, D.C. Office Records/
+          # Other Finding Aids
+          expect(page).to have_selector "dt.blacklight-otherfindaid_ssm", text: "Other Finding Aids"
+          expect(page).to have_selector "dd.blacklight-otherfindaid_ssm", text: /This finding aid describes a portion/
           # Bibliography
           expect(page).to have_selector "dt.blacklight-bibliography_ssm", text: "Bibliography"
           expect(page).to have_selector "dd.blacklight-bibliography_ssm", text: /Historical sketch based on/
