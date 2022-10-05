@@ -13,6 +13,7 @@ import LibCalHours from "../pulfalight/lib_cal_hours.es6"
 import ChildTable from "../components/ChildTable"
 import PulfaDataTable from "../components/PulfaDataTable"
 import FiggyViewer from "../components/FiggyViewer"
+import MediaQueries from "../pulfalight/media_queries.es6"
 
 export default class {
   run() {
@@ -21,7 +22,7 @@ export default class {
     this.setup_lib_cal_hours()
     this.setup_range_limit()
     this.setup_form_modal()
-    this.setup_toc_collapse()
+    this.setup_media_queries()
   }
 
   setup_lib_cal_hours() {
@@ -46,15 +47,9 @@ export default class {
     toc.build()
   }
 
-  setup_toc_collapse() {
-    const mediaQuery = window.matchMedia('(max-width: 768px)')
-    function handle_mobile_change(e) {
-      if (e.matches) {
-        $('#toc').collapse('hide')
-      }
-    }
-    mediaQuery.addListener(handle_mobile_change)
-    handle_mobile_change(mediaQuery)
+  setup_media_queries() {
+    const mediaQueries = new MediaQueries()
+    mediaQueries.build()
   }
 
   setup_vue() {

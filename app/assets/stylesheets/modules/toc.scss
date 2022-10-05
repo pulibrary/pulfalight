@@ -42,15 +42,19 @@
   padding: 15px 10px;
 
   .toc-toggle {
-    font-size: 28px;
-    align-self: flex-end;
+    font-size: 1rem;
 
-    .collapsed .dropdown-toggle::after{
-      transform: rotate(0deg);
+    .toggle-icon::after{
+      content: "❯";
+      float: right;
+      margin-right: 0.2rem;
+      transform: rotate(270deg);
+      transition: transform 0.1s ease;
     }
 
-    .dropdown-toggle::after{
-      transform: rotate(180deg);
+    .collapsed .toggle-icon::after{
+      transform: rotate(90deg);
+      transition: transform 0.1s ease;
     }
   }
 }
