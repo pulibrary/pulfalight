@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "./lib/pulfalight/missing_repository_error"
+require Rails.root.join("lib", "pulfalight", "missing_repository_error")
 
 # Asynchronous job used to index EAD Documents
 class AspaceIndexJob < ApplicationJob
