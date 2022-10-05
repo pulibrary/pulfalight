@@ -285,7 +285,7 @@ end
 
 to_field "container_location_codes_ssim" do |record, accumulator, context|
   record.xpath("./did/container").each do |container_element|
-    container_location_code = container_element.attributes["altrender"].to_s
+    container_location_code = Pulfalight::LocationCode.new(container_element.attributes["altrender"].to_s).value
     accumulator << container_location_code if container_location_code.present?
   end
   if context.output_hash["level_ssm"] == ["Text"] && accumulator.blank?
@@ -298,7 +298,7 @@ end
 
 to_field "container_information_ssm" do |record, accumulator, context|
   record.xpath("./did/container").each do |container_element|
-    container_location_code = container_element.attributes["altrender"].to_s
+    container_location_code = Pulfalight::LocationCode.new(container_element.attributes["altrender"].to_s).value
     container_profile = container_element.attributes["encodinganalog"].to_s
     next if container_location_code.blank?
     barcode_label = container_element.attributes["label"].to_s
@@ -353,7 +353,7 @@ end
 to_field "summary_storage_note_ssm" do |record, accumulator, _context|
   locations = {}
   record.xpath(".//container[@type='box']").each do |box|
-    location_code = box["altrender"]
+    location_code = Pulfalight::LocationCode.new(box["altrender"].to_s).value
     locations[location_code] = [] if locations[location_code].nil?
     locations[location_code] << box.text
   end

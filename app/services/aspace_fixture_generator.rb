@@ -53,7 +53,8 @@ class AspaceFixtureGenerator
     "AC130",
     "C1664",
     "C1539",
-    "C0171"
+    "C0171",
+    "MC066"
   ].freeze
 
   # List components per EAD which are used in tests to make processing those

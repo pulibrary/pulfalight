@@ -67,13 +67,6 @@ RSpec.describe Pulfalight::PhysicalLocationCode do
     it "provides a Aeon request code for a location code" do
       expect(physical_location_code.resolve).to eq("MUDD")
     end
-
-    context "with special collections codes" do
-      let(:value) { "scarcpxm" }
-      it "provides a Aeon request code for the location code" do
-        expect(physical_location_code.resolve).to eq("Remote Storage (ReCAP): Manuscripts. Special Collections Use Only")
-      end
-    end
   end
 
   describe "#to_s" do
