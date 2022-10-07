@@ -77,7 +77,9 @@ describe PulfalightHelper, type: :helper do
 
     describe "#repository_thumbnail" do
       it "generates the <img> markup for repository thumbnail images" do
-        expect(helper.repository_thumbnail).to include("findingaids.princeton.edu/repositories/publicpolicy.jpg")
+        repository_thumbnail = helper.repository_thumbnail
+        expect(repository_thumbnail).to include("alt=\"Public Policy Papers\"")
+        expect(repository_thumbnail).to include("findingaids.princeton.edu/repositories/publicpolicy.jpg")
       end
 
       context "when no repository configuration is available" do
