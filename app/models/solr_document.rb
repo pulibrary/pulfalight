@@ -379,6 +379,10 @@ class SolrDocument
     highlight_response[id][:text_hl]
   end
 
+  def repository_name
+    repository
+  end
+
   private
 
   def pulfalight_attributes

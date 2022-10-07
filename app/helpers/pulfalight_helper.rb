@@ -27,8 +27,11 @@ module PulfalightHelper
               else
                 repository_thumbnail_path
               end
+    image_tag(img_src, alt: document.repository_name, class: "img-fluid float-left")
+  end
 
-    image_tag(img_src, alt: "", class: "img-fluid float-left")
+  def repository_link
+    arclight_engine.repository_path(document.repository_config.slug)
   end
 
   def render_simple_link
