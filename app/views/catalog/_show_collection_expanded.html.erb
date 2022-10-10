@@ -40,13 +40,21 @@
     <div class="row content-container">
       <div class="col-md-4">
         <div class="toc-header">
-          <span>Contents and Arrangement</span>
-          <a class="toc-header__expand-button" href="<%= solr_document_url(document) %>">
-            <%= image_tag(asset_path('icon-compress-alt-solid.svg'), class: 'compress-collection-icon', "aria-label": "view the collection in the default mode") %>
-            <span>Collection View</span>
-          </a>
+          <div class="toc-header-text">
+            <span class="text-uppercase">Contents and Arrangement</span>
+            <a class="toc-header__expand-button" href="<%= solr_document_url(document) %>">
+              <%= image_tag(asset_path('icon-compress-alt-solid.svg'), class: 'compress-collection-icon', "aria-label": "view the collection in the default mode") %>
+              <span>Collection View</span>
+            </a>
+          </div>
+          <div class="toc-toggle">
+            <a data-toggle="collapse" href="#toc" role="button">
+              <span class="sr-only">Toggle</span>
+              <span class="toggle-icon"></span>
+            </a>
+          </div>
         </div>
-        <div id="toc" data-turbolinks-permanent></div>
+        <div id="toc" data-turbolinks-permanent class="collapse show"></div>
         <div id="toc-data" data-selected="<%= document.id %>"></div>
       </div>
 

@@ -9,9 +9,17 @@
     <div class="row content-container">
       <div class="col-md-4">
         <div class="toc-header">
-          <span>CONTENTS AND ARRANGEMENT</span>
+          <div>
+            <span class="text-uppercase">Contents and Arrangement</span>
+          </div>
+          <div class="toc-toggle">
+            <a data-toggle="collapse" href="#toc" role="button">
+              <span class="sr-only">Toggle</span>
+              <span class="toggle-icon"></span>
+            </a>
+          </div>
         </div>
-        <div id="toc" data-turbolinks-permanent></div>
+        <div id="toc" data-turbolinks-permanent class="collapse show"></div>
         <div id="toc-data" data-selected="<%= document.id %>"></div>
       </div>
 

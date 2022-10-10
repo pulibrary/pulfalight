@@ -1,9 +1,9 @@
 
 .blacklight-collection {
   .toc-header {
-    span:first-child {
-      margin-right: 0.85rem;
-      text-transform: uppercase;
+    .toc-header-text {
+      display: flex;
+      flex-direction: column;
     }
 
     &__expand-button {
@@ -19,7 +19,6 @@
       img {
         margin-left: 0.2rem;
         margin-right: 0.2rem;
-
         width: 0.85rem;
       }
 
