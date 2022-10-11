@@ -108,13 +108,13 @@ describe PulfalightHelper, type: :helper do
     end
   end
 
-  describe "#display_simple_link?" do 
+  describe "#display_simple_link?" do
     it "handles bad DAOs" do
       bad_dao = "https://webspace.princeton.edu/users/mudd/Digitization/MC001.01/MC001.01 volume 72.pdf"
       allow(component_document).to receive(:direct_digital_objects).and_return(
         [Arclight::DigitalObject.from_json(
           {
-          "href" => bad_dao
+            "href" => bad_dao
           }.to_json
         )]
       )
