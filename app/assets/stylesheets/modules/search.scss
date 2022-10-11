@@ -117,6 +117,10 @@ header .navbar-form .input-group .input-group-btn {
   height: $search-box-form-height;
 }
 
+.search-q.form-control.tt-hint {
+  color: white;
+}
+
 @media (min-width: $bp-large) {
   .navbar-form .input-group >
   .search-q.form-control {
