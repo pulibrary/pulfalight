@@ -9,6 +9,9 @@ RSpec.describe Aspace::Indexer do
       stub_aspace_resource_ids(repository_id: "13", resource_ids: ["1", "2", "3"])
       stub_aspace_resource_ids(repository_id: "13", modified_since: Time.zone.parse("2020-01-09").to_i, resource_ids: ["3"])
     end
+    after do
+      Timecop.return
+    end
     it "queues everything that needs indexed, and keeps track" do
       allow(AspaceIndexJob).to receive(:perform_later)
       Timecop.freeze(Time.zone.parse("2020-01-09"))
