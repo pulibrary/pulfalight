@@ -514,7 +514,7 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
   end
   to_field "#{selector}_heading_ssm", extract_xpath("./#{selector}/head")
   to_field "#{selector}_teim", extract_xpath("./#{selector}/*[local-name()!='head']")
-  to_field "#{selector}_combined_ssm", extract_xpath("./#{selector}", to_text: false) do |_record, accumulator|
+  to_field "#{selector}_combined_tsm", extract_xpath("./#{selector}", to_text: false) do |_record, accumulator|
     content = accumulator.each_with_object({}) do |element, hsh|
       header = element.xpath("./head")[0].text || "Unknown"
       values = element.xpath("./p").map do |el|
