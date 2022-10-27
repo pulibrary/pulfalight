@@ -51,6 +51,8 @@ module PulfalightHelper
     return if document.figgy_digital_objects.present?
     uri = URI.parse(dao.first&.href)
     uri.is_a?(URI::HTTP)
+  rescue URI::InvalidURIError
+    false
   end
 
   ##
