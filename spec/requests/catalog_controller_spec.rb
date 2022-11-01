@@ -133,6 +133,14 @@ describe "controller requests", type: :request do
         expect(json_body["heldBy"]).to eq ["mss"]
       end
     end
+    context "with a component with a content warning" do
+      it "renders it" do
+        get "/catalog/C1372_c47202-68234.json"
+
+        json_body = JSON.parse(response.body)
+        expect(json_body["content_warning"]).to eq ['The "Revolution in China" album contains photographs of dead bodies.']
+      end
+    end
     context "for a collection" do
       it "renders sufficient JSON for Figgy to use" do
         get "/catalog/WC064.json"

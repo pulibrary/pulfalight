@@ -40,7 +40,8 @@ class SolrDocument
       :heldBy,
       :creator,
       :publisher,
-      :memberOf
+      :memberOf,
+      :content_warning
     ]
   end
 
@@ -409,8 +410,13 @@ class SolrDocument
       container: container,
       heldBy: held_by,
       publisher: publisher,
-      memberOf: member_of
+      memberOf: member_of,
+      content_warning: content_warning
     }
+  end
+
+  def content_warning
+    field_with_headings("scopecontent_ssim")["Content Warning"]
   end
 
   def arclight_attributes
