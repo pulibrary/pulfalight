@@ -89,11 +89,11 @@ A subset of collections (the same that are run in specs) can be indexed into
 
 ##### Troubleshooting Aspace API Connections
 
-If you get an error that the login failed, the most likely explanation is that one or more VPN machines changed IPs and we need to regenerate the list of VPN IPs and send it to Lyrasis support.
+If you get an error that the login failed, the most likely explanation is that one or more VPN machines changed IPs and we need to regenerate the list of allowed IPs and send it to Lyrasis support.
 
-You can validate this by running `Aspace::Client.new` on a staging box rails console. If that doesn't error then it's not an issue with the credentials.
+You can validate this by running `Aspace::Client.new` on a staging box rails console. If that doesn't error then it's not an issue with the credentials (i.e. it's likely an IP missing from the allow list).
 
-[Instructions](https://github.com/pulibrary/pul-the-hard-way/blob/main/services/vpn.md) and [a ruby script for generating the list of ips](https://github.com/pulibrary/pul-the-hard-way/tree/main/services/vpn) are in the pul-the-hard-way repo. Once you have the list of IPs, send it in an email to support@lyrasis.zendesk.com. You can say something like, "I’m having trouble accessing the archivesspace API and I suspect it’s because our VPN changed their backend endpoint IPs again. Can you please make sure the following IPs are allowed to access the API endpoint for aspace.princeton.edu?" If they follow up with more questions, it may be helpful to mention that this list of VPN IPs is in addition to the subnet of IPs for our "on campus" machines, which don't change.
+[Instructions](https://github.com/pulibrary/pul-the-hard-way/blob/main/services/vpn.md) and [a ruby script for generating the list of ips](https://github.com/pulibrary/pul-the-hard-way/tree/main/services/vpn) for generating the full allow list are in the pul-the-hard-way repo. Once you have the list of IPs, send it in an email to support@lyrasis.zendesk.com. You can say something like, "I’m having trouble accessing the archivesspace API and I suspect it’s because our VPN changed their backend endpoint IPs again. Below is our complete list of IPs that need to access the API endpoint for aspace.princeton.edu. Could you please swap out our previous list?"
 
 
 ### Citation Formatting
