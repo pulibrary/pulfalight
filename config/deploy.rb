@@ -39,6 +39,16 @@ set :linked_dirs, fetch(:linked_dirs, []).push("log", "vendor/bundle", "public/u
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
+desc "Write the current version to public/version.txt"
+task :write_version do
+  on roles(:app), in: :sequence do
+    within repo_path do
+      execute :tail, "-n1 ../revisions.log > #{release_path}/public/version.txt"
+    end
+  end
+end
+after 'deploy:log_revision', 'write_version'
+
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 
