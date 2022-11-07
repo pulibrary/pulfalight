@@ -338,6 +338,11 @@ describe "viewing catalog records", type: :feature, js: true do
         expect(page).to have_content("Storage Note:")
         expect(page).to have_content("This is stored in multiple locations. Firestone Library (hsvm): Boxes 1; 32 Firestone Library (mss): Boxes 12; 330 ReCAP (rcpxm): Box 232")
       end
+      it "displays consecutive boxes as a range" do
+        visit "catalog/C1643"
+        expect(page).to have_content("Storage Note:")
+        expect(page).to have_content("Firestone Library (mss): Boxes B-001494 to B-001544, P-000146")
+      end
       it "shows separatedmaterial" do
         visit "/catalog/C1210"
 
