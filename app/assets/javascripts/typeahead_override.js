@@ -1,16 +1,15 @@
 Blacklight.onLoad(function() {
-  
+
   'use strict';
 
   $('[data-autocomplete-enabled="true"]').each(function() {
     var $el = $(this);
+    var suggestUrl = $el.data().autocompletePath;
 
     // upstream code sets up typeahead and we don't want two of them
     if($el.hasClass('tt-input')) {
       $el.typeahead('destroy')
     }
-
-    var suggestUrl = $el.data().autocompletePath;
 
     var terms = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
