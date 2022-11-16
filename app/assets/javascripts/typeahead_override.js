@@ -1,3 +1,6 @@
+// Since the upstream file can't be overridden, here we un-do the setup done
+// upstream and repeat the setup with hint: false
+// see https://github.com/projectblacklight/blacklight/blob/v7.27.1/app/assets/javascripts/blacklight/blacklight.js#L57-L84
 Blacklight.onLoad(function() {
 
   'use strict';
