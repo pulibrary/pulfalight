@@ -415,6 +415,7 @@ class CatalogController < ApplicationController
     config.add_access_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
     config.add_access_field "ark_tsim", label: "Permanent URL", helper_method: :ark_link
     config.add_access_field "repository_ssm", if: :repository_config_present, label: "Location", helper_method: :context_access_tab_repository
+    config.add_access_field "summary_storage_note_ssm", label: "Storage Note", accessor: :fetch_html_safe
     # Using ID because we know it will always exist
     config.add_access_field "id", if: :before_you_visit_note_present, label: "Before you visit", helper_method: :context_access_tab_visit_note
 

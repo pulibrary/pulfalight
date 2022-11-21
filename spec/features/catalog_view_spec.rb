@@ -183,6 +183,8 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page.body).to include "Harold B. Hoskins Papers; Public Policy Papers, Department of Special Collections"
       expect(page.body).to include "65 Olden Street"
       expect(page.body).to include "(609) 258-6345"
+      expect(page.body).to include "Visit Us"
+      expect(page.body).to include "Storage Note"
     end
 
     it "has a find related materials tab" do
@@ -342,6 +344,12 @@ describe "viewing catalog records", type: :feature, js: true do
         visit "catalog/C1643"
         expect(page).to have_content("Storage Note:")
         expect(page).to have_content("Firestone Library (mss): Boxes B-001494 to B-001544, P-000146")
+      end
+      it "displays a Visit Us link on the access and use tab" do
+        visit "catalog/C1491"
+        within "#access" do
+          expect(page).to have_link("Visit Us", href: "https://library.princeton.edu/special-collections/visit-us")
+        end
       end
       it "shows separatedmaterial" do
         visit "/catalog/C1210"

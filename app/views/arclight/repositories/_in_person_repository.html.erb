@@ -1,3 +1,6 @@
+<%# Overrides arclight file to include repository name and contact info. %>
+<%# Note that later versions of ArcLight use ViewComponents rather than helper methods to load the html, 
+as per https://github.com/projectblacklight/arclight/commit/e1ba965025a1c80bedca8292184dd0b4ad254cad. %>
 <div class='xal-in-person-repository-name'>
   <div>
     <%= link_to(repository.name, arclight_engine.repository_path(repository.slug)) %>
@@ -22,4 +25,7 @@
       </div>
     <% end %>
   <% end %>
+  <div class="al-repository-contact-visit">
+        <a href="https://library.princeton.edu/special-collections/visit-us">Visit Us</a>
+      </div>
 </div>
