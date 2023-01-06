@@ -53,12 +53,19 @@ A sub-section of all our collections have been identified and can be queued up
 
   `bundle exec rake pulfalight:aspace:index_test_eads`
 
+#### Index a specific EAD
+
+In a rails console run the index job with a specific EAD, e.g.:
+```
+AspaceIndexJob.perform_later(resource_descriptions_uri: "repositories/4/resource_descriptions/2203", repository_id: "univarchives")
+```
+
+Note the uri must use a collection-level resource id (you may need to look this up in Aspace), and have the correct corresponding repository_id (check against config/repositories.yml)
+
 #### Full/Partial Reindex
 
-In a Rails console, `Aspace::Indexer.index_new` can be run to either perform a
+The rake task `pulfalight:indexing:incremental` will either perform a
 full reindex, or if that's happened before, index any changes.
-
-This will move to a rake task when our production system is implemented.
 
 Sidekiq must be running in a separate window to process the resulting jobs (see below.)
 
