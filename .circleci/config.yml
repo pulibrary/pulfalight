@@ -220,3 +220,22 @@ workflows:
       - coverage_report:
           requires:
             - test
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - rubocop:
+          requires:
+            - build
+      - coverage_report:
+          requires:
+            - test
