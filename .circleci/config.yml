@@ -12,6 +12,9 @@ jobs:
           RAILS_ENV: test
     steps:
       - browser-tools/install-browser-tools
+      - run:
+          name: remove errant LICENSE file
+          command: rm LICENSE.chromedriver
       - checkout
       - node/install:
           install-yarn: true
@@ -109,6 +112,9 @@ jobs:
       SPEC_OPTS: --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
     steps:
       - browser-tools/install-browser-tools
+      - run:
+          name: remove errant LICENSE file
+          command: rm LICENSE.chromedriver
       - attach_workspace:
           at: '~/pulfalight'
       # project database settings
