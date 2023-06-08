@@ -88,7 +88,7 @@
 
             <tr v-if="item.location && item.location.notes" class="request__location-notes">
               <td colspan="4">
-                <truck-icon></truck-icon>
+                <lux-icon-delivery></lux-icon-delivery>
                 {{ item.location.notes }}
               </td>
             </tr>
