@@ -5795,7 +5795,7 @@ lodash@^4.17.11, lodash@^4.17.15, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.7.0:
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
-loose-envify@^1.0.0, loose-envify@^1.2.0:
+loose-envify@^1.0.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
@@ -5824,10 +5824,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-lux-design-system@3.1.5:
-  version "3.1.5"
-  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-3.1.5.tgz#c39246a9c01b8dc5fc87ae4b338e2ea02c702b5d"
-  integrity sha512-dSwQc4j5KbTPwi5uZa2INkubYcp5INVoWK5ISTeKVUDiIQywfw4prCXVTldf0vInsXbZPR4pYA5YX1xP1pxR3w==
+lux-design-system@4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-4.5.0.tgz#f0c72373a4fe4f75629488e34268643b7b52237e"
+  integrity sha512-qWijT9bUv6BMVwCZmLoPgmUxsD3e3OtmNjBjd0xLqasJhzhMRZnGSQNp55plXBBybdwi4vgicElP7pth3ZTmzw==
   dependencies:
     lodash "^4.17.11"
     mini-css-extract-plugin "^0.4.5"
@@ -5840,9 +5840,9 @@ lux-design-system@3.1.5:
     v-calendar "^0.9.7"
     vue "^2.5.18"
     vue-cookies "^1.7.4"
-    vue-focus "^2.1.0"
     vue-lodash "^2.0.0"
     vue-meta "^1.5.6"
+    vue-multiselect "^2.1.7"
     vue-router "^3.0.2"
     vuedraggable "^2.16.0"
     vuex "^3.0.1"
@@ -9119,13 +9119,6 @@ vue-cookies@^1.7.4:
   resolved "https://registry.yarnpkg.com/vue-cookies/-/vue-cookies-1.8.1.tgz#8aeadd7ff9933b820de8c3f121c2be27c5ead7b5"
   integrity sha512-PDq1EaiRRyau5PBQVscXboHW+iWtcG4wRY2UKIz1j0nrjb3KESRU1PUyNUDdOajAwy4RH1IfiNR0suhWRXQdrA==
 
-vue-focus@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/vue-focus/-/vue-focus-2.1.0.tgz#7a0337ce9074d5ef03d15a4b5b862cf45e5e04e3"
-  integrity sha1-egM3zpB01e8D0VpLW4Ys9F5eBOM=
-  dependencies:
-    loose-envify "^1.2.0"
-
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
@@ -9173,6 +9166,11 @@ vue-meta@^1.5.6:
     lodash.isplainobject "^4.0.6"
     lodash.uniqueid "^4.0.1"
     object-assign "^4.1.1"
+
+vue-multiselect@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/vue-multiselect/-/vue-multiselect-2.1.7.tgz#f27afe3d46482b94810382af7a4826219255c47d"
+  integrity sha512-KIegcN+Ntwg3cbkY/jhw2s/+XJUM0Lpi/LcKFYCS8PrZHcWBl2iKCVze7ZCnRj3w8H7/lUJ9v7rj9KQiNxApBw==
 
 vue-router@^3.0.2:
   version "3.5.4"

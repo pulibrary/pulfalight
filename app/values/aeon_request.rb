@@ -17,6 +17,12 @@ class AeonRequest
     }
   end
 
+  def location_attributes
+    note = Pulfalight::DeliveryNote.new(solr_document["container_location_codes_ssim"]&.first).brief_note
+    return unless note
+    { notes: note }
+  end
+
   def form_attributes
     {
       AeonForm: "EADRequest",

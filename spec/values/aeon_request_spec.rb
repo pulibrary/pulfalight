@@ -289,7 +289,7 @@ RSpec.describe AeonRequest do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0187.processed.EAD.xml")
     end
-    it "defaults to RBSC as the Site" do
+    it "defaults to RBSC as the Site, does not have a location attribute" do
       result = indexer.map_record(record)
       component = result["components"].first
       document = SolrDocument.new(component)
@@ -297,13 +297,14 @@ RSpec.describe AeonRequest do
       request = document.aeon_request
       request_id = request.form_attributes[:Request]
       expect(request.form_attributes[:"Site_#{request_id}"]).to eq "RBSC"
+      expect(request.location_attributes).to be_nil
     end
   end
   context "when it's a component with rcpph mapping" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC014.processed.EAD.xml")
     end
-    it "sets mudd as the site, and leaves ReCAP as the location" do
+    it "sets mudd as the site, leaves ReCAP as the location, and adds a delivery note" do
       result = indexer.map_record(record)
       component = find_component(component_id: "MC014_c03682", record: result)
       document = SolrDocument.new(component)
@@ -312,6 +313,7 @@ RSpec.describe AeonRequest do
       request_id = request.form_attributes[:Request]
       expect(request.form_attributes[:"Site_#{request_id}"]).to eq "MUDD"
       expect(request.form_attributes[:Location]).to eq "ReCAP"
+      expect(request.location_attributes[:notes]).to eq "This item is stored offsite. Please allow up to 3 business days for delivery."
     end
   end
   context "when there's two boxes for one component" do

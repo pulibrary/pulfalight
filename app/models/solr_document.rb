@@ -257,14 +257,6 @@ class SolrDocument
     @aeon_request ||= AeonRequest.new(self)
   end
 
-  def storage_notes
-    StorageNotes.for(fetch("physloc_ssm", [])).to_a.concat(fetch("location_note_ssm", [])).map(&:html_safe)
-  end
-
-  def component_storage_notes
-    StorageNotes.for(fetch("collection_physloc_ssm", [])).to_a.concat(fetch("location_note_ssm", [])).map(&:html_safe)
-  end
-
   def language
     fetch("language_ssm", []).map(&:strip)
   end
