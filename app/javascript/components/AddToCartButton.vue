@@ -24,6 +24,11 @@ export default {
       default: "",
       required: false,
     },
+    location: {
+      type: Object,
+      default: () => { {} },
+      required: false,
+    },
     formParams: {
       type: Object,
       default: () => { {} },
@@ -41,6 +46,7 @@ export default {
         callnumber: this.callnumber,
         title: this.title,
         containers: this.containers,
+        location: this.location,
         formParams: this.formParams
       }
     },

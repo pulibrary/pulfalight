@@ -79,7 +79,7 @@
               </td>
             </tr>
 
-            <tr v-if="item.location" class="request__location">
+            <tr v-if="item.location && item.location.url" class="request__location">
               <td colspan="4">
                 <geo-icon></geo-icon>
                 View this item at the <a :href="item.location.url">Mudd Library Reading Room</a>
@@ -88,7 +88,9 @@
 
             <tr v-if="item.location && item.location.notes" class="request__location-notes">
               <td colspan="4">
-                <lux-icon-delivery></lux-icon-delivery>
+                <lux-icon-base icon-name="Delivery">
+                  <lux-icon-delivery></lux-icon-delivery>
+                </lux-icon-base>
                 {{ item.location.notes }}
               </td>
             </tr>

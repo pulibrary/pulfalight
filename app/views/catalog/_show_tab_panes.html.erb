@@ -47,10 +47,11 @@
           <add-to-cart-button
               class="add-to-cart-block sticky-button"
               <% @document.aeon_request.attributes.each_pair do |key, value| %>
-              <% unless value.nil? || value.empty? %>
-                <%= key %>="<%= value %>"
+                <% unless value.nil? || value.empty? %>
+                  <%= key %>="<%= value %>"
+                <% end %>
               <% end %>
-            <% end %>
+              :location="<%= JSON.generate(@document.aeon_request.location_attributes) %>"
               :form-params="<%= JSON.generate(@document.aeon_request.form_attributes) %>"
               >
               <lux-icon-base icon-name="add-to-cart" width="20" height="20">
