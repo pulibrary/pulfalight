@@ -498,11 +498,35 @@ to_field "location_info_tesim" do |_record, accumulator, context|
   accumulator.concat(values)
 end
 
-to_field "language_ssm" do |_record, accumulator, _context|
-  parent = settings[:parent] || settings[:root]
-  parent_languages = parent.output_hash["language_ssm"]
+to_field "language_sim" do |record, accumulator, _context|
+  elements = record.xpath("./did/langmaterial/language")
+  values = []
+  elements.each do |element|
+    value = element.text
+    segments = value.split
 
-  accumulator.concat(parent_languages)
+    filtered = segments.reject { |e| e =~ /^[[:punct:]]/ }
+    value = filtered.join(" ")
+
+    values << value
+  end
+
+  accumulator.concat(values)
+end
+
+to_field "language_ssm" do |_record, accumulator, context|
+  values = context.output_hash["language_sim"]
+  accumulator.concat(values) if values
+end
+
+# Inherit from parent if empty.
+to_field "language_ssm" do |_record, accumulator, context|
+  if context.output_hash["language_ssm"].blank?
+    parent = settings[:parent] || settings[:root]
+    parent_languages = parent.output_hash["language_ssm"]
+
+    accumulator.concat(parent_languages)
+  end
 end
 
 Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
