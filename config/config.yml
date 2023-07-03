@@ -21,8 +21,9 @@ test:
 
 production:
   <<: *defaults
-  archivespace_url: <%= ENV["ASPACE_URL"] || "https://aspace.princeton.edu/staff/api" %>
 
 staging:
   <<: *defaults
-  archivespace_url: <%= ENV["ASPACE_URL"] || "https://aspace.princeton.edu/staff/api" %>
+
+qa:
+  <<: *defaults

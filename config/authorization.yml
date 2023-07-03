@@ -12,3 +12,6 @@ production:
 
 staging:
   <<: *default
+
+qa:
+  <<: *default
