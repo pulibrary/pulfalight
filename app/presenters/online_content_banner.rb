@@ -11,7 +11,7 @@ class OnlineContentBanner
 
   def render
     return unless document.has_digital_content?
-    tag.div(children, class: "document-access online-content #{badge_class}")
+    tag.div(children, class: "document-access online-content #{badge_class}") + tag.div(class: "slant") + tag.div(class: "banner-content")
   end
 
   private
@@ -29,11 +29,12 @@ class OnlineContentBanner
   end
 
   def label
-    if document.has_direct_digital_content?
-      "HAS ONLINE CONTENT"
-    else
-      "SOME ONLINE CONTENT"
-    end
+    # if document.has_direct_digital_content?
+    #   "HAS ONLINE CONTENT"
+    # else
+    #   "SOME ONLINE CONTENT"
+    # end
+    "ONLINE ACCESS"
   end
 
   def badge_class
