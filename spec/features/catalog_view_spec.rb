@@ -110,7 +110,7 @@ describe "viewing catalog records", type: :feature, js: true do
         expect(page).to have_selector(".banner-content span", text: "Some materials in this collection are available online.")
       end
       it "displays an icon in the table of contents", js: true do
-        expect(page).to have_selector "li#MC221_c0094 .al-online-content-icon"
+        expect(page).to have_selector "li#MC221_c0094 .online-direct-content"
       end
     end
   end
