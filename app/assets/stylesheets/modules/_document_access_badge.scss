@@ -5,27 +5,53 @@
   padding: 0.2rem 0.4rem;
   font-size: 0.8rem;
   font-weight: 500;
-  border-radius: 0.4rem;
-  border-width: 0.2rem;
+  // border-radius: 0.4rem;
+  // border-width: 0.2rem;
   gap: 0.4rem;
   align-items: center;
 
   &.online-direct-content {
     color: #1d8235;
     background-color: #f4fEf5;
-    border-color: #1d8235;
+    border: 0;
+    //border-color: #1d8235;
+    position: relative;
+    overflow: hidden;
     & svg {
       fill: #1d8235;
     }
   }
 
+  &.online-direct-content:after {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    content: "";
+    transform: rotate(45deg) translate(100px, 0px);
+    transform-origin: top right;
+  }
+
   &.online-indirect-content {
     color: #636363;
     background-color: #e3e0e0;
-    border-color: #c7c4c4;
+    border: 0;
+    // border-color: #c7c4c4;
+    position: relative;
+    overflow: hidden;
     & svg {
       fill: #636363;
     }
+  }
+
+  &.online-indirect-content:after {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+    content: "";
+    transform: rotate(45deg) translate(100px, 0px);
+    transform-origin: top right;
   }
 
   &.some-restricted {
