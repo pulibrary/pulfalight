@@ -1,3 +1,13 @@
+.online-direct-content {
+  & svg {
+    fill: #1d8235;
+  }
+}
+.online-indirect-content {
+  & svg {
+    fill: #636363;
+  }
+}
 @mixin document-access-badge {
   display: inline-flex;
 
@@ -14,18 +24,12 @@
     color: #1d8235;
     background-color: #f4fEf5;
     border-color: #1d8235;
-    & svg {
-      fill: #1d8235;
-    }
   }
 
   &.online-indirect-content {
     color: #636363;
     background-color: #e3e0e0;
     border-color: #c7c4c4;
-    & svg {
-      fill: #636363;
-    }
   }
 
   &.some-restricted {
