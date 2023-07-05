@@ -1,6 +1,12 @@
+.online-direct-content {
+  & svg {
+    pointer-events: none;
+  }
+}
 .online-indirect-content {
   & svg {
     fill: #636363;
+    pointer-events: none;
   }
 }
 @mixin document-access-badge {

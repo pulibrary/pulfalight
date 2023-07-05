@@ -13,7 +13,7 @@ class OnlineContentBadge
   def render
     return unless document.has_digital_content?
     if icon_only
-      tag.span(icon_span, class: "online-content #{badge_class}")
+      tag.span(icon_span, class: "online-content #{badge_class}", title: label.capitalize)
     else
       tag.div(children, class: "document-access online-content #{badge_class}")
     end
