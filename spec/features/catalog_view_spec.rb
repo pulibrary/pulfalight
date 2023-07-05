@@ -287,8 +287,8 @@ describe "viewing catalog records", type: :feature, js: true do
         # Collection Description
         within("#description") do
           # Description
-          expect(page).to have_selector "dt.blacklight-collection_description_ssm", text: "Description"
-          expect(page).to have_selector "dd.blacklight-collection_description_ssm", text: /This collection consists of the papers of Lilienthal/
+          expect(page).to have_selector "dt.blacklight-scopecontent_ssm", text: "Scope and Contents"
+          expect(page).to have_selector "dd.blacklight-scopecontent_ssm", text: /This collection consists of the papers of Lilienthal/
           # Arrangement
           expect(page).to have_selector "dt.blacklight-arrangement_ssm", text: "Arrangement"
           expect(page).to have_selector "dd.blacklight-arrangement_ssm", text: /may have been put in this order by Lilienthal/
