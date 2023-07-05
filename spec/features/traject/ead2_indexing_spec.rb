@@ -1047,4 +1047,15 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(result).to include("scopecontent_combined_tsm")
     end
   end
+
+  describe "#language_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0958.processed.EAD.xml")
+    end
+    it "overrides the parent language_ssm with the component's if a component has one" do
+      record = find_component(result, "C0958_c06413-76702")
+
+      expect(record["language_ssm"]).to eq ["Greek, Modern", "English"]
+    end
+  end
 end
