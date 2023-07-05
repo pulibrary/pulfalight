@@ -359,40 +359,16 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(result["title_filing_si"]).to be_nil
     end
 
-    context "YearRange normalizer tests" do
-      let(:dates) { result["normalized_date_ssm"] }
-      let(:date_range) { result["date_range_sim"] }
-      let(:date) { dates.first }
-      let(:years) { date.split("-") }
-      let(:beginning) { years.first.to_i }
-      let(:ending) { years.last.to_i }
-
-      it "asserts YearRange normalizer works, that normalized_date_ssm contains start and end in date_range_sim field" do
-        expect(date.delete("s").split("-")).to include(
-          beginning.to_s,
-          ending.to_s
-        )
+    context "YearRange normalizer" do
+      it "gives a broad range summary in normalized_date_ssm" do
+        expect(result["normalized_date_ssm"]).to eq ["1600s-1900s"]
       end
 
-      it "asserts YearRange normalizer works, the # of yrs in date_range_sim array correct, equal to difference between beginning and ending" do
-        # <unitdate normal="1670/1900" type="inclusive">1600s-1900s</unitdate>
-
-        expect(date_range.length).to equal(
-          ending - 1670 + 1
-        )
+      it "gives the specific years in date_range_sim" do
+        beginning = 1670
+        ending = 1900
+        expect(result["date_range_sim"]).to eq (beginning..ending).to_a
       end
-
-      it "asserts YearRange normalizer works, date_range_sim contains a random year between begin and end" do
-        expect(result["date_range_sim"]).to include(
-          rand(beginning..ending)
-        )
-      end
-    end
-
-    it "gets the normalized date" do
-      expect(result["normalized_date_ssm"]).to eq(
-        ["1600s-1900s"]
-      )
     end
 
     it "tests normalized title includes title ssm and normalized date" do
