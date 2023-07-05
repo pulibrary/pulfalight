@@ -44,7 +44,8 @@ class TableOfContentsBuilder
       id: component["id"],
       text: text(component),
       has_children: component["components"].present?,
-      state: { opened: @expanded || expand?(component) } # This applies to every node in the tree
+      state: { opened: @expanded || expand?(component) }, # This applies to every node in the tree,
+      li_attr: { "data-online-content" => component["has_online_content_ssim"]&.first == "true" }
     }
   end
 

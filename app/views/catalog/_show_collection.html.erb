@@ -8,7 +8,7 @@
     <!-- Tabs -->
     <%= render(partial: 'show_tabs') %>
 
-    <div class="row content-container">
+    <div id="toc-container" class="row content-container">
       <div class="col-md-4">
         <div class="toc-header">
           <div class="toc-header-text">
@@ -23,6 +23,14 @@
               <span class="sr-only">Toggle</span>
               <span class="toggle-icon"></span>
             </a>
+          </div>
+        </div>
+        <div class="toc-online-toggle al-online-content-icon">
+          <%= blacklight_icon(:online) %>
+          <label for="tocOnlineToggle" class="online-toggle-label">Only show materials containing online content</label>
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="tocOnlineToggle">
+            <label class="custom-control-label" for="tocOnlineToggle"></label>
           </div>
         </div>
         <div id="toc" data-turbolinks-permanent class="collapse show"></div>

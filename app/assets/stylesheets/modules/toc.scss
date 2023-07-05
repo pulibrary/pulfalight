@@ -1,3 +1,10 @@
+#toc-container {
+  &.online-only {
+    li[data-online-content="false"] {
+      display: none;
+    }
+  }
+}
 #toc {
   margin-bottom: 20px;
   max-height: 800px;
@@ -55,6 +62,26 @@
     .collapsed .toggle-icon::after{
       transform: rotate(90deg);
       transition: transform 0.1s ease;
+    }
+  }
+}
+
+.toc-online-toggle {
+  padding: 10px 10px;
+  background-color: $background-gray;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  .blacklight-icon-online {
+    margin-right: 10px;
+  }
+  label {
+    margin-bottom: 0;
+    &.online-toggle-label {
+      margin-right: 5px;
     }
   }
 }
