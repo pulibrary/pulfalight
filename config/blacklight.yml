@@ -19,6 +19,8 @@ test: &test
 production:
   adapter: solr
   url: <%= ENV['SOLR_URL'] %>
+  timeout: 900
 staging:
   adapter: solr
   url: <%= ENV['SOLR_URL'] %>
+  timeout: 900
