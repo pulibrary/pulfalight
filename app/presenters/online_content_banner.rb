@@ -17,5 +17,4 @@ class OnlineContentBanner
       "Some materials in this collection are available online."
     end
   end
-
 end
