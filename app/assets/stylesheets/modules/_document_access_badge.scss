@@ -5,30 +5,44 @@
   padding: 0.2rem 0.4rem;
   font-size: 0.8rem;
   font-weight: 500;
-  // border-radius: 0.4rem;
-  // border-width: 0.2rem;
   gap: 0.4rem;
   align-items: center;
 
-  &.online-indirect-content {
-    height: 100%;
+  &.online-content-banner {
+    align-items: center;
+    background-color: #009900;
+    border: 5px solid #009900;
     color: white;
-    background-image: image-url("online-access-bg.png");
-    border: 0;
+    -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+    white-space: nowrap;
+    padding: 10px 60px 10px 15px;
+    font-size: 0.9rem;
+    height: 100%;
     & svg {
       fill: white;
     }
   }
 
-  &.online-indirect-content {
-    height: 100%;
-    color: white;
-    background-image: image-url("online-access-bg.png");
-    border: 0;
-    position: relative;
-    overflow: hidden;
+  &.online-direct-content {
+    color: #1d8235;
+    background-color: #f4fEf5;
+    border-color: #1d8235;
+    border-radius: 0.4rem;
+    border-width: 0.2rem;
     & svg {
-      fill: white;
+      fill: #1d8235;
+    }
+  }
+
+  &.online-indirect-content {
+    color: #636363;
+    background-color: #e3e0e0;
+    border-color: #c7c4c4;
+    border-radius: 0.4rem;
+    border-width: 0.2rem;
+    & svg {
+      fill: #636363;
     }
   }
 
@@ -53,21 +67,33 @@
 .banner-content {
   flex-grow: 1;
   background-color: #edf6ee;
-  position: relative;
   overflow: hidden;
+  color: #009900;
+  font-weight: bold;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.75em;
+  padding: 10px 10px 10px 30px;
+
+  span {
+    padding-right: 20px;
+  }
 }
 
 .slant {
-  width: 62px;
-  background-image: image-url("slant.png");
+  // width: 62px;
+  // // background-image: image-url("slant.png");
+  // background-color: #b3dbb7;
+  // -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+  // clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+  display: flex;
+  background-color: #b3dab7;
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+  align-items: center;
+  -webkit-clip-path: polygon(20px 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+  clip-path: polygon(20px 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+  margin: 0 -20px;
 }
-
-// .banner-content:before {
-//   height: 100%;
-//   width: 100%;
-//   background-color: #b3dbb7;
-//   position: absolute;
-//   content: "";
-//   transform: rotate(45deg) translate(20px, 375px);
-//   transform-origin: top right;
-// }

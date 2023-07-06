@@ -11,37 +11,11 @@ class OnlineContentBanner
 
   def render
     return unless document.has_digital_content?
-    tag.div(children, class: "document-access online-content #{badge_class}") + tag.div(class: "slant") + tag.div(class: "banner-content")
-  end
-
-  private
-
-  def blacklight_icon
-    ActionController::Base.helpers.blacklight_icon(:online)
-  end
-
-  def children
-    icon_span + label
-  end
-
-  def icon_span
-    tag.span(blacklight_icon, class: "media-body al-online-content-icon", aria: { hidden: true })
-  end
-
-  def label
-    # if document.has_direct_digital_content?
-    #   "HAS ONLINE CONTENT"
-    # else
-    #   "SOME ONLINE CONTENT"
-    # end
-    "ONLINE ACCESS"
-  end
-
-  def badge_class
     if document.has_direct_digital_content?
-      "online-direct-content"
+      "All materials in this collection are available online."
     else
-      "online-indirect-content"
+      "Some materials in this collection are available online."
     end
   end
+
 end
