@@ -42,6 +42,7 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem "bcrypt_pbkdf"
   gem "listen", ">= 3.0.5", "< 3.2"
   gem "pry-byebug"
   gem "pry-rails"
@@ -51,6 +52,7 @@ group :development do
   gem "capistrano-passenger", require: false
   gem "capistrano-rails", "~> 1.4", require: false
   gem "capistrano-rails-console"
+  gem "ed25519"
   gem "factory_bot_rails"
   gem "foreman"
   gem "solargraph"
