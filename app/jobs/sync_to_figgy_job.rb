@@ -9,6 +9,8 @@ class SyncToFiggyJob < ApplicationJob
       headers: { "Content-Type" => "application/json" }
     )
     auth_token = Pulfalight.config["figgy_auth_token"]
+    # QA infrastructure doesn't need to do this, auth_token will be nil
+    return unless auth_token
     response = connection.post("/resources/refresh_remote_metadata?auth_token=#{auth_token}") do |req|
       req.body = { archival_collection_codes: collection_ids }.to_json
     end

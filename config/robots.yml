@@ -30,3 +30,7 @@ production:
 staging:
   <<: *defaults
   sitemap_url: https://findingaids-staging.princeton.edu/sitemap.xml
+
+qa:
+  <<: *defaults
+  sitemap_url: https://findingaids-qa.princeton.edu/sitemap.xml
