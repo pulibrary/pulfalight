@@ -327,7 +327,7 @@ class CatalogController < ApplicationController
     config.add_summary_field "ark_tsim", label: "Permanent URL", helper_method: :ark_link
     config.add_summary_field "normalized_date_ssm", label: "Dates"
     config.add_summary_field "extent_ssm", label: "Size", accessor: :fetch_html_safe
-    config.add_summary_field "summary_storage_note_ssm", label: "Storage Note", accessor: :fetch_html_safe
+    config.add_summary_field "summary_storage_note_ssm", label: "Storage Note", accessor: :fetch_html_safe, helper_method: :summary_storage_note
     config.add_summary_field "language_ssm", label: "Language"
 
     # Collect Show Page - Abstract Section
@@ -352,7 +352,7 @@ class CatalogController < ApplicationController
     config.add_component_field "accessrestrict_ssm", label: "Access Restrictions", accessor: :fetch_html_safe
     config.add_component_field "acqinfo_ssm", label: "Acquisition", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator, accessor: :fetch_html_safe
-    config.add_component_field "summary_storage_note_ssm", label: "Storage Note"
+    config.add_component_field "summary_storage_note_ssm", label: "Storage Note", accessor: :fetch_html_safe, helper_method: :summary_storage_note
     config.add_component_field "phystech_ssm", label: "Special Requirements for Access", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "processinfo_ssm", label: "Processing Information", helper_method: :paragraph_separator, accessor: :fetch_html_safe
 
@@ -413,7 +413,7 @@ class CatalogController < ApplicationController
     config.add_access_field "prefercite_ssm", label: "Credit this material", helper_method: :paragraph_separator
     config.add_access_field "ark_tsim", label: "Permanent URL", helper_method: :ark_link
     config.add_access_field "repository_ssm", if: :repository_config_present, label: "Location", helper_method: :context_access_tab_repository
-    config.add_access_field "summary_storage_note_ssm", label: "Storage Note", accessor: :fetch_html_safe
+    config.add_access_field "summary_storage_note_ssm", label: "Storage Note", accessor: :fetch_html_safe, helper_method: :summary_storage_note
     # Using ID because we know it will always exist
     config.add_access_field "id", if: :before_you_visit_note_present, label: "Before you visit", helper_method: :context_access_tab_visit_note
 

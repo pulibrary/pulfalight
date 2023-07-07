@@ -155,20 +155,7 @@ class SolrDocument
   end
 
   def fetch_html_safe(field)
-    return fetch_summary_note(field) if field == "summary_storage_note_ssm"
     fetch(field, []).map(&:html_safe)
-  end
-
-  def fetch_summary_note(field)
-    note = fetch(field, [])
-    if note.present?
-      abid_matcher = note.first.match(/^(?<location>.*: Boxes )(?:[A-Z]-\d{6}; )+/)
-      if abid_matcher
-        boxes = note.first.scan(/[A-Z]-\d{6}/).sort
-        note = ["#{abid_matcher[:location]}#{boxes_to_range(boxes)}"]
-      end
-    end
-    note.map(&:html_safe)
   end
 
   def extent
@@ -446,23 +433,5 @@ class SolrDocument
     {
       id: id
     }
-  end
-
-  def consecutive?(box1, box2)
-    same_prefix = box1.gsub(/\d/, "") == box2.gsub(/\d/, "")
-    return false unless same_prefix
-    box2.gsub(/\D/, "").to_i == box1.gsub(/\D/, "").to_i + 1 # compares integer portion of box number
-  end
-
-  def consecutive_chunk(output, boxes)
-    first = boxes.first
-    boxes.shift while boxes.length > 1 && consecutive?(boxes[0], boxes[1])
-    return [output.push(boxes.shift), boxes] if first == boxes.first
-    [output.push("#{first} to #{boxes.shift}"), boxes]
-  end
-
-  def boxes_to_range(boxes)
-    output, boxes = consecutive_chunk(output ||= [], boxes) while boxes != []
-    output.join(", ")
   end
 end

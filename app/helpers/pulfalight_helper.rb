@@ -69,6 +69,11 @@ module PulfalightHelper
     link_to ark, ark
   end
 
+  # Renders summary storage notes
+  def summary_storage_note(_context)
+    SummaryStorageNotePresenter.new(document).render
+  end
+
   # Render an html <title> appropriate string for a set of search parameters
   # @param [ActionController::Parameters] params2
   # @return [String]

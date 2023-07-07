@@ -339,15 +339,18 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dd.blacklight-genreform_ssim", text: /Audio tapes/
         end
       end
-      it "displays the summary storage notes at the collection level" do
-        visit "catalog/C1491"
-        expect(page).to have_content("Storage Note:")
-        expect(page).to have_content("This is stored in multiple locations. Firestone Library (hsvm): Boxes 1; 32 Firestone Library (mss): Boxes 12; 83; 330; B-001491 ReCAP (rcpxm): Box 232")
-      end
       it "displays consecutive boxes as a range" do
         visit "catalog/C1643"
         expect(page).to have_content("Storage Note:")
         expect(page).to have_content("Firestone Library (mss): Boxes B-001494 to B-001544, P-000146")
+      end
+      it "displays multiple storage locations as a list" do
+        visit "catalog/C1491"
+        expect(page).to have_content("Storage Note:")
+        expect(page).to have_selector("li", text: "This is stored in multiple locations.")
+        expect(page).to have_selector("li", text: "Firestone Library (hsvm): Boxes 1, 32")
+        expect(page).to have_selector("li", text: "Firestone Library (mss): Boxes 12, 330")
+        expect(page).to have_selector("li", text: "ReCAP (rcpxm): Box 232")
       end
       it "displays a Visit Us link on the access and use tab" do
         visit "catalog/C1491"

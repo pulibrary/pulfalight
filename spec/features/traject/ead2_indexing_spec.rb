@@ -144,17 +144,17 @@ describe "EAD 2 traject indexing", type: :feature do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
     end
 
-    it "constructs a collection level summary storage note" do
-      summary_message = result["summary_storage_note_ssm"].first
-      expect(summary_message).to match(/This is stored in multiple locations/)
-      expect(summary_message).to match(/Firestone Library \(hsvm\): Boxes 1; 32/)
-      expect(summary_message).to match(/Firestone Library \(mss\): Boxes 12; 83; 330/)
-      expect(summary_message).to match(/ReCAP \(rcpxm\): Box 232/)
+    it "constructs a collection level summary storage note array" do
+      summary_messages = result["summary_storage_note_ssm"]
+      expect(summary_messages[0]).to match(/This is stored in multiple locations./)
+      expect(summary_messages[1]).to match(/Firestone Library \(hsvm\): Boxes 1; 32/)
+      expect(summary_messages[2]).to match(/Firestone Library \(mss\): Boxes 12; 83; 330; B-001491/)
+      expect(summary_messages[3]).to match(/ReCAP \(rcpxm\): Box 232/)
     end
     it "constructs component and series level summary storage notes" do
       components = result["components"]
       component = components.first["components"].first
-      expect(component["summary_storage_note_ssm"]).to eq ["This is stored in multiple locations.  Firestone Library (hsvm): Boxes 1; 32 Firestone Library (mss): Box 12"]
+      expect(component["summary_storage_note_ssm"]).to eq ["This is stored in multiple locations.", "Firestone Library (hsvm): Boxes 1; 32", "Firestone Library (mss): Box 12"]
     end
 
     context "when given a record with sca locations" do
