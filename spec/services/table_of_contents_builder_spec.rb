@@ -87,4 +87,16 @@ RSpec.describe TableOfContentsBuilder do
       expect(series_level_component["id"]).to eq "MC148_c00001"
     end
   end
+
+  context "when rendering a series whose children has online content" do
+    it "marks them with a li_attr class" do
+      document = SolrDocument.find("MC148_c00002")
+      output = described_class.build(document)
+      toc_hash = JSON.parse(output)
+
+      series_level_components = toc_hash
+      series_level_component = series_level_components[1]
+      expect(series_level_component["li_attr"]).to eq({ "data-online-content" => true })
+    end
+  end
 end

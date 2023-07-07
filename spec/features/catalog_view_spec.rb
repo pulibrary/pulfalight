@@ -84,6 +84,7 @@ describe "viewing catalog records", type: :feature, js: true do
 
     it "has a table of contents element" do
       expect(page).to have_css("#toc")
+      expect(page).to have_css(".toc-online-toggle")
     end
 
     it "has an element with the component id", js: false do
@@ -440,6 +441,12 @@ describe "viewing catalog records", type: :feature, js: true do
 
         visit "/catalog/AC317_c36874-31598"
         expect(page).to have_link "policy on digitization of photographs"
+      end
+      it "shows a toc" do
+        visit "/catalog/AC198"
+
+        expect(page).to have_css(".toc-online-toggle")
+        expect(page).to have_css("#toc")
       end
     end
   end

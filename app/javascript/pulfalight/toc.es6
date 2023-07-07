@@ -46,6 +46,13 @@ export default class TocBuilder {
       const scrollOffset = selectedElement.offset().top - selectedElement.offsetParent().offset().top - 60
       this.element.scrollTop(scrollOffset)
     })
+    document.getElementById('tocOnlineToggle').addEventListener('change', (e) => {
+      if(e.target.checked) {
+        document.getElementById('toc-container').classList.add('online-only')
+      } else {
+        document.getElementById('toc-container').classList.remove('online-only')
+      }
+    })
   }
 
   setupTree() {
