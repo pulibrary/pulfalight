@@ -121,7 +121,7 @@ describe "viewing catalog records", type: :feature, js: true do
     end
     it "displays 'Some Restricted' at the collection level and restricted at the component level" do
       visit "/catalog/AC136_c2889"
-      expect(page).to have_selector(".document-access.some-restricted", text: "Some Restricted Content")
+      expect(page).to have_selector(".document-access.review", text: "Restrictions may apply. See Access Note.")
       expect(page).to have_selector("#component-summary .document-access.restricted", text: "Restricted Content")
     end
   end

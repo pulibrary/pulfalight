@@ -464,9 +464,6 @@ end
 
 to_field "access_ssi" do |record, accumulator, _context|
   value = record.xpath("./ead/archdesc/accessrestrict")&.first&.attributes&.fetch("rights-restriction", nil)&.value&.downcase
-  # Mapping review to some-restricted to simplify migration logic
-  # TODO: Change to review
-  value = "some-restricted" if value == "review"
   value ||= "open"
   accumulator << value
 end

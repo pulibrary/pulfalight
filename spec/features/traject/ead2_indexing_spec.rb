@@ -756,8 +756,8 @@ describe "EAD 2 traject indexing", type: :feature do
         component = find_component(result, "AC136_c2889")
         expect(component["access_ssi"]).to eq ["restricted"]
       end
-      it "marks the collection as some-restricted because its access-restriction is set to review" do
-        expect(result["access_ssi"]).to eq ["some-restricted"]
+      it "marks the collection as review because its access-restriction is set to review" do
+        expect(result["access_ssi"]).to eq ["review"]
       end
     end
     context "for a collection which is entirely restricted" do
@@ -773,17 +773,22 @@ describe "EAD 2 traject indexing", type: :feature do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
       end
       it "marks the collection under review" do
-        expect(result["access_ssi"]).to eq ["some-restricted"]
+        expect(result["access_ssi"]).to eq ["review"]
       end
       it "marks restricted components as restricted" do
         component = find_component(result, "C1491_c1622")
 
         expect(component["access_ssi"]).to eq ["restricted"]
       end
+      it "marks components that are review" do
+        component = find_component(result, "C1491_c1")
+
+        expect(component["access_ssi"]).to eq ["review"]
+      end
       it "marks components with no accessrestrict of their own as review" do
         component = find_component(result, "C1491_c5011")
 
-        expect(component["access_ssi"]).to eq ["some-restricted"]
+        expect(component["access_ssi"]).to eq ["review"]
       end
     end
   end
