@@ -30,8 +30,10 @@ export default class TocBuilder {
   }
 
   build() {
-    this.setupTree()
-    this.setupEventHandlers()
+    if (this.element.length > 0) {
+      this.setupTree()
+      this.setupEventHandlers()
+    }
   }
 
   setupEventHandlers() {
