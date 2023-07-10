@@ -768,6 +768,14 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(result["access_ssi"]).to eq ["restricted"]
       end
     end
+    context "for a collection that has review" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
+      end
+      it "marks the collection under review" do
+        expect(result["access_ssi"]).to eq ["some-restricted"]
+      end
+    end
   end
 
   context "when there's no collection notes" do
