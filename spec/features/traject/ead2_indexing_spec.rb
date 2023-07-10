@@ -150,7 +150,6 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(summary_messages[1]).to match(/Firestone Library \(hsvm\): Boxes 1; 32/)
       expect(summary_messages[2]).to match(/Firestone Library \(mss\): Boxes 12; 83; 330; B-001491/)
       expect(summary_messages[3]).to match(/ReCAP \(rcpxm\): Box 232/)
-    end
     it "constructs component and series level summary storage notes" do
       components = result["components"]
       component = components.first["components"].first
@@ -279,7 +278,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
     context "when dao is a relative URL path" do
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
+        Rails.root.join("spec", "fixtures", "aspace", "corner_cases", "C1491.relativedao.EAD.xml")
       end
       it "doesn't index it" do
         expect(result["has_online_content_ssim"]).to eq [false]
