@@ -30,8 +30,10 @@ export default class TocBuilder {
   }
 
   build() {
-    this.setupTree()
-    this.setupEventHandlers()
+    if (this.element.length > 0) {
+      this.setupTree()
+      this.setupEventHandlers()
+    }
   }
 
   setupEventHandlers() {
@@ -41,10 +43,13 @@ export default class TocBuilder {
       window.location = location
     })
     this.element.on('ready.jstree', (e, data) => {
+      // Jump to selected element on page reload
       const selectedId = this.element.jstree().get_selected()[0]
       const selectedElement = $(`#${selectedId}`)
-      const scrollOffset = selectedElement.offset().top - selectedElement.offsetParent().offset().top - 60
-      this.element.scrollTop(scrollOffset)
+      if (selectedElement.length > 0) {
+        const scrollOffset = selectedElement.offset().top - selectedElement.offsetParent().offset().top - 60
+        this.element.scrollTop(scrollOffset)
+      }
     })
     document.getElementById('tocOnlineToggle').addEventListener('change', (e) => {
       if(e.target.checked) {
