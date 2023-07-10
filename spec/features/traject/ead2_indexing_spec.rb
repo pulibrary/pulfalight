@@ -756,7 +756,7 @@ describe "EAD 2 traject indexing", type: :feature do
         component = find_component(result, "AC136_c2889")
         expect(component["access_ssi"]).to eq ["restricted"]
       end
-      it "marks the collection as some-restricted" do
+      it "marks the collection as some-restricted because its access-restriction is set to review" do
         expect(result["access_ssi"]).to eq ["some-restricted"]
       end
     end
