@@ -9,7 +9,6 @@
   }
   a {
     background-color: $light;
-    padding: 8px;
     width: calc(100% - 24px); // Full width minus .jstree-icon width
     &.jstree-clicked {
       background-color: $hawkes-blue;
@@ -29,6 +28,29 @@
   li {
     margin-top: 5px;
     margin-bottom: 5px;
+    .content {
+      display: flex;
+      align-items: stretch;
+      .online-content {
+        display: flex;
+        align-items: center;
+        &.online-indirect-content {
+          border-bottom: 5px solid #1d8235;
+        }
+        &.online-direct-content {
+          background-color: #397339;
+          svg {
+            fill: white;
+          }
+        }
+      }
+      & > span {
+        padding: 8px;
+      }
+      .text {
+        margin-left: 5px;
+      }
+    }
   }
 }
 
