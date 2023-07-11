@@ -454,6 +454,22 @@ describe "EAD 2 traject indexing", type: :feature do
         end
       end
 
+      context "when given a record with content warning header" do
+        let(:fixture_path) do
+          Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "TC040.processed.EAD.xml")
+        end
+        it "inherits down" do
+          component = find_component(result, "TC040_c00002")
+
+          # Ensure it's inheriting from its parent.
+          expect(component["scopecontent_combined_tsm"][0]).not_to eq "{}"
+          json = JSON.parse(component["scopecontent_combined_tsm"][0])
+          expect(json["Content Warning"]).not_to be_blank
+          # Never inherit Scope & Contents
+          expect(json["Scope and Contents"]).to be_blank
+        end
+      end
+
       it "indexes all note fields from the <archdesc> child elements for the collection" do
         expect(result).to include("collection_notes_ssm")
         expect(result["collection_notes_ssm"]).not_to be_empty
