@@ -300,18 +300,22 @@ to_field "container_information_ssm" do |record, accumulator, context|
   record.xpath("./did/container").each do |container_element|
     container_location_code = Pulfalight::LocationCode.new(container_element.attributes["altrender"].to_s).value
     container_profile = container_element.attributes["encodinganalog"].to_s
-    next if container_location_code.blank?
+    type = container_element.attributes["type"].to_s
+    next if container_location_code.blank? && type != "folder"
     barcode_label = container_element.attributes["label"].to_s
     barcode_match = barcode_label.match(/\[(\d+?)\]/)
     barcode = barcode_match[1] if barcode_match
     text = [container_element.attribute("type"), container_element.text].join(" ").strip
     note = container_element.attribute("note")
     accumulator << {
+      id: container_element.attributes["id"].to_s.gsub("aspace_", ""),
       location_code: container_location_code,
       profile: container_profile,
       barcode: barcode,
       label: text,
-      note: note.to_s
+      note: note.to_s,
+      parent: container_element.attribute("parent").to_s.gsub("aspace_", ""),
+      type: type
     }.to_json
   end
   if context.output_hash["level_ssm"] == ["Text"] && accumulator.blank?

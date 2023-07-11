@@ -340,6 +340,24 @@ RSpec.describe AeonRequest do
       expect(request.form_attributes[:"ItemInfo4_#{request2}"]).to eq "NBox"
     end
   end
+  context "when there's two boxes with two folders" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
+    end
+    it "creates two transactions, with the right folder per box" do
+      result = indexer.map_record(record)
+      component = find_component(component_id: "C1491_c1484", record: result)
+      document = SolrDocument.new(component)
+
+      request = document.aeon_request
+      expect(Array.wrap(request.form_attributes[:Request]).length).to eq 2
+      request1 = request.form_attributes[:Request][0]
+      request2 = request.form_attributes[:Request][1]
+
+      expect(request.form_attributes[:"ItemInfo3_#{request1}"]).to eq "Folder 2"
+      expect(request.form_attributes[:"ItemInfo3_#{request2}"]).to eq "Folder 6"
+    end
+  end
   context "when there's two oversize folders for one component" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC154.processed.EAD.xml")
