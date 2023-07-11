@@ -4,7 +4,6 @@
     <% if document.ead.present? %>
       <%= link_to solr_document_path(document.http_safe_ead), data: { turbolinks: "false" } do %>
         <span class="col"><%= document.collection.first %></span>
-        <%= puts document.to_yaml %>
       <% end %>
     <% else %>
       <span class="col"><%= document.collection.first %></span>
