@@ -106,14 +106,6 @@
     column-gap: 0.8rem;
   }
 
-  .document-extent {
-    @include document-extent-badge;
-  }
-
-  .document-access {
-    @include document-access-badge;
-  }
-
   .breadcrumbs {
     @include breadcrumbs;
   }
