@@ -5,15 +5,31 @@
   padding: 0.2rem 0.4rem;
   font-size: 0.8rem;
   font-weight: 500;
-  border-radius: 0.4rem;
-  border-width: 0.2rem;
   gap: 0.4rem;
   align-items: center;
+
+  &.online-content-banner {
+    align-items: center;
+    background-color: #397339;
+    border: 5px solid #397339;
+    color: white;
+    -webkit-clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+    white-space: nowrap;
+    padding: 10px 60px 10px 15px;
+    font-size: 0.9rem;
+    height: 100%;
+    & svg {
+      fill: white;
+    }
+  }
 
   &.online-direct-content {
     color: #1d8235;
     background-color: #f4fEf5;
     border-color: #1d8235;
+    border-radius: 0.4rem;
+    border-width: 0.2rem;
     & svg {
       fill: #1d8235;
     }
@@ -23,6 +39,8 @@
     color: #636363;
     background-color: #e3e0e0;
     border-color: #c7c4c4;
+    border-radius: 0.4rem;
+    border-width: 0.2rem;
     & svg {
       fill: #636363;
     }
@@ -43,4 +61,34 @@
   img {
     height: 1.4rem
   }
+
+}
+
+.banner-content {
+  flex-grow: 1;
+  background-color: #edf6ee;
+  overflow: hidden;
+  color: #397339;
+  font-weight: bold;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.75em;
+  padding: 10px 10px 10px 30px;
+
+  span {
+    padding-right: 20px;
+  }
+}
+
+.slant {
+  display: flex;
+  background-color: #b3dab7;
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+  align-items: center;
+  -webkit-clip-path: polygon(20px 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+  clip-path: polygon(20px 0, 100% 0, calc(100% - 20px) 100%, 0 100%);
+  margin: 0 -20px;
 }
