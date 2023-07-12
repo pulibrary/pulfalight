@@ -21,24 +21,26 @@
 
   </div>
 
-  <div class="collection-attributes lux">
-    <%= render partial: "restricted_badge", locals: { document: document } %>
     <% if document.has_digital_content? %>
-      <div class="document-access online-content-banner">
-        <span class="media-body al-online-content-icon" aria-hidden="true">
-          <%= ActionController::Base.helpers.blacklight_icon(:online) %>
-        </span>
-        ONLINE ACCESS
-      </div>
-      <div class="slant"></div>
-      <div class="banner-content">
+      <div class="online-banner lux">
+        <div class="document-access online-content-banner">
+          <span class="media-body al-online-content-icon" aria-hidden="true">
+            <%= ActionController::Base.helpers.blacklight_icon(:online) %>
+          </span>
+          ONLINE ACCESS
+        </div>
+        <div class="slant"></div>
+        <div class="banner-content">
           <span><%= OnlineContentBanner.new(document).render %></span>
           <a href="<%= search_catalog_path(f: { collection_sim: [document.collection_name], has_direct_online_content_ssim: ['online'] }) %>">
             <lux-icon-base width="14" height="14" icon-name="filter">
-            <lux-icon-filter></lux-icon-filter>
-          </lux-icon-base>
-          View only online materials</a>
+              <lux-icon-filter></lux-icon-filter>
+            </lux-icon-base>
+            View only online materials</a>
+        </div>
       </div>
     <% end %>
+  <div class="collection-attributes lux">
+    <%= render partial: "restricted_badge", locals: { document: document } %>
   </div>
 </div>
