@@ -103,15 +103,7 @@
 
   .document-attributes {
     display: inline-flex;
-    column-gap: 0.8rem;
-  }
-
-  .document-extent {
-    @include document-extent-badge;
-  }
-
-  .document-access {
-    @include document-access-badge;
+    column-gap: 0.4rem;
   }
 
   .breadcrumbs {
@@ -186,7 +178,7 @@
 
         .document-attributes {
           display: inline-flex;
-          column-gap: 0.8rem;
+          column-gap: 0.4rem;
         }
 
         .document-title {
