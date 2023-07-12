@@ -11,7 +11,7 @@ class OnlineContentBadge
 
   def render
     return unless document.has_digital_content?
-    tag.div(children, class: "document-access online-content #{badge_class}")
+    tag.span(children, class: "document-access online-content #{badge_class}")
   end
 
   private

@@ -8,22 +8,9 @@
     <div class="documentHeader my-w-75 w-md-100 order-0" data-document-id="<%= document.id %>">
       <h3 class="index_title document-title-heading">
         <%= link_to_document document, document_show_link_field(document), counter: counter %>
-
-
-        <%= content_tag('div', class: 'al-document-extent badge') do %>
-          <%= document.eadid %>
-        <% end if document.collection? %>
-
-        <% document.extents.each do |extent| %>
-          <%= content_tag('span', class: 'al-document-extent badge') do %>
-            <%= extent %>
-          <% end if extent %>
-        <% end %>
       </h3>
 
-      <div class="col col-no-left-padding d-flex flex-wrap">
-        <%= OnlineContentBadge.new(document).render %>
-      </div>
+      <%= render partial: 'index_document_attributes', locals: { document: document } %>
     </div>
 
     <div class="my-w-25 w-md-100 order-12 order-md-1">

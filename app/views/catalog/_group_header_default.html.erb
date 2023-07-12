@@ -8,17 +8,7 @@
       <% end %>
       <h3><%= link_to_document document, document_show_link_field(document) %></h3>
 
-      <div>
-        <%= OnlineContentBadge.new(document).render %>
-      </div>
-
-      <%= content_tag('div', class: 'al-document-extent badge') do %>
-        <%= document.eadid %>
-      <% end if document.collection? %>
-
-      <%= content_tag('span', class: 'al-document-extent badge') do %>
-        <%= document.extent %>
-      <% end if document.extent %>
+      <%= render partial: 'index_document_attributes', locals: { document: document } %>
       <%= content_tag('div', class: 'al-document-abstract-or-scope') do %>
         <%= content_tag('div', 'data-arclight-truncate' => true) do %>
           <%= document.abstract_or_scope %>
