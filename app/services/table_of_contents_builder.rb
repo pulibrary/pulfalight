@@ -57,12 +57,12 @@ class TableOfContentsBuilder
 
   def text(component)
     title = component["normalized_title_ssm"].first
-    return title unless component["has_online_content_ssim"]&.first == "true"
-    "#{title} <span class=\"media-body al-online-content-icon\" aria-hidden=\"true\">#{ActionController::Base.helpers.blacklight_icon(:online)}</span>"
+    return "<div class='content'><span class='text'>#{title}</span></div>" unless component["has_online_content_ssim"]&.first == "true"
+    "<div class='content'>#{OnlineContentBadge.new(SolrDocument.new(component), icon_only: true).render}<span class='text'>#{title}</span></div>"
   end
 
   def field_list
-    "id, normalized_title_ssm, level_ssm, components, has_online_content_ssim, [child limit=1000000]"
+    "id, normalized_title_ssm, level_ssm, components, has_direct_online_content_ssim, has_online_content_ssim, [child limit=1000000]"
   end
 
   def find_node(root_node, id)

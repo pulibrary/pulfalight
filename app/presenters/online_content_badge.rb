@@ -4,14 +4,23 @@ class OnlineContentBadge
   include ActionView::Helpers::OutputSafetyHelper
   include ActionView::Helpers::TagHelper
 
-  attr_reader :document
-  def initialize(document)
+  attr_reader :document, :icon_only
+  def initialize(document, icon_only: false)
     @document = document
+    @icon_only = icon_only
   end
 
   def render
     return unless document.has_digital_content?
-    tag.span(children, class: "document-access online-content #{badge_class}")
+    if icon_only
+      tag.span(icon_span, class: "online-content #{badge_class}")
+    else
+      tag.div(children, class: "document-access online-content #{badge_class}")
+    end
+  end
+
+  def icon_span
+    tag.span(blacklight_icon, class: "media-body", aria: { hidden: true })
   end
 
   private
@@ -22,10 +31,6 @@ class OnlineContentBadge
 
   def children
     icon_span + label
-  end
-
-  def icon_span
-    tag.span(blacklight_icon, class: "media-body al-online-content-icon", aria: { hidden: true })
   end
 
   def label

@@ -1,3 +1,8 @@
+.online-indirect-content {
+  & svg {
+    fill: #636363;
+  }
+}
 @mixin document-access-badge {
   display: inline-flex;
 
