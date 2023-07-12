@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/02870v897">TC040</eadid><filedesc><titlestmt><titleproper>McCaddon Collection of the Barnum and Bailey Circus, 1871-1907 (bulk 1895-1905): Finding Aid <num>TC040</num></titleproper><author>Melanie Papasian, Princeton Class of 2003; Rachel Jordan</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2002</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2023-07-11 14:06:37 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T12:41:50.449-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2013-02-25T08:38:14.564-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2022-11-11 09:02:59 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-11 10:24:42 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-16 12:47:43 -0500</date><item>Updated physloc code</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Manuscripts Division </corpname>
+    </repository>
+    <unittitle>McCaddon Collection of the Barnum and Bailey Circus</unittitle>
+    <origination label="Creator">
+      <persname role="cre" rules="lcnaf" source="local">McCaddon, Joseph T.</persname>
+    </origination>
+    <unitid>TC040</unitid>
+    <unitid type="aspace_uri">/repositories/5/resources/2543</unitid>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">85 boxes</extent>
+    </physdesc>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">9 folders</extent>
+    </physdesc>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">14 items</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1871/1907" type="inclusive">1871-1907</unitdate>
+    <unitdate datechar="creation" normal="1895/1905" type="bulk">1895-1905</unitdate>
+    <abstract id="aspace_5b94ba4f0a79bd268ee00d44d5fcc4fc">The McCaddon Collection of the Barnum and Bailey Circus consists of correspondence, photographs, scrapbooks, and other material collected by business manager Joseph T. McCaddon prior to the 1907 merger of the circus with Ringling Bros.</abstract>
+    <physloc id="aspace_4d85ba996aa0855816f3a8223b9013d8">scamss</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+.    </langmaterial>
+  </did>
+  <phystech id="aspace_d88ef076f90fdd400b850392029d0283">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>For preservation reasons, original analog
+and digital media may not be read or played back in the
+reading room. Users may visually inspect physical media
+but may not remove it from its enclosure. All analog
+audiovisual media must be digitized to preservation-quality
+standards prior to use. Audiovisual digitization requests
+are processed by an approved third-party vendor. Please note,
+the transfer time required can be as little as several weeks
+to as long as several months and there may be financial costs
+associated with the process.
+Requests should be directed through the
+<extref xlink:href="https://library.princeton.edu/special-collections/ask-us" xlink:type="simple">Ask Us Form</extref>.</p>  </phystech>
+  <scopecontent id="aspace_4598ed0e32c95177146ff82ca10897aa">
+    <head>Scope and Contents</head>
+<p>Consists of the working papers of the Barnum and Bailey partnership prior to its merger with Ringling Bros. in 1907. In addition to correspondence, scrapbooks, posters, couriers, parade, costume and wagon designs, music, and memorabilia collected by Joseph T. McCaddon, who was the business manager of the circus at the turn of the century, there are hundreds of photographs documenting the American circus of the 19th and 20th centuries.</p>  </scopecontent>
+  <accessrestrict id="aspace_94566bdfe8cf4b4f71df9ed5960f9f89" rights-restriction="Open">
+    <head>Conditions Governing Access</head>
+<p>Collection is open for research use.</p>  </accessrestrict>
+  <userestrict id="aspace_d34072ed3ceeebc91a19f386a728631b">
+    <head>Conditions Governing Use</head>
+<p>Single copies may be made for research purposes. No further duplication of copies of material in the collection can be made when Princeton University Library does not own the original. Inquiries regarding publishing material from the collection should be directed to Special Collections Public Services staff through the <extref xmlns:xlin="http://www.w3.org/1999/xlink" xlin:href="https://library.princeton.edu/special-collections/ask-us" xlin:type="simple">Ask Us! form</extref>. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>  </userestrict>
+  <acqinfo id="aspace_ff651b395d5de4148250730f920a5348">
+    <head>Immediate Source of Acquisition</head>
+<p>The collection was a gift to the Library by the McCaddon family in 1941. Additions were purchased at auction in <date type="acquisition" normal="1978-07">July 1978</date>.</p>  </acqinfo>
+  <appraisal id="aspace_3c5f4aa2fd6eb961e7234296f4f75f3e">
+    <head>Appraisal</head>
+<p>No appraisal information is available.</p>  </appraisal>
+  <prefercite id="aspace_96420bf3f05b195dab230da00b22ae08">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); McCaddon Collection of the Barnum and Bailey Circus, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_23ad4514bb9f1dc9001a63c31df7ee79">
+    <head>Processing Information</head>
+<p>
+This collection was processed by Melanie Papasian, Princeton Class of 2003 and Rachel Jordan in 2002 and 2004 . Finding aid written by Melanie Papasian, Princeton Class of 2003 and Rachel Jordan in 2002 and 2004.</p><p>
+The existence of harmful language was noted in collection- and series-level descriptive notes by Amy C. Vo and Phoebe Nobles in 2022 as an initial step for reparative description-related work.</p><p>
+In 2022, restrictions on glass-plate negatives were lifted as part of a restrictions review project.</p>  </processinfo>
+  <scopecontent id="aspace_73752837c8242aed5c744756d5fc6165">
+    <head>Content Warning</head>
+<p>The McCaddon Collection of the Barnum and Bailey Circus contains harmful and offensive descriptions of people that includes racist, colonialist, ableist, and otherwise dehumanizing language. Some of the description is original to the donor and/or the creator, and in these instances of creator- and donor-supplied titles, description may be retained to convey contextual/historical information of the materials. However, the collection is a candidate for ongoing reparative description work that can address cases in which a librarian or archivist may have supplied harmful descriptive language. We hope that researchers will engage in a dialogue with staff about issues in the collection and changes that could help.</p>  </scopecontent>
+  <phystech id="aspace_8fee69fbcc4ea0e5c8fab2a35c864edc">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>The glass-plate negatives require special handling in the reading room.</p>  </phystech>
+  <bioghist id="aspace_3fc0064765d78c60647df79b7f943cbd">
+    <note label="personal-name">McCaddon, Joseph T.</note>
+    <head>Biographical / Historical</head>
+<p>
+            Joseph T. McCaddon was born on January 31, 1859, in Beverly, Washington County, Ohio.
+                McCaddon began his career with the circus as manager of the Adam Forepaugh Circus.
+                Later, as James A. Bailey's brother-in-law and business manager of the Barnum and
+                Bailey Circus, he represented Bailey in many business matters, including
+                correspondence with William F. Cody ("Buffalo Bill") regarding the acquisition of
+                his Wild West Show.</p><p>
+            <chronlist>
+                <chronitem>
+                    <date normal="1824">[1824]</date>
+                    <event>John Robinson Circus formed</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1867">1867</date>
+                    <event>Adam Forepaugh Circus formed</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1871">1871</date>
+                    <event>P. T. Barnum begins "P.T. Barnum's Museum, Menagerie, &amp; Circus" in
+                        Brooklyn, N.Y.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1873">1873</date>
+                    <event>James A. Bailey buys interest in Hemmings and Cooper's Circus from James
+                        E. Cooper, changes name to Cooper and Bailey Circus.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1875">1875</date>
+                    <event>Sells Bros. Circus formed</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1879/1880">1879-80</date>
+                    <event>Bailey, along with Cooper and James L. Hutchinson, purchases show owned
+                        by Seth B. Howes, forming Howes' Great London Circus and Sanger's Royal
+                        British Menagerie and Cooper &amp; Bailey's International Allied
+                        Shows</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1881">1881</date>
+                    <event>Cooper retires; Bailey and Hutchinson form partnership with Barnum,
+                        creating the Barnum and London Circus.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1883">1883</date>
+                    <event>Buffalo Bill's Wild West founded</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1884">1884</date>
+                    <event>The Ringling Brothers establish their circus.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1885">1885</date>
+                    <event>Bailey sells his interest in the circus to Cooper and W. W. Cole.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1888">1888</date>
+                    <event>Barnum and Bailey begin sole partnership, forming the "Barnum and Bailey
+                        Circus."</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1890">1890</date>
+                    <event>Bailey and Cooper buy Adam Forepaugh Circus.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1891">1891</date>
+                    <event>Barnum dies; Bailey assumes full ownership of Barnum and Bailey
+                        Circus.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1894">1894</date>
+                    <event>Bailey buys a controlling interest in Buffalo Bill's Wild West.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1896">1896</date>
+                    <event>Bailey joins with W. W. Cole and two of the Sells Brothers; Sells Bros.
+                        Circus becomes Adam Forepaugh and Sells Bros. Circus</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1897/1902">1897-1902</date>
+                    <event>5-year Barnum and Bailey European Tour. Ringling Bros. Circus becomes
+                        dominant American Circus.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1898">1898</date>
+                    <event>Ringling Bros. begin to lease John Robinson Circus.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1905">1905</date>
+                    <event>Bailey acquires full ownership of Adam Forepaugh and Sells Bros. Circus,
+                        sells half interest in it to the Ringling Bros.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1906">1906</date>
+                    <event>Bailey dies; Ringling Brothers buy remaining share of Forepaugh-Sells
+                        Circus from Bailey's widow.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1907">1907</date>
+                    <event>Ringling Brothers purchase "Barnum and Bailey Circus" (shows remain
+                        separate).</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1919">1919</date>
+                    <event>"Ringling Brothers Circus" combined with "Barnum and Bailey Circus" to
+                        create "Ringling Brothers and Barnum &amp; Bailey Circus"</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1929">1929</date>
+                    <event>Ringling Brothers purchase American Circus (which consisted of
+                        Sells-Floto, Al G. Barnes, Sparks, Hagenbeck-Wallace, and John Robinson
+                        Circuses).</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1956">1956</date>
+                    <event>Ringling Brothers and Barnum &amp; Bailey Circus gives last big top
+                        performance.</event>
+                </chronitem>
+                <chronitem>
+                    <date normal="1957">1957</date>
+                    <event>Irvin Feld purchases "Ringling Brothers and Barnum &amp; Bailey Circus"
+                        and transforms it into an indoor show.</event>
+                </chronitem>
+            </chronlist>
+        </p>  </bioghist>
+  <controlaccess>
+    <subject source="lcsh">Circus -- United States -- History -- Sources.</subject>
+    <subject source="lcsh">Circus -- United States -- Photographs.</subject>
+    <subject source="lcsh">Circus animals -- United States.</subject>
+    <subject source="lcsh">Circus owners -- United States.</subject>
+    <subject source="lcsh">Circus performers -- United States.</subject>
+    <subject source="lcsh">Circus performers -- United States -- Costume.</subject>
+    <subject source="lcsh">Circus trains -- United States.</subject>
+    <subject source="lcsh">Circus wagons -- United States.</subject>
+    <subject source="lcsh">Costume designers -- United States -- Drawings.</subject>
+    <genreform source="aat">Correspondence.</genreform>
+    <genreform source="aat">Photographs.</genreform>
+    <genreform source="aat">Posters.</genreform>
+    <genreform source="aat">Scrapbooks.</genreform>
+    <corpname authfilenumber="https://viaf.org/viaf/125749916" source="viaf">Barnum and Bailey</corpname>
+  </controlaccess>
+  <dsc><c id="aspace_TC040_c00001" level="series"><did><unittitle>Series 1: Photographs</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/794653</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">16 boxes</extent></physdesc><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">8 items</extent></physdesc><unitdate datechar="creation" normal="1854/1903" type="inclusive">1854-1903</unitdate></did><scopecontent id="aspace_a9778d068d60b45daedd434b07a10e96"><head>Scope and Contents</head><p>Consists of photographs of exotica, performers, animal acts, "freaks," and equipment used by the circus.</p></scopecontent><arrangement id="aspace_5173864d18a660e2a8ad8200f141f51d"><head>Arrangement</head><p>Arranged by subject of photograph.</p></arrangement><scopecontent id="aspace_54e83256538dbcf23faa37b3e330ceca"><head>Content Warning</head><p>Many of the photographs in this series contain dehumanizing and harmful descriptions using racist, colonialist, and ableist language. In the majority of cases, the descriptions of people have been transcribed from the photographs themselves. Some of the photographs have been stamped with titles (likely by the original photographic studio); other titles are handwritten. In cases where photographs have no title, descriptions derive from a typewritten inventory of the collection that may have been provided by the donor, or may have been created by an archivist.</p></scopecontent><c id="aspace_TC040_c00002" level="file"><did><unittitle>Exotica</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/794656</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">4 boxes</extent></physdesc><unitdate datechar="creation" normal="1878-01-01/1900-11-30" type="inclusive">1878-1900 November</unitdate></did></c></c></dsc>
+</archdesc>
+</ead>

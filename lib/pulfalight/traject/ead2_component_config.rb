@@ -541,6 +541,11 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
     accumulator.map! do |element|
       CGI.unescapeHTML(sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip)
     end
+    # For all notes except scopecontent, inherit from parent if it's blank.
+    if accumulator.blank? && selector != "scopecontent"
+      parent = settings[:parent] || settings[:root]
+      accumulator.concat(Array.wrap(parent.output_hash["#{selector}_ssm"]))
+    end
   end
   to_field "#{selector}_heading_ssm", extract_xpath("./#{selector}/head")
   to_field "#{selector}_teim", extract_xpath("./#{selector}/*[local-name()!='head']")
@@ -554,7 +559,20 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
       hsh[header].concat values
     end
     accumulator.clear
-    accumulator << ::JSON.dump(content)
+    accumulator << ::JSON.dump(content) if content.present?
+    # For all notes, inherit from parent if it's blank.
+    if accumulator.blank?
+      parent = settings[:parent] || settings[:root]
+      # For scope & contents, inherit ONLY content warning.
+      parent_values = Array.wrap(parent.output_hash["#{selector}_combined_tsm"])
+      if selector == "scopecontent"
+        parent_values.map! do |parent_value|
+          parent_value = ::JSON.parse(parent_value)
+          ::JSON.dump(parent_value.slice("Content Warning"))
+        end
+      end
+      accumulator.concat(parent_values)
+    end
   end
 end
 (Pulfalight::Ead2Indexing::DID_SEARCHABLE_NOTES_FIELDS - ["physloc"]).map do |selector|
@@ -596,20 +614,6 @@ to_field "collection_description_ssm" do |_record, accumulator, _context|
 end
 
 # For collection history tab
-to_field "custodhist_ssm" do |_record, accumulator, _context|
-  parent = settings[:parent] || settings[:root]
-  value = parent.output_hash["custodhist_ssm"] || []
-  accumulator.concat(value)
-end
-
-# For collection history tab
-to_field "appraisal_ssm" do |_record, accumulator, _context|
-  parent = settings[:parent] || settings[:root]
-  value = parent.output_hash["appraisal_ssm"] || []
-  accumulator.concat(value)
-end
-
-# For collection history tab
 to_field "processinfo_processing_ssm" do |_record, accumulator, _context|
   parent = settings[:parent] || settings[:root]
   value = parent.output_hash["processinfo_processing_ssm"] || []
@@ -628,35 +632,12 @@ to_field "sponsor_ssm" do |_record, accumulator, _context|
   accumulator.concat(value)
 end
 
-# For collection access tab
-to_field "accessrestrict_ssm" do |_record, accumulator, context|
-  if context.output_hash["accessrestrict_ssm"].blank?
-    parent = settings[:parent] || settings[:root]
-    value = parent.output_hash["accessrestrict_ssm"] || []
-    accumulator.concat(value)
-  end
-end
-
 to_field "access_ssi" do |record, accumulator, _context|
   value = record.xpath("./accessrestrict")&.first&.attributes&.fetch("rights-restriction", nil)&.value&.downcase
   parent = settings[:parent]
   value ||= parent.output_hash["access_ssi"]&.first
   value ||= "open"
   accumulator << value
-end
-
-# For collection access tab
-to_field "userestrict_ssm" do |_record, accumulator, _context|
-  parent = settings[:parent] || settings[:root]
-  value = parent.output_hash["userestrict_ssm"] || []
-  accumulator.concat(value)
-end
-
-# For collection access tab
-to_field "phystech_ssm" do |_record, accumulator, _context|
-  parent = settings[:parent] || settings[:root]
-  value = parent.output_hash["phystech_ssm"] || []
-  accumulator.concat(value)
 end
 
 # For find-more tab

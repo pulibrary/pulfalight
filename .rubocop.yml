@@ -31,6 +31,7 @@ Metrics/BlockLength:
     - 'app/controllers/catalog_controller.rb'
     - 'config/routes.rb'
     - 'config/initializers/simple_form_bootstrap.rb'
+    - 'lib/pulfalight/traject/ead2_component_config.rb'
 Metrics/ClassLength:
   Exclude:
     - 'app/models/solr_document.rb'
