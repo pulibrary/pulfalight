@@ -345,12 +345,11 @@ describe "viewing catalog records", type: :feature, js: true do
         expect(page).to have_content("Firestone Library (mss): Boxes B-001494 to B-001544, P-000146")
       end
       it "displays multiple storage locations as a list" do
-        visit "catalog/C1491"
+        visit "catalog/C1679"
         expect(page).to have_content("Storage Note:")
         expect(page).to have_selector("li", text: "This is stored in multiple locations.")
-        expect(page).to have_selector("li", text: "Firestone Library (hsvm): Boxes 1, 32")
-        expect(page).to have_selector("li", text: "Firestone Library (mss): Boxes 12, 330")
-        expect(page).to have_selector("li", text: "ReCAP (rcpxm): Box 232")
+        expect(page).to have_selector("li", text: "Firestone Library (scamss): Boxes B-001615 to B-001618, P-000162")
+        expect(page).to have_selector("li", text: "ReCAP (scarcpxm): Box 1-2")
       end
       it "displays a Visit Us link on the access and use tab" do
         visit "catalog/C1491"
