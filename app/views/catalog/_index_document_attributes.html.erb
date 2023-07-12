@@ -1,0 +1,13 @@
+      <%= content_tag('div', class: 'document-attributes d-flex flex-wrap') do %>
+        <%= content_tag('span', class: 'document-extent badge') do %>
+          <%= document.eadid %>
+        <% end if document.collection? %>
+
+        <% document.extents.each do |extent| %>
+          <%= content_tag('span', class: 'document-extent badge') do %>
+            <%= extent %>
+          <% end if extent %>
+        <% end %>
+
+        <%= OnlineContentBadge.new(document).render %>
+      <% end %>

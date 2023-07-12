@@ -144,17 +144,17 @@ describe "EAD 2 traject indexing", type: :feature do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
     end
 
-    it "constructs a collection level summary storage note" do
-      summary_message = result["summary_storage_note_ssm"].first
-      expect(summary_message).to match(/This is stored in multiple locations/)
-      expect(summary_message).to match(/Firestone Library \(hsvm\): Boxes 1; 32/)
-      expect(summary_message).to match(/Firestone Library \(mss\): Boxes 12; 330/)
-      expect(summary_message).to match(/ReCAP \(rcpxm\): Box 232/)
+    it "constructs a collection level summary storage note array" do
+      summary_messages = result["summary_storage_note_ssm"]
+      expect(summary_messages[0]).to match(/This is stored in multiple locations./)
+      expect(summary_messages[1]).to match(/Firestone Library \(hsvm\): Boxes 1; 32/)
+      expect(summary_messages[2]).to match(/Firestone Library \(mss\): Boxes 12; 83; 330; B-001491/)
+      expect(summary_messages[3]).to match(/ReCAP \(rcpxm\): Box 232/)
     end
     it "constructs component and series level summary storage notes" do
       components = result["components"]
       component = components.first["components"].first
-      expect(component["summary_storage_note_ssm"]).to eq ["This is stored in multiple locations.  Firestone Library (hsvm): Boxes 1; 32 Firestone Library (mss): Box 12"]
+      expect(component["summary_storage_note_ssm"]).to eq ["This is stored in multiple locations.", "Firestone Library (hsvm): Boxes 1; 32", "Firestone Library (mss): Box 12"]
     end
 
     context "when given a record with sca locations" do
@@ -196,7 +196,7 @@ describe "EAD 2 traject indexing", type: :feature do
         component = components.first["components"].first["components"].first
         expect(component["title_ssm"]).to eq ["Prayer for Driving Away Evil Spirits"]
         expect(component["container_location_codes_ssim"]).to eq ["review"]
-        expect(component["container_information_ssm"]).to eq ["{\"location_code\":\"review\",\"profile\":\"NBox\",\"barcode\":null,\"label\":\"box 101\",\"note\":\"\"}"]
+        expect(component["container_information_ssm"]).to eq ["{\"id\":\"a0d983678acfc37567031966489face9\",\"location_code\":\"review\",\"profile\":\"NBox\",\"barcode\":null,\"label\":\"box 101\",\"note\":\"\",\"parent\":\"\",\"type\":\"box\"}"]
         expect(component["barcodes_ssim"]).to be_blank
         expect(component["physloc_sim"]).to eq ["Box 101"]
       end
@@ -633,7 +633,7 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(result["physloc_sim"]).to eq(["Mudd Manuscript Library"])
         expect(result["location_code_ssm"]).to eq(["Mudd Manuscript Library"])
         expect(result["components"].first["physloc_code_ssm"]).to eq(["MUDD"])
-        expect(result["components"].first["container_information_ssm"]).to eq(["{\"location_code\":\"mudd\",\"profile\":\"NBox\",\"barcode\":\"32101103111116\",\"label\":\"box 1\",\"note\":\"\"}"])
+        expect(result["components"].first["container_information_ssm"]).to eq(["{\"id\":\"76a9adac837d03040a001024b5c7d480\",\"location_code\":\"mudd\",\"profile\":\"NBox\",\"barcode\":\"32101103111116\",\"label\":\"box 1\",\"note\":\"\",\"parent\":\"\",\"type\":\"box\"}"])
       end
     end
   end

@@ -70,7 +70,12 @@ module Pulfalight
       ranges.map { |a| consolidate_single_box_ranges(a) } | non_numeric_box_ids
     end
 
+    # Generate a human readable summary of the box locations
     def to_s
+      normalize.join(" ")
+    end
+
+    def to_a
       normalize
     end
 
@@ -91,16 +96,15 @@ module Pulfalight
       "Boxes"
     end
 
-    # Generate a human readable summary of the box locations
-    # @return [String]
+    # @return [Array<String>]
     def normalize
       message_strings = []
-      message_strings << "This is stored in multiple locations. " if locations.size > 1
+      message_strings << "This is stored in multiple locations." if locations.size > 1
       @normalized_locations.keys.each do |location|
         m = "#{location}: #{box_or_boxes(location)} #{@normalized_locations[location].join('; ')}"
         message_strings << m
       end
-      message_strings.join(" ")
+      message_strings
     end
   end
 end

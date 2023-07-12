@@ -113,7 +113,9 @@ to_field "summary_storage_note_ssm" do |record, accumulator|
     locations[location_code] << box.text
   end
 
-  accumulator << Pulfalight::NormalizedBoxLocations.new(locations).to_s
+  Pulfalight::NormalizedBoxLocations.new(locations).to_a.each do |note|
+    accumulator << note
+  end
 end
 
 to_field "location_code_ssm" do |record, accumulator|

@@ -69,7 +69,7 @@ class AeonRequest
       "ItemVolume_#{request_id(box)}": item_volume(box),
       "ItemInfo1_#{request_id(box)}": access_restrictions,
       "ItemInfo2_#{request_id(box)}": solr_document.extent,
-      "ItemInfo3_#{request_id(box)}": folder,
+      "ItemInfo3_#{request_id(box)}": folder(box),
       "ItemInfo4_#{request_id(box)}": box_locator(box),
       "ItemInfo5_#{request_id(box)}": url
     }
@@ -121,9 +121,14 @@ class AeonRequest
     Rails.application.routes.url_helpers.solr_document_url(id: solr_document.id)
   end
 
-  def folder
-    return if non_box_containers.blank?
-    non_box_containers.join(", ")
+  def folder(box)
+    folders = container_information.select do |container|
+      container["parent"] == box["id"] && container["type"] == "folder"
+    end
+    return if folders.blank? && non_box_containers.blank?
+    return non_box_containers.join(", ") if folders.blank?
+    folders = folders.map { |folder| folder["label"].capitalize }
+    folders.join(", ")
   end
 
   def non_box_containers
