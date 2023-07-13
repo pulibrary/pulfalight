@@ -277,6 +277,16 @@ describe "EAD 2 traject indexing", type: :feature do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0776.processed.EAD.xml")
     end
 
+    context "when a collection has a direct DAO" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0662.EAD.xml")
+      end
+      it "indexes direct_digital_objects_ssm" do
+        expect(result["direct_digital_objects_ssm"]).not_to be_blank
+        expect(result["has_direct_online_content_ssim"]).to eq [true]
+      end
+    end
+
     context "when dao is a relative URL path" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
