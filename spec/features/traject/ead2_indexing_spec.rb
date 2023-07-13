@@ -277,6 +277,16 @@ describe "EAD 2 traject indexing", type: :feature do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0776.processed.EAD.xml")
     end
 
+    context "when a collection has a direct DAO" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0662.EAD.xml")
+      end
+      it "indexes direct_digital_objects_ssm" do
+        expect(result["direct_digital_objects_ssm"]).not_to be_blank
+        expect(result["has_direct_online_content_ssim"]).to eq [true]
+      end
+    end
+
     context "when dao is a relative URL path" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
@@ -421,7 +431,7 @@ describe "EAD 2 traject indexing", type: :feature do
         end
         it "indexes extref as links" do
           expect(result["abstract_ssm"]).to eq [
-            "Consists primarily of photostatic copies of the letters (1815-1828, 1844-1851) by American banker Daniel Wadsworth Coit to his family in Connecticut--from Lima, Peru, and various cities in Europe, and from the Western United States, Mexico, and San Francisco, California.\n\nImages of this collection are online at\n<a href=\"https://dpul.princeton.edu/catalog/gf06g270t\">https://dpul.princeton.edu/catalog/gf06g270t</a>."
+            "Consists primarily of photostatic copies of the letters (1815-1828, 1844-1851) by American banker Daniel Wadsworth Coit to his family in Connecticut--from Lima, Peru, and various cities in Europe, and from the Western United States, Mexico, and San Francisco, California.\n\nThis collection is available online at\n<a href=\"https://dpul.princeton.edu/catalog/gf06g270t\">Digital PUL</a>."
           ]
         end
       end

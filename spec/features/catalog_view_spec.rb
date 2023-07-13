@@ -268,6 +268,17 @@ describe "viewing catalog records", type: :feature, js: true do
     end
   end
 
+  describe "collection pages", js: false do
+    context "when there's a viewer that should render" do
+      it "renders a place for javascript to enter a viewer" do
+        visit "/catalog/C0662"
+
+        expect(page).to have_css("#readingroom")
+        expect(page).to have_selector "figgy-viewer[component-id='C0662']"
+      end
+    end
+  end
+
   describe "notes", js: false do
     context "on a collection page" do
       it "shows note" do

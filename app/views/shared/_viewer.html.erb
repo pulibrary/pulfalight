@@ -1,0 +1,12 @@
+  <% if document.render_panopto? %>
+    <%= render(partial: 'panopto_viewer', locals: { document: document }) %>
+  <% end %>
+  <% if display_simple_link? %>
+    <%= render_simple_link %>
+  <% else %>
+    <%# This is the viewer container %>
+    <%# If it's a figgy DAO, put data in this div %>
+    <div id="readingroom" class="lux">
+      <figgy-viewer component-id="<%= document.refs.first || document.id %>" dao-link="<%= document.figgy_digital_objects.first&.href %>" dao-label="<%= document.figgy_digital_objects.first&.label %>" />
+    </div>
+  <% end %>
