@@ -421,7 +421,7 @@ describe "EAD 2 traject indexing", type: :feature do
         end
         it "indexes extref as links" do
           expect(result["abstract_ssm"]).to eq [
-            "Consists primarily of photostatic copies of the letters (1815-1828, 1844-1851) by American banker Daniel Wadsworth Coit to his family in Connecticut--from Lima, Peru, and various cities in Europe, and from the Western United States, Mexico, and San Francisco, California.\n\nImages of this collection are online at\n<a href=\"https://dpul.princeton.edu/catalog/gf06g270t\">https://dpul.princeton.edu/catalog/gf06g270t</a>."
+            "Consists primarily of photostatic copies of the letters (1815-1828, 1844-1851) by American banker Daniel Wadsworth Coit to his family in Connecticut--from Lima, Peru, and various cities in Europe, and from the Western United States, Mexico, and San Francisco, California.\n\nThis collection is available online at\n<a href=\"https://dpul.princeton.edu/catalog/gf06g270t\">Digital PUL</a>."
           ]
         end
       end
