@@ -97,6 +97,8 @@ RSpec.describe TableOfContentsBuilder do
       series_level_components = toc_hash
       series_level_component = series_level_components[1]
       expect(series_level_component["li_attr"]).to eq({ "data-online-content" => true })
+      expect(series_level_component["text"]).to include "online-indirect-content"
+      expect(series_level_component["text"]).to include "Some online content"
     end
   end
 end

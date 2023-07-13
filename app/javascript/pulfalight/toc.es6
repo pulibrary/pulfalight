@@ -43,10 +43,10 @@ export default class TocBuilder {
       window.location = location
     })
     this.element.on('ready.jstree', (e, data) => {
-      // Jump to selected element on page reload
       const selectedId = this.element.jstree().get_selected()[0]
       const selectedElement = $(`#${selectedId}`)
       if (selectedElement.length > 0) {
+        // Jump to selected element on page reload
         const scrollOffset = selectedElement.offset().top - selectedElement.offsetParent().offset().top - 60
         this.element.scrollTop(scrollOffset)
       }
