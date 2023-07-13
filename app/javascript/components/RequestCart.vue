@@ -79,10 +79,10 @@
               </td>
             </tr>
 
-            <tr v-if="item.location && item.location.url" class="request__location">
+            <tr v-if="item.location && item.location.label && item.location.url" class="request__location">
               <td colspan="4">
                 <geo-icon></geo-icon>
-                View this item at the <a :href="item.location.url">Mudd Library Reading Room</a>
+                View this item at the <a :href="item.location.url">{{ item.location.label }}</a>
               </td>
             </tr>
 

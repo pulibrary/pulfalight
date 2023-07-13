@@ -3,6 +3,43 @@ import { cartMutations, cartActions } from "store/cart/index"
 import { render, fireEvent } from '@testing-library/vue'
 
 describe("RequestCart.vue", () => {
+  test("Rendering locations", async () => {
+    const customStore = {
+      modules: {
+        cart: {
+          state: {
+            items: [ {
+              title: "My word",
+              formParams: {
+                AeonForm: "EADRequest",
+                Request: ["1", "2"]
+              },
+              location: {
+                notes: "It's far away",
+                label: "Firestone Library",
+                url: "https://example.com"
+              }
+            } ],
+            isVisible: true
+          },
+          actions: cartActions,
+          mutations: cartMutations
+        }
+      },
+    }
+
+    const { container } = render(RequestCart, {
+      store: customStore,
+      props: {
+        configuration: {}
+      }
+    })
+    const notes = container.querySelector(".request__location-notes")
+    expect(notes.textContent).toMatch("It's far away")
+    const locationInfo = container.querySelector(".request__location")
+    expect(locationInfo.textContent).toMatch("View this item at the Firestone Library")
+    expect(locationInfo.querySelector("a").attributes["href"].value).toBe("https://example.com")
+  })
   test("Submitting cart", async () => {
     const customStore = {
       modules: {
@@ -13,7 +50,7 @@ describe("RequestCart.vue", () => {
               formParams: {
                 AeonForm: "EADRequest",
                 Request: ["1", "2"]
-              }
+              },
             } ],
             isVisible: true
           },

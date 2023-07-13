@@ -19,9 +19,10 @@ class AeonRequest
 
   def location_attributes
     note = Pulfalight::DeliveryNote.new(solr_document["container_location_codes_ssim"]&.first).brief_note
-    return unless note
-    { notes: note }
+    { notes: note, label: solr_document.held_by.first, url: held_by_url }
   end
+
+  def held_by_url; end
 
   def form_attributes
     {
