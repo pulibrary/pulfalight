@@ -16,6 +16,12 @@
     @include document-access-badge;
   }
 
+  .online-banner {
+    display: flex;
+    width: 100%;
+    padding-left: 15px;
+  }
+
   .view-content {
     @include view-content-button;
     margin-bottom: 1.6rem;
