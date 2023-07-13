@@ -56,6 +56,7 @@
               :date="lineItem.date.value"
               :containers="lineItem.container.value"
               :form-params="lineItem.form_params"
+              :location="lineItem.location"
               >
               <lux-icon-base :icon-name="'add-to-cart-icon_'+lineItem.id.value" width="20" height="20">
                   <add-to-cart-icon></add-to-cart-icon>
