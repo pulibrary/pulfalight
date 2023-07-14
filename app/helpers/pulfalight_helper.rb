@@ -90,6 +90,48 @@ module PulfalightHelper
     safe_join(children, separator)
   end
 
+  # Overrides:
+  # https://github.com/projectblacklight/arclight/blob/v0.4.0/app/helpers/arclight_helper.rb#L18
+  # @param [SolrDocument]
+  def parents_to_links(document)
+    breadcrumb_links = []
+
+    breadcrumb_links << build_repository_link(document)
+
+    breadcrumb_links << document_parents(document).map do |parent|
+      link_to parent.label, solr_document_path(parent.global_id)
+    end
+
+    # Add library location to breadcrumbs
+    url = solr_document_path(document.collection_document.id) + "#access"
+    breadcrumb_links.unshift(link_to(document.repository_config&.building, url))
+
+    safe_join(breadcrumb_links, aria_hidden_breadcrumb_separator)
+  end
+
+  # Overrides:
+  # https://github.com/projectblacklight/arclight/blob/v0.4.0/app/helpers/arclight_helper.rb#L38
+  # @param [SolrDocument]
+  def regular_compact_breadcrumbs(document)
+    breadcrumb_links = [build_repository_link(document)]
+
+    parents = document_parents(document)
+    breadcrumb_links << parents[0, 1].map do |parent|
+      link_to parent.label, solr_document_path(parent.global_id)
+    end
+
+    # Add library location to breadcrumbs
+    url = solr_document_path(document.collection_document.id) + "#access"
+    breadcrumb_links.unshift(link_to(document.repository_config&.building, url))
+
+    breadcrumb_links << "&hellip;".html_safe if parents.length > 1
+
+    safe_join(
+      breadcrumb_links,
+      aria_hidden_breadcrumb_separator
+    )
+  end
+
   private
 
   def repository_thumbnail_path
