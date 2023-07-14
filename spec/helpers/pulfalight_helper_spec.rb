@@ -122,4 +122,28 @@ describe PulfalightHelper, type: :helper do
       expect { helper.display_simple_link? }.not_to raise_error
     end
   end
+
+  describe "#parents_to_links" do
+    let(:component_document) do
+      SolrDocument.find("C0269")
+    end
+
+    it "displays the library location in the bread crumb links and it's url" do
+      element = helper.regular_compact_breadcrumbs(component_document)
+      expect(element).to include "Firestone Library"
+      expect(element).to include "/catalog/C0269#access"
+    end
+  end
+
+  describe "#regular_compact_breadcrumbs" do
+    let(:component_document) do
+      SolrDocument.find("C0269")
+    end
+
+    it "displays the library location in the bread crumb links and it's url" do
+      element = helper.regular_compact_breadcrumbs(component_document)
+      expect(element).to include "Firestone Library"
+      expect(element).to include "/catalog/C0269#access"
+    end
+  end
 end
