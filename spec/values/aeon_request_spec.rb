@@ -283,6 +283,9 @@ RSpec.describe AeonRequest do
       expect(request.form_attributes[:"Location_#{request_id}"]).to eq "mss"
       expect(request.form_attributes[:"ItemInfo5_#{request_id}"]).to eq "http://localhost:3000/catalog/C1588_c3"
       expect(request.form_attributes[:SubmitButton]).to eq "Submit Request"
+      # Location Info
+      expect(request.location_attributes[:label]).to eq "Firestone Library"
+      expect(request.location_attributes[:url]).to eq "https://library.princeton.edu/special-collections/visit-us"
     end
   end
   context "when it's a component with no physloc mapping (hsvm)" do
@@ -315,8 +318,7 @@ RSpec.describe AeonRequest do
       expect(request.form_attributes[:Location]).to eq "ReCAP"
       expect(request.location_attributes[:notes]).to eq "This item is stored offsite. Please allow up to 3 business days for delivery."
       expect(request.location_attributes[:label]).to eq "ReCAP"
-      # TODO: Figure out where these URLs are.
-      # expect(request.location_attributes[:url]).to eq "https://example.com"
+      expect(request.location_attributes[:url]).to eq nil
     end
   end
   context "when there's two boxes for one component" do

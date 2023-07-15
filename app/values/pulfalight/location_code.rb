@@ -18,13 +18,13 @@ module Pulfalight
     end
 
     def self.config
-      @config ||= YAML.safe_load(config_erb)
+      @config ||= YAML.safe_load(config_erb, aliases: true)
     end
 
     def self.map(value)
       raise Pulfalight::UnrecognizedLocationError, "Location code #{value} is not supported." unless config.key?(value)
 
-      config[value]
+      config[value]["label"]
     end
 
     def self.registered?(value)
@@ -40,6 +40,10 @@ module Pulfalight
 
     def initialize(value)
       @value = value_or_alias(value)
+    end
+
+    def url
+      self.class.config[value]["url"]
     end
 
     def to_s

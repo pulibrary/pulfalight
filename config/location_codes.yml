@@ -1,25 +1,53 @@
-cotsen: 'Firestone Library'
-ex: 'Firestone Library'
-gax: 'Firestone Library'
-ga: 'Firestone Library'
-mss: 'Firestone Library'
-njpg: 'Firestone Library'
-thx: 'Firestone Library'
-wa: 'Firestone Library'
-hsvc: 'Firestone Library'
-hsvg: 'Firestone Library'
-hsvm: 'Firestone Library'
-hsvr: 'Firestone Library'
-mudd: 'Mudd Manuscript Library'
-rcppa: 'ReCAP'
-rcppf: 'ReCAP'
-rcpph: 'ReCAP'
-rcpxc: 'ReCAP'
-rcpxg: 'ReCAP'
-rcpxm: 'ReCAP'
-rcpxr: 'ReCAP'
-selectors: 'ReCAP'
-flm: 'Firestone Library'
-st: 'Engineering Library'
-anxb: 'Annex B'
-ppl: 'Plasma Physics Library'
+cotsen: &firestone
+  label: 'Firestone Library'
+  url: 'https://library.princeton.edu/special-collections/visit-us'
+ex: 
+  <<: *firestone
+gax:
+  <<: *firestone
+ga:
+  <<: *firestone
+mss:
+  <<: *firestone
+njpg:
+  <<: *firestone
+thx: 
+  <<: *firestone
+wa:
+  <<: *firestone
+hsvc:
+  <<: *firestone
+hsvg:
+  <<: *firestone
+hsvm:
+  <<: *firestone
+hsvr:
+  <<: *firestone
+mudd:
+  label: 'Mudd Manuscript Library'
+  url: 'https://library.princeton.edu/special-collections/visit-us'
+rcppa:
+  label: 'ReCAP'
+rcppf:
+  label: 'ReCAP'
+rcpph:
+  label: 'ReCAP'
+rcpxc:
+  label: 'ReCAP'
+rcpxg:
+  label: 'ReCAP'
+rcpxm:
+  label: 'ReCAP'
+rcpxr:
+  label: 'ReCAP'
+selectors:
+  label: 'ReCAP'
+flm:
+  <<: *firestone
+st:
+  label: 'Engineering Library'
+  url: "https://library.princeton.edu/engineering"
+anxb:
+  label: 'Annex B'
+ppl:
+  label: 'Plasma Physics Library'

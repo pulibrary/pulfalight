@@ -22,7 +22,9 @@ class AeonRequest
     { notes: note, label: solr_document.held_by.first, url: held_by_url }
   end
 
-  def held_by_url; end
+  def held_by_url
+    solr_document.held_by_url.first
+  end
 
   def form_attributes
     {
