@@ -40,6 +40,43 @@ describe("RequestCart.vue", () => {
     expect(locationInfo.textContent).toMatch("View this item at the Firestone Library")
     expect(locationInfo.querySelector("a").attributes["href"].value).toBe("https://example.com")
   })
+  test("Rendering locations with no url", async () => {
+    const customStore = {
+      modules: {
+        cart: {
+          state: {
+            items: [ {
+              title: "My word",
+              formParams: {
+                AeonForm: "EADRequest",
+                Request: ["1", "2"]
+              },
+              location: {
+                notes: "It's far away",
+                label: "Firestone Library",
+                url: null
+              }
+            } ],
+            isVisible: true
+          },
+          actions: cartActions,
+          mutations: cartMutations
+        }
+      },
+    }
+
+    const { container } = render(RequestCart, {
+      store: customStore,
+      props: {
+        configuration: {}
+      }
+    })
+    const notes = container.querySelector(".request__location-notes")
+    expect(notes.textContent).toMatch("It's far away")
+    const locationInfo = container.querySelector(".request__location")
+    expect(locationInfo.textContent).toMatch("View this item at the Firestone Library")
+    expect(locationInfo.querySelector("a")).toBe(null)
+  })
   test("Submitting cart", async () => {
     const customStore = {
       modules: {
