@@ -6,7 +6,7 @@
     <%= render(partial: 'show_tabs') %>
 
     <!-- Contents and Arrangement -->
-    <div id="toc-container" class="row content-container">
+    <div id="toc-container" class="row content-container <%= "online-only" if params[:onlineToggle].to_s == "true" %>">
       <div class="col-md-4">
         <div class="toc-header">
           <div>
@@ -23,7 +23,7 @@
           <%= blacklight_icon(:online) %>
           <label for="tocOnlineToggle" class="online-toggle-label">Only show materials containing online content</label>
           <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="tocOnlineToggle">
+            <input type="checkbox" class="custom-control-input" id="tocOnlineToggle" <%= "checked" if params[:onlineToggle].to_s == "true" %>>
             <label class="custom-control-label" for="tocOnlineToggle"></label>
           </div>
         </div>
