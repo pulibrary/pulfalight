@@ -63,6 +63,12 @@ RSpec.describe Pulfalight::LocationCode do
     end
   end
 
+  describe "#url" do
+    it "gets the url" do
+      expect(location_code.url).to eq "https://library.princeton.edu/special-collections/visit-us"
+    end
+  end
+
   describe "#resolve" do
     it "provides a human-readable label for a location code" do
       expect(location_code.resolve).to eq("Firestone Library")

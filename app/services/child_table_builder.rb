@@ -27,7 +27,8 @@ class ChildTableBuilder
       date: Array.wrap(document.date_created).join(", "),
       container: Array.wrap(document.container).join(", "),
       form_params: document.aeon_request.form_attributes,
-      requestable: document.aeon_request.requestable?
+      requestable: document.aeon_request.requestable?,
+      location: document.aeon_request.location_attributes
     }
   end
 
