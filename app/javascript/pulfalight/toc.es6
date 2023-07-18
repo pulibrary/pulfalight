@@ -29,6 +29,10 @@ export default class TocBuilder {
     return this.dataElement.data('selected')
   }
 
+  get toggleElement() {
+    return document.getElementById('tocOnlineToggle')
+  }
+
   build() {
     if (this.element.length > 0) {
       this.setupTree()
@@ -38,8 +42,8 @@ export default class TocBuilder {
 
   setupEventHandlers() {
     // Listen for click on the leaf node and follow link to component
-    this.element.on('activate_node.jstree', function (e, data) {
-      let location = `/catalog/${data.node.id}`
+    this.element.on('activate_node.jstree', (e, data) => {
+      let location = `/catalog/${data.node.id}?onlineToggle=${this.toggleElement.checked}`
       window.location = location
     })
     this.element.on('ready.jstree', (e, data) => {
@@ -51,7 +55,7 @@ export default class TocBuilder {
         this.element.scrollTop(scrollOffset)
       }
     })
-    document.getElementById('tocOnlineToggle').addEventListener('change', (e) => {
+    this.toggleElement.addEventListener('change', (e) => {
       if(e.target.checked) {
         document.getElementById('toc-container').classList.add('online-only')
       } else {
