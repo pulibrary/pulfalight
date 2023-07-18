@@ -13,6 +13,11 @@ describe "viewing catalog records", type: :feature, js: true do
       visit "catalog/C1588_c9"
       expect(page).to have_css(".document-title > h2", text: "Unused AIC Supply Request Form, circa 1885")
     end
+    it "renders content warning headings that were inherited" do
+      visit "catalog/TC040_c00002"
+
+      expect(page).to have_content "Content Warning"
+    end
     it "has a suggest a correction form", js: false do
       visit "catalog/MC221_c0059"
 

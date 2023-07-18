@@ -343,19 +343,12 @@ class SolrDocument
   # We added this so we could deploy and reindex without having stale data on
   # the site.
   def has_headings?(field_name)
-    headings(field_name).present? && combined_fields(field_name).present?
+    combined_fields(field_name).present?
   end
 
   def combined_fields(field_name)
     field_key, = field_name.rpartition("_")
     fetch("#{field_key}_combined_tsm", []).first
-  end
-
-  def headings(field_name)
-    heading_key, _, index_key = field_name.rpartition("_")
-    heading_key = "#{heading_key}_heading_#{index_key}"
-    return [] unless key?(heading_key)
-    Array.wrap(fetch(heading_key, []))
   end
 
   # Override highlights method to add custom
