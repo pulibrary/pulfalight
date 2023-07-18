@@ -51,13 +51,24 @@ export default class TocBuilder {
         this.element.scrollTop(scrollOffset)
       }
     })
+    var state=localStorage.getItem("onlineOnly");
+    if(state=="true"){
+      document.getElementById('toc-container').classList.add('online-only')
+      document.getElementById('tocOnlineToggle').checked = true;
+    } else {
+      document.getElementById('toc-container').classList.remove('online-only')
+      document.getElementById('tocOnlineToggle').checked = false;
+    }
     document.getElementById('tocOnlineToggle').addEventListener('change', (e) => {
       if(e.target.checked) {
         document.getElementById('toc-container').classList.add('online-only')
+        localStorage.setItem("onlineOnly","true")
       } else {
         document.getElementById('toc-container').classList.remove('online-only')
+        localStorage.setItem("onlineOnly","false")
       }
     })
+
   }
 
   setupTree() {
