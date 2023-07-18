@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  browser-tools: circleci/browser-tools@1.2.5
+  browser-tools: circleci/browser-tools@1.4.1
   node: circleci/node@5.0.2
 jobs:
   build:
@@ -11,10 +11,8 @@ jobs:
         environment:
           RAILS_ENV: test
     steps:
-      - browser-tools/install-browser-tools
-      - run:
-          name: remove errant LICENSE file
-          command: rm LICENSE.chromedriver
+      - browser-tools/install-browser-tools:
+          chrome-version: 114.0.5735.90 # released may 2023
       - checkout
       - node/install:
           install-yarn: true
@@ -111,10 +109,8 @@ jobs:
     environment:
       SPEC_OPTS: --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
     steps:
-      - browser-tools/install-browser-tools
-      - run:
-          name: remove errant LICENSE file
-          command: rm LICENSE.chromedriver
+      - browser-tools/install-browser-tools:
+          chrome-version: 114.0.5735.90 # released may 2023
       - attach_workspace:
           at: '~/pulfalight'
       # project database settings
