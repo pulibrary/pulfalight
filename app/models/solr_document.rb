@@ -279,12 +279,6 @@ class SolrDocument
     end
   end
 
-  def held_by_url
-    fetch("container_location_codes_ssim", []).map do |code|
-      Pulfalight::LocationCode.new(code).url if Pulfalight::LocationCode.registered?(code)
-    end
-  end
-
   def publisher
     fetch("collection_creator_ssm", [])
   end

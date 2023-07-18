@@ -19,11 +19,24 @@ class AeonRequest
 
   def location_attributes
     note = Pulfalight::DeliveryNote.new(solr_document["container_location_codes_ssim"]&.first).brief_note
-    { notes: note, label: solr_document.held_by.first, url: held_by_url }
+    { notes: note, label: site_info[site][:label], url: site_info[site][:url] }
   end
 
-  def held_by_url
-    solr_document.held_by_url.first
+  def site_info
+    {
+      "RBSC" => {
+        label: "Firestone Library",
+        url: "https://library.princeton.edu/special-collections/visit-us"
+      },
+      "MUDD" => {
+        label: "Mudd Manuscript Library",
+        url: "https://library.princeton.edu/special-collections/visit-us"
+      },
+      "Engineering Library" => {
+        label: "Engineering Library",
+        url: "https://library.princeton.edu/engineering"
+      }
+    }
   end
 
   def form_attributes
