@@ -301,6 +301,7 @@ RSpec.describe AeonRequest do
       request_id = request.form_attributes[:Request]
       expect(request.form_attributes[:"Site_#{request_id}"]).to eq "RBSC"
       expect(request.location_attributes[:notes]).to be_nil
+      expect(request.location_attributes[:label]).to eq "Firestone Library"
     end
   end
   context "when it's a component with rcpph mapping" do
@@ -317,8 +318,8 @@ RSpec.describe AeonRequest do
       expect(request.form_attributes[:"Site_#{request_id}"]).to eq "MUDD"
       expect(request.form_attributes[:Location]).to eq "ReCAP"
       expect(request.location_attributes[:notes]).to eq "This item is stored offsite. Please allow up to 3 business days for delivery."
-      expect(request.location_attributes[:label]).to eq "ReCAP"
-      expect(request.location_attributes[:url]).to eq nil
+      expect(request.location_attributes[:label]).to eq "Mudd Manuscript Library"
+      expect(request.location_attributes[:url]).to eq "https://library.princeton.edu/special-collections/visit-us"
     end
   end
   context "when there's two boxes for one component" do
