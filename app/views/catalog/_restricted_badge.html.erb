@@ -2,8 +2,8 @@
       <div class="document-access restricted">
         <span class="media-body al-restricted-icon" aria-hidden="true"><%= blacklight_icon :"icon-restricted" %></span> Restricted Content
       </div>
-    <% elsif document.some_restricted? %>
-      <div class="document-access some-restricted">
-        <span class="media-body al-some-restricted-icon" aria-hidden="true"><%= blacklight_icon :"icon-some-restricted" %></span> Some Restricted Content
+    <% elsif document.review? %>
+      <div class="document-access review">
+        <span class="media-body al-review-icon" aria-hidden="true"><%= blacklight_icon :"icon-review" %></span>Restrictions may apply. See Access Note.
       </div>
     <% end %>

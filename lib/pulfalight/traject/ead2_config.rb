@@ -492,14 +492,5 @@ to_field "components" do |record, accumulator, context|
   end
 end
 
-to_field "access_ssi" do |_record, _accumulator, context|
-  component_access = context.output_hash.fetch("components", []).map do |component|
-    component["access_ssi"].first
-  end
-  combined_access_types = (component_access + context.output_hash["access_ssi"]).uniq
-  # If there's both open and restricted this is "some restricted"
-  context.output_hash["access_ssi"] = ["some-restricted"] if ["open", "restricted"].all? { |e| combined_access_types.include?(e) }
-end
-
 # Configure the settings after the Document is indexed
 configure_after

@@ -297,8 +297,8 @@ class SolrDocument
     fetch("access_ssi", nil) == "restricted"
   end
 
-  def some_restricted?
-    fetch("access_ssi", nil) == "some-restricted"
+  def review?
+    fetch("access_ssi", nil) == "review"
   end
 
   def render_panopto?

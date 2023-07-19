@@ -147,9 +147,9 @@ describe "EAD 2 traject indexing", type: :feature do
     it "constructs a collection level summary storage note array" do
       summary_messages = result["summary_storage_note_ssm"]
       expect(summary_messages[0]).to match(/This is stored in multiple locations./)
-      expect(summary_messages[1]).to match(/Firestone Library \(hsvm\): Boxes 1; 32/)
-      expect(summary_messages[2]).to match(/Firestone Library \(mss\): Boxes 12; 83; 330; B-001491/)
-      expect(summary_messages[3]).to match(/ReCAP \(rcpxm\): Box 232/)
+      expect(summary_messages[1]).to match(/Firestone Library \(scahsvm\): Boxes 1; 32; 319/)
+      expect(summary_messages[2]).to match(/Firestone Library \(scamss\): Boxes 12; 83; 330; B-001491/)
+      expect(summary_messages[3]).to match(/ReCAP \(scarcpxm\): Box 232/)
     end
     it "constructs component and series level summary storage notes" do
       components = result["components"]
@@ -289,7 +289,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
     context "when dao is a relative URL path" do
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
+        Rails.root.join("spec", "fixtures", "aspace", "corner_cases", "C1491.relativedao.EAD.xml")
       end
       it "doesn't index it" do
         expect(result["has_online_content_ssim"]).to eq [false]
@@ -767,8 +767,8 @@ describe "EAD 2 traject indexing", type: :feature do
         component = find_component(result, "AC136_c2889")
         expect(component["access_ssi"]).to eq ["restricted"]
       end
-      it "marks the collection as some-restricted" do
-        expect(result["access_ssi"]).to eq ["some-restricted"]
+      it "marks the collection as review because its access-restriction is set to review" do
+        expect(result["access_ssi"]).to eq ["review"]
       end
     end
     context "for a collection which is entirely restricted" do
@@ -777,6 +777,29 @@ describe "EAD 2 traject indexing", type: :feature do
       end
       it "marks the parent and all children restricted" do
         expect(result["access_ssi"]).to eq ["restricted"]
+      end
+    end
+    context "for a collection that has review" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
+      end
+      it "marks the collection under review" do
+        expect(result["access_ssi"]).to eq ["review"]
+      end
+      it "marks restricted components as restricted" do
+        component = find_component(result, "C1491_c1622")
+
+        expect(component["access_ssi"]).to eq ["restricted"]
+      end
+      it "marks components that are review" do
+        component = find_component(result, "C1491_c1")
+
+        expect(component["access_ssi"]).to eq ["review"]
+      end
+      it "marks components with no accessrestrict of their own as review" do
+        component = find_component(result, "C1491_c5011")
+
+        expect(component["access_ssi"]).to eq ["review"]
       end
     end
   end
