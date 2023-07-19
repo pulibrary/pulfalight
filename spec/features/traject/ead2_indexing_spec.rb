@@ -473,6 +473,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
           # Ensure it's inheriting from its parent.
           expect(component["scopecontent_combined_tsm"][0]).not_to eq "{}"
+          expect(component["scopecontent_ssm"][0]).to include "Many of the photographs"
           json = JSON.parse(component["scopecontent_combined_tsm"][0])
           expect(json["Content Warning"]).not_to be_blank
           # Never inherit Scope & Contents

@@ -549,7 +549,7 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
   end
   to_field "#{selector}_heading_ssm", extract_xpath("./#{selector}/head")
   to_field "#{selector}_teim", extract_xpath("./#{selector}/*[local-name()!='head']")
-  to_field "#{selector}_combined_tsm", extract_xpath("./#{selector}", to_text: false) do |_record, accumulator|
+  to_field "#{selector}_combined_tsm", extract_xpath("./#{selector}", to_text: false) do |_record, accumulator, context|
     content = accumulator.each_with_object({}) do |element, hsh|
       header = element.xpath("./head")[0].text || "Unknown"
       values = element.xpath("./p").map do |el|
@@ -569,6 +569,12 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
         parent_values.map! do |parent_value|
           parent_value = ::JSON.parse(parent_value)
           ::JSON.dump(parent_value.slice("Content Warning"))
+        end
+        if context.output_hash["scopecontent_ssm"].blank? && parent_values.present?
+          scope_values = parent_values.flat_map do |parent_value|
+            ::JSON.parse(parent_value).values
+          end.flatten
+          context.output_hash["scopecontent_ssm"] = scope_values
         end
       end
       accumulator.concat(parent_values)
