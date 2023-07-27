@@ -464,20 +464,37 @@ describe "EAD 2 traject indexing", type: :feature do
         end
       end
 
-      context "when given a record with content warning header" do
-        let(:fixture_path) do
-          Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "TC040.processed.EAD.xml")
-        end
-        it "inherits down" do
-          component = find_component(result, "TC040_c00002")
+      context "when a collection has a content warning" do
+        context "and its component does not" do
+          let(:fixture_path) do
+            Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "TC040.processed.EAD.xml")
+          end
+          it "inherits down" do
+            component = find_component(result, "TC040_c00002")
 
-          # Ensure it's inheriting from its parent.
-          expect(component["scopecontent_combined_tsm"][0]).not_to eq "{}"
-          expect(component["scopecontent_ssm"][0]).to include "Many of the photographs"
-          json = JSON.parse(component["scopecontent_combined_tsm"][0])
-          expect(json["Content Warning"]).not_to be_blank
-          # Never inherit Scope & Contents
-          expect(json["Scope and Contents"]).to be_blank
+            # Ensure it's inheriting from its parent.
+            expect(component["scopecontent_combined_tsm"][0]).not_to eq "{}"
+            expect(component["scopecontent_ssm"][0]).to include "Many of the photographs"
+            json = JSON.parse(component["scopecontent_combined_tsm"][0])
+            expect(json["Content Warning"]).not_to be_blank
+            # Never inherit Scope & Contents
+            expect(json["Scope and Contents"]).to be_blank
+          end
+        end
+
+        context "when child had a non-warning scopecontent note" do
+          let(:fixture_path) do
+            Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
+          end
+          it "still inherits the content warning, keeping its own scopecontent note" do
+            component = find_component(result, "WC064_c1")
+
+            # Ensure it's inheriting from its parent.
+            expect(component["scopecontent_combined_tsm"][0]).not_to eq "{}"
+            expect(component["scopecontent_ssm"][0]).to include "harmful descriptions"
+            json = JSON.parse(component["scopecontent_combined_tsm"][0])
+            expect(json["Content Warning"]).not_to be_blank
+          end
         end
       end
 
