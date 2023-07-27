@@ -547,8 +547,10 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
       accumulator.concat(Array.wrap(parent.output_hash["#{selector}_ssm"]))
     end
   end
+
   to_field "#{selector}_heading_ssm", extract_xpath("./#{selector}/head")
   to_field "#{selector}_teim", extract_xpath("./#{selector}/*[local-name()!='head']")
+
   to_field "#{selector}_combined_tsm", extract_xpath("./#{selector}", to_text: false) do |_record, accumulator, context|
     content = accumulator.each_with_object({}) do |element, hsh|
       header = element.xpath("./head")[0].text || "Unknown"
@@ -560,27 +562,46 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
     end
     accumulator.clear
     accumulator << ::JSON.dump(content) if content.present?
-    # For all notes, inherit from parent if it's blank.
-    if accumulator.blank?
+    # For scope & contents, inherit ONLY content warning.
+    if selector == "scopecontent"
       parent = settings[:parent] || settings[:root]
-      # For scope & contents, inherit ONLY content warning.
-      parent_values = Array.wrap(parent.output_hash["#{selector}_combined_tsm"])
-      if selector == "scopecontent"
+      parent_values = Array.wrap(parent.output_hash["#{selector}_combined_tsm"].clone)
+      # parent values is now an array containing one stringified JSON hash
+      # with all the parent values
+      parent_values.map! do |parent_value|
+        ::JSON.parse(parent_value)
+      end
+      # parent values is now an array containing one hash
+
+      if accumulator.blank? # there was no local content
         parent_values.map! do |parent_value|
-          parent_value = ::JSON.parse(parent_value)
           ::JSON.dump(parent_value.slice("Content Warning"))
         end
+        # parent values is now an array containing one stringified JSON hash
+        # with only the content warning
+
         if context.output_hash["scopecontent_ssm"].blank? && parent_values.present?
           scope_values = parent_values.flat_map do |parent_value|
             ::JSON.parse(parent_value).values
           end.flatten
           context.output_hash["scopecontent_ssm"] = scope_values
         end
+        accumulator.concat(parent_values)
+      else # there was a local scopecontent note
+        parent_warning = parent_values.first.select { |k, _v| k == "Content Warning" }
+        content.reverse_merge!(parent_warning)
+        accumulator.clear
+        accumulator.append(::JSON.dump(content)) if content.present?
       end
+    # For all other notes, inherit from parent if it's blank.
+    elsif accumulator.blank?
+      parent = settings[:parent] || settings[:root]
+      parent_values = Array.wrap(parent.output_hash["#{selector}_combined_tsm"])
       accumulator.concat(parent_values)
     end
   end
 end
+
 (Pulfalight::Ead2Indexing::DID_SEARCHABLE_NOTES_FIELDS - ["physloc"]).map do |selector|
   to_field "#{selector}_ssm", extract_xpath("./did/#{selector}")
 end
