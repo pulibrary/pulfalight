@@ -2,7 +2,9 @@ request_mappings:
   static:
     Notes: ''
     scheduledDate: ''
-    AeonForm: 'EADRequest'
+    SystemID: 'Pulfa'
+    WebRequestForm: 'EADRequest'
+    UserReview: 'No'
     RequestType: 'Loan'
     GroupingIdentifier: 'ItemVolume'
     GroupingOption_ReferenceNumber: 'Concatenate'

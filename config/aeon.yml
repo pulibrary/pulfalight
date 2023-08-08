@@ -1,9 +1,12 @@
-request_url: 'https://lib-aeon.princeton.edu/aeon/Aeon.dll'
+# request_url: 'https://lib-aeon.princeton.edu/aeon/Aeon.dll'
+request_url: 'https://princeton.aeon.atlas-sys.com/logon/?Action=11&Type=200'
 request_mappings:
   static:
     Notes: ''
     scheduledDate: ''
-    AeonForm: 'EADRequest'
+    SystemID: 'Pulfa'
+    UserReview: 'No'
+    WebRequestForm: 'EADRequest'
     RequestType: 'Loan'
     GroupingIdentifier: 'ItemVolume'
     GroupingOption_ReferenceNumber: 'Concatenate'
