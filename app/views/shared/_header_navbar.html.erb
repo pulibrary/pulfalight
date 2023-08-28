@@ -5,6 +5,14 @@
       </div>
       <%= render partial: 'shared/header_menu_dropdown' %>
   </library-header>
+  <banner>
+  <p>The Special Collections Research Account system will be updated on Thursday, August 31, 2023. 
+    No requests for material can be made from 5pm on Wednesday, August 30 through Thursday, August 31 
+    in the catalog or finding aids database. If you are visiting Special Collections during this time, 
+    we can make manual requests for you in person and still retrieve your material. Thank you for your 
+    patience while we update these important systems.
+  </p>
+</banner>
   <% unless params[:action] == 'error' || params[:action] == 'generate' %>
     <div class="header__secondary<%= " py-lg-5 home-header" if on_home_page? %>">
       <nav class="container" role="navigation">
