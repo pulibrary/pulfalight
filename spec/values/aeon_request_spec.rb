@@ -246,7 +246,9 @@ RSpec.describe AeonRequest do
       expect(request.attributes[:callnumber]).to eq "C1588_c3"
       expect(request.attributes[:title]).to eq "Diary"
       expect(request.attributes[:containers]).to eq "Box B-001180, Folder 1"
-      expect(request.form_attributes[:AeonForm]).to eq "EADRequest"
+      expect(request.form_attributes[:WebRequestForm]).to eq "EADRequest"
+      expect(request.form_attributes[:UserReview]).to eq "No"
+      expect(request.form_attributes[:SystemID]).to eq "Pulfa"
       expect(request.form_attributes[:RequestType]).to eq "Loan"
       expect(request.form_attributes[:DocumentType]).to eq "Manuscript"
       expect(request.form_attributes[:Location]).to eq "mss"
@@ -282,7 +284,6 @@ RSpec.describe AeonRequest do
       expect(request.form_attributes[:"ItemInfo3_#{request_id}"]).to eq "Folder 1"
       expect(request.form_attributes[:"Location_#{request_id}"]).to eq "mss"
       expect(request.form_attributes[:"ItemInfo5_#{request_id}"]).to eq "http://localhost:3000/catalog/C1588_c3"
-      expect(request.form_attributes[:SubmitButton]).to eq "Submit Request"
       # Location Info
       expect(request.location_attributes[:label]).to eq "Firestone Library"
       expect(request.location_attributes[:url]).to eq "https://library.princeton.edu/special-collections/visit-us"

@@ -41,7 +41,9 @@ class AeonRequest
 
   def form_attributes
     {
-      AeonForm: "EADRequest",
+      SystemID: "Pulfa",
+      UserReview: "No",
+      WebRequestForm: "EADRequest",
       RequestType: "Loan",
       DocumentType: "Manuscript",
       Location: container_locations
@@ -209,8 +211,7 @@ class AeonRequest
       GroupingOption_ItemInfo3: "Concatenate",
       GroupingOption_ItemInfo4: "FirstValue",
       GroupingOption_Location: "FirstValue",
-      GroupingOption_Site: "FirstValue",
-      SubmitButton: "Submit Request"
+      GroupingOption_Site: "FirstValue"
     }
   end
 end

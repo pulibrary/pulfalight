@@ -11,7 +11,7 @@ describe("RequestCart.vue", () => {
             items: [ {
               title: "My word",
               formParams: {
-                AeonForm: "EADRequest",
+                WebRequestForm: "EADRequest",
                 Request: ["1", "2"]
               },
               location: {
@@ -48,7 +48,7 @@ describe("RequestCart.vue", () => {
             items: [ {
               title: "My word",
               formParams: {
-                AeonForm: "EADRequest",
+                WebRequestForm: "EADRequest",
                 Request: ["1", "2"]
               },
               location: {
