@@ -85,7 +85,7 @@ class AeonRequest
       "CallNumber_#{request_id(box)}": solr_document.eadid,
       "ItemNumber_#{request_id(box)}": box["barcode"],
       "ItemVolume_#{request_id(box)}": item_volume(box),
-      "ItemInfo1_#{request_id(box)}": access_restrictions,
+      "ItemInfo1_#{request_id(box)}": CGI.escapeHTML(access_restrictions),
       "ItemInfo2_#{request_id(box)}": solr_document.extent,
       "ItemInfo3_#{request_id(box)}": folder(box),
       "ItemInfo4_#{request_id(box)}": box_locator(box),
