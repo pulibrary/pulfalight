@@ -141,6 +141,20 @@ RSpec.describe AeonRequest do
       end
     end
 
+    context "when there's HTML in the access note" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC198.10.processed.EAD.xml")
+      end
+      it "escapes it" do
+        result = indexer.map_record(record)
+        component = find_component(component_id: "AC198-10_c6", record: result)
+        document = SolrDocument.new(component)
+
+        request = document.aeon_request
+        request_id = request.form_attributes[:Request]
+        expect(request.form_attributes[:"ItemInfo1_#{request_id}"]).not_to include "<a href"
+      end
+    end
     context "when given a really long access note" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
