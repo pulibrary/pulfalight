@@ -95,7 +95,7 @@ jobs:
           PULFALIGHT_DB_PASSWORD: pulfalight
           SOLR_URL: http://solr:SolrRocks@localhost:8983/solr/pulfalight-core-test
       - image: zookeeper:3.4
-      - image: postgres:13.6
+      - image: postgres:15
         environment:
           POSTGRES_USER: pulfalight
           POSTGRES_DB: pulfalight_test
