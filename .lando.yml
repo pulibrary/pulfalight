@@ -15,7 +15,7 @@ services:
     config:
       dir: "solr/conf"
   pulfalight_database:
-    type: postgres:13
+    type: postgres:15
     portforward: true
     app_mount: false
 proxy:
