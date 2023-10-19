@@ -156,7 +156,7 @@ class AeonRequest
   end
 
   def access_restrictions
-    solr_document["accessrestrict_ssm"]&.first&.truncate(75)
+    solr_document["accessrestrict_ssm"]&.first&.truncate(75).to_s
   end
 
   def box
