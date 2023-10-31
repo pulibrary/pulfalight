@@ -34,7 +34,8 @@
   },
   "scripts": {
     "test": "jest",
-    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "build": "vite build"
   },
   "jest": {
     "verbose": true,
