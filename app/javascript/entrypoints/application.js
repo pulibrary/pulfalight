@@ -5,24 +5,13 @@
 //    <%= vite_javascript_tag 'application' %>
 console.log('Vite ⚡️ Rails')
 
-// If using a TypeScript entrypoint file:
-//     <%= vite_typescript_tag 'application' %>
-//
-// If you want to use .jsx or .tsx, add the extension:
-//     <%= vite_javascript_tag 'application.jsx' %>
+/* eslint no-console:0 */
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+import PulfalightLoader from "@/pulfalight/pulfalight_loader.es6"
 
-console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
-
-// Example: Load Rails libraries in Vite.
-//
-// import * as Turbo from '@hotwired/turbo'
-// Turbo.start()
-//
-// import ActiveStorage from '@rails/activestorage'
-// ActiveStorage.start()
-//
-// // Import all channels.
-// const channels = import.meta.globEager('./**/*_channel.js')
-
-// Example: Import a stylesheet in app/frontend/index.css
-// import '~/index.css'
+document.addEventListener('DOMContentLoaded', () => {
+  // Load components
+  const loader = new PulfalightLoader
+  loader.run()
+})
