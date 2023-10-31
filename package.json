@@ -14,7 +14,7 @@
     "babel-plugin-macros": "^3.1.0",
     "core-js": "3",
     "jquery": "^3.5.1",
-    "lux-design-system": "4.5.0",
+    "lux-design-system": "4.5.2",
     "sass": "^1.62.1",
     "serialize-javascript": "^3.1.0",
     "vue": "^2.7.0",
