@@ -16,7 +16,7 @@ jobs:
       - checkout
       - node/install:
           install-yarn: true
-          node-version: '16.15'
+          node-version: '18.18.0'
       - run:
           name: Check current version of node
           command: node -v
@@ -133,7 +133,7 @@ jobs:
             gem install bundler -v 2.3.18
       - node/install:
           install-yarn: true
-          node-version: '16.15'
+          node-version: '18.18.0'
       - run: node --version
       - run:
           name: Check current version of node
