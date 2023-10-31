@@ -11,6 +11,7 @@
     "@babel/runtime": "^7.13.9",
     "@vitejs/plugin-vue2": "^2.2.0",
     "babel-core": "^7.0.0-bridge.0",
+    "babel-plugin-macros": "^3.1.0",
     "core-js": "3",
     "jquery": "^3.5.1",
     "lux-design-system": "4.5.0",
@@ -18,7 +19,7 @@
     "serialize-javascript": "^3.1.0",
     "vue": "^2.7.0",
     "vue-loader": "^15.7.1",
-    "vue-template-compiler": "^2.6.10",
+    "vue-template-compiler": "^2.7.0",
     "vuex": "^3.5.1",
     "vuex-persist": "^3.1.3"
   },
