@@ -1,4 +1,4 @@
-import { cartState, cartMutations, cartActions } from "./cart/index"
+import { cartState, cartMutations, cartActions } from "./cart/index.es6"
 
 export const cartModule = {
   state: cartState,

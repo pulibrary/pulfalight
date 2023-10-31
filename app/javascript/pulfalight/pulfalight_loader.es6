@@ -3,17 +3,17 @@ import Vuex from "vuex"
 import system from 'lux-design-system'
 import "lux-design-system/dist/system/system.css"
 import "lux-design-system/dist/system/tokens/tokens.scss"
-import store from '../store'
-import RequestCart from '../components/RequestCart'
-import AddToCartButton from '../components/AddToCartButton'
-import AddToCartIcon from '../components/AddToCartIcon'
-import CartViewToggle from '../components/CartViewToggle'
-import TocBuilder from "../pulfalight/toc.es6"
-import LibCalHours from "../pulfalight/lib_cal_hours.es6"
-import ChildTable from "../components/ChildTable"
-import PulfaDataTable from "../components/PulfaDataTable"
-import FiggyViewer from "../components/FiggyViewer"
-import MediaQueries from "../pulfalight/media_queries.es6"
+import store from '@/store/index.es6'
+import RequestCart from '@/components/RequestCart.vue'
+import AddToCartButton from '@/components/AddToCartButton.vue'
+import AddToCartIcon from '@/components/AddToCartIcon.vue'
+import CartViewToggle from '@/components/CartViewToggle.vue'
+import TocBuilder from "@/pulfalight/toc.es6"
+import LibCalHours from "@/pulfalight/lib_cal_hours.es6"
+import ChildTable from "@/components/ChildTable.vue"
+import PulfaDataTable from "@/components/PulfaDataTable.vue"
+import FiggyViewer from "@/components/FiggyViewer.vue"
+import MediaQueries from "@/pulfalight/media_queries.es6"
 
 export default class {
   run() {

@@ -1,7 +1,7 @@
 import Vue from 'vue/dist/vue.esm'
 import Vuex from "vuex"
 
-import { cartModule } from "./modules"
+import { cartModule } from "./modules.es6"
 import VuexPersist from "vuex-persist"
 
 Vue.use(Vuex)

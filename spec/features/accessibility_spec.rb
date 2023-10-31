@@ -67,7 +67,7 @@ describe "accessibility", type: :feature, js: true do
         .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
         .excluding("#toc")
         .excluding(".tt-hint") # Issue is in typeahead.js library
-        .excluding(".document-access > .media-body.al-online-content-icon > .blacklight-icons > svg > title") # blacklight_icon doesn't generate unique IDs
+        .excluding(".blacklight-icons > svg") # blacklight_icon doesn't generate unique IDs, also has issues with aria elements
     end
   end
 
@@ -90,7 +90,7 @@ describe "accessibility", type: :feature, js: true do
         .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
         .excluding("#toc")
         .excluding(".tt-hint") # Issue is in typeahead.js library
-        .excluding(".document-access > .media-body.al-online-content-icon > .blacklight-icons > svg > title") # blacklight_icon doesn't generate unique IDs
+        .excluding(".blacklight-icons > svg") # blacklight_icon doesn't generate unique IDs, also has issues with aria elements
     end
   end
 
@@ -106,7 +106,7 @@ describe "accessibility", type: :feature, js: true do
         .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
         .excluding("#toc")
         .excluding(".tt-hint") # Issue is in typeahead.js library
-        .excluding(".document-access > .media-body.al-online-content-icon > .blacklight-icons > svg > title") # blacklight_icon doesn't generate unique IDs
+        .excluding(".blacklight-icons > svg") # blacklight_icon doesn't generate unique IDs, also has issues with aria elements
     end
   end
 
@@ -122,7 +122,7 @@ describe "accessibility", type: :feature, js: true do
         .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
         .excluding("#toc")
         .excluding(".tt-hint") # Issue is in typeahead.js library
-        .excluding(".document-access > .media-body.al-online-content-icon > .blacklight-icons > svg > title") # blacklight_icon doesn't generate unique IDs
+        .excluding(".blacklight-icons > svg") # blacklight_icon doesn't generate unique IDs, also has issues with aria elements
     end
   end
 
@@ -138,7 +138,7 @@ describe "accessibility", type: :feature, js: true do
         .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
         .excluding("#toc")
         .excluding(".tt-hint") # Issue is in typeahead.js library
-        .excluding(".document-access > .media-body.al-online-content-icon > .blacklight-icons > svg > title") # blacklight_icon doesn't generate unique IDs
+        .excluding(".blacklight-icons > svg") # blacklight_icon doesn't generate unique IDs, also has issues with aria elements
     end
   end
 end
