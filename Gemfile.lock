@@ -316,7 +316,7 @@ GEM
       net-protocol
       timeout
     net-ssh (7.0.1)
-    nio4r (2.5.8)
+    nio4r (2.5.9)
     nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -343,7 +343,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (5.0.3)
-    puma (4.3.12)
+    puma (5.6.7)
       nio4r (~> 2.0)
     racc (1.7.1)
     rack (2.2.8)
@@ -641,7 +641,7 @@ DEPENDENCIES
   popper_js
   pry-byebug
   pry-rails
-  puma (~> 4.3)
+  puma (~> 5.6)
   rails (~> 6.1)
   rails-controller-testing
   rsolr (>= 1.0, < 3)
