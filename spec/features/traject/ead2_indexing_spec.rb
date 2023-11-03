@@ -475,10 +475,22 @@ describe "EAD 2 traject indexing", type: :feature do
             # Ensure it's inheriting from its parent.
             expect(component["scopecontent_combined_tsm"][0]).not_to eq "{}"
             expect(component["scopecontent_ssm"][0]).to include "Many of the photographs"
+            expect(component["direct_content_warning_ssm"]).to be_blank
             json = JSON.parse(component["scopecontent_combined_tsm"][0])
             expect(json["Content Warning"]).not_to be_blank
             # Never inherit Scope & Contents
             expect(json["Scope and Contents"]).to be_blank
+          end
+        end
+
+        context "and its component does" do
+          let(:fixture_path) do
+            Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1372.processed.EAD.xml")
+          end
+          it "indexes a direct_content_warning" do
+            component = find_component(result, "C1372_c47202-68234")
+
+            expect(component["direct_content_warning_ssm"]).not_to be_blank
           end
         end
 
@@ -492,6 +504,8 @@ describe "EAD 2 traject indexing", type: :feature do
             # Ensure it's inheriting from its parent.
             expect(component["scopecontent_combined_tsm"][0]).not_to eq "{}"
             expect(component["scopecontent_ssm"][0]).to include "harmful descriptions"
+            expect(component["direct_content_warning_ssm"]).to be_blank
+            expect(result["direct_content_warning_ssm"]).not_to be_blank
             json = JSON.parse(component["scopecontent_combined_tsm"][0])
             expect(json["Content Warning"]).not_to be_blank
           end

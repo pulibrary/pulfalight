@@ -564,6 +564,7 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
 
     # For scope & contents, inherit ONLY content warning.
     if selector == "scopecontent"
+      context.output_hash["direct_content_warning_ssm"] = content["Content Warning"]
       parent = settings[:parent] || settings[:root]
       parent_values = Array.wrap(parent.output_hash["#{selector}_combined_tsm"].clone)
       # parent values is an array containing one stringified JSON hash
@@ -573,10 +574,10 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
         ::JSON.parse(parent_value).slice("Content Warning")
       end.reduce({}, :merge)
 
-      content.reverse_merge!(parent_warning)
-      if content.present?
-        accumulator.append(::JSON.dump(content))
-        scope_values = content.values.flatten
+      new_content = content.reverse_merge(parent_warning)
+      if new_content.present?
+        accumulator.append(::JSON.dump(new_content))
+        scope_values = new_content.values.flatten
         context.output_hash["scopecontent_ssm"] = scope_values
       end
 
