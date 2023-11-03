@@ -140,6 +140,12 @@ describe "controller requests", type: :request do
         json_body = JSON.parse(response.body)
         expect(json_body["content_warning"]).to eq ['The "Revolution in China" album contains photographs of dead bodies.']
       end
+      it "doesn't render it for content warnings inherited from the series" do
+        get "/catalog/TC040_c00034.json"
+        json_body = JSON.parse(response.body)
+
+        expect(json_body["content_warning"]).to be_blank
+      end
     end
     context "for a collection" do
       it "renders sufficient JSON for Figgy to use" do

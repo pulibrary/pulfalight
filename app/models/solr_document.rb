@@ -401,7 +401,7 @@ class SolrDocument
   end
 
   def content_warning
-    field_with_headings("scopecontent_ssim")["Content Warning"]
+    fetch("direct_content_warning_ssm", [])
   end
 
   def arclight_attributes
