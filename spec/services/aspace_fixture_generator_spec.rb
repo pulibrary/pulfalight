@@ -28,6 +28,17 @@ RSpec.describe AspaceFixtureGenerator do
       # EAD.
       expect(content.search("//c").length).to eq 2
       expect(content.search("//c").map { |x| x["id"] }).to eq ["aspace_C1588_c1", "aspace_C1588_c2"]
+
+      allow(Aspace::Client).to receive(:new).and_raise(ArchivesSpace::ConnectionError)
+      # Running it again works without hitting client.
+      fixture_generator = described_class.new(
+        client: nil,
+        ead_ids: ["1"],
+        component_map: { "1" => ["aspace_C1588_c2"] },
+        fixture_dir: Rails.root.join("tmp", "fixture_tests")
+      )
+
+      expect { fixture_generator.regenerate! }.not_to raise_error
     end
   end
 end

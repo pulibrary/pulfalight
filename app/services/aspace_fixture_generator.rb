@@ -147,12 +147,12 @@ class AspaceFixtureGenerator
     "C1372" => ["aspace_C1372_c47202-68234"],
     "C0171" => [],
     "C0958" => ["aspace_C0958_c06413-76702"],
-    "TC040" => ["aspace_TC040_c00002"],
+    "TC040" => ["aspace_TC040_c00002", "aspace_TC040_c00034"],
     "AC198.10" => ["aspace_AC198.10_c6"]
   }.freeze
 
-  attr_reader :client, :ead_ids, :component_map, :fixture_dir
-  def initialize(client: Aspace::Client.new, ead_ids: EAD_IDS, component_map: COMPONENT_MAP, fixture_dir: Rails.root.join("spec", "fixtures", "aspace", "generated"))
+  attr_reader :ead_ids, :component_map, :fixture_dir
+  def initialize(client: nil, ead_ids: EAD_IDS, component_map: COMPONENT_MAP, fixture_dir: Rails.root.join("spec", "fixtures", "aspace", "generated"))
     @client = client
     @ead_ids = ead_ids
     @component_map = component_map
@@ -171,6 +171,10 @@ class AspaceFixtureGenerator
   end
 
   private
+
+  def client
+    @client ||= Aspace::Client.new
+  end
 
   # Filter an EAD to just the components in the component map and write it to a
   # separate file.
@@ -200,9 +204,19 @@ class AspaceFixtureGenerator
   def fixture_files
     @fixture_files ||=
       ead_ids.lazy.map do |eadid|
-        uri, repo_code = client.ead_url_for_eadid(eadid: eadid)&.first
+        uri, repo_code = uri_and_repo(eadid: eadid)
         EADContainer.new(eadid: eadid, content: get_content(uri, eadid), repository: repo_code)
       end
+  end
+
+  def uri_and_repo(eadid:)
+    file = fixture_dir.glob("**/*.EAD.xml").find { |x| x.to_s.ends_with?("#{eadid}.EAD.xml") }
+    if file.present?
+      # Don't have to query the client for the repo, it's in the directory name.
+      [nil, file.dirname.basename.to_s]
+    else
+      client.ead_url_for_eadid(eadid: eadid)&.first
+    end
   end
 
   # Only fetch content from ASpace if the file doesn't already exist.
