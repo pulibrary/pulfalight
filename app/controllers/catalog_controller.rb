@@ -5,6 +5,7 @@ class CatalogController < ApplicationController
   include Arclight::Catalog
   include Arclight::FieldConfigHelpers
   include BlacklightRangeLimit::ControllerOverride
+  include MultipleAlgorithms
 
   # This should be unnecessary with an update ArcLight or Blacklight upstream
   def raw
