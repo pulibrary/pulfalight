@@ -1,12 +1,14 @@
-<%= render(DropdownHelpTextComponent.new(
-  param: :search_algorithm,
-  choices: [
-    { label: "default", value: "default", helptext: "documents with highest term frequency are first"},
-    { label: "online content", value: "online_content", helptext: "records with direct online content are first" }
-  ],
-  id: 'search-algorithm-dropdown',
-  search_state: search_state,
-  default: 'default',
-  interpolation: :algorithm,
-  selected: search_algorithm_value))
-%>
+<% if Pulfalight.multiple_algorithms_enabled? %>
+  <%= render(DropdownHelpTextComponent.new(
+    param: :search_algorithm,
+    choices: [
+      { label: "default", value: "default", helptext: "documents with highest term frequency are first"},
+      { label: "online content", value: "online_content", helptext: "records with direct online content are first" }
+    ],
+    id: 'search-algorithm-dropdown',
+    search_state: search_state,
+    default: 'default',
+    interpolation: :algorithm,
+    selected: search_algorithm_value))
+  %>
+<% end %>

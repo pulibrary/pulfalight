@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module MultipleAlgorithms
   def search_service_context
-    return {} unless multiple_algorithms_enabled?
+    return {} unless Pulfalight.multiple_algorithms_enabled?
     return {} unless alternate_search_builder_class # use default if none specified
     { search_builder_class: alternate_search_builder_class }
   end
@@ -21,9 +21,5 @@ module MultipleAlgorithms
 
   def search_algorithm_param
     params[:search_algorithm]
-  end
-
-  def multiple_algorithms_enabled?
-    true
   end
 end

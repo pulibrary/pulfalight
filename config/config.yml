@@ -8,6 +8,7 @@ defaults: &defaults
   unpublished_auth_token: <%= ENV["UNPUBLISHED_AUTH_TOKEN"] %>
   figgy_auth_token: <%= ENV["FIGGY_AUTH_TOKEN"] %>
   figgy_url: "https://figgy.princeton.edu"
+  multiple_algorithms: <%= ENV["MULTIPLE_ALGORITHMS"] || false %>
 
 development:
   <<: *defaults
