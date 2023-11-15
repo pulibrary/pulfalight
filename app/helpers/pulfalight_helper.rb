@@ -134,8 +134,8 @@ module PulfalightHelper
 
   # Provides the search algorithm value for the UI component
   def search_algorithm_value
-    if params[:search_algorithm] == "online_content"
-      "online_content"
+    if MultipleAlgorithms.allowed_search_algorithms.include? params[:search_algorithm]
+      params[:search_algorithm]
     else
       "default"
     end

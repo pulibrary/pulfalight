@@ -70,6 +70,10 @@ class CatalogController < ApplicationController
     super
   end
 
+  # Set allowed search alorithm parameter values
+  # See: multiple_algorithms.rb
+  MultipleAlgorithms.allowed_search_algorithms = ["default", "online_content"]
+
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
