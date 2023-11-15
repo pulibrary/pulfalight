@@ -3,3 +3,6 @@ en:
     application_name: 'Finding Aids'
     header_links:
       account_page: 'Your Account'
+    search:
+      search_algorithm:
+        label_html: 'Rank by %{algorithm}'

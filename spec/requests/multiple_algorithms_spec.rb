@@ -18,7 +18,6 @@ describe "multiple algorithms", type: :request do
 
     context "when the search_algorithm parameter is set to 'online_content'" do
       it "ranks using the online_content request handler" do
-        # Expected: /catalog.json?f%5Bhas_direct_online_content_ssim%5D%5B%5D=online&q=diary&search_field=all_fields
         get "/catalog.json?q=diary&search_field=all_fields&search_algorithm=online_content"
         json = JSON.parse(response.body)
 

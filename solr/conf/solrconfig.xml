@@ -203,9 +203,6 @@
 
   <requestHandler name="online-content" class="solr.SearchHandler" initParams="searchParams">
     <lst name="appends">
-      <!--<str name="boost">if(termfreq(text,'direct'),100,0)</str>-->
-      <!--has_direct_online_content_ssim%5D%5B%5D=online-->
-      <!--if(eq(has_direct_online_content_ssim,'online'))-->
       <str name="boost">
         if(termfreq(has_direct_online_content_ssim, "true"),100,0)
       </str>

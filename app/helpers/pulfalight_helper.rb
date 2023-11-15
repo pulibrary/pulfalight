@@ -132,6 +132,15 @@ module PulfalightHelper
     )
   end
 
+  # Provides the search algorithm value for the UI component
+  def search_algorithm_value
+    if params[:search_algorithm] == "online_content"
+      "online_content"
+    else
+      "default"
+    end
+  end
+
   private
 
   def repository_thumbnail_path
