@@ -5,6 +5,7 @@ class CatalogController < ApplicationController
   include Arclight::Catalog
   include Arclight::FieldConfigHelpers
   include BlacklightRangeLimit::ControllerOverride
+  include MultipleAlgorithms
 
   # This should be unnecessary with an update ArcLight or Blacklight upstream
   def raw
@@ -69,6 +70,10 @@ class CatalogController < ApplicationController
     super
   end
 
+  # Set allowed search alorithm parameter values
+  # See: multiple_algorithms.rb
+  MultipleAlgorithms.allowed_search_algorithms = ["default", "online_content"]
+
   configure_blacklight do |config|
     ## Class for sending and receiving requests from a search index
     # config.repository_class = Blacklight::Solr::Repository
@@ -118,6 +123,7 @@ class CatalogController < ApplicationController
     # config.show.thumbnail_field = 'thumbnail_path_ss'
 
     config.add_results_collection_tool(:sort_widget)
+    config.add_results_collection_tool(:algorithm_select)
     config.add_results_collection_tool(:per_page_widget)
     config.add_results_collection_tool(:view_type_group)
 
