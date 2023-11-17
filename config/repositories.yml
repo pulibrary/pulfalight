@@ -14,11 +14,11 @@ cotsen:
   visit_note: ""
 
 eng:
-  name: "Engineering Library"
+  name: "Lewis Science and Engineering Library"
   description: 'Includes finding aids for collections of technical reports created by various engineering departments and programs at Princeton University from 1947 to 1998, which are housed at the Engineering Library.'
-  building: 'Engineering Library'
-  address1: 'Engineering Library'
-  address2: 'Friend Center for Engineering Education'
+  building: 'Fine Hall B Floor'
+  address1: 
+  address2: 
   city: 'Princeton'
   state: 'NJ'
   zip: '08540'
