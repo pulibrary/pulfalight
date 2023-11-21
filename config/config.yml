@@ -4,7 +4,7 @@ defaults: &defaults
   archivespace_user: <%= ENV["ASPACE_USER"] %>
   archivespace_password: <%= ENV["ASPACE_PASSWORD"] %>
   # aeon_url: 'https://lib-aeon.princeton.edu/aeon/Aeon.dll'
-  aeon_url: 'https://princeton.aeon.atlas-sys.com/logon/?Action=11&Type=200'
+  aeon_url: 'https://princeton.aeon.atlas-sys.com/logon?Action=11&Type=200'
   unpublished_auth_token: <%= ENV["UNPUBLISHED_AUTH_TOKEN"] %>
   figgy_auth_token: <%= ENV["FIGGY_AUTH_TOKEN"] %>
   figgy_url: "https://figgy.princeton.edu"
