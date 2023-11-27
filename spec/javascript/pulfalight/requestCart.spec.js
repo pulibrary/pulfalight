@@ -11,7 +11,7 @@ describe("RequestCart.vue", () => {
             items: [ {
               title: "My word",
               formParams: {
-                AeonForm: "ExternalRequest",
+                AeonForm: "EADRequest",
 		WebRequestForm: "EADRequest",
                 Request: ["1", "2"]
               },
@@ -49,8 +49,8 @@ describe("RequestCart.vue", () => {
             items: [ {
               title: "My word",
               formParams: {
-                AeonForm: "ExternalRequest",
-		WebRequestForm: "EADRequest",
+                AeonForm: "EADRequest",
+		            WebRequestForm: "EADRequest",
                 Request: ["1", "2"]
               },
               location: {
@@ -87,7 +87,7 @@ describe("RequestCart.vue", () => {
             items: [ {
               title: "My word",
               formParams: {
-                AeonForm: "ExternalRequest",
+                AeonForm: "EADRequest",
 		WebRequestForm: "EADRequest",
                 Request: ["1", "2"]
               },
@@ -108,7 +108,7 @@ describe("RequestCart.vue", () => {
     })
 
     const form = container.querySelector("form#request-cart-form")
-    expect(form.querySelector("input[name='AeonForm'][value='ExternalRequest']")).not.toBe(null)
+    expect(form.querySelector("input[name='AeonForm'][value='EADRequest']")).not.toBe(null)
     expect(form.querySelector("input[name='WebRequestForm'][value='EADRequest']")).not.toBe(null)
     expect(form.querySelector("input[name='Request'][value='1']")).not.toBe(null)
     expect(form.querySelector("input[name='Request'][value='2']")).not.toBe(null)
@@ -126,7 +126,7 @@ describe("RequestCart.vue", () => {
     await fireEvent.submit(form)
 
     // shadow form is populated
-    expect(shadowForm.querySelector("input[name='AeonForm'][value='ExternalRequest']")).not.toBe(null)
+    expect(shadowForm.querySelector("input[name='AeonForm'][value='EADRequest']")).not.toBe(null)
     expect(shadowForm.querySelector("input[name='WebRequestForm'][value='EADRequest']")).not.toBe(null)
     expect(shadowForm.querySelector("input[name='Notes']")).not.toBe(null)
 
