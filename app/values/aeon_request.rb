@@ -43,6 +43,7 @@ class AeonRequest
     {
       SystemID: "Pulfa",
       UserReview: "No",
+      AeonForm: "ExternalRequest",
       WebRequestForm: "EADRequest",
       RequestType: "Loan",
       DocumentType: "Manuscript",

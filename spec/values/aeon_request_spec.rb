@@ -274,6 +274,7 @@ RSpec.describe AeonRequest do
       expect(request.attributes[:callnumber]).to eq "C1588_c3"
       expect(request.attributes[:title]).to eq "Diary"
       expect(request.attributes[:containers]).to eq "Box B-001180, Folder 1"
+      expect(request.form_attributes[:AeonForm]).to eq "ExternalRequest"
       expect(request.form_attributes[:WebRequestForm]).to eq "EADRequest"
       expect(request.form_attributes[:UserReview]).to eq "No"
       expect(request.form_attributes[:SystemID]).to eq "Pulfa"
