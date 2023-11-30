@@ -112,3 +112,5 @@ gem "net-smtp", require: false
 gem "strscan", "3.0.1"
 
 gem "vite_rails", "~> 3.0"
+
+gem "debug", "~> 1.8"
