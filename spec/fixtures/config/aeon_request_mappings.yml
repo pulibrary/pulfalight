@@ -6,7 +6,7 @@ request_mappings:
     Notes: ''
     scheduledDate: ''
     SystemID: 'Pulfa'
-    AeonForm: 'EADRequest'
+    AeonForm: 'ExternalRequest'
     WebRequestForm: 'EADRequest'
     RequestType: 'Loan'
     GroupingIdentifier: 'ItemVolume'

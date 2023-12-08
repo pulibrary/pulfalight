@@ -43,7 +43,7 @@ class AeonRequest
     {
       SystemID: "Pulfa",
       UserReview: "No",
-      AeonForm: "EADRequest",
+      AeonForm: "ExternalRequest",
       WebRequestForm: "EADRequest",
       RequestType: "Loan",
       DocumentType: "Manuscript",
@@ -212,7 +212,7 @@ class AeonRequest
       GroupingOption_ItemInfo3: "Concatenate",
       GroupingOption_ItemInfo4: "FirstValue",
       GroupingOption_Location: "FirstValue",
-      SubmitButton: "Submit Request",
+      SubmitButton: "Submit External Request",
       GroupingOption_Site: "FirstValue"
     }
   end
