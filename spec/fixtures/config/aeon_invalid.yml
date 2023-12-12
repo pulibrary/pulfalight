@@ -3,7 +3,7 @@ request_mappings:
     Notes: ''
     scheduledDate: ''
     SystemID: 'Pulfa'
-    AeonForm: 'ExternalRequest'
+    AeonForm: 'EADRequest'
     WebRequestForm: 'EADRequest'
     UserReview: 'No'
     RequestType: 'Loan'
