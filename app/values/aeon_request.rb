@@ -41,14 +41,15 @@ class AeonRequest
 
   def form_attributes
     {
-      SystemID: "Pulfa",
-      UserReview: "No",
-      AeonForm: "EADRequest",
-      WebRequestForm: "EADRequest",
-      RequestType: "Loan",
-      DocumentType: "Manuscript",
-      Location: container_locations
-    }.merge(grouping_options).merge(all_request_attributes)
+    #   SystemID: "Pulfa",
+    #   UserReview: "No",
+    #   AeonForm: "EADRequest",
+    #   WebRequestForm: "EADRequest",
+    #   RequestType: "Loan",
+    #   DocumentType: "Manuscript",
+    #   Location: container_locations
+    # }.merge(grouping_options).merge(all_request_attributes)
+    }.merge(all_request_attributes)
   end
 
   def all_request_attributes
