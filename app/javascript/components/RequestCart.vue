@@ -107,26 +107,10 @@
         <form id="request-cart-form" method="post" :action="configuration.url"
                                      v-on:submit.prevent="clearForm">
           <div class="hidden">
-            <input id="SystemID" name="SystemID" type="hidden" value="Pulfa">
-            <input id="UserReview" name="UserReview" type="hidden" value="No">
-            <input id="AeonForm" name="AeonForm" type="hidden" value="EADRequest">
-            <input id="WebRequestForm" name="WebRequestForm" type="hidden" value="EADRequest">
-            <input id="RequestType" name="RequestType" type="hidden" value="Loan">
-            <input id="DocumentType" name="DocumentType" type="hidden" value="Manuscript">
-            <input id="Location" name="Location" type="hidden" value="sc">
-            <input id="GroupingIdentifier" name="GroupingIdentifier" type="hidden" value="GroupingField">
-            <input id="GroupingOption_ReferenceNumber" name="GroupingOption_ReferenceNumber" type="hidden" value="Concatenate">
-            <input id="GroupingOption_ItemTitle" name="GroupingOption_ItemTitle" type="hidden" value="FirstValue">
-            <input id="GroupingOption_ItemNumber" name="GroupingOption_ItemNumber" type="hidden" value="FirstValue">
-            <input id="GroupingOption_ItemDate" name="GroupingOption_ItemDate" type="hidden" value="FirstValue">
-            <input id="GroupingOption_CallNumber" name="GroupingOption_CallNumber" type="hidden" value="FirstValue">
-            <input id="GroupingOption_ItemVolume" name="GroupingOption_ItemVolume" type="hidden" value="FirstValue">
-            <input id="GroupingOption_ItemInfo1" name="GroupingOption_ItemInfo1" type="hidden" value="FirstValue">
-            <input id="GroupingOption_ItemInfo3" name="GroupingOption_ItemInfo3" type="hidden" value="Concatenate">
-            <input id="GroupingOption_ItemInfo4" name="GroupingOption_ItemInfo4" type="hidden" value="FirstValue">
-            <input id="GroupingOption_Location" name="GroupingOption_Location" type="hidden" value="FirstValue">
-            <input id="SubmitButton" name="SubmitButton" type="hidden" value="Submit Request">
-            <input id="GroupingOption_Site" name="GroupingOption_Site" type="hidden" value="FirstValue">
+            <template v-for="(form_values, field_name) in globalFormParams">
+              <input :id="field_name" :name="field_name" type="hidden"
+                                                         :value="form_values"></input>
+            </template>
             <template v-for="(request, requestIndex) in requests">
               <template v-for="(form_values, field_name) in request.formParams">
                 <div v-if="Array.isArray(form_values)">
@@ -164,26 +148,10 @@
     <form id="shadow-form" method="post" :action="configuration.url"
                            ref="shadowForm">
       <div class="hidden">
-        <input name="SystemID" type="hidden" value="Pulfa">
-          <input id="UserReview" name="UserReview" type="hidden" value="No">
-          <input id="AeonForm" name="AeonForm" type="hidden" value="EADRequest">
-          <input id="WebRequestForm" name="WebRequestForm" type="hidden" value="EADRequest">
-          <input id="RequestType" name="RequestType" type="hidden" value="Loan">
-          <input id="DocumentType" name="DocumentType" type="hidden" value="Manuscript">
-          <input id="Location" name="Location" type="hidden" value="sc">
-          <input id="GroupingIdentifier" name="GroupingIdentifier" type="hidden" value="GroupingField">
-          <input id="GroupingOption_ReferenceNumber" name="GroupingOption_ReferenceNumber" type="hidden" value="Concatenate">
-          <input id="GroupingOption_ItemTitle" name="GroupingOption_ItemTitle" type="hidden" value="FirstValue">
-          <input id="GroupingOption_ItemNumber" name="GroupingOption_ItemNumber" type="hidden" value="FirstValue">
-          <input id="GroupingOption_ItemDate" name="GroupingOption_ItemDate" type="hidden" value="FirstValue">
-          <input id="GroupingOption_CallNumber" name="GroupingOption_CallNumber" type="hidden" value="FirstValue">
-          <input id="GroupingOption_ItemVolume" name="GroupingOption_ItemVolume" type="hidden" value="FirstValue">
-          <input id="GroupingOption_ItemInfo1" name="GroupingOption_ItemInfo1" type="hidden" value="FirstValue">
-          <input id="GroupingOption_ItemInfo3" name="GroupingOption_ItemInfo3" type="hidden" value="Concatenate">
-          <input id="GroupingOption_ItemInfo4" name="GroupingOption_ItemInfo4" type="hidden" value="FirstValue">
-          <input id="GroupingOption_Location" name="GroupingOption_Location" type="hidden" value="FirstValue">
-          <input id="SubmitButton" name="SubmitButton" type="hidden" value="Submit Request">
-          <input id="GroupingOption_Site" name="GroupingOption_Site" type="hidden" value="FirstValue">
+        <template v-for="(form_values, field_name) in globalFormParams">
+          <input :id="field_name" :name="field_name" type="hidden"
+                                                     :value="form_values"></input>
+        </template>
         <template v-for="(request, requestIndex) in shadowRequests">
           <template v-for="(form_values, field_name) in request.formParams">
             <div v-if="Array.isArray(form_values)">
@@ -228,6 +196,11 @@ export default {
   },
   props: {
     configuration: {
+      type: Object,
+      required: true,
+      default: () => {}
+    },
+    globalFormParams: {
       type: Object,
       required: true,
       default: () => {}

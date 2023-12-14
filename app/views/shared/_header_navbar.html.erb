@@ -24,6 +24,7 @@
   <div class="request-cart-block">
     <request-cart
       :configuration="<%= JSON.generate(url: Pulfalight.config["aeon_url"]) %>"
+      :global-form-params="<%= AeonRequest.global_form_params.to_json %>"
     >
     </request-cart>
   </div>

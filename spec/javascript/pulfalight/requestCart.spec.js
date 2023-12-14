@@ -103,7 +103,10 @@ describe("RequestCart.vue", () => {
     const { container } = render(RequestCart, {
       store: customStore,
       props: {
-        configuration: {}
+        configuration: {},
+        globalFormParams: {
+          "SystemID": "Pulfa"
+        }
       }
     })
 
@@ -126,6 +129,7 @@ describe("RequestCart.vue", () => {
     await fireEvent.submit(form)
 
     // shadow form is populated
+    expect(shadowForm.querySelector("input[name='SystemID'][value='Pulfa']")).not.toBe(null)
     expect(shadowForm.querySelector("input[name='AeonForm'][value='EADRequest']")).not.toBe(null)
     expect(shadowForm.querySelector("input[name='WebRequestForm'][value='EADRequest']")).not.toBe(null)
     expect(shadowForm.querySelector("input[name='Notes']")).not.toBe(null)

@@ -1,5 +1,32 @@
 # frozen_string_literal: true
 class AeonRequest
+  # These parameters have to be sent with no duplication on every Aeon API
+  # request.
+  def self.global_form_params
+    {
+      SystemID: "Pulfa",
+      AeonForm: "EADRequest",
+      UserReview: "No",
+      WebRequestForm: "EADRequest",
+      RequestType: "Loan",
+      DocumentType: "Manuscript",
+      Location: "sc",
+      GroupingIdentifier: "GroupingField",
+      GroupingOption_ReferenceNumber: "Concatenate",
+      GroupingOption_ItemTitle: "FirstValue",
+      GroupingOption_ItemNumber: "FirstValue",
+      GroupingOption_ItemDate: "FirstValue",
+      GroupingOption_CallNumber: "FirstValue",
+      GroupingOption_ItemVolume: "FirstValue",
+      GroupingOption_ItemInfo1: "FirstValue",
+      GroupingOption_ItemInfo3: "Concatenate",
+      GroupingOption_ItemInfo4: "FirstValue",
+      GroupingOption_Location: "FirstValue",
+      GroupingOption_Site: "FirstValue",
+      SubmitButton: "Submit Request"
+    }
+  end
+
   attr_reader :solr_document
   def initialize(solr_document)
     @solr_document = solr_document
@@ -40,19 +67,6 @@ class AeonRequest
   end
 
   def form_attributes
-    {
-    #   SystemID: "Pulfa",
-    #   UserReview: "No",
-    #   AeonForm: "EADRequest",
-    #   WebRequestForm: "EADRequest",
-    #   RequestType: "Loan",
-    #   DocumentType: "Manuscript",
-    #   Location: container_locations
-    # }.merge(grouping_options).merge(all_request_attributes)
-    }.merge(all_request_attributes)
-  end
-
-  def all_request_attributes
     return request_attributes({}) if box.blank?
     all_attributes = requesting_containers.map do |local_box|
       request_attributes(local_box)
