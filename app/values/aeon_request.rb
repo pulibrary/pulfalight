@@ -209,26 +209,4 @@ class AeonRequest
   def static_request_id
     @static_request_id ||= SecureRandom.hex(14).to_i(16).to_s
   end
-
-  private
-
-  def grouping_options
-    {
-      GroupingIdentifier: "GroupingField",
-      GroupingOption_ReferenceNumber: "Concatenate",
-      # Items are grouped by box, and every box only has one barcode, so just
-      # pick the first one.
-      GroupingOption_ItemTitle: "FirstValue",
-      GroupingOption_ItemNumber: "FirstValue",
-      GroupingOption_ItemDate: "FirstValue",
-      GroupingOption_CallNumber: "FirstValue",
-      GroupingOption_ItemVolume: "FirstValue",
-      GroupingOption_ItemInfo1: "FirstValue",
-      GroupingOption_ItemInfo3: "Concatenate",
-      GroupingOption_ItemInfo4: "FirstValue",
-      GroupingOption_Location: "FirstValue",
-      SubmitButton: "Submit Request",
-      GroupingOption_Site: "FirstValue"
-    }
-  end
 end
