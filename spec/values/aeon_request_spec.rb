@@ -36,6 +36,35 @@ RSpec.describe AeonRequest do
     nil
   end
 
+  describe ".global_form_params" do
+    it "has all the parameters necessary to submit an aeon form" do
+      expect(described_class.global_form_params).to eq(
+        {
+          SystemID: "Pulfa",
+          AeonForm: "EADRequest",
+          UserReview: "No",
+          WebRequestForm: "EADRequest",
+          RequestType: "Loan",
+          DocumentType: "Manuscript",
+          Location: "sc",
+          GroupingIdentifier: "GroupingField",
+          GroupingOption_ReferenceNumber: "Concatenate",
+          GroupingOption_ItemTitle: "FirstValue",
+          GroupingOption_ItemNumber: "FirstValue",
+          GroupingOption_ItemDate: "FirstValue",
+          GroupingOption_CallNumber: "FirstValue",
+          GroupingOption_ItemVolume: "FirstValue",
+          GroupingOption_ItemInfo1: "FirstValue",
+          GroupingOption_ItemInfo3: "Concatenate",
+          GroupingOption_ItemInfo4: "FirstValue",
+          GroupingOption_Location: "FirstValue",
+          GroupingOption_Site: "FirstValue",
+          SubmitButton: "Submit Request"
+        }
+      )
+    end
+  end
+
   # This is only called from a SolrDocument, so we test it in that context to
   # ensure the SolrDocument creates the correct AeonRequest.
   describe "SolrDocument#aeon_request" do
@@ -72,7 +101,6 @@ RSpec.describe AeonRequest do
       let(:document) { SolrDocument.new(values) }
       it "returns ReCAP as the location" do
         request = document.aeon_request
-        expect(request.form_attributes[:Location]).to eq "ReCAP"
         request_id = request.form_attributes[:Request]
         expect(request.form_attributes[:"Location_#{request_id}"]).to eq "ReCAP"
       end
@@ -256,7 +284,7 @@ RSpec.describe AeonRequest do
       ]
       fields.each do |field|
         next if non_grouped_fields.include?(field)
-        expect(request).to have_key :"GroupingOption_#{field}"
+        expect(described_class.global_form_params).to have_key :"GroupingOption_#{field}"
       end
     end
     it "returns an object with all the necessary attributes" do
@@ -274,23 +302,6 @@ RSpec.describe AeonRequest do
       expect(request.attributes[:callnumber]).to eq "C1588_c3"
       expect(request.attributes[:title]).to eq "Diary"
       expect(request.attributes[:containers]).to eq "Box B-001180, Folder 1"
-      expect(request.form_attributes[:WebRequestForm]).to eq "EADRequest"
-      expect(request.form_attributes[:UserReview]).to eq "No"
-      expect(request.form_attributes[:SystemID]).to eq "Pulfa"
-      expect(request.form_attributes[:RequestType]).to eq "Loan"
-      expect(request.form_attributes[:DocumentType]).to eq "Manuscript"
-      expect(request.form_attributes[:Location]).to eq "mss"
-      expect(request.form_attributes[:GroupingIdentifier]).to eq "GroupingField"
-      expect(request.form_attributes[:GroupingOption_ReferenceNumber]).to eq "Concatenate"
-      expect(request.form_attributes[:GroupingOption_ItemNumber]).to eq "FirstValue"
-      expect(request.form_attributes[:GroupingOption_ItemTitle]).to eq "FirstValue"
-      expect(request.form_attributes[:GroupingOption_ItemDate]).to eq "FirstValue"
-      expect(request.form_attributes[:GroupingOption_CallNumber]).to eq "FirstValue"
-      expect(request.form_attributes[:GroupingOption_ItemVolume]).to eq "FirstValue"
-      expect(request.form_attributes[:GroupingOption_ItemInfo1]).to eq "FirstValue"
-      expect(request.form_attributes[:GroupingOption_ItemInfo4]).to eq "FirstValue"
-      expect(request.form_attributes[:GroupingOption_Location]).to eq "FirstValue"
-
       # The following attributes are copied from
       # https://findingaids.princeton.edu/collections/C1588/c2
       expect(request.form_attributes[:Request]).not_to be_blank
@@ -345,7 +356,7 @@ RSpec.describe AeonRequest do
       request = document.aeon_request
       request_id = request.form_attributes[:Request]
       expect(request.form_attributes[:"Site_#{request_id}"]).to eq "MUDD"
-      expect(request.form_attributes[:Location]).to eq "ReCAP"
+      expect(request.form_attributes[:"Location_#{request_id}"]).to eq "ReCAP"
       expect(request.location_attributes[:notes]).to eq "This item is stored offsite. Please allow up to 3 business days for delivery."
       expect(request.location_attributes[:label]).to eq "Mudd Manuscript Library"
       expect(request.location_attributes[:url]).to eq "https://library.princeton.edu/special-collections/visit-us"

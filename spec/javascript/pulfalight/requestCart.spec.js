@@ -11,7 +11,8 @@ describe("RequestCart.vue", () => {
             items: [ {
               title: "My word",
               formParams: {
-                WebRequestForm: "EADRequest",
+                AeonForm: "EADRequest",
+            		WebRequestForm: "EADRequest",
                 Request: ["1", "2"]
               },
               location: {
@@ -48,7 +49,8 @@ describe("RequestCart.vue", () => {
             items: [ {
               title: "My word",
               formParams: {
-                WebRequestForm: "EADRequest",
+                AeonForm: "EADRequest",
+		            WebRequestForm: "EADRequest",
                 Request: ["1", "2"]
               },
               location: {
@@ -86,6 +88,7 @@ describe("RequestCart.vue", () => {
               title: "My word",
               formParams: {
                 AeonForm: "EADRequest",
+		            WebRequestForm: "EADRequest",
                 Request: ["1", "2"]
               },
             } ],
@@ -100,12 +103,16 @@ describe("RequestCart.vue", () => {
     const { container } = render(RequestCart, {
       store: customStore,
       props: {
-        configuration: {}
+        configuration: {},
+        globalFormParams: {
+          "SystemID": "Pulfa"
+        }
       }
     })
 
     const form = container.querySelector("form#request-cart-form")
     expect(form.querySelector("input[name='AeonForm'][value='EADRequest']")).not.toBe(null)
+    expect(form.querySelector("input[name='WebRequestForm'][value='EADRequest']")).not.toBe(null)
     expect(form.querySelector("input[name='Request'][value='1']")).not.toBe(null)
     expect(form.querySelector("input[name='Request'][value='2']")).not.toBe(null)
     const noteInput = form.querySelector("textarea[name='Notes']")
@@ -122,7 +129,9 @@ describe("RequestCart.vue", () => {
     await fireEvent.submit(form)
 
     // shadow form is populated
+    expect(shadowForm.querySelector("input[name='SystemID'][value='Pulfa']")).not.toBe(null)
     expect(shadowForm.querySelector("input[name='AeonForm'][value='EADRequest']")).not.toBe(null)
+    expect(shadowForm.querySelector("input[name='WebRequestForm'][value='EADRequest']")).not.toBe(null)
     expect(shadowForm.querySelector("input[name='Notes']")).not.toBe(null)
 
     // shadow form was submitted

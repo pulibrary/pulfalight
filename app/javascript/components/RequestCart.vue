@@ -144,6 +144,10 @@
     <form id="shadow-form" method="post" :action="configuration.url"
                            ref="shadowForm">
       <div class="hidden">
+        <template v-for="(form_values, field_name) in globalFormParams">
+          <input :id="field_name" :name="field_name" type="hidden"
+                                                     :value="form_values"></input>
+        </template>
         <template v-for="(request, requestIndex) in shadowRequests">
           <template v-for="(form_values, field_name) in request.formParams">
             <div v-if="Array.isArray(form_values)">
@@ -188,6 +192,11 @@ export default {
   },
   props: {
     configuration: {
+      type: Object,
+      required: true,
+      default: () => {}
+    },
+    globalFormParams: {
       type: Object,
       required: true,
       default: () => {}

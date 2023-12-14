@@ -1,11 +1,12 @@
 # request_url: 'https://lib-aeon.princeton.edu/aeon/Aeon.dll'
-request_url: 'https://princeton.aeon.atlas-sys.com/logon?Action=11&Type=200'
+request_url: 'https://princeton.aeon.atlas-sys.com/logon'
 request_mappings:
   static:
     Notes: ''
     scheduledDate: ''
     SystemID: 'Pulfa'
     UserReview: 'No'
+    AeonForm: 'EADRequest'
     WebRequestForm: 'EADRequest'
     RequestType: 'Loan'
     GroupingIdentifier: 'ItemVolume'
