@@ -107,10 +107,6 @@
         <form id="request-cart-form" method="post" :action="configuration.url"
                                      v-on:submit.prevent="clearForm">
           <div class="hidden">
-            <template v-for="(form_values, field_name) in globalFormParams">
-              <input :id="field_name" :name="field_name" type="hidden"
-                                                         :value="form_values"></input>
-            </template>
             <template v-for="(request, requestIndex) in requests">
               <template v-for="(form_values, field_name) in request.formParams">
                 <div v-if="Array.isArray(form_values)">
