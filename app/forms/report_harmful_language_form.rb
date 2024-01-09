@@ -7,7 +7,7 @@ class ReportHarmfulLanguageForm
   validates :email, email: true, allow_blank: true
 
   def submit
-    ContactMailer.with(form: self).report.deliver
+    ContactMailer.with(form_params: as_json.except("validation_context", "errors"), form_class: self.class).report.deliver_later
     @submitted = true
     @name = ""
     @email = ""

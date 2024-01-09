@@ -7,7 +7,7 @@ class SuggestACorrectionForm
   validates :email, email: true
 
   def submit
-    ContactMailer.with(form: self).suggest.deliver
+    ContactMailer.with(form_params: as_json.except("validation_context", "errors"), form_class: self.class).suggest.deliver_later
     @submitted = true
     @name = ""
     @email = ""

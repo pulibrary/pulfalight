@@ -26,7 +26,7 @@ class AskAQuestionForm
   end
 
   def submit
-    ContactMailer.with(form: self).contact.deliver
+    ContactMailer.with(form_params: as_json.except("validation_context", "errors"), form_class: self.class).contact.deliver_later
     @submitted = true
     @name = ""
     @email = ""
