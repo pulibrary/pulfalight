@@ -36,6 +36,35 @@ job "pulfalight" {
       }
     }
   }
+  group "solr" {
+    count = 1
+    network {
+      port "solr" {
+        static = 9000
+        to = 8983
+      }
+    }
+    service {
+      port = "solr"
+      check {
+        type = "tcp"
+        port = "solr"
+        interval = "10s"
+        timeout  = "1s"
+      }
+    }
+    task "solrcloud" {
+      driver = "podman"
+      config {
+        image = "docker.io/library/solr:8.4"
+        command = "bash"
+        /* args = ["-c", "mkdir /tmp/pulfalight && precreate-core gettingstarted && solr-foreground"] */
+        /* command = "bash" */
+        args    = ["-c", "mkdir /tmp/pulfalight && wget -O /tmp/pulfalight/schema.xml \"https://raw.githubusercontent.com/pulibrary/pulfalight/main/solr/conf/schema.xml\" && wget -O /tmp/pulfalight/solrconfig.xml \"https://raw.githubusercontent.com/pulibrary/pulfalight/main/solr/conf/solrconfig.xml\" && wget -O /tmp/pulfalight/synonyms.txt \"https://raw.githubusercontent.com/pulibrary/pulfalight/main/solr/conf/synonyms.txt\" && wget -O /tmp/pulfalight/stopwords.txt \"https://raw.githubusercontent.com/pulibrary/pulfalight/main/solr/conf/stopwords.txt\" && wget -O /tmp/pulfalight/protwords.txt \"https://raw.githubusercontent.com/pulibrary/pulfalight/main/solr/conf/protwords.txt\" && solr-precreate pulfalight /tmp/pulfalight"]
+        ports = ["solr"]
+      }
+    }
+  }
   group "web" {
     count = 1
     network {
@@ -62,6 +91,10 @@ job "pulfalight" {
         image = "ghcr.io/pulibrary/pulfalight:pr-1367"
         command = "bash"
         args    = ["-c", "bundle exec rake db:migrate"]
+        auth {
+          username = "${GITHUB_CONTAINER_REGISTRY_USERNAME}"
+          password = "${GITHUB_CONTAINER_REGISTRY_PASSWORD}"
+        }
       }
       template {
         destination = "secrets/secret.env"
@@ -126,10 +159,12 @@ job "pulfalight" {
         PULFALIGHT_DB_HOST={{ .Address }}
         lando_pulfalight_database_conn_port={{ .Port }}
         {{ end }}
+        {{- range service "pulfalight-solr" }}
+        SOLR_URL=http://{{ .Address }}:{{ .Port }}/solr/pulfalight
+        {{ end }}
         {{- with nomadVar "nomad/jobs/pulfalight" -}}
         PULFALIGHT_DB_USERNAME = {{ .DB_USERNAME }}
         PULFALIGHT_DB_PASSWORD = {{ .DB_PASSWORD }}
-        SOLR_URL=http://127.0.0.1:64934/solr/pulfalight-core-dev
         SECRET_KEY_BASE=1
         RAILS_SERVE_STATIC_FILES=true
         APPLICATION_PORT=8000
