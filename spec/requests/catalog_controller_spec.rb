@@ -51,6 +51,17 @@ describe "controller requests", type: :request do
         expect(ead_stub).to have_been_requested.once
         expect(search_stub).to have_been_requested.once
       end
+
+      it "works when the id has a dash but the ref has a dot" do
+        stub_aspace_login
+        stub_aspace_repositories
+        stub_search(repository_id: "13", resource_ids: ["AC198.10"]).last
+        stub_aspace_ead(resource_descriptions_uri: "repositories/13/resource_descriptions/AC198.10", ead: "generated/univarchives/AC198.10.processed.EAD.xml")
+
+        get "/catalog/AC198-10_c6.xml"
+
+        expect(response).to be_successful
+      end
       it "can be requested to not include containers" do
         stub_aspace_login
         stub_aspace_repositories
