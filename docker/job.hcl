@@ -66,12 +66,21 @@ job "pulfalight" {
     }
   }
   group "web" {
-    count = 1
+    count = 2
     network {
       port "http" { to = 8000 }
     }
+    update {
+      max_parallel     = 1
+      canary           = 1
+      min_healthy_time = "30s"
+      auto_revert      = true
+      auto_promote     = false
+    }
     service {
       port = "http"
+      tags = ["deploy"]
+      canary_tags = ["canary"]
       check {
         type = "http"
         port = "http"
