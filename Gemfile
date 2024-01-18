@@ -35,6 +35,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "benchmark-ips"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "debug", "~> 1.8"
   gem "rails-controller-testing"
   gem "rspec-rails", "~> 5.0"
   gem "ruby-prof"
@@ -112,5 +113,3 @@ gem "net-smtp", require: false
 gem "strscan", "3.0.1"
 
 gem "vite_rails", "~> 3.0"
-
-gem "debug", "~> 1.8"
