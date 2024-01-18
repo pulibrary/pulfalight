@@ -66,6 +66,10 @@ job "pulfalight" {
     }
   }
   group "web" {
+    # Forces re-pulling the image on job deploy.
+    meta {
+      uuid = uuidv4()
+    }
     count = 2
     network {
       port "http" { to = 8000 }
@@ -100,6 +104,7 @@ job "pulfalight" {
         image = "ghcr.io/pulibrary/pulfalight:pr-1367"
         command = "bash"
         args    = ["-c", "bundle exec rake db:migrate"]
+        force_pull = true
         auth {
           username = "${GITHUB_CONTAINER_REGISTRY_USERNAME}"
           password = "${GITHUB_CONTAINER_REGISTRY_PASSWORD}"
@@ -143,6 +148,7 @@ job "pulfalight" {
       config {
         image = "ghcr.io/pulibrary/pulfalight:pr-1367"
         ports = ["http"]
+        force_pull = true
         auth {
           username = "${GITHUB_CONTAINER_REGISTRY_USERNAME}"
           password = "${GITHUB_CONTAINER_REGISTRY_PASSWORD}"
