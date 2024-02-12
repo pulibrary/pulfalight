@@ -1,7 +1,7 @@
 $( document ).ready(function() {
   const url = new URL(window.location);
   $(".lux-tabs-container li").removeClass( "active" );
-  if(!url.href.includes("_") && !url.hash){
+  if(!url.href.includes("_") && !url.hash && $("#component-summary").length == 0){
     url.hash = '#summary';
   }
   switch (url.hash) {

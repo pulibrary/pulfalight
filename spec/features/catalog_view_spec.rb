@@ -13,6 +13,10 @@ describe "viewing catalog records", type: :feature, js: true do
       visit "catalog/C1588_c9"
       expect(page).to have_css(".document-title > h2", text: "Unused AIC Supply Request Form, circa 1885")
     end
+    it "renders components that don't have the parent in the name" do
+      visit "/catalog/ref312"
+      expect(page).to have_css(".document-title > h2", text: "Mittens for Kittens")
+    end
     it "renders content warning headings that were inherited" do
       visit "catalog/TC040_c00002"
 
