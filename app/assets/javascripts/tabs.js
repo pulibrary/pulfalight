@@ -1,7 +1,18 @@
+function isCollectionLandingPage(url) {
+  // If there's an underscore it's a component page
+  if(url.href.includes("_"))
+    return false;
+  // If there's a component summary it's a component page.
+  else if($("#component-summary").length > 0)
+    return false;
+  else
+    return true;
+}
 $( document ).ready(function() {
   const url = new URL(window.location);
   $(".lux-tabs-container li").removeClass( "active" );
-  if(!url.href.includes("_") && !url.hash){
+  // Default to summary tab if it's a collection landing page.
+  if(!url.hash && isCollectionLandingPage(url)){
     url.hash = '#summary';
   }
   switch (url.hash) {
