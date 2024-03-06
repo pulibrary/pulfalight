@@ -69,5 +69,6 @@
     "transformIgnorePatterns": [
       "<rootDir>/node_modules/(?!vue)"
     ]
-  }
+  },
+  "packageManager": "yarn@1.22.21"
 }
