@@ -334,6 +334,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.4-aarch64-linux)
       racc (~> 1.4)
+    nokogiri (1.15.4-x86_64-linux)
+      racc (~> 1.4)
     omniauth (1.9.2)
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
@@ -620,6 +622,7 @@ GEM
 PLATFORMS
   aarch64-linux
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   archivesspace-client

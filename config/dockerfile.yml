@@ -2,5 +2,6 @@
 
 ---
 options:
+  compose: true
   nginx: true
   parallel: true

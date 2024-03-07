@@ -1,0 +1,62 @@
+version: "3.8"
+services:
+  web:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-${UID:-1000}}
+    ports:
+      - "3000:3000"
+    environment:
+      - SECRET_KEY_BASE=1111111
+      - REDIS_URL=redis://redis-db:6379
+      - DB_HOST=postgres-db
+      - DB_USERNAME=root
+      - DB_PASSWORD=password
+      - DB_NAME=pulfalight
+      - DATABASE_URL=postgres://root:password@postgres-db/
+      - SOLR_URL=http://solr:8983/solr/core
+    depends_on:
+      redis-db:
+        condition: service_started
+      postgres-db:
+        condition: service_healthy
+      solr:
+        condition: service_started
+  solr:
+    image: "solr:8.4"
+    volumes:
+      - "./solr/conf:/core/conf"
+    command: "solr-precreate core /core"
+
+  postgres-db:
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: pg_isready
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+  redis-db:
+    image: redis
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq
+    environment:
+      - RAILS_MASTER_KEY=$RAILS_MASTER_KEY
+      - REDIS_URL=redis://redis-db:6379
+      - DATABASE_URL=postgres://root:password@postgres-db/
+    depends_on:
+      redis-db:
+        condition: service_started
+      postgres-db:
+        condition: service_healthy

@@ -5,11 +5,11 @@ default: &default
   pool: <%= Integer(ENV.fetch("DB_POOL", 40)) %>
   reaping_frequency: <%= Integer(ENV.fetch("DB_REAPING_FREQUENCY", 10)) %>
   timeout: 5000
-  host: <%= ENV["lando_pulfalight_database_conn_host"] || ENV["PULFALIGHT_DB_HOST"] || "localhost" %>
-  port: <%= ENV["lando_pulfalight_database_conn_port"] || 5432 %>
-  username: <%= ENV["lando_pulfalight_database_creds_user"] || ENV["PULFALIGHT_DB_USERNAME"] %>
-  password: <%= ENV["lando_pulfalight_database_creds_password"] || ENV["PULFALIGHT_DB_PASSWORD"] %>
-  database: <%= ENV['PULFALIGHT_DB'] %>
+  host: <%= ENV["lando_pulfalight_database_conn_host"] || ENV["PULFALIGHT_DB_HOST"] || ENV["DB_HOST"] || "localhost" %>
+  port: <%= ENV["lando_pulfalight_database_conn_port"] || ENV["DB_PORT"] || 5432 %>
+  username: <%= ENV["lando_pulfalight_database_creds_user"] || ENV["PULFALIGHT_DB_USERNAME"] || ENV["DB_USERNAME"] %>
+  password: <%= ENV["lando_pulfalight_database_creds_password"] || ENV["PULFALIGHT_DB_PASSWORD"] || ENV["DB_PASSWORD"] %>
+  database: <%= ENV['PULFALIGHT_DB'] || ENV["DB_NAME"] %>
 
 development:
   <<: *default
