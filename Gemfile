@@ -114,4 +114,4 @@ gem "strscan", "3.0.1"
 
 gem "vite_rails", "~> 3.0"
 
-gem "dockerfile-rails", ">= 1.6", :group => :development
+gem "dockerfile-rails", ">= 1.6", group: :development
