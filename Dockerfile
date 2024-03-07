@@ -121,6 +121,8 @@ EOF
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
+RUN mkdir /rails/tmp/pids
+
 # Run and own only the runtime files as a non-root user for security
 ARG UID=1000 \
     GID=1000
