@@ -10,7 +10,8 @@ services:
       - "3000:3000"
     environment:
       - SECRET_KEY_BASE=1111111
-      - REDIS_URL=redis://redis-db:6379
+      - REDIS_URL=redis-db
+      - REDIS_PORT=6379
       - DB_HOST=postgres-db
       - DB_USERNAME=root
       - DB_PASSWORD=password
@@ -52,9 +53,15 @@ services:
     build: .
     command: bundle exec sidekiq
     environment:
-      - RAILS_MASTER_KEY=$RAILS_MASTER_KEY
-      - REDIS_URL=redis://redis-db:6379
+      - SECRET_KEY_BASE=1111111
+      - REDIS_URL=redis-db
+      - REDIS_PORT=6379
+      - DB_HOST=postgres-db
+      - DB_USERNAME=root
+      - DB_PASSWORD=password
+      - DB_NAME=pulfalight
       - DATABASE_URL=postgres://root:password@postgres-db/
+      - SOLR_URL=http://solr:8983/solr/core
     depends_on:
       redis-db:
         condition: service_started
