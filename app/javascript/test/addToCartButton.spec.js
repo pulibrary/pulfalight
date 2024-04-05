@@ -1,9 +1,9 @@
 import { render, fireEvent } from '@testing-library/vue'
-import AddToCartButton from "components/AddToCartButton"
+import AddToCartButton from "@/components/AddToCartButton.vue"
 
 describe("AddToCartButton.vue", () => {
   test("Adding to cart", async () => {
-    const addItemToCart = jest.fn()
+    const addItemToCart = vi.fn()
     const store = {
       actions: {
         "addItemToCart": addItemToCart

@@ -7,4 +7,12 @@ export default defineConfig({
     RubyPlugin(),
     vue(),
   ],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: ['./test/setup.js'],
+    alias: {
+      '@/': './app/javascript'
+    }
+  },
 })
