@@ -1,5 +1,5 @@
-import RequestCart from "components/RequestCart"
-import { cartMutations, cartActions } from "store/cart/index"
+import RequestCart from "@/components/RequestCart.vue"
+import { cartMutations, cartActions } from "@/store/cart/index.es6"
 import { render, fireEvent } from '@testing-library/vue'
 
 describe("RequestCart.vue", () => {
@@ -119,12 +119,11 @@ describe("RequestCart.vue", () => {
     noteInput.value = "Test Note"
 
     const shadowForm = container.querySelector("form#shadow-form")
-    const submitMock = jest.fn()
-    shadowForm.addEventListener("submit", (event) => {
-      // can't actually submit a form in a test
-      event.preventDefault()
-      submitMock()
-    })
+    let submittedForm = null
+    const submitMock = function() {
+      submittedForm = this
+    }
+    window.HTMLFormElement.prototype.submit = submitMock
 
     await fireEvent.submit(form)
 
@@ -135,7 +134,7 @@ describe("RequestCart.vue", () => {
     expect(shadowForm.querySelector("input[name='Notes']")).not.toBe(null)
 
     // shadow form was submitted
-    expect(submitMock).toHaveBeenCalled()
+    expect(submittedForm.id).toBe('shadow-form')
 
     // cart is empty
     const button = container.querySelector("button[type='submit']")

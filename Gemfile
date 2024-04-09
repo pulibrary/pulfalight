@@ -118,4 +118,4 @@ gem "net-pop", require: false
 gem "net-smtp", require: false
 gem "strscan", "3.0.1"
 
-gem "vite_rails", "~> 3.0"
+gem "vite_rails"

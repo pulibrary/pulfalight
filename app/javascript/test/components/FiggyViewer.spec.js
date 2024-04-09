@@ -1,10 +1,10 @@
-import FiggyViewer from "components/FiggyViewer"
+import FiggyViewer from "@/components/FiggyViewer.vue"
 import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
 
 describe("FiggyViewer.vue", () => {
   function stubQuery(embedHash) {
-    global.fetch = jest.fn(() =>
+    global.fetch = vi.fn(() =>
       Promise.resolve({
         status: 200,
         json: () => Promise.resolve(

@@ -1,9 +1,9 @@
-import CartViewToggle from "components/CartViewToggle"
+import CartViewToggle from "@/components/CartViewToggle.vue"
 import { render, fireEvent } from '@testing-library/vue'
 
 describe("CartViewToggle.vue", () => {
   test("Toggling cart", async () => {
-    const toggleVisibility = jest.fn()
+    const toggleVisibility = vi.fn()
     const store = {
       state: {
         cart: {
@@ -19,7 +19,7 @@ describe("CartViewToggle.vue", () => {
     await fireEvent.click(button)
     expect(toggleVisibility).toHaveBeenCalled()
 
-    count = container.getElementsByClassName("badge")[0]
+    let count = container.getElementsByClassName("badge")[0]
     expect(count.textContent.trim()).toBe("1")
   })
 })
