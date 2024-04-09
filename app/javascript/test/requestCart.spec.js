@@ -32,7 +32,10 @@ describe("RequestCart.vue", () => {
     const { container } = render(RequestCart, {
       store: customStore,
       props: {
-        configuration: {}
+        configuration: {},
+        globalFormParams: {
+          SystemID: 'Pulfa'
+        }
       }
     })
     const notes = container.querySelector(".request__location-notes")
@@ -70,7 +73,10 @@ describe("RequestCart.vue", () => {
     const { container } = render(RequestCart, {
       store: customStore,
       props: {
-        configuration: {}
+        configuration: {},
+        globalFormParams: {
+          SystemID: 'Pulfa'
+        }
       }
     })
     const notes = container.querySelector(".request__location-notes")
