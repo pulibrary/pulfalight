@@ -1,103 +1,32 @@
-import RequestCart from "@/components/RequestCart.vue"
-import { cartMutations, cartActions } from "@/store/cart/index.es6"
+import RequestCart from '@/components/RequestCart.vue'
+import { cartMutations, cartActions } from '@/store/cart/index.es6'
 import { render, fireEvent } from '@testing-library/vue'
 
-describe("RequestCart.vue", () => {
-  test("Rendering locations", async () => {
+describe('RequestCart.vue', () => {
+  test('Rendering locations', async () => {
     const customStore = {
       modules: {
         cart: {
           state: {
-            items: [ {
-              title: "My word",
+            items: [{
+              title: 'My word',
               formParams: {
-                AeonForm: "EADRequest",
-            		WebRequestForm: "EADRequest",
-                Request: ["1", "2"]
+                AeonForm: 'EADRequest',
+                WebRequestForm: 'EADRequest',
+                Request: ['1', '2']
               },
               location: {
                 notes: "It's far away",
-                label: "Firestone Library",
-                url: "https://example.com"
+                label: 'Firestone Library',
+                url: 'https://example.com'
               }
-            } ],
+            }],
             isVisible: true
           },
           actions: cartActions,
           mutations: cartMutations
         }
-      },
-    }
-
-    const { container } = render(RequestCart, {
-      store: customStore,
-      props: {
-        configuration: {}
       }
-    })
-    const notes = container.querySelector(".request__location-notes")
-    expect(notes.textContent).toMatch("It's far away")
-    const locationInfo = container.querySelector(".request__location")
-    expect(locationInfo.textContent).toMatch("View this item at the Firestone Library")
-    expect(locationInfo.querySelector("a").attributes["href"].value).toBe("https://example.com")
-  })
-  test("Rendering locations with no url", async () => {
-    const customStore = {
-      modules: {
-        cart: {
-          state: {
-            items: [ {
-              title: "My word",
-              formParams: {
-                AeonForm: "EADRequest",
-		            WebRequestForm: "EADRequest",
-                Request: ["1", "2"]
-              },
-              location: {
-                notes: "It's far away",
-                label: "Firestone Library",
-                url: null
-              }
-            } ],
-            isVisible: true
-          },
-          actions: cartActions,
-          mutations: cartMutations
-        }
-      },
-    }
-
-    const { container } = render(RequestCart, {
-      store: customStore,
-      props: {
-        configuration: {}
-      }
-    })
-    const notes = container.querySelector(".request__location-notes")
-    expect(notes.textContent).toMatch("It's far away")
-    const locationInfo = container.querySelector(".request__location")
-    expect(locationInfo.textContent).toMatch("View this item at the Firestone Library")
-    expect(locationInfo.querySelector("a")).toBe(null)
-  })
-  test("Submitting cart", async () => {
-    const customStore = {
-      modules: {
-        cart: {
-          state: {
-            items: [ {
-              title: "My word",
-              formParams: {
-                AeonForm: "EADRequest",
-		            WebRequestForm: "EADRequest",
-                Request: ["1", "2"]
-              },
-            } ],
-            isVisible: true
-          },
-          actions: cartActions,
-          mutations: cartMutations
-        }
-      },
     }
 
     const { container } = render(RequestCart, {
@@ -105,22 +34,99 @@ describe("RequestCart.vue", () => {
       props: {
         configuration: {},
         globalFormParams: {
-          "SystemID": "Pulfa"
+          SystemID: 'Pulfa'
+        }
+      }
+    })
+    const notes = container.querySelector('.request__location-notes')
+    expect(notes.textContent).toMatch("It's far away")
+    const locationInfo = container.querySelector('.request__location')
+    expect(locationInfo.textContent).toMatch('View this item at the Firestone Library')
+    expect(locationInfo.querySelector('a').attributes.href.value).toBe('https://example.com')
+  })
+  test('Rendering locations with no url', async () => {
+    const customStore = {
+      modules: {
+        cart: {
+          state: {
+            items: [{
+              title: 'My word',
+              formParams: {
+                AeonForm: 'EADRequest',
+                WebRequestForm: 'EADRequest',
+                Request: ['1', '2']
+              },
+              location: {
+                notes: "It's far away",
+                label: 'Firestone Library',
+                url: null
+              }
+            }],
+            isVisible: true
+          },
+          actions: cartActions,
+          mutations: cartMutations
+        }
+      }
+    }
+
+    const { container } = render(RequestCart, {
+      store: customStore,
+      props: {
+        configuration: {},
+        globalFormParams: {
+          SystemID: 'Pulfa'
+        }
+      }
+    })
+    const notes = container.querySelector('.request__location-notes')
+    expect(notes.textContent).toMatch("It's far away")
+    const locationInfo = container.querySelector('.request__location')
+    expect(locationInfo.textContent).toMatch('View this item at the Firestone Library')
+    expect(locationInfo.querySelector('a')).toBe(null)
+  })
+  test('Submitting cart', async () => {
+    const customStore = {
+      modules: {
+        cart: {
+          state: {
+            items: [{
+              title: 'My word',
+              formParams: {
+                AeonForm: 'EADRequest',
+                WebRequestForm: 'EADRequest',
+                Request: ['1', '2']
+              }
+            }],
+            isVisible: true
+          },
+          actions: cartActions,
+          mutations: cartMutations
+        }
+      }
+    }
+
+    const { container } = render(RequestCart, {
+      store: customStore,
+      props: {
+        configuration: {},
+        globalFormParams: {
+          SystemID: 'Pulfa'
         }
       }
     })
 
-    const form = container.querySelector("form#request-cart-form")
+    const form = container.querySelector('form#request-cart-form')
     expect(form.querySelector("input[name='AeonForm'][value='EADRequest']")).not.toBe(null)
     expect(form.querySelector("input[name='WebRequestForm'][value='EADRequest']")).not.toBe(null)
     expect(form.querySelector("input[name='Request'][value='1']")).not.toBe(null)
     expect(form.querySelector("input[name='Request'][value='2']")).not.toBe(null)
     const noteInput = form.querySelector("textarea[name='Notes']")
-    noteInput.value = "Test Note"
+    noteInput.value = 'Test Note'
 
-    const shadowForm = container.querySelector("form#shadow-form")
+    const shadowForm = container.querySelector('form#shadow-form')
     let submittedForm = null
-    const submitMock = function() {
+    const submitMock = function () {
       submittedForm = this
     }
     window.HTMLFormElement.prototype.submit = submitMock
@@ -138,6 +144,6 @@ describe("RequestCart.vue", () => {
 
     // cart is empty
     const button = container.querySelector("button[type='submit']")
-    expect(button.textContent.trim()).toBe("No Items in Your Cart")
+    expect(button.textContent.trim()).toBe('No Items in Your Cart')
   })
 })

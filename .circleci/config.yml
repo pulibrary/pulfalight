@@ -53,7 +53,7 @@ jobs:
           root: '~/pulfalight'
           paths: '*'
 
-  rubocop:
+  lint:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
@@ -77,10 +77,13 @@ jobs:
           paths:
             - ./vendor/bundle
 
-      # Lint
+      # Lint ruby
       - run:
           name: Run rubocop
           command: bundle exec rake rubocop
+
+      # Lint javascript
+      - run: yarn lint
 
   test:
     working_directory: ~/pulfalight
@@ -210,7 +213,7 @@ workflows:
       - test:
           requires:
             - build
-      - rubocop:
+      - lint:
           requires:
             - build
       - coverage_report:
@@ -229,7 +232,7 @@ workflows:
       - test:
           requires:
             - build
-      - rubocop:
+      - lint:
           requires:
             - build
       - coverage_report:
