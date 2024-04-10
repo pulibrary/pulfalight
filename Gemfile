@@ -79,10 +79,6 @@ group :development, :test do
   gem "database_cleaner"
 end
 
-source "https://gems.contribsys.com/" do
-  gem "sidekiq-pro"
-end
-
 gem "archivesspace-client"
 gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
 gem "blacklight", "7.29.0"
@@ -97,10 +93,10 @@ gem "jquery-rails"
 gem "omniauth-cas"
 gem "pg"
 gem "popper_js"
-gem "redis-namespace"
 gem "rsolr", ">= 1.0", "< 3"
 gem "rubytree"
 gem "rubyzip", ">= 1.3.0"
+gem "sidekiq", "~> 6.5"
 gem "twitter-typeahead-rails", "0.11.1.pre.corejavascript"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "whenever", require: false
