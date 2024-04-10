@@ -8,6 +8,19 @@ Rails.application.config.after_initialize do
     config.add_custom_provider(AspaceStatus)
     config.add_custom_provider(SmtpStatus)
 
+    # monitor all the queues for latency
+    # The gem also comes with some additional default monitoring,
+    # e.g. it ensures that there are running workers
+    config.sidekiq.configure do |sidekiq_config|
+      sidekiq_config.latency = 2.days
+      sidekiq_config.queue_size = 1_000_000
+      sidekiq_config.maximum_amount_of_retries = 17
+      sidekiq_config.add_queue_configuration("high", latency: 2.days, queue_size: 1_000_000)
+      sidekiq_config.add_queue_configuration("mailers", latency: 1.day, queue_size: 100)
+      sidekiq_config.add_queue_configuration("low", latency: 2.days, queue_size: 1_000_000)
+      sidekiq_config.add_queue_configuration("super_low", latency: 2.days, queue_size: 1_000_000)
+    end
+
     # Make this health check available at /health
     config.path = :health
 
