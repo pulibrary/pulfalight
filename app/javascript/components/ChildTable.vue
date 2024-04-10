@@ -24,7 +24,6 @@
 </template>
 
 <script>
-import system from 'lux-design-system'
 import PulfaDataTable from './PulfaDataTable.vue'
 export default {
   name: "ChildTable",

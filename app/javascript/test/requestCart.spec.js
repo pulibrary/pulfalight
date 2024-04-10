@@ -1,6 +1,9 @@
 import RequestCart from '@/components/RequestCart.vue'
 import { cartMutations, cartActions } from '@/store/cart/index.es6'
 import { render, fireEvent } from '@testing-library/vue'
+import { store } from '@/store/index.es6'
+import { createStore } from 'vuex'
+import { LuxInputButton, LuxInputText } from 'lux-design-system'
 
 describe('RequestCart.vue', () => {
   test('Rendering locations', async () => {
@@ -29,7 +32,11 @@ describe('RequestCart.vue', () => {
       }
     }
 
+    const mergedStore = createStore({ ...store, ...customStore })
     const { container } = render(RequestCart, {
+      global: {
+        plugins: [mergedStore]
+      },
       store: customStore,
       props: {
         configuration: {},
@@ -70,8 +77,11 @@ describe('RequestCart.vue', () => {
       }
     }
 
+    const mergedStore = createStore({ ...store, ...customStore })
     const { container } = render(RequestCart, {
-      store: customStore,
+      global: {
+        plugins: [mergedStore]
+      },
       props: {
         configuration: {},
         globalFormParams: {
@@ -106,8 +116,15 @@ describe('RequestCart.vue', () => {
       }
     }
 
+    const mergedStore = createStore({ ...store, ...customStore })
     const { container } = render(RequestCart, {
-      store: customStore,
+      global: {
+        plugins: [mergedStore],
+        components: {
+          'lux-input-button': LuxInputButton,
+          'lux-input-text': LuxInputText
+        }
+      },
       props: {
         configuration: {},
         globalFormParams: {

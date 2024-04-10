@@ -6,8 +6,8 @@
         </div>
       </template>
       <template v-if="embedType === 'link'">
-        <hyperlink :href="embedContent" variation="button solid"
-                                       size="large">{{ linkLabel }}</hyperlink>
+        <lux-hyperlink :href="embedContent" variation="button solid"
+                                       size="large">{{ linkLabel }}</lux-hyperlink>
       </template>
     </template>
     <template v-else-if="embedStatus === 'unauthenticated'">
@@ -97,6 +97,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "lux-design-system/dist/system/tokens/tokens.scss";
-@import "lux-design-system/dist/system/system.utils.scss";
 </style>

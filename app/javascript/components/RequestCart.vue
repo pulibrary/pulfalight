@@ -9,8 +9,8 @@
 
         <caption>
 
-          <input-button
-            v-on:button-clicked="toggleCartView($event)"
+          <lux-input-button
+            v-on:click="toggleCartView($event)"
             width="26px"
             type="button"
             variation="text"
@@ -33,7 +33,7 @@
                 <x-circle-icon></x-circle-icon>
               </svg>
             </div>
-          </input-button>
+          </lux-input-button>
 
           <div class="caption-title">
             <span>Request Cart</span>
@@ -56,10 +56,9 @@
         </thead>
 
         <tbody>
-          <template v-for="(item, index) in requests">
-
+          <template v-for="(item, index) in requests" key="index"
+            >
             <tr
-              :key="index"
               :id="'item-' + item.callnumber"
               class="lux-cartItem request"
               >
@@ -69,13 +68,13 @@
                 {{ item.containers }}
               </td>
               <td>
-                <input-button
-                  @button-clicked="removeFromCart(item)"
+                <lux-input-button
+                  @click="removeFromCart(item)"
                   type="button"
                   variation="outline"
                   >
                   Remove
-                </input-button>
+                </lux-input-button>
               </td>
             </tr>
 
@@ -122,7 +121,7 @@
           </div>
 
           <div id="request-notes-wrapper">
-            <input-text
+            <lux-input-text
               id="request-notes"
               label="Notes"
               name="Notes"
@@ -134,9 +133,9 @@
               v-model="note"
             />
           </div>
-          <input-button type="submit" variation="solid" :disabled="requests.length == 0" block>
+          <lux-input-button type="submit" variation="solid" :disabled="requests.length == 0" block>
             {{ requestButtonText() }}
-          </input-button>
+          </lux-input-button>
         </form>
       </div>
     </div>
@@ -264,8 +263,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "lux-design-system/dist/system/tokens/tokens.scss";
-@import "lux-design-system/dist/system/system.utils.scss";
+@import "lux-design-system/dist/style.scss";
 #request-notes-wrapper {
   width: 100%;
   margin-left: 0.25rem;

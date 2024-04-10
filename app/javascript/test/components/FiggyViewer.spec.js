@@ -1,6 +1,7 @@
 import FiggyViewer from '@/components/FiggyViewer.vue'
 import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
+import { LuxHyperlink } from 'lux-design-system'
 
 describe('FiggyViewer.vue', () => {
   function stubQuery (embedHash) {
@@ -53,6 +54,11 @@ describe('FiggyViewer.vue', () => {
     })
 
     const wrapper = await mount(FiggyViewer, {
+      global: {
+        components: {
+          'lux-hyperlink': LuxHyperlink
+        }
+      },
       propsData: {
         componentId,
         daoLabel: '',
@@ -86,6 +92,11 @@ describe('FiggyViewer.vue', () => {
     })
 
     const wrapper = await mount(FiggyViewer, {
+      global: {
+        components: {
+          'lux-hyperlink': LuxHyperlink
+        }
+      },
       propsData: {
         componentId,
         daoLabel: '',
@@ -106,6 +117,11 @@ describe('FiggyViewer.vue', () => {
     })
 
     const wrapper = await mount(FiggyViewer, {
+      global: {
+        components: {
+          'lux-hyperlink': LuxHyperlink
+        }
+      },
       propsData: {
         componentId,
         daoLabel: '',
@@ -127,6 +143,11 @@ describe('FiggyViewer.vue', () => {
     })
 
     const wrapper = await mount(FiggyViewer, {
+      global: {
+        components: {
+          'lux-hyperlink': LuxHyperlink
+        }
+      },
       propsData: {
         componentId,
         daoLabel: 'Download Zip File',
@@ -148,6 +169,11 @@ describe('FiggyViewer.vue', () => {
     })
 
     const wrapper = await mount(FiggyViewer, {
+      global: {
+        components: {
+          'lux-hyperlink': LuxHyperlink
+        }
+      },
       propsData: {
         componentId,
         daoLabel: 'Download Zip File',

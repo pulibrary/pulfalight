@@ -1,7 +1,7 @@
 <template>
-  <input-button type="button" variation="text" v-on:button-clicked="addToCart">
+  <lux-input-button role="button" type="button" variation="text" v-on:click="addToCart">
     <slot />
-  </input-button>
+  </lux-input-button>
 </template>
 
 <script>
