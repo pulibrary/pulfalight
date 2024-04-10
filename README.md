@@ -10,12 +10,14 @@ This is an implementation of ArcLight being implemented as a replacement for the
 #### Setup
 * Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
 * See .tool-versions for language version requirements (ruby, nodejs)
+* `bin/setup_keys`
 
 ```sh
 bundle install
 yarn install
 ```
 (Remember you'll need to run the above commands on an ongoing basis as dependencies are updated.)
+
 
 #### Starting / stopping services
 We use lando to run services required for both test and development
