@@ -403,8 +403,6 @@ GEM
     rdoc (6.6.0)
       psych (>= 4.0.0)
     redis (4.8.1)
-    redis-namespace (1.11.0)
-      redis (>= 4)
     regexp_parser (2.8.1)
     reline (0.4.1)
       io-console (~> 0.5)
@@ -616,7 +614,7 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
-  arm64-darwin-21
+  ruby
 
 DEPENDENCIES
   archivesspace-client
@@ -666,7 +664,6 @@ DEPENDENCIES
   puma (~> 5.6)
   rails (~> 6.1)
   rails-controller-testing
-  redis-namespace
   rsolr (>= 1.0, < 3)
   rspec-rails (~> 5.0)
   rspec_junit_formatter

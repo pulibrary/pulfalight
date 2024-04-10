@@ -18,9 +18,6 @@ services:
     type: postgres:15
     portforward: true
     app_mount: false
-  pulfalight_redis:
-    type: redis:7
-    portforward: true
 proxy:
   pulfalight_test_solr:
     - pulfalight.test.solr.lndo.site:8983
