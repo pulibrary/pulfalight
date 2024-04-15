@@ -1,7 +1,8 @@
 <template>
   <div class="cart-wrapper">
-    <input-button
-      v-on:button-clicked="toggleCartView($event)"
+    <lux-input-button
+      v-on:click="toggleCartView($event)"
+      role="button"
       type="button"
       variation="text"
       hideLabel
@@ -9,7 +10,7 @@
       <lux-icon-base width="30" height="30" icon-name="CartViewToggle" icon-color="#ffffff">
         <cart-icon></cart-icon>
       </lux-icon-base>
-    </input-button>
+    </lux-input-button>
     <span class="badge" id="count"> {{ items.length }} </span>
   </div>
 </template>
@@ -38,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "lux-design-system/dist/system/tokens/tokens.scss";
+@import "lux-design-system/dist/style.scss";
 #count {
   font-size: 12px;
   font-family: $font-family-text;

@@ -1,11 +1,11 @@
 import { defineConfig } from 'vite'
 import RubyPlugin from 'vite-plugin-ruby'
-import vue from '@vitejs/plugin-vue2'
+import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   plugins: [
     RubyPlugin(),
-    vue(),
+    vue()
   ],
   test: {
     globals: true,
@@ -15,4 +15,9 @@ export default defineConfig({
       '@/': './app/javascript'
     }
   },
+  resolve: {
+    alias: {
+      vue: 'vue/dist/vue.esm-bundler'
+    }
+  }
 })

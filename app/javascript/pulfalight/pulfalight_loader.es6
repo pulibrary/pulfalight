@@ -1,9 +1,8 @@
-import Vue from 'vue/dist/vue.esm'
+import {createApp} from "vue"
+import lux from "lux-design-system"
+import "lux-design-system/dist/style.css"
 import Vuex from "vuex"
-import system from 'lux-design-system'
-import "lux-design-system/dist/system/system.css"
-import "lux-design-system/dist/system/tokens/tokens.scss"
-import store from '@/store/index.es6'
+import { store } from '@/store/index.es6'
 import RequestCart from '@/components/RequestCart.vue'
 import AddToCartButton from '@/components/AddToCartButton.vue'
 import AddToCartIcon from '@/components/AddToCartIcon.vue'
@@ -14,6 +13,7 @@ import ChildTable from "@/components/ChildTable.vue"
 import PulfaDataTable from "@/components/PulfaDataTable.vue"
 import FiggyViewer from "@/components/FiggyViewer.vue"
 import MediaQueries from "@/pulfalight/media_queries.es6"
+
 
 export default class {
   run() {
@@ -53,21 +53,21 @@ export default class {
   }
 
   setup_vue() {
-    Vue.use(system)
-    var elements = document.getElementsByClassName("lux")
-    for (var i = 0; i < elements.length; i++) {
-      new Vue({
-        el: elements[i],
-        store,
-        components: {
-          'request-cart': RequestCart,
-          'add-to-cart-button': AddToCartButton,
-          'add-to-cart-icon': AddToCartIcon,
-          'cart-view-toggle': CartViewToggle,
-          'child-table': ChildTable,
-          'figgy-viewer': FiggyViewer
-        }
-      })
+    const app = createApp({});
+    const createMyApp = () => createApp(app);
+
+    const elements = document.getElementsByClassName('lux')
+    for (let i = 0; i < elements.length; i++) {
+      createMyApp()
+        .use(lux)
+        .use(store)
+        .component('child-table', ChildTable)
+        .component('figgy-viewer', FiggyViewer)
+        .component('request-cart', RequestCart)
+        .component('cart-view-toggle', CartViewToggle)
+        .component('add-to-cart-button', AddToCartButton)
+        .component('add-to-cart-icon', AddToCartIcon)
+        .mount(elements[i])
     }
   }
 

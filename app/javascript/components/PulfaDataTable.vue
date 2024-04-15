@@ -8,10 +8,10 @@
     <thead>
       <tr>
         <th v-for="(col, index) in parsedColumns" scope="col" nowrap>
-          <input-button
+          <lux-input-button
             v-if="col.sortable"
             type="button"
-            v-on:button-clicked="sortTable(col)"
+            v-on:click="sortTable(col)"
             variation="text"
           >
             <lux-icon-base
@@ -24,7 +24,7 @@
               <lux-icon-descending v-if="col.ascending === false"></lux-icon-descending>
               <lux-icon-unsorted v-if="col.ascending === null"></lux-icon-unsorted>
             </lux-icon-base>
-            {{ displayName(col) }}</input-button
+            {{ displayName(col) }}</lux-input-button
           >
           <span v-else>{{ displayName(col) }}</span>
         </th>
@@ -66,9 +66,9 @@
           </div>
 
           <span v-else>
-            <hyperlink v-if="lineItem[col.name].link" :href="lineItem[col.name].link">
+            <lux-hyperlink v-if="lineItem[col.name].link" :href="lineItem[col.name].link">
               {{ lineItem[col.name].value }}
-            </hyperlink>
+            </lux-hyperlink>
             <span v-else>
               {{ lineItem[col.name].value }}
             </span>
@@ -280,8 +280,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "lux-design-system/dist/system/tokens/tokens.scss";
-@import "lux-design-system/dist/system/system.utils.scss";
+@import "lux-design-system/dist/style.scss";
 .lux-data-table {
   border-collapse: collapse;
   border-spacing: 0;

@@ -1,10 +1,10 @@
 <header class="lux">
-  <library-header app-name="<%= application_name %>" app-url="<%= root_path %>" max-width="1400">
+  <lux-library-header app-name="<%= application_name %>" app-url="<%= root_path %>" max-width="1400">
       <div class="cart-view-toggle-block">
         <cart-view-toggle></cart-view-toggle>
       </div>
       <%= render partial: 'shared/header_menu_dropdown' %>
-  </library-header>
+  </lux-library-header>
   <% unless params[:action] == 'error' || params[:action] == 'generate' %>
     <div class="header__secondary<%= " py-lg-5 home-header" if on_home_page? %>">
       <nav class="container" role="navigation">

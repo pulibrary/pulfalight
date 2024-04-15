@@ -64,36 +64,36 @@
         </div>
       <% end %>
     <div>
-      <input-button id="question-button" class="sticky-button" type="button" variation="text" data-toggle="modal" data-target="#questionModal">
+      <lux-input-button id="question-button" class="sticky-button" type="button" variation="text" data-toggle="modal" data-target="#questionModal">
         <lux-icon-base icon-name="question" width="16" height="16">
           <lux-icon-question></lux-icon-question>
         </lux-icon-base>
         <span>
           Ask A Question
         </span>
-      </input-button>
+      </lux-input-button>
       <%= render "question_modal" %>
     </div>
     <div>
-      <input-button id="correction-button" class="sticky-button" type="button" variation="text" data-toggle="modal" data-target="#correctionModal">
+      <lux-input-button id="correction-button" class="sticky-button" type="button" variation="text" data-toggle="modal" data-target="#correctionModal">
         <lux-icon-base icon-name="correction-button-exclamation" width="16" height="16">
           <lux-icon-exclamation></lux-icon-exclamation>
         </lux-icon-base>
         <span>
           Suggest A Correction
         </span>
-      </input-button>
+      </lux-input-button>
       <%= render "correction_modal" %>
     </div>
     <div>
-      <input-button id="harmful-language-button" class="sticky-button" type="button" variation="text" data-toggle="modal" data-target="#harmfulLanguageModal">
+      <lux-input-button id="harmful-language-button" class="sticky-button" type="button" variation="text" data-toggle="modal" data-target="#harmfulLanguageModal">
         <lux-icon-base icon-name="exclamation" width="16" height="16">
           <lux-icon-exclamation></lux-icon-exclamation>
         </lux-icon-base>
         <span>
           Report Harmful Language or Content
         </span>
-      </input-button>
+      </lux-input-button>
       <%= render "harmful_language_modal" %>
     </div>
   </nav>

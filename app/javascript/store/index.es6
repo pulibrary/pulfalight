@@ -1,19 +1,17 @@
-import Vue from 'vue/dist/vue.esm'
-import Vuex from "vuex"
-
+import { createStore } from 'vuex'
 import { cartModule } from "./modules.es6"
 import VuexPersist from "vuex-persist"
 
-Vue.use(Vuex)
 
 const vuexPersist = new VuexPersist({
   key: "lux",
-  storage: window.localStorage,
+  storage: window.localStorage
 })
 
-export default new Vuex.Store({
+
+export const store = createStore({
   modules: {
     cart: cartModule
   },
-  plugins: [vuexPersist.plugin],
+  plugins: [vuexPersist.plugin]
 })
