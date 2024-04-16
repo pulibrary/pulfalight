@@ -233,7 +233,7 @@ GEM
       activesupport (>= 6.1)
     hashdiff (1.0.1)
     hashie (5.0.0)
-    health-monitor-rails (11.3.0)
+    health-monitor-rails (12.1.0)
       railties (>= 6.1)
     honeybadger (4.12.2)
     http (5.1.0)
