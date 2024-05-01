@@ -130,7 +130,7 @@
               width="expand"
               type="textarea"
               rows=2
-              v-model="note"
+              v-model:value="note"
             />
           </div>
           <lux-input-button type="submit" variation="solid" :disabled="requests.length == 0" block>
