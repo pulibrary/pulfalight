@@ -79,7 +79,7 @@ module PulfalightHelper
   # @return [String]
   def render_search_to_page_header(params)
     constraints = []
-    constraints += (params.dig("f", "collection_sim") || [])
+    constraints += params.dig("f", "collection_sim") || []
     constraints.join(" / ")
   end
 

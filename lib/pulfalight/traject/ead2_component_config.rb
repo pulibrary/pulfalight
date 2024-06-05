@@ -17,7 +17,9 @@ require Rails.root.join("lib", "pulfalight", "traject", "ead2_indexing")
 
 # Module for providing recursion over components
 
+# rubocop:disable Style/MixinUsage
 extend TrajectPlus::Macros
+# rubocop:enable Style/MixinUsage
 
 to_field "ref_ssi" do |record, accumulator, _context|
   accumulator << if record.attribute("id").blank?
