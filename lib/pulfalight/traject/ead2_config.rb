@@ -25,7 +25,10 @@ require Rails.root.join("lib", "pulfalight", "traject", "ead2_indexing")
 require Rails.root.join("app", "values", "pulfalight", "location_code")
 require Rails.root.join("app", "values", "pulfalight", "physical_location_code")
 
+# rubocop:disable Style/MixinUsage
 extend TrajectPlus::Macros
+# rubocop:enable Style/MixinUsage
+
 self.class.include(Pulfalight::Ead2Indexing)
 
 # Configure the settings before the Document is indexed
