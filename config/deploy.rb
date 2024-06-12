@@ -39,7 +39,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push("log", "vendor/bundle", "public/u
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-desc "Write the current version to public/version.txt"
+desc "Write SHA of current deploy to /version.txt"
 task :write_version do
   on roles(:app), in: :sequence do
     within repo_path do
