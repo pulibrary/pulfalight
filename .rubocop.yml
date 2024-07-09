@@ -32,6 +32,9 @@ Metrics/BlockLength:
     - 'config/routes.rb'
     - 'config/initializers/simple_form_bootstrap.rb'
     - 'lib/pulfalight/traject/ead2_component_config.rb'
+Rails/UnknownEnv:
+  Exclude:
+    - 'config/initializers/honeybadger_downtime_hook.rb'
 Metrics/ClassLength:
   Exclude:
     - 'app/models/solr_document.rb'
