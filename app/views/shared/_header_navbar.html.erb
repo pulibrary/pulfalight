@@ -13,6 +13,13 @@
             <h1 class="ml-auto mr-auto">Explore Princeton University Library's Archival Collections</h1>
           </div>
         <% end %>
+        <p>
+          <lux-icon-base width="16" height="16" icon-name="alert" icon-color="red">
+            <lux-icon-alert></lux-icon-alert>
+          </lux-icon-base>
+          ALERT - Special Collections CLOSED Friday July 19, 2024.<br/>
+          Friday, July 19: Due to the worldwide tech outage, all Special Collections Reading Rooms are Closed today.
+        </p>
         <div class="row<%= " pb-lg-5 pb-2" if on_home_page? %>">
           <div id="search-navbar" class="search-navbar col-md-9 mx-md-auto" role="search">
             <%= render_search_bar %>
