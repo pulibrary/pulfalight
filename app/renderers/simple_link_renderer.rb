@@ -42,6 +42,6 @@ class SimpleLinkRenderer
   end
 
   def valid?
-    digital_object && digital_object&.role.nil?
+    digital_object && digital_object&.role.blank?
   end
 end
