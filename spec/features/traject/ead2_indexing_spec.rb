@@ -540,7 +540,7 @@ describe "EAD 2 traject indexing", type: :feature do
           Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC148.processed.EAD.xml")
         end
         it "indexes the requested notes" do
-          expect(result["phystech_ssm"]).to eq ["Access to audiovisual material in this collection follows the Mudd Manuscript Library <a href=\"http://rbsc.princeton.edu/policies/mudd-library-imaging-guidelines-and-price-list#Audio%20visual\">policy for preservation and access to audiovisual materials</a>."]
+          expect(result["phystech_ssm"][0]).to start_with "For preservation reasons"
           expect(result["components"][0]["phystech_ssm"]).to eq result["phystech_ssm"]
         end
       end

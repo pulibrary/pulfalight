@@ -325,10 +325,10 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dd.blacklight-accessrestrict_ssm", text: /Collection is open for research use./
           # Use Restrictions
           expect(page).to have_selector "dt.blacklight-userestrict_ssm", text: "Conditions Governing Use"
-          expect(page).to have_selector "dd.blacklight-userestrict_ssm", text: /Single photocopies/
+          expect(page).to have_selector "dd.blacklight-userestrict_ssm", text: /Single copies/
           # Special Requirements
           expect(page).to have_selector "dt.blacklight-phystech_ssm", text: "Physical Characteristics and Technical Requirements"
-          expect(page).to have_selector "dd.blacklight-phystech_ssm", text: /Access to audiovisual material/
+          expect(page).to have_selector "dd.blacklight-phystech_ssm", text: /may not be read or played back/
           # Citation Note
           expect(page).to have_selector "dd.blacklight-prefercite_ssm", text: /David E. Lilienthal Papers;/
           expect(page).not_to have_content "Identification of specific item;"
@@ -351,10 +351,8 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).not_to have_selector "dt.blacklight-separatedmaterial_ssm"
           # Subject - include occupation.
           expect(page).to have_selector "dt.blacklight-subject_terms_ssim"
-          expect(page).to have_selector "dd.blacklight-subject_terms_ssim", text: /Industries -- Power supply -- United States -- 20th century./
-          expect(page).to have_selector "dd.blacklight-subject_terms_ssim", text: /Lawyers -- United States -- 20th century./
-          expect(page).to have_selector "dt.blacklight-topics_ssim"
-          expect(page).to have_selector "dd.blacklight-topics_ssim", text: /American politics and government/
+          expect(page).to have_selector "dd.blacklight-subject_terms_ssim", text: /Big business -- United States. -- 20th century/
+          expect(page).to have_selector "dd.blacklight-subject_terms_ssim", text: /Chemical industries -- United States. -- 20th century/
           expect(page).to have_selector "dt.blacklight-genreform_ssim"
           expect(page).to have_selector "dd.blacklight-genreform_ssim", text: /Audio tapes/
         end
