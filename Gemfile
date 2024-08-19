@@ -3,7 +3,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 7.0.0"
+gem "rails", "~> 7.1.0"
 # Use Puma as the app server
 gem "puma", "~> 5.6"
 # Use SCSS for stylesheets
@@ -39,7 +39,7 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "debug", "~> 1.8"
   gem "rails-controller-testing"
-  gem "rspec-rails", "~> 5.0"
+  gem "rspec-rails"
   gem "ruby-prof"
 end
 
@@ -57,9 +57,9 @@ group :development do
   gem "ed25519"
   gem "factory_bot_rails"
   gem "foreman"
+  gem "listen"
   gem "solargraph"
   gem "spring"
-  gem "spring-watcher-listen", "~> 2.0.0"
 end
 
 group :test do
@@ -79,7 +79,7 @@ group :development, :test do
 end
 
 gem "archivesspace-client"
-gem "arclight", "0.5.0"
+gem "arclight", github: "pulibrary/arclight", branch: "v0.5.0-rails-7"
 gem "blacklight", "~> 7.34"
 gem "blacklight_dynamic_sitemap"
 gem "blacklight_range_limit", "~> 7.1"
