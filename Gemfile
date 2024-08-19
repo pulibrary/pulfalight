@@ -79,7 +79,7 @@ group :development, :test do
 end
 
 gem "archivesspace-client"
-gem "arclight", git: "https://github.com/projectblacklight/arclight.git", ref: "cfec8f819a9c003b6590d8291a0611ad8669d569"
+gem "arclight", "0.5.0"
 gem "blacklight", "~> 7.34"
 gem "blacklight_dynamic_sitemap"
 gem "blacklight_range_limit", "~> 7.1"
