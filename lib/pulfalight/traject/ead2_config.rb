@@ -11,7 +11,6 @@ require "arclight/normalized_date"
 require "arclight/normalized_title"
 require "active_model/conversion" ## Needed for Arclight::Repository
 require "active_support/core_ext/array/wrap"
-require Rails.root.join("app", "overrides", "arclight", "digital_object_override")
 require "arclight/year_range"
 require "arclight/repository"
 require "arclight/missing_id_strategy"
