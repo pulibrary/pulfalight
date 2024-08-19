@@ -18,7 +18,7 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   # use_extension(Blacklight::Document::DublinCore)
-  SolrDocument.use_extension(Pulfalight::Document::XMLExport)
+  SolrDocument.use_extension(Pulfalight::Document::XmlExport)
 
   COLLECTION_LEVEL = "collection"
   ROOT_COMPONENT_LEVEL = 1
