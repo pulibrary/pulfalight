@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-module Pulfalight::Document::XMLExport
+module Pulfalight::Document::XmlExport
   def self.extended(document)
     document.will_export_as(:xml)
   end

@@ -3,7 +3,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 6.1"
+gem "rails", "~> 7.1.0"
 # Use Puma as the app server
 gem "puma", "~> 5.6"
 # Use SCSS for stylesheets
@@ -39,14 +39,13 @@ group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "debug", "~> 1.8"
   gem "rails-controller-testing"
-  gem "rspec-rails", "~> 5.0"
+  gem "rspec-rails"
   gem "ruby-prof"
 end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem "bcrypt_pbkdf"
-  gem "listen", ">= 3.0.5", "< 3.2"
   gem "pry-byebug"
   gem "pry-rails"
   gem "web-console", ">= 3.3.0"
@@ -58,9 +57,9 @@ group :development do
   gem "ed25519"
   gem "factory_bot_rails"
   gem "foreman"
+  gem "listen"
   gem "solargraph"
   gem "spring"
-  gem "spring-watcher-listen", "~> 2.0.0"
 end
 
 group :test do
@@ -80,8 +79,8 @@ group :development, :test do
 end
 
 gem "archivesspace-client"
-gem "arclight", git: "https://github.com/projectblacklight/arclight.git"
-gem "blacklight", "7.29.0"
+gem "arclight", github: "pulibrary/arclight", branch: "v0.5.0-rails-7"
+gem "blacklight", "~> 7.34"
 gem "blacklight_dynamic_sitemap"
 gem "blacklight_range_limit", "~> 7.1"
 gem "bootstrap", "~> 4.6"
