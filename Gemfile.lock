@@ -253,7 +253,7 @@ GEM
     hashie (5.0.0)
     health-monitor-rails (12.1.0)
       railties (>= 6.1)
-    honeybadger (4.12.2)
+    honeybadger (5.15.6)
     http (5.2.0)
       addressable (~> 2.8)
       base64 (~> 0.1)
@@ -674,7 +674,7 @@ DEPENDENCIES
   faraday
   foreman
   health-monitor-rails
-  honeybadger (~> 4.0)
+  honeybadger
   jbuilder (~> 2.5)
   jquery-rails
   listen
