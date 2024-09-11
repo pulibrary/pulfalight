@@ -163,4 +163,11 @@ describe "catalog searches", type: :feature, js: true do
       end
     end
   end
+
+  context "when searching within a collection", js: false do
+    it "renders breadcrumbs" do
+      visit "/catalog?f%5Bcollection_sim%5D%5B%5D=Margaret+K.+McElderry+Papers%2C+1900&q=Cats&search_field=all_fields"
+      expect(page).to have_link "Joan Phipson"
+    end
+  end
 end

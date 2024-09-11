@@ -165,6 +165,7 @@
          normalized_date_ssm,
          unitid_ssm,
          parent_ssm,
+         parent_ssim,
          parent_unittitles_ssm,
          ead_ssi,
          ref_ssm,
