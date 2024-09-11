@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require "arclight_helper"
 module PulfalightHelper
+  include ArclightHelper
   # Retrieves the current year
   # @return [Integer]
   def current_year
