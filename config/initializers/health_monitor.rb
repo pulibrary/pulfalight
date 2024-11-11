@@ -17,9 +17,6 @@ Rails.application.config.after_initialize do
       provider_config.critical = false
     end
     config.add_custom_provider(SolrStatus)
-    config.add_custom_provider(AspaceStatus).configure do |provider_config|
-      provider_config.critical = false
-    end
     config.add_custom_provider(SmtpStatus).configure do |provider_config|
       provider_config.critical = false
     end
