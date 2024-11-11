@@ -15,10 +15,15 @@ module Aspace
 
     def initialize
       super(self.class.config)
-      login
+    end
+
+    def login
+      # Only login if there's no token.
+      super unless @token
     end
 
     def ead_urls(modified_since: nil)
+      login
       output = repositories.each_with_object({}) do |repository, acc|
         config.base_repo = repository["uri"][1..-1]
         query = { all_ids: true }
@@ -35,6 +40,7 @@ module Aspace
 
     # returns nil if not found
     def ead_url_for_eadid(eadid:)
+      login
       repositories.map do |repository|
         repository_uri = repository["uri"][1..-1]
         result = get("#{repository_uri}/search", query: { q: "identifier:#{eadid}", type: ["resource"], fields: ["uri", "identifier"], page: 1 }).parsed["results"][0]
@@ -48,6 +54,7 @@ module Aspace
     def get_xml(eadid:, cached: true)
       cache = XmlCache.where(ead_id: eadid).first
       return cache&.content if cache&.content&.present? && cached
+      login
       url = ead_url_for_eadid(eadid: eadid).keys.first
       get_resource_description_xml(resource_descriptions_uri: url, cached: cached)
     end
@@ -55,6 +62,7 @@ module Aspace
     def get_resource_description_xml(resource_descriptions_uri:, cached: true)
       cache = XmlCache.find_or_initialize_by(resource_descriptions_uri: resource_descriptions_uri)
       return cache.content if cache.content.present? && cached
+      login
       content = get("#{resource_descriptions_uri}.xml", query: { include_daos: true, include_unpublished: false }, timeout: 1200).body.force_encoding("UTF-8")
       # Strip prefix from EAD.
       content = content.gsub("id=\"aspace_", "id=\"")
@@ -72,6 +80,7 @@ module Aspace
     # note this will get the object whether it's published or not
     # returns nil if nothing found
     def get_basic_info(id:)
+      login
       content = get(
         "/search",
         query: {

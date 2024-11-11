@@ -15,7 +15,7 @@ describe "controller requests", type: :request do
   describe "/catalog/:id XML" do
     context "for a collection" do
       it "returns the full finding aid from ASpace" do
-        stub_aspace_login
+        login_stub = stub_aspace_login
         stub_aspace_repositories
         search_stub = stub_search(repository_id: "13", resource_ids: ["WC064"]).last
         ead_stub = stub_aspace_ead(resource_descriptions_uri: "repositories/13/resource_descriptions/WC064", ead: "generated/mss/WC064.processed.EAD.xml")
@@ -30,6 +30,7 @@ describe "controller requests", type: :request do
 
         # Ensure caching is working
         get "/catalog/WC064.xml"
+        expect(login_stub).to have_been_requested.once
         expect(ead_stub).to have_been_requested.once
         expect(search_stub).to have_been_requested.once
       end
