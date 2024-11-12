@@ -13,7 +13,8 @@ gem "terser"
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
-gem "health-monitor-rails"
+# Pinning to 12.4.0 due to Rails 7.1 compatibility issue in 12.4.1
+gem "health-monitor-rails", "12.4.0"
 
 # Use CoffeeScript for .coffee assets and views
 gem "coffee-rails", "~> 4.2"
