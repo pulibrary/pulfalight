@@ -4,6 +4,9 @@
       </div>
     <% elsif document.review? %>
       <div class="document-access review">
-        <span class="media-body al-review-icon" aria-hidden="true"><%= blacklight_icon :"icon-review" %></span>Restrictions may apply. See Access Note.
+        <span class="media-body al-review-icon" aria-hidden="true">
+          <%= blacklight_icon :"icon-review" %>
+          </span>
+           <%= link_to("Restrictions may apply. See Access Note.", "#access" )  %>
       </div>
     <% end %>
