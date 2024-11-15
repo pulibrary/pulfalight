@@ -85,7 +85,7 @@ jobs:
       # Lint ruby
       - run:
           name: Run rubocop
-          command: bundle exec rake rubocop
+          command: bundle exec rubocop
 
       # Lint javascript
       - run: yarn lint
