@@ -136,6 +136,7 @@ describe "viewing catalog records", type: :feature, js: true do
     it "lets someone click on the access restrictions badge", js: true do
       visit "/catalog/AC136_c2889"
       click_on "Restrictions may apply. See Access Note."
+      expect(page).to have_content("Access & Use")
     end
   end
   context "with a no-digital-content collection show page" do
