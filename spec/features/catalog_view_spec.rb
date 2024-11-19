@@ -133,6 +133,13 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_selector(".document-access.review", text: "Restrictions may apply. See Access Note.")
       expect(page).to have_selector("#component-summary .document-access.restricted", text: "Restricted Content")
     end
+    it "lets someone click on the access restrictions badge", js: true do
+      visit "/catalog/AC136_c2889"
+      click_on "Restrictions may apply. See Access Note."
+      # most of the access fields are also included on the main collection page
+      # used Location: because it was only showing on this tab
+      expect(page).to have_content("Location:")
+    end
   end
   context "with a no-digital-content collection show page" do
     it "doesn't display Has Online Content", js: false do

@@ -63,6 +63,9 @@
     color: #8B640E;
     background-color: #FCECBD;
     border-color: #8B640E;
+    & a {
+      color: #8B640E;
+    }
   }
 
   &.restricted {
