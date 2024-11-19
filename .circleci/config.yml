@@ -81,12 +81,10 @@ jobs:
           key: pulfalight-{{ checksum "Gemfile.lock" }}-{{ checksum "yarn.lock" }}
           paths:
             - ./vendor/bundle
-
       # Lint ruby
       - run:
           name: Run rubocop
-          command: bundle exec rake rubocop
-
+          command: PARALLEL_PROCESSOR_COUNT=2 bundle exec rake rubocop
       # Lint javascript
       - run: yarn lint
 
