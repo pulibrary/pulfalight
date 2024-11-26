@@ -172,8 +172,9 @@
          component_level_isim,
          parent_access_restrict_ssm,
          parent_access_terms_ssm,
-         names_coll_ssim
-         places_ssim
+         names_coll_ssim,
+         places_ssim,
+         access_ssi
        </str>
 
        <str name="facet">true</str>
