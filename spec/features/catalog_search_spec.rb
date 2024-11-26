@@ -119,7 +119,6 @@ describe "catalog searches", type: :feature, js: true do
     context "and the collection contains restricted materials", js: true do
       it "shows a restricted badge in the search results" do
         visit "/?search_field=all_fields&group=false&q=Toni Morrison Papers"
-        byebug
         expect(page).to have_content "Restricted Content"
       end
     end
