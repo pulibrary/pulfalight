@@ -44,4 +44,6 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  # See which partials are rendered
+  config.action_view.annotate_rendered_view_with_filenames = true
 end
