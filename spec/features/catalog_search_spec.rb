@@ -119,7 +119,11 @@ describe "catalog searches", type: :feature, js: true do
     context "and the collection contains restricted materials", js: true do
       it "shows a restricted badge in the search results" do
         visit "/?search_field=all_fields&group=false&q=Toni Morrison Papers"
+        expect(page.find(:element, 'data-document-id': /C1491_c5210/).text.match?(/Restricted Content/)).to eq true
+        expect(page.find(:element, 'data-document-id': /C1491_c1902/).text.match?(/Restricted Content/)).to eq false
+        expect(page.find(:element, 'data-document-id': /C1491_c1902/).find(:element, 'class': /document-access review/)).to be_instance_of Capybara::Node::Element
         expect(page).to have_content "Restricted Content"
+        expect(page).not_to have_link "Restrictions may apply. See Access Note."
       end
     end
   end
