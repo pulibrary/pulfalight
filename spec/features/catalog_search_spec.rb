@@ -123,10 +123,11 @@ describe "catalog searches", type: :feature, js: true do
         expect(page.find(:element, 'data-document-id': /C1491_c1902/).text.match?(/Restricted Content/)).to eq false
         expect(page.find(:element, 'data-document-id': /C1491_c1902/).find(:element, 'class': /document-access review/)).to be_instance_of Capybara::Node::Element
         expect(page).to have_content "Restricted Content"
-        expect(page).not_to have_link "Restrictions may apply. See Access Note."
+        expect(page).not_to have_link "Restrictions may apply."
+        expect(page).not_to have_content "See Access Note."
         # the badge in Grouped by collection is also not a link.
         click_on("Grouped by collection")
-        expect(page).not_to have_link "Restrictions may apply. See Access Note."
+        expect(page).not_to have_link "Restrictions may apply."
       end
     end
   end
