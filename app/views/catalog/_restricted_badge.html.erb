@@ -1,3 +1,5 @@
+    <%# locals: (with_link: true, document: ) %>
+
     <% if document.restricted? %>
       <div class="document-access restricted">
         <span class="media-body al-restricted-icon" aria-hidden="true"><%= blacklight_icon :"icon-restricted" %></span> Restricted Content
@@ -7,6 +9,10 @@
         <span class="media-body al-review-icon" aria-hidden="true">
           <%= blacklight_icon :"icon-review" %>
           </span>
-           <%= link_to("Restrictions may apply. See Access Note.", "#access" )  %>
+          <% if with_link %> 
+            <%= link_to("Restrictions may apply. See Access Note.", "#access" ) %> 
+          <% else %>
+              Restrictions may apply. 
+          <% end  %>
       </div>
     <% end %>

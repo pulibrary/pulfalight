@@ -10,6 +10,7 @@
       </h4>
       <div class="col col-no-left-padding">
         <%= OnlineContentBadge.new(document).render %>
+        <%= render partial: "restricted_badge", locals: { document: document, with_link: false } %>
       </div>
       <div class='breadcrumb-links media'>
         <% unless breadcrumbs.nil? %>

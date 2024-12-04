@@ -96,23 +96,39 @@ describe "catalog searches", type: :feature, js: true do
   end
 
   context "when searching for a specific collection by title", js: false do
-    before do
-      visit "/?search_field=all_fields&q=david+e.+lilienthal+papers%2C+1900-1981"
-    end
-
-    it "renders all collection extents in the collection search results" do
-      expect(page).to have_text("4 items")
-      expect(page).to have_text("632 boxes")
-    end
-    it "renders the call number/title" do
-      expect(page).to have_content "MC148"
-      within first("h3") do
-        expect(page).to have_content "David E. Lilienthal Papers"
+    context "david lilienthal papers" do
+      before do
+        visit "/?search_field=all_fields&q=david+e.+lilienthal+papers%2C+1900-1981"
+      end
+      it "renders all collection extents in the collection search results" do
+        expect(page).to have_text("4 items")
+        expect(page).to have_text("632 boxes")
+      end
+      it "renders the call number/title" do
+        expect(page).to have_content "MC148"
+        within first("h3") do
+          expect(page).to have_content "David E. Lilienthal Papers"
+        end
+      end
+      it "returns all components in that collection", js: false do
+        visit "/?search_field=all_fields&group=false&q=Walter Dundas Bathurst Papers"
+        expect(page).to have_text("17 entries")
       end
     end
-    it "returns all components in that collection", js: false do
-      visit "/?search_field=all_fields&group=false&q=Walter Dundas Bathurst Papers"
-      expect(page).to have_text("17 entries")
+
+    context "and the collection contains restricted materials", js: true do
+      it "shows a restricted badge in the search results which is not a link" do
+        visit "/?search_field=all_fields&group=false&q=Toni Morrison Papers"
+        expect(page.find(:element, 'data-document-id': /C1491_c5210/).text.match?(/Restricted Content/)).to eq true
+        expect(page.find(:element, 'data-document-id': /C1491_c1902/).text.match?(/Restricted Content/)).to eq false
+        expect(page.find(:element, 'data-document-id': /C1491_c1902/).find(:element, 'class': /document-access review/)).to be_instance_of Capybara::Node::Element
+        expect(page).to have_content "Restricted Content"
+        expect(page).not_to have_link "Restrictions may apply."
+        expect(page).not_to have_content "See Access Note."
+        # the badge in Grouped by collection is also not a link.
+        click_on("Grouped by collection")
+        expect(page).not_to have_link "Restrictions may apply."
+      end
     end
   end
 
