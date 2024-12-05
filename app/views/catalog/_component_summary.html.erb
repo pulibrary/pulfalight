@@ -8,7 +8,7 @@
         </div>
       <% end %>
       <%= OnlineContentBadge.new(document).render %>
-      <%= render partial: "restricted_badge", locals: { document: document } %>
+      <%= render partial: "restricted_badge", locals: { document: document, with_link: false } %>
     </div>
   </div>
   <%= render "shared/viewer" %>
