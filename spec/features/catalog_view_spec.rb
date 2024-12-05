@@ -133,12 +133,19 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_selector(".document-access.review", text: "Restrictions may apply. See Access Note.")
       expect(page).to have_selector("#component-summary .document-access.restricted", text: "Restricted Content")
     end
-    it "lets someone click on the access restrictions badge", js: true do
+    it "lets someone click on the access restrictions badge at the collection level", js: true do
       visit "/catalog/AC136_c2889"
       click_on "Restrictions may apply. See Access Note."
       # most of the access fields are also included on the main collection page
       # used Location: because it was only showing on this tab
       expect(page).to have_content("Location:")
+    end
+    it "does not let someone click on the access restrictions badge at the series level", js: true do
+      visit "catalog/C1491_c1"
+      # the series should still have the restrictions badge
+      expect(page.find("div.overview").find("span.al-review-icon").find(:xpath, "..").text).to eq "Restrictions may apply."
+      # but it should not be clickable
+      expect(page.find("div.overview").find("span.al-review-icon").find(:xpath, "..")).to have_no_link
     end
   end
   context "with a no-digital-content collection show page" do
