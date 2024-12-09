@@ -199,6 +199,12 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
+    datadog (2.7.1)
+      datadog-ruby_core_source (~> 3.3)
+      libdatadog (~> 14.1.0.1.0)
+      libddwaf (~> 1.15.0.0.0)
+      msgpack
+    datadog-ruby_core_source (3.3.6)
     date (3.3.4)
     debug (1.8.0)
       irb (>= 1.5.0)
@@ -302,6 +308,9 @@ GEM
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     language_server-protocol (3.17.0.3)
+    libdatadog (14.1.0.1.0)
+    libddwaf (1.15.0.0.0)
+      ffi (~> 1.0)
     listen (3.9.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -671,6 +680,7 @@ DEPENDENCIES
   change_the_subject
   coffee-rails (~> 4.2)
   database_cleaner
+  datadog
   debug (~> 1.8)
   devise (>= 4.7.1)
   devise-guests (~> 0.6)
