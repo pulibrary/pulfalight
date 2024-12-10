@@ -69,7 +69,8 @@ describe "viewing catalog records", type: :feature, js: true do
         expect(page).to have_selector "td", text: /MC148_c00002/
         expect(page).to have_selector "td", text: /Box 1/
         expect(page).to have_selector "button[type='submit']", text: /Request 1 Item/
-        byebug
+        expect(page).to have_selector ".request__location", text: /View this item at the/
+
         # Click the remove item button
         find("#item-MC148_c00002 > td > button").click
       end
@@ -83,6 +84,11 @@ describe "viewing catalog records", type: :feature, js: true do
 
         # Check that it can be closed
         expect(page).to have_selector "button.denied-button"
+      end
+      visit "/catalog/AC136_c2889"
+      find(".add-to-cart-block").click
+      within(".request-cart") do
+        expect(page).to have_selector ".request__location", text: /Item may need to be reviewed by staff for access/
       end
     end
   end

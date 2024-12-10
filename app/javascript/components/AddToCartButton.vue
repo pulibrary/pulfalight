@@ -34,9 +34,9 @@ export default {
       default: () => { {} },
       required: false,
     },
-    accessRestrict: {
-      type: String,
-      default: "",
+    restricted: {
+      type: Boolean,
+      default: false,
       required: false,
     }
   },
@@ -53,7 +53,7 @@ export default {
         containers: this.containers,
         location: this.location,
         formParams: this.formParams,
-        accessRestrict: this.accessRestrict
+        restricted: this.restricted
       }
     },
     items: {

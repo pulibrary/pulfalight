@@ -293,6 +293,10 @@ class SolrDocument
     ]
   end
 
+  def open?
+    fetch("access_ssi", nil) == "open"
+  end
+
   def restricted?
     fetch("access_ssi", nil) == "restricted"
   end
