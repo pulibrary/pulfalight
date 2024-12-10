@@ -42,6 +42,7 @@ RSpec.describe "Health Check", type: :request do
     end
 
     it "caches a success on SMTP and doesn't call it twice in a short window" do
+      SmtpStatus.next_check_timestamp = 0
       smtp_double = instance_double(Net::SMTP)
       allow(Net::SMTP).to receive(:new).and_return(smtp_double)
       allow(smtp_double).to receive(:open_timeout=)
