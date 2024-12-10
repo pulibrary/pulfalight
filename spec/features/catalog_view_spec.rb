@@ -86,6 +86,7 @@ describe "viewing catalog records", type: :feature, js: true do
         expect(page).to have_selector "button.denied-button"
       end
       visit "/catalog/AC136_c2889"
+      find("button.denied-button").click
       find(".add-to-cart-block").click
       within(".request-cart") do
         expect(page).to have_selector ".request__location", text: /Item may need to be reviewed by staff for access/
