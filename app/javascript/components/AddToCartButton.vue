@@ -33,6 +33,11 @@ export default {
       type: Object,
       default: () => { {} },
       required: false,
+    },
+    restricted: {
+      type: Boolean,
+      default: false,
+      required: false,
     }
   },
   methods: {
@@ -47,7 +52,8 @@ export default {
         title: this.title,
         containers: this.containers,
         location: this.location,
-        formParams: this.formParams
+        formParams: this.formParams,
+        restricted: this.restricted
       }
     },
     items: {
