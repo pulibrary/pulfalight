@@ -20,6 +20,6 @@ describe('AddToCartButton.vue', () => {
     })
     const button = getByRole('button')
     await fireEvent.click(button)
-    expect(addItemToCart).toHaveBeenCalledWith(expect.anything(), { accessRestrict: '', callnumber: 'AC101', containers: '', formParams: undefined, title: 'Title' })
+    expect(addItemToCart).toHaveBeenCalledWith(expect.anything(), { restricted: false, callnumber: 'AC101', containers: '', formParams: undefined, title: 'Title' })
   })
 })

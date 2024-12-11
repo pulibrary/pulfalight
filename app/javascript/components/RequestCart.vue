@@ -84,7 +84,7 @@
               </td>
             </tr>
 
-            <tr v-else="item.location && item.location.label" class="request__location">
+            <tr v-else-if="item.location && item.location.label" class="request__location">
               <td colspan="4">
                 <geo-icon></geo-icon>
                 View this item at the <template v-if="item.location.url"><a
