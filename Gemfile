@@ -41,7 +41,6 @@ group :development, :test do
   gem "debug", "~> 1.8"
   gem "rails-controller-testing"
   gem "rspec-rails"
-  gem "ruby-prof"
 end
 
 group :development do

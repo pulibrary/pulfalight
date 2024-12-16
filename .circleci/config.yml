@@ -7,7 +7,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:3.1.0-browsers
+      - image: cimg/ruby:3.2.6-browsers
         environment:
           RAILS_ENV: test
     steps:
@@ -21,7 +21,7 @@ jobs:
       - checkout
       - node/install:
           install-yarn: true
-          node-version: '18.18.0'
+          node-version: '22.10.0'
       - run:
           name: Check current version of node
           command: node -v
@@ -62,7 +62,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:3.1.0-browsers
+      - image: cimg/ruby:3.2.6-browsers
         environment:
           RAILS_ENV: test
     steps:
@@ -92,7 +92,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:3.1.0-browsers
+      - image: cimg/ruby:3.2.6-browsers
         environment:
           RAILS_ENV: test
           PULFALIGHT_DB_HOST: localhost
@@ -145,7 +145,7 @@ jobs:
             gem install bundler -v 2.3.18
       - node/install:
           install-yarn: true
-          node-version: '18.18.0'
+          node-version: '22.10.0'
       - run: node --version
       - run:
           name: Check current version of node
@@ -188,7 +188,7 @@ jobs:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:3.1.0-browsers
+      - image: cimg/ruby:3.2.6-browsers
         environment:
           RAILS_ENV: test
     steps:
