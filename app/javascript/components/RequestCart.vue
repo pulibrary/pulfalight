@@ -87,7 +87,7 @@
             <tr v-else-if="item.location && item.location.label" class="request__location">
               <td colspan="4">
                 <geo-icon></geo-icon>
-                View this item at the <template v-if="item.location.url"><a
+                This item can be viewed in person <template v-if="item.location.url"><a
                   :href="item.location.url" target="_blank">{{ item.location.label
                   }}</a></template><template v-else>{{ item.location.label }}</template>
               </td>
