@@ -69,7 +69,7 @@ describe "viewing catalog records", type: :feature, js: true do
         expect(page).to have_selector "td", text: /MC148_c00002/
         expect(page).to have_selector "td", text: /Box 1/
         expect(page).to have_selector "button[type='submit']", text: /Request 1 Item/
-        expect(page).to have_selector ".request__location", text: /View this item at the/
+        expect(page).to have_selector ".request__location", text: /This item can be viewed in person/
 
         # Click the remove item button
         find("#item-MC148_c00002 > td > button").click

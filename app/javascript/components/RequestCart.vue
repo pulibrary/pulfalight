@@ -87,9 +87,10 @@
             <tr v-else-if="item.location && item.location.label" class="request__location">
               <td colspan="4">
                 <geo-icon></geo-icon>
-                View this item at the <template v-if="item.location.url"><a
-                  :href="item.location.url" target="_blank">{{ item.location.label
-                  }}</a></template><template v-else>{{ item.location.label }}</template>
+                This item can be viewed in person at <template v-if="item.location.url"><a
+                  :href="item.location.url" target="_blank">{{ item.location.label.replace("Manuscript ", "")
+                  }}</a></template><template v-else>{{ item.location.label.replace("Manuscript ", "") }}</template>.
+                  These item(s) will be paged upon your arrival to the reading room.
               </td>
             </tr>
 
