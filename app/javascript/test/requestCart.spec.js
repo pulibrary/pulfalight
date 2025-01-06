@@ -48,7 +48,8 @@ describe('RequestCart.vue', () => {
     const notes = container.querySelector('.request__location-notes')
     expect(notes.textContent).toMatch("It's far away")
     const locationInfo = container.querySelector('.request__location')
-    expect(locationInfo.textContent).toMatch('This item can be viewed in person at Mudd Library.')
+    expect(locationInfo.textContent).toContain('This item can be viewed in person at Mudd Library.')
+    expect(locationInfo.textContent).toContain('These item(s) will be paged upon your arrival to the reading room.')
     expect(locationInfo.querySelector('a').attributes.href.value).toBe('https://example.com')
   })
   test('Rendering locations with no url', async () => {
