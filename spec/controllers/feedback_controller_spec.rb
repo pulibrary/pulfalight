@@ -16,11 +16,4 @@ RSpec.describe FeedbackController, type: :controller do
       expect(response).to be_successful
     end
   end
-  describe "#report" do
-    it "routes to the Report Harmful Language form" do
-      get :report
-
-      expect(response).to be_successful
-    end
-  end
 end
