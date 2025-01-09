@@ -79,15 +79,15 @@
     }
   }
 
-  #feedback-welcome {
+  #responsible-collection-description {
     @extend .col-lg-4;
-    .feedback-welcome-header {
+    .responsible-collection-description-header {
       h2 {
         @extend .text-left;
         margin-bottom: 0;
       }
     }
-    #feedback-welcome-contents {
+    #responsible-collection-description-contents {
       @extend .text-left;
       padding-top: 1.50rem;
     }
