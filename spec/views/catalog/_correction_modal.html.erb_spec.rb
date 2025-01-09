@@ -16,6 +16,6 @@ RSpec.describe "catalog/_correction_modal.html.erb" do
     assign :document, solr_document
     render partial: "catalog/correction_modal"
     content = view.content_for(:correction_modal)
-    expect(content).to have_content("Please use this area to report errors or omissions")
+    expect(content).to have_content("Please use this area to report errors, omissions, or problematic language")
   end
 end
