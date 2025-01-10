@@ -9,6 +9,10 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_css(".collection.title a span", text: "Harold B. Hoskins Papers, 1822-1982")
       expect(page).not_to have_css(".collection-attributes h2.media span.col")
     end
+    it "renders dimensions" do
+      visit "catalog/WC064_c1"
+      expect(page).to have_content("Dimensions:\n10 x 7 cm.")
+    end
     it "renders a component title with a correctly formatted date" do
       visit "catalog/C1588_c9"
       expect(page).to have_css(".document-title > h2", text: "Unused AIC Supply Request Form, circa 1885")
