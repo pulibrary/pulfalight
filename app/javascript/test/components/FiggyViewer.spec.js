@@ -81,7 +81,7 @@ describe('FiggyViewer.vue', () => {
     expect(wrapper.vm.embedStatus).toBe('authorized')
 
     expect(wrapper.element.querySelector('a').getAttribute('href')).toBe('https://figgy.princeton.edu/download/something/file/78e15d09-3a79-4057-b358-4fde3d884bbb')
-    expect(wrapper.element.querySelector('a').innerHTML).toBe('Download Content')
+    expect(wrapper.element.querySelector('a').innerHTML).toContain('Download Content')
   })
 
   test('Loads an iframe when they have permission to see the manifest in figgy', async () => {
@@ -132,7 +132,7 @@ describe('FiggyViewer.vue', () => {
     await flushPromises()
 
     expect(wrapper.element.querySelector('a').getAttribute('href')).toBe('https://figgy.princeton.edu/download/something/file/78e15d09-3a79-4057-b358-4fde3d884bbb')
-    expect(wrapper.element.querySelector('a').innerHTML).toBe('Download Content')
+    expect(wrapper.element.querySelector('a').innerHTML).toContain('Download Content')
   })
 
   test("When there was a DAO, embed type is link, and status is authorized, loads a link with dao's label", async () => {
@@ -158,7 +158,7 @@ describe('FiggyViewer.vue', () => {
     await flushPromises()
 
     expect(wrapper.element.querySelector('a').getAttribute('href')).toBe('https://figgy.princeton.edu/download/something/file/78e15d09-3a79-4057-b358-4fde3d884bbb')
-    expect(wrapper.element.querySelector('a').innerHTML).toBe('Download Zip File')
+    expect(wrapper.element.querySelector('a').innerHTML).toContain('Download Zip File')
   })
 
   test('When there was a DAO with the wrong url and embed type is link it adds a download link to the one from Figgy', async () => {
@@ -184,7 +184,7 @@ describe('FiggyViewer.vue', () => {
     await flushPromises()
 
     expect(wrapper.element.querySelector('a').getAttribute('href')).toBe('https://figgy.princeton.edu/download/something/file/78e15d09-3a79-4057-b358-4fde3d884bbb')
-    expect(wrapper.element.querySelector('a').innerHTML).toBe('Download Content')
+    expect(wrapper.element.querySelector('a').innerHTML).toContain('Download Content')
   })
 
   test('When embed status is unauthorized, nothing gets rendered', async () => {

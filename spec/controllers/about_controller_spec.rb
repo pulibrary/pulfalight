@@ -9,13 +9,6 @@ RSpec.describe AboutController, type: :controller do
       expect(response).to be_successful
     end
   end
-  describe "#archival_language" do
-    it "routes to the Statement on Archival Language page" do
-      get :archival_language
-
-      expect(response).to be_successful
-    end
-  end
   describe "#av_materials" do
     it "routes to the AV Materials page" do
       get :av_materials

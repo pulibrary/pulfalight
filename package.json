@@ -4,7 +4,7 @@
   "dependencies": {
     "core-js": "^3.36.1",
     "jquery": "^3.5.1",
-    "lux-design-system": "^5.1.1",
+    "lux-design-system": "^6.1.1",
     "postcss-import": "^16.1.0",
     "sass": "^1.74.1",
     "serialize-javascript": "^6.0.2",
