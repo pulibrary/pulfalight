@@ -36,6 +36,7 @@ class SolrDocument
       :date_created,
       :created,
       :extent,
+      :dimensions,
       :container,
       :heldBy,
       :creator,
@@ -152,6 +153,10 @@ class SolrDocument
 
   def extents
     fetch("extent_ssm", [])
+  end
+
+  def dimensions
+    fetch("dimensions_ssm", [])
   end
 
   def fetch_html_safe(field)
