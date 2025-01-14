@@ -306,6 +306,8 @@ RSpec.describe AeonRequest do
       # https://findingaids.princeton.edu/collections/C1588/c2
       expect(request.form_attributes[:Request]).not_to be_blank
       request_id = request.form_attributes[:Request]
+      # Ensure we send "FIRE" to Aeon instead of the indexed value "RBSC"
+      expect(request.form_attributes[:"Site_#{request_id}"]).to eq "FIRE"
       # Ensure the box/collection unitid are in as a grouping identifier.
       expect(request.form_attributes[:"GroupingField_#{request_id}"]).to eq "C1588test-box-B-001180"
       expect(request.form_attributes[:"ItemSubTitle_#{request_id}"]).to eq "Diaries / Diary"
@@ -332,14 +334,14 @@ RSpec.describe AeonRequest do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0187.processed.EAD.xml")
     end
-    it "defaults to RBSC as the Site, does not have a location note attribute" do
+    it "defaults to FIRE as the Site, does not have a location note attribute" do
       result = indexer.map_record(record)
       component = result["components"].first
       document = SolrDocument.new(component)
 
       request = document.aeon_request
       request_id = request.form_attributes[:Request]
-      expect(request.form_attributes[:"Site_#{request_id}"]).to eq "RBSC"
+      expect(request.form_attributes[:"Site_#{request_id}"]).to eq "FIRE"
       expect(request.location_attributes[:notes]).to be_nil
       expect(request.location_attributes[:label]).to eq "Firestone Library"
     end
@@ -376,8 +378,8 @@ RSpec.describe AeonRequest do
       request1 = request.form_attributes[:Request][0]
       request2 = request.form_attributes[:Request][1]
 
-      expect(request.form_attributes[:"Site_#{request1}"]).to eq "RBSC"
-      expect(request.form_attributes[:"Site_#{request2}"]).to eq "RBSC"
+      expect(request.form_attributes[:"Site_#{request1}"]).to eq "FIRE"
+      expect(request.form_attributes[:"Site_#{request2}"]).to eq "FIRE"
       expect(request.form_attributes[:"ItemVolume_#{request1}"]).to eq "Box 1"
       expect(request.form_attributes[:"ItemNumber_#{request1}"]).to eq "32101037597877"
       expect(request.form_attributes[:"ItemInfo4_#{request1}"]).to eq "NBox"
