@@ -51,7 +51,7 @@ class AeonRequest
 
   def site_info
     {
-      "RBSC" => {
+      "FIRE" => {
         label: "Firestone Library",
         url: "https://library.princeton.edu/special-collections/visit-us"
       },
@@ -123,7 +123,9 @@ class AeonRequest
   end
 
   def site
-    solr_document["physloc_code_ssm"]&.first || "RBSC"
+    physloc = solr_document["physloc_code_ssm"]&.first || "FIRE"
+    return "FIRE" if physloc == "RBSC"
+    physloc
   end
 
   # Group all box components in the same EAD together.
