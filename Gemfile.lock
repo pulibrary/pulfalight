@@ -362,13 +362,14 @@ GEM
     nokogiri (1.16.7)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    omniauth (1.9.2)
+    omniauth (2.1.2)
       hashie (>= 3.4.6)
-      rack (>= 1.6.2, < 3)
-    omniauth-cas (2.0.0)
-      addressable (~> 2.3)
-      nokogiri (~> 1.5)
-      omniauth (~> 1.2)
+      rack (>= 2.2.3)
+      rack-protection
+    omniauth-cas (3.0.0)
+      addressable (~> 2.8)
+      nokogiri (~> 1.12)
+      omniauth (~> 2.1)
     orm_adapter (0.5.0)
     ostruct (0.6.0)
     parallel (1.24.0)
@@ -392,6 +393,9 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (2.2.9)
+    rack-protection (3.2.0)
+      base64 (>= 0.1.0)
+      rack (~> 2.2, >= 2.2.4)
     rack-proxy (0.7.7)
       rack
     rack-session (1.0.2)
@@ -699,7 +703,7 @@ DEPENDENCIES
   net-imap
   net-pop
   net-smtp
-  omniauth-cas
+  omniauth-cas (~> 3.0.0)
   pg
   popper_js
   pry-byebug
