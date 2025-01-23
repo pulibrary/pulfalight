@@ -27,11 +27,13 @@
         </div>
         <div class="toc-online-toggle al-online-content-icon">
           <%= blacklight_icon(:online) %>
-          <label for="tocOnlineToggle" class="online-toggle-label">Only show materials containing online content</label>
-          <div class="custom-control custom-switch">
-            <input type="checkbox" class="custom-control-input" id="tocOnlineToggle">
-            <label class="custom-control-label" for="tocOnlineToggle"></label>
+          <label for="tocOnlineToggle" class="online-toggle-label">
+           <div class="toggle">
+               Only show materials containing online content
+              <input type="checkbox" id="tocOnlineToggle">
+              <span class="slider"><span>
           </div>
+          </label>
         </div>
         <div id="toc" data-turbolinks-permanent class="collapse show"></div>
         <div id="toc-data" data-selected="<%= document.id %>"></div>
