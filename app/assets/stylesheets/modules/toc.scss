@@ -92,7 +92,8 @@
 .toggle {
   position: relative;
   display: inline-block;
-  width: 20px;
+  max-width: 20px;
+  min-width: 20px;
   height: 12px;
 }
 .toggle input {
@@ -135,25 +136,25 @@ input:focus + .slider {
   box-shadow: 0 0 1px #397339;
 }
 
-// .toc-online-toggle {
-//   padding: 10px 10px;
-//   background-color: $background-gray;
-//   margin-top: 5px;
-//   margin-bottom: 5px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   font-weight: 500;
-//   .blacklight-icon-online {
-//     margin-right: 10px;
-//   }
-//   & svg {
-//     fill: #397339 !important;
-//   }
-//   label {
-//     margin-bottom: 0;
-//     &.online-toggle-label {
-//       margin-right: 5px;
-//     }
-//   }
-// }
+.toc-online-toggle {
+  padding: 10px 10px;
+  background-color: $background-gray;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  .blacklight-icon-online {
+    margin-right: 10px;
+  }
+  label {
+    margin-bottom: 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    &.online-toggle-label {
+      margin-right: 5px;
+    }
+  }
+}
