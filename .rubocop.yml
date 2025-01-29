@@ -67,8 +67,8 @@ Metrics/CyclomaticComplexity:
     - 'lib/pulfalight/traject/ead2_component_config.rb'
     - 'lib/pulfalight/normalized_box_locations.rb'
 Metrics/ModuleLength:
-  Exclude:
-    - 'lib/pulfalight/traject/ead2_component_config.rb'
+  Enabled: false
+
 Metrics/PerceivedComplexity:
   Exclude:
     - 'lib/pulfalight/traject/ead2_component_config.rb'

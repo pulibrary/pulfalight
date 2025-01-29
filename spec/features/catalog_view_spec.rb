@@ -169,6 +169,11 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_css "dt", text: "Conservation"
     end
 
+    it "displays the extent properly", js: false do
+      visit "/catalog/C1664"
+      expect(page).to have_content "2.0 linear feet, 4 boxes"
+    end
+
     it "has an ask a question button", js: false do
       expect(page).to have_selector "#question-button"
       expect(page).to have_field "ask_a_question_form_location_code", visible: false, type: :hidden, with: "publicpolicy"
