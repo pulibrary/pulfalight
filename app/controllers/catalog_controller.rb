@@ -333,7 +333,7 @@ class CatalogController < ApplicationController
     config.add_summary_field "repository_ssm", label: "Repository"
     config.add_summary_field "ark_tsim", label: "Permanent URL", helper_method: :ark_link
     config.add_summary_field "normalized_date_ssm", label: "Dates"
-    config.add_summary_field "extent_ssm", label: "Size", accessor: :fetch_html_safe
+    config.add_summary_field "extent_ssm", label: "Size", helper_method: :extent_helper, accessor: :fetch_html_safe
     config.add_summary_field "summary_storage_note_ssm", label: "Storage Note", accessor: :fetch_html_safe, helper_method: :summary_storage_note
     config.add_summary_field "language_ssm", label: "Language"
 
@@ -350,7 +350,7 @@ class CatalogController < ApplicationController
     config.add_component_field "collection_creator_ssm", label: "Collection Creator"
     config.add_component_field "normalized_date_ssm", label: "Dates"
     config.add_component_field "physloc_ssm", label: "Located In"
-    config.add_component_field "extent_ssm", label: "Extent"
+    config.add_component_field "extent_ssm", label: "Extent", helper_method: :extent_helper
     config.add_component_field "dimensions_ssm", label: "Dimensions"
     config.add_component_field "physfacet_ssm", label: "Physical Description", accessor: :fetch_html_safe
     config.add_component_field "language_ssm", label: "Languages"

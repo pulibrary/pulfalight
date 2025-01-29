@@ -142,6 +142,10 @@ module PulfalightHelper
     end
   end
 
+  def extent_helper(args)
+    args[:value].join(", ")
+  end
+
   private
 
   def repository_thumbnail_path
