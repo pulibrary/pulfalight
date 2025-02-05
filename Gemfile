@@ -98,6 +98,7 @@ gem "redis-namespace"
 gem "rsolr", ">= 1.0", "< 3"
 gem "rubytree"
 gem "rubyzip", ">= 1.3.0"
+gem "sassc-rails"
 gem "sidekiq", "~> 6.5"
 gem "twitter-typeahead-rails", "0.11.1.pre.corejavascript"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
