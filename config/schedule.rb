@@ -18,3 +18,11 @@ end
 every :day, at: "10:00 PM", roles: [:production_db] do
   rake "pulfalight:indexing:full DEFAULT_LOGGER=true"
 end
+
+every 1.day, at: "10:00pm", roles: [:db] do
+  rake "blacklight:delete_old_searches"
+end
+
+every 1.day, at: "10:30pm", roles: [:db] do
+  rake "devise_guests:delete_old_guest_users"
+end

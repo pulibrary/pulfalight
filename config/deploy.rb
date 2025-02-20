@@ -55,6 +55,19 @@ after 'deploy:log_revision', 'write_version'
 set :pulfa_dir_path, fetch(:pulfa_dir_path, "/var/opt/pulfa")
 set :pulfa_collections, fetch(:pulfa_collections, %w[cotsen ea eng ga lae mss mudd rarebooks])
 
+# Default value for keep_releases is 5
+# set :keep_releases, 5
+
+desc "Write the current version to public/version.txt"
+task :write_version do
+  on roles(:app), in: :sequence do
+    within repo_path do
+      execute :tail, "-n1 ../revisions.log > #{release_path}/public/version.txt"
+    end
+  end
+end
+after 'deploy:log_revision', 'write_version'
+
 namespace :sidekiq do
   task :quiet do
     on roles(:worker) do
