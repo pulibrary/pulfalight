@@ -13,6 +13,7 @@ This is an implementation of ArcLight being implemented as a replacement for the
 * `bin/setup_keys`
 
 ```sh
+asdf install
 bundle install
 yarn install
 ```
