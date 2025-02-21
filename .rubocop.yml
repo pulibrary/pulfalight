@@ -94,3 +94,10 @@ Rails/SkipsModelValidations:
 Lint/SuppressedException:
   Exclude:
     - 'lib/tasks/performance.rake'
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+    - qa
+    - staging
