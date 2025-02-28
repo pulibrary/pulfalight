@@ -844,7 +844,7 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
-  describe "language_ssm" do
+  context "language_ssm" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0879.processed.EAD.xml")
     end
@@ -852,6 +852,16 @@ describe "EAD 2 traject indexing", type: :feature do
     it "removes punctuation characters from the field values" do
       expect(result).to include("language_ssm")
       expect(result["language_ssm"]).to eq ["Greek, Modern"]
+    end
+
+    context "when there are multiple languages" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0776.processed.EAD.xml")
+      end
+
+      it "index languages as an array of every language" do
+        expect(result["language_ssm"]).to eq ["Geez", "Amharic"]
+      end
     end
   end
 
