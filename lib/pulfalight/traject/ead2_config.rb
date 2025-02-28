@@ -363,6 +363,8 @@ end
 #   accumulator.concat(values)
 # end
 
+# Take the language fields from langmaterial, strip them of punctuation when necessary,
+# and put them into language_sim
 to_field "language_sim" do |record, accumulator, _context|
   elements = record.xpath("/ead/archdesc/did/langmaterial")
   values = []
@@ -371,12 +373,14 @@ to_field "language_sim" do |record, accumulator, _context|
     segments = value.split
 
     filtered = segments.reject { |e| e =~ /^[[:punct:]]/ }
-    value = filtered.join(" ")
-
-    values << value
+    values << if filtered.find { |e| /,/ =~ e }
+                filtered.join(" ")
+              else
+                filtered
+              end
   end
 
-  accumulator.concat(values)
+  accumulator.concat(values.flatten)
 end
 to_field "language_ssm" do |_record, accumulator, context|
   values = context.output_hash["language_sim"]
