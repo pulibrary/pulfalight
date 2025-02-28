@@ -531,7 +531,7 @@ end
 to_field "language_ssm" do |_record, accumulator, context|
   if context.output_hash["language_ssm"].blank?
     parent = settings[:parent] || settings[:root]
-    parent_languages = parent.output_hash["language_ssm"]
+    parent_languages = parent.output_hash["language_ssm"] || []
 
     accumulator.concat(parent_languages)
   end
