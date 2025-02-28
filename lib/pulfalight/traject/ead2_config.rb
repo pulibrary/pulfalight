@@ -373,6 +373,9 @@ to_field "language_sim" do |record, accumulator, _context|
     segments = value.split
 
     filtered = segments.reject { |e| e =~ /^[[:punct:]]/ }
+    # some languages, like "Greek, Modern" need to be concatenated
+    # if there is a comma, assume that the values should be joined together
+    # if there is not a comma, assume these are seperate values and should be treated as such
     values << if filtered.find { |e| /,/ =~ e }
                 filtered.join(" ")
               else
