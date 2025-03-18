@@ -364,14 +364,13 @@ end
 # end
 
 to_field "language_sim" do |record, accumulator, _context|
-  elements = record.xpath("/ead/archdesc/did/langmaterial")
+  elements = record.xpath("/ead/archdesc/did/langmaterial/language")
   values = []
   elements.each do |element|
     value = element.text
-    segments = value.split
-
-    filtered = segments.reject { |e| e =~ /^[[:punct:]]/ }
-    value = filtered.join(" ")
+    # remove anything in parentheses
+    # for example "Greek, Modern (1453-)" becomes "Greek, Modern"
+    value = value.gsub(/\(.*?\)/, "").strip
 
     values << value
   end
