@@ -315,7 +315,18 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm", text: /Noël Riley Fitch was born on December 24, 1937/
         end
       end
-
+      it "has a toggle switch for showing materials containing online content", js: true do
+        visit "/catalog/C1491"
+        expect(page).to have_content "Working Files, 1955-2018"
+        find(".toggle > span").click
+        expect(page).not_to have_content "Working Files, 1955-2018"
+      end
+      it "lets the user search for online materials", js: true do
+        visit "/catalog/C1491_c1?onlineToggle=false"
+        click_on "SOME ONLINE CONTENT"
+        expect(page).to have_content "1 - 3 of 3 entries"
+        expect(page).to have_content "Box 12, Folder 12"
+      end
       it "shows all the relevant notes" do
         visit "/catalog/MC148"
 
