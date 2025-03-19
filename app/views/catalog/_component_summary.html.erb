@@ -7,7 +7,7 @@
           <span><%= document.extent %></span>
         </div>
       <% end %>
-      <%= OnlineContentBadge.new(document).render %>
+      <%= link_to OnlineContentBadge.new(document).render, "/catalog?f[parent_unittitles_ssim][]=#{document["normalized_title_ssm"].first}&f[has_direct_online_content_ssim][]=online" %>
       <%= render partial: "restricted_badge", locals: { document: document, with_link: false } %>
     </div>
   </div>

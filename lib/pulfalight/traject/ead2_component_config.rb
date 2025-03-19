@@ -132,6 +132,10 @@ to_field "parent_unittitles_teim" do |_record, accumulator, context|
   accumulator.concat context.output_hash["parent_unittitles_ssm"] if context.output_hash["parent_unittitles_ssm"].present?
 end
 
+to_field "parent_unittitles_ssim" do |_record, accumulator, context|
+  accumulator.concat context.output_hash["parent_unittitles_ssm"] if context.output_hash["parent_unittitles_ssm"].present?
+end
+
 to_field "parent_levels_ssm" do |_record, accumulator, context|
   ## Top level document
   parent = settings[:parent] || settings[:root]
