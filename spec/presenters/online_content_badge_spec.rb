@@ -30,7 +30,7 @@ RSpec.describe OnlineContentBadge do
       end
 
       it "returns a badge with an online content label" do
-        expect(badge.render).to include("document-access online-content online-direct-content", "HAS ONLINE CONTENT")
+        expect(badge.render).to include("document-access online-content online-direct-content", "HAS ONLINE MATERIAL")
       end
     end
   end

@@ -88,7 +88,7 @@ RSpec.describe TableOfContentsBuilder do
     end
   end
 
-  context "when rendering a series whose children has online content" do
+  context "when rendering a series whose children has online material" do
     it "marks them with a li_attr class" do
       document = SolrDocument.find("MC148_c00002")
       output = described_class.build(document)
