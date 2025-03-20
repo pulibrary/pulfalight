@@ -18,7 +18,11 @@ class CatalogController < ApplicationController
   # @see Blacklight::Catalog#show
   def show
     deprecated_response, @document = search_service.fetch(params[:id])
-    @response = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(deprecated_response, "The @response instance variable is deprecated; use @document.response instead.")
+    @response = ActiveSupport::Deprecation::DeprecatedObjectProxy.new(
+      deprecated_response,
+      "The @response instance variable is deprecated; use @document.response instead.",
+      ActiveSupport::Deprecation.new
+    )
 
     respond_to do |format|
       format.html do
