@@ -172,7 +172,7 @@ describe "catalog searches", type: :feature, js: true do
     end
 
     context "when displaying grouped results", js: false do
-      it "renders results with an online content badges" do
+      it "renders results with an online material badges" do
         visit "/??group=true&q=Harold+B.+Hoskins+Papers&search_field=all_fields"
 
         expect(page).to have_content "SOME ONLINE MATERIAL"
