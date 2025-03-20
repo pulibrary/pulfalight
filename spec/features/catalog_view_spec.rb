@@ -323,7 +323,7 @@ describe "viewing catalog records", type: :feature, js: true do
         end
       end
 
-      it "has a toggle switch for showing materials containing online content", js: true do
+      it "has a toggle switch for showing materials containing online material", js: true do
         visit "/catalog/C1491"
         expect(page).to have_content "Working Files, 1955-2018"
         find(".toggle > span").click
