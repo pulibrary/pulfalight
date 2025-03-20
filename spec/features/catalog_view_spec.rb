@@ -115,8 +115,8 @@ describe "viewing catalog records", type: :feature, js: true do
       it "renders a place for javascript to enter a viewer" do
         expect(page).to have_css("#readingroom")
       end
-      it "displays 'Has Online content' at the component level" do
-        expect(page).to have_selector("div.document-attributes > .document-access.online-content", text: "HAS ONLINE CONTENT")
+      it "displays 'Has Online content' as a link at the component level" do
+        expect(page).to have_selector("div.document-attributes > a > .document-access.online-content", text: "HAS ONLINE CONTENT")
       end
       it "displays 'Has Online Content' at the collection level" do
         visit "/catalog/MC221"
