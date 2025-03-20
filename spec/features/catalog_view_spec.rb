@@ -115,10 +115,10 @@ describe "viewing catalog records", type: :feature, js: true do
       it "renders a place for javascript to enter a viewer" do
         expect(page).to have_css("#readingroom")
       end
-      it "displays 'Has Online content' at the component level" do
-        expect(page).to have_selector("div.document-attributes > .document-access.online-content", text: "HAS ONLINE CONTENT")
+      it "displays 'Has Online Material' at the component level" do
+        expect(page).to have_selector("div.document-attributes > .document-access.online-content", text: "HAS ONLINE MATERIAL")
       end
-      it "displays 'Has Online Content' at the collection level" do
+      it "displays 'Has Online Material' at the collection level" do
         visit "/catalog/MC221"
         expect(page).to have_selector(".banner-content span", text: "Some materials in this collection are available online.")
       end
@@ -153,9 +153,9 @@ describe "viewing catalog records", type: :feature, js: true do
     end
   end
   context "with a no-digital-content collection show page" do
-    it "doesn't display Has Online Content", js: false do
+    it "doesn't display Has Online Material", js: false do
       visit "/catalog/MC152"
-      expect(page).not_to have_selector(".document-access.online-content", text: "SOME ONLINE CONTENT")
+      expect(page).not_to have_selector(".document-access.online-content", text: "SOME ONLINE MATERIAL")
     end
   end
   context "with a collection show page" do
@@ -323,7 +323,7 @@ describe "viewing catalog records", type: :feature, js: true do
         end
       end
 
-      it "has a toggle switch for showing materials containing online content", js: true do
+      it "has a toggle switch for showing materials containing online material", js: true do
         visit "/catalog/C1491"
         expect(page).to have_content "Working Files, 1955-2018"
         find(".toggle > span").click

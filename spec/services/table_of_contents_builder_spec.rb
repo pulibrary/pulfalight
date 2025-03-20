@@ -88,7 +88,7 @@ RSpec.describe TableOfContentsBuilder do
     end
   end
 
-  context "when rendering a series whose children has online content" do
+  context "when rendering a series whose children has online material" do
     it "marks them with a li_attr class" do
       document = SolrDocument.find("MC148_c00002")
       output = described_class.build(document)
@@ -98,7 +98,7 @@ RSpec.describe TableOfContentsBuilder do
       series_level_component = series_level_components[1]
       expect(series_level_component["li_attr"]).to eq({ "data-online-content" => true })
       expect(series_level_component["text"]).to include "online-indirect-content"
-      expect(series_level_component["text"]).to include "Some online content"
+      expect(series_level_component["text"]).to include "Some online material"
     end
   end
 end
