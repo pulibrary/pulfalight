@@ -15,7 +15,7 @@
         <% end %>
         <div class="row<%= " pb-lg-5 pb-2" if on_home_page? %>">
           <div id="search-navbar" class="search-navbar col-md-9 mx-md-auto" role="search">
-            <%= render_search_bar %>
+            <%= render Blacklight::SearchBarComponent.new %>
           </div>
         </div>
       </nav>
