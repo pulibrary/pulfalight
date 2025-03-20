@@ -1,6 +1,6 @@
 <dl>
   <% metadata = :summary_field %>
-  <% doc_presenter = show_presenter(document).with_field_group(metadata) %>
+  <% doc_presenter = document_presenter(document).with_field_group(metadata) %>
   <% generic_document_fields(metadata).each do |field_name, field| %>
     <% if generic_should_render_field?(metadata, document, field) %>
         <%= render partial: "catalog/field", locals: { document: document, field: field, field_name: field_name, metadata: metadata, doc_presenter: doc_presenter } %>
