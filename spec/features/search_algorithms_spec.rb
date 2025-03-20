@@ -16,8 +16,8 @@ describe "Selecting search algorithms for results", type: :feature, js: false do
       within("#online_content.dropdown-help-text") do
         expect(page).to have_text("records with direct online material are first")
       end
-      click_link("online content")
-      expect(page).to have_button("Rank by online content")
+      click_link("online material")
+      expect(page).to have_button("Rank by online material")
       expect(page).to have_text("Harold B. Hoskins Diaries, 1899-1965")
     end
   end
