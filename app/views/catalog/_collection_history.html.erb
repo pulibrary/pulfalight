@@ -1,6 +1,6 @@
 <div class="overview document-info">
   <% metadata = :collection_history_field %>
-  <% doc_presenter = show_presenter(document).with_field_group(metadata) %>
+  <% doc_presenter = document_presenter(document).with_field_group(metadata) %>
   <dl>
     <% generic_document_fields(metadata).each do |field_name, field| %>
       <% if generic_should_render_field?(metadata, document, field) %>

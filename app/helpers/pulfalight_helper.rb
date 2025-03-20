@@ -40,7 +40,7 @@ module PulfalightHelper
   end
 
   def generic_should_render_field?(config_field, document, field)
-    super && show_presenter(document).with_field_group(config_field).field_value(field).present?
+    super && document_presenter(document).with_field_group(config_field).field_value(field).present?
   end
 
   # A DAO for a IIIF manifest has a uri in the role property

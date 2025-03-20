@@ -16,7 +16,7 @@ RSpec.describe OnlineContentBanner do
     context "with a document that has indirect online content" do
       let(:values) { { has_online_content_ssim: ["true"] } }
 
-      it "returns a badge with a some online content label" do
+      it "returns a badge with a some online material label" do
         expect(badge.render).to include("Some materials in this collection are available online.")
       end
     end
