@@ -14,7 +14,7 @@ describe "Selecting search algorithms for results", type: :feature, js: false do
 
       click_button("Rank by default")
       within("#online_content.dropdown-help-text") do
-        expect(page).to have_text("records with direct online content are first")
+        expect(page).to have_text("records with direct online material are first")
       end
       click_link("online content")
       expect(page).to have_button("Rank by online content")
