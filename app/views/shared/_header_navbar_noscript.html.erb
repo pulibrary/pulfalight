@@ -10,7 +10,13 @@
     <div class="header__secondary">
       <nav class="container" role="navigation">
         <div id="search-navbar" class="col-xs-12 search-navbar" role="search">
-          <%= render Blacklight::SearchBarComponent.new %>
+          <%= render Blacklight::SearchBarComponent.new(
+              url: search_action_url,
+              advanced_search_url: search_action_url(action: 'advanced_search'),
+              params: search_state.params_for_search.except(:qt),
+              search_fields: Deprecation.silence(Blacklight::ConfigurationHelperBehavior) { search_fields },
+              autocomplete_path: search_action_path(action: :suggest)
+          ) %>
         </div>
       </nav>
     </div>
