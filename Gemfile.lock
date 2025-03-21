@@ -705,6 +705,7 @@ DEPENDENCIES
   listen
   lograge
   matrix
+  msgpack
   net-imap
   net-pop
   net-smtp

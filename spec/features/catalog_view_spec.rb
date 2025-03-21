@@ -17,9 +17,9 @@ describe "viewing catalog records", type: :feature, js: true do
       visit "catalog/C1588_c9"
       expect(page).to have_css(".document-title > h2", text: "Unused AIC Supply Request Form, circa 1885")
     end
-    it "renders components that don't have the parent in the name" do
+    it "renders components that don't have the parent in the name", js: false do
       visit "/catalog/ref312"
-      expect(page).to have_css(".document-title > h2", text: "Mittens for Kittens")
+      expect(page).to have_css(".lux.document-title > h2", text: "Mittens for Kittens")
     end
     it "renders content warning headings that were inherited" do
       visit "catalog/TC040_c00002"
@@ -545,7 +545,7 @@ describe "viewing catalog records", type: :feature, js: true do
   describe "collection bioghist notes", js: true do
     it "displays for a collection" do
       visit "/catalog/C0292"
-      find("#description-tab a").click
+      find("#description-tab > a").click
 
       expect(page).to have_selector "dt.blacklight-collection_bioghist_ssm"
       expect(page).to have_content("Collection Creator Biography:")
