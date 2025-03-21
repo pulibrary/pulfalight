@@ -26,6 +26,9 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.before(:suite) do
+    # Ensure assets are precompiled before running tests in browser so everything
+    # shows up as expected
+    `bundle exec rake assets:precompile` if ENV["RUN_IN_BROWSER"]
     DatabaseCleaner.start
   ensure
     DatabaseCleaner.clean
