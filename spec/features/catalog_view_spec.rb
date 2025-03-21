@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "viewing catalog records", type: :feature, js: true do
+describe "viewing catalog records", type: :feature, js: false do
   context "when viewing a component show page" do
     it "renders a collection title as a link without a separate date element" do
       visit "catalog/MC221_c0059"
@@ -19,7 +19,7 @@ describe "viewing catalog records", type: :feature, js: true do
     end
     it "renders components that don't have the parent in the name" do
       visit "/catalog/ref312"
-      expect(page).to have_css(".document-title > h2", text: "Mittens for Kittens")
+      expect(page).to have_css(".lux.document-title > h2", text: "Mittens for Kittens")
     end
     it "renders content warning headings that were inherited" do
       visit "catalog/TC040_c00002"
