@@ -373,6 +373,7 @@ GEM
       addressable (~> 2.3)
       nokogiri (~> 1.5)
       omniauth (~> 1.2)
+    open3 (0.1.2)
     orm_adapter (0.5.0)
     ostruct (0.6.0)
     parallel (1.24.0)
@@ -710,6 +711,7 @@ DEPENDENCIES
   net-pop
   net-smtp
   omniauth-cas
+  open3
   pg
   popper_js
   pry-byebug

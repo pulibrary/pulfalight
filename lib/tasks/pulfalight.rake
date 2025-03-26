@@ -26,6 +26,11 @@ end
 
 namespace :pulfalight do
   namespace :aspace do
+    task proxy_aspace: :environment do
+      AspaceProxyManager.spawn!(host: "pulfalight-worker-prod1.princeton.edu", user: "pulsys")
+      ArchivesSpace::Request.http_proxy "127.0.0.1", 8080, nil, nil
+    end
+
     desc "Index EADIDs defined by stakeholders as representatives."
     task index_test_eads: :environment do
       test_eadids = [
@@ -130,7 +135,7 @@ namespace :pulfalight do
     end
 
     desc "Pulls Aspace EAD Fixtures"
-    task refresh_aspace_fixtures: :environment do
+    task refresh_aspace_fixtures: :"pulfalight:aspace:proxy_aspace" do
       Rails.logger = Logger.new(STDOUT)
       AspaceFixtureGenerator.new.regenerate!
     end
