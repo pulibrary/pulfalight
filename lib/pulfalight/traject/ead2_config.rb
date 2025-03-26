@@ -379,7 +379,7 @@ to_field "language_sim" do |record, accumulator, _context|
 end
 to_field "language_ssm" do |_record, accumulator, context|
   values = context.output_hash["language_sim"]
-  accumulator.concat(values)
+  accumulator.concat(values) if values.present?
 end
 
 to_field "descrules_ssm", extract_xpath("/ead/eadheader/profiledesc/descrules")
