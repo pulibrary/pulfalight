@@ -99,11 +99,9 @@ A subset of collections (the same that are run in specs) can be indexed into
 
 ##### Troubleshooting Aspace API Connections
 
-If you get an error that the login failed, the most likely explanation is that one or more VPN machines changed IPs and we need to regenerate the list of allowed IPs and send it to Lyrasis support.
+If you get an error that the login failed, you likely need be on VPN.
 
-You can validate this by running `Aspace::Client.new` on a staging box rails console. If that doesn't error then it's not an issue with the credentials (i.e. it's likely an IP missing from the allow list).
-
-The current [Instructions](https://github.com/pulibrary/pul-it-handbook/blob/main/services/vpn.md) for compiling a list of all the IPs that need access is not exhaustive. The best thing to do is to email support@lyrasis.zendesk.com and ask them to add your current ip to the allow list for Princeton.
+If you're attempting to contact the API on VPN outside of rake tasks, you may have to initialize the proxy via `ASpaceProxyManager.spawn!(host: <pulfalighthost>, user: pulsys)` first.
 
 ### Citation Formatting
 
