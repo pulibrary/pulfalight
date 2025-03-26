@@ -5,6 +5,7 @@
 # http-proxy-to-socks, and then a rake task can point the ASpace client to it.
 class AspaceProxyManager
   @pids = []
+  @outs = []
   class << self
     attr_accessor :pids
     attr_accessor :outs
@@ -14,9 +15,11 @@ class AspaceProxyManager
     return unless @pids.empty?
     @pids =
       begin
-        _, _, socks_pid = Open3.popen2e("ssh", "-t", "-D", "9094", "#{user}@#{host}")
-        _, out, proxy_to_socks_pid = Open3.popen2e(Rails.root.join("node_modules", "http-proxy-to-socks", "bin", "hpts.js").to_s, "-s", "127.0.0.1:9094")
-        sleep(1) until out.readline.include?("http-proxy listening")
+        _, out1, socks_pid = Open3.popen2e("ssh", "-t", "-D", "9094", "#{user}@#{host}")
+        sleep(1) until socks_pid.status == "sleep"
+        _, out2, proxy_to_socks_pid = Open3.popen2e(Rails.root.join("node_modules", "http-proxy-to-socks", "bin", "hpts.js").to_s, "-s", "127.0.0.1:9094")
+        sleep(1) until out2.readline.include?("http-proxy listening")
+        @outs = [out1, out2]
         [socks_pid, proxy_to_socks_pid]
       end
   end
