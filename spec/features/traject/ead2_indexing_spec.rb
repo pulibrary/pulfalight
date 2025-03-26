@@ -854,6 +854,15 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(result["language_ssm"]).to eq ["Greek, Modern"]
     end
 
+    context "when there are no languages" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC401.processed.EAD.xml")
+      end
+      it "indexes" do
+        expect(result["language_ssm"]).to be_nil
+      end
+    end
+
     context "when there are multiple languages" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0776.processed.EAD.xml")
