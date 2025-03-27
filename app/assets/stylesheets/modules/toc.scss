@@ -101,7 +101,7 @@
   width: 0;
   height: 0;
 }
-.slider {
+.toc-slider {
   position: absolute;
   cursor: pointer;
   background-color: #ccc;
@@ -113,7 +113,7 @@
   -webkit-transition: .4s;
   border-radius: 12px;
 }
-.slider:before {
+.toc-slider:before {
   position: absolute;
   content: "";
   height: 8px;
@@ -125,14 +125,14 @@
   -webkit-transition: .4s;
   border-radius: 50%;
 }
-input:checked  + .slider {
+input:checked  + .toc-slider {
   background-color: #397339;
 }
-input:checked + .slider:before {
+input:checked + .toc-slider:before {
   transform: translateX(8px);
   -webkit-transform: translateX(8px);
 }
-input:focus + .slider {
+input:focus + .toc-slider {
   box-shadow: 0 0 1px #397339;
 }
 
