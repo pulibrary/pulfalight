@@ -863,6 +863,15 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
+    context "when there are no languages and the component has no language" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1671.EAD.xml")
+      end
+      it "indexes" do
+        expect(result["language_ssm"]).to be_nil
+      end
+    end
+
     context "when there are multiple languages" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0776.processed.EAD.xml")
