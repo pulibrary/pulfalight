@@ -20,7 +20,6 @@ export default class {
     this.setup_toc()
     this.setup_vue()
     this.setup_lib_cal_hours()
-    this.setup_range_limit()
     this.setup_form_modal()
     this.setup_media_queries()
   }
@@ -30,16 +29,6 @@ export default class {
     for (var i = 0; i < elements.length; i++) {
       new  LibCalHours(elements[i]).insert_hours()
     }
-  }
-
-  setup_range_limit() {
-    // Initialize the range limit interface
-    $('.blacklight-date_range_sim').data('plot-config', {
-          selection: { color: '#C0FF83' },
-          colors: ['#ffffff'],
-          series: { lines: { fillColor: 'rgba(255,255,255, 0.5)' }},
-          grid: { color: '#aaaaaa', tickColor: '#aaaaaa', borderWidth: 0 }
-    });
   }
 
   setup_toc() {
