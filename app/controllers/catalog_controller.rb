@@ -174,6 +174,7 @@ class CatalogController < ApplicationController
     config.add_facet_field "geogname_sim", label: "Place", limit: 10
     config.add_facet_field "places_ssim", label: "Places", show: false
     config.add_facet_field "access_subjects_ssim", label: "Subject", limit: 10
+    config.add_facet_field "parent_unittitles_ssim", label: "Series", show: false
 
     # Facet label configuration for links in component show page.
     config.add_facet_field "topics_ssim", label: "Topics", show: false
