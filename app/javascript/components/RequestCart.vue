@@ -78,13 +78,7 @@
               </td>
             </tr>
 
-            <tr v-if="item.restricted" class="request__location">
-              <td colspan="4">
-                Item may need to be reviewed by staff for access.
-              </td>
-            </tr>
-
-            <tr v-else-if="item.location && item.location.label" class="request__location">
+            <tr v-if="item.location && item.location.label" class="request__location">
               <td colspan="4">
                 <geo-icon></geo-icon>
                 This item can be viewed in person at <template v-if="item.location.url"><a
