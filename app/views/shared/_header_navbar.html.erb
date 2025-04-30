@@ -23,7 +23,11 @@
         <% end %>
         <div class="row<%= " pb-lg-5 pb-2" if on_home_page? %>">
           <div id="search-navbar" class="search-navbar col-md-9 mx-md-auto" role="search">
-            <%= render_search_bar %>
+            <%= render Pulfalight::SearchBarComponent.new(
+              url: search_action_url,
+              params: search_state.params_for_search.except(:q, :search_field, :qt, :page, :utf8).merge(f: (search_state.params_for_search[:f] || {}).except(:collection_sim), group: true),
+              autocomplete_path: suggest_index_catalog_path
+            ) %>
           </div>
         </div>
       </nav>
