@@ -68,7 +68,7 @@ class AeonRequest
 
   def form_attributes
     return request_attributes({}) if box.blank?
-    all_attributes = requesting_containers.map do |local_box|
+    all_attributes = top_containers.map do |local_box|
       request_attributes(local_box)
     end
     return request_attributes({}) if all_attributes.blank?
@@ -79,11 +79,6 @@ class AeonRequest
         Array.wrap(oldval) + [newval]
       end
     end
-  end
-
-  def requesting_containers
-    return top_containers if top_containers.present?
-    non_top_containers
   end
 
   # Create one request per box.
@@ -184,12 +179,8 @@ class AeonRequest
   # Top containers are boxes and oversize folders.
   def top_containers
     container_information.select do |container|
-      container["label"].to_s.downcase.include?("box") || container["profile"].include?("OS folder")
+      container["parent"].blank?
     end
-  end
-
-  def non_top_containers
-    container_information - top_containers
   end
 
   def title
