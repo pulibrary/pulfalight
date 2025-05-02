@@ -43,8 +43,14 @@ export default class TocBuilder {
   setupEventHandlers() {
     // Listen for click on the leaf node and follow link to component
     this.element.on('activate_node.jstree', (e, data) => {
-      let location = `/catalog/${data.node.id}?onlineToggle=${this.toggleElement.checked}`
-      window.location = location
+      // Only handle left-clicks (button 0)
+      // This allows right-clicks and middle-clicks to use the default behavior of the links
+      if (e.originalEvent && e.originalEvent.button === 0) {
+        let location = `/catalog/${data.node.id}?onlineToggle=${this.toggleElement.checked}`
+        window.location = location
+        // Prevent default to avoid double navigation
+        e.preventDefault()
+      }
     })
     this.element.on('ready.jstree', (e, data) => {
       const selectedId = this.element.jstree().get_selected()[0]

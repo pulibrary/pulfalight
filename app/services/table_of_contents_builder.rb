@@ -45,7 +45,8 @@ class TableOfContentsBuilder
       text: text(component),
       has_children: component["components"].present?,
       state: { opened: @expanded || expand?(component) }, # This applies to every node in the tree,
-      li_attr: { "data-online-content" => component["has_online_content_ssim"]&.first == "true" }
+      li_attr: { "data-online-content" => component["has_online_content_ssim"]&.first == "true" },
+      a_attr: { href: "/catalog/#{component["id"]}" } # Add href attribute for real links
     }
   end
 
