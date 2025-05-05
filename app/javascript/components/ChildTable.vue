@@ -51,6 +51,7 @@ export default {
     return {
       "columns": [
         { 'name': 'id', 'display_name': 'Select Items', 'align': 'center', 'checkbox': true },
+        { 'name': 'online', 'display_name': 'Online', 'align': 'center', 'raw': true},
         { 'name': 'title', 'display_name': 'Title', 'align': 'center', 'sortable': true },
         { 'name': 'date', 'sortable': true },
         { 'name': 'container', 'display_name': 'Container', 'sortable': true }

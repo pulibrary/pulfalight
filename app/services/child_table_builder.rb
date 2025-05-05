@@ -24,6 +24,7 @@ class ChildTableBuilder
         value: Array.wrap(document.title).join(", "),
         link: Rails.application.routes.url_helpers.solr_document_url(id: document.id)
       },
+      online: OnlineContentBadge.new(document).render,
       date: Array.wrap(document.date_created).join(", "),
       container: Array.wrap(document.container).join(", "),
       form_params: document.aeon_request.form_attributes,
