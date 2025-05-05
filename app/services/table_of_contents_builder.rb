@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 class TableOfContentsBuilder
-  def self.build(document, single_node: false, expanded: false)
-    new(document, single_node: single_node, expanded: expanded).build
+  def self.build(document, single_node: false, expanded: false, online_content: false)
+    new(document, single_node: single_node, expanded: expanded, online_content: online_content).build
   end
 
   attr_reader :document, :single_node
-  def initialize(document, single_node: false, expanded: false)
+  def initialize(document, single_node: false, expanded: false, online_content: false)
     @document = document
     @single_node = single_node
     @expanded = expanded
+    @online_content = online_content
+    @found_online_content = false
   end
 
   def build
@@ -50,10 +52,17 @@ class TableOfContentsBuilder
     }
   end
 
-  # Expand if the component is an ancestor or itself.
+  # Expand if the component is an ancestor or itself or if online_content
+  # is true and this is the first component with online content.
   def expand?(component)
-    return true if component["id"] == document["id"]
-    document.parent.include?(component["id"])
+    if component["id"] == document["id"]
+      true
+    elsif @online_content && component["has_online_content_ssim"]&.first == "true" && !@found_online_content
+      @found_online_content = true
+      true
+    else
+      document.parent.include?(component["id"])
+    end
   end
 
   def text(component)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class TocController < ApplicationController
   def toc
-    render json: TableOfContentsBuilder.build(document, single_node: single_node?, expanded: expanded?)
+    render json: TableOfContentsBuilder.build(document, single_node: single_node?, expanded: expanded?, online_content: online_content?)
   rescue Blacklight::Exceptions::RecordNotFound
     render json: {}
   end
@@ -23,5 +23,9 @@ class TocController < ApplicationController
 
   def expanded?
     params[:expanded] == "true"
+  end
+
+  def online_content?
+    params[:online_content] == "true"
   end
 end

@@ -22,6 +22,10 @@ export default class TocBuilder {
       url = `${url}&expanded=true`
     }
 
+    if (this.getOnlineToggleParam()) {
+      url = `${url}&online_content=true`
+    }
+
     return url
   }
 
@@ -33,17 +37,42 @@ export default class TocBuilder {
     return document.getElementById('tocOnlineToggle')
   }
 
+  setOnlineToggleParam(value) {
+    let url = new URL(window.location.href)
+    let params = new URLSearchParams(url.search)
+
+    params.set('onlineToggle', value)
+
+    url.search = params.toString()
+    window.history.pushState({}, '', url)
+  }
+
+  getOnlineToggleParam() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paramValue = urlParams.get('onlineToggle') || 'false'
+    if (paramValue === 'true') {
+      return true
+    } else {
+      return false
+    }
+  }
+
   build() {
     if (this.element.length > 0) {
+      this.setupToggleElement()
       this.setupTree()
       this.setupEventHandlers()
     }
   }
 
+  setupToggleElement() {
+    this.toggleElement.checked = this.getOnlineToggleParam()
+  }
+
   setupEventHandlers() {
     // Listen for click on the leaf node and follow link to component
     this.element.on('activate_node.jstree', (e, data) => {
-      let location = `/catalog/${data.node.id}?onlineToggle=${this.toggleElement.checked}`
+      let location = `/catalog/${data.node.id}?onlineToggle=${this.getOnlineToggleParam()}`
       window.location = location
     })
     this.element.on('ready.jstree', (e, data) => {
@@ -58,8 +87,13 @@ export default class TocBuilder {
     this.toggleElement.addEventListener('change', (e) => {
       if(e.target.checked) {
         document.getElementById('toc-container').classList.add('online-only')
+        this.setOnlineToggleParam(true)
+        this.element.jstree("destroy");
+        this.build()
       } else {
         document.getElementById('toc-container').classList.remove('online-only')
+        this.setOnlineToggleParam(false)
+        this.build()
       }
     })
   }
@@ -80,6 +114,9 @@ export default class TocBuilder {
               let url = `${that.baseUrl}?node=${node.id}`
               if (that.expanded) {
                 url = `${url}&expanded=true`
+              }
+              if (that.getOnlineToggleParam()) {
+                url = `${url}&online_content=true`
               }
               return url
             }
