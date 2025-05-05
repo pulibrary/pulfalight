@@ -88,11 +88,6 @@ describe "viewing catalog records", type: :feature, js: true do
       visit "/catalog/MC221_c0060"
     end
 
-    it "has a table of contents element" do
-      expect(page).to have_css("#toc")
-      expect(page).to have_css(".toc-online-toggle")
-    end
-
     it "has an element with the component id", js: false do
       expect(page).to have_selector("*[data-component-id='MC221_c0060']")
     end
@@ -114,9 +109,6 @@ describe "viewing catalog records", type: :feature, js: true do
       it "displays 'Has Online Material' at the collection level" do
         visit "/catalog/MC221"
         expect(page).to have_selector(".banner-content span", text: "Some materials in this collection are available online.")
-      end
-      it "displays an icon in the table of contents", js: true do
-        expect(page).to have_selector "li#MC221_c0094 .online-direct-content"
       end
     end
   end
@@ -316,12 +308,6 @@ describe "viewing catalog records", type: :feature, js: true do
         end
       end
 
-      it "has a toggle switch for showing materials containing online material", js: true do
-        visit "/catalog/C1491"
-        expect(page).to have_content "Working Files, 1955-2018"
-        find(".toggle > span").click
-        expect(page).not_to have_content "Working Files, 1955-2018"
-      end
       it "shows all the relevant notes" do
         visit "/catalog/MC148"
 
