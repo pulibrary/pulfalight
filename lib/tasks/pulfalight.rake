@@ -27,12 +27,12 @@ end
 namespace :pulfalight do
   namespace :aspace do
     task proxy_aspace: :environment do
-      AspaceProxyManager.spawn!(host: "pulfalight-prod-worker1.princeton.edu", user: "pulsys")
+      AspaceProxyManager.spawn!(host: "pulfalight-worker-prod1.princeton.edu", user: "pulsys")
       ArchivesSpace::Request.http_proxy "127.0.0.1", 8080, nil, nil
     end
 
     desc "Index EADIDs defined by stakeholders as representatives."
-    task index_test_eads: :environment do
+    task index_test_eads: :"pulfalight:aspace:proxy_aspace" do
       test_eadids = [
         "WC064",
         "C0614",
@@ -114,7 +114,8 @@ namespace :pulfalight do
       client.repositories.each do |repository|
         repository_uri = repository["uri"][1..-1]
         repo_code = repository["repo_code"]
-        uris = client.get("#{repository_uri}/search", query: { q: "identifier:(#{or_query})", type: ["resource"], fields: ["uri"], page: 1 }).parsed["results"].map { |x| x["uri"] }
+        result = client.get("#{repository_uri}/search", query: { q: "identifier:(#{or_query})", type: ["resource"], fields: ["uri"], page: 1 })
+        uris = result.parsed["results"].map { |x| x["uri"] }
         uris.each do |uri|
           AspaceIndexJob.perform_later(resource_descriptions_uri: uri[1..-1].gsub("resources", "resource_descriptions"), repository_id: repo_code.split("-").first)
         end
