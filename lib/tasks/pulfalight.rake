@@ -32,7 +32,7 @@ namespace :pulfalight do
     end
 
     desc "Index EADIDs defined by stakeholders as representatives."
-    task index_test_eads: :environment do
+    task index_test_eads: :"pulfalight:aspace:proxy_aspace" do
       test_eadids = [
         "WC064",
         "C0614",
