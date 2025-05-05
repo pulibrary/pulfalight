@@ -65,6 +65,8 @@
             </add-to-cart-button>
           </div>
 
+          <div v-else-if="col.raw" v-html="lineItem[col.name].value" ></div>
+
           <span v-else>
             <lux-hyperlink v-if="lineItem[col.name].link" :href="lineItem[col.name].link">
               {{ lineItem[col.name].value }}

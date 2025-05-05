@@ -119,7 +119,15 @@ describe "viewing catalog records", type: :feature, js: true do
         expect(page).to have_selector "li#MC221_c0094 .online-direct-content"
       end
     end
+
+    context "which has children with online material", js: true do
+      it "displays 'Has Online Material' in its contents list" do
+        visit "/catalog/MC221_c0092"
+        expect(page).to have_selector("#component-summary .child-component-table td div.online-direct-content", text: "HAS ONLINE MATERIAL")
+      end
+    end
   end
+
   context "when given something with access restrictions", js: false do
     it "displays 'Restricted' at the collection level" do
       visit "/catalog/C0187"
