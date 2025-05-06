@@ -128,9 +128,9 @@ namespace :pulfalight do
       indexer = Traject::Indexer::NokogiriIndexer.new(repository: "publicpolicy").tap do |i|
         i.load_config_file(Rails.root.join("lib", "pulfalight", "traject", "ead2_config.rb"))
       end
-      fixture_file = File.read(Rails.root.join("spec", "fixtures", "aspace", "mss", "C1588.xml"))
+      fixture_file = Rails.root.join("spec", "fixtures", "aspace", "mss", "C1588.xml").read
       nokogiri_reader = Arclight::Traject::NokogiriNamespacelessReader.new(fixture_file.to_s, indexer.settings)
-      File.open(Rails.root.join("spec", "fixtures", "C1588.json"), "w") do |f|
+      Rails.root.join("spec", "fixtures", "C1588.json").open("w") do |f|
         f.puts indexer.map_record(nokogiri_reader.to_a.first).to_json
       end
     end
@@ -185,7 +185,7 @@ namespace :pulfalight do
 
   desc "Generate a robots.txt file"
   task robots_txt: :environment do |_t, args|
-    file_path = args[:file_path] || Rails.root.join("public", "robots.txt")
+    file_path = args[:file_path] || Rails.public_path.join("robots.txt")
     robots = RobotsGeneratorService.new(path: file_path, disallowed_paths: Rails.configuration.robots.disallowed_paths)
     robots.insert_group(user_agent: "*")
     robots.insert_crawl_delay(10)
@@ -309,7 +309,7 @@ namespace :pulfalight do
       # Several EAD seeds are "processed" to only contain the components needed
       # for indexing tests, to speed them up. MC221 is too, but we need the full
       # EAD for catalog tests. This processing happens in AspaceFixtureGenerator
-      next if File.exist?(file_path.gsub(".EAD", ".processed.EAD")) && !file_path.include?("MC221")
+      next if File.exist?(file_path.gsub(".EAD", ".processed.EAD")) && file_path.exclude?("MC221")
       index_file(relative_path: file_path, root_path: root_path, enqueue: enqueue)
     end
     Blacklight.default_index.connection.commit
