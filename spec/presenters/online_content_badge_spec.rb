@@ -14,10 +14,19 @@ RSpec.describe OnlineContentBadge do
     end
 
     context "with a document that has indirect online content" do
-      let(:values) { { has_online_content_ssim: ["true"] } }
+      let(:values) do
+        {
+          has_online_content_ssim: ["true"],
+          normalized_title_ssm: ["normalized title"]
+        }
+      end
 
-      it "returns a badge with a some online material label" do
-        expect(badge.render).to include("document-access online-content online-indirect-content", "SOME ONLINE MATERIAL")
+      it "returns a badge with a some online material label and a search link" do
+        expect(badge.render).to include(
+          "document-access online-content online-indirect-content",
+          "SOME ONLINE MATERIAL",
+          "/catalog?f[parent_unittitles_ssim][]=normalized title"
+        )
       end
     end
 
