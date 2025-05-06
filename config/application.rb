@@ -21,7 +21,7 @@ module Pulfalight
 
     # load overrides
     config.to_prepare do
-      Dir.glob(Rails.root.join("app", "**", "*_override*.rb")) do |c|
+      Rails.root.glob("app/**/*_override*.rb") do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
     end
@@ -34,7 +34,7 @@ module Pulfalight
       protocol: ENV.fetch("APPLICATION_HOST_PROTOCOL", "http")
     }
     config.action_mailer.default_url_options = config.action_controller.default_url_options
-    config.active_record.yaml_column_permitted_classes = [Symbol, Date, Time, Hash, HashWithIndifferentAccess]
+    config.active_record.yaml_column_permitted_classes = [Symbol, Date, Time, Hash, ActiveSupport::HashWithIndifferentAccess]
 
     # Configure user ids that are authorized for admin tasks
     config.authorization = []

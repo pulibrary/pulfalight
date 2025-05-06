@@ -14,6 +14,6 @@ class SmtpStatus < HealthMonitor::Providers::Base
     smtp = Net::SMTP.new(settings[:address], settings[:port], starttls: tls_setting)
     smtp.open_timeout = 1
     smtp.start
-    self.class.next_check_timestamp = Time.current + 5.minutes
+    self.class.next_check_timestamp = 5.minutes.from_now
   end
 end

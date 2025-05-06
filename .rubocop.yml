@@ -4,6 +4,8 @@ inherit_gem:
 AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.6
+  SuggestExtensions: false
+  NewCops: enable
   Exclude:
     - 'bin/*'
     - 'config/deploy.rb'
@@ -13,11 +15,20 @@ AllCops:
     - 'spec/support/**/*'
     - 'tmp/**/*'
 
-
-
+Layout/LineLength:
+  Exclude:
+    - 'spec/features/traject/ead2_indexing_spec.rb'
+    - 'config/initializers/simple_form_bootstrap.rb'
+    - 'spec/lib/pulfalight/normalized_box_locations_spec.rb'
+    - 'spec/features/catalog_view_spec.rb'
+    - 'spec/helpers/pulfalight_helper_spec.rb'
+    - 'spec/requests/catalog_request_spec.rb'
 Lint/MissingSuper:
   Exclude:
     - 'lib/pulfalight/normalized_date.rb'
+Lint/SuppressedException:
+  Exclude:
+    - 'lib/tasks/performance.rake'
 Metrics/AbcSize:
   Exclude:
     - 'app/models/pulfalight/requests/aeon_external_request.rb'
@@ -32,15 +43,16 @@ Metrics/BlockLength:
     - 'config/routes.rb'
     - 'config/initializers/simple_form_bootstrap.rb'
     - 'lib/pulfalight/traject/ead2_component_config.rb'
-Rails/UnknownEnv:
-  Exclude:
-    - 'config/initializers/honeybadger_downtime_hook.rb'
 Metrics/ClassLength:
   Exclude:
     - 'app/models/solr_document.rb'
     - 'app/controllers/catalog_controller.rb'
     - 'app/services/aspace_fixture_generator.rb'
     - 'app/values/aeon_request.rb'
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'lib/pulfalight/traject/ead2_component_config.rb'
+    - 'lib/pulfalight/normalized_box_locations.rb'
 Metrics/MethodLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
@@ -51,53 +63,33 @@ Metrics/MethodLength:
     - 'app/values/aeon_request.rb'
     - 'lib/pulfalight/normalized_box_locations.rb'
     - 'lib/pulfalight/traject/ead2_indexing.rb'
-Layout/LineLength:
-  Exclude:
-    - 'spec/features/traject/ead2_indexing_spec.rb'
-    - 'config/initializers/simple_form_bootstrap.rb'
-    - 'spec/lib/pulfalight/normalized_box_locations_spec.rb'
-    - 'spec/features/catalog_view_spec.rb'
-    - 'spec/helpers/pulfalight_helper_spec.rb'
-    - 'spec/requests/catalog_request_spec.rb'
-Naming/PredicateName:
-  Exclude:
-    - 'app/models/solr_document.rb'
-Metrics/CyclomaticComplexity:
-  Exclude:
-    - 'lib/pulfalight/traject/ead2_component_config.rb'
-    - 'lib/pulfalight/normalized_box_locations.rb'
 Metrics/ModuleLength:
   Enabled: false
-
 Metrics/PerceivedComplexity:
   Exclude:
     - 'lib/pulfalight/traject/ead2_component_config.rb'
-
-RSpec/ExampleLength:
+Naming/PredicateName:
+  Exclude:
+    - 'app/models/solr_document.rb'
+Rails/I18nLocaleTexts:
   Enabled: false
-
-Style/StringLiterals:
-  EnforcedStyle: double_quotes
-RSpec/VerifiedDoubles:
-  Exclude:
-    - 'spec/models/user_spec.rb'
-    - 'spec/services/aspace_fixture_generator_spec.rb'
-RSpec/DescribeClass:
-  Exclude:
-    - 'spec/views/**/*.rb'
 Rails/OutputSafety:
   Exclude:
     - 'config/initializers/repository_contact_info_patch.rb'
 Rails/SkipsModelValidations:
   Exclude:
     - 'app/services/aspace/indexer.rb'
-Lint/SuppressedException:
-  Exclude:
-    - 'lib/tasks/performance.rake'
 Rails/UnknownEnv:
-  Environments:
-    - production
-    - development
-    - test
-    - qa
-    - staging
+  Exclude:
+    - 'config/initializers/honeybadger_downtime_hook.rb'
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/views/**/*.rb'
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/VerifiedDoubles:
+  Exclude:
+    - 'spec/models/user_spec.rb'
+    - 'spec/services/aspace_fixture_generator_spec.rb'
+Style/StringLiterals:
+  EnforcedStyle: double_quotes

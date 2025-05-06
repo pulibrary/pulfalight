@@ -17,7 +17,7 @@ RSpec.describe AspaceFixtureGenerator do
       )
       allow(client).to receive(:get)
         .with("repositories/1/resource_descriptions/1.xml", { query: { include_daos: true, include_unpublished: false }, timeout: 1200 })
-        .and_return(double(body: File.read(Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1588.EAD.xml"))))
+        .and_return(double(body: Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1588.EAD.xml").read))
 
       fixture_generator.regenerate!
 

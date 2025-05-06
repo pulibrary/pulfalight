@@ -55,7 +55,7 @@ module Pulfalight
       (1..sorted.max).each do |index|
         first_number = index if sorted.include?(index) && first_number.nil?
 
-        if !sorted.include?(index) && !first_number.nil?
+        if sorted.exclude?(index) && !first_number.nil?
           range = "#{first_number}-#{index - 1}"
           ranges << range
           first_number = nil
