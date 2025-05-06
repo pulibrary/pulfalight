@@ -118,6 +118,15 @@ describe "viewing catalog records", type: :feature, js: true do
         expect(page).to have_selector("#component-summary .child-component-table td div.online-direct-content", text: "HAS ONLINE MATERIAL")
       end
     end
+
+    context "with a component with children, some of which have online material" do
+      it "lets the user search for online materials" do
+        visit "/catalog/C1491_c3"
+        click_on("SOME ONLINE MATERIAL")
+        expect(page).to have_content "1 entry found"
+        expect(page).to have_content "Box 1, Folder 1"
+      end
+    end
   end
 
   context "when given something with access restrictions", js: false do
@@ -315,7 +324,6 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dd.blacklight-collection_bioghist_ssm", text: /Noël Riley Fitch was born on December 24, 1937/
         end
       end
-
       it "shows all the relevant notes" do
         visit "/catalog/MC148"
 
