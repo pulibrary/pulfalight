@@ -5,6 +5,11 @@ export default class TocBuilder {
     // have the correct selected node id. The toc element itself is permanent (not
     // updated by turbolinks), and is instead updated by event-triggered javascript.
     this.dataElement = $(`${element}-data`)
+
+    // Setup the initial online toggle value if it's missing
+    if (this.getOnlineToggleValue() === null) {
+      this.getOnlineToggleValue('false')
+    }
   }
 
   get expanded() {
@@ -22,7 +27,7 @@ export default class TocBuilder {
       url = `${url}&expanded=true`
     }
 
-    if (this.getOnlineToggleParam()) {
+    if (this.getOnlineToggleValue()) {
       url = `${url}&online_content=true`
     }
 
@@ -37,20 +42,13 @@ export default class TocBuilder {
     return document.getElementById('tocOnlineToggle')
   }
 
-  setOnlineToggleParam(value) {
-    let url = new URL(window.location.href)
-    let params = new URLSearchParams(url.search)
-
-    params.set('onlineToggle', value)
-
-    url.search = params.toString()
-    window.history.pushState({}, '', url)
+  setOnlineToggleValue(value) {
+    localStorage.setItem('pulfalightOnlineToggle', value)
   }
 
-  getOnlineToggleParam() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const paramValue = urlParams.get('onlineToggle') || 'false'
-    if (paramValue === 'true') {
+  getOnlineToggleValue() {
+    const value = localStorage.getItem('pulfalightOnlineToggle')
+    if (value === 'true') {
       return true
     } else {
       return false
@@ -59,20 +57,26 @@ export default class TocBuilder {
 
   build() {
     if (this.element.length > 0) {
-      this.setupToggleElement()
       this.setupTree()
+      this.setupToggleElement()
       this.setupEventHandlers()
     }
   }
 
   setupToggleElement() {
-    this.toggleElement.checked = this.getOnlineToggleParam()
+    const checked = this.getOnlineToggleValue()
+    this.toggleElement.checked = checked
+    if (checked) {
+      document.getElementById('toc-container').classList.add('online-only')
+    } else {
+      document.getElementById('toc-container').classList.remove('online-only')
+    }
   }
 
   setupEventHandlers() {
     // Listen for click on the leaf node and follow link to component
     this.element.on('activate_node.jstree', (e, data) => {
-      let location = `/catalog/${data.node.id}?onlineToggle=${this.getOnlineToggleParam()}`
+      let location = `/catalog/${data.node.id}`
       window.location = location
     })
     this.element.on('ready.jstree', (e, data) => {
@@ -87,12 +91,12 @@ export default class TocBuilder {
     this.toggleElement.addEventListener('change', (e) => {
       if(e.target.checked) {
         document.getElementById('toc-container').classList.add('online-only')
-        this.setOnlineToggleParam(true)
+        this.setOnlineToggleValue('true')
         this.element.jstree("destroy");
         this.build()
       } else {
         document.getElementById('toc-container').classList.remove('online-only')
-        this.setOnlineToggleParam(false)
+        this.setOnlineToggleValue('false')
         this.build()
       }
     })
@@ -115,7 +119,7 @@ export default class TocBuilder {
               if (that.expanded) {
                 url = `${url}&expanded=true`
               }
-              if (that.getOnlineToggleParam()) {
+              if (that.getOnlineToggleValue()) {
                 url = `${url}&online_content=true`
               }
               return url
