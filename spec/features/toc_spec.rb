@@ -53,6 +53,24 @@ describe "Table of Contents", type: :feature, js: true do
       # Displays nested component without online content
       expect(page).to have_content "Eddy, Mary P., New Testament Miniature Book, undated"
     end
+
+    it "online toggle switch resets to off when visiting a new collection", js: true do
+      visit "/catalog//C0140"
+
+      # Displays top-level component without online content
+      expect(page).to have_content "Bainbridge, William, Letter to Albert Gallatin, 1820 June 24"
+
+      # Click toggle to show online content only
+      find(".toggle > span").click
+      
+      # Does not display top-level component without online content
+      expect(page).not_to have_content "Bainbridge, William, Letter to Albert Gallatin, 1820 June 24"
+
+      visit "/catalog//MC221"
+      # Displays top-level component without online content
+      expect(page).to have_content "Series 1: U.S. diplomacy career, 1900-1978"
+    end
+
   end
 
   describe "components with a viewer" do
