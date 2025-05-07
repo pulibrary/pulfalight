@@ -175,7 +175,6 @@ describe "EAD 2 traject indexing", type: :feature do
         components = result["components"]
         component = components.first
         expect(component["summary_storage_note_ssm"]).to eq ["Mudd Manuscript Library (mudd): folder Oversize folder 185"]
-
       end
     end
   end
