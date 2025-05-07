@@ -43,7 +43,7 @@ export default class TocBuilder {
   setupEventHandlers() {
     // Listen for click on the leaf node and follow link to component
     this.element.on('activate_node.jstree', (e, data) => {
-      let location = `/catalog/${data.node.id}?onlineToggle=${this.toggleElement.checked}`
+      let location = `/catalog/${data.node.id}`
       window.location = location
     })
     this.element.on('ready.jstree', (e, data) => {
@@ -55,11 +55,34 @@ export default class TocBuilder {
         this.element.scrollTop(scrollOffset)
       }
     })
-    this.toggleElement.addEventListener('change', (e) => {
+
+    var toggle_state=localStorage.getItem("onlineOnly");
+    var prev_collection=localStorage.getItem("collection");
+    var current_collection=$('#document').data('document-id').split("_").at(0);
+
+    // reset toggle state if the user has moved to a new collection
+    if(prev_collection !== current_collection) {
+      toggle_state="false"; 
+      localStorage.setItem("collection",current_collection);
+      document.getElementById('tocOnlineToggle').checked = false;
+      document.getElementById('toc-container').classList.remove('online-only')
+      localStorage.setItem("onlineOnly","false")
+    }
+
+    if(toggle_state=="true"){
+      document.getElementById('toc-container').classList.add('online-only')
+      document.getElementById('tocOnlineToggle').checked = true;
+    } else {
+      document.getElementById('toc-container').classList.remove('online-only')
+      document.getElementById('tocOnlineToggle').checked = false;
+    }
+    document.getElementById('tocOnlineToggle').addEventListener('change', (e) => {
       if(e.target.checked) {
         document.getElementById('toc-container').classList.add('online-only')
+        localStorage.setItem("onlineOnly","true")
       } else {
         document.getElementById('toc-container').classList.remove('online-only')
+        localStorage.setItem("onlineOnly","false")
       }
     })
   }
