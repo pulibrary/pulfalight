@@ -26,10 +26,32 @@ describe "Table of Contents", type: :feature, js: true do
 
   describe "online collection toggle switch" do
     it "has a toggle switch for showing materials containing online material", js: true do
-      visit "/catalog/C1491"
-      expect(page).to have_content "Working Files, 1955-2018"
+      visit "/catalog//MC221"
+
+      # Displays top-level component without online content
+      expect(page).to have_content "Series 1: U.S. diplomacy career, 1900-1978"
+      # Does not display nested online content component
+      expect(page).not_to have_content "1929, 1929, 1931-1964"
+      # Does not display nested component without online content
+      expect(page).not_to have_content "Eddy, Mary P., New Testament Miniature Book, undated"
+
+      # Click toggle to show online content only
       find(".toggle > span").click
-      expect(page).not_to have_content "Working Files, 1955-2018"
+
+      # Does not display top-level component without online content
+      expect(page).not_to have_content "Series 1: U.S. diplomacy career, 1900-1978"
+      # Displays nested online content component
+      expect(page).to have_content "1929, 1929, 1931-1964"
+      # Does not display nested component without online content
+      expect(page).not_to have_content "Eddy, Mary P., New Testament Miniature Book, undated"
+
+      # Clicking toggle off
+      find(".toggle > span").click
+
+      # Displays nested online content component
+      expect(page).to have_content "1929, 1929, 1931-1964"
+      # Displays nested component without online content
+      expect(page).to have_content "Eddy, Mary P., New Testament Miniature Book, undated"
     end
   end
 

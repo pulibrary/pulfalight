@@ -5,6 +5,11 @@ export default class TocBuilder {
     // have the correct selected node id. The toc element itself is permanent (not
     // updated by turbolinks), and is instead updated by event-triggered javascript.
     this.dataElement = $(`${element}-data`)
+
+    // Setup the initial online toggle value if it's missing
+    if (this.getOnlineToggleValue() === null) {
+      this.getOnlineToggleValue('false')
+    }
   }
 
   get expanded() {
@@ -22,6 +27,10 @@ export default class TocBuilder {
       url = `${url}&expanded=true`
     }
 
+    if (this.getOnlineToggleValue()) {
+      url = `${url}&online_content=true`
+    }
+
     return url
   }
 
@@ -33,17 +42,41 @@ export default class TocBuilder {
     return document.getElementById('tocOnlineToggle')
   }
 
+  setOnlineToggleValue(value) {
+    localStorage.setItem('pulfalightOnlineToggle', value)
+  }
+
+  getOnlineToggleValue() {
+    const value = localStorage.getItem('pulfalightOnlineToggle')
+    if (value === 'true') {
+      return true
+    } else {
+      return false
+    }
+  }
+
   build() {
     if (this.element.length > 0) {
       this.setupTree()
+      this.setupToggleElement()
       this.setupEventHandlers()
+    }
+  }
+
+  setupToggleElement() {
+    const checked = this.getOnlineToggleValue()
+    this.toggleElement.checked = checked
+    if (checked) {
+      document.getElementById('toc-container').classList.add('online-only')
+    } else {
+      document.getElementById('toc-container').classList.remove('online-only')
     }
   }
 
   setupEventHandlers() {
     // Listen for click on the leaf node and follow link to component
     this.element.on('activate_node.jstree', (e, data) => {
-      let location = `/catalog/${data.node.id}?onlineToggle=${this.toggleElement.checked}`
+      let location = `/catalog/${data.node.id}`
       window.location = location
     })
     this.element.on('ready.jstree', (e, data) => {
@@ -58,8 +91,13 @@ export default class TocBuilder {
     this.toggleElement.addEventListener('change', (e) => {
       if(e.target.checked) {
         document.getElementById('toc-container').classList.add('online-only')
+        this.setOnlineToggleValue('true')
+        this.element.jstree("destroy");
+        this.build()
       } else {
         document.getElementById('toc-container').classList.remove('online-only')
+        this.setOnlineToggleValue('false')
+        this.build()
       }
     })
   }
@@ -80,6 +118,9 @@ export default class TocBuilder {
               let url = `${that.baseUrl}?node=${node.id}`
               if (that.expanded) {
                 url = `${url}&expanded=true`
+              }
+              if (that.getOnlineToggleValue()) {
+                url = `${url}&online_content=true`
               }
               return url
             }

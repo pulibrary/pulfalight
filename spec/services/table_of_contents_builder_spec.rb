@@ -101,4 +101,21 @@ RSpec.describe TableOfContentsBuilder do
       expect(series_level_component["text"]).to include "Some online material"
     end
   end
+
+  context "when requesting a table of contents with online_content parameter" do
+    it "expands only the first node with online content" do
+      document = SolrDocument.find("MC221")
+      output = described_class.build(document, online_content: true)
+      toc_hash = JSON.parse(output)
+      online_components = toc_hash.select do |component|
+        component["li_attr"]["data-online-content"] == true
+      end
+
+      # The first one should be expanded
+      expect(online_components[0]["state"]["opened"]).to eq true
+
+      # The second should not be expanded
+      expect(online_components[1]["state"]["opened"]).to eq false
+    end
+  end
 end
