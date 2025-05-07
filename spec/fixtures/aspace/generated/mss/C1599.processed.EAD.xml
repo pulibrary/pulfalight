@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 https://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/4q77fw20f">C1599</eadid><filedesc><titlestmt><titleproper>René Char Papers, 1929-2007 (bulk 1939-1980): Finding Aid <num>C1599</num></titleproper><author>Faith Charlton</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2018</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2025-05-08 09:10:25 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2019-01-31T16:25:59.117-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-02-01T15:48:42.666-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2022-05-09</date><item>Added Correspondence series. (ACV, FC, KB).</item></change><change><date>2022-11-11 09:22:58 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-11 10:42:58 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-16 13:11:05 -0500</date><item>Updated physloc code</item></change><change><date>2023-12-05 20:10:30 -0500</date><item>Updated use restriction</item></change><change><date>2024-08-12 21:40:39 -0400</date><item>Updated links</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Manuscripts Division </corpname>
+    </repository>
+    <unittitle>René Char Papers</unittitle>
+    <origination label="Creator">
+      <persname authfilenumber="https://viaf.org/viaf/17352384" role="col" source="viaf">Char, Marie-Claude.</persname>
+    </origination>
+    <origination label="Creator">
+      <persname role="cre">Char, René (1907-1988)</persname>
+    </origination>
+    <unitid>C1599</unitid>
+    <unitid type="aspace_uri">/repositories/5/resources/3923</unitid>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">64 boxes</extent>
+    </physdesc>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">58 linear feet</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1939/1980" type="bulk">1939-1980</unitdate>
+    <unitdate datechar="creation" normal="1923/2019" type="inclusive">1928-2019</unitdate>
+    <abstract id="aspace_ce04843ca66301b1def80853c9d6d147">Consists primarily of the correspondence of 20th-century French poet René Char (1907-1988); a smaller subset includes correspondence and records documenting his involvement with the French Resistance during World War II.</abstract>
+    <physloc id="aspace_d0df49aa8cbcb61d8a2d07a33dce3b11">scamss</physloc>
+    <physloc id="aspace_e0ec76f066eb8ddfd69d8e5158538faf">scarcpxm</physloc>
+    <langmaterial>
+      <language langcode="fre">French</language>
+.    </langmaterial>
+  </did>
+  <phystech id="aspace_28d02a56a1e62566d2e461c9634d6b0f">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>For preservation reasons, original analog
+and digital media may not be read or played back in the
+reading room. Users may visually inspect physical media
+but may not remove it from its enclosure. All analog
+audiovisual media must be digitized to preservation-quality
+standards prior to use. Audiovisual digitization requests
+are processed by an approved third-party vendor. Please note,
+the transfer time required can be as little as several weeks
+to as long as several months and there may be financial costs
+associated with the process.
+Requests should be directed through the
+<extref xlink:href="https://library.princeton.edu/special-collections/ask-us" xlink:type="simple">Ask Us Form</extref>.</p>  </phystech>
+  <appraisal id="aspace_d2fab631b735de3c5ef1cb6f9397b10d">
+    <head>Appraisal</head>
+<p>No materials were removed from the collection during 2018 and 2022 processing beyond routine appraisal practices.</p>  </appraisal>
+  <arrangement id="aspace_25f3a90a63a4281cb298b7d014144f84">
+    <head>Arrangement</head>
+<p>The order of the materials, most likely established by René Char and Marie-Claude Char, was mostly maintained.</p>  </arrangement>
+  <accessrestrict id="aspace_f4873d8b1589134eb31ad94ad6793a38" rights-restriction="Open">
+    <head>Conditions Governing Access</head>
+<p>The collection is open for research.</p>  </accessrestrict>
+  <userestrict id="aspace_f74f4d82ddb426d9533ab004c83b119e">
+    <head>Conditions Governing Use</head>
+<p>Single copies may be made for research purposes. To cite or publish quotations that fall within Fair Use, as defined under <extref xlink:href="http://copyright.princeton.edu/basics/fair-use" xlink:type="simple">U. S. Copyright Law</extref>, no permission is required. For instances beyond Fair Use, it is the responsibility of the researcher to determine whether any permissions related to copyright, privacy, publicity, or any other rights are necessary for their intended use of the Library's materials, and to obtain all required permissions from any existing rights holders, if they have not already done so. Princeton University Library's Special Collections does not charge any permission or use fees for the publication of images of materials from our collections, nor does it require researchers to obtain its permission for said use. The department does request that its collections be properly cited and images credited. More detailed information can be found on the <extref xlink:href="https://library.princeton.edu/about/policies/special-collections-copyright-credit-and-citation-guidelines" xlink:type="simple">Copyright, Credit and Citations Guidelines</extref> page on our website. If you have any questions, please feel free to contact us through the <extref xlink:href="https://library.princeton.edu/services/special-collections/ask-special-collections" xlink:type="simple">Ask Us! form</extref>.</p>  </userestrict>
+  <acqinfo id="aspace_089e32a62cc4857ba09043391c2466b4">
+    <head>Immediate Source of Acquisition</head>
+<p>Purchased from Marie-Claude Char in <date normal="2018/2018" type="acquisition">2018</date> (AM 2018-88); and in <date normal="2019/2019" type="acquisition">2019</date> (AM 2020-38).</p><p>Librairie Benoît Forgeot brokered both purchases.</p>  </acqinfo>
+  <scopecontent id="aspace_45668243764dd84e7495c92e2f246194">
+    <head>Scope and Contents</head>
+<p>Consists primarily of the correspondence of 20th-century French poet René Char (1907-1988), including correspondence and records documenting his involvement with the French Resistance during World War II.</p><p>Most of the description included here is from an inventory provided by Marie-Claude Char and Librairie Benoît Forgeot, which brokered the acquisition of the collection.</p>  </scopecontent>
+  <processinfo id="aspace_e06f89032ba8f7b7eee319b7c9debb7f">
+    <head>Processing Information</head>
+<p>The papers on the French Resistance was processed by Faith Charlton with assistance from Julia English '19 and Matthew Oakland '20 in 2018. Finding aid written by Faith Charlton in 2018. Folder inventory added by Julia English '19 and Matthew Oakland '20 in 2018.</p><p>The correspondence was processed by Kelly Bolding, Faith Charlton, and Amy C. Vo in 2022. Finding aid updated by Kelly Bolding, Faith Charlton, and Amy C. Vo in 2022. During 2022 processing, archivists did some minor sorting and interfiling of unsorted letters in the Correspondence series. While materials were removed from binders, most were left in the enclosures (sleeves) in which they were housed at the time they arrived at the library. </p>  </processinfo>
+  <bioghist id="aspace_c79a8c6d530eaf82c39822f3d54abfea">
+    <note label="personal-name">Char, Marie-Claude.</note>
+    <head>Biographical / Historical</head>
+<p>Marie-Claude Char is a French editor and publisher. The widow of poet René Char, she has been involved in disseminating her late-husband's work, and preserving the history of his role in the French Resistance.</p>  </bioghist>
+  <bioghist id="aspace_9f103a6c1a6ee2cc8c6b9d69b2b09fef">
+    <note label="personal-name">Char</note>
+    <head>Biographical / Historical</head>
+<p>Celebrated 20th-century French poet René Char (1907-1988) published more than 30 volumes of poetry, criticism, and plays during his lifetime, many of which were widely translated. He frequently collaborated with both writers and artists, including Georges Braque, Joan Miró, and Nicolas de Staël. He was also decorated military veteran, receiving recognition for his service in the French army and his involvement with the French Resistance during World War II.</p><p> In the early 1930s, Char was active in the surrealist movement, joining a community of writers and artists that included Louis Aragon, André Breton, and Pablo Picasso. From 1939 to 1940, he served as a private with the 173e RA (Régiment d'Artillerie) in Alsace for which he was awarded the Croix de Guerre. During the Nazi Occupation, Char and his first wife Georgette, who were under surveillance, took refuge in the town of Céreste. It was there, in 1941, when Char began his involvement with the Resistance. By 1943, under the nom de guerre Captain Richard Alexandre, he became the commander of landing operations and parachute drops in the Basses-Alpes (Alpes-de-Haute-Provence) as head of Section Atterrissage Parachutage (SAP) Region 2. Char was awarded the Medal of the Resistance and also named to the Legion of Honor for his service. His prose poem collection Feuillets d'Hypnos documents his wartime experiences.</p><p> After the war, Char moved to the Luberon Mountains of southern France, near his birthplace. In his later years, he was involved with anti-nuclear activism.</p>  </bioghist>
+  <controlaccess>
+    <subject source="lcsh">World War, 1939-1945 -- Underground movements -- France. -- Sources</subject>
+    <subject source="lcsh">World War, 1939-1945 -- Poetry. -- Sources</subject>
+    <subject source="lcsh">Poets, French. -- 20th century -- Sources</subject>
+    <geogname source="lcsh">France -- History -- German occupation, 1940-1945. -- Sources</geogname>
+    <genreform source="aat">Correspondence</genreform>
+  </controlaccess>
+  <dsc><c id="aspace_C1599_c380" level="series"><did><unittitle>Papers on the French Resistance</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/968648</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">11 boxes</extent></physdesc><unitdate datechar="creation" normal="1939/1980" type="bulk">1939-1980</unitdate><unitdate datechar="creation" normal="1929/2007" type="inclusive">1929-2007</unitdate></did><acqinfo id="aspace_0803c48ea70fbf4815ff68be6a50ce49"><head>Immediate Source of Acquisition</head><p>AM 2018-88</p></acqinfo><scopecontent id="aspace_4a491fb88d2d4cf34f6f8dc9c9a8b95e"><head>Scope and Contents</head><p>Materials consist primarily of correspondence and official records that document 20th-century French poet René Char's activities during World War II, in particular, his involvement with the French Resistance as head of Section Atterrissage Parachutage (SAP) Region 2 in the Basses-Alpes.</p><p> Most of the correspondence includes incoming letters from fellow Resistance fighters that date from during and after the war. Records primarily include those relating to SAP, such as memos, official documents, reports, and personnel files (fiches individuelles or fiche de renseignements) that provide biographical information and information about individuals' service. Also included are some photographs as well as a few manuscripts and related materials, in particular, drafts of addresses by Char and others, and correspondence relating to Char's book of poetry, Seuls demeurent. While most materials are to or about Char, there are several dozen letters, documents, and writings from and by Char scattered throughout the collection. Some materials in the collection also relate to Char's widow, Marie-Claude Char, specifically her involvement in events and projects relating to her husband and his papers.</p><p> Note that names and materials of a similar nature are represented throughout the collection.</p></scopecontent><c id="aspace_C1599_c1" level="file"><did><unittitle>Resistance I</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/968650</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2 boxes</extent></physdesc><unitdate datechar="creation" normal="1941-01-01/2004-12-31" type="inclusive">1941-2004</unitdate></did><scopecontent id="aspace_bc58a65dac528de888a9fff61ff8e411"><head>Scope and Contents</head><p>Primarily includes letters from fellow réfractaires. A few documents as well as a couple of manuscripts of speeches by Char are also included.</p></scopecontent></c></c></dsc>
+</archdesc>
+</ead>
