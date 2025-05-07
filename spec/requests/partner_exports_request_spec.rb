@@ -30,12 +30,28 @@ RSpec.describe PartnerExportsController do
     end
 
     context "when the requested component does not exist" do
-      it "does not error" do
+      it "logs an error and returns a 404" do
         ead = Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml").open
         client = instance_double(Aspace::Client, get_xml: ead)
         allow(Aspace::Client).to receive(:new).and_return(client)
+        allow(Rails.logger).to receive(:warn)
 
         expect { get("/pacscl/production/WC064_not_a_component.xml") }.not_to raise_error
+        expect(Rails.logger).to have_received(:warn).with(/Error generating xml/)
+        expect(response.status).to eq 404
+      end
+    end
+
+    context "when there is a connection issue with ArchiveSpace" do
+      it "logs an error and returns a 500" do
+        client = instance_double(Aspace::Client)
+        allow(Aspace::Client).to receive(:new).and_return(client)
+        allow(client).to receive(:get_xml).and_raise(ArchivesSpace::ConnectionError.new("can't connect"))
+        allow(Rails.logger).to receive(:warn)
+
+        expect { get("/pacscl/production/AC500_c23929-57796.xml") }.not_to raise_error
+        expect(Rails.logger).to have_received(:warn).with("ArchivesSpace::ConnectionError: can't connect")
+        expect(response.status).to eq 500
       end
     end
   end
