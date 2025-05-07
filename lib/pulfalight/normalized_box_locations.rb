@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Pulfalight
-  # Class for normalizing box locations to assemble the Magic Physloc Note
+  # Class for normalizing container locations to assemble the Magic Physloc Note
   # It accepts a hash that looks like this:
   # {
   #   "hsvm" => ["1", "323", "2", "3", "4", "5", "6"],
@@ -13,15 +13,15 @@ module Pulfalight
   # Firestone Library Vault: Boxes 1-6; 323
   #
   class NormalizedBoxLocations
-    # @param [Hash] box_locations
-    def initialize(box_locations)
+    # @param [Hash] container_locations
+    def initialize(container_locations)
       @normalized_locations = {}
 
-      box_locations.each do |location, types_hash|
+      container_locations.each do |location, types_hash|
         types_hash.each do |type, indicators_array|
           key = translate_location(location)
           @normalized_locations[key] =
-            @normalized_locations.fetch(key, {}).merge({ type => calculate_box_ranges(indicators_array) })
+            @normalized_locations.fetch(key, {}).merge({ type => calculate_container_ranges(indicators_array) })
         end
       end
     end
@@ -36,23 +36,23 @@ module Pulfalight
       @normalized_locations.keys
     end
 
-    # Given a location code, return the relevent box ranges
+    # Given a location code, return the relevant container ranges
     def ranges_for(location_code)
       key = @normalized_locations.keys.find { |a| a =~ /#{location_code}/ }
       @normalized_locations[key]
     end
 
     ##
-    # Given an array of box ids:
+    # Given an array of container numbers:
     # 1. Remove any that are not integers
     # 2. Sort and group the integers into ranges
-    # 3. Consolidate any ranges that represent a single box
-    # 4. Re-add the non-integer box ids
-    # @param [<String>] box_numbers
+    # 3. Consolidate any ranges
+    # 4. Re-add the non-integer container numbers
+    # @param [<String>] numbers
     # @return [<String>]
-    def calculate_box_ranges(box_numbers)
-      non_numeric_box_ids = box_numbers.reject { |a| a.to_i.to_s == a }
-      sorted = box_numbers.uniq.map(&:to_i).sort
+    def calculate_container_ranges(numbers)
+      non_numeric_ids = numbers.reject { |a| a.to_i.to_s == a }
+      sorted = numbers.uniq.map(&:to_i).sort
       ranges = []
       first_number = nil
 
@@ -71,10 +71,10 @@ module Pulfalight
           ranges << range
         end
       end
-      ranges.map { |a| consolidate_single_box_ranges(a) } | non_numeric_box_ids
+      ranges.map { |a| consolidate_single_container_ranges(a) } | non_numeric_ids
     end
 
-    # Generate a human readable summary of the box locations
+    # Generate a human readable summary of the container locations
     def to_s
       normalize.join(" ")
     end
@@ -85,16 +85,16 @@ module Pulfalight
 
     private
 
-    # Consolidate any box ranges that are only a single box
-    def consolidate_single_box_ranges(range)
-      box_numbers = range.split("-")
-      first = box_numbers.first
-      last = box_numbers.last
+    # Consolidate any ranges that are only a single container
+    def consolidate_single_container_ranges(range)
+      numbers = range.split("-")
+      first = numbers.first
+      last = numbers.last
       return first if first == last
       range
     end
 
-    def box_or_boxes(type, ranges)
+    def container_label(type, ranges)
       return type.capitalize if ranges.size == 1 && ranges.first !~ /-/
       type.pluralize.capitalize
     end
@@ -111,7 +111,7 @@ module Pulfalight
     def transform_types_hash(hash)
       # a tuple looks like ["box", ["1-11", "13-17"]]
       hash.to_a.map do |tuple|
-        "#{box_or_boxes(tuple[0], tuple[1])} #{tuple[1].join('; ')}"
+        "#{container_label(tuple[0], tuple[1])} #{tuple[1].join('; ')}"
       end
     end
   end
