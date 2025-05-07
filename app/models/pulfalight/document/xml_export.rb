@@ -11,7 +11,12 @@ module Pulfalight::Document::XmlExport
     document = add_pul_to_repository(document)
     return document if collection?
     document = document.remove_namespaces!
-    document.xpath("//*[@id='#{refs.first}']")[0].to_xml
+    component = document.xpath("//*[@id='#{refs.first}']")[0]
+    if component
+      component.to_xml
+    else
+      ""
+    end
   end
 
   def strip_containers(document)
