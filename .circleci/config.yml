@@ -3,6 +3,11 @@ orbs:
   browser-tools: circleci/browser-tools@1.4.8
   node: circleci/node@5.0.2
 jobs:
+  test_local:
+    machine: true
+    resource_class: pulibrary/ruby-deploy
+    steps:
+      - run: echo "Hi, I'm on Runners!"
   build:
     working_directory: ~/pulfalight
     # Primary command image where all commands run
@@ -217,6 +222,7 @@ workflows:
   version: 2
   build_accept_deploy:
     jobs:
+      - test_local
       - build
       - test:
           requires:
