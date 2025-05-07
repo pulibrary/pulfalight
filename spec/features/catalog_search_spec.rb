@@ -49,14 +49,14 @@ describe "catalog searches", type: :feature, js: true do
     end
 
     context "and there's an error connecting to aspace" do
-      it "logs the error, but still 404s" do
+      it "logs the error, and returns a 500" do
         allow(Aspace::Client).to receive(:new).and_raise(ArchivesSpace::ConnectionError)
         allow(Rails.logger).to receive(:error)
 
         visit "/catalog/#{id}.json?auth_token=#{Pulfalight.config['unpublished_auth_token']}"
         # expect { }.to raise_error ArchivesSpace::ConnectionError
         expect(Rails.logger).to have_received(:error).with("ArchivesSpace::ConnectionError")
-        expect(page).to have_content "Not Found"
+        expect(page.status_code).to eq 500
       end
     end
   end

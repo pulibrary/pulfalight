@@ -5,13 +5,25 @@ module Pulfalight::Document::XmlExport
   end
 
   def export_as_xml
-    content = client.get_xml(eadid: collection_unitid || unitid)
-    document = Nokogiri::XML.parse(content)
+    document = Nokogiri::XML.parse(xml_content)
     document = strip_containers(document) unless export_xml_containers?
     document = add_pul_to_repository(document)
     return document if collection?
     document = document.remove_namespaces!
-    document.xpath("//*[@id='#{refs.first}']")[0].to_xml
+    component = document.xpath("//*[@id='#{refs.first}']")[0]
+    if component
+      component.to_xml
+    else
+      Rails.logger.warn("Error generating xml: #{id}")
+      raise ActionController::RoutingError, "xml export error"
+    end
+  end
+
+  def xml_content
+    client.get_xml(eadid: collection_unitid || unitid)
+  rescue => e
+    Rails.logger.warn("#{e.class}: #{e}")
+    raise e.class, "xml export error"
   end
 
   def strip_containers(document)
