@@ -59,6 +59,15 @@ export default class TocBuilder {
   }
 
   setupToggleElement() {
+    var prev_collection=localStorage.getItem("collection");
+    var current_collection=$('#document').data('document-id').split("_").at(0);
+
+    // reset toggle state if the user has moved to a new collection
+    if(prev_collection !== current_collection) {
+      this.setOnlineToggleValue('false')
+      localStorage.setItem("collection",current_collection);
+    }
+
     const checked = this.getOnlineToggleValue()
     this.toggleElement.checked = checked
     if (checked) {
