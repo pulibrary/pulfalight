@@ -6,14 +6,17 @@ require_relative "../../../lib/pulfalight/normalized_box_locations"
 describe Pulfalight::NormalizedBoxLocations do
   let(:box_locations) do
     {
-      "hsvm" => ["1", "323", "2", "3", "4", "5", "6", "221", "7", "8", "9", "10", "11", "13", "14", "15", "16", "17"],
-      "mss" => ["12", "20", "21", "P-000145", "292", "293"],
-      "rcpxm" => ["255", "266", "114", "105"]
+      "hsvm" => {"box"=>["1", "323", "2", "3", "4", "5", "6", "221", "7", "8", "9", "10", "11", "13", "14", "15", "16", "17"],"volume"=>["42", "43", "44", "45"]},
+      "mss" => {"box"=>["12", "20", "21", "P-000145", "292", "293"]},
+      "rcpxm" => {"box"=>["255", "266", "114", "105"]}
     }
   end
   let(:normalized_box_locations) { described_class.new(box_locations) }
   let(:human_readable_box_locations) do
-    "This is stored in multiple locations. Firestone Library (hsvm): Boxes 1-11; 13-17; 221; 323 Firestone Library (mss): Boxes 12; 20-21; 292-293; P-000145 ReCAP (rcpxm): Boxes 105; 114; 255; 266"
+    {"This is stored in multiple locations.": [ ], 
+    "Firestone Library (hsvm)": ["Boxes 1-11; 13-17; 221; 323", "Volumes 42-45"], 
+    "Firestone Library (mss)": ["Boxes 12; 20-21; 292-293; P-000145"], 
+    "ReCAP (rcpxm)": ["Boxes 105; 114; 255; 266"]}
   end
 
   # Per conversation with Christa Cleeton, include translated location name and code
@@ -23,17 +26,17 @@ describe Pulfalight::NormalizedBoxLocations do
   end
 
   it "groups the boxes into human readable ranges" do
-    ranges = ["1-11", "13-17", "221", "323"]
+    ranges = {"box"=>["1-11", "13-17", "221", "323"],"volume"=>["42-45"]}
     expect(normalized_box_locations.ranges_for("hsvm")).to eq(ranges)
   end
 
   it "box ranges include non-numeric box numbers" do
-    ranges = ["12", "20-21", "292-293", "P-000145"]
+    ranges = {"box"=>["12", "20-21", "292-293", "P-000145"]}
     expect(normalized_box_locations.ranges_for("mss")).to eq(ranges)
   end
 
   it "generates a human readable summary of the box locations" do
-    expect(normalized_box_locations.to_s).to eq human_readable_box_locations
+    expect(normalized_box_locations.to_a).to eq human_readable_box_locations
   end
 
   context "an unrecognized location" do

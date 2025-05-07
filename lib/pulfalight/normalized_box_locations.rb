@@ -17,8 +17,12 @@ module Pulfalight
     def initialize(box_locations)
       @normalized_locations = {}
 
-      box_locations.keys.each do |location|
-        @normalized_locations[translate_location(location)] = calculate_box_ranges(box_locations[location])
+      box_locations.each do |location, types_hash|
+        types_hash.each do |type, indicators_array|
+        key = translate_location(location)
+        @normalized_locations[key] = 
+          @normalized_locations.fetch(key,{}).merge({type=>calculate_box_ranges(indicators_array)})
+        end
       end
     end
 
@@ -98,13 +102,16 @@ module Pulfalight
 
     # @return [Array<String>]
     def normalize
-      message_strings = []
-      message_strings << "This is stored in multiple locations." if locations.size > 1
-      @normalized_locations.keys.each do |location|
-        m = "#{location}: #{box_or_boxes(location)} #{@normalized_locations[location].join('; ')}"
-        message_strings << m
+      @normalized_locations.each do |location, types_hash|
+        @normalized_locations[location] = transform_types_hash(types_hash)
       end
-      message_strings
+      @normalized_locations["This is stored in multiple locations."] == [] if locations.size > 1
+      @normalized_locations
+    end
+    def transform_types_hash(hash)
+      hash.to_a.map do |tuple|
+        "#{tuple[0]}: #{box_or_boxes(tuple[1])}"
+      end
     end
   end
 end

@@ -167,6 +167,17 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(component["summary_storage_note_ssm"]).to eq ["Mudd Manuscript Library (mudd): Box 1"]
       end
     end
+    context "when the collection has components in containers other than boxes" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC154.EAD.xml")
+      end
+      it "includes them in the summary storage note" do
+        components = result["components"]
+        component = components.first
+        expect(component["summary_storage_note_ssm"]).to eq ["Mudd Manuscript Library (mudd): folder Oversize folder 185"]
+
+      end
+    end
   end
 
   context "when given otherlevel text components" do
