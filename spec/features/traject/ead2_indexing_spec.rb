@@ -146,10 +146,11 @@ describe "EAD 2 traject indexing", type: :feature do
 
     it "constructs a collection level summary storage note array" do
       summary_messages = result["summary_storage_note_ssm"]
-      expect(summary_messages[0]).to match(/This is stored in multiple locations./)
-      expect(summary_messages[1]).to match(/Firestone Library \(scahsvm\): Boxes 1; 32; 319/)
-      expect(summary_messages[2]).to match(/Firestone Library \(scamss\): Boxes 12; 83; 330; B-001491/)
-      expect(summary_messages[3]).to match(/ReCAP \(scarcpxm\): Box 232/)
+      json = JSON.parse(summary_messages)
+      expect(json.keys).to include("This is stored in multiple locations.")
+      expect(json["Firestone Library (scahsvm)"]).to include("Boxes 1; 32; 319")
+      expect(json["Firestone Library (scamss)"]).to include("Boxes 12; 83; 330; B-001491")
+      expect(json["ReCAP (scarcpxm)"]).to include("Box 232")
     end
     it "constructs component and series level summary storage notes" do
       components = result["components"]

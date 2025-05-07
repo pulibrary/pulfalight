@@ -4,9 +4,9 @@ module Pulfalight
   # Class for normalizing container locations to assemble the Magic Physloc Note
   # It accepts a hash that looks like this:
   # {
-  #   "hsvm" => ["1", "323", "2", "3", "4", "5", "6"],
-  #   "mss" => ["12", "20", "21", "30", "31"],
-  #   "rcpxm" => ["266", "114", "105", "106"]
+  #   "hsvm" => {"box" => ["1", "323", "2", "3", "4", "5", "6"], "volume" => ["42", "43", "44", "45"]},
+  #   "mss" => {"box" => ["12", "20", "21", "30", "31"]},
+  #   "rcpxm" => {"box" => ["266", "114", "105", "106"]}
   # }
   # ... and turns it into a string that looks like this:
   # "This collection is stored in multiple locations:
