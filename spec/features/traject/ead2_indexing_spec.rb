@@ -145,17 +145,26 @@ describe "EAD 2 traject indexing", type: :feature do
     end
 
     it "constructs a collection level summary storage note array" do
-      summary_messages = result["summary_storage_note_ssm"]
-      json = JSON.parse(summary_messages)
+      summary_message = result["summary_storage_note_ssm"].first
+      json = JSON.parse(summary_message)
       expect(json.keys).to include("This is stored in multiple locations.")
       expect(json["Firestone Library (scahsvm)"]).to include("Boxes 1; 32; 319")
       expect(json["Firestone Library (scamss)"]).to include("Boxes 12; 83; 330; B-001491")
       expect(json["ReCAP (scarcpxm)"]).to include("Box 232")
     end
+
     it "constructs component and series level summary storage notes" do
       components = result["components"]
       component = components.first["components"].first
-      expect(component["summary_storage_note_ssm"]).to eq ["This is stored in multiple locations.", "Firestone Library (hsvm): Boxes 1; 32", "Firestone Library (mss): Box 12"]
+      storage_note = component["summary_storage_note_ssm"].first
+      json = JSON.parse(storage_note)
+      expect(json.keys).to contain_exactly(
+        "This is stored in multiple locations.",
+        "Firestone Library (hsvm)",
+        "Firestone Library (mss)",
+      )
+      expect(json["Firestone Library (hsvm)"]).to eq(["Boxes 1; 32"])
+      expect(json["Firestone Library (mss)"]).to eq(["Box 12"])
     end
 
     context "when given a record with sca locations" do

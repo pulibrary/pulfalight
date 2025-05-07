@@ -110,7 +110,7 @@ to_field "summary_storage_note_ssm" do |record, accumulator|
   locations = {}
 
   record.xpath("//container[not(@parent)]").each do |container|
-    #the data will look like this:  
+    # make the data look like this:
     # "hsvm" => {"box" => ["1", "323", "2", "3", "4", "5", "6"], "volume" => ["42", "43", "44", "45"]}
     container_type = container["type"]
     location_code = container["altrender"]
@@ -119,9 +119,8 @@ to_field "summary_storage_note_ssm" do |record, accumulator|
     location_hash[container_type] << container.text
     locations[location_code] = location_hash
   end
-  Pulfalight::NormalizedBoxLocations.new(locations).to_h.each do |note|
-    accumulator << note
-  end
+
+  accumulator << Pulfalight::NormalizedBoxLocations.new(locations).to_h.to_json
 end
 
 to_field "location_code_ssm" do |record, accumulator|

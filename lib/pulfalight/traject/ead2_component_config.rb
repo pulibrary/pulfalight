@@ -362,15 +362,19 @@ end
 # Component level summary storage a.k.a. "magic physloc"
 to_field "summary_storage_note_ssm" do |record, accumulator, _context|
   locations = {}
-  record.xpath(".//container[@type='box']").each do |box|
-    location_code = Pulfalight::LocationCode.new(box["altrender"].to_s).value
-    locations[location_code] = [] if locations[location_code].nil?
-    locations[location_code] << box.text
+
+  record.xpath(".//container[not(@parent)]").each do |container|
+    # make the data look like this:
+    # "hsvm" => {"box" => ["1", "323", "2", "3", "4", "5", "6"], "volume" => ["42", "43", "44", "45"]}
+    container_type = container["type"]
+    location_code = Pulfalight::LocationCode.new(container["altrender"].to_s).value
+    location_hash = locations.fetch(location_code, {})
+    location_hash[container_type] = location_hash.fetch(container_type, [])
+    location_hash[container_type] << container.text
+    locations[location_code] = location_hash
   end
 
-  Pulfalight::NormalizedBoxLocations.new(locations).to_a.each do |note|
-    accumulator << note
-  end
+  accumulator << Pulfalight::NormalizedBoxLocations.new(locations).to_h.to_json
 end
 
 # TODO: Add for otherlevel=text
