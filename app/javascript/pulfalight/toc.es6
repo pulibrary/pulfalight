@@ -5,11 +5,6 @@ export default class TocBuilder {
     // have the correct selected node id. The toc element itself is permanent (not
     // updated by turbolinks), and is instead updated by event-triggered javascript.
     this.dataElement = $(`${element}-data`)
-
-    // Setup the initial online toggle value if it's missing
-    if (this.getOnlineToggleValue() === null) {
-      this.getOnlineToggleValue('false')
-    }
   }
 
   get expanded() {
