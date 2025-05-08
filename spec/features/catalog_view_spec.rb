@@ -382,6 +382,7 @@ describe "viewing catalog records", type: :feature, js: true do
           expect(page).to have_selector "dd.blacklight-genreform_ssim", text: /Audio tapes/
         end
       end
+
       it "displays the summary storage notes at the collection level" do
         visit "catalog/C1491"
         expect(page).to have_content("Storage Note:")
