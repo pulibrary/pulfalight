@@ -38,7 +38,7 @@ RSpec.describe SummaryStorageNotePresenter do
       end
       it "renders the json as nested lists" do
         expect(ssnote.render).to eq(
-          ["This is stored in multiple locations.",
+          ["<span>This is stored in multiple locations.</span>",
            "<ul>",
            "<li>Firestone Library (scahsvm)</li>",
            "<ul><li>Boxes 1-11; 13-19</li></ul>",

@@ -13,19 +13,21 @@ class SummaryStorageNotePresenter
     notes = document.fetch(:summary_storage_note_ssm, [])
     return if notes.blank?
     notes_hash = JSON.parse(notes.first)
-    tag.span("This is stored in multiple locations.") if notes_hash.keys.size > 1
-    concat(content_tag(:ul) do
-      notes_hash.each do |list_item, nested_items|
-        concat(content_tag(:li, list_item))
-        if nested_items.present?
-          concat(content_tag(:ul) do
-            nested_items.each do |item|
-              concat(content_tag(:li, item))
-            end
-          end)
+    list = 
+      content_tag(:ul) do
+        notes_hash.each do |list_item, nested_items|
+          concat(content_tag(:li, list_item))
+          if nested_items.present?
+            concat(content_tag(:ul) do
+              nested_items.each do |item|
+                concat(content_tag(:li, item))
+              end
+            end)
+          end
         end
       end
-    end)
+    return list if notes_hash.keys.size == 1
+    tag.span("This is stored in multiple locations.").concat(list)
   rescue JSON::ParserError
     processed_notes = process_summary_notes(notes)
     content_tag(:ul) do
