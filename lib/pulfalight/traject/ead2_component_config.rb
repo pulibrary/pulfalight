@@ -541,14 +541,15 @@ to_field "language_ssm" do |_record, accumulator, context|
   end
 end
 
+NON_INHERITABLE_NOTES = %w[scopecontent processinfo].freeze
 Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
   sanitizer = Rails::Html::SafeListSanitizer.new
   to_field "#{selector}_ssm", extract_xpath("./#{selector}/*[local-name()!='head']", to_text: false) do |_record, accumulator|
     accumulator.map! do |element|
       CGI.unescapeHTML(sanitizer.sanitize(element.to_html, tags: %w[extref]).gsub("extref", "a").strip)
     end
-    # For all notes except scopecontent, inherit from parent if it's blank.
-    if accumulator.blank? && selector != "scopecontent"
+    # Inherit notes from parent if blank.
+    if accumulator.blank? && NON_INHERITABLE_NOTES.exclude?(selector)
       parent = settings[:parent] || settings[:root]
       accumulator.concat(Array.wrap(parent.output_hash["#{selector}_ssm"]))
     end
@@ -588,7 +589,7 @@ Pulfalight::Ead2Indexing::SEARCHABLE_NOTES_FIELDS.map do |selector|
       end
 
     # For all other notes, inherit from parent if it's blank.
-    elsif accumulator.blank?
+    elsif accumulator.blank? && NON_INHERITABLE_NOTES.exclude?(selector)
       accumulator << ::JSON.dump(content) if content.present?
       parent = settings[:parent] || settings[:root]
       parent_values = Array.wrap(parent.output_hash["#{selector}_combined_tsm"])

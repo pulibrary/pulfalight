@@ -512,6 +512,30 @@ describe "EAD 2 traject indexing", type: :feature do
         end
       end
 
+      context "when the collection has a processinfo note" do
+        let(:fixture_path) do
+          Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
+        end
+        it "does not inherit to the child components" do
+          component = find_component(result, "WC064_c1")
+
+          expect(component["processinfo_combined_tsm"]).to be_nil
+        end
+      end
+
+      context "when a series-level component has a processinfo note" do
+        let(:fixture_path) do
+          Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1599.processed.EAD.xml")
+        end
+        it "does not inherit to the child components" do
+          # the series with the note is C1599_c380
+          # C1599_c1 is its child component
+          component = find_component(result, "C1599_c1")
+
+          expect(component["processinfo_combined_tsm"]).to be_nil
+        end
+      end
+
       it "indexes all note fields from the <archdesc> child elements for the collection" do
         expect(result).to include("collection_notes_ssm")
         expect(result["collection_notes_ssm"]).not_to be_empty
@@ -535,6 +559,7 @@ describe "EAD 2 traject indexing", type: :feature do
           expect(result["arrangement_ssm"]).to eq ["Arranged in manuscript number order, by accession. Numbers 29 and 67-71 are unassigned."]
         end
       end
+
       context "when given a collection with a phystech note" do
         let(:fixture_path) do
           Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC148.processed.EAD.xml")
@@ -544,6 +569,7 @@ describe "EAD 2 traject indexing", type: :feature do
           expect(result["components"][0]["phystech_ssm"]).to eq result["phystech_ssm"]
         end
       end
+
       context "when given a collection with an otherfindaid" do
         let(:fixture_path) do
           Rails.root.join("spec", "fixtures", "aspace", "generated", "publicpolicy", "MC001.02.06.processed.EAD.xml")
@@ -552,6 +578,7 @@ describe "EAD 2 traject indexing", type: :feature do
           expect(result["otherfindaid_ssm"]).to eq ["This finding aid describes a portion of the American Civil Liberties Union Records held at the Seeley G. Mudd Manuscript Library. For an overview of the entire collection, instructions on searching the collection and requesting materials, and other information, please see the <a href=\"http://libguides.princeton.edu/mudd_aclu\">Guide to the American Civil Liberties Union Records</a>."]
         end
       end
+
       it "indexes the requested notes" do
         # Description, do not propagate.
         expect(result["scopecontent_ssm"]).to eq ["The Harold B. Hoskins Papers consist of correspondence, diaries, notes, photographs, publications, maps, and professional files that document Hoskins' personal and professional activities, as well as the Hoskins family. See individual series descriptions for more specific information on each series."]
