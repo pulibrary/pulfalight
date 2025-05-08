@@ -9,7 +9,6 @@ module Pulfalight
   #   "rcpxm" => {"box" => ["266", "114", "105", "106"]}
   # }
   # ... and turns it into a string that looks like this:
-  # "This collection is stored in multiple locations:
   # Firestone Library Vault: Boxes 1-6; 323
   #
   class NormalizedBoxLocations
@@ -105,7 +104,6 @@ module Pulfalight
       @normalized_locations.each do |location, types_hash|
         @normalized_locations[location] = transform_types_hash(types_hash)
       end
-      @normalized_locations["This is stored in multiple locations."] = [] if locations.size > 1
       @normalized_locations
     end
 

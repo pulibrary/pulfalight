@@ -13,8 +13,7 @@ describe Pulfalight::NormalizedBoxLocations do
   end
   let(:normalized_box_locations) { described_class.new(box_locations) }
   let(:human_readable_box_locations) do
-    { "This is stored in multiple locations." => [],
-      "Firestone Library (hsvm)" => ["Boxes 1-11; 13-17; 221; 323", "Volumes 42-45"],
+    { "Firestone Library (hsvm)" => ["Boxes 1-11; 13-17; 221; 323", "Volumes 42-45"],
       "Firestone Library (mss)" => ["Boxes 12; 20-21; 292-293; P-000145"],
       "ReCAP (rcpxm)" => ["Boxes 105; 114; 255; 266"] }
   end
@@ -48,17 +47,6 @@ describe Pulfalight::NormalizedBoxLocations do
 
     it "records the location without transformation" do
       expect(normalized_box_locations.locations).to contain_exactly("review")
-    end
-  end
-
-  context "when there is only one location" do
-    let(:box_locations) do
-      {
-        "mudd" => { "box" => ["1", "2", "3"] }
-      }
-    end
-    it "does not say that the collection is in multiple locations." do
-      expect(normalized_box_locations.to_h.keys).not_to include("This is stored in multiple locations.")
     end
   end
 end

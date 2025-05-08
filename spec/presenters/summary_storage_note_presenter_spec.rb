@@ -32,18 +32,18 @@ RSpec.describe SummaryStorageNotePresenter do
       let(:values) do
         {
           "summary_storage_note_ssm": [
-            '{"Firestone Library (scahsvm)":["Boxes 1; 32; 319"],"Firestone Library (scamss)":["Boxes 12; 83; 330; B-001491"],"ReCAP (scarcpxm)":["Box 232"],"This is stored in multiple locations.":[]}'
+            '{"Firestone Library (scahsvm)":["Boxes 1-11; 13-19"],"Firestone Library (scamss)":["Boxes 12; 83; 330; B-001491"]}'
           ]
         }
       end
       it "renders the json as nested lists" do
         expect(ssnote.render).to eq(
-          ["<ul>",
-           "<li>This is stored in multiple locations.</li>",
-           "<li>Firestone Library (scahsvm):</li>",
+          ["This is stored in multiple locations.",
+           "<ul>",
+           "<li>Firestone Library (scahsvm)</li>",
            "<ul><li>Boxes 1-11; 13-19</li></ul>",
-           "<li>Firestone Library (scamss):</li>",
-           "<ul><li>Boxes 12, 20 to 21</li></ul>",
+           "<li>Firestone Library (scamss)</li>",
+           "<ul><li>Boxes 12; 83; 330; B-001491</li></ul>",
            "</ul>"].join
         )
       end
