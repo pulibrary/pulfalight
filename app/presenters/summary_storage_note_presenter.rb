@@ -20,8 +20,18 @@ class SummaryStorageNotePresenter
     end
   end
 
+  # ["<ul>",
+  #         "<li>This is stored in multiple locations.</li>",
+  #         "<li>Firestone Library (scahsvm):</li>",
+  #         "<ul><li>Boxes 1-11; 13-19</li></ul>",
+  #         "<li>Firestone Library (scamss):</li>",
+  #         "<ul><li>Boxes 12, 20 to 21</li></ul>",
+  #         "</ul>"].join
+
   private
 
+  # This method computes ranges for abid'd boxes, e.g. "P-042356 to P-042359"
+  # Ranges for fully numerical containers are computed at indexing time in normalized_box_locations.rb
   def process_summary_notes(notes)
     notes.map do |note|
       abid_matcher = note.match(/^(?<location>.*: Boxes )(?:(?:[A-Z]-)?\d{1,6}; )+/)

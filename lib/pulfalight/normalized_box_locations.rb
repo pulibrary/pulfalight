@@ -48,6 +48,7 @@ module Pulfalight
     # 2. Sort and group the integers into ranges
     # 3. Consolidate any ranges
     # 4. Re-add the non-integer container numbers
+    # Ranges for abid'd (e.g. "P-094623") containers are computed in summary_storage_note_presenter.rb
     # @param [<String>] numbers
     # @return [<String>]
     def calculate_container_ranges(numbers)
