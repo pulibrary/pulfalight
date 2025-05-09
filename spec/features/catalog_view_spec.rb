@@ -391,14 +391,14 @@ describe "viewing catalog records", type: :feature, js: true do
       it "displays consecutive boxes as a range" do
         visit "catalog/C1643"
         expect(page).to have_content("Storage Note:")
-        expect(page).to have_content("Firestone Library (mss)\nBoxes B-001494 to B-001544, P-000146")
+        expect(page).to have_content("Firestone Library (mss)Boxes B-001494 to B-001544, P-000146")
       end
       it "displays multiple storage locations as a list" do
         visit "catalog/C1679"
         expect(page).to have_content("Storage Note:")
         expect(page).to have_selector("span", text: "This is stored in multiple locations.")
         expect(page).to have_selector("dl", text: "Firestone Library (scamss)Boxes B-001615 to B-001618, P-000162")
-        expect(page).to have_selector("dl", text: "ReCAP (scarcpxm)Box 1-2")
+        expect(page).to have_selector("dl", text: "ReCAP (scarcpxm)Boxes 1-2")
       end
       it "displays a Visit Us link on the access and use tab" do
         visit "catalog/C1491"

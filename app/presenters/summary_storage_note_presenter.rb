@@ -18,7 +18,7 @@ class SummaryStorageNotePresenter
         notes_hash.each do |list_item, nested_items|
           concat(content_tag(:dt, list_item))
           if nested_items.present?
-              nested_items.each do |item|
+              collapse_abid_ranges(nested_items).each do |item|
                 concat(content_tag(:dd, item))
             end
           end
@@ -35,14 +35,6 @@ class SummaryStorageNotePresenter
     end
   end
 
-  # ["<ul>",
-  #         "<li>This is stored in multiple locations.</li>",
-  #         "<li>Firestone Library (scahsvm):</li>",
-  #         "<ul><li>Boxes 1-11; 13-19</li></ul>",
-  #         "<li>Firestone Library (scamss):</li>",
-  #         "<ul><li>Boxes 12, 20 to 21</li></ul>",
-  #         "</ul>"].join
-
   private
 
   # This method computes ranges for abid'd boxes, e.g. "P-042356 to P-042359"
@@ -58,12 +50,14 @@ class SummaryStorageNotePresenter
     end
   end
 
-  def process_summary_notes_new(notes)
+  # This method computes ranges for abid'd boxes, e.g. "P-042356 to P-042359"
+  # Ranges for fully numerical containers are computed at indexing time in normalized_box_locations.rb
+  def collapse_abid_ranges(notes)
     notes.map do |note|
-      abid_matcher = note.match(/^(?<location>.*: Boxes )(?:(?:[A-Z]-)?\d{1,6}; )+/)
+      abid_matcher = note.match(/^(?<type>[\w]+? )(?:(?:[A-Z]-)\d{1,6}; )+/)
       if abid_matcher
-        boxes = note.scan(/(?:[A-Z]-)?\d{1,6}/).sort
-        note = "#{abid_matcher[:location]}#{boxes_to_range(boxes)}"
+        boxes = note.scan(/(?:[A-Z]-)\d{1,6}/).sort
+        note = "#{abid_matcher[:type]}#{boxes_to_range(boxes)}"
       end
       note
     end
