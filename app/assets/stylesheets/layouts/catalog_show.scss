@@ -215,6 +215,10 @@
           @include breadcrumbs;
         }
       }
+
+      dl.storage-notes {
+        padding-left: 2em;
+      }
     }
   }
 }
