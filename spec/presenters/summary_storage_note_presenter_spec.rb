@@ -39,7 +39,7 @@ RSpec.describe SummaryStorageNotePresenter do
       it "renders the json as a description list" do
         expect(ssnote.render).to eq(
           ["<span>This is stored in multiple locations.</span>",
-           "<dl>",
+           "<dl class=\"storage-notes\">",
            "<dt>Firestone Library (scahsvm)</dt>",
            "<dd>Boxes 1-11; 13-19</dd>",
            "<dt>Firestone Library (scamss)</dt>",
@@ -59,7 +59,7 @@ RSpec.describe SummaryStorageNotePresenter do
       end
       it "does not say 'multiple locations' and it has two dd tags" do
         expect(ssnote.render).to eq(
-          ["<dl>",
+          ["<dl class=\"storage-notes\">",
            "<dt>Firestone Library (scahsvm)</dt>",
            "<dd>Boxes 1-11; 13-19</dd>",
            "<dd>Volumes 2-4</dd>",
@@ -77,7 +77,7 @@ RSpec.describe SummaryStorageNotePresenter do
         end
         it "collapses the abid-style box numbers into a range" do
           expect(ssnote.render).to eq(
-            ["<dl>",
+            ["<dl class=\"storage-notes\">",
              "<dt>Firestone Library (mss)</dt>",
              "<dd>Boxes B-001494 to B-001544, P-000146</dd>",
              "<dd>Volumes M-003456 to M-003458</dd>",
