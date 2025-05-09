@@ -386,7 +386,7 @@ describe "viewing catalog records", type: :feature, js: true do
       it "displays the summary storage notes at the collection level" do
         visit "catalog/C1491"
         expect(page).to have_content("Storage Note:")
-        expect(page).to have_content("This is stored in multiple locations.\nFirestone Library (scahsvm)\nBoxes 1, 319, 32\nFirestone Library (scamss)\nBoxes 12, 330, 83, B-001491\nReCAP (scarcpxm)\nBox 232")
+        expect(page).to have_content("This is stored in multiple locations.\nFirestone Library (scahsvm)Boxes 1; 32; 319Firestone Library (scamss)Boxes 12; 83; 330; B-001491ReCAP (scarcpxm)Box 232")
       end
       it "displays consecutive boxes as a range" do
         visit "catalog/C1643"
@@ -397,8 +397,8 @@ describe "viewing catalog records", type: :feature, js: true do
         visit "catalog/C1679"
         expect(page).to have_content("Storage Note:")
         expect(page).to have_selector("span", text: "This is stored in multiple locations.")
-        expect(page).to have_selector("li", text: "Firestone Library (scamss)\nBoxes B-001615 to B-001618, P-000162")
-        expect(page).to have_selector("li", text: "ReCAP (scarcpxm)\nBox 1-2")
+        expect(page).to have_selector("dl", text: "Firestone Library (scamss)Boxes B-001615 to B-001618, P-000162")
+        expect(page).to have_selector("dl", text: "ReCAP (scarcpxm)Box 1-2")
       end
       it "displays a Visit Us link on the access and use tab" do
         visit "catalog/C1491"

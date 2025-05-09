@@ -14,15 +14,13 @@ class SummaryStorageNotePresenter
     return if notes.blank?
     notes_hash = JSON.parse(notes.first)
     list = 
-      content_tag(:ul) do
+      content_tag(:dl) do
         notes_hash.each do |list_item, nested_items|
-          concat(content_tag(:li, list_item))
+          concat(content_tag(:dt, list_item))
           if nested_items.present?
-            concat(content_tag(:ul) do
               nested_items.each do |item|
-                concat(content_tag(:li, item))
-              end
-            end)
+                concat(content_tag(:dd, item))
+            end
           end
         end
       end
