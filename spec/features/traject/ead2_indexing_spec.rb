@@ -160,7 +160,7 @@ describe "EAD 2 traject indexing", type: :feature do
       json = JSON.parse(storage_note)
       expect(json.keys).to contain_exactly(
         "Firestone Library (hsvm)",
-        "Firestone Library (mss)",
+        "Firestone Library (mss)"
       )
       expect(json["Firestone Library (hsvm)"]).to eq(["Boxes 1; 32"])
       expect(json["Firestone Library (mss)"]).to eq(["Box 12"])

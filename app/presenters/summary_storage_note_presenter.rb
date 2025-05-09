@@ -13,14 +13,13 @@ class SummaryStorageNotePresenter
     notes = document.fetch(:summary_storage_note_ssm, [])
     return if notes.blank?
     notes_hash = JSON.parse(notes.first)
-    list = 
-      content_tag(:dl) do
+    list =
+      content_tag(:dl, class: "storage-notes") do
         notes_hash.each do |list_item, nested_items|
           concat(content_tag(:dt, list_item))
-          if nested_items.present?
-              collapse_abid_ranges(nested_items).each do |item|
-                concat(content_tag(:dd, item))
-            end
+          next if nested_items.blank?
+          collapse_abid_ranges(nested_items).each do |item|
+            concat(content_tag(:dd, item))
           end
         end
       end
