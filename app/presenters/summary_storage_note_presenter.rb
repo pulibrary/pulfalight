@@ -12,6 +12,20 @@ class SummaryStorageNotePresenter
   def render
     notes = document.fetch(:summary_storage_note_ssm, [])
     return if notes.blank?
+    notes_hash = JSON.parse(notes.first)
+    list =
+      content_tag(:dl, class: "storage-notes") do
+        notes_hash.each do |list_item, nested_items|
+          concat(content_tag(:dt, list_item))
+          next if nested_items.blank?
+          collapse_abid_ranges(nested_items).each do |item|
+            concat(content_tag(:dd, item))
+          end
+        end
+      end
+    return list if notes_hash.keys.size == 1
+    tag.span("This is stored in multiple locations.").concat(list)
+  rescue JSON::ParserError
     processed_notes = process_summary_notes(notes)
     content_tag(:ul) do
       processed_notes.map do |note|
@@ -22,12 +36,27 @@ class SummaryStorageNotePresenter
 
   private
 
+  # This method computes ranges for abid'd boxes, e.g. "P-042356 to P-042359"
+  # Ranges for fully numerical containers are computed at indexing time in normalized_box_locations.rb
   def process_summary_notes(notes)
     notes.map do |note|
       abid_matcher = note.match(/^(?<location>.*: Boxes )(?:(?:[A-Z]-)?\d{1,6}; )+/)
       if abid_matcher
         boxes = note.scan(/(?:[A-Z]-)?\d{1,6}/).sort
         note = "#{abid_matcher[:location]}#{boxes_to_range(boxes)}"
+      end
+      note
+    end
+  end
+
+  # This method computes ranges for abid'd boxes, e.g. "P-042356 to P-042359"
+  # Ranges for fully numerical containers are computed at indexing time in normalized_box_locations.rb
+  def collapse_abid_ranges(notes)
+    notes.map do |note|
+      abid_matcher = note.match(/^(?<type>[\w]+? )(?:(?:[A-Z]-)\d{1,6}; )+/)
+      if abid_matcher
+        boxes = note.scan(/(?:[A-Z]-)\d{1,6}/).sort
+        note = "#{abid_matcher[:type]}#{boxes_to_range(boxes)}"
       end
       note
     end

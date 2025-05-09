@@ -23,6 +23,7 @@ Layout/LineLength:
     - 'spec/features/catalog_view_spec.rb'
     - 'spec/helpers/pulfalight_helper_spec.rb'
     - 'spec/requests/catalog_request_spec.rb'
+    - 'spec/presenters/summary_storage_note_presenter_spec.rb'
 Lint/MissingSuper:
   Exclude:
     - 'lib/pulfalight/normalized_date.rb'
@@ -64,6 +65,7 @@ Metrics/MethodLength:
     - 'app/values/aeon_request.rb'
     - 'lib/pulfalight/normalized_box_locations.rb'
     - 'lib/pulfalight/traject/ead2_indexing.rb'
+    - 'app/presenters/summary_storage_note_presenter.rb'
 Metrics/ModuleLength:
   Enabled: false
 Metrics/PerceivedComplexity:
