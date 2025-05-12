@@ -24,16 +24,6 @@ describe Pulfalight::NormalizedBoxLocations do
     expect(normalized_box_locations.locations).to contain_exactly("Firestone Library (hsvm)", "Firestone Library (mss)", "ReCAP (rcpxm)")
   end
 
-  it "groups the boxes into human readable ranges" do
-    ranges = { "box" => ["1-11", "13-17", "221", "323"], "volume" => ["42-45"] }
-    expect(normalized_box_locations.ranges_for("hsvm")).to eq(ranges)
-  end
-
-  it "box ranges include non-numeric box numbers" do
-    ranges = { "box" => ["12", "20-21", "292-293", "P-000145"] }
-    expect(normalized_box_locations.ranges_for("mss")).to eq(ranges)
-  end
-
   it "generates a human readable summary of the box locations" do
     expect(normalized_box_locations.to_h).to eq human_readable_box_locations
   end

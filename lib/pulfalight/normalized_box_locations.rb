@@ -21,7 +21,7 @@ module Pulfalight
         types_hash.each do |type, indicators_array|
           key = translate_location(location)
           @normalized_locations[key] = 
-            @normalized_locations.fetch(key, {}).merge({ type => container_summary_string(indicators_array, type, collapse_items) })
+            @normalized_locations.fetch(key, []).append(container_summary_string(indicators_array, type, collapse_items))
         end
       end
     end
@@ -34,12 +34,6 @@ module Pulfalight
 
     def locations
       @normalized_locations.keys
-    end
-
-    # Given a location code, return the relevant container ranges
-    def ranges_for(location_code)
-      key = @normalized_locations.keys.find { |a| a =~ /#{location_code}/ }
-      @normalized_locations[key]
     end
 
     ##
@@ -73,16 +67,18 @@ module Pulfalight
           ranges << range
         end
       end
-      ranges.map { |a| consolidate_single_container_ranges(a) } | non_numeric_ids
+      containers_set = ranges.map { |a| consolidate_single_container_ranges(a) } | non_numeric_ids
+      byebug
+      transform_types_hash({type=>containers_set})
     end
 
     # Generate a human readable summary of the container locations
     def to_s
-      normalize.join(" ")
+      @normalized_box_locations.join(" ")
     end
 
     def to_h
-      normalize
+      return @normalized_box_locations
     end
 
     private
