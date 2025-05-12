@@ -49,4 +49,23 @@ describe Pulfalight::NormalizedBoxLocations do
       expect(normalized_box_locations.locations).to contain_exactly("review")
     end
   end
+
+  context "when there are containers with type: item" do
+    let(:box_locations) do
+      {
+        "st" => { "item" => ["Report No. CS-TR-001-85", "Report No.CS-TR-002-84", "Report No. CS-TR-003-85"] }
+      }
+    end
+    it "can collapse them" do
+      expect(described_class.new(box_locations, collapse_items: true).to_h).to eq({
+        "Engineering Library (st)" => ["3 individual item(s)"]
+      })
+    end
+
+    it "can list them all" do
+      expect(normalized_box_locations.to_h).to eq({
+        "Engineering Library (st)" => ["Items Report No. CS-TR-001-85; Report No.CS-TR-002-84; Report No. CS-TR-003-85"]
+      })
+    end
+  end
 end

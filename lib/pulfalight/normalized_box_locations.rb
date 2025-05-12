@@ -8,19 +8,20 @@ module Pulfalight
   #   "mss" => {"box" => ["12", "20", "21", "30", "31"]},
   #   "rcpxm" => {"box" => ["266", "114", "105", "106"]}
   # }
-  # ... and turns it into a string that looks like this:
-  # Firestone Library Vault: Boxes 1-6; 323
+  # ... and turns it into a json string that looks like this:
+  # { "Firestone Library Vault" => ["Boxes 1-6; 323", "Volumes 42-45"] }
   #
+  # if there are items they can be summarized as "X individual items"
   class NormalizedBoxLocations
     # @param [Hash] container_locations
-    def initialize(container_locations)
+    def initialize(container_locations, collapse_items: false)
       @normalized_locations = {}
 
       container_locations.each do |location, types_hash|
         types_hash.each do |type, indicators_array|
           key = translate_location(location)
-          @normalized_locations[key] =
-            @normalized_locations.fetch(key, {}).merge({ type => calculate_container_ranges(indicators_array) })
+          @normalized_locations[key] = 
+            @normalized_locations.fetch(key, {}).merge({ type => container_summary_string(indicators_array, type, collapse_items) })
         end
       end
     end
@@ -50,7 +51,8 @@ module Pulfalight
     # Ranges for abid'd (e.g. "P-094623") containers are computed in summary_storage_note_presenter.rb
     # @param [<String>] numbers
     # @return [<String>]
-    def calculate_container_ranges(numbers)
+    def container_summary_string(numbers, type, collapse_items)
+      return ["#{numbers.count} individual item(s)"] if collapse_items && type == "item"
       non_numeric_ids = numbers.reject { |a| a.to_i.to_s == a }
       sorted = numbers.uniq.map(&:to_i).sort
       ranges = []
