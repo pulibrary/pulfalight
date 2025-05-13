@@ -46,7 +46,7 @@ module Pulfalight
     # @param [<String>] numbers
     # @return [<String>]
     def container_summary_string(numbers, type, collapse_items)
-      return ["#{numbers.count} individual item(s)"] if collapse_items && type == "item"
+      return "#{numbers.count} individual item(s)" if collapse_items && type == "item"
       non_numeric_ids = numbers.reject { |a| a.to_i.to_s == a }
       sorted = numbers.uniq.map(&:to_i).sort
       ranges = []
@@ -68,17 +68,11 @@ module Pulfalight
         end
       end
       containers_set = ranges.map { |a| consolidate_single_container_ranges(a) } | non_numeric_ids
-      byebug
-      transform_types_hash({type=>containers_set})
-    end
-
-    # Generate a human readable summary of the container locations
-    def to_s
-      @normalized_box_locations.join(" ")
+      type_ranges_summary(type, containers_set)
     end
 
     def to_h
-      return @normalized_box_locations
+      return @normalized_locations
     end
 
     private
@@ -97,19 +91,8 @@ module Pulfalight
       type.pluralize.capitalize
     end
 
-    # @return [Array<String>]
-    def normalize
-      @normalized_locations.each do |location, types_hash|
-        @normalized_locations[location] = transform_types_hash(types_hash)
-      end
-      @normalized_locations
-    end
-
-    def transform_types_hash(hash)
-      # a tuple looks like ["box", ["1-11", "13-17"]]
-      hash.to_a.map do |tuple|
-        "#{container_label(tuple[0], tuple[1])} #{tuple[1].join('; ')}"
-      end
+    def type_ranges_summary(type, ranges)
+        "#{container_label(type, ranges)} #{ranges.join('; ')}"
     end
   end
 end
