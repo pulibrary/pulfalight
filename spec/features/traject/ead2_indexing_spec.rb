@@ -176,6 +176,7 @@ describe "EAD 2 traject indexing", type: :feature do
         expect(component["summary_storage_note_ssm"]).to eq ["{\"Mudd Manuscript Library (mudd)\":[\"Box 1\"]}"]
       end
     end
+
     context "when the collection has components in containers other than boxes" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC154.EAD.xml")
@@ -183,6 +184,25 @@ describe "EAD 2 traject indexing", type: :feature do
       it "includes them in the summary storage note" do
         component = find_component(result, "AC154_c03425")
         expect(component["summary_storage_note_ssm"]).to eq ["{\"Mudd Manuscript Library (mudd)\":[\"Folders 104-106; Oversize folder 103\"]}"]
+      end
+    end
+
+    context "when the colletion has item containers" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC053.processed.EAD.xml")
+      end
+
+      # Items tend to be numerous and have unique individual names, defering
+      # their complete list to the series level component ensures they don't
+      # overrun the size of the solr field and also overtake the record display
+      it "displays an item count at the collection level" do
+        summary_message = result["summary_storage_note_ssm"]
+        expect(summary_message).to eq ["{\"Mudd Manuscript Library (mudd)\":[\"1 individual item(s)\"]}"]
+      end
+
+      it "displays the full list at the component leve" do
+        component = find_component(result, "AC053_c846")
+        expect(component["summary_storage_note_ssm"]).to eq ["{\"Mudd Manuscript Library (mudd)\":[\"Item 4\"]}"]
       end
     end
   end
