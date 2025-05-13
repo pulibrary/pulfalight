@@ -73,10 +73,11 @@ describe "Table of Contents", type: :feature, js: true do
         expect(page).to have_content "Series 1: U.S. diplomacy career, 1900-1978"
       end
 
-      # Opening a new tab containing the previous collection should preserve that collections's online toggle state
+      # Refreshing the old tab, containing the previous collection, should preserve that collections's online toggle state
       page.refresh
 
       # Displays online content
+      # Note: affirmative check on the next line ensures that the page fully loads before proceeding
       expect(page).to have_content "Ball, James Presley, Photograph of a Young Chinese Scholar in Helena, Montana, circa 1888"
       # Displays only online content
       expect(page).not_to have_content "Bainbridge, William, Letter to Albert Gallatin, 1820 June 24"
