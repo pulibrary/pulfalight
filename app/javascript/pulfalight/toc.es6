@@ -1,6 +1,8 @@
 export default class TocBuilder {
   constructor(element) {
     this.element = $(element)
+    this.online_toggle_state = new Map()
+    this.collection = null
     // We need a separate data element that is updated by turbolinks so we always
     // have the correct selected node id. The toc element itself is permanent (not
     // updated by turbolinks), and is instead updated by event-triggered javascript.
@@ -22,7 +24,7 @@ export default class TocBuilder {
       url = `${url}&expanded=true`
     }
 
-    if (this.getOnlineToggleValue()) {
+    if (this.getOnlineToggleValue(this.collection)) {
       url = `${url}&online_content=true`
     }
 
@@ -37,12 +39,17 @@ export default class TocBuilder {
     return document.getElementById('tocOnlineToggle')
   }
 
-  setOnlineToggleValue(value) {
-    localStorage.setItem('pulfalightOnlineToggle', value)
+  setOnlineToggleValue(collection, value) {
+    var pulfalightOnlineToggleStates = localStorage.getItem('pulfalightOnlineToggleStates');
+    this.online_toggle_state = new Map(JSON.parse(pulfalightOnlineToggleStates));
+    this.online_toggle_state.set(collection, value)
+    localStorage.setItem('pulfalightOnlineToggleStates', JSON.stringify([...this.online_toggle_state]));
   }
 
-  getOnlineToggleValue() {
-    const value = localStorage.getItem('pulfalightOnlineToggle')
+  getOnlineToggleValue(collection) {
+    var pulfalightOnlineToggleStates = localStorage.getItem('pulfalightOnlineToggleStates');
+    this.online_toggle_state = new Map(JSON.parse(pulfalightOnlineToggleStates));
+    const value = this.online_toggle_state.get(collection)
     if (value === 'true') {
       return true
     } else {
@@ -59,16 +66,9 @@ export default class TocBuilder {
   }
 
   setupToggleElement() {
-    var prev_collection=localStorage.getItem("collection");
-    var current_collection=$('#document').data('document-id').split("_").at(0);
-
-    // reset toggle state if the user has moved to a new collection
-    if(prev_collection !== current_collection) {
-      this.setOnlineToggleValue('false')
-      localStorage.setItem("collection",current_collection);
-    }
-
-    const checked = this.getOnlineToggleValue()
+    this.collection = $('#document').data('document-id').split("_").at(0)
+    this.online_toggle_state.set(this.collection, 'false')
+    const checked = this.getOnlineToggleValue(this.collection)
     this.toggleElement.checked = checked
     if (checked) {
       document.getElementById('toc-container').classList.add('online-only')
@@ -95,12 +95,12 @@ export default class TocBuilder {
     this.toggleElement.addEventListener('change', (e) => {
       if(e.target.checked) {
         document.getElementById('toc-container').classList.add('online-only')
-        this.setOnlineToggleValue('true')
+        this.setOnlineToggleValue(this.collection, 'true')
         this.element.jstree("destroy");
         this.build()
       } else {
         document.getElementById('toc-container').classList.remove('online-only')
-        this.setOnlineToggleValue('false')
+        this.setOnlineToggleValue(this.collection, 'false')
         this.build()
       }
     })
@@ -123,7 +123,7 @@ export default class TocBuilder {
               if (that.expanded) {
                 url = `${url}&expanded=true`
               }
-              if (that.getOnlineToggleValue()) {
+              if (that.getOnlineToggleValue(this.collection)) {
                 url = `${url}&online_content=true`
               }
               return url

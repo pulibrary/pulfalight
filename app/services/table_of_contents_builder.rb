@@ -58,6 +58,7 @@ class TableOfContentsBuilder
     if component["id"] == document["id"]
       true
     elsif @online_content && component["has_online_content_ssim"]&.first == "true" && !@found_online_content
+      # component["has_online_content_ssim"]&.first turns false before it hits the online component - shaune
       @found_online_content = true
       true
     else
