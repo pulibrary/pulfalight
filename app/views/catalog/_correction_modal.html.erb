@@ -1,12 +1,10 @@
 <% content_for :correction_modal do %>
-  <div class="modal fade" id="correctionModal" tabindex="-1" role="dialog" aria-label="Suggest a Correction" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal fade" id="correctionModal" tabindex="-1" aria-labelledby="correctionModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="correctionModalTitle">Suggest a Correction</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body form-wrapper">
           <div class="suggest_a_correction_instructions">

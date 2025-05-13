@@ -1,13 +1,11 @@
 <% content_for :question_modal do %>
   <script src="https://api2.libanswers.com/1.0/widgets/850"></script>
-  <div class="modal fade" id="questionModal" tabindex="-1" role="dialog" aria-label="Ask a Question" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal fade" id="questionModal" tabindex="-1" aria-labelledby="questionModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="questionModalTitle">Ask a Question</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="row">

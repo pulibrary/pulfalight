@@ -15,7 +15,6 @@
 //= require activestorage
 
 // Required by Blacklight
-//= require popper
 // Twitter Typeahead for autocomplete
 //= require twitter/typeahead
 //= require bootstrap
@@ -29,3 +28,4 @@
 //= require 'blacklight_range_limit'
 //= require 'focus'
 //= require 'tabs'
+//= require 'bootstrap_init'

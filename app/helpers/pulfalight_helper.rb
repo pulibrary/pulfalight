@@ -28,7 +28,7 @@ module PulfalightHelper
               else
                 repository_thumbnail_path
               end
-    image_tag(img_src, alt: document.repository_name, class: "img-fluid float-left")
+    image_tag(img_src, alt: document.repository_name, class: "img-fluid float-start")
   end
 
   def repository_link

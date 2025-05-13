@@ -170,7 +170,7 @@ header .navbar-form .input-group .input-group-btn {
   width: 100%;
 }
 
-.search-query-form .input-group-prepend {
+.search-query-form .input-group:not(.has-validation) > :not(:last-child) {
   width: 100%;
 
   @media (min-width: 575px) {

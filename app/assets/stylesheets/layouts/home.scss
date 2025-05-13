@@ -59,21 +59,21 @@
     @extend .col-lg-4;
     .request-header {
       h2 {
-        @extend .text-left;
+        @extend .text-start;
         margin-bottom: 0;
       }
     }
     #request-contents {
     }
     #request-directions {
-      @extend .text-left;
+      @extend .text-start;
       padding-top: 1.50rem;
 
     #request-registration {
       a {
         @extend .btn;
         @extend .btn-primary;
-        @extend .mr-auto;
+        @extend .me-auto;
       }
     }
     }
@@ -83,12 +83,12 @@
     @extend .col-lg-4;
     .responsible-collection-description-header {
       h2 {
-        @extend .text-left;
+        @extend .text-start;
         margin-bottom: 0;
       }
     }
     #responsible-collection-description-contents {
-      @extend .text-left;
+      @extend .text-start;
       padding-top: 1.50rem;
     }
   }
@@ -100,15 +100,15 @@
       > div {
         @extend .col-md-12;
         > h2 {
-          @extend .text-left;
+          @extend .text-start;
         }
       }
     }
     .hour-entry {
       @extend .row;
       border: 1px solid black;
-      @extend .ml-0;
-      @extend .mr-3;
+      @extend .ms-0;
+      @extend .me-3;
       @extend .mb-3;
       > div {
         @extend .py-2;
@@ -123,11 +123,11 @@
       }
     }
     #more-hours {
-      @extend .text-left;
+      @extend .text-start;
       a {
         @extend .btn;
         @extend .btn-primary;
-        @extend .mr-auto;
+        @extend .me-auto;
       }
     }
   }
