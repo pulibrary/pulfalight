@@ -48,7 +48,7 @@ describe Pulfalight::NormalizedBoxLocations do
     end
     it "can collapse them" do
       expect(described_class.new(box_locations, collapse_items: true).to_h).to eq({
-                                                                                    "Engineering Library (st)" => ["3 individual item(s)"]
+                                                                                    "Engineering Library (st)" => ["3 individual items"]
                                                                                   })
     end
 

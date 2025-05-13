@@ -187,22 +187,33 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
-    context "when the colletion has item containers" do
+    context "when the collection has item containers" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC053.processed.EAD.xml")
       end
 
-      # Items tend to be numerous and have unique individual names, defering
+      # Items tend to be numerous and have unique individual names, deferring
       # their complete list to the series level component ensures they don't
       # overrun the size of the solr field and also overtake the record display
       it "displays an item count at the collection level" do
         summary_message = result["summary_storage_note_ssm"]
-        expect(summary_message).to eq ["{\"Mudd Manuscript Library (mudd)\":[\"1 individual item(s)\"]}"]
+        expect(summary_message).to eq ["{\"Mudd Manuscript Library (mudd)\":[\"1 individual item\"]}"]
       end
 
-      it "displays the full list at the component leve" do
+      it "displays the full list at the component level" do
         component = find_component(result, "AC053_c846")
         expect(component["summary_storage_note_ssm"]).to eq ["{\"Mudd Manuscript Library (mudd)\":[\"Item 4\"]}"]
+      end
+    end
+
+    context "when a series has too many items to fit in the solr field" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC297.EAD.xml")
+      end
+
+      it "displays an item count instead" do
+        component = find_component(result, "AC297_c2")
+        expect(component["summary_storage_note_ssm"]).to eq ["{\"ReCAP (rcpph)\":[\"2187 individual items\"]}"]
       end
     end
   end

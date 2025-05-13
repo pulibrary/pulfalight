@@ -120,7 +120,8 @@ to_field "summary_storage_note_ssm" do |record, accumulator|
     locations[location_code] = location_hash
   end
 
-  accumulator << Pulfalight::NormalizedBoxLocations.new(locations, collapse_items: true).to_h.to_json
+  json = Pulfalight::NormalizedBoxLocations.new(locations, collapse_items: true).to_h.to_json
+  accumulator << json
 end
 
 to_field "location_code_ssm" do |record, accumulator|

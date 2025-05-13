@@ -26,14 +26,20 @@ module Pulfalight
       end
     end
 
+    def locations
+      @normalized_locations.keys
+    end
+
+    def to_h
+      @normalized_locations
+    end
+
+    private
+
     def translate_location(location)
       "#{Pulfalight::LocationCode.resolve(location)} (#{location})"
     rescue Pulfalight::UnrecognizedLocationError
       location
-    end
-
-    def locations
-      @normalized_locations.keys
     end
 
     ##
@@ -45,10 +51,20 @@ module Pulfalight
     # Ranges for abid'd (e.g. "P-094623") containers are computed in summary_storage_note_presenter.rb
     # @param [<String>] numbers
     # @return <String>
-    # rubocop:disable Metrics/PerceivedComplexity
     def container_summary_string(numbers, type, collapse_items)
-      return "#{numbers.count} individual item(s)" if collapse_items && type == "item"
-      non_numeric_ids = numbers.reject { |a| a.to_i.to_s == a }
+      unless collapse_items && type == "item"
+        non_numeric_ids = numbers.reject { |a| a.to_i.to_s == a }
+        ranges = generate_range_strings(numbers)
+        containers_set = ranges.map { |a| consolidate_single_container_ranges(a) } | non_numeric_ids
+        summary = type_ranges_summary(type, containers_set)
+        return summary unless summary.length > 32_766 # solr field max
+      end
+      # if we have items and the collapse flag, or the summary was too long,
+      # return a count
+      "#{numbers.count} individual #{'item'.pluralize(numbers.count)}"
+    end
+
+    def generate_range_strings(numbers)
       sorted = numbers.uniq.map(&:to_i).sort
       ranges = []
       first_number = nil
@@ -68,16 +84,8 @@ module Pulfalight
           ranges << range
         end
       end
-      containers_set = ranges.map { |a| consolidate_single_container_ranges(a) } | non_numeric_ids
-      type_ranges_summary(type, containers_set)
+      ranges
     end
-    # rubocop:enable Metrics/PerceivedComplexity
-
-    def to_h
-      @normalized_locations
-    end
-
-    private
 
     # Consolidate any ranges that are only a single container
     def consolidate_single_container_ranges(range)
