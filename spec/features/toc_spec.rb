@@ -53,6 +53,35 @@ describe "Table of Contents", type: :feature, js: true do
       # Displays nested component without online content
       expect(page).to have_content "Eddy, Mary P., New Testament Miniature Book, undated"
     end
+
+    it "online toggle switch resets to off when visiting a new collection", js: true do
+      visit "/catalog/C0140"
+
+      # Displays top-level component without online content
+      expect(page).to have_content "Bainbridge, William, Letter to Albert Gallatin, 1820 June 24"
+
+      # Click toggle to show online content only
+      find(".toggle > span").click
+
+      # Does not display top-level component without online content
+      expect(page).not_to have_content "Bainbridge, William, Letter to Albert Gallatin, 1820 June 24"
+
+      new_tab = window_opened_by do
+        page.execute_script('window.open("/catalog/MC221", "_blank");')
+      end
+      within_window new_tab do
+        expect(page).to have_content "Series 1: U.S. diplomacy career, 1900-1978"
+      end
+
+      # Refreshing the old tab, containing the previous collection, should preserve that collections's online toggle state
+      page.refresh
+
+      # Displays online content
+      # Note: affirmative check on the next line ensures that the page fully loads before proceeding
+      expect(page).to have_content "Ball, James Presley, Photograph of a Young Chinese Scholar in Helena, Montana, circa 1888"
+      # Displays only online content
+      expect(page).not_to have_content "Bainbridge, William, Letter to Albert Gallatin, 1820 June 24"
+    end
   end
 
   describe "components with a viewer" do
