@@ -20,7 +20,7 @@ module Pulfalight
       container_locations.each do |location, types_hash|
         types_hash.each do |type, indicators_array|
           key = translate_location(location)
-          @normalized_locations[key] = 
+          @normalized_locations[key] =
             @normalized_locations.fetch(key, []).append(container_summary_string(indicators_array, type, collapse_items))
         end
       end
@@ -44,7 +44,8 @@ module Pulfalight
     # 4. Re-add the non-integer container numbers
     # Ranges for abid'd (e.g. "P-094623") containers are computed in summary_storage_note_presenter.rb
     # @param [<String>] numbers
-    # @return [<String>]
+    # @return <String>
+    # rubocop:disable Metrics/PerceivedComplexity
     def container_summary_string(numbers, type, collapse_items)
       return "#{numbers.count} individual item(s)" if collapse_items && type == "item"
       non_numeric_ids = numbers.reject { |a| a.to_i.to_s == a }
@@ -70,9 +71,10 @@ module Pulfalight
       containers_set = ranges.map { |a| consolidate_single_container_ranges(a) } | non_numeric_ids
       type_ranges_summary(type, containers_set)
     end
+    # rubocop:enable Metrics/PerceivedComplexity
 
     def to_h
-      return @normalized_locations
+      @normalized_locations
     end
 
     private
@@ -92,7 +94,7 @@ module Pulfalight
     end
 
     def type_ranges_summary(type, ranges)
-        "#{container_label(type, ranges)} #{ranges.join('; ')}"
+      "#{container_label(type, ranges)} #{ranges.join('; ')}"
     end
   end
 end
