@@ -123,7 +123,7 @@ export default class TocBuilder {
               if (that.expanded) {
                 url = `${url}&expanded=true`
               }
-              if (that.getOnlineToggleValue(this.collection)) {
+              if (that.getOnlineToggleValue(that.collection)) {
                 url = `${url}&online_content=true`
               }
               return url
