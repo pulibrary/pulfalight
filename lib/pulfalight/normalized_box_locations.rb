@@ -54,7 +54,8 @@ module Pulfalight
     def container_summary_string(numbers, type, collapse_items)
       unless collapse_items && type == "item"
         non_numeric_ids = numbers.reject { |a| a.to_i.to_s == a }
-        ranges = generate_range_strings(numbers)
+        integers = numbers.filter { |a| a.to_i.to_s == a }
+        ranges = generate_range_strings(integers)
         containers_set = ranges.map { |a| consolidate_single_container_ranges(a) } | non_numeric_ids
         summary = type_ranges_summary(type, containers_set)
         return summary unless summary.length > 32_766 # solr field max
@@ -65,11 +66,13 @@ module Pulfalight
     end
 
     def generate_range_strings(numbers)
+      return [] if numbers.empty?
       sorted = numbers.uniq.map(&:to_i).sort
+      min = sorted.min
       ranges = []
       first_number = nil
 
-      (1..sorted.max).each do |index|
+      (min..sorted.max).each do |index|
         first_number = index if sorted.include?(index) && first_number.nil?
 
         if sorted.exclude?(index) && !first_number.nil?
