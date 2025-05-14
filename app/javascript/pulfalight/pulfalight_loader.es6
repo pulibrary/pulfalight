@@ -22,7 +22,7 @@ export default class {
     this.setup_lib_cal_hours()
     this.setup_form_modal()
     this.setup_media_queries()
-    this.setup_cart_sharing()
+    this.setup_cart_sync()
   }
 
   setup_lib_cal_hours() {
@@ -82,7 +82,7 @@ export default class {
 
   // when another tab adds an item to the cart, replace the state of every open
   // tab, but just for items, not cart visibility
-  setup_cart_sharing() {
+  setup_cart_sync() {
     window.addEventListener('storage', event => {
       if (event.key === 'lux') {
         let new_state = store.state
