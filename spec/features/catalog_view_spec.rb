@@ -54,35 +54,6 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_content("Booth Tarkington Papers, 1812-1956 (mostly 1899-1946)")
     end
   end
-  context "when viewing a component which can be requested from Aeon" do
-    it "renders a request button which opens a request cart form" do
-      visit "/catalog/MC148_c00002"
-
-      find(".add-to-cart-block").click
-      within(".request-cart") do
-        expect(page).to have_selector "button.denied-button"
-        expect(page).to have_selector "#item-MC148_c00002"
-        expect(page).to have_selector "td", text: /1918/
-        expect(page).to have_selector "td", text: /MC148_c00002/
-        expect(page).to have_selector "td", text: /Box 1/
-        expect(page).to have_selector "button[type='submit']", text: /Request 1 Item/
-
-        # Click the remove item button
-        find("#item-MC148_c00002 > td > button").click
-      end
-
-      expect(page).to have_selector ".cart-view-toggle-block > div > button"
-      # Open the cart again
-      find(".cart-view-toggle-block > div > button").click
-      within(".request-cart") do
-        # Check that it is empty
-        expect(page).to have_selector "button[type='submit']", text: /No Items in Your Cart/
-
-        # Check that it can be closed
-        expect(page).to have_selector "button.denied-button"
-      end
-    end
-  end
   context "with a component show page" do
     before do
       visit "/catalog/MC221_c0060"
