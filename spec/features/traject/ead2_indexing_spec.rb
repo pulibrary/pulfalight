@@ -145,16 +145,25 @@ describe "EAD 2 traject indexing", type: :feature do
     end
 
     it "constructs a collection level summary storage note array" do
-      summary_messages = result["summary_storage_note_ssm"]
-      expect(summary_messages[0]).to match(/This is stored in multiple locations./)
-      expect(summary_messages[1]).to match(/Firestone Library \(scahsvm\): Boxes 1; 32; 319/)
-      expect(summary_messages[2]).to match(/Firestone Library \(scamss\): Boxes 12; 83; 330; B-001491/)
-      expect(summary_messages[3]).to match(/ReCAP \(scarcpxm\): Box 232/)
+      summary_message = result["summary_storage_note_ssm"].first
+      json = JSON.parse(summary_message)
+      expect(json.keys).not_to include("This is stored in multiple locations.")
+      expect(json["Firestone Library (scahsvm)"]).to include("Boxes 1; 32; 319")
+      expect(json["Firestone Library (scamss)"]).to include("Boxes 12; 83; 330; B-001491")
+      expect(json["ReCAP (scarcpxm)"]).to include("Box 232")
     end
+
     it "constructs component and series level summary storage notes" do
       components = result["components"]
       component = components.first["components"].first
-      expect(component["summary_storage_note_ssm"]).to eq ["This is stored in multiple locations.", "Firestone Library (hsvm): Boxes 1; 32", "Firestone Library (mss): Box 12"]
+      storage_note = component["summary_storage_note_ssm"].first
+      json = JSON.parse(storage_note)
+      expect(json.keys).to contain_exactly(
+        "Firestone Library (hsvm)",
+        "Firestone Library (mss)"
+      )
+      expect(json["Firestone Library (hsvm)"]).to eq(["Boxes 1; 32"])
+      expect(json["Firestone Library (mss)"]).to eq(["Box 12"])
     end
 
     context "when given a record with sca locations" do
@@ -164,7 +173,47 @@ describe "EAD 2 traject indexing", type: :feature do
       it "works" do
         components = result["components"]
         component = components.first
-        expect(component["summary_storage_note_ssm"]).to eq ["Mudd Manuscript Library (mudd): Box 1"]
+        expect(component["summary_storage_note_ssm"]).to eq ["{\"Mudd Manuscript Library (mudd)\":[\"Box 1\"]}"]
+      end
+    end
+
+    context "when the collection has components in containers other than boxes" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC154.EAD.xml")
+      end
+      it "includes them in the summary storage note" do
+        component = find_component(result, "AC154_c03425")
+        expect(component["summary_storage_note_ssm"]).to eq ["{\"Mudd Manuscript Library (mudd)\":[\"Folders 104-106; Oversize folder 103\"]}"]
+      end
+    end
+
+    context "when the collection has item containers" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC053.processed.EAD.xml")
+      end
+
+      # Items tend to be numerous and have unique individual names, deferring
+      # their complete list to the series level component ensures they don't
+      # overrun the size of the solr field and also overtake the record display
+      it "displays an item count at the collection level" do
+        summary_message = result["summary_storage_note_ssm"]
+        expect(summary_message).to eq ["{\"Mudd Manuscript Library (mudd)\":[\"1 individual item\"]}"]
+      end
+
+      it "displays the full list at the component level" do
+        component = find_component(result, "AC053_c846")
+        expect(component["summary_storage_note_ssm"]).to eq ["{\"Mudd Manuscript Library (mudd)\":[\"Item 4\"]}"]
+      end
+    end
+
+    context "when a series has too many items to fit in the solr field" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC297.EAD.xml")
+      end
+
+      it "displays an item count instead" do
+        component = find_component(result, "AC297_c2")
+        expect(component["summary_storage_note_ssm"]).to eq ["{\"ReCAP (rcpph)\":[\"2187 individual items\"]}"]
       end
     end
   end

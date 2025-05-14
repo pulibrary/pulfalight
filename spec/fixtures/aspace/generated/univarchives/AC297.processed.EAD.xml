@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 https://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/8623hx755">AC297</eadid><filedesc><titlestmt><titleproper>Princeton Football Films Collection, 1935-2012(bulk 1935-1990): Finding Aid <num>AC297</num></titleproper></titlestmt><publicationstmt><publisher>University Archives</publisher><p><date>2007</date></p><address><addressline>Seeley G. Mudd Manuscript Library</addressline><addressline>65 Olden Street</addressline><addressline>Princeton 08540</addressline><addressline>Business Number: 609-258-6345</addressline><addressline>Fax Number: 609-258-3385</addressline><addressline>mudd@princeton.edu</addressline><addressline>URL: <extptr xlink:href="http://www.princeton.edu/mudd" xlink:show="new" xlink:title="http://www.princeton.edu/mudd" xlink:type="simple"/></addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2025-05-13 13:55:16 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T15:21:09.072-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2012-12-13T11:12:13.888-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2013-01-14T10:46:48.051-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2013-01-15T09:29:56.194-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-03-15T12:55:23.307-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-03-15T13:22:53.269-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-03-15T13:51:34.891-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-03-15T14:05:37.965-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-03-15T14:53:55.234-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-07-01T14:50:17.67-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-09-10T12:04:40.183-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-09-17T10:25:42.065-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2020-02-10T09:06:08.566-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2022-11-11 08:54:59 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-11 10:17:37 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-16 12:40:45 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-18 14:32:18 -0500</date><item>Updated physloc code</item></change><change><date>2023-12-05 20:01:35 -0500</date><item>Updated use restriction</item></change><change><date>2024-08-12 21:19:46 -0400</date><item>Updated links</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>University Archives</corpname>
+    </repository>
+    <unittitle>Princeton Football Films Collection</unittitle>
+    <origination label="Creator">
+      <corpname role="cre" rules="dacs" source="local">Princeton University. Athletics Department.</corpname>
+    </origination>
+    <unitid>AC297</unitid>
+    <unitid type="aspace_uri">/repositories/4/resources/2196</unitid>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">1 box</extent>
+    </physdesc>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">2858 items</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1935/2012" type="inclusive">1935-2012</unitdate>
+    <unitdate datechar="creation" normal="1935/1990" type="bulk">1935-1990</unitdate>
+    <abstract id="aspace_5865a1f7157a2d216f395d0f6a69f3f5">Princeton University was a participant in the first intercollegiate football game in America in 1869. Since then, the University has maintained a varsity football team, competing each season against other colleges in the Ivy League Athletic Conference, including traditional rival Yale. The collection consists of film reels documenting Princeton varsity football games between 1935 and 1990, as well as video of the 2012 season.</abstract>
+    <physloc id="aspace_0099666989548c16aa9fb0d742c8cc02">scamudd</physloc>
+    <physloc id="aspace_26fef35bf8aff69271914a2ed0289761">scarcpph</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+.    </langmaterial>
+  </did>
+  <phystech id="aspace_56895ec38948279e8e790f5b98bce9ee">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>For preservation reasons, original analog
+and digital media may not be read or played back in the
+reading room. Users may visually inspect physical media
+but may not remove it from its enclosure. All analog
+audiovisual media must be digitized to preservation-quality
+standards prior to use. Audiovisual digitization requests
+are processed by an approved third-party vendor. Please note,
+the transfer time required can be as little as several weeks
+to as long as several months and there may be financial costs
+associated with the process.
+Requests should be directed through the
+<extref xlink:href="https://library.princeton.edu/special-collections/ask-us" xlink:type="simple">Ask Us Form</extref>.</p>  </phystech>
+  <scopecontent id="aspace_e7315659a2db84236c4879fc35e30648">
+    <head>Scope and Contents</head>
+<p>The collection consists of film reels amd video documenting Princeton varsity football games between 1935 and 2012. Series 1 contains original film reels (1935-1990), stored offsite at the ReCAP facility. Series 2 contains video footage of the 2012 varsity football season.</p>  </scopecontent>
+  <accessrestrict id="aspace_54eb98167999a6c6a74bbaf41da48cbd">
+    <head>Conditions Governing Access</head>
+<p>The collection is open for research use.</p>  </accessrestrict>
+  <phystech id="aspace_07f6f238b8b5bc296dc39908e3bbcbf5">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>The film reels are stored offsite at the ReCAP facility. Most of the film is 16mm or 8mm and has not been transferred to any other format. Early films are fragile and have significant warping, along with other potential preservation issues.</p>  </phystech>
+  <userestrict id="aspace_7ae6d39b04d03d9e79bc7df3a69ec2d6">
+    <head>Conditions Governing Use</head>
+<p>Single copies may be made for research purposes. To cite or publish quotations
+that fall within Fair Use, as defined under <extref xlink:href="http://copyright.princeton.edu/basics/fair-use" xlink:type="simple">U. S. Copyright Law</extref>,
+no permission is required. The Trustees of Princeton University hold copyright to all materials generated
+by Princeton University employees in the course of their work.  For instances beyond Fair Use,
+if copyright is held by Princeton University, researchers do not need to obtain permission, complete any
+forms, or receive a letter to move forward with use of materials from the Princeton University Archives.</p><p>
+For instances beyond Fair Use where the copyright is not held by the University, while  permission from
+the Library is not required, it is the responsibility of the researcher to determine whether any permissions
+related to copyright, privacy, publicity, or any other rights are necessary for their intended use of the
+Library's materials, and to obtain all required permissions from any existing rights holders, if they have
+not already done so. Princeton University Library's Special Collections does not charge any permission or
+use fees for the publication of images of materials from our collections, nor does it require researchers
+to obtain its permission for said use. The department does request that its collections be properly cited
+and images credited. More detailed information can be found on the <extref xlink:href="https://library.princeton.edu/about/policies/special-collections-copyright-credit-and-citation-guidelines" xlink:type="simple">Copyright, Credit and Citations Guidelines</extref> page on our website. If you have any
+questions, please feel free to contact us through the <extref xlink:href="https://library.princeton.edu/services/special-collections/ask-special-collections" xlink:type="simple">Ask Us! form</extref>.</p>  </userestrict>
+  <acqinfo id="aspace_c4f73fb48a5026e49b057c2a8aebe076">
+    <head>Immediate Source of Acquisition</head>
+<p>Complete information on the acquisition of the collection is not available. At least some of the football films were transferred from the Princeton University Athletics Department. The 2012 videos were transferred from the Athletics Department in 2012 (AR.2012.146).</p>  </acqinfo>
+  <appraisal id="aspace_e5cfc0a8972dd27fa3184fdcba4a5473">
+    <head>Appraisal</head>
+<p>No materials have been separated from the collection.</p>  </appraisal>
+  <accruals id="aspace_b112d2b9497a0c9f18175746881bb27f">
+    <head>Accruals</head>
+<p>Periodic accruals to the collection may occur.</p>  </accruals>
+  <relatedmaterial id="aspace_9d1740f4d4384c4847f442e8ec69fd20">
+    <head>Related Materials</head>
+<p>Additional Princeton football films, especially season highlight reels, can be found in <extref xlink:href="https://findingaids.princeton.edu/collections/AC047" xlink:type="simple">AC047, Historical Audiovisual Collection</extref>.</p><p> Recordings of lightweight football games can be found in <extref xlink:href="https://findingaids.princeton.edu/collections/AC310" xlink:type="simple">AC310, Sprint Football VHS Tapes Collection</extref>.</p><p> Programs for many of the games recorded in this collection can be found in Series 2 of <extref xlink:href="https://findingaids.princeton.edu/collections/AC206" xlink:type="simple">AC206, Office of Athletic Communications Records</extref>.</p>  </relatedmaterial>
+  <prefercite id="aspace_0b19bcc37b8a1475b0410dcc69e83a8a">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); Princeton Football Films Collection; Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_a8f1cebb6b683721e10329061a959293">
+    <head>Processing Information</head>
+<p>The inventory for Series 1 was added by Phoebe Nobles in March, 2018.</p><p> Series 3: Princeton Freshman (Frosh) Football Film Reels was added by Kimberly McCauley in September, 2019.</p><p> Item Number 580 does not exist.</p>  </processinfo>
+  <bioghist id="aspace_e8827e92d81e34f72788dbcd7a3d6162">
+    <note label="personal-name">Princeton University. Athletics Department.</note>
+    <head>Biographical / Historical</head>
+<p>Princeton University was a participant in the first intercollegiate football game in America in 1869. Since then, the University has maintained a varsity football team, competing each season against other colleges in the Ivy League Athletic Conference, including traditional rival Yale.</p>  </bioghist>
+  <controlaccess>
+    <genreform source="aat">Football films.</genreform>
+    <genreform source="lcsh">Films.</genreform>
+    <corpname rules="lcnaf" source="local">Princeton University. Football.</corpname>
+  </controlaccess>
+  <dsc><c id="aspace_AC297_c2" level="series"><did><unittitle>Princeton Football Film Reels</unittitle><unitid type="aspace_uri">/repositories/4/archival_objects/759226</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2187 items</extent></physdesc><unitdate datechar="creation" normal="1935-01-01/1990-12-31" type="inclusive">1935-1990</unitdate></did><arrangement id="aspace_35284101fcd619973f431da4dd078586"><head>Arrangement</head><p>In chronological order. No arrangement action taken or arrangement information not recorded at the time of processing.</p></arrangement><scopecontent id="aspace_d3d888e4f8ae4651dc0133e7c76f245a"><head>Scope and Contents</head><p>Series 1 contains original film reels (mostly 16 mm or 8 mm) documenting Princeton varsity football games between 1935 and 1990. For many games more than one reel exists, documenting only offense or defensive plays, practices or scrimmages, kicking, or specific quarters of the game. Duplicate prints of certain reels are also included in the collection.</p></scopecontent><phystech id="aspace_529e8c7c72301ca853713961e1bccea3"><head>Physical Characteristics and Technical Requirements</head><p>Most of the film is 16mm or 8mm and has not been transferred to any other format. Early films are fragile and have significant warping, along with other potential preservation issues. Access follows <extref xlink:href="http://rbsc.princeton.edu/policies/mudd-library-imaging-guidelines-and-price-list#Audio%20visual" xlink:type="simple">Mudd Manuscript Library policy for preservation and access to audiovisual materials</extref>.</p></phystech></c></dsc>
+</archdesc>
+</ead>
