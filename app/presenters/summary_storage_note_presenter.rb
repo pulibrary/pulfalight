@@ -10,9 +10,9 @@ class SummaryStorageNotePresenter
   end
 
   def render
-    #storage notes with locations are processed as key=>value pairs
+    # storage notes with locations are processed as key=>value pairs
     notes = document.fetch(:summary_storage_note_ssm, [])
-    #text notes are not associated with locations and are processed as strings
+    # text notes are not associated with locations and are processed as strings
     text_notes = document.fetch(:location_note_ssm, [])
     return if notes.blank?
     notes_hash = JSON.parse(notes.first)
@@ -26,11 +26,11 @@ class SummaryStorageNotePresenter
           end
         end
       end
-    #add text notes at the end of the list, if any
-    list = list + (text_notes.empty? ? '' : text_notes.map {|note| tag.span(note)}.join.html_safe)
-    #return the list 
+    # add text notes at the end of the list, if any
+    list += (text_notes.empty? ? "" : text_notes.map { |note| tag.span(note) }.join.html_safe)
+    # return the list
     return list if notes_hash.keys.size == 1
-    #if there are multiple locations prepend a note
+    # if there are multiple locations prepend a note
     tag.span("This is stored in multiple locations.").concat(list)
   rescue JSON::ParserError
     processed_notes = process_summary_notes(notes)
