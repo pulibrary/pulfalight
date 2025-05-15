@@ -24,7 +24,7 @@ class SummaryStorageNotePresenter
           end
         end
       end
-    return list if notes_hash.keys.size == 1
+    return list.concat(tag.span(text_note.first)) if notes_hash.keys.size == 1
     tag.span("This is stored in multiple locations.").concat(list).concat(tag.span(text_note.first))
   rescue JSON::ParserError
     processed_notes = process_summary_notes(notes)
