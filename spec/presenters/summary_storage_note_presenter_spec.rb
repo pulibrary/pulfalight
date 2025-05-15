@@ -33,6 +33,9 @@ RSpec.describe SummaryStorageNotePresenter do
         {
           "summary_storage_note_ssm": [
             '{"Firestone Library (scahsvm)":["Boxes 1-11; 13-19"],"Firestone Library (scamss)":["Boxes 12; 83; 330; B-001491"]}'
+          ],
+          "location_note_ssm": [
+            "Box numbers 5, 15 are not used."
           ]
         }
       end
@@ -44,7 +47,8 @@ RSpec.describe SummaryStorageNotePresenter do
            "<dd>Boxes 1-11; 13-19</dd>",
            "<dt>Firestone Library (scamss)</dt>",
            "<dd>Boxes 12; 83; 330; B-001491</dd>",
-           "</dl>"].join
+           "</dl>",
+           "<span>Box numbers 5, 15 are not used.</span>"].join
         )
       end
     end
