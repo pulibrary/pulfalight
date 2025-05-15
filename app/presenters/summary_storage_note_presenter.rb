@@ -9,23 +9,30 @@ class SummaryStorageNotePresenter
     @document = document
   end
 
-  def render
-    # storage notes with locations are processed as key=>value pairs
-    notes = document.fetch(:summary_storage_note_ssm, [])
-    # text notes are not associated with locations and are processed as strings
-    text_notes = document.fetch(:location_note_ssm, [])
-    return if notes.blank?
-    notes_hash = JSON.parse(notes.first)
-    list =
-      content_tag(:dl, class: "storage-notes") do
-        notes_hash.each do |list_item, nested_items|
-          concat(content_tag(:dt, list_item))
-          next if nested_items.blank?
-          collapse_abid_ranges(nested_items).each do |item|
-            concat(content_tag(:dd, item))
-          end
+  def get_notes(symbol)
+    document.fetch(symbol, [])
+  end
+
+  def make_nested_locations_list(hash)
+    content_tag(:dl, class: "storage-notes") do
+      hash.each do |list_item, nested_items|
+        concat(content_tag(:dt, list_item))
+        next if nested_items.blank?
+        collapse_abid_ranges(nested_items).each do |item|
+          concat(content_tag(:dd, item))
         end
       end
+    end
+  end
+
+  def render
+    # storage notes with locations are processed as key=>value pairs
+    notes = get_notes(:summary_storage_note_ssm)
+    # text notes are not associated with locations and are processed as strings
+    text_notes = get_notes(:location_note_ssm)
+    return if notes.blank?
+    notes_hash = JSON.parse(notes.first)
+    list = make_nested_locations_list(notes_hash)
     # add text notes at the end of the list, if any
     list += (text_notes.empty? ? "" : text_notes.map { |note| tag.span(note) }.join.html_safe)
     # return the list
