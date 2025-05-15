@@ -155,14 +155,14 @@ describe "viewing catalog records", type: :feature, js: true do
     end
     it "displays a warning above the description about restricted materials" do
       visit "/catalog/C1643_c396"
-      expect(page).to have_css(".access-restrict-warning p", text: "Los documentos en esta caja contienen datos personales y tienen acceso restringido.") 
+      expect(page).to have_css(".access-restrict-warning p", text: "Los documentos en esta caja contienen datos personales y tienen acceso restringido.")
     end
     it "will truncate accessrestrict text longer than 250 characters, create a button link that, when clicked opens a modal with the full accessrestrict text" do
       visit "/catalog/C0187_c00001"
-      expect(page).to have_css(".access-restrict-warning", text: /^.{0,250}$/) 
+      expect(page).to have_css(".access-restrict-warning", text: /^.{0,250}$/)
       expect(page).to have_button "Read full Conditions Governing Access"
       find("#restrictionsModal-trigger-link").click
-      expect(page).to have_css("#restrictionsModal .modal-body", text: "Due to the fragility of Fitzgerald's original manuscripts and scrapbooks, researchers must use surrogates of these materials. Digital copies of the manuscript of The Great Gatsby, the Trimalchio galleys, This Side of Paradise, and the scrapbooks are available. Facsimile editions of the The Great Gatsby holograph (Microcard Editions Books, 1973; Editions des Saints Pères, 2017) and of Fitzgerald's other manuscripts (Bruccoli, ed., Garland Books, 1970), as well as microfilm and photocopies of the manuscripts and scrapbooks are available in the Department of Rare Books and Special Collections reading room.") 
+      expect(page).to have_css("#restrictionsModal .modal-body", text: "Due to the fragility of Fitzgerald's original manuscripts and scrapbooks, researchers must use surrogates of these materials. Digital copies of the manuscript of The Great Gatsby, the Trimalchio galleys, This Side of Paradise, and the scrapbooks are available. Facsimile editions of the The Great Gatsby holograph (Microcard Editions Books, 1973; Editions des Saints Pères, 2017) and of Fitzgerald's other manuscripts (Bruccoli, ed., Garland Books, 1970), as well as microfilm and photocopies of the manuscripts and scrapbooks are available in the Department of Rare Books and Special Collections reading room.")
     end
   end
   context "with a no-digital-content collection show page" do
