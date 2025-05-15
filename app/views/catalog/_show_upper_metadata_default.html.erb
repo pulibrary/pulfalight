@@ -2,8 +2,12 @@
   <% parents = Arclight::Parents.from_solr_document(document).as_parents %>
 
   <% if document.restricted? %>
-    <div class="alert alert-danger" role="alert">
-      <h3 class="alert-heading">Access Restrictions</h3>
+    <div class="alert alert-danger access-restrict-warning" role="alert">
+      <h3 class="alert-heading">
+        <span class="media-body al-restricted-icon" aria-hidden="true">
+          <%= blacklight_icon :"icon-restricted" %></span>
+        Access Restrictions
+      </h3>
 
       <% blacklight_config.show.component_metadata_partials.each do |metadata| %>
         <% doc_presenter = document_presenter(document).with_field_group(metadata) %>
@@ -14,8 +18,9 @@
         <% end %>
       <% end %>
     </div>
+    <%= content_for :modals %>
   <% end %>
-
+  
   <dl class="al-metadata-section breadcrumb-item breadcrumb-item-<%= parents.length + 3 %>">
 
     <% blacklight_config.show.component_metadata_partials.each do |metadata| %>

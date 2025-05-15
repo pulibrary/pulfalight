@@ -1,8 +1,36 @@
 <%- # If we have a combined field with headings, use it. %>
 <% if field_name == "accessrestrict_ssm" %>
-  <% document.field_with_headings(field_name).each do |key, value| %>
-    <% value.each do |item| %>
-      <%= paragraph_separator(value: value.map(&:html_safe))%>
+  <% document.field_with_headings(field_name).each do |field_key, field_value| %>
+    <% if (field_value.join.length <= 250) %>
+      <%= paragraph_separator(value: field_value.map(&:html_safe))%>
+    <% else %>
+      <%= 
+        truncate(field_value.join(' '.html_safe), length: 250) 
+      %> 
+      <br/>
+      <button id="restrictionsModal-trigger-link" type="button" class="btn btn-link" data-toggle="modal" data-target="#restrictionsModal">
+        Read full Conditions Governing Access
+      </button>
+
+      <% content_for :modals do %>
+      <!-- Restrictions Modal -->
+        <div class="modal fade" id="restrictionsModal" tabindex="-1"
+          aria-labelledby="restrictionsModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><%= field_key %></h1>
+                <button type="button" class="btn-link close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= paragraph_separator(value: field_value.map(&:html_safe))%>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
