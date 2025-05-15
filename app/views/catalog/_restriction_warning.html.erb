@@ -1,0 +1,8 @@
+<%- # If we have a combined field with headings, use it. %>
+<% if field_name == "accessrestrict_ssm" %>
+  <% document.field_with_headings(field_name).each do |key, value| %>
+    <% value.each do |item| %>
+      <%= paragraph_separator(value: value.map(&:html_safe))%>
+    <% end %>
+  <% end %>
+<% end %>
