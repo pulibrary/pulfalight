@@ -30,11 +30,19 @@ class SummaryStorageNotePresenter
     tag.span("This is stored in multiple locations.").concat(list)
   end
 
+  def build_notes_appendix(text_notes)
+    return if text_notes.blank?
+    appendices =
+      text_notes.map do |note|
+        tag.div(note)
+      end
+    appendices_header = content_tag(:div, "Note", class: "header")
+    content_tag(:span, safe_join([appendices_header, appendices].compact.reject(&:empty?)), class: "storage-notes-appendix")
+  end
+
   def append_to_list(list, text_notes)
-    list_note_appendix = text_notes.map do |note|
-      content_tag(:span, content_tag(:div, "Note", class: "header") + tag.div(note), class: "storage-notes-appendix")
-    end
-    [list, list_note_appendix.join].compact.reject(&:empty?).join.html_safe
+    appendix = build_notes_appendix(text_notes)
+    safe_join([list, appendix])
   end
 
   def render
@@ -43,8 +51,8 @@ class SummaryStorageNotePresenter
     # whereas text notes don't have a location key
     text_notes = get_notes(:location_note_ssm)
     list = make_nested_locations_list(notes)
+    # add text notes to list of locations
     append_to_list(list, text_notes)
-    # return the appended list
   rescue JSON::ParserError
     processed_notes = process_summary_notes(notes)
     content_tag(:ul) do

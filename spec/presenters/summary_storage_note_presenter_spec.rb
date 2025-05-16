@@ -83,6 +83,26 @@ RSpec.describe SummaryStorageNotePresenter do
       end
     end
 
+    context "with more than one text note" do
+      let(:values) do
+        {
+          "location_note_ssm": [
+            "Box numbers 5, 15 are not used.",
+            "Box number 6 is also not used."
+          ]
+        }
+      end
+      it "returns all text notes" do
+        expect(ssnote.render).to eq(
+          ["<span class=\"storage-notes-appendix\">",
+           "<div class=\"header\">Note</div>",
+           "<div>Box numbers 5, 15 are not used.</div>",
+           "<div>Box number 6 is also not used.</div>",
+           "</span>"].join
+        )
+      end
+    end
+
     context "when the storage note has one location, with more than one item type" do
       let(:values) do
         {
