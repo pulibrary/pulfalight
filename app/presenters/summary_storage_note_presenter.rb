@@ -33,7 +33,7 @@ class SummaryStorageNotePresenter
     notes_hash = JSON.parse(notes.first)
     list = make_nested_locations_list(notes_hash)
     list_note_appendix = text_notes.map { |note| tag.span(note) }
-    list += list_note_appendix.first
+    list.concat(list_note_appendix.first)
     # return the list
     return list if notes_hash.keys.size == 1
     # if there are multiple locations prepend a note
