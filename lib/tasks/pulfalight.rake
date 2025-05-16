@@ -27,7 +27,7 @@ end
 namespace :pulfalight do
   namespace :aspace do
     task proxy_aspace: :environment do
-      AspaceProxyManager.spawn!(host: "pulfalight-worker-prod1.princeton.edu", user: "pulsys")
+      AspaceProxyManager.spawn!(host: "pulfalight-prod-worker1.princeton.edu", user: "pulsys")
       ArchivesSpace::Request.http_proxy "127.0.0.1", 8080, nil, nil
     end
 

@@ -62,7 +62,7 @@ class CatalogController < ApplicationController
 
   def index
     query_param = params[:q]
-    match = /^(aspace_)?(?<identifier>[A-z]{1,2}\d{3,4})([.-].*)?(_c.*)?$/.match(query_param)
+    match = /^(aspace_)?(?<identifier>[A-z]{1,2}\d{3,4})([.-].*)?(_[0-9]?c.*)?$/.match(query_param)
     return super unless match
 
     # Try and take the user directly to the show page
