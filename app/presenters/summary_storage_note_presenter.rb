@@ -13,8 +13,10 @@ class SummaryStorageNotePresenter
     document.fetch(symbol, [])
   end
 
-  def make_nested_locations_list(hash)
-    content_tag(:dl, class: "storage-notes") do
+  def make_nested_locations_list(notes)
+    return if notes.empty?
+    hash = JSON.parse(notes.first)
+    list = content_tag(:dl, class: "storage-notes") do
       hash.each do |list_item, nested_items|
         concat(content_tag(:dt, list_item))
         next if nested_items.blank?
@@ -23,13 +25,16 @@ class SummaryStorageNotePresenter
         end
       end
     end
+    return list if hash.keys.size == 1
+    # if there are multiple locations prepend a note
+    tag.span("This is stored in multiple locations.").concat(list)
   end
 
   def append_to_list(list, text_notes)
     list_note_appendix = text_notes.map do |note|
       content_tag(:span, content_tag(:div, "Note", class: "header") + tag.div(note), class: "storage-notes-appendix")
     end
-    list.concat(list_note_appendix.first)
+    [list, list_note_appendix.join].compact.reject(&:empty?).join.html_safe
   end
 
   def render
@@ -37,13 +42,9 @@ class SummaryStorageNotePresenter
     notes = get_notes(:summary_storage_note_ssm)
     # whereas text notes don't have a location key
     text_notes = get_notes(:location_note_ssm)
-    notes_hash = JSON.parse(notes.first)
-    list = make_nested_locations_list(notes_hash)
+    list = make_nested_locations_list(notes)
     append_to_list(list, text_notes)
     # return the appended list
-    return list if notes_hash.keys.size == 1
-    # if there are multiple locations prepend a note
-    tag.span("This is stored in multiple locations.").concat(list)
   rescue JSON::ParserError
     processed_notes = process_summary_notes(notes)
     content_tag(:ul) do

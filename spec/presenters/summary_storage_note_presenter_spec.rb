@@ -56,6 +56,33 @@ RSpec.describe SummaryStorageNotePresenter do
       end
     end
 
+    context "with no location but a text note" do
+      let(:values) do
+        {
+          "location_note_ssm": [
+            "Box numbers 5, 15 are not used."
+          ]
+        }
+      end
+      it "returns the text note" do
+        expect(ssnote.render).to eq(
+          ["<span class=\"storage-notes-appendix\">",
+           "<div class=\"header\">Note</div>",
+           "<div>Box numbers 5, 15 are not used.</div>",
+           "</span>"].join
+        )
+      end
+    end
+
+    context "with neither location nor text note" do
+      let(:values) do
+        {}
+      end
+      it "does not return a list or appendix" do
+        expect(ssnote.render).to be_blank
+      end
+    end
+
     context "when the storage note has one location, with more than one item type" do
       let(:values) do
         {
