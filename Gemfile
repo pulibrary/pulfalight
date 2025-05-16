@@ -14,7 +14,7 @@ gem "terser"
 # gem 'mini_racer', platforms: :ruby
 
 # Pinning to 12.4.0 due to Rails 7.1 compatibility issue in 12.4.1
-gem "health-monitor-rails", "12.4.0"
+gem "health-monitor-rails", "~> 12.4"
 
 # Use CoffeeScript for .coffee assets and views
 gem "coffee-rails", "~> 4.2"

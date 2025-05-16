@@ -88,7 +88,7 @@ export default class TocBuilder {
       const selectedElement = $(`#${selectedId}`)
       if (selectedElement.length > 0) {
         // Jump to selected element on page reload
-        const scrollOffset = selectedElement.offset().top - selectedElement.offsetParent().offset().top - 60
+        const scrollOffset = selectedElement.offset().top - selectedElement.offsetParent().offset().top - 130
         this.element.scrollTop(scrollOffset)
       }
     })

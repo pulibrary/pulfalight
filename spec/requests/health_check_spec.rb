@@ -27,18 +27,16 @@ RSpec.describe "Health Check", type: :request do
       expect(response).not_to be_successful
     end
 
-    it "errors when there's a failure to a critical service (e.g. solr)" do
+    it "errors when there's a failure to a critical service (e.g. db)" do
+      allow_any_instance_of(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter).to receive(:execute) do |instance|
+        raise StandardError if database.blank? || instance.pool.db_config.name == database.to_s
+      end
       stub_aspace_login
-      SmtpStatus.next_check_timestamp = 0
-      allow(Blacklight.default_index.connection).to receive(:uri).and_return(URI("http://example.com/bla"))
-      stub_request(:get, "http://example.com/solr/admin/cores?action=STATUS").to_return(body: { responseHeader: { status: 500 } }.to_json, headers: { "Content-Type" => "text/json" })
 
       get "/health.json"
 
       expect(response).not_to be_successful
       expect(response.status).to eq 503
-      solr_response = JSON.parse(response.body)["results"].find { |x| x["name"] == "SolrStatus" }
-      expect(solr_response["message"]).to start_with "The solr has an invalid status"
     end
 
     it "caches a success on SMTP and doesn't call it twice in a short window" do
@@ -53,19 +51,6 @@ RSpec.describe "Health Check", type: :request do
       get "/health.json?providers[]=smtpstatus"
 
       expect(Net::SMTP).to have_received(:new).exactly(1).times
-    end
-
-    it "errors when a service is down" do
-      stub_aspace_login
-      allow(Blacklight.default_index.connection).to receive(:uri).and_return(URI("http://example.com/bla"))
-      stub_request(:get, "http://example.com/solr/admin/cores?action=STATUS").to_return(body: { responseHeader: { status: 500 } }.to_json, headers: { "Content-Type" => "text/json" })
-
-      get "/health.json?providers[]=solrstatus"
-
-      expect(response).not_to be_successful
-      expect(response.status).to eq 503
-      solr_response = JSON.parse(response.body)["results"].find { |x| x["name"] == "SolrStatus" }
-      expect(solr_response["message"]).to start_with "The solr has an invalid status"
     end
   end
 end

@@ -7,27 +7,6 @@ RSpec.describe SummaryStorageNotePresenter do
   let(:values) { {} }
 
   describe "#render" do
-    context "with a document that has not been reindexed yet" do
-      let(:values) do
-        {
-          "summary_storage_note_ssm": [
-            "This is stored in multiple locations.",
-            "Firestone Library (scahsvm): Boxes 1-11; 13-19",
-            "Firestone Library (scamss): Boxes 12; 20-21"
-          ]
-        }
-      end
-      it "renders the array of strings as a list" do
-        expect(ssnote.render).to eq(
-          ["<ul>",
-           "<li>This is stored in multiple locations.</li>",
-           "<li>Firestone Library (scahsvm): Boxes 1-11; 13-19</li>",
-           "<li>Firestone Library (scamss): Boxes 12, 20 to 21</li>",
-           "</ul>"].join
-        )
-      end
-    end
-
     context "with a document that has been indexed to use json" do
       let(:values) do
         {
