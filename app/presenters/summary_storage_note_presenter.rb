@@ -9,22 +9,57 @@ class SummaryStorageNotePresenter
     @document = document
   end
 
-  def render
-    notes = document.fetch(:summary_storage_note_ssm, [])
-    return if notes.blank?
-    notes_hash = JSON.parse(notes.first)
-    list =
-      content_tag(:dl, class: "storage-notes") do
-        notes_hash.each do |list_item, nested_items|
-          concat(content_tag(:dt, list_item))
-          next if nested_items.blank?
-          collapse_abid_ranges(nested_items).each do |item|
-            concat(content_tag(:dd, item))
-          end
+  def get_notes(symbol)
+    document.fetch(symbol, [])
+  end
+
+  def make_nested_locations_list(notes)
+    return if notes.empty?
+    hash = JSON.parse(notes.first)
+    list = content_tag(:dl, class: "storage-notes") do
+      hash.each do |list_item, nested_items|
+        concat(content_tag(:dt, list_item))
+        next if nested_items.blank?
+        collapse_abid_ranges(nested_items).each do |item|
+          concat(content_tag(:dd, item))
         end
       end
-    return list if notes_hash.keys.size == 1
+    end
+    return list if hash.keys.size == 1
+    # if there are multiple locations prepend a note
     tag.span("This is stored in multiple locations.").concat(list)
+  end
+
+  def build_notes_appendix(text_notes)
+    return if text_notes.blank?
+    appendices =
+      text_notes.map do |note|
+        tag.div(note)
+      end
+    appendices_header = content_tag(:div, "Note", class: "header")
+    content_tag(:span, safe_join([appendices_header, appendices].compact.reject(&:empty?)), class: "storage-notes-appendix")
+  end
+
+  def append_to_list(list, text_notes)
+    appendix = build_notes_appendix(text_notes)
+    safe_join([list, appendix])
+  end
+
+  def render
+    # storage notes with locations are key=>value pairs
+    notes = get_notes(:summary_storage_note_ssm)
+    # whereas text notes don't have a location key
+    text_notes = get_notes(:location_note_ssm)
+    list = make_nested_locations_list(notes)
+    # add text notes to list of locations
+    append_to_list(list, text_notes)
+  rescue JSON::ParserError
+    processed_notes = process_summary_notes(notes)
+    content_tag(:ul) do
+      processed_notes.map do |note|
+        concat(content_tag(:li, note))
+      end
+    end
   end
 
   private
