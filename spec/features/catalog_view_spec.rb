@@ -120,9 +120,34 @@ describe "viewing catalog records", type: :feature, js: true do
     it "does not let someone click on the access restrictions badge at the series level", js: true do
       visit "catalog/C1491_c1"
       # the series should still have the restrictions badge
-      expect(page.find("div.overview").find("span.al-review-icon").find(:xpath, "..").text).to eq "Restrictions may apply."
+      expect(page.find("div.document-attributes").find("span.al-review-icon").find(:xpath, "..").text).to eq "Restrictions may apply."
       # but it should not be clickable
-      expect(page.find("div.overview").find("span.al-review-icon").find(:xpath, "..")).to have_no_link
+      expect(page.find("div.document-attributes").find("span.al-review-icon").find(:xpath, "..")).to have_no_link
+    end
+    it "displays a warning above the description about restricted materials" do
+      visit "/catalog/C1643_c396"
+      expect(page).to have_css(".alert-heading", text: "Access Restrictions")
+      expect(page).to have_css("svg title", text: "Icon Restrict")
+      expect(page).to have_css(".access-restrict-warning p", text: "Los documentos en esta caja contienen datos personales y tienen acceso restringido.")
+    end
+    it "will truncate accessrestrict text longer than 250 characters, create a button link that, when clicked opens a modal with the full accessrestrict text" do
+      visit "/catalog/C0187_c00001"
+      expect(page).to have_css(".alert-heading", text: "Access Restrictions")
+      expect(page).to have_css("svg title", text: "Icon Restrict")
+      expect(page).to have_css(".access-restrict-warning", text: /^.{0,250}$/)
+      expect(page).to have_button "Read full Conditions Governing Access"
+      find("#restrictionsModal-trigger-link").click
+      expect(page).to have_css("#restrictionsModal .modal-body", text: "Due to the fragility of Fitzgerald's original manuscripts and scrapbooks, researchers must use surrogates of these materials. Digital copies of the manuscript of The Great Gatsby, the Trimalchio galleys, This Side of Paradise, and the scrapbooks are available. Facsimile editions of the The Great Gatsby holograph (Microcard Editions Books, 1973; Editions des Saints Pères, 2017) and of Fitzgerald's other manuscripts (Bruccoli, ed., Garland Books, 1970), as well as microfilm and photocopies of the manuscripts and scrapbooks are available in the Department of Rare Books and Special Collections reading room.")
+    end
+    it "displays a warning above the description that items may be restricted if review is required" do
+      visit "catalog/C1491_c5621"
+
+      expect(page).to have_css(".alert-heading", text: "Access Restrictions May Apply")
+      expect(page).to have_css("svg title", text: "Icon Review")
+      expect(page).to have_css(".access-review-warning", text: /^.{0,250}$/)
+      expect(page).to have_button "Read full Conditions Governing Access"
+      find("#restrictionsModal-trigger-link").click
+      expect(page).to have_css("#restrictionsModal .modal-body", text: "Toni Morrison has required the Library to make surrogate copies of all of her manuscripts (including typescripts, proofs, and notes) that are part of the Writings series, including but not restricted to those damaged by fire in 1993. Morrison's diaries (appointment books) are also available via digital access in the reading room pending digitization.This is for conservation reasons, to prevent damage and deterioration by repeated use. Researchers are required to use digital surrogates in the reading room of the Special Collections.\nA small amount of material is temporarily restricted at the request of the collection creator or due to the presence of personally identifiable or other legally protected information. This includes portions of the Academic Career series that are restricted until 75 years from the date of creation due to the presence of student and faculty/personnel records as well as some files within the Working Files series.\nFor preservation reasons, physical access to original audio and visual media in a variety of magnetic and optic formats is restricted.")
     end
   end
   context "with a no-digital-content collection show page" do
