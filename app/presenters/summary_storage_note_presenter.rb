@@ -25,6 +25,11 @@ class SummaryStorageNotePresenter
     end
   end
 
+  def append_to_list(list, text_notes)
+    list_note_appendix = text_notes.map { |note| content_tag(:span, content_tag(:div, "Note", class: "header")+tag.div(note), class: "storage-notes-appendix") }
+    list.concat(list_note_appendix.first)
+  end
+
   def render
     # storage notes with locations are key=>value pairs
     notes = get_notes(:summary_storage_note_ssm)
@@ -32,9 +37,8 @@ class SummaryStorageNotePresenter
     text_notes = get_notes(:location_note_ssm)
     notes_hash = JSON.parse(notes.first)
     list = make_nested_locations_list(notes_hash)
-    list_note_appendix = text_notes.map { |note| tag.span(note) }
-    list.concat(list_note_appendix.first)
-    # return the list
+    append_to_list(list, text_notes)
+    # return the appended list
     return list if notes_hash.keys.size == 1
     # if there are multiple locations prepend a note
     tag.span("This is stored in multiple locations.").concat(list)

@@ -48,7 +48,10 @@ RSpec.describe SummaryStorageNotePresenter do
            "<dt>Firestone Library (scamss)</dt>",
            "<dd>Boxes 12; 83; 330; B-001491</dd>",
            "</dl>",
-           "<span>Box numbers 5, 15 are not used.</span>"].join
+           "<span class=\"storage-notes-appendix\">",
+           "<div class=\"header\">Note</div>",
+           "<div>Box numbers 5, 15 are not used.</div>",
+           "</span>"].join
         )
       end
     end
