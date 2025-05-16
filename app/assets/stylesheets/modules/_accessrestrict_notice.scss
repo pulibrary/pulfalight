@@ -2,6 +2,10 @@
     font-size: 1.25rem;
 }
 
+.access-review-warning h3 {
+    font-size: 1.25rem;
+}
+
 .access-restrict-warning {
     background-color: #fdf1f1;
     border: none;
@@ -10,4 +14,10 @@
 
 #restrictionsModal h1 {
     font-size: 1.5rem;
+}
+
+.access-review-warning {
+    background-color: #FCECBD;
+    border: none;
+    border-left: 1rem solid #8B640E;
 }
