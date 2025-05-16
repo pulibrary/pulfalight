@@ -26,7 +26,9 @@ class SummaryStorageNotePresenter
   end
 
   def append_to_list(list, text_notes)
-    list_note_appendix = text_notes.map { |note| content_tag(:span, content_tag(:div, "Note", class: "header") + tag.div(note), class: "storage-notes-appendix") }
+    list_note_appendix = text_notes.map do |note| 
+      content_tag(:span, content_tag(:div, "Note", class: "header") + tag.div(note), class: "storage-notes-appendix") 
+    end
     list.concat(list_note_appendix.first)
   end
 
