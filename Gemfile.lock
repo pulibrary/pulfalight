@@ -705,7 +705,7 @@ DEPENDENCIES
   factory_bot_rails
   faraday
   foreman
-  health-monitor-rails (= 12.4.0)
+  health-monitor-rails (~> 12.4)
   honeybadger
   jbuilder (~> 2.5)
   jquery-rails
