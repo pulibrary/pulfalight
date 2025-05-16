@@ -26,15 +26,14 @@ class SummaryStorageNotePresenter
   end
 
   def render
-    # storage notes with locations are processed as key=>value pairs
+    # storage notes with locations are key=>value pairs
     notes = get_notes(:summary_storage_note_ssm)
-    # text notes are not associated with locations and are processed as strings
+    # whereas text notes don't have a location key
     text_notes = get_notes(:location_note_ssm)
-    return if notes.blank?
     notes_hash = JSON.parse(notes.first)
     list = make_nested_locations_list(notes_hash)
-    # add text notes at the end of the list, if any
-    list += (text_notes.empty? ? "" : text_notes.map { |note| tag.span(note) }.join.html_safe)
+    list_note_appendix = text_notes.map { |note| tag.span(note) }
+    list += list_note_appendix.first
     # return the list
     return list if notes_hash.keys.size == 1
     # if there are multiple locations prepend a note
