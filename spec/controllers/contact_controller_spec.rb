@@ -11,7 +11,7 @@ RSpec.describe ContactController do
         expect(response.status).to eq 422
 
         expect(response.body).to have_field "Name"
-        expect(response.body).to have_content "Email can't be blank"
+        expect(response.body).to have_content "Message can't be blank"
       end
     end
     context "when given valid params" do
