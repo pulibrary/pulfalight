@@ -3,8 +3,8 @@ class SuggestACorrectionForm
   include ActiveModel::Model
   attr_accessor :name, :email, :box_number, :message, :location_code, :context
 
-  validates :name, :email, :message, presence: true
-  validates :email, email: true
+  validates :message, presence: true
+  validates :email, email: true, allow_blank: true
 
   def submit
     ContactMailer.with(form_params: as_json.except("validation_context", "errors"), form_class: self.class).suggest.deliver_later
