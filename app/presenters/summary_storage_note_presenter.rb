@@ -53,13 +53,6 @@ class SummaryStorageNotePresenter
     list = make_nested_locations_list(notes)
     # add text notes to list of locations
     append_to_list(list, text_notes)
-  rescue JSON::ParserError
-    processed_notes = process_summary_notes(notes)
-    content_tag(:ul) do
-      processed_notes.map do |note|
-        concat(content_tag(:li, note))
-      end
-    end
   end
 
   private
