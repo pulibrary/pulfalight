@@ -15,16 +15,15 @@ module Pulfalight
       end
 
       def call(env)
-        env['rack.multipart.tempfile_factory'] = lambda { |_filename, _content_type|
-          raise 'Sorry, the findingaids does not support file uploads'
+        env["rack.multipart.tempfile_factory"] = lambda { |_filename, _content_type|
+          raise "Sorry, the findingaids does not support file uploads"
         }
         app.call env
       end
 
         private
 
-          attr_reader :app
+      attr_reader :app
     end
   end
 end
-
