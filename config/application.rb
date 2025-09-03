@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require_relative "boot"
+require_relative "../lib/pulfalight/middleware/no_file_uploads"
 
 require "rails/all"
 require_relative "lando_env"
