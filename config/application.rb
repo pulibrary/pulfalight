@@ -42,6 +42,8 @@ module Pulfalight
     authorization = config_for(:authorization)
     netids = authorization["netids"]
     config.authorization = netids.split if netids
+
+    config.middleware.insert_before Rack::MethodOverride, Pulfalight::Middleware::NoFileUploads
   end
 
   Rails.application.routes.default_url_options = {
