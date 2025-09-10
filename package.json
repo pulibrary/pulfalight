@@ -22,7 +22,7 @@
     "http-proxy-to-socks": "^1.1.5",
     "jsdom": "^24.0.0",
     "standard": "^17.1.0",
-    "vite": "^6.0.0",
+    "vite": "^6.3.6",
     "vite-plugin-ruby": "^5.1.0",
     "vitest": "^3.0.0"
   },
