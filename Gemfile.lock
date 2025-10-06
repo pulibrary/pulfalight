@@ -12,7 +12,7 @@ GIT
       traject_plus (~> 2.0)
 
 GEM
-  remote: https://rubygems.org/
+  remote: https://gem.coop/
   specs:
     actioncable (7.1.5.1)
       actionpack (= 7.1.5.1)
