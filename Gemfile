@@ -3,7 +3,7 @@ source "https://gem.coop"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem "rails", "~> 7.1.0"
+gem "rails", "~> 7.2.0"
 # Use Puma as the app server
 gem "puma", "~> 5.6"
 # Use SCSS for stylesheets
