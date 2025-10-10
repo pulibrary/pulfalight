@@ -82,6 +82,10 @@ Rails/OutputSafety:
 Rails/SkipsModelValidations:
   Exclude:
     - 'app/services/aspace/indexer.rb'
+    - 'db/migrate/20251010162123_add_service_name_to_active_storage_blobs.active_storage.rb'
+Rails/CreateTableWithTimestamps:
+  Exclude:
+    - 'db/migrate/20251010162124_create_active_storage_variant_records.active_storage.rb'
 Rails/UnknownEnv:
   Exclude:
     - 'config/initializers/honeybadger_downtime_hook.rb'
