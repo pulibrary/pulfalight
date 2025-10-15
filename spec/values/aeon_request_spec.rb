@@ -90,7 +90,18 @@ RSpec.describe AeonRequest do
 
         expect(request).not_to be_requestable
       end
+
+      it "returns false if repository is eng" do
+        fixture = Rails.root.join("spec", "fixtures", "ENG001_c0001.json")
+        fixture = JSON.parse(fixture.read)
+        document = SolrDocument.new(fixture)
+
+        request = document.aeon_request
+
+        expect(request).not_to be_requestable
+      end
     end
+
     context "when given a ReCAP location" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1408.processed.EAD.xml")
@@ -99,6 +110,7 @@ RSpec.describe AeonRequest do
         indexer.map_record(record)["components"][0]["components"][0]["components"][0]
       end
       let(:document) { SolrDocument.new(values) }
+
       it "returns ReCAP as the location" do
         request = document.aeon_request
         request_id = request.form_attributes[:Request]

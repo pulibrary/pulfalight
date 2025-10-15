@@ -33,7 +33,9 @@ class AeonRequest
   end
 
   def requestable?
-    solr_document["components"].blank? && container_locations.present?
+    solr_document["components"].blank? &&
+      container_locations.present? &&
+      !non_requestable_repositories.intersect?(repository_codes)
   end
 
   def attributes
@@ -141,6 +143,14 @@ class AeonRequest
       solr_document.fetch("container_information_ssm", []).map do |container|
         JSON.parse(container)
       end
+  end
+
+  def repository_codes
+    solr_document.fetch("repository_code_ssm", [])
+  end
+
+  def non_requestable_repositories
+    ["eng"]
   end
 
   def translate_location_code(code)
