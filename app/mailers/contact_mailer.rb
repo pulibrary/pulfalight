@@ -2,7 +2,8 @@
 class ContactMailer < ApplicationMailer
   def suggest
     @form = params[:form_class].new(params[:form_params])
-    mail(to: @form.routed_mail_to, from: @form.email, subject: "Suggest a Correction")
+    from = @form.email.presence || default_params[:from]
+    mail(to: @form.routed_mail_to, from: from, subject: "Suggest a Correction")
   end
 
   def contact
