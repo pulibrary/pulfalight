@@ -16,6 +16,13 @@ module Stubbing
         status: status_code
       )
   end
+
+  def stub_libanswers_api
+    stub_request(:post, 'https://faq.library.princeton.edu/api/1.1/oauth/token')
+      .with(body: 'client_id=ABC&client_secret=12345&grant_type=client_credentials')
+      .to_return(status: 200, body: file_fixture('libanswers/oauth_token.json'))
+    stub_request(:post, 'https://faq.library.princeton.edu/api/1.1/ticket/create')
+  end
 end
 
 RSpec.configure do |config|

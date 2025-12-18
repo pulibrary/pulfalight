@@ -28,6 +28,7 @@ RSpec.describe SuggestACorrectionForm do
 
   describe "submit" do
     it "sends an email and resets its attributes, setting itself as submitted" do
+      stub_libanswers_api
       form = described_class.new(valid_attributes)
 
       form.submit
@@ -39,8 +40,16 @@ RSpec.describe SuggestACorrectionForm do
       expect(form.location_code).to eq "mss"
       expect(form.context).to eq "http://example.com/catalog/1"
       expect(form).to be_submitted
-      mail = ActionMailer::Base.deliveries.first
-      expect(mail.from).to eq ["test@test.org"]
+      
+      expect(WebMock).to have_requested(
+        :post,
+        'https://faq.library.princeton.edu/api/1.1/ticket/create'
+      ).with(body: 'quid=3456&'\
+      'pquestion=[Finding Aids] Example Record&'\
+      "pdetails=You should fix the thumbnail\n\nSent from http://example.com/catalog/1 via LibAnswers API&"\
+      'pname=Test&'\
+      'pemail=test@test.org',
+             headers: { Authorization: 'Bearer abcdef1234567890abcdef1234567890abcdef12' })
     end
   end
 
@@ -67,7 +76,15 @@ RSpec.describe SuggestACorrectionForm do
     ["mss", "cotsen", "eng", "lae", "rarebooks", "selectors", "mudd", "publicpolicy", "univarchives", "rbsc"].each do |location_code|
       it "routes to suggestacorrection@princeton.libanswers.com for #{location_code}" do
         form = described_class.new(valid_attributes.merge("location_code" => location_code))
-        expect(form.routed_mail_to).to eq "suggestacorrection@princeton.libanswers.com"
+        expect(WebMock).to have_requested(
+          :post,
+          'https://faq.library.princeton.edu/api/1.1/ticket/create'
+        ).with(body: 'quid=3456&'\
+        'pquestion=[Finding Aids] Example Record&'\
+        "pdetails=You should fix the thumbnail\n\nSent from http://example.com/catalog/1 via LibAnswers API&"\
+        'pname=Test&'\
+        'pemail=test@test.org',
+        headers: { Authorization: 'Bearer abcdef1234567890abcdef1234567890abcdef12' })
       end
     end
     it "routes to wdressel@princeton.edu for engineering library" do
