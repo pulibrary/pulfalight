@@ -9,6 +9,11 @@ defaults: &defaults
   figgy_auth_token: <%= ENV["FIGGY_AUTH_TOKEN"] %>
   figgy_url: "https://figgy.princeton.edu"
   multiple_algorithms: <%= ENV["MULTIPLE_ALGORITHMS"] || false %>
+  suggest_correction_form: 
+    to: <%= ENV['FINDINGAIDS_TO'] %>
+  libanswers:
+    client_id: <%= ENV['LIBANSWERS_CLIENT_ID'] || 'ABC' %>
+    client_secret: <%= ENV['LIBANSWERS_CLIENT_SECRET'] || '12345' %>
 
 development:
   <<: *defaults
@@ -20,6 +25,9 @@ test:
   archivespace_password: "secretpassword"
   unpublished_auth_token: "123456"
   figgy_auth_token: "123456"
+  libanswers:
+    client_id: ABC
+    client_secret: '12345'
 
 production:
   <<: *defaults

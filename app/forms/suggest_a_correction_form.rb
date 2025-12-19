@@ -22,5 +22,8 @@ class SuggestACorrectionForm
   def routed_mail_to
     return "wdressel@princeton.edu" if ["engineering library"].include?(location_code)
     "suggestacorrection@princeton.libanswers.com"
+    SuggestACorrectionForm.new(
+      message:, patron_name: name, patron_email: email, user_agent:, current_url:
+    ).send_to_libanswers
   end
 end
