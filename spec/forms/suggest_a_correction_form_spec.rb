@@ -74,7 +74,7 @@ RSpec.describe SuggestACorrectionForm do
 
   describe "#routed_mail_to" do
     ["mss", "cotsen", "eng", "lae", "rarebooks", "selectors", "mudd", "publicpolicy", "univarchives", "rbsc"].each do |location_code|
-      it "routes to suggestacorrection@princeton.libanswers.com for #{location_code}" do
+      it "uses Libanswers API to route messages for #{location_code}" do
         form = described_class.new(valid_attributes.merge("location_code" => location_code))
         expect(WebMock).to have_requested(
           :post,

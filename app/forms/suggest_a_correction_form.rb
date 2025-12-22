@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class SuggestACorrectionForm
   include ActiveModel::Model
-  attr_accessor :name, :email, :box_number, :message, :location_code, :context
+  attr_accessor :name, :email, :box_number, :message, :location_code, :context, :user_agent
 
   validates :message, presence: true
   validates :email, email: true, allow_blank: true
@@ -21,9 +21,13 @@ class SuggestACorrectionForm
 
   def routed_mail_to
     return "wdressel@princeton.edu" if ["engineering library"].include?(location_code)
-    "suggestacorrection@princeton.libanswers.com"
-    SuggestACorrectionForm.new(
-      message:, patron_name: name, patron_email: email, user_agent:, current_url:
+    SuggestACorrectionFormSubmission.new(
+      message:, name: name, email: email, box_number:, location_code:, context:, user_agent: 
     ).send_to_libanswers
+    binding.pry
   end
+
+  # def post_to_libanswers
+    
+  # end
 end
