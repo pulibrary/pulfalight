@@ -9,8 +9,8 @@ defaults: &defaults
   figgy_auth_token: <%= ENV["FIGGY_AUTH_TOKEN"] %>
   figgy_url: "https://figgy.princeton.edu"
   multiple_algorithms: <%= ENV["MULTIPLE_ALGORITHMS"] || false %>
-  suggest_correction_form: 
-    to: <%= ENV['FINDINGAIDS_TO'] %>
+  suggest_a_correction_form: 
+    queue_id: <%= ENV['FINDINGAIDS_TO'] %>
   libanswers:
     client_id: <%= ENV['LIBANSWERS_CLIENT_ID'] || 'ABC' %>
     client_secret: <%= ENV['LIBANSWERS_CLIENT_SECRET'] || '12345' %>
@@ -28,6 +28,8 @@ test:
   libanswers:
     client_id: ABC
     client_secret: '12345'
+  suggest_a_correction_form: 
+    queue_id: 3456
 
 production:
   <<: *defaults

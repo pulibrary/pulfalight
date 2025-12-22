@@ -22,12 +22,11 @@ class SuggestACorrectionForm
   def routed_mail_to
     return "wdressel@princeton.edu" if ["engineering library"].include?(location_code)
     SuggestACorrectionFormSubmission.new(
-      message:, name: name, email: email, box_number:, location_code:, context:, user_agent: 
+      message: message, name: name, email: email, box_number: box_number, location_code: location_code, context: context, user_agent: user_agent
     ).send_to_libanswers
-    binding.pry
   end
 
   # def post_to_libanswers
-    
+
   # end
 end
