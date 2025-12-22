@@ -14,14 +14,14 @@ class OAuthToken < ApplicationRecord
 
     private
 
-        def fetch_new_token
-        service = OAuthService.new(service: self.service, endpoint:)
-        self.token = service.new_token
-        self.expiration_time = service.expiration_time
-        save
-        end
+  def fetch_new_token
+    service = OAuthService.new(service: self.service, endpoint: endpoint)
+    self.token = service.new_token
+    self.expiration_time = service.expiration_time
+    save
+  end
 
-        def not_yet_expired
-        (Time.zone.now < expiration_time)
-        end
+  def not_yet_expired
+    (Time.zone.now < expiration_time)
+  end
 end

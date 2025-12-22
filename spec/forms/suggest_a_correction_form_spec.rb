@@ -40,16 +40,16 @@ RSpec.describe SuggestACorrectionForm do
       expect(form.location_code).to eq "mss"
       expect(form.context).to eq "http://example.com/catalog/1"
       expect(form).to be_submitted
-      
+
       expect(WebMock).to have_requested(
         :post,
-        'https://faq.library.princeton.edu/api/1.1/ticket/create'
-      ).with(body: 'quid=3456&'\
-      'pquestion=[Finding Aids] Example Record&'\
+        "https://faq.library.princeton.edu/api/1.1/ticket/create"
+      ).with(body: "quid=3456&"\
+      "pquestion=[Finding Aids] Example Record&"\
       "pdetails=You should fix the thumbnail\n\nSent from http://example.com/catalog/1 via LibAnswers API&"\
-      'pname=Test&'\
-      'pemail=test@test.org',
-             headers: { Authorization: 'Bearer abcdef1234567890abcdef1234567890abcdef12' })
+      "pname=Test&"\
+      "pemail=test@test.org",
+             headers: { Authorization: "Bearer abcdef1234567890abcdef1234567890abcdef12" })
     end
   end
 
@@ -75,16 +75,18 @@ RSpec.describe SuggestACorrectionForm do
   describe "#routed_mail_to" do
     ["mss", "cotsen", "eng", "lae", "rarebooks", "selectors", "mudd", "publicpolicy", "univarchives", "rbsc"].each do |location_code|
       it "uses Libanswers API to route messages for #{location_code}" do
+        stub_libanswers_api
         form = described_class.new(valid_attributes.merge("location_code" => location_code))
+        form.submit
         expect(WebMock).to have_requested(
           :post,
-          'https://faq.library.princeton.edu/api/1.1/ticket/create'
-        ).with(body: 'quid=3456&'\
-        'pquestion=[Finding Aids] Example Record&'\
-        "pdetails=You should fix the thumbnail\n\nSent from http://example.com/catalog/1 via LibAnswers API&"\
-        'pname=Test&'\
-        'pemail=test@test.org',
-        headers: { Authorization: 'Bearer abcdef1234567890abcdef1234567890abcdef12' })
+          "https://faq.library.princeton.edu/api/1.1/ticket/create"
+        ).with(body: "quid=3456&"\
+        "pquestion=Finding Aids Suggest a Correction Form&"\
+        "pdetails=Your EAD components are amazing, you should say so.\n\nSent from http://example.com/catalog/1 via LibAnswers API&"\
+        "pname=Test&"\
+        "pemail=test@test.org",
+         headers: { Authorization: "Bearer abcdef1234567890abcdef1234567890abcdef12" })
       end
     end
     it "routes to wdressel@princeton.edu for engineering library" do
