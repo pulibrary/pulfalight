@@ -3,12 +3,14 @@
 # form submission to the libanswers API,
 # which will create a ticket for Finding Aids staff to answer
 class SuggestACorrectionFormSubmission
-    def initialize(message:, patron_name:, patron_email:, user_agent:, current_url:)
+    def initialize(:message, :name, :email, :box_number, :location_code, :context, :user_agent)
         @message = message
-        @patron_name = patron_name
-        @patron_email = patron_email
+        @name = name
+        @email = email
         @user_agent = user_agent
-        @current_url = current_url
+        @context = context
+        @box_number = box_number
+        @location_code = location_code
     end
 
     def send_to_libanswers
@@ -16,7 +18,7 @@ class SuggestACorrectionFormSubmission
     end
 
     private
-    attr_reader :patron_name, :patron_email, :user_agent, :current_url
+    attr_reader :name, :email, :box_number, :message, :location_code, :context, :user_agent
 
     def body
         @body ||= data.to_a.map { |entry| "#{entry[0]}=#{entry[1]}" }.join('&')
@@ -24,17 +26,17 @@ class SuggestACorrectionFormSubmission
 
     def data
         {
-            quid: Rails.application.config_for(:orangelight)[:feedback_form][:queue_id],
+            quid: Rails.application.config_for(:pulfalight)[:suggest_a_correction_form][:queue_id],
             pquestion: 'Finding Aids Suggest a Correction Form',
             pdetails: message,
-            pname: patron_name,
-            pemail: patron_email,
+            pname: name,
+            pemail: email,
             ua: user_agent
         }.compact
     end
 
     def message
-        return "#{@message}\n\nSent from #{current_url} via LibAnswers API" if current_url
+        return "#{@message}\n\nSent from #{context} via LibAnswers API" if context
 
         "#{@message}\n\nSent via LibAnswers API"
     end
