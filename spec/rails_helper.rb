@@ -36,4 +36,5 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   config.infer_spec_type_from_file_location!
+  config.include ActiveSupport::Testing::TimeHelpers
 end
