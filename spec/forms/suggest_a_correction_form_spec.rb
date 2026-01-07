@@ -59,9 +59,9 @@ RSpec.describe SuggestACorrectionForm do
         "https://faq.library.princeton.edu/api/1.1/ticket/create"
       ).with(
         body:
-          'quid=3456&pquestion=Finding Aids Suggest a Correction Form&pdetails=Your EAD components are amazing, you should say so.\\n\\nSent from http://example.com/catalog/1 via LibAnswers API&pname=Test&pemail=test@test.org',
+          /quid=3456&pquestion=Finding Aids Suggest a Correction Form&pdetails=Your EAD components are amazing, you should say so.\s*Sent from http:\/\/example.com\/catalog\/1 via LibAnswers API&pname=Test&pemail=test@test.org/,
         headers: {
-          "Accept" => "*/*", "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3", "Authorization" => "Bearer abcdef1234567890abcdef1234567890abcdef12", "Host" => "faq.library.princeton.edu", "User-Agent" => "Ruby"
+          'Accept' => '*/*', 'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization' => 'Bearer abcdef1234567890abcdef1234567890abcdef12', 'Host' => 'faq.library.princeton.edu', 'User-Agent' => 'Ruby'
         }
       )
     end
