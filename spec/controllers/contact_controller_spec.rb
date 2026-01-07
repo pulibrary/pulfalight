@@ -3,12 +3,47 @@ require "rails_helper"
 
 RSpec.describe ContactController do
   render_views
+  let(:invalid_attributes) do
+    {
+      "name" => "Test"
+    }
+  end
   describe "POST suggest" do
-    context "when given invalid data AJAX data" do
+    context "when given invalid data" do
       it "returns the form re-rendered" do
-        post :suggest, params: { suggest_a_correction_form: { "name" => "Test" } }
+        stub_libanswers_api_invalid
+        form = SuggestACorrectionForm.new(invalid_attributes)
+        form.submit
 
-        expect(response.status).to eq 422
+        # post :suggest, params: { suggest_a_correction_form: { "name" => "Test" } }
+        
+        # rubocop:disable Layout/LineLength
+        expect(WebMock).to have_requested(
+          :post,
+          "https://faq.library.princeton.edu/api/1.1/oauth/token"
+        ).with(
+          body:
+            "client_id=ABC&"\
+            "client_secret=12345&"\
+            "grant_type=client_credentials",
+          headers: {
+            "Accept" => "*/*", "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3", "Content-Type" => "application/x-www-form-urlencoded", "Host" => "faq.library.princeton.edu", "User-Agent" => "Ruby"
+          }
+        )
+        
+        # rubocop:disable Layout/LineLength
+        expect(WebMock).to have_requested(
+          :post,
+          "https://faq.library.princeton.edu/api/1.1/ticket/create"
+        ).with(
+          body:
+            /quid=3456&pquestion=Finding Aids Suggest a Correction Form&pdetails=\s*Sent via LibAnswers API&pname=Test/,
+          headers: {
+            "Accept" => "*/*", "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3", "Authorization" => "Bearer abcdef1234567890abcdef1234567890abcdef12", "Host" => "faq.library.princeton.edu", "User-Agent" => "Ruby"
+          }
+        )
+      
+        expect(response.status).to eq 200
 
         expect(response.body).to have_field "Name"
         expect(response.body).to have_content "Message can't be blank"
