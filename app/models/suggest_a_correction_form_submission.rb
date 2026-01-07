@@ -3,6 +3,7 @@
 # form submission to the libanswers API,
 # which will create a ticket for Finding Aids staff to answer
 class SuggestACorrectionFormSubmission
+  # rubocop:disable Metrics/ParameterLists
   def initialize(message:, name:, email:, box_number:, location_code:, context:, user_agent:)
     @message = message
     @name = name
