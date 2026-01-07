@@ -16,7 +16,7 @@ RSpec.describe ContactController do
         form.submit
 
         # post :suggest, params: { suggest_a_correction_form: { "name" => "Test" } }
-        
+
         # rubocop:disable Layout/LineLength
         expect(WebMock).to have_requested(
           :post,
@@ -30,7 +30,7 @@ RSpec.describe ContactController do
             "Accept" => "*/*", "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3", "Content-Type" => "application/x-www-form-urlencoded", "Host" => "faq.library.princeton.edu", "User-Agent" => "Ruby"
           }
         )
-        
+
         # rubocop:disable Layout/LineLength
         expect(WebMock).to have_requested(
           :post,
@@ -42,7 +42,7 @@ RSpec.describe ContactController do
             "Accept" => "*/*", "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3", "Authorization" => "Bearer abcdef1234567890abcdef1234567890abcdef12", "Host" => "faq.library.princeton.edu", "User-Agent" => "Ruby"
           }
         )
-      
+
         expect(response.status).to eq 200
 
         expect(response.body).to have_field "Name"
