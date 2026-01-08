@@ -10,11 +10,11 @@ defaults: &defaults
   figgy_url: "https://figgy.princeton.edu"
   multiple_algorithms: <%= ENV["MULTIPLE_ALGORITHMS"] || false %>
   suggest_a_correction_form: 
-    queue_id: <%= ENV['FINDINGAIDS_TO'] %>
+    queue_id: <%= ENV['SUGGEST_A_CORRECTION_QUEUE'] %>
   libanswers:
     client_id: <%= ENV['LIBANSWERS_CLIENT_ID'] || 'ABC' %>
     client_secret: <%= ENV['LIBANSWERS_CLIENT_SECRET'] || '12345' %>
-
+    
 development:
   <<: *defaults
 
