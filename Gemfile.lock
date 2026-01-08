@@ -370,6 +370,7 @@ GEM
       nokogiri (~> 1.12)
       omniauth (~> 2.1)
     open3 (0.1.2)
+    openssl (3.3.1)
     orm_adapter (0.5.0)
     ostruct (0.6.0)
     parallel (1.24.0)
@@ -718,6 +719,7 @@ DEPENDENCIES
   omniauth (= 2.1.2)
   omniauth-cas (= 3.0.0)
   open3
+  openssl
   pg
   popper_js
   pry-byebug
