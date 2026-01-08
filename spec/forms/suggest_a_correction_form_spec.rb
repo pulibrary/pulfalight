@@ -12,6 +12,7 @@ RSpec.describe SuggestACorrectionForm do
       "context" => "http://example.com/catalog/1"
     }
   end
+
   describe "initialization" do
     it "takes a name, email, box/container number, and message" do
       form = described_class.new(valid_attributes)
@@ -27,45 +28,57 @@ RSpec.describe SuggestACorrectionForm do
   end
 
   describe "submit" do
-    it "sends an email and resets its attributes, setting itself as submitted" do
-      stub_libanswers_api
-      form = described_class.new(valid_attributes)
+    context "when the location code isn't engineering" do
+      with_queue_adapter(:test)
 
-      form.submit
-      # expect(ActionMailer::Base.deliveries.length).to eq 1
-      expect(form.name).to eq ""
-      expect(form.email).to eq ""
-      expect(form.box_number).to eq ""
-      expect(form.message).to eq ""
-      expect(form.location_code).to eq "mss"
-      expect(form.context).to eq "http://example.com/catalog/1"
-      expect(form).to be_submitted
+      it "enqueues a libanswers job" do
+        form = described_class.new(valid_attributes)
 
-      # rubocop:disable Layout/LineLength
-      expect(WebMock).to have_requested(
-        :post,
-        "https://faq.library.princeton.edu/api/1.1/oauth/token"
-      ).with(
-        body:
-          "client_id=ABC&"\
-          "client_secret=12345&"\
-          "grant_type=client_credentials",
-        headers: {
-          "Accept" => "*/*", "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3", "Content-Type" => "application/x-www-form-urlencoded", "Host" => "faq.library.princeton.edu", "User-Agent" => "Ruby"
-        }
-      )
+        form.submit
+        # expect(ActionMailer::Base.deliveries.length).to eq 1
+        expect(form.name).to eq ""
+        expect(form.email).to eq ""
+        expect(form.box_number).to eq ""
+        expect(form.message).to eq ""
+        expect(form.location_code).to eq "mss"
+        expect(form.context).to eq "http://example.com/catalog/1"
+        expect(form).to be_submitted
 
-      # rubocop:disable Layout/LineLength
-      expect(WebMock).to have_requested(
-        :post,
-        "https://faq.library.princeton.edu/api/1.1/ticket/create"
-      ).with(
-        body:
-          /quid=3456&pquestion=Finding Aids Suggest a Correction Form&pdetails=Your EAD components are amazing, you should say so.\s*Sent from http:\/\/example.com\/catalog\/1 via LibAnswers API&pname=Test&pemail=test@test.org/,
-        headers: {
-          "Accept" => "*/*", "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3", "Authorization" => "Bearer abcdef1234567890abcdef1234567890abcdef12", "Host" => "faq.library.princeton.edu", "User-Agent" => "Ruby"
-        }
-      )
+        expect(LibanswersTicketJob).to have_been_enqueued.with(
+          message: "Your EAD components are amazing, you should say so.",
+          name: "Test",
+          email: "test@test.org",
+          box_number: "1",
+          location_code: "mss",
+          context: "http://example.com/catalog/1",
+          user_agent: nil
+        )
+      end
+    end
+
+    context "when the location code is engineering" do
+      it "sends an email" do
+        form = described_class.new(valid_attributes.merge({ "location_code" => "engineering library" }))
+
+        form.submit
+        # expect(ActionMailer::Base.deliveries.length).to eq 1
+        expect(form.name).to eq ""
+        expect(form.email).to eq ""
+        expect(form.box_number).to eq ""
+        expect(form.message).to eq ""
+        expect(form.location_code).to eq "engineering library"
+        expect(form.context).to eq "http://example.com/catalog/1"
+        expect(form).to be_submitted
+
+        expect(ActionMailer::Base.deliveries.length).to eq 1
+        delivery = ActionMailer::Base.deliveries.first
+        expect(delivery.subject).to eq "Suggest a Correction"
+        expect(delivery.to).to eq ["wdressel@princeton.edu"]
+        expect(delivery.from).to eq ["test@test.org"]
+        expect(delivery.body).to include "Test"
+        expect(delivery.body).to include "Your EAD components are amazing, you should say so."
+        expect(delivery.body).to include "http://example.com/catalog/1"
+      end
     end
   end
 
@@ -85,29 +98,6 @@ RSpec.describe SuggestACorrectionForm do
     it "is invalid without a message" do
       form = described_class.new(valid_attributes.merge("message" => ""))
       expect(form).not_to be_valid
-    end
-  end
-
-  describe "#routed_mail_to" do
-    ["mss", "cotsen", "eng", "lae", "rarebooks", "selectors", "mudd", "publicpolicy", "univarchives", "rbsc"].each do |location_code|
-      it "uses Libanswers API to route messages for #{location_code}" do
-        stub_libanswers_api
-        form = described_class.new(valid_attributes.merge("location_code" => location_code))
-        form.submit
-        expect(WebMock).to have_requested(
-          :post,
-          "https://faq.library.princeton.edu/api/1.1/ticket/create"
-        ).with(body: "quid=3456&"\
-        "pquestion=Finding Aids Suggest a Correction Form&"\
-        "pdetails=Your EAD components are amazing, you should say so.\n\nSent from http://example.com/catalog/1 via LibAnswers API&"\
-        "pname=Test&"\
-        "pemail=test@test.org",
-               headers: { Authorization: "Bearer abcdef1234567890abcdef1234567890abcdef12" })
-      end
-    end
-    it "routes to wdressel@princeton.edu for engineering library" do
-      form = described_class.new(valid_attributes.merge("location_code" => "engineering library"))
-      expect(form.routed_mail_to).to eq "wdressel@princeton.edu"
     end
   end
 end

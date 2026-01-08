@@ -7,7 +7,13 @@ class SuggestACorrectionForm
   validates :email, email: true, allow_blank: true
 
   def submit
-    ContactMailer.with(form_params: as_json.except("validation_context", "errors"), form_class: self.class).suggest.deliver_later
+    if use_email?
+      ContactMailer.with(form_params: as_json.except("validation_context", "errors"), form_class: self.class).suggest.deliver_later
+    else
+      LibanswersTicketJob.perform_later(
+        message: message, name: name, email: email, box_number: box_number, location_code: location_code, context: context, user_agent: user_agent
+      )
+    end
     @submitted = true
     @name = ""
     @email = ""
@@ -19,10 +25,7 @@ class SuggestACorrectionForm
     @submitted == true
   end
 
-  def routed_mail_to
-    return "wdressel@princeton.edu" if ["engineering library"].include?(location_code)
-    SuggestACorrectionFormSubmission.new(
-      message: message, name: name, email: email, box_number: box_number, location_code: location_code, context: context, user_agent: user_agent
-    ).send_to_libanswers
+  def use_email?
+    location_code.include?("engineering library")
   end
 end
