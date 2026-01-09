@@ -4,6 +4,7 @@
 # OAuth server to get new access tokens
 class OAuthService
   class CouldNotGenerateOAuthToken < StandardError; end
+  attr_reader :endpoint, :service
 
   def initialize(endpoint:, service:)
     @endpoint = URI(endpoint)
@@ -22,8 +23,6 @@ class OAuthService
   end
 
     private
-
-  attr_reader :endpoint, :service
 
   def client_id
     configuration[:client_id]
