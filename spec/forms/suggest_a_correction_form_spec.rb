@@ -35,7 +35,6 @@ RSpec.describe SuggestACorrectionForm do
         form = described_class.new(valid_attributes)
 
         form.submit
-        # expect(ActionMailer::Base.deliveries.length).to eq 1
         expect(form.name).to eq ""
         expect(form.email).to eq ""
         expect(form.box_number).to eq ""
@@ -61,7 +60,6 @@ RSpec.describe SuggestACorrectionForm do
         form = described_class.new(valid_attributes.merge({ "location_code" => "engineering library" }))
 
         form.submit
-        # expect(ActionMailer::Base.deliveries.length).to eq 1
         expect(form.name).to eq ""
         expect(form.email).to eq ""
         expect(form.box_number).to eq ""
