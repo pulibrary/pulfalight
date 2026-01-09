@@ -3,6 +3,7 @@
 # form submission to the libanswers API,
 # which will create a ticket for Finding Aids staff to answer
 class SuggestACorrectionFormSubmission
+  attr_reader :name, :email, :box_number, :location_code, :context, :user_agent
   # rubocop:disable Metrics/ParameterLists
   def initialize(message:, name:, email:, box_number:, location_code:, context:, user_agent:)
     @message = message
@@ -20,10 +21,8 @@ class SuggestACorrectionFormSubmission
 
     private
 
-  attr_reader :name, :email, :box_number, :location_code, :context, :user_agent
-
   def body
-    @body ||= data.to_a.map { |entry| "#{entry[0]}=#{entry[1]}" }.join("&")
+    data.to_a.map { |entry| "#{entry[0]}=#{entry[1]}" }.join("&")
   end
 
   def data
@@ -44,11 +43,13 @@ class SuggestACorrectionFormSubmission
   end
 
   def uri
-    @uri ||= URI("https://faq.library.princeton.edu/api/1.1/ticket/create")
+    URI("https://faq.library.princeton.edu/api/1.1/ticket/create")
   end
 
   def token
-    @token ||= OAuthToken.find_or_create_by({ service: "libanswers",
-                                              endpoint: "https://faq.library.princeton.edu/api/1.1/oauth/token" }).token
+    OAuthToken.find_or_create_by({ 
+      service: "libanswers",
+      endpoint: "https://faq.library.princeton.edu/api/1.1/oauth/token" 
+    }).token
   end
 end
