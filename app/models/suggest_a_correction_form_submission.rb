@@ -47,9 +47,9 @@ class SuggestACorrectionFormSubmission
   end
 
   def token
-    OAuthToken.find_or_create_by({ 
-      service: "libanswers",
-      endpoint: "https://faq.library.princeton.edu/api/1.1/oauth/token" 
-    }).token
+    OAuthToken.find_or_create_by({
+                                   service: "libanswers",
+                                   endpoint: "https://faq.library.princeton.edu/api/1.1/oauth/token"
+                                 }).token
   end
 end
