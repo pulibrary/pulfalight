@@ -16,6 +16,30 @@ module Stubbing
         status: status_code
       )
   end
+
+  def stub_libanswers_api
+    stub_request(:post, 'https://faq.library.princeton.edu/api/1.1/oauth/token')
+      .with(body: 'client_id=ABC&client_secret=12345&grant_type=client_credentials')
+      .to_return(status: 200, body: file_fixture('libanswers/oauth_token.json'))
+    stub_request(:post, 'https://faq.library.princeton.edu/api/1.1/ticket/create')
+  end
+
+  def stub_libanswers_api_invalid
+    stub_request(:post, 'https://faq.library.princeton.edu/api/1.1/oauth/token')
+      .with(body: 'client_id=ABC&client_secret=12345&grant_type=client_credentials')
+      .to_return(status: 200, body: file_fixture('libanswers/oauth_token.json'))
+    stub_request(:post, "https://faq.library.princeton.edu/api/1.1/ticket/create")
+      .with(
+        body: "quid=3456&pquestion=Finding Aids Suggest a Correction Form&pdetails=\n\nSent via LibAnswers API&pname=Test",
+        headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Authorization'=>'Bearer abcdef1234567890abcdef1234567890abcdef12',
+          'Host'=>'faq.library.princeton.edu',
+          'User-Agent'=>'Ruby'
+        })
+      .to_return(status: 422, body: "Message can't be blank", headers: {})
+  end
 end
 
 RSpec.configure do |config|
