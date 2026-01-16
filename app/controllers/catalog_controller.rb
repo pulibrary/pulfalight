@@ -15,6 +15,20 @@ class CatalogController < ApplicationController
     render json: @document.as_json
   end
 
+  def index
+    query_param = params[:q]
+    match = /^(aspace_)?(?<identifier>[A-z]{1,2}\d{3,4})([.-].*)?(_[0-9]?c.*)?$/.match(query_param)
+    return super unless match
+
+    # Try and take the user directly to the show page
+    id = query_param.tr(".", "-").gsub(match[:identifier], match[:identifier].upcase)
+    _response, doc = search_service.fetch(id)
+    @document = doc
+    redirect_to solr_document_path(id: @document)
+  rescue Blacklight::Exceptions::RecordNotFound
+    super
+  end
+
   # @see Blacklight::Catalog#show
   def show
     deprecated_response, @document = search_service.fetch(params[:id])
@@ -58,20 +72,6 @@ class CatalogController < ApplicationController
     # errors pass through as 404s, but let's at least log them.
     Rails.logger.error e.message
     raise e
-  end
-
-  def index
-    query_param = params[:q]
-    match = /^(aspace_)?(?<identifier>[A-z]{1,2}\d{3,4})([.-].*)?(_[0-9]?c.*)?$/.match(query_param)
-    return super unless match
-
-    # Try and take the user directly to the show page
-    id = query_param.tr(".", "-").gsub(match[:identifier], match[:identifier].upcase)
-    _response, doc = search_service.fetch(id)
-    @document = doc
-    redirect_to solr_document_path(id: @document)
-  rescue Blacklight::Exceptions::RecordNotFound
-    super
   end
 
   # Set allowed search alorithm parameter values
