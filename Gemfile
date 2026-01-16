@@ -108,18 +108,8 @@ gem "sidekiq", "~> 6.5"
 gem "twitter-typeahead-rails", "0.11.1.pre.corejavascript"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "whenever", require: false
-
 gem "dotenv-rails", groups: [:development, :test]
-
 gem "email_validator"
 gem "faraday"
 gem "simple_form"
-
-# Added for Ruby 3.1 support
-gem "matrix"
-gem "net-imap", require: false
-gem "net-pop", require: false
-gem "net-smtp", require: false
-gem "strscan", "3.0.1"
-
 gem "vite_rails"

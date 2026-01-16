@@ -586,7 +586,6 @@ GEM
     sshkit-interactive (0.3.0)
       sshkit (~> 1.12)
     stringio (3.1.7)
-    strscan (3.0.1)
     terser (1.1.12)
       execjs (>= 0.3.0, < 3)
     thor (1.4.0)
@@ -711,11 +710,7 @@ DEPENDENCIES
   jquery-rails
   listen
   lograge
-  matrix
   msgpack
-  net-imap
-  net-pop
-  net-smtp
   omniauth (= 2.1.2)
   omniauth-cas (= 3.0.0)
   open3
@@ -740,7 +735,6 @@ DEPENDENCIES
   simplecov
   solargraph
   spring
-  strscan (= 3.0.1)
   terser
   timecop
   twitter-typeahead-rails (= 0.11.1.pre.corejavascript)
@@ -752,4 +746,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   2.4.10
+   2.6.9
