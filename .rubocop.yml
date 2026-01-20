@@ -87,8 +87,12 @@ Rails/CreateTableWithTimestamps:
   Exclude:
     - 'db/migrate/20251010162124_create_active_storage_variant_records.active_storage.rb'
 Rails/UnknownEnv:
-  Exclude:
-    - 'config/initializers/honeybadger_downtime_hook.rb'
+  Environments:
+    - production
+    - development
+    - staging
+    - test
+    - local
 RSpec/DescribeClass:
   Exclude:
     - 'spec/views/**/*.rb'
