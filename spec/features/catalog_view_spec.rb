@@ -30,14 +30,14 @@ describe "viewing catalog records", type: :feature, js: true do
       visit "catalog/MC221_c0059"
 
       expect(page).to have_field "suggest_a_correction_form_location_code", visible: false, type: :hidden, with: "publicpolicy"
-      expect(page).to have_field "suggest_a_correction_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221_c0059"
+      expect(page).to have_field "suggest_a_correction_form_context", visible: false, type: :hidden, with: "#{Capybara.app_host || Capybara.default_host}/catalog/MC221_c0059"
     end
     it "has an ask a question form", js: false do
       visit "catalog/MC221_c0059"
 
       expect(page).to have_selector "h5", text: "Ask a Question"
       expect(page).to have_field "ask_a_question_form_location_code", visible: false, type: :hidden, with: "publicpolicy"
-      expect(page).to have_field "ask_a_question_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221_c0059"
+      expect(page).to have_field "ask_a_question_form_context", visible: false, type: :hidden, with: "#{Capybara.app_host || Capybara.default_host}/catalog/MC221_c0059"
       expect(page).to have_field "ask_a_question_form_title", visible: false, type: :hidden, with: "Harold B. Hoskins Papers, 1822-1982"
     end
     it "has a component level storage note" do
@@ -175,13 +175,13 @@ describe "viewing catalog records", type: :feature, js: true do
     it "has an ask a question button", js: false do
       expect(page).to have_selector "#question-button"
       expect(page).to have_field "ask_a_question_form_location_code", visible: false, type: :hidden, with: "publicpolicy"
-      expect(page).to have_field "ask_a_question_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221"
+      expect(page).to have_field "ask_a_question_form_context", visible: false, type: :hidden, with: "#{Capybara.app_host || Capybara.default_host}/catalog/MC221"
       expect(page).to have_field "ask_a_question_form_title", visible: false, type: :hidden, with: "Harold B. Hoskins Papers, 1822-1982"
     end
 
     it "has a suggest a correction form", js: false do
       expect(page).to have_selector "#correction-button"
-      expect(page).to have_field "suggest_a_correction_form_context", visible: false, type: :hidden, with: "http://www.example.com/catalog/MC221"
+      expect(page).to have_field "suggest_a_correction_form_context", visible: false, type: :hidden, with: "#{Capybara.app_host || Capybara.default_host}/catalog/MC221"
       expect(page).to have_field "suggest_a_correction_form_location_code", visible: false, type: :hidden, with: "publicpolicy"
     end
 

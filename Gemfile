@@ -76,9 +76,9 @@ group :test do
   gem "capybara", ">= 3.18"
   gem "openssl" # fix cert error with webmock
   gem "rspec_junit_formatter"
+  gem "selenium-webdriver"
   gem "simplecov", require: false
   gem "timecop"
-  gem "webdrivers"
   gem "webmock"
 end
 

@@ -696,10 +696,6 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webdrivers (5.3.1)
-      nokogiri (~> 1.6)
-      rubyzip (>= 1.3.0)
-      selenium-webdriver (~> 4.0, < 4.11)
     webmock (3.26.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -790,6 +786,7 @@ DEPENDENCIES
   rubyzip (>= 1.3.0)
   sass-rails (~> 5.0)
   sassc-rails
+  selenium-webdriver
   sidekiq (~> 6.5)
   simple_form
   simplecov
@@ -801,7 +798,6 @@ DEPENDENCIES
   tzinfo-data
   vite_rails
   web-console (>= 3.3.0)
-  webdrivers
   webmock
   whenever
 
