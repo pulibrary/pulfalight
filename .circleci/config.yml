@@ -10,6 +10,7 @@ jobs:
       - image: cimg/ruby:3.4.8-browsers
         environment:
           RAILS_ENV: test
+    resource_class: large
     steps:
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
