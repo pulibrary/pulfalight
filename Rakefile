@@ -4,7 +4,7 @@
 
 require_relative "config/application"
 
-require "rubocop/rake_task" if Rails.env.development? || Rails.env.test?
+require "rubocop/rake_task" if Rails.env.local?
 
 Rails.application.load_tasks
 
