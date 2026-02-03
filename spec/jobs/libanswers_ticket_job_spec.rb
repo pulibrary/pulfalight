@@ -6,17 +6,14 @@ RSpec.describe LibanswersTicketJob do
     it "uses the libanswers api" do
       stub_libanswers_api
 
-      message = "Your EAD components are amazing, you should say so."
-      name = "Test"
-      email = "test@test.org"
-      box_number = "1"
-      location_code = "mss"
-      url = "http://example.com/catalog/1"
-      user_agent = "Ruby"
-
-      # described_class.perform_now(["C0001"])
       described_class.perform_now(
-        message: message, name: name, email: email, box_number: box_number, location_code: location_code, context: url, user_agent: user_agent
+        message: "Your EAD components are amazing, you should say so.",
+        name: "Test",
+        email: "test@test.org",
+        box_number: "1",
+        location_code: "mss",
+        context: "http://example.com/catalog/1",
+        user_agent: "Ruby"
       )
 
       expect(WebMock).to have_requested(
@@ -52,6 +49,42 @@ RSpec.describe LibanswersTicketJob do
         }
       )
       # rubocop:enable Layout/LineLength
+    end
+
+    context "when the token can't be retrieved" do
+      it "errors" do
+        stub_libanswers_oauth_invalid
+
+        expect do
+          described_class.perform_now(
+            message: "Your EAD components are amazing, you should say so.",
+            name: "Test",
+            email: "test@test.org",
+            box_number: "1",
+            location_code: "mss",
+            context: "http://example.com/catalog/1",
+            user_agent: "Ruby"
+          )
+        end.to raise_error(OAuthService::CouldNotGenerateOAuthToken)
+      end
+    end
+
+    context "when the message is not accepted" do
+      it "errors" do
+        stub_libanswers_api_invalid
+
+        expect do
+          described_class.perform_now(
+            message: "Your EAD components are amazing, you should say so.",
+            name: "Test",
+            email: "test@test.org",
+            box_number: "1",
+            location_code: "mss",
+            context: "http://example.com/catalog/1",
+            user_agent: "Ruby"
+          )
+        end.to raise_error(SuggestACorrectionFormSubmission::ApiSubmissionError)
+      end
     end
   end
 end

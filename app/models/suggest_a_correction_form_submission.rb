@@ -3,6 +3,7 @@
 # form submission to the libanswers API,
 # which will create a ticket for Finding Aids staff to answer
 class SuggestACorrectionFormSubmission
+  class ApiSubmissionError < StandardError; end
   attr_reader :name, :email, :box_number, :location_code, :context, :user_agent
   # rubocop:disable Metrics/ParameterLists
   def initialize(message:, name:, email:, box_number:, location_code:, context:, user_agent:)
@@ -16,7 +17,9 @@ class SuggestACorrectionFormSubmission
   end
 
   def send_to_libanswers
-    Net::HTTP.post uri, body, { Authorization: "Bearer #{token}" }
+    response = Net::HTTP.post uri, body, { Authorization: "Bearer #{token}" }
+    raise ApiSubmissionError unless response.code == "200"
+    response
   end
 
     private
@@ -47,9 +50,11 @@ class SuggestACorrectionFormSubmission
   end
 
   def token
-    OAuthToken.find_or_create_by({
-                                   service: "libanswers",
-                                   endpoint: "https://faq.library.princeton.edu/api/1.1/oauth/token"
-                                 }).token
+    OAuthToken.find_or_create_by(
+      {
+        service: "libanswers",
+        endpoint: "https://faq.library.princeton.edu/api/1.1/oauth/token"
+      }
+    ).token
   end
 end
