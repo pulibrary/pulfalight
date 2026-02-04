@@ -26,6 +26,6 @@ class SuggestACorrectionForm
   end
 
   def use_email?
-    location_code.include?("engineering library")
+    ["engineering library"].include? location_code
   end
 end
