@@ -1,11 +1,11 @@
 <%- # If we have a combined field with headings, use it. %>
 <% if field_name == "accessrestrict_ssm" %>
   <% document.field_with_headings(field_name).each do |field_key, field_value| %>
-    <% if (field_value.join.length <= 250) %>
+    <% if (field_value.join.length <= 300) %>
       <%= paragraph_separator(value: field_value.map(&:html_safe))%>
     <% else %>
       <%= 
-        truncate(field_value.join(' '.html_safe), length: 250) 
+        truncate(field_value.join(' '.html_safe), length: 300)
       %> 
       <br/>
       <button id="restrictionsModal-trigger-link" type="button" class="btn btn-link" data-toggle="modal" data-target="#restrictionsModal">
