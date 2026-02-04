@@ -2,7 +2,7 @@
 # This class is responsible for conveying a
 # form submission to the libanswers API,
 # which will create a ticket for Finding Aids staff to answer
-class SuggestACorrectionFormSubmission
+class LibanswersFormSubmission
   class ApiSubmissionError < StandardError; end
   attr_reader :name, :email, :box_number, :location_code, :context, :user_agent
   # rubocop:disable Metrics/ParameterLists
@@ -15,6 +15,7 @@ class SuggestACorrectionFormSubmission
     @box_number = box_number
     @location_code = location_code
   end
+  # rubocop:enable Metrics/ParameterLists
 
   def send_to_libanswers
     http = Net::HTTP.new uri.host, uri.port
@@ -31,7 +32,7 @@ class SuggestACorrectionFormSubmission
     response
   end
 
-    private
+  private
 
   def data
     {
