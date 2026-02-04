@@ -2,18 +2,16 @@
 # This class is responsible for conveying a
 # form submission to the libanswers API,
 # which will create a ticket for Finding Aids staff to answer
-class SuggestACorrectionFormSubmission
+class LibanswersFormSubmission
   class ApiSubmissionError < StandardError; end
-  attr_reader :name, :email, :box_number, :location_code, :context, :user_agent
-  # rubocop:disable Metrics/ParameterLists
-  def initialize(message:, name:, email:, box_number:, location_code:, context:, user_agent:)
-    @message = message
-    @name = name
-    @email = email
-    @user_agent = user_agent
-    @context = context
-    @box_number = box_number
-    @location_code = location_code
+  attr_reader :form
+
+  def initialize(form_params:, form_class:)
+    @form = deserialize_form(form_params, form_class)
+  end
+
+  def deserialize_form(form_params, form_class)
+    form_class.new(form_params)
   end
 
   def send_to_libanswers
@@ -31,23 +29,28 @@ class SuggestACorrectionFormSubmission
     response
   end
 
-    private
+  private
 
   def data
     {
-      quid: Rails.application.config_for(:config)[:suggest_a_correction_form][:queue_id],
-      pquestion: "Finding Aids Suggest a Correction Form",
+      quid: queue_id,
+      pquestion: form.email_subject,
       pdetails: message,
-      pname: name,
-      pemail: email,
-      ua: user_agent
+      pname: form.name,
+      pemail: form.email,
+      ua: form.try(:user_agent)
     }.compact
   end
 
-  def message
-    return "#{@message}\n\nSent from #{context} via LibAnswers API" if context
+  def queue_id
+    form_lookup = form.class.to_s.underscore.to_sym
+    Rails.application.config_for(:config)[form_lookup][:queue_id]
+  end
 
-    "#{@message}\n\nSent via LibAnswers API"
+  def message
+    return "#{@form.message}\n\nSent from #{form.context} via LibAnswers API" if form.context
+
+    "#{@form.message}\n\nSent via LibAnswers API"
   end
 
   def uri
