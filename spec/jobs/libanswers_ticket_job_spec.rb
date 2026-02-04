@@ -33,22 +33,26 @@ RSpec.describe LibanswersTicketJob do
         }
       )
 
-      # rubocop:disable Layout/LineLength
       expect(WebMock).to have_requested(
         :post,
         "https://faq.library.princeton.edu/api/1.1/ticket/create"
       ).with(
-        body:
-        /quid=3456&pquestion=Finding Aids Suggest a Correction Form&pdetails=Your EAD components are amazing, you should say so.\s*Sent from http:\/\/example.com\/catalog\/1 via LibAnswers API&pname=Test&pemail=test@test.org/,
+        body: {
+          "pdetails" => "Your EAD components are amazing, you should say so.\n\nSent from http://example.com/catalog/1 via LibAnswers API",
+          "pemail" => "test@test.org",
+          "pname" => "Test",
+          "pquestion" => "Finding Aids Suggest a Correction Form",
+          "quid" => "3456",
+          "ua" => "Ruby"
+        },
         headers: {
           "Accept" => "*/*",
           "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
           "Authorization" => "Bearer abcdef1234567890abcdef1234567890abcdef12",
-          "Host" => "faq.library.princeton.edu",
+          "Content-Type" => "application/x-www-form-urlencoded",
           "User-Agent" => "Ruby"
         }
       )
-      # rubocop:enable Layout/LineLength
     end
 
     context "when the token can't be retrieved" do

@@ -17,16 +17,21 @@ class SuggestACorrectionFormSubmission
   end
 
   def send_to_libanswers
-    response = Net::HTTP.post uri, body, { Authorization: "Bearer #{token}" }
+    http = Net::HTTP.new uri.host, uri.port
+    http.use_ssl = true
+    request = Net::HTTP::Post.new(
+      uri.path, {
+        "Content-Type" => "application/x-www-form-urlencoded",
+        "Authorization" => "Bearer #{token}"
+      }
+    )
+    request.set_form_data(data)
+    response = http.request(request)
     raise ApiSubmissionError unless response.code == "200"
     response
   end
 
     private
-
-  def body
-    data.to_a.map { |entry| "#{entry[0]}=#{entry[1]}" }.join("&")
-  end
 
   def data
     {
