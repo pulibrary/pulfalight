@@ -8,17 +8,21 @@ class SuggestACorrectionForm
 
   def submit
     if use_email?
-      ContactMailer.with(form_params: as_json.except("validation_context", "errors"), form_class: self.class).suggest.deliver_later
+      ContactMailer.with(
+        form_params: serialize_params,
+        form_class: self.class
+      ).suggest.deliver_later
     else
       LibanswersTicketJob.perform_later(
-        message: message, name: name, email: email, box_number: box_number, location_code: location_code, context: context, user_agent: user_agent
+        form_params: serialize_params,
+        form_class: self.class
       )
     end
-    @submitted = true
-    @name = ""
-    @email = ""
-    @message = ""
-    @box_number = ""
+    set_form_submitted
+  end
+
+  def serialize_params
+    as_json.except("validation_context", "errors")
   end
 
   def submitted?
@@ -27,5 +31,19 @@ class SuggestACorrectionForm
 
   def use_email?
     ["engineering library"].include? location_code
+  end
+
+  def email_subject
+    "Finding Aids Suggest a Correction Form"
+  end
+
+  private
+
+  def set_form_submitted
+    @submitted = true
+    @name = ""
+    @email = ""
+    @message = ""
+    @box_number = ""
   end
 end

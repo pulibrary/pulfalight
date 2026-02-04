@@ -13,6 +13,7 @@ RSpec.describe AskAQuestionForm do
       "title" => "Example Record"
     }
   end
+
   describe "initialization" do
     it "takes a name, email, subject, message, location_code, and context" do
       form = described_class.new(valid_attributes)
@@ -42,29 +43,62 @@ RSpec.describe AskAQuestionForm do
   end
 
   describe "submit" do
-    it "sends an email and resets its attributes, setting itself as submitted" do
-      form = described_class.new(valid_attributes)
+    context "when the location code isn't engineering" do
+      with_queue_adapter(:test)
 
-      form.submit
-      expect(ActionMailer::Base.deliveries.length).to eq 1
-      expect(form.name).to eq ""
-      expect(form.email).to eq ""
-      expect(form.message).to eq ""
-      expect(form.location_code).to eq "mss"
-      expect(form.context).to eq "http://example.com/catalog/1"
-      expect(form.title).to eq "Example Record"
-      expect(form).to be_submitted
+      it "enqueues a libanswers job" do
+        form = described_class.new(valid_attributes)
 
-      mail = ActionMailer::Base.deliveries.first
-      expect(mail.subject).to eq "[PULFA] reproduction"
-      expect(mail.from).to eq ["test@test.org"]
-      expect(mail.body).to include "Name: Test"
-      expect(mail.body).to include "Email: test@test.org"
-      expect(mail.body).to include "Subject: reproduction"
-      expect(mail.body).to include "Comments: Your EAD components are amazing"
-      expect(mail.body).to include "Context: http://example.com/catalog/1"
+        form.submit
+        expect(form.name).to eq ""
+        expect(form.email).to eq ""
+        expect(form.message).to eq ""
+        expect(form.location_code).to eq "mss"
+        expect(form.context).to eq "http://example.com/catalog/1"
+        expect(form.title).to eq "Example Record"
+        expect(form).to be_submitted
+
+        expect(LibanswersTicketJob).to have_been_enqueued.with(
+          form_params: {
+            "name" => "Test",
+            "email" => "test@test.org",
+            "subject" => "reproduction",
+            "message" => "Your EAD components are amazing, you should say so.",
+            "location_code" => "mss",
+            "context" => "http://example.com/catalog/1",
+            "title" => "Example Record"
+          },
+          form_class: described_class
+        )
+      end
+    end
+
+    context "when the location code is engineering" do
+      it "sends an email" do
+        form = described_class.new(valid_attributes.merge({ "location_code" => "engineering library" }))
+
+        form.submit
+        expect(ActionMailer::Base.deliveries.length).to eq 1
+        expect(form.name).to eq ""
+        expect(form.email).to eq ""
+        expect(form.message).to eq ""
+        expect(form.location_code).to eq "engineering library"
+        expect(form.context).to eq "http://example.com/catalog/1"
+        expect(form.title).to eq "Example Record"
+        expect(form).to be_submitted
+
+        mail = ActionMailer::Base.deliveries.first
+        expect(mail.subject).to eq "[PULFA] reproduction"
+        expect(mail.from).to eq ["test@test.org"]
+        expect(mail.body).to include "Name: Test"
+        expect(mail.body).to include "Email: test@test.org"
+        expect(mail.body).to include "Subject: reproduction"
+        expect(mail.body).to include "Comments: Your EAD components are amazing"
+        expect(mail.body).to include "Context: http://example.com/catalog/1"
+      end
     end
   end
+
   describe "validations" do
     it "is invalid without a name" do
       form = described_class.new(valid_attributes.merge("name" => ""))
@@ -81,21 +115,6 @@ RSpec.describe AskAQuestionForm do
     it "is invalid without a message" do
       form = described_class.new(valid_attributes.merge("message" => ""))
       expect(form).not_to be_valid
-    end
-  end
-
-  describe "#routed_mail_to" do
-    ["mudd", "publicpolicy", "univarchives", "rbsc", "lae", "mss", "rarebooks", "ga"].each do |location_code|
-      it "routes to specialcollections@princeton.libanswers.com for #{location_code}" do
-        form = described_class.new(valid_attributes.merge("location_code" => location_code))
-        expect(form.routed_mail_to).to eq "specialcollections@princeton.libanswers.com"
-      end
-    end
-    ["eng", "engineering library"].each do |location_code|
-      it "routes to wdressel@princeton.edu for #{location_code}" do
-        form = described_class.new(valid_attributes.merge("location_code" => location_code))
-        expect(form.routed_mail_to).to eq "wdressel@princeton.edu"
-      end
     end
   end
 end

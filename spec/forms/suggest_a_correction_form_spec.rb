@@ -44,13 +44,15 @@ RSpec.describe SuggestACorrectionForm do
         expect(form).to be_submitted
 
         expect(LibanswersTicketJob).to have_been_enqueued.with(
-          message: "Your EAD components are amazing, you should say so.",
-          name: "Test",
-          email: "test@test.org",
-          box_number: "1",
-          location_code: "mss",
-          context: "http://example.com/catalog/1",
-          user_agent: nil
+          form_params: {
+            "name" => "Test",
+            "email" => "test@test.org",
+            "box_number" => "1",
+            "message" => "Your EAD components are amazing, you should say so.",
+            "location_code" => "mss",
+            "context" => "http://example.com/catalog/1"
+          },
+          form_class: described_class
         )
       end
     end
@@ -70,7 +72,7 @@ RSpec.describe SuggestACorrectionForm do
 
         expect(ActionMailer::Base.deliveries.length).to eq 1
         delivery = ActionMailer::Base.deliveries.first
-        expect(delivery.subject).to eq "Suggest a Correction"
+        expect(delivery.subject).to eq "Finding Aids Suggest a Correction Form"
         expect(delivery.to).to eq ["wdressel@princeton.edu"]
         expect(delivery.from).to eq ["test@test.org"]
         expect(delivery.body).to include "Test"

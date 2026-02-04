@@ -8,7 +8,7 @@ RSpec.describe LibanswersTicketJob do
       allow(submission_double).to receive(:send_to_libanswers)
       allow(LibanswersFormSubmission).to receive(:new).and_return(submission_double)
 
-      params = {
+      form = SuggestACorrectionForm.new(
         message: "Your EAD components are amazing, you should say so.",
         name: "Test",
         email: "test@test.org",
@@ -16,11 +16,17 @@ RSpec.describe LibanswersTicketJob do
         location_code: "mss",
         context: "http://example.com/catalog/1",
         user_agent: "Ruby"
-      }
+      )
 
-      described_class.perform_now(**params)
+      described_class.perform_now(
+        form_params: form.serialize_params,
+        form_class: form.class
+      )
 
-      expect(LibanswersFormSubmission).to have_received(:new).with(params)
+      expect(LibanswersFormSubmission).to have_received(:new).with(
+        form_params: form.serialize_params,
+        form_class: form.class
+      )
       expect(submission_double).to have_received(:send_to_libanswers)
     end
   end

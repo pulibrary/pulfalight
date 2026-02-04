@@ -26,7 +26,21 @@ class AskAQuestionForm
   end
 
   def submit
-    ContactMailer.with(form_params: as_json.except("validation_context", "errors"), form_class: self.class).contact.deliver_later
+    if use_email?
+      ContactMailer.with(
+        form_params: serialize_params,
+        form_class: self.class
+      ).suggest.deliver_later
+    else
+      LibanswersTicketJob.perform_later(
+        form_params: serialize_params,
+        form_class: self.class
+      )
+    end
+    set_form_submitted
+  end
+
+  def set_form_submitted
     @submitted = true
     @name = ""
     @email = ""
@@ -37,8 +51,11 @@ class AskAQuestionForm
     @submitted == true
   end
 
-  def routed_mail_to
-    return "wdressel@princeton.edu" if ["eng", "engineering library"].include?(location_code)
-    "specialcollections@princeton.libanswers.com"
+  def use_email?
+    ["eng", "engineering library"].include? location_code
+  end
+
+  def serialize_params
+    as_json.except("validation_context", "errors")
   end
 end
