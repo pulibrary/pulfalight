@@ -30,7 +30,7 @@ class AskAQuestionForm
       ContactMailer.with(
         form_params: serialize_params,
         form_class: self.class
-      ).suggest.deliver_later
+      ).contact.deliver_later
     else
       LibanswersTicketJob.perform_later(
         form_params: serialize_params,
