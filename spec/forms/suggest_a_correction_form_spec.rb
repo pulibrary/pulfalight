@@ -74,8 +74,9 @@ RSpec.describe SuggestACorrectionForm do
         delivery = ActionMailer::Base.deliveries.first
         expect(delivery.subject).to eq "Finding Aids Suggest a Correction Form"
         expect(delivery.to).to eq ["wdressel@princeton.edu"]
-        expect(delivery.from).to eq ["test@test.org"]
+        expect(delivery.from).to eq ["no-reply@princeton.edu"]
         expect(delivery.body).to include "Test"
+        expect(delivery.body).to include "Email: test@test.org"
         expect(delivery.body).to include "Your EAD components are amazing, you should say so."
         expect(delivery.body).to include "http://example.com/catalog/1"
       end
