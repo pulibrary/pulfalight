@@ -89,7 +89,7 @@ RSpec.describe AskAQuestionForm do
 
         mail = ActionMailer::Base.deliveries.first
         expect(mail.subject).to eq "[PULFA] reproduction"
-        expect(mail.from).to eq ["test@test.org"]
+        expect(mail.from).to eq ["no-reply@princeton.edu"]
         expect(mail.body).to include "Name: Test"
         expect(mail.body).to include "Email: test@test.org"
         expect(mail.body).to include "Subject: reproduction"
