@@ -6,10 +6,10 @@ module Honeypot
 
     private
 
-      def spam?
-        # feedback is a hidden field that is not presented
-        # to human users.  If `feedback` is present, it was almost
-        # certainly filled in by a spam robot.
-        feedback.present?
-      end
+  def spam?
+    # feedback is a hidden field that is not presented
+    # to human users.  If `feedback` is present, it was almost
+    # certainly filled in by a spam robot.
+    feedback.present?
+  end
 end

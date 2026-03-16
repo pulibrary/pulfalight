@@ -2,7 +2,7 @@
 class SuggestACorrectionForm
   include ActiveModel::Model
   include Honeypot
-  attr_accessor :name, :email, :box_number, :message, :location_code, :context, :user_agent
+  attr_accessor :name, :email, :box_number, :message, :location_code, :context, :user_agent, :feedback
 
   validates :message, presence: true
   validates :email, email: true, allow_blank: true

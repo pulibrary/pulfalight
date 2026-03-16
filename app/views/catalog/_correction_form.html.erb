@@ -15,6 +15,6 @@
   <%= f.input :message, as: :text %>
   <%= f.input :location_code, as: :hidden %>
   <%= f.input :context, as: :hidden %>
-  <%= f.input :feedback, as: :text, class: :formhelper %>
+  <%= f.input :feedback, input_html: { class: 'formhelper' } %>
   <%= f.submit "Send", class: "btn btn-primary" %>
 <% end %>

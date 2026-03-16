@@ -2,7 +2,7 @@
 class AskAQuestionForm
   include ActiveModel::Model
   include Honeypot
-  attr_accessor :name, :email, :subject, :message, :location_code, :context, :title
+  attr_accessor :name, :email, :subject, :message, :location_code, :context, :title, :feedback
 
   validates :name, :email, :message, presence: true
   validates :email, email: true
