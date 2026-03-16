@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class AskAQuestionForm
   include ActiveModel::Model
+  include Honeypot
   attr_accessor :name, :email, :subject, :message, :location_code, :context, :title
 
   validates :name, :email, :message, presence: true

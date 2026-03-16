@@ -13,7 +13,7 @@ RSpec.describe SuggestACorrectionForm, libanswers: true, js: true do
       fill_in 'suggest_a_correction_form_email', with: 'hal@discovery-one-jupiter-expedition.gov'
       fill_in 'suggest_a_correction_form_box_number', with: '1'
       fill_in 'suggest_a_correction_form_message', with: 'I am a HAL 9000 computer. I became operational at the H.A.L. plant in Urbana, Illinois on the 12th of January 1992.'
-      find('#suggest_a_correction_form_feedback_desc', visible: :hidden).set 'Filling in the honeypot field'
+      find('#suggest_a_correction_form_feedback', visible: :hidden).set 'Filling in the honeypot field'
     end
     it 'does not send the question to libanswers' do
       click_button 'Send'

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class SuggestACorrectionForm
   include ActiveModel::Model
+  include Honeypot
   attr_accessor :name, :email, :box_number, :message, :location_code, :context, :user_agent
 
   validates :message, presence: true

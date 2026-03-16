@@ -2,14 +2,14 @@
 # This module identifies spam bots based on them
 # filling out a "honeypot" field.
 module Honeypot
-  attr_accessor :feedback_desc
+  attr_accessor :feedback
 
     private
 
       def spam?
-        # feedback_desc is a hidden field that is not presented
-        # to human users.  If feedback_desc is present, it was almost
+        # feedback is a hidden field that is not presented
+        # to human users.  If `feedback` is present, it was almost
         # certainly filled in by a spam robot.
-        feedback_desc.present?
+        feedback.present?
       end
 end
