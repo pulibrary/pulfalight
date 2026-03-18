@@ -2,15 +2,15 @@
 require "rails_helper"
 
 RSpec.describe Honeypot, libanswers: true, js: true do
-  describe "with suggest a correction form" do 
+  describe "with suggest a correction form" do
     before do
-        stub_libanswers_api
-        visit "/catalog/C1491"
-        find("#correction-button").click
-        fill_in "suggest_a_correction_form_name", with: "HAL 9000"
-        fill_in "suggest_a_correction_form_email", with: "hal@discovery-one-jupiter-expedition.gov"
-        fill_in "suggest_a_correction_form_box_number", with: "1"
-        fill_in "suggest_a_correction_form_message", with: "I am a HAL 9000 computer. I became operational at the H.A.L. plant in Urbana, Illinois on the 12th of January 1992."
+      stub_libanswers_api
+      visit "/catalog/C1491"
+      find("#correction-button").click
+      fill_in "suggest_a_correction_form_name", with: "HAL 9000"
+      fill_in "suggest_a_correction_form_email", with: "hal@discovery-one-jupiter-expedition.gov"
+      fill_in "suggest_a_correction_form_box_number", with: "1"
+      fill_in "suggest_a_correction_form_message", with: "I am a HAL 9000 computer. I became operational at the H.A.L. plant in Urbana, Illinois on the 12th of January 1992."
     end
     context "when a robot fills in the hidden honeypot field" do
       it "does not send the question to libanswers" do
@@ -40,14 +40,14 @@ RSpec.describe Honeypot, libanswers: true, js: true do
       end
     end
   end
-  describe "the ask a question form" do 
+  describe "the ask a question form" do
     before do
-        stub_libanswers_api
-        visit "/catalog/C1491"
-        find("#question-button").click
-        fill_in "ask_a_question_form_name", with: "HAL 9000"
-        fill_in "ask_a_question_form_email", with: "hal@discovery-one-jupiter-expedition.gov"
-        fill_in "ask_a_question_form_message", with: "I am a HAL 9000 computer. I became operational at the H.A.L. plant in Urbana, Illinois on the 12th of January 1992."
+      stub_libanswers_api
+      visit "/catalog/C1491"
+      find("#question-button").click
+      fill_in "ask_a_question_form_name", with: "HAL 9000"
+      fill_in "ask_a_question_form_email", with: "hal@discovery-one-jupiter-expedition.gov"
+      fill_in "ask_a_question_form_message", with: "I am a HAL 9000 computer. I became operational at the H.A.L. plant in Urbana, Illinois on the 12th of January 1992."
     end
     context "when the hidden honeypot field is filled out" do
       it "does not send the question to libanswers" do
@@ -69,7 +69,7 @@ RSpec.describe Honeypot, libanswers: true, js: true do
         expect(WebMock).to have_requested(
           :post,
           "https://faq.library.princeton.edu/api/1.1/ticket/create"
-        ) 
+        )
       end
     end
   end
