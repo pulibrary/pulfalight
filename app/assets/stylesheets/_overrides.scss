@@ -70,3 +70,8 @@ a {
   color: $bleu-de-france-darker;
 }
 
+/* feedback form honeypot field for spam prevention */
+.suggest_a_correction_form_feedback, 
+.ask_a_question_form_feedback {
+  display: none;
+}

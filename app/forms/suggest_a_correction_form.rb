@@ -1,22 +1,25 @@
 # frozen_string_literal: true
 class SuggestACorrectionForm
   include ActiveModel::Model
-  attr_accessor :name, :email, :box_number, :message, :location_code, :context, :user_agent
+  include Honeypot
+  attr_accessor :name, :email, :box_number, :message, :location_code, :context, :user_agent, :feedback
 
   validates :message, presence: true
   validates :email, email: true, allow_blank: true
 
   def submit
-    if use_email?
-      ContactMailer.with(
-        form_params: serialize_params,
-        form_class: self.class
-      ).suggest.deliver_later
-    else
-      LibanswersTicketJob.perform_later(
-        form_params: serialize_params,
-        form_class: self.class
-      )
+    unless spam?
+      if use_email?
+        ContactMailer.with(
+          form_params: serialize_params,
+          form_class: self.class
+        ).suggest.deliver_later
+      else
+        LibanswersTicketJob.perform_later(
+          form_params: serialize_params,
+          form_class: self.class
+        )
+      end
     end
     set_form_submitted
   end

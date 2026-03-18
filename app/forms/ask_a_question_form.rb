@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 class AskAQuestionForm
   include ActiveModel::Model
-  attr_accessor :name, :email, :subject, :message, :location_code, :context, :title
+  include Honeypot
+  attr_accessor :name, :email, :subject, :message, :location_code, :context, :title, :feedback
 
   validates :name, :email, :message, presence: true
   validates :email, email: true
@@ -26,16 +27,18 @@ class AskAQuestionForm
   end
 
   def submit
-    if use_email?
-      ContactMailer.with(
-        form_params: serialize_params,
-        form_class: self.class
-      ).contact.deliver_later
-    else
-      LibanswersTicketJob.perform_later(
-        form_params: serialize_params,
-        form_class: self.class
-      )
+    unless spam?
+      if use_email?
+        ContactMailer.with(
+          form_params: serialize_params,
+          form_class: self.class
+        ).contact.deliver_later
+      else
+        LibanswersTicketJob.perform_later(
+          form_params: serialize_params,
+          form_class: self.class
+        )
+      end
     end
     set_form_submitted
   end
