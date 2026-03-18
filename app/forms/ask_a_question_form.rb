@@ -27,6 +27,7 @@ class AskAQuestionForm
   end
 
   def submit
+    return if spam?
     if use_email?
       ContactMailer.with(
         form_params: serialize_params,

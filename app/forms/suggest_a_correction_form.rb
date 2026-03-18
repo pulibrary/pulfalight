@@ -8,16 +8,18 @@ class SuggestACorrectionForm
   validates :email, email: true, allow_blank: true
 
   def submit
-    if use_email?
-      ContactMailer.with(
-        form_params: serialize_params,
-        form_class: self.class
-      ).suggest.deliver_later
-    else
-      LibanswersTicketJob.perform_later(
-        form_params: serialize_params,
-        form_class: self.class
-      )
+    unless spam?
+      if use_email?
+        ContactMailer.with(
+          form_params: serialize_params,
+          form_class: self.class
+        ).suggest.deliver_later
+      else
+        LibanswersTicketJob.perform_later(
+          form_params: serialize_params,
+          form_class: self.class
+        )
+      end
     end
     set_form_submitted
   end
