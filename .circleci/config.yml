@@ -43,7 +43,7 @@ jobs:
             - ./vendor/bundle
       - run:
           name: Install NPM Dependencies via Yarn
-          command: yarn install
+          command: yarn install --ignore-scripts
       # Store yarn cache
       - save_cache:
           name: Save Yarn Package Cache
