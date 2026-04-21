@@ -1,12 +1,14 @@
 <%- # If we have a combined field with headings, use it. %>
 <% if field_name == "accessrestrict_ssm" %>
   <% document.field_with_headings(field_name).each do |field_key, field_value| %>
-    <% if (field_value.join.length <= 300) %>
+    <!-- Get visible text, strip html tags -->
+    <% visible_text = strip_tags(field_value.join(" ")) %>
+    <% if visible_text.length <= 300 %>
+      <!-- render full notice with html/link -->
       <%= paragraph_separator(value: field_value.map(&:html_safe))%>
     <% else %>
-      <%= 
-        truncate(field_value.join(' '.html_safe), length: 300)
-      %> 
+      <!-- render text with no html; modal has full text and link -->
+      <%= truncate(visible_text, length: 300) %>
       <br/>
       <button id="restrictionsModal-trigger-link" type="button" class="btn btn-link" data-toggle="modal" data-target="#restrictionsModal">
         Read full Conditions Governing Access
