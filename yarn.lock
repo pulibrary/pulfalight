@@ -2674,18 +2674,16 @@ lru-cache@^10.2.0, lru-cache@^10.4.3:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.4.3.tgz#410fc8a17b70e598013df257c2446b7f3383f119"
   integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
 
-lux-design-system@^6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-6.1.1.tgz#b7eb3ecf16d80777e22261d89cdfeaa1041a9bc5"
-  integrity sha512-DyauJUascMMYQ7BnerDaNE/9hftt3LECLPvCq7yT3W2tj/oQf2brqmc8yoGMFSsrVl2cw7Li5DzdhnrntI+S/g==
+lux-design-system@7.5.1:
+  version "7.5.1"
+  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-7.5.1.tgz#a8550ea3a35f47233a3825d0eec572423455b6b4"
+  integrity sha512-9ub8JXBSATG/P3IjQHhWmsa/pphZg744UkT9gFn7M/LYsztNAg2f/9mno3dqK3VezXMHFlbCRuSCgO/OyFoRBA==
   dependencies:
     core-js "^3.8.3"
     register-service-worker "^1.7.2"
     v-calendar "^3.1.2"
     vue-draggable-plus "^0.3.5"
-    vue-multiselect "^3.0.0-beta.3"
     vue3-cookies "^1.0.6"
-    vuex "^4.0.0"
 
 lz-string@^1.5.0:
   version "1.5.0"
@@ -3565,16 +3563,8 @@ stop-iteration-iterator@^1.0.0:
     es-errors "^1.3.0"
     internal-slot "^1.1.0"
 
-"string-width-cjs@npm:string-width@^4.2.0":
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
-  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
-  dependencies:
-    emoji-regex "^8.0.0"
-    is-fullwidth-code-point "^3.0.0"
-    strip-ansi "^6.0.1"
-
-string-width@^4.1.0:
+"string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -3658,14 +3648,8 @@ string_decoder@^1.1.1:
   dependencies:
     safe-buffer "~5.2.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
-  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
-  dependencies:
-    ansi-regex "^5.0.1"
-
-strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -4008,11 +3992,6 @@ vue-loader@^17.4.2:
     hash-sum "^2.0.0"
     watchpack "^2.4.0"
 
-vue-multiselect@^3.0.0-beta.3:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/vue-multiselect/-/vue-multiselect-3.2.0.tgz#810077710ee7bf98e86534c31eebf22a0ab054d7"
-  integrity sha512-ExI+IPvSbILbtaHrU0CgbBmfbD6yBpIWJKsGLPmuQMC7VWK8Nj1XSAI9eIt3n9/e+LSFYdt8VgfHxeS1O1OeVA==
-
 vue-screen-utils@^1.0.0-beta.13:
   version "1.0.0-beta.13"
   resolved "https://registry.yarnpkg.com/vue-screen-utils/-/vue-screen-utils-1.0.0-beta.13.tgz#0c739e19f6ffbffab63184aba7b6d710b6a63681"
@@ -4044,7 +4023,7 @@ vuex-persist@^3.1.3:
     deepmerge "^4.2.2"
     flatted "^3.0.5"
 
-vuex@^4.0.0, vuex@^4.1.0:
+vuex@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/vuex/-/vuex-4.1.0.tgz#aa1b3ea5c7385812b074c86faeeec2217872e36c"
   integrity sha512-hmV6UerDrPcgbSy9ORAtNXDr9M4wlNP4pEFKye4ujJF8oqgFFuxDCdOLS3eNoRTtq5O3hoBDh9Doj1bQMYHRbQ==
