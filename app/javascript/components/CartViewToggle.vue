@@ -39,10 +39,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "lux-design-system/dist/style.scss";
+@use "lux-design-system/dist/style.scss";
 #count {
   font-size: 12px;
-  font-family: $font-family-text;
+  font-family: style.$font-family-text;
   background: #ff0000;
   color: #fff;
   padding: 0 5px;

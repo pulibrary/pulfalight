@@ -264,7 +264,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "lux-design-system/dist/style.scss";
+@use "lux-design-system/dist/style.scss";
 #request-notes-wrapper {
   width: 100%;
   margin-left: 0.25rem;
@@ -517,23 +517,23 @@ export default {
   }
 }
 .panel {
-  @include reset;
-  @include stack-space($space-base);
+  @include style.reset;
+  @include style.stack-space(style.$space-base);
   padding-left: 0.8rem;
   padding-right: 0.8rem;
   padding-top: 0.8rem;
-  font-family: $font-family-text;
-  line-height: $line-height-base;
-  background: $color-white;
-  box-shadow: $box-shadow-small;
-  color: $color-rich-black;
+  font-family: style.$font-family-text;
+  line-height: style.$line-height-base;
+  background: style.$color-white;
+  box-shadow: style.$box-shadow-small;
+  color: style.$color-rich-black;
   overflow: hidden;
   height: calc(100% - 120px);
   margin-bottom: 0px;
 }
 .cart-actions {
-  background: $color-rich-black;
-  color: $color-white;
+  background: style.$color-rich-black;
+  color: style.$color-white;
   height: 120px;
   width: 100%;
 }

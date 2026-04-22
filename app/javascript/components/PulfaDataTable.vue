@@ -282,7 +282,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "lux-design-system/dist/style.scss";
+@use 'sass:color';
+@use "lux-design-system/dist/style.scss";
 .lux-data-table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -291,18 +292,18 @@ export default {
   border-bottom: none;
 
   caption {
-    @include stack-space($space-base);
+    @include style.stack-space(style.$space-base);
     display: table-caption;
     text-align: left;
-    @include responsive-font(
+    @include style.responsive-font(
       2vw,
-      $font-size-x-large-min,
-      $font-size-x-large-max,
-      $font-size-x-large
+      style.$font-size-x-large-min,
+      style.$font-size-x-large-max,
+      style.$font-size-x-large
     );
-    font-weight: $font-weight-bold;
-    font-family: $font-family-text;
-    line-height: $line-height-heading;
+    font-weight: style.$font-weight-bold;
+    font-family: style.$font-family-text;
+    line-height: style.$line-height-heading;
   }
 
   thead {
@@ -311,20 +312,20 @@ export default {
   }
 
   thead tr {
-    background-color: $color-grayscale-lighter;
-    color: $color-rich-black;
+    background-color: style.$color-grayscale-lighter;
+    color: style.$color-rich-black;
   }
 
   th {
     line-height: 22px;
     padding: 20px;
-    font-weight: $font-weight-semi-bold;
-    font-family: $font-family-text;
-    font-size: $font-size-x-small;
-    line-height: $line-height-heading;
+    font-weight: style.$font-weight-semi-bold;
+    font-family: style.$font-family-text;
+    font-size: style.$font-size-x-small;
+    line-height: style.$line-height-heading;
     text-align: left;
     text-transform: uppercase;
-    color: $color-grayscale-darker;
+    color: style.$color-grayscale-darker;
     letter-spacing: 0.5px;
   }
 
@@ -333,20 +334,20 @@ export default {
     border-bottom: none;
     border-left: none;
     border-right: none;
-    border-top: 1px solid darken($color-grayscale-lighter, 10%);
-    @include inset-space($space-base);
+    border-top: 1px solid color.adjust(style.$color-grayscale-lighter, $lightness: -10%);
+    @include style.inset-space(style.$space-base);
     overflow: hidden;
   }
 
   th button {
     padding: 0px;
-    font-weight: $font-weight-semi-bold;
-    font-family: $font-family-text;
-    font-size: $font-size-x-small;
-    line-height: $line-height-heading;
+    font-weight: style.$font-weight-semi-bold;
+    font-family: style.$font-family-text;
+    font-size: style.$font-size-x-small;
+    line-height: style.$line-height-heading;
     text-align: left;
     text-transform: uppercase;
-    color: $color-grayscale-darker;
+    color: style.$color-grayscale-darker;
     letter-spacing: 0.5px;
     display: flex;
     align-items: center;
@@ -360,14 +361,14 @@ export default {
   tbody tr {
     display: table-row;
     vertical-align: inherit;
-    background-color: $color-white;
-    color: $color-grayscale-darker;
+    background-color: style.$color-white;
+    color: style.$color-grayscale-darker;
 
     &:hover {
-      background: $color-grayscale-warm-lighter;
+      background: style.$color-grayscale-warm-lighter;
 
       input {
-        background: $color-grayscale-warm-lighter;
+        background: style.$color-grayscale-warm-lighter;
       }
     }
   }
@@ -377,10 +378,10 @@ export default {
   }
 
   td {
-    color: $color-rich-black;
-    font-weight: $font-weight-regular;
-    font-family: $font-family-text;
-    font-size: $font-size-base;
+    color: style.$color-rich-black;
+    font-weight: style.$font-weight-regular;
+    font-family: style.$font-family-text;
+    font-size: style.$font-size-base;
     line-height: 1.2;
     text-align: left;
 
@@ -410,22 +411,22 @@ export default {
     input::before {
       height: 16px;
       width: 16px;
-      background-color: $color-white;
+      background-color: style.$color-white;
       border: 0;
-      border-radius: $border-radius-default;
-      box-shadow: inset 0 1px 0 0 rgba($color-rich-black, 0.07),
-        0 0 0 1px tint($color-rich-black, 80%);
+      border-radius: style.$border-radius-default;
+      box-shadow: inset 0 1px 0 0 rgba(style.$color-rich-black, 0.07),
+        0 0 0 1px tint(style.$color-rich-black, 80%);
     }
 
     /* On mouse-over, add a grey background color */
     input:not([disabled]):hover::before {
-      box-shadow: 0 1px 5px 0 rgba($color-rich-black, 0.07), 0 0 0 1px tint($color-rich-black, 60%);
+      box-shadow: 0 1px 5px 0 rgba(style.$color-rich-black, 0.07), 0 0 0 1px tint(style.$color-rich-black, 60%);
     }
 
     input:checked::before {
       transition: box-shadow 0.2s ease;
-      background-color: $color-bleu-de-france;
-      box-shadow: inset 0 0 0 1px $color-bleu-de-france, 0 0 0 1px $color-bleu-de-france;
+      background-color: style.$color-bleu-de-france;
+      box-shadow: inset 0 0 0 1px style.$color-bleu-de-france, 0 0 0 1px style.$color-bleu-de-france;
       outline: 0;
     }
 
@@ -433,8 +434,8 @@ export default {
     input::after {
       height: 5px;
       width: 10px;
-      border-left: 2px solid $color-white;
-      border-bottom: 2px solid $color-white;
+      border-left: 2px solid style.$color-white;
+      border-bottom: 2px solid style.$color-white;
 
       transform: rotate(-45deg);
 
@@ -454,8 +455,8 @@ export default {
 
     /*Adding focus styles on the outer-box of the fake checkbox*/
     input[type="checkbox"]:focus::before {
-      transition: box-shadow $duration-quickly ease;
-      box-shadow: inset 0 0 0 1px $color-bleu-de-france, 0 0 0 1px $color-bleu-de-france;
+      transition: box-shadow style.$duration-quickly ease;
+      box-shadow: inset 0 0 0 1px style.$color-bleu-de-france, 0 0 0 1px style.$color-bleu-de-france;
     }
   }
 
