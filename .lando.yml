@@ -1,14 +1,20 @@
 name: pulfalight
 services:
   pulfalight_test_solr:
-    type: solr:8.4
+    type: solr:custom
+    overrides:
+      image: quay.io/pulibrary/ci-solr:9.9-v1.0.1
+      command: server/scripts/lando-start.sh
     portforward: true
     core: pulfalight-core-test
     app_mount: false
     config:
       dir: "solr/conf"
   pulfalight_development_solr:
-    type: solr:8.4
+    type: solr:custom
+    overrides:
+      image: quay.io/pulibrary/ci-solr:9.9-v1.0.1
+      command: server/scripts/lando-start.sh
     portforward: true
     core: pulfalight-core-dev
     app_mount: false
