@@ -233,7 +233,7 @@
     </fieldType>
 
     <!-- A specialized field for geospatial search. If indexed, this fieldType must not be multivalued. -->
-    <fieldType name="location" class="solr.LatLonType" subFieldSuffix="_coordinate"/>
+    <fieldType name="location" class="solr.LatLonPointSpatialField" docValues="true" />
 
     <fieldType name="_nest_path_" class="solr.NestPathField" />
 
