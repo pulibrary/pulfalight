@@ -58,6 +58,21 @@ lae:
   thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
   visit_note: ""
 
+sppe:
+  name: 'Spanish and Portuguese Ephemera Collections'
+  description: "Housed in Firestone Library, the Spanish and Portuguese Ephemera collections document political, social, socioeconomic, and cultural developments on the Iberian Peninsula."
+  building: 'Firestone Library'
+  address1: 'One Washington Road'
+  address2: ''
+  city: 'Princeton'
+  state: 'NJ'
+  zip: '08544'
+  country: 'USA'
+  phone: '(609) 258-5964'
+  contact_info: '<a href="https://library.princeton.edu/special-collections/ask-us">Ask Us a Question</a>'
+  thumbnail_url: "https://findingaids.princeton.edu/repositories/mss.jpg"
+  visit_note: ""
+
 mss:
   name: 'Manuscripts Division'
   description: 'Housed in Firestone Library, the Manuscripts Division of the Department of Special Collections includes material documenting 5000 years of recorded history and all parts of the world, with strengths in Western Europe, the Near East, the United States, and Latin America.'
