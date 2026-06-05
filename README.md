@@ -1,15 +1,42 @@
 # Pulfalight
+
 [![CircleCI](https://circleci.com/gh/pulibrary/pulfalight.svg?style=svg)](https://circleci.com/gh/pulibrary/pulfalight)
 [![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/pulibrary/pulfalight)
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=plastic)](./LICENSE)
 
 This is an implementation of ArcLight being implemented as a replacement for the
- Princeton University Finding Aids (PULFA) service. Accessible at https://findingaids.princeton.edu/.
+ Princeton University Finding Aids (PULFA) service. Accessible at <https://findingaids.princeton.edu/>.
 
-### Development
+## Development
 
-#### Setup
-* Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
+### Setup
+
+Supports `asdf` (existing) and `devbox` for local language/tooling setup
+
+#### Option A: Devbox
+
+1. Install Devbox
+2. Enter the devbox shell:
+
+```sh
+devbox shell
+```
+
+3. Install dependencies:
+
+```sh
+devbox run setup
+```
+
+Services (Solr + database) are still managed via Lando (see below). Once Lando is installed, you can start services with:
+
+```sh
+devbox run servers:start
+```
+
+#### Option B: asdf
+
+* Install Lando from <https://github.com/lando/lando/releases> (at least 3.0.0-rrc.2)
 * See .tool-versions for language version requirements (ruby, nodejs)
 * `bin/setup_keys`
 
@@ -18,10 +45,11 @@ asdf install
 bundle install
 yarn install
 ```
+
 (Remember you'll need to run the above commands on an ongoing basis as dependencies are updated.)
 
-
 #### Starting / stopping services
+
 We use lando to run services required for both test and development
 environments.
 
@@ -30,14 +58,17 @@ Start and initialize solr and database services with `rake servers:start`
 To stop solr and database services: `rake servers:stop` or `lando stop`
 
 #### Run tests
+
 `bundle exec rspec`
 To watch feature tests run in a browser, make sure chrome is installed and run: `RUN_IN_BROWSER=true rspec spec`
 
 #### Start development server
-- `rails s`
-- Access Pulfalight at http://localhost:3000/
+
+* `rails s`
+* Access Pulfalight at <http://localhost:3000/>
 
 ### Configuration
+
 Please see [the ArcLight
 documentation](https://github.com/projectblacklight/arclight/wiki/Indexing-EAD-in-ArcLight#repository-configuration)
 for information regarding the configuration of repositories in ArcLight.
@@ -46,12 +77,12 @@ for information regarding the configuration of repositories in ArcLight.
 
 #### Configuring ASpace
 
-
 1. `brew install lastpass-cli`
 2. `lpass login emailhere`
 3. `bundle exec rake setup_keys`
 
 #### Index "Interesting" EADs
+
 A sub-section of all our collections have been identified and can be queued up
   for ingest via:
 
@@ -60,7 +91,8 @@ A sub-section of all our collections have been identified and can be queued up
 #### Index a specific EAD
 
 In a rails console run the index job with a specific EAD, e.g.:
-```
+
+```text
 AspaceIndexJob.perform_later(resource_descriptions_uri: "repositories/4/resource_descriptions/2203", repository_id: "univarchives")
 ```
 
@@ -88,7 +120,7 @@ Once the jobs are finished processing by sidekiq you'll need to either wait 5 mi
 A subset of collections (the same that are run in specs) can be indexed into
   development via `bundle exec rake pulfalight:seed`
 
-#### Adding new EADs to test suite.
+#### Adding new EADs to test suite
 
 1. Open up `app/services/aspace_fixture_generator.rb`
 1. Add EAD ID to the `AspaceFixtureGenerator::EAD_IDS` constant.
