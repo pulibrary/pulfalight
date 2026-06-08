@@ -25,7 +25,7 @@ class SuggestACorrectionForm
   end
 
   def serialize_params
-    as_json.except("validation_context", "errors")
+    as_json.except("validation_context", "context_for_validation", "errors")
   end
 
   def submitted?
