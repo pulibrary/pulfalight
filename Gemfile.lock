@@ -1,21 +1,4 @@
 GIT
-  remote: https://github.com/projectblacklight/blacklight.git
-  revision: 7810b5035b4e2e05f990da571d7e0559c5331459
-  branch: rails-8-1-blacklight-7
-  specs:
-    blacklight (7.41.0)
-      deprecation
-      globalid
-      hashdiff
-      i18n (>= 1.7.0)
-      jbuilder (~> 2.7)
-      kaminari (>= 0.15)
-      ostruct (>= 0.3.2)
-      rails (>= 6.1, < 9)
-      view_component (>= 2.74, < 4)
-      zeitwerk
-
-GIT
   remote: https://github.com/pulibrary/arclight.git
   revision: fe2faac31ffb2bdae02fe6eeb9ae241cd3d0d47b
   branch: v0.5.0-rails-8
@@ -146,6 +129,17 @@ GEM
       rubocop-performance
       rubocop-rails
       rubocop-rspec
+    blacklight (7.42.0)
+      deprecation
+      globalid
+      hashdiff
+      i18n (>= 1.7.0)
+      jbuilder (~> 2.7)
+      kaminari (>= 0.15)
+      ostruct (>= 0.3.2)
+      rails (>= 6.1, < 9)
+      view_component (>= 2.74, < 4)
+      zeitwerk
     blacklight_dynamic_sitemap (1.0.0)
       blacklight (> 7.0)
       rails
@@ -940,7 +934,7 @@ DEPENDENCIES
   bcrypt_pbkdf
   benchmark-ips
   bixby (~> 5.0.2)
-  blacklight (~> 7.34)!
+  blacklight (~> 7.42)
   blacklight_dynamic_sitemap
   blacklight_range_limit (~> 7.1)
   bootsnap (>= 1.1.0)

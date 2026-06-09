@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem "archivesspace-client"
 gem "arclight", github: "pulibrary/arclight", branch: "v0.5.0-rails-8"
-gem "blacklight", "~> 7.34", github: "projectblacklight/blacklight", branch: "rails-8-1-blacklight-7"
+gem "blacklight", "~> 7.42"
 gem "blacklight_dynamic_sitemap"
 gem "blacklight_range_limit", "~> 7.1"
 gem "bootsnap", ">= 1.1.0", require: false
