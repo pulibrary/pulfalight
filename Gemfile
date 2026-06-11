@@ -3,8 +3,8 @@ source "https://gem.coop"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem "archivesspace-client"
-gem "arclight", github: "pulibrary/arclight", branch: "v0.5.0-rails-7"
-gem "blacklight", "~> 7.34"
+gem "arclight", github: "pulibrary/arclight", branch: "v0.5.0-rails-8"
+gem "blacklight", "~> 7.42"
 gem "blacklight_dynamic_sitemap"
 gem "blacklight_range_limit", "~> 7.1"
 gem "bootsnap", ">= 1.1.0", require: false
@@ -17,8 +17,7 @@ gem "devise-guests", "~> 0.6"
 gem "dotenv-rails", groups: [:development, :test]
 gem "email_validator"
 gem "faraday"
-# Pinning to 12.4.0 due to Rails 7.1 compatibility issue in 12.4.1
-gem "health-monitor-rails", "~> 12.4"
+gem "health-monitor-rails"
 gem "honeybadger"
 gem "jbuilder", "~> 2.5"
 gem "jquery-rails"
@@ -33,8 +32,8 @@ gem "opentelemetry-sdk"
 
 gem "pg"
 gem "popper_js"
-gem "puma", "~> 5.6"
-gem "rails", "~> 7.2.0"
+gem "puma"
+gem "rails", "~> 8.1.0"
 gem "redis-namespace"
 gem "rsolr", ">= 1.0", "< 3"
 gem "rubytree"
