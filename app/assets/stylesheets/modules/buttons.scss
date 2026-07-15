@@ -22,20 +22,20 @@
   background-color: #f6f6f6;
 }
 
-.sticky-button {
+.navbar-button {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
 }
 
-.sticky-button span {
+.navbar-button span {
   text-align: left;
   margin-left: 5px;
   font-weight: bold;
 }
 
-.sticky-button .lux-icon {
+.navbar-button .lux-icon {
   align-self: normal;
 }
 
