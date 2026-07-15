@@ -66,7 +66,7 @@ AspaceIndexJob.perform_later(resource_descriptions_uri: "repositories/4/resource
 
 Note the uri must use a collection-level resource id (you may need to look this up in Aspace), and have the correct corresponding repository_id (check against config/repositories.yml)
 
-#### Full/Partial Reindex
+#### Full/Partial Reindex into a Development Environment
 
 The rake task `pulfalight:indexing:incremental` will either perform a
 full reindex, or if that's happened before, index any changes.
@@ -87,6 +87,27 @@ Once the jobs are finished processing by sidekiq you'll need to either wait 5 mi
 
 A subset of collections (the same that are run in specs) can be indexed into
   development via `bundle exec rake pulfalight:seed`
+
+#### Full Re-index into the Staging or Production Environment
+
+1. ssh in one of the servers
+  ```sh
+  ssh deploy@pulfalight-staging1.princeton.edu
+  ```
+2. cd into the current directory 
+  ```sh
+    cd /opt/pulfalight/current
+  ```
+3. re-index
+   1. If you need to re-retreive all the data from ASpace
+    ```sh
+    bundle exec rake pulfalight:indexing:full
+    ```
+   2. If you just need to re-compute the index from cached data
+    ```sh
+    bundle exec rake pulfalight:indexing:soft_full
+    ```
+4. You can follow the re-index at `/sidekiq`
 
 #### Adding new EADs to test suite.
 
