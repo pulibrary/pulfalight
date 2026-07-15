@@ -2,7 +2,7 @@ defaults: &defaults
   external_universal_viewer_url: "https://figgy.princeton.edu/viewer"
   archivespace_url: <%= ENV["ASPACE_URL"] || "https://aspace.princeton.edu/staff/api" %>
   archivespace_user: <%= ENV["ASPACE_USER"] %>
-  archivespace_password: <%= ENV["ASPACE_PASSWORD"] %>
+  archivespace_password: '<%= ENV["ASPACE_PASSWORD"] %>'
   # aeon_url: 'https://lib-aeon.princeton.edu/aeon/Aeon.dll'
   aeon_url: 'https://princeton.aeon.atlas-sys.com/logon'
   unpublished_auth_token: <%= ENV["UNPUBLISHED_AUTH_TOKEN"] %>
