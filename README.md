@@ -4,9 +4,9 @@
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=plastic)](./LICENSE)
 
 This is an implementation of ArcLight being implemented as a replacement for the
- Princeton University Finding Aids (PULFA) service. Accessible at https://findingaids.princeton.edu/.
+Princeton University Finding Aids (PULFA) service. Accessible at https://findingaids.princeton.edu/.
 
-### Development
+### 1. Development
 
 #### Setup
 * Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
@@ -37,15 +37,12 @@ To watch feature tests run in a browser, make sure chrome is installed and run: 
 - `rails s`
 - Access Pulfalight at http://localhost:3000/
 
-### Configuration
+### 2. Configuration
 Please see [the ArcLight
 documentation](https://github.com/projectblacklight/arclight/wiki/Indexing-EAD-in-ArcLight#repository-configuration)
 for information regarding the configuration of repositories in ArcLight.
 
-### Indexing documents into Pulfalight
-
 #### Configuring ASpace
-
 
 1. `brew install lastpass-cli`
 2. `lpass login emailhere`
@@ -104,7 +101,31 @@ If you get an error that the login failed, you likely need be on VPN.
 
 If you're attempting to contact the API on VPN outside of rake tasks, you may have to initialize the proxy via `ASpaceProxyManager.spawn!(host: <pulfalighthost>, user: pulsys)` first.
 
-### Citation Formatting
+### 3. Run Indexing on a Server
+
+To run indexing on a server you need to be in the current release directory as the `deploy` user:
+```
+cd /opt/pulfalight/current
+sudo su - deploy
+```
+(You don't need to start redis or sideqik, they're already running.)
+
+#### Index a single EAD
+
+Run from a rails console:
+```
+bundle exec rails c
+AspaceIndexJob.perform_later(resource_descriptions_uri: "repositories/4/resource_descriptions/2203", repository_id: "univarchives")
+```
+
+#### Run a full or partial reindex
+
+From the shell, run
+```
+bundle exec rake pulfalight:indexing:incremental
+```
+
+### 4. Citation Formatting
 
 Citations are generated for collections and components, and rendered on the
 show page for either of these resources. The default formatted repository
