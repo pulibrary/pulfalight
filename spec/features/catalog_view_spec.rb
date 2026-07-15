@@ -184,7 +184,8 @@ describe "viewing catalog records", type: :feature, js: true do
       click_button "question-button"
       expect(page).to have_text "Please note, it can take 7-10 business days to receive a response to your inquiry."
       expect(page).to have_field "ask_a_question_form_location_code", visible: false, type: :hidden, with: "publicpolicy"
-      expect(page).to have_field "ask_a_question_form_context", visible: false, type: :hidden, with: "#{Capybara.app_host || Capybara.default_host}:#{Capybara.current_session.server.port}/catalog/MC221"
+      base_url = Capybara.app_host ? "#{Capybara.app_host}:#{Capybara.current_session.server.port}" : Capybara.current_session.server.base_url
+      expect(page).to have_field "ask_a_question_form_context", visible: false, type: :hidden, with: "#{base_url}/catalog/MC221"
       expect(page).to have_field "ask_a_question_form_title", visible: false, type: :hidden, with: "Harold B. Hoskins Papers, 1822-1982"
     end
 
