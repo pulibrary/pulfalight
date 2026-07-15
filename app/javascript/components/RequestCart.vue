@@ -1,9 +1,8 @@
 <template>
 
   <transition name="slide">
-
-  <div v-if="isVisible" :class="['request-cart']">
-
+    <dialog ref="dialog" class="request-cart">
+  
     <div class="panel">
       <table :class="['lux-data-table', 'fixed-header']">
 
@@ -164,8 +163,10 @@
       </div>
     </form>
 
-  </div>
+
+  </dialog>
   </transition>
+  
 </template>
 
 <script>
@@ -215,16 +216,27 @@ export default {
       }
     }
   },
-  watch: {
-    isVisible(newIsVisible, oldIsVisible) {
-      if(newIsVisible){
-          this.$nextTick(()=>{
-            this.$refs.closeCart.$el.focus()
-          })
+
+  created() {
+    this.$store.subscribe((mutation, state) => {
+      console.log(mutation.type)
+      console.log(mutation.payload)
+      if (mutation.type === "TOGGLE_VISIBILITY") {
+        if (this.$refs.dialog.open) {
+          this.$refs.dialog.close()
+        } else {
+          this.openDialog()
+        }
       }
-    },
+    })
   },
   methods: {
+    openDialog() {
+      this.$nextTick(()=>{
+          this.$refs.dialog.showModal()
+          this.$refs.closeCart.$el.focus()
+      })
+    },
     displayContainers(containers) {
       let displayString = containers.map(function(container) {
         let value = 'Unspecified'
@@ -480,10 +492,7 @@ export default {
 }
 /* Component Styling */
 .request-cart {
-  /* Custom */
-  position: fixed;
-  z-index: 2020;
-  display: block;
+  
   top: 20%;
   height: 80%;
   right: 0;

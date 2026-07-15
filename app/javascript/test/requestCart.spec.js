@@ -164,4 +164,39 @@ describe('RequestCart.vue', () => {
     const button = container.querySelector("button[type='submit']")
     expect(button.textContent.trim()).toBe('No Items in Your Cart')
   })
+  test('pressing escape closes the cart', async () => {
+    const customStore = {
+      modules: {
+        cart: {
+          state: {
+            items: [],
+            isVisible: true
+          },
+          actions: cartActions,
+          mutations: cartMutations
+        }
+      }
+    }
+    const mergedStore = createStore({ ...store, ...customStore })
+    const { container } = render(RequestCart, {
+      global: {
+        plugins: [mergedStore],
+        components: {
+          'lux-input-button': LuxInputButton,
+          'lux-input-text': LuxInputText
+        }
+      },
+      props: {
+        configuration: {},
+        globalFormParams: {
+          SystemID: 'Pulfa'
+        }
+      }
+    })
+    const cart = container.querySelector('.request-cart')
+    expect(cart).not.toBe(null)
+    await fireEvent.keyDown(cart, { key: 'Escape' })
+    expect(mergedStore.state.cart.isVisible).toBe(false)
+    expect(container.querySelector('.request-cart')).toBe(null)
+  })
 })
