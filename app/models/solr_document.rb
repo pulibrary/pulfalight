@@ -90,6 +90,13 @@ class SolrDocument
     Array.wrap(fetch("ead_ssi", nil)).first&.strip
   end
 
+  # Overrides Arclight::SolrDocument#parent_ids so that parent_ssm is used as a
+  # fallback. Item documents have parent_ssm while search results have parent_ssim.
+  def parent_ids
+    ids = fetch("parent_ssim", [])
+    ids.presence || fetch("parent_ssm", [])
+  end
+
   def collection_notes
     fetch("collection_notes_ssm", [])
   end

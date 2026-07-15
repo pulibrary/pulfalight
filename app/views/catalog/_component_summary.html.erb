@@ -1,4 +1,10 @@
 <div class="overview", data-component-id="<%= document.refs.first %>">
+  <% breadcrumbs = parents_to_links(document) %>
+  <% unless breadcrumbs.nil? %>
+    <div class='breadcrumb-links media'>
+      <span><%= parents_to_links(document) %></span>
+    </div>
+  <% end %>
   <div class="lux document-title">
     <h2><%= document.normalized_title %></h2>
     <div class="document-attributes">
