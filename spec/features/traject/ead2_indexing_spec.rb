@@ -83,7 +83,9 @@ describe "EAD 2 traject indexing", type: :feature do
     context "when there's not a corresponding Arclight::Repository" do
       let(:settings) do
         {
-          repository: "test"
+          repository: "test",
+          # Send log messages to /dev/null to prevent noisy test output.
+          "logger" => Logger.new(File::NULL)
         }
       end
 
