@@ -4,7 +4,6 @@ import { render, fireEvent } from '@testing-library/vue'
 import { store } from '@/store/index.es6'
 import { createStore } from 'vuex'
 import { LuxInputButton, LuxInputText } from 'lux-design-system'
-import { nextTick } from 'vue'
 import { flushPromises } from '@vue/test-utils'
 
 describe('RequestCart.vue', () => {
@@ -230,11 +229,11 @@ describe('RequestCart.vue', () => {
       }
     })
     expect(container.querySelector('.request-cart[open]')).toBeFalsy()
-    
+
     mergedStore.commit('TOGGLE_VISIBILITY')
     await flushPromises()
     expect(container.querySelector('.request-cart[open]')).toBeTruthy()
-    
+
     await fireEvent.click(container.querySelector('dialog'))
     expect(container.querySelector('.request-cart[open]')).toBeFalsy()
   })
