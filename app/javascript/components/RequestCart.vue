@@ -207,6 +207,7 @@ export default {
     },
     isVisible: {
       get() {
+        console.log("isVisible", this.$store.state.cart.isVisible)
         return this.$store.state.cart.isVisible
       },
       set() {
@@ -217,9 +218,15 @@ export default {
   watch: {
     isVisible(newIsVisible, oldIsVisible) {
       const dialog = this.$refs.dialog
-	
+      console.log('=================')
+	console.log(dialog)
       if (newIsVisible) {
+        console.log('========++++++++++++=========')
+        console.log(newIsVisible)
+        console.log('========+++###++=========')
         if (!dialog.open) {
+           console.log('========+++++dialog.showModal+++++++=========')
+           console.log(dialog.showModal)
           dialog.showModal()
         }
         this.$nextTick(() => {
@@ -266,6 +273,7 @@ export default {
       this.$store.dispatch("removeItemFromCart", item)
     },
     toggleCartView(event) {
+      console.log("togglecartview event", event)
       this.$store.commit("TOGGLE_VISIBILITY")
     },
     clearForm() {

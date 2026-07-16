@@ -4,6 +4,7 @@ import { render, fireEvent } from '@testing-library/vue'
 import { store } from '@/store/index.es6'
 import { createStore } from 'vuex'
 import { LuxInputButton, LuxInputText } from 'lux-design-system'
+import { nextTick } from 'vue'
 
 describe('RequestCart.vue', () => {
   test('Rendering locations', async () => {
@@ -196,6 +197,49 @@ describe('RequestCart.vue', () => {
     const cart = container.querySelector('.request-cart')
     expect(cart).not.toBe(null)
     await fireEvent.keyDown(cart, { key: 'Escape' })
+    expect(container.querySelector('.request-cart[open]')).toBe(null)
+  })
+  test('click outside of the cart closes the cart', async () => {
+    const htmlDialog = HTMLDialogElement.prototype
+    
+
+    const customStore = {
+      modules: {
+        cart: {
+          state: {
+            items: [],
+            isVisible: false
+          },
+          actions: cartActions,
+          mutations: cartMutations
+        }
+      }
+    }
+    const mergedStore = createStore({ ...store, ...customStore })
+    const { container } = render(RequestCart, {
+      global: {
+        plugins: [mergedStore],
+        components: {
+          'lux-input-button': LuxInputButton,
+          'lux-input-text': LuxInputText
+        }
+      },
+      props: {
+        configuration: {},
+        globalFormParams: {
+          SystemID: 'Pulfa'
+        }
+      }
+    })
+    const cart = container.querySelector('.request-cart')
+    expect(cart).not.toBe(null)
+    
+    mergedStore.commit('TOGGLE_VISIBILITY')
+    await nextTick()
+    expect(container.querySelector('.request-cart[open]')).toBe(true)
+    
+    await fireEvent.click(container.querySelector('dialog'))
+    await nextTick()
     expect(container.querySelector('.request-cart[open]')).toBe(null)
   })
 })
