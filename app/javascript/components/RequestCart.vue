@@ -1,7 +1,7 @@
 <template>
 
   <transition name="slide">
-    <dialog ref="dialog" class="request-cart">
+    <dialog ref="dialog" class="request-cart" @close="syncVisibilityAfterNativeClose">
   
     <div class="panel">
       <table :class="['lux-data-table', 'fixed-header']">
@@ -162,8 +162,6 @@
         <input name="Notes" type="hidden" :value="note" />
       </div>
     </form>
-
-
   </dialog>
   </transition>
   
@@ -216,24 +214,27 @@ export default {
       }
     }
   },
-
-  created() {
-    this.$store.subscribe((mutation, state) => {
-      if (mutation.type === "TOGGLE_VISIBILITY") {
-        if (this.$refs.dialog.open) {
-          this.$refs.dialog.close()
-        } else {
-          this.openDialog()
+  watch: {
+    isVisible(newIsVisible, oldIsVisible) {
+      const dialog = this.$refs.dialog
+	
+      if (newIsVisible) {
+        if (!dialog.open) {
+          dialog.showModal()
         }
+        this.$nextTick(() => {
+          this.$refs.closeCart?.$el?.focus?.()
+        })
+      } else if (dialog.open) {
+        dialog.close()
       }
-    })
+    }
   },
   methods: {
-    openDialog() {
-      this.$nextTick(()=>{
-          this.$refs.dialog.showModal()
-          this.$refs.closeCart.$el.focus()
-      })
+    syncVisibilityAfterNativeClose() {
+      if (this.$store.state.cart.isVisible && !this.$refs.dialog.open) {
+        this.$store.commit("TOGGLE_VISIBILITY")
+      }
     },
     displayContainers(containers) {
       let displayString = containers.map(function(container) {
