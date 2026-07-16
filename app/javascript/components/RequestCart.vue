@@ -1,7 +1,7 @@
 <template>
 
   <transition name="slide">
-    <dialog ref="dialog" class="request-cart" @close="syncVisibilityAfterNativeClose">
+    <dialog ref="dialog" class="request-cart" @close="syncVisibilityAfterNativeClose" @click="handleDialogClick">
   
     <div class="panel">
       <table :class="['lux-data-table', 'fixed-header']">
@@ -231,6 +231,12 @@ export default {
     }
   },
   methods: {
+    handleDialogClick(event) {
+      console.log("handleDialogClick", event.target, this.$refs.dialog)
+      if (event.target === this.$refs.dialog) {
+        this.toggleCartView()
+      }
+    },
     syncVisibilityAfterNativeClose() {
       if (this.$store.state.cart.isVisible && !this.$refs.dialog.open) {
         this.$store.commit("TOGGLE_VISIBILITY")
