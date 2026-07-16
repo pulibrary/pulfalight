@@ -90,4 +90,29 @@ describe "Table of Contents", type: :feature, js: true do
       expect(page).to have_selector "li#MC221_c0094 .online-direct-content"
     end
   end
+
+  describe "components with many child components" do
+    def child_near_bottom = "C1643_c92"
+    it "scrolls the child component into the scrollport", js: true do
+      visit "/catalog/#{child_near_bottom}"
+      expect("##{child_near_bottom}").to be_within_toc_scrollport
+    end
+
+    it "scrolls the child component into the scrollport on small screens", js: true do
+      page.current_window.resize_to 972, 972
+      visit "/catalog/#{child_near_bottom}"
+      expect("##{child_near_bottom}").to be_within_toc_scrollport
+    end
+  end
+
+  RSpec::Matchers.define :be_within_toc_scrollport do
+    match do |selector|
+      page.find selector
+      evaluate_script("(function(selector) {
+      const tocBox = document.querySelector('#toc').getBoundingClientRect()
+      const linkBox = document.querySelector(selector).getBoundingClientRect()
+      return (linkBox.top >= tocBox.top) && (linkBox.bottom <= tocBox.bottom)
+  })(arguments[0]);", selector)
+    end
+  end
 end

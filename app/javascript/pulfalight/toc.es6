@@ -87,9 +87,7 @@ export default class TocBuilder {
       const selectedId = this.element.jstree().get_selected()[0]
       const selectedElement = $(`#${selectedId}`)
       if (selectedElement.length > 0) {
-        // Jump to selected element on page reload
-        const scrollOffset = selectedElement.offset().top - selectedElement.offsetParent().offset().top - 130
-        this.element.scrollTop(scrollOffset)
+        this.#scrollComponentToTop(selectedElement)
       }
     })
     this.toggleElement.addEventListener('change', (e) => {
@@ -132,5 +130,16 @@ export default class TocBuilder {
         }
       }
     });
+  }
+
+  #scrollComponentToTop(componentElement) {
+    const [scrollBox] = this.element.get()
+    const [component] = componentElement.get()
+    const firstComponent = scrollBox.querySelector('li')
+    // Note: a larger scrollDistance means that the scrollport has scrolled
+    // a greater distance from the initial position (i.e. the componentElement
+    // will appear closer to the top of the screen)
+    const scrollDistance = component.offsetTop - firstComponent.offsetTop
+    scrollBox.scrollTop = scrollDistance
   }
 }
