@@ -26,7 +26,7 @@ RSpec.describe SyncToFiggyJob do
         config.delete("figgy_auth_token")
         allow(Pulfalight).to receive(:config).and_return(config)
         # do not stub wemock, expect the connection to not be attempted
-        expect { described_class.perform_now(["C0001"]) }.not_to raise_error(WebMock::NetConnectNotAllowedError)
+        expect { described_class.perform_now(["C0001"]) }.not_to raise_error
       end
     end
   end

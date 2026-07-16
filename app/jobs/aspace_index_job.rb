@@ -23,7 +23,7 @@ class AspaceIndexJob < ApplicationJob
   # Construct a Traject indexer object for building Solr Documents from EADs
   # @return [Traject::Indexer::NokogiriIndexer]
   def indexer
-    indexer = Traject::Indexer::NokogiriIndexer.new(repository: @repository_id)
+    indexer = Traject::Indexer::NokogiriIndexer.new(repository: @repository_id, "logger" => logger)
     indexer.tap do |i|
       i.load_config_file(arclight_config_path)
     end

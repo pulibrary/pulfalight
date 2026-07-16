@@ -171,14 +171,14 @@ describe "controller requests", type: :request do
   describe "searching for box and folder number", js: false do
     it "returns it" do
       get "/catalog", params: { q: "MC221 Box 1 Folder 4", search_field: "all_fields" }
-      expect(assigns.fetch(:document_list, []).map(&:id).first).to eq "MC221_c0004"
+      expect(assigns.fetch(:response).documents.map(&:id).first).to eq "MC221_c0004"
     end
   end
 
   describe "searching for a collection name", js: false do
     it "boosts collections" do
       get "/catalog", params: { q: "Lilienthal", search_field: "all_fields" }
-      expect(assigns.fetch(:document_list, []).map(&:id).first).to eq "MC148"
+      expect(assigns.fetch(:response).documents.map(&:id).first).to eq "MC148"
     end
   end
 
@@ -186,7 +186,7 @@ describe "controller requests", type: :request do
     it "returns a match for names in the wrong order" do
       get "/catalog", params: { q: '"Frederick Vinton"', search_field: "all_fields" }
 
-      results = assigns.fetch(:document_list).map(&:id)
+      results = assigns.fetch(:response).documents.map(&:id)
 
       expect(results.length).to eq 1
     end
@@ -196,14 +196,14 @@ describe "controller requests", type: :request do
     it "returns a match for separate parts in the hierarchy" do
       get "/catalog", params: { q: "wilson suffrage", search_fields: "all_fields" }
 
-      results = assigns.fetch(:document_list).map(&:id)
+      results = assigns.fetch(:response).documents.map(&:id)
 
       expect(results).to include("MC168_c02041")
     end
     it "returns a match for series titles", js: false do
       get "/catalog", params: { q: "Bernard Baruch", search_fields: "all_fields" }
 
-      results = assigns.fetch(:document_list).map(&:id)
+      results = assigns.fetch(:response).documents.map(&:id)
 
       expect(results).to include("MC016_c1866")
     end
@@ -213,7 +213,7 @@ describe "controller requests", type: :request do
     it "returns a match even if there's no 's" do
       get "/catalog", params: { q: "Woodrow Wilson", search_fields: "all_fields", per_page: 100 }
 
-      results = assigns.fetch(:document_list).map(&:id)
+      results = assigns.fetch(:response).documents.map(&:id)
 
       expect(results).to include "AC259_c005"
     end
@@ -222,7 +222,7 @@ describe "controller requests", type: :request do
   describe "searching by creator", js: false do
     it "returns components with matching creators" do
       get "/catalog", params: { q: "O'Sullivan", search_fields: "all_fields", per_page: 100 }
-      results = assigns.fetch(:document_list).map(&:id)
+      results = assigns.fetch(:response).documents.map(&:id)
       expect(results).to include "WC064_c2698"
     end
   end
@@ -230,7 +230,7 @@ describe "controller requests", type: :request do
   describe "searching by an archaic subject term", js: false do
     it "returns components with matching subject but does not display archaic subject text hightlight" do
       get "/catalog", params: { q: "Indians of North America", search_fields: "all_fields", per_page: 100 }
-      results = assigns.fetch(:document_list).map(&:id)
+      results = assigns.fetch(:response).documents.map(&:id)
       expect(results).to include "WC064_c1"
       expect(response.body).not_to have_selector "div.al-document-highlight", text: /Indians of North America/
     end
