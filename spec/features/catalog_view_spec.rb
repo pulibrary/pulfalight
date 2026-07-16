@@ -509,6 +509,14 @@ describe "viewing catalog records", type: :feature, js: true do
         expect(page).to have_css("#toc")
       end
     end
+    context "on a component page" do
+    it "shows the arrangement note" do
+    visit "/catalog/C0033_c001"
+
+    expect(page).to have_selector "dt.blacklight-arrangement_ssm", text: "Arrangement"
+    expect(page).to have_selector "dd.blacklight-arrangement_ssm", text: /papers of Marie Claire Chabert arranged chronologically/
+  end
+end
   end
 
   describe "child component table", js: true do
