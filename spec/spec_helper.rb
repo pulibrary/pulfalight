@@ -17,6 +17,7 @@ SimpleCov.start "rails" do
   add_filter "config"
   add_filter "spec"
   add_filter "app/services/aspace_proxy_manager.rb"
+  minimum_coverage 100
 end
 
 RSpec.configure do |config|
