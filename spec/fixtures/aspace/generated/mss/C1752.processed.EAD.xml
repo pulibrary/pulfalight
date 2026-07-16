@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 https://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" findaidstatus="completed" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/dcw6634g47t">C1752</eadid><filedesc><titlestmt><titleproper>Anatoly Naiman Papers <num>C1752</num></titleproper><author>Faith Charlton</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>December 2023</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2026-07-16 12:19:08 -0400</date>.</creation><langusage>English; Russian</langusage><descrules>Describing Archives: A Content Standard</descrules></profiledesc><revisiondesc><change><date>2023-12-05 20:15:08 -0500</date><item>Updated use restriction</item></change><change><date>2024-08-12 21:43:35 -0400</date><item>Updated links</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Manuscripts Division </corpname>
+    </repository>
+    <unittitle>Anatoly Naiman Papers</unittitle>
+    <origination label="Creator">
+      <persname role="cre">Naĭman, Anatoliĭ (1936-2022)</persname>
+    </origination>
+    <unitid>C1752</unitid>
+    <unitid type="aspace_uri">/repositories/5/resources/4350</unitid>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">11.5 linear feet</extent>
+      <extent altrender="carrier">12 boxes</extent>
+    </physdesc>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">2.53 GB</extent>
+    </physdesc>
+    <unitdate calendar="gregorian" certainty="approximate" datechar="creation" era="ce" normal="1928/2020" type="inclusive">circa 1928-2020</unitdate>
+    <abstract id="aspace_c28b7cc759f944bc5fec871a755c58af">Consists of the correspondence of Russian poet, translator, and writer Anatoly Naiman (1936-2022) along with some writings, photographs, personal documents, and clippings. Other individuals represented in the collection include Anna Ahkamatova, Joseph Brodsky, Sergei Dovlatov, Lidia Chukovskaya, Evgenii Rein, and Dmitrii Bobyshev.</abstract>
+    <physloc id="aspace_5357394bd8591b5873f4c68671cc0ca6">scamss</physloc>
+    <langmaterial>
+      <language langcode="rus" scriptcode="Cyrl">Russian</language>
+      <language langcode="eng" scriptcode="Latn">English</language>
+    </langmaterial>
+  </did>
+  <scopecontent id="aspace_583e965f3c674f7ccc8fae79dd29719b">
+    <head>Content Description</head>
+<p>The collection primarily consists of correspondence to Russian poet, translator, and writer Anatoly Naiman (1936-2022) from friends, family, and colleagues along with some writings, photographs, personal documents, and clippings. Other individuals represented in the collection include Anna Ahkamatova, Galina Narinskaya, and Naiman's mother, Asya Davidovna Naiman. Additional 20th-century Russian literary figures represented include Joseph Brodsky, Sergei Dovlatov, Lidia Chukovskaya, Evgenii Rein, and Dmitrii Bobyshev.</p>  </scopecontent>
+  <appraisal id="aspace_de25b03a03707ffa2edc296d3f8f6660">
+    <head>Appraisal</head>
+<p>A few commercial media types and publications were removed from the collection during 2023 processing.</p><p>
+Photocopies of items Naiman had requested from the Joseph Brodsky correspondence (MSS84477) collection at the Manuscript Division of the Library of Congress as well as digital system files and digital files with personally identifiable information were removed were removed during 2025-2026 processing.</p>  </appraisal>
+  <arrangement id="aspace_cd45516c7a7a9c04cd68ccd997c0af6b">
+    <head>Arrangement</head>
+<p>While processors imposed intellectual organization for Naiman's papers as well as some physical organization of like materials, original order of physical arrangement at the folder level was largely maintained.</p>  </arrangement>
+  <accessrestrict id="aspace_31754f9110658ed99d8310e6f19b7384">
+    <head>Conditions Governing Access</head>
+<p>The collection is open for research with the exception of photocopies of letters from Naiman to Joseph Brodsky held at the Russian National Library, which are restricted for 10 years (through 2035) per the seller's stipulation.</p>  </accessrestrict>
+  <userestrict id="aspace_0835839855e3551fa124d93302de451a">
+    <head>Conditions Governing Use</head>
+<p>Single copies may be made for research purposes. To cite or publish quotations that fall within Fair Use, as defined under <extref xlink:href="http://copyright.princeton.edu/basics/fair-use" xlink:type="simple">U. S. Copyright Law</extref>, no permission is required. For instances beyond Fair Use, it is the responsibility of the researcher to determine whether any permissions related to copyright, privacy, publicity, or any other rights are necessary for their intended use of the Library's materials, and to obtain all required permissions from any existing rights holders, if they have not already done so. Princeton University Library's Special Collections does not charge any permission or use fees for the publication of images of materials from our collections, nor does it require researchers to obtain its permission for said use. The department does request that its collections be properly cited and images credited. More detailed information can be found on the <extref xlink:href="https://library.princeton.edu/about/policies/special-collections-copyright-credit-and-citation-guidelines" xlink:type="simple">Copyright, Credit and Citations Guidelines</extref> page on our website. If you have any questions, please feel free to contact us through the <extref xlink:href="https://library.princeton.edu/services/special-collections/ask-special-collections" xlink:type="simple">Ask Us! form</extref>.</p>  </userestrict>
+  <acqinfo id="aspace_ac58a0057f41c5165cfedd59eb109408">
+    <head>Immediate Source of Acquisition</head>
+<p>Purchased from Anna Narinskaya in 2023 (AM 2024-021). Anna Narinskaya sent additional materials in 2024 (AM 2026-049).</p>  </acqinfo>
+  <phystech id="aspace_f27a349c8e1c06fc816fd0461895e19c">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>For preservation reasons, original analog and digital media may not be read or played back in the reading room. Users may visually inspect physical media but may not remove it from its enclosure. All analog audiovisual media must be digitized to preservation-quality standards prior to use. Audiovisual digitization requests are processed by an approved third-party vendor. Please note, the transfer time required can be as little as several weeks to as long as several months and there may be financial costs associated with the process. Requests should be directed through the <extref xlink:href="https://library.princeton.edu/special-collections/ask-us" xlink:type="simple">Ask Us Form</extref>.</p><p>This collection contains digital files, which may require specific software or hardware for access. Refer to our <extref xlink:href="https://docs.google.com/document/d/1kM-V3yDtrgn073r04V72VW6IvrwiL6Ey3IEz-LQAbww/edit?tab=t.0" xlink:type="simple">Tips on Accessing Born-Digital Content</extref> for information on how to render these file formats.</p>  </phystech>
+  <processinfo id="aspace_675f970a9c3b91cae56a081f088838a8">
+    <head>Processing Information</head>
+<p>This collection was processed by Faith Charlton and Thomas Keenan in 2023. Finding aid written by Faith Charlton and Thomas Keenan in 2023. Additional materials were processed by Faith Charlton and Thomas Keenan in 2025-2026. Finding aid written by Faith Charlton and Thomas Keenan in 2025-2026.</p><p>The born-digital materials in this collection have been processed according to Princeton University Library's Born-Digital Processing Workflows. For more information on the workflow, please read our full <extref xlink:href="https://docs.google.com/document/d/1egIYosm8AOLY3-jxrpygYJiX-fQjs6NPOv70HIMtgto/edit?tab=t.0#heading=h.gjdgxs" xlink:type="simple">Born-Digital Processing Information Note.</extref></p>  </processinfo>
+  <bioghist id="aspace_954b340965db176c40aca88fd8626430">
+    <note label="personal-name">Naĭman, Anatoliĭ (1936-2022)</note>
+    <head>Biographical / Historical</head>
+<p>Anatoly Naiman (1936-2022) was a Russian poet and translator who for a time served as secretary to fellow Russian poet, Anna Akhmatova. Along with Dmitrii Bobyshev, Joseph Brodsky, and Evgenii Rein, Anatoly Naiman was a member of the "Akhmatova Orphans" circle, a group of four poets whom Akhmatova called her "magic choir."</p>  </bioghist>
+  <controlaccess>
+    <occupation source="lcsh">Poets, Russian. -- 20th century</occupation>
+    <subject source="lcsh">Russian poetry. -- 20th century</subject>
+    <subject source="lcsh">Poets, Russian -- 21st century -- Sources</subject>
+    <subject source="lcsh">Russian poetry -- 21st century -- Sources</subject>
+    <subject source="lcsh">Literature and state -- Soviet Union. -- 20th century -- Sources</subject>
+    <subject source="lcsh">Translators in literature. -- Sources</subject>
+    <genreform source="aat">Correspondence -- 20th century</genreform>
+    <genreform source="aat">Correspondence -- 21st century</genreform>
+    <genreform source="aat">Manuscripts</genreform>
+    <persname authfilenumber="https://viaf.org/viaf/49220707" source="viaf">Akhmatova, Anna Andreevna (1889-1966)</persname>
+    <persname authfilenumber="http://viaf.org/viaf/16622531" source="viaf">Narinskai︠a︡, Galina</persname>
+    <persname>Brodsky, Joseph (1940-1996)</persname>
+  </controlaccess>
+  <dsc><c id="aspace_C1752_c36972-79588" level="series"><did><unittitle>Additional Digital Working Files</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/1572960</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">2.3 GB</extent><extent altrender="carrier">509 digital files </extent></physdesc><unitdate datechar="creation" type="inclusive">1998-2024</unitdate><dao xlink:actuate="onRequest" xlink:href="https://figgy.princeton.edu/downloads/945c4496-f48e-4a5d-a7b7-d47c3975a529/file/856e9231-3ca1-4f72-8e62-9e18116dbb07" xlink:role="" xlink:show="new" xlink:title="Download content" xlink:type="simple"><daodesc><p>Download content</p></daodesc></dao></did><scopecontent id="aspace_59220a2022a63ebff888c44aaf22c320"><head>Scope and Contents</head><p>Consists of Naiman's laptop files including writings and correspondence among others.</p></scopecontent><accessrestrict id="aspace_938ae63986911dc096e56a2181ceed38" rights-restriction="Review"><head>Conditions Governing Access</head><p>Naiman's Outlook files are restricted until they can be scanned for personally identifiable information.</p></accessrestrict><arrangement id="aspace_081ef5b5b95be7c2810b3f2dc44af348"><head>Arrangement</head><p>The folder titled "Uncategorized" was created during 2025 processing to organize loose files.</p></arrangement></c></dsc>
+</archdesc>
+</ead>
