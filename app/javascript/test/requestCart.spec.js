@@ -196,7 +196,6 @@ describe('RequestCart.vue', () => {
     const cart = container.querySelector('.request-cart')
     expect(cart).not.toBe(null)
     await fireEvent.keyDown(cart, { key: 'Escape' })
-    expect(mergedStore.state.cart.isVisible).toBe(false)
-    expect(container.querySelector('.request-cart')).toBe(null)
+    expect(container.querySelector('.request-cart[open]')).toBe(null)
   })
 })

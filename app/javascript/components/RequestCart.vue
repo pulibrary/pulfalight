@@ -219,8 +219,6 @@ export default {
 
   created() {
     this.$store.subscribe((mutation, state) => {
-      console.log(mutation.type)
-      console.log(mutation.payload)
       if (mutation.type === "TOGGLE_VISIBILITY") {
         if (this.$refs.dialog.open) {
           this.$refs.dialog.close()
@@ -492,10 +490,12 @@ export default {
 }
 /* Component Styling */
 .request-cart {
-  
+  position: fixed;
   top: 20%;
   height: 80%;
   right: 0;
+  left: auto;
+  margin: 0;
   background-color: #ffffff;
   border: 1px solid #8f8f8f;
   width: 40%;
