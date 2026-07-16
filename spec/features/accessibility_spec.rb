@@ -132,7 +132,7 @@ describe "accessibility", type: :feature, js: true do
 
       # Click request button and wait for request cart div
       find(".add-to-cart-block").click
-      expect(page).to have_css("div.request-cart")
+      expect(page).to have_css("div dialog.request-cart")
 
       expect(page).to be_axe_clean
         .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)

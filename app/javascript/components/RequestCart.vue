@@ -1,9 +1,8 @@
 <template>
 
   <transition name="slide">
-
-  <div v-if="isVisible" :class="['request-cart']">
-
+    <dialog ref="dialog" class="request-cart" @close="syncVisibilityAfterNativeClose" @click="handleDialogClick">
+  
     <div class="panel">
       <table :class="['lux-data-table', 'fixed-header']">
 
@@ -163,9 +162,9 @@
         <input name="Notes" type="hidden" :value="note" />
       </div>
     </form>
-
-  </div>
+  </dialog>
   </transition>
+  
 </template>
 
 <script>
@@ -217,14 +216,30 @@ export default {
   },
   watch: {
     isVisible(newIsVisible, oldIsVisible) {
-      if(newIsVisible){
-          this.$nextTick(()=>{
-            this.$refs.closeCart.$el.focus()
-          })
+      const dialog = this.$refs.dialog
+      if (newIsVisible) {
+        if (!dialog.open) {
+          dialog.showModal()
+        }
+        this.$nextTick(() => {
+          this.$refs.closeCart?.$el?.focus?.()
+        })
+      } else if (dialog.open) {
+        dialog.close()
       }
-    },
+    }
   },
   methods: {
+    handleDialogClick(event) {
+      if (event.target === this.$refs.dialog) {
+        this.toggleCartView()
+      }
+    },
+    syncVisibilityAfterNativeClose() {
+      if (this.$store.state.cart.isVisible && !this.$refs.dialog.open) {
+        this.$store.commit("TOGGLE_VISIBILITY")
+      }
+    },
     displayContainers(containers) {
       let displayString = containers.map(function(container) {
         let value = 'Unspecified'
@@ -249,6 +264,7 @@ export default {
       this.$store.dispatch("removeItemFromCart", item)
     },
     toggleCartView(event) {
+      console.log("togglecartview event", event)
       this.$store.commit("TOGGLE_VISIBILITY")
     },
     clearForm() {
@@ -480,13 +496,12 @@ export default {
 }
 /* Component Styling */
 .request-cart {
-  /* Custom */
   position: fixed;
-  z-index: 2020;
-  display: block;
   top: 20%;
   height: 80%;
   right: 0;
+  left: auto;
+  margin: 0;
   background-color: #ffffff;
   border: 1px solid #8f8f8f;
   width: 40%;

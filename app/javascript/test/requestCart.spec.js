@@ -4,6 +4,7 @@ import { render, fireEvent } from '@testing-library/vue'
 import { store } from '@/store/index.es6'
 import { createStore } from 'vuex'
 import { LuxInputButton, LuxInputText } from 'lux-design-system'
+import { flushPromises } from '@vue/test-utils'
 
 describe('RequestCart.vue', () => {
   test('Rendering locations', async () => {
@@ -163,5 +164,77 @@ describe('RequestCart.vue', () => {
     // cart is empty
     const button = container.querySelector("button[type='submit']")
     expect(button.textContent.trim()).toBe('No Items in Your Cart')
+  })
+  test('pressing escape closes the cart', async () => {
+    const customStore = {
+      modules: {
+        cart: {
+          state: {
+            items: [],
+            isVisible: true
+          },
+          actions: cartActions,
+          mutations: cartMutations
+        }
+      }
+    }
+    const mergedStore = createStore({ ...store, ...customStore })
+    const { container } = render(RequestCart, {
+      global: {
+        plugins: [mergedStore],
+        components: {
+          'lux-input-button': LuxInputButton,
+          'lux-input-text': LuxInputText
+        }
+      },
+      props: {
+        configuration: {},
+        globalFormParams: {
+          SystemID: 'Pulfa'
+        }
+      }
+    })
+    const cart = container.querySelector('.request-cart')
+    expect(cart).not.toBe(null)
+    await fireEvent.keyDown(cart, { key: 'Escape' })
+    expect(container.querySelector('.request-cart[open]')).toBe(null)
+  })
+  test('click outside of the cart closes the cart', async () => {
+    const customStore = {
+      modules: {
+        cart: {
+          state: {
+            items: [],
+            isVisible: false
+          },
+          actions: cartActions,
+          mutations: cartMutations
+        }
+      }
+    }
+    const mergedStore = createStore({ ...store, ...customStore })
+    const { container } = render(RequestCart, {
+      global: {
+        plugins: [mergedStore],
+        components: {
+          'lux-input-button': LuxInputButton,
+          'lux-input-text': LuxInputText
+        }
+      },
+      props: {
+        configuration: {},
+        globalFormParams: {
+          SystemID: 'Pulfa'
+        }
+      }
+    })
+    expect(container.querySelector('.request-cart[open]')).toBeFalsy()
+
+    mergedStore.commit('TOGGLE_VISIBILITY')
+    await flushPromises()
+    expect(container.querySelector('.request-cart[open]')).toBeTruthy()
+
+    await fireEvent.click(container.querySelector('dialog'))
+    expect(container.querySelector('.request-cart[open]')).toBeFalsy()
   })
 })
