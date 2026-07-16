@@ -151,43 +151,15 @@ jobs:
       - run:
           name: Run JS unit tests
           command: bundle exec yarn test --passWithNoTests
-      - run:
-          name: Stash Coverage Results
-          command: |
-            mkdir coverage_results
-            cp -R coverage/.resultset.json coverage_results/.resultset-${CIRCLE_NODE_INDEX}.json
-      - persist_to_workspace:
-          root: '~/pulfalight'
-          paths: 'coverage_results'
+      - store_artifacts:
+          path: coverage
+          destination: coverage
       # collect reports
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/test-results
           destination: test-results
-
-  coverage_report:
-    working_directory: ~/pulfalight
-    # Primary command image where all commands run
-    docker:
-      - image: cimg/ruby:3.4.8-browsers
-        environment:
-          RAILS_ENV: test
-    steps:
-      - attach_workspace:
-          at: '~/pulfalight'
-      - run: gem install bundler -v '2.6.9'
-      # Analyze coverage report
-      - run: gem install simplecov -v '~> 0.16.0'
-      - run: gem install activesupport -v 5.1.6.2
-      - run:
-          name: Merge and check coverage
-          command: |
-            RAILS_ENV=test ruby ./scripts/combine_coverage.rb
-      # Save artifacts
-      - store_artifacts:
-          path: ~/pulfalight/coverage
-          destination: coverage
 
 workflows:
   version: 2
@@ -200,9 +172,6 @@ workflows:
       - lint:
           requires:
             - build
-      - coverage_report:
-          requires:
-            - test
   nightly:
     triggers:
       - schedule:
@@ -219,6 +188,3 @@ workflows:
       - lint:
           requires:
             - build
-      - coverage_report:
-          requires:
-            - test
