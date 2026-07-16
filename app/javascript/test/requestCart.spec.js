@@ -5,6 +5,7 @@ import { store } from '@/store/index.es6'
 import { createStore } from 'vuex'
 import { LuxInputButton, LuxInputText } from 'lux-design-system'
 import { nextTick } from 'vue'
+import { flushPromises } from '@vue/test-utils'
 
 describe('RequestCart.vue', () => {
   test('Rendering locations', async () => {
@@ -200,9 +201,6 @@ describe('RequestCart.vue', () => {
     expect(container.querySelector('.request-cart[open]')).toBe(null)
   })
   test('click outside of the cart closes the cart', async () => {
-    const htmlDialog = HTMLDialogElement.prototype
-    
-
     const customStore = {
       modules: {
         cart: {
@@ -231,15 +229,13 @@ describe('RequestCart.vue', () => {
         }
       }
     })
-    const cart = container.querySelector('.request-cart')
-    expect(cart).not.toBe(null)
+    expect(container.querySelector('.request-cart[open]')).toBeFalsy()
     
     mergedStore.commit('TOGGLE_VISIBILITY')
-    await nextTick()
-    expect(container.querySelector('.request-cart[open]')).toBe(true)
+    await flushPromises()
+    expect(container.querySelector('.request-cart[open]')).toBeTruthy()
     
     await fireEvent.click(container.querySelector('dialog'))
-    await nextTick()
-    expect(container.querySelector('.request-cart[open]')).toBe(null)
+    expect(container.querySelector('.request-cart[open]')).toBeFalsy()
   })
 })
