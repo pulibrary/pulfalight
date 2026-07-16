@@ -92,6 +92,21 @@ describe PulfalightHelper, type: :helper do
         end
       end
     end
+
+    describe "#display_simple_link?" do
+      it "handles bad DAOs" do
+        bad_dao = "https://webspace.princeton.edu/users/mudd/Digitization/MC001.01/MC001.01 volume 72.pdf"
+        allow(component_document).to receive(:direct_digital_objects).and_return(
+          [Arclight::DigitalObject.from_json(
+            {
+              "href" => bad_dao
+            }.to_json
+          )]
+        )
+        allow(component_document).to receive(:figgy_digital_objects).and_return(nil)
+        expect { helper.display_simple_link? }.not_to raise_error
+      end
+    end
   end
 
   describe "#hr_separator" do
@@ -105,21 +120,6 @@ describe PulfalightHelper, type: :helper do
       markup = helper.hr_separator(helper_args)
       expect(markup).not_to be nil
       expect(markup.to_s).to include("<p>\n         William Willard Thorp (1899-1990)")
-    end
-  end
-
-  describe "#display_simple_link?" do
-    it "handles bad DAOs" do
-      bad_dao = "https://webspace.princeton.edu/users/mudd/Digitization/MC001.01/MC001.01 volume 72.pdf"
-      allow(component_document).to receive(:direct_digital_objects).and_return(
-        [Arclight::DigitalObject.from_json(
-          {
-            "href" => bad_dao
-          }.to_json
-        )]
-      )
-      allow(component_document).to receive(:figgy_digital_objects).and_return(nil)
-      expect { helper.display_simple_link? }.not_to raise_error
     end
   end
 
