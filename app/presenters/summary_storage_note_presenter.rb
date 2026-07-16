@@ -87,13 +87,4 @@ class SummaryStorageNotePresenter
     output, boxes = consecutive_chunk(output ||= [], boxes) while boxes != []
     output.join(", ")
   end
-
-  # Render an html <title> appropriate string for a set of search parameters
-  # @param [ActionController::Parameters] params2
-  # @return [String]
-  def render_search_to_page_header(params)
-    constraints = []
-    constraints += params.dig("f", "collection_sim") || []
-    constraints.join(" / ")
-  end
 end

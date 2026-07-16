@@ -47,6 +47,22 @@ RSpec.describe Arclight::SolrDocument do
     it { expect(document).to respond_to(:eadid) }
   end
 
+  describe "#dimensions" do
+    let(:values) { { "dimensions_ssm" => ["10 x 12 cm"] } }
+
+    it "returns the indexed dimensions" do
+      expect(document.dimensions).to eq(["10 x 12 cm"])
+    end
+
+    context "when no dimensions are indexed" do
+      let(:values) { {} }
+
+      it "returns an empty array" do
+        expect(document.dimensions).to eq([])
+      end
+    end
+  end
+
   describe "#collection?" do
     let(:file_path) do
       Rails.root.join("spec", "fixtures", "WC064.json")
