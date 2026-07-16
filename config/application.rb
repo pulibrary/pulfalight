@@ -5,6 +5,14 @@ require_relative "../lib/pulfalight/middleware/no_file_uploads"
 require "rails/all"
 require_relative "lando_env"
 
+# Our current version of Blacklight depends on view_component which requires
+# active_support/configurable. That causes a Rails deprecation warning. Load
+# this dependency while silencing deprecation warnings.
+# NOTE: This can be removed when we update Blacklight.
+ActiveSupport.deprecator.silence do
+  require "active_support/configurable"
+end
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
