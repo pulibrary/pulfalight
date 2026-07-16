@@ -107,6 +107,18 @@ describe PulfalightHelper, type: :helper do
         expect { helper.display_simple_link? }.not_to raise_error
       end
     end
+
+    describe "#regular_compact_breadcrumbs" do
+      before do
+        allow(helper).to receive(:collection_access_path).and_return(nil)
+      end
+
+      it "links to the immediate parent collection" do
+        element = helper.regular_compact_breadcrumbs(component_document)
+        expect(element).to include "Barr Ferree collection, 1880s-1920s"
+        expect(element).to include solr_document_path("MC152")
+      end
+    end
   end
 
   describe "#hr_separator" do
@@ -120,30 +132,6 @@ describe PulfalightHelper, type: :helper do
       markup = helper.hr_separator(helper_args)
       expect(markup).not_to be nil
       expect(markup.to_s).to include("<p>\n         William Willard Thorp (1899-1990)")
-    end
-  end
-
-  describe "#parents_to_links" do
-    let(:component_document) do
-      SolrDocument.find("C0269")
-    end
-
-    it "displays the library location in the bread crumb links and it's url" do
-      element = helper.regular_compact_breadcrumbs(component_document)
-      expect(element).to include "Firestone Library"
-      expect(element).to include "/catalog/C0269#access"
-    end
-  end
-
-  describe "#regular_compact_breadcrumbs" do
-    let(:component_document) do
-      SolrDocument.find("C0269")
-    end
-
-    it "displays the library location in the bread crumb links and it's url" do
-      element = helper.regular_compact_breadcrumbs(component_document)
-      expect(element).to include "Firestone Library"
-      expect(element).to include "/catalog/C0269#access"
     end
   end
 end
