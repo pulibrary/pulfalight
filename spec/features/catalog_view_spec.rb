@@ -63,8 +63,14 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_selector("*[data-component-id='MC221_c0060']")
     end
 
-    it "does not have breadcrumbs" do
-      expect(page).not_to have_css("ol.breadcrumb")
+    it "has breadcrumbs" do
+      within(".breadcrumb-links") do
+        expect(page).to have_link "Seeley G. Mudd Manuscript Library"
+        expect(page).to have_link "Public Policy Papers"
+        expect(page).to have_link "Harold B. Hoskins Papers, 1822-1982"
+        expect(page).to have_link "Series 1: U.S. diplomacy career, 1900-1978"
+        expect(page).to have_link "Notes, 1822-1982"
+      end
     end
 
     context "which has a viewer", js: false do

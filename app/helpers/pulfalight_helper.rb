@@ -103,8 +103,7 @@ module PulfalightHelper
     end
 
     # Add library location to breadcrumbs
-    url = solr_document_path(document.collection_document.id) + "#access"
-    breadcrumb_links.unshift(link_to(document.repository_config&.building, url))
+    breadcrumb_links.unshift(library_location_breadcrumb(document))
 
     safe_join(breadcrumb_links, aria_hidden_breadcrumb_separator)
   end
@@ -121,8 +120,7 @@ module PulfalightHelper
     end
 
     # Add library location to breadcrumbs
-    url = solr_document_path(document.collection_document.id) + "#access"
-    breadcrumb_links.unshift(link_to(document.repository_config&.building, url))
+    breadcrumb_links.unshift(library_location_breadcrumb(document))
 
     breadcrumb_links << "&hellip;".html_safe if parents.length > 1
 
@@ -146,6 +144,21 @@ module PulfalightHelper
   end
 
   private
+
+  # Builds the leading library location breadcrumb. e.g. "Firestone Library".
+  def library_location_breadcrumb(document)
+    building = document.repository_config&.building
+    url = collection_access_path(document)
+    return building unless url
+
+    link_to(building, url)
+  end
+
+  def collection_access_path(document)
+    solr_document_path(document.collection_document.id) + "#access"
+  rescue Blacklight::Exceptions::RecordNotFound
+    nil
+  end
 
   def repository_thumbnail_path
     image_path("default_repository_thumbnail.jpg")
