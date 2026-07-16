@@ -360,6 +360,7 @@ class CatalogController < ApplicationController
     config.add_component_field "physfacet_ssm", label: "Physical Description", accessor: :fetch_html_safe
     config.add_component_field "language_ssm", label: "Languages"
     config.add_component_field "scopecontent_ssm", label: "Description", helper_method: :paragraph_separator, accessor: :fetch_html_safe
+    config.add_component_field "arrangement_ssm", label: "Arrangement", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "altformavail_ssm", label: "Alternative Form Available", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "bioghist_ssm", label: "Biography", helper_method: :paragraph_separator, accessor: :fetch_html_safe
     config.add_component_field "accessrestrict_ssm", label: "Access Restrictions", accessor: :fetch_html_safe
