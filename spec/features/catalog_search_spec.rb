@@ -195,4 +195,20 @@ describe "catalog searches", type: :feature, js: true do
       end
     end
   end
+
+  describe "search page title" do
+    context "when a search has results", js: false do
+      it "the page title shows the query param" do
+        visit "/catalog?q=cats"
+        expect(page).to have_title "cats - Finding Aids Search Results"
+      end
+    end
+
+    context "when a search has no results", js: false do
+      it "the page title shows the query param and indicates it has no results" do
+        visit "/catalog?q=querydoesnotmatch"
+        expect(page).to have_title "No results for querydoesnotmatch - Finding Aids Search Results"
+      end
+    end
+  end
 end

@@ -143,6 +143,14 @@ module PulfalightHelper
     args[:value].join(", ")
   end
 
+  def render_page_title
+    if @response.try(:documents).present? || @response.try(:groups).present?
+      (content_for(:page_title) if content_for?(:page_title)) || @page_title || application_name
+    else
+      "No results for #{params[:q]} - Finding Aids Search Results"
+    end
+  end
+
   private
 
   # Builds the leading library location breadcrumb. e.g. "Firestone Library".
