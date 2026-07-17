@@ -231,20 +231,12 @@ export default {
   },
   methods: {
     closeDialog(event) {
-      console.log("closeDialog event", event)
-      console.log(event.currentTarget)
-
       event.currentTarget.close()
-
-      //this.toggleCartView(event)
     },
     syncVisibilityAfterNativeClose() {
-      console.log("syncVisibilityAfterNativeClose before commit", this.$store.state.cart.isVisible, this.$refs.dialog.open)
       if (this.$store.state.cart.isVisible && !this.$refs.dialog.open) {
-        console.log("syncVisibilityAfterNativeClose committing TOGGLE_VISIBILITY")
         this.$store.commit("TOGGLE_VISIBILITY")
       }
-      console.log("syncVisibilityAfterNativeClose after commit", this.$store.state.cart.isVisible, this.$refs.dialog.open)
     },
     displayContainers(containers) {
       let displayString = containers.map(function(container) {
