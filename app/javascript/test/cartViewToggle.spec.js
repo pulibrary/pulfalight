@@ -5,15 +5,13 @@ import { createStore } from 'vuex'
 
 describe('CartViewToggle.vue', () => {
   test('Toggling cart', async () => {
-    const toggleVisibility = vi.fn()
+    let cartToggled = false
+    document.addEventListener('TOGGLE_CART', () => { cartToggled = true })
     const newStore = {
       state: {
         cart: {
           items: [{}]
         }
-      },
-      mutations: {
-        TOGGLE_VISIBILITY: toggleVisibility
       }
     }
     const mergedStore = createStore({ ...store, ...newStore })
@@ -24,7 +22,7 @@ describe('CartViewToggle.vue', () => {
     })
     const button = getByRole('button')
     await fireEvent.click(button)
-    expect(toggleVisibility).toHaveBeenCalled()
+    expect(cartToggled).toBe(true)
 
     const count = container.getElementsByClassName('badge')[0]
     expect(count.textContent.trim()).toBe('1')

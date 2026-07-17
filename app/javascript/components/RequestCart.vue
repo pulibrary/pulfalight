@@ -9,7 +9,7 @@
         <caption>
 
           <lux-input-button
-            v-on:click="toggleCartView($event)"
+            v-on:click="closeDialog()"
             width="26px"
             type="button"
             variation="text"
@@ -211,18 +211,16 @@ export default {
       this.$refs.dialog?.close()
     },
     openDialog() {
-      this.$nextTick(() => {
-        const dialog = this.$refs.dialog
-        if (dialog) {
-          if (!dialog.open) {
-              dialog.showModal()
+      const dialog = this.$refs.dialog
+      if (dialog) {
+        if (!dialog.open) {
+            dialog.showModal()
 
-            this.$nextTick(() => {
-              this.$refs.closeCart?.$el?.focus?.()
-            })
-          }
+          this.$nextTick(() => {
+            this.$refs.closeCart?.$el?.focus?.()
+          })
         }
-      })
+      }
     },
     displayContainers(containers) {
       let displayString = containers.map(function(container) {
@@ -248,23 +246,17 @@ export default {
       this.$store.dispatch("removeItemFromCart", item)
     },
     toggle() {
-      this.$nextTick(() => {
-        const dialog = this.$refs.dialog
-        if (dialog) {
-          if (!dialog.open) {
-              dialog.showModal()
-            this.$nextTick(() => {
-              this.$refs.closeCart?.$el?.focus?.()
-            })
-          } else {
-            dialog.close()
-          }
+      const dialog = this.$refs.dialog
+      if (dialog) {
+        if (!dialog.open) {
+            dialog.showModal()
+          this.$nextTick(() => {
+            this.$refs.closeCart?.$el?.focus?.()
+          })
+        } else {
+          dialog.close()
         }
-      })
-    },
-    toggleCartView(event) {
-      console.log("togglecartview event", event)
-      this.$store.commit("TOGGLE_VISIBILITY")
+      }
     },
     clearForm() {
       this.shadowRequests = this.requests
