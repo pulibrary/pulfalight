@@ -351,7 +351,7 @@
    <copyField source="appraisal_teim" dest="text" />
    <copyField source="arrangement_teim" dest="text" />
    <copyField source="bibliography_teim" dest="text" />
-   <copyField source="bioghist_teim" dest="text" />
+   <copyField source="bioghist_ssm" dest="text" />
    <copyField source="custodhist_teim" dest="text" />
    <copyField source="did_note_teim" dest="text" />
    <copyField source="fileplan_teim" dest="text" />
@@ -381,7 +381,7 @@
    <copyField source="appraisal_teim" dest="text_hl" />
    <copyField source="arrangement_teim" dest="text_hl" />
    <copyField source="bibliography_teim" dest="text_hl" />
-   <copyField source="bioghist_teim" dest="text_hl" />
+   <copyField source="bioghist_ssm" dest="text_hl" />
    <copyField source="custodhist_teim" dest="text_hl" />
    <copyField source="did_note_teim" dest="text_hl" />
    <copyField source="fileplan_teim" dest="text_hl" />
@@ -411,6 +411,7 @@
    <copyField source="names_ssim" dest="text_en" />
    <copyField source="access_subjects_ssim" dest="text_en" />
    <copyField source="archaic_access_subjects_ssim" dest="text_en" />
+
    <!-- grab the searchable notes -->
    <copyField source="abstract_teim" dest="text_en" />
    <copyField source="accessrestricct_teim" dest="text_en" />
@@ -420,7 +421,7 @@
    <copyField source="appraisal_teim" dest="text_en" />
    <copyField source="arrangement_teim" dest="text_en" />
    <copyField source="bibliography_teim" dest="text_en" />
-   <copyField source="bioghist_teim" dest="text_en" />
+   <copyField source="bioghist_ssm" dest="text_en" />
    <copyField source="custodhist_teim" dest="text_en" />
    <copyField source="did_note_teim" dest="text_en" />
    <copyField source="fileplan_teim" dest="text_en" />
@@ -436,9 +437,9 @@
    <copyField source="scopecontent_teim" dest="text_en" />
    <copyField source="separatedmaterial_teim" dest="text_en" />
    <copyField source="userestrict_teim" dest="text_en" />
+
    <!-- grab structured data that's important -->
    <copyField source="unitid_ssm" dest="text_en" />
-
    <!-- sort fields -->
    <copyField source="normalized_title_ssm" dest="title_sort"/> <!-- TODO: assumes single values -->
    <copyField source="normalized_date_ssm" dest="date_sort"/> <!-- TODO: assumes single values -->
