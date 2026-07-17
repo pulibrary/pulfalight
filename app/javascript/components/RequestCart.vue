@@ -1,7 +1,7 @@
 <template>
 
   <transition name="slide">
-    <dialog ref="dialog" class="request-cart" @close="syncVisibilityAfterNativeClose" @click="handleDialogClick">
+    <dialog ref="dialog" class="request-cart" @close="syncVisibilityAfterNativeClose" @click.self="closeDialog">
   
     <div class="panel">
       <table :class="['lux-data-table', 'fixed-header']">
@@ -230,15 +230,21 @@ export default {
     }
   },
   methods: {
-    handleDialogClick(event) {
-      if (event.target === this.$refs.dialog) {
-        this.toggleCartView()
-      }
+    closeDialog(event) {
+      console.log("closeDialog event", event)
+      console.log(event.currentTarget)
+
+      event.currentTarget.close()
+
+      //this.toggleCartView(event)
     },
     syncVisibilityAfterNativeClose() {
+      console.log("syncVisibilityAfterNativeClose before commit", this.$store.state.cart.isVisible, this.$refs.dialog.open)
       if (this.$store.state.cart.isVisible && !this.$refs.dialog.open) {
+        console.log("syncVisibilityAfterNativeClose committing TOGGLE_VISIBILITY")
         this.$store.commit("TOGGLE_VISIBILITY")
       }
+      console.log("syncVisibilityAfterNativeClose after commit", this.$store.state.cart.isVisible, this.$refs.dialog.open)
     },
     displayContainers(containers) {
       let displayString = containers.map(function(container) {
@@ -289,6 +295,11 @@ export default {
   max-height: 50px;
   overflow: hidden;
 }
+
+.request-cart::backdrop {
+   background: transparent;
+}
+
 .lux-data-table {
   table-layout: fixed;
   width: 100%;
