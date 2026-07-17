@@ -92,7 +92,11 @@ describe "Table of Contents", type: :feature, js: true do
   end
 
   describe "components with many child components" do
+    def child_near_top = "C1643_c3"
     def child_near_bottom = "C1643_c92"
+    def parent_selector = "#C1643_c2_anchor"
+    def other_parent_selector = "#C1643_c369"
+
     it "scrolls the child component into the scrollport", js: true do
       visit "/catalog/#{child_near_bottom}"
       expect("##{child_near_bottom}").to be_within_toc_scrollport
@@ -102,6 +106,28 @@ describe "Table of Contents", type: :feature, js: true do
       page.current_window.resize_to 972, 972
       visit "/catalog/#{child_near_bottom}"
       expect("##{child_near_bottom}").to be_within_toc_scrollport
+    end
+
+    it "shows the parent element of the selected child component", js: true do
+      visit "/catalog/#{child_near_bottom}"
+      expect(parent_selector).to be_within_toc_scrollport
+    end
+
+    it "does not show other components that are not the parent", js: true do
+      visit "/catalog/#{child_near_bottom}"
+      expect(other_parent_selector).not_to be_within_toc_scrollport
+    end
+
+    it "shows the parent element of the selected child component", js: true do
+      visit "/catalog/#{child_near_top}"
+      expect("##{child_near_top}").to be_within_toc_scrollport
+      expect("##{child_near_bottom}").not_to be_within_toc_scrollport
+      expect(parent_selector).to be_within_toc_scrollport
+
+      execute_script "document.querySelector('##{child_near_bottom}').scrollIntoView()"
+      expect("##{child_near_top}").not_to be_within_toc_scrollport
+      expect("##{child_near_bottom}").to be_within_toc_scrollport
+      expect(parent_selector).to be_within_toc_scrollport
     end
   end
 
