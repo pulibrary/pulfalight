@@ -62,6 +62,7 @@ export default class TocBuilder {
       this.setupTree()
       this.setupToggleElement()
       this.setupEventHandlers()
+      this.setupObservers()
     }
   }
 
@@ -88,6 +89,8 @@ export default class TocBuilder {
       const selectedElement = $(`#${selectedId}`)
       if (selectedElement.length > 0) {
         this.#scrollComponentToTop(selectedElement)
+        // Make the parent element sticky so the user knows the context of the element
+        selectedElement.get().forEach(element => this.#makeParentSticky(element))
       }
     })
     this.toggleElement.addEventListener('change', (e) => {
@@ -102,6 +105,26 @@ export default class TocBuilder {
         this.build()
       }
     })
+  }
+
+  setupObservers() {
+    function addObservers() {
+      document.querySelectorAll('.jstree-leaf').forEach(leaf => observer.observe(leaf))
+    }
+
+    const scrollport = document.querySelector('#toc');
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.#makeParentSticky(entry.target)
+        }
+      }),
+      { root: scrollport, threshold: 0.5 }
+    );
+
+    document.querySelectorAll('.jstree-leaf').forEach(leaf => observer.observe(leaf))
+    addObservers()
+    $("#toc").on("open_node.jstree", elements => addObservers())
   }
 
   setupTree() {
@@ -139,7 +162,18 @@ export default class TocBuilder {
     // Note: a larger scrollDistance means that the scrollport has scrolled
     // a greater distance from the initial position (i.e. the componentElement
     // will appear closer to the top of the screen)
-    const scrollDistance = component.offsetTop - firstComponent.offsetTop
+    const scrollDistance = component.offsetTop - firstComponent.offsetTop - (this.#parentComponentLink(component)?.offsetHeight || 0)
     scrollBox.scrollTop = scrollDistance
+  }
+
+  #makeParentSticky(element) {
+    this.#parentComponentLink(element)?.classList?.add('sticky-top')
+  }
+
+  #parentComponentLink(element) {
+    return element
+      .closest('ul')
+      ?.closest('li')
+      ?.querySelector('a')
   }
 }
