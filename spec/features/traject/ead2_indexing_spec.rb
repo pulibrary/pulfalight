@@ -1014,7 +1014,7 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(values).to eq(child_values)
     end
 
-    context "when given component bioghists" do
+    context "when given component bioghists that are not audience=internal" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0140.processed.EAD.xml")
       end
@@ -1025,6 +1025,17 @@ describe "EAD 2 traject indexing", type: :feature do
 
         expect(values.first).to include("Pierre Samuel Du Pont de Nemours (1739-1817)")
         expect(values.first).to include("<p class=\"personal-name\">Du Pont de Nemours</p>")
+      end
+    end
+
+    context "when given component bioghists that are audience=internal" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0140.processed.EAD.xml")
+      end
+
+      it "does not not index them" do
+        record = find_component(result, "C0140_c03353")
+        expect(record["bioghist_ssm"]).to be_nil
       end
     end
   end
