@@ -3,6 +3,7 @@ export const cartState = {
   isVisible: false
 }
 
+
 export const cartActions = {
   addItemToCart(context, newItem) {
     const duplicate = context.state.items.find(item => item.callnumber === newItem.callnumber)
@@ -10,8 +11,7 @@ export const cartActions = {
       context.commit("PUSH_ITEM_TO_CART", newItem)
     }
 
-    if(context.state.isVisible === false)
-      context.commit("TOGGLE_VISIBILITY")
+    document.dispatchEvent(new Event('OPEN_CART'))
   },
   removeItemFromCart(context, item) {
     context.commit("REMOVE_ITEM_FROM_CART", item)
@@ -21,10 +21,6 @@ export const cartActions = {
 }
 
 export const cartMutations = {
-  TOGGLE_VISIBILITY(state) {
-    state.isVisible = !state.isVisible
-  },
-
   SET_CART(state, items) {
     state.items = items
   },

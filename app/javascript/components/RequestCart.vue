@@ -233,6 +233,18 @@ export default {
     closeDialog(event) {
       event.currentTarget.close()
     },
+    openDialog(event) {
+      this.$nextTick(() => {
+        const dialog = this.$refs.dialog
+        if (!dialog.open) {
+            dialog.showModal()
+
+          this.$nextTick(() => {
+            this.$refs.closeCart?.$el?.focus?.()
+          })
+        }
+      })
+    },
     syncVisibilityAfterNativeClose() {
       if (this.$store.state.cart.isVisible && !this.$refs.dialog.open) {
         this.$store.commit("TOGGLE_VISIBILITY")
@@ -261,6 +273,21 @@ export default {
     removeFromCart(item) {
       this.$store.dispatch("removeItemFromCart", item)
     },
+    toggle() {
+      this.$nextTick(() => {
+        const dialog = this.$refs.dialog
+        if (dialog) {
+          if (!dialog.open) {
+              dialog.showModal()
+            this.$nextTick(() => {
+              this.$refs.closeCart?.$el?.focus?.()
+            })
+          } else {
+            dialog.close()
+          }
+        }
+      })
+    },
     toggleCartView(event) {
       console.log("togglecartview event", event)
       this.$store.commit("TOGGLE_VISIBILITY")
@@ -273,6 +300,10 @@ export default {
         this.$refs.shadowForm.submit()
       })
     }
+  },
+  created() {
+    document.addEventListener('TOGGLE_CART', () => {this.toggle()})
+    document.addEventListener('OPEN_CART', () => {this.openDialog()})
   }
 }
 </script>

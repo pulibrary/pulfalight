@@ -230,11 +230,47 @@ describe('RequestCart.vue', () => {
     })
     expect(container.querySelector('.request-cart[open]')).toBeFalsy()
 
-    mergedStore.commit('TOGGLE_VISIBILITY')
+    document.dispatchEvent(new Event('TOGGLE_CART'))
     await flushPromises()
     expect(container.querySelector('.request-cart[open]')).toBeTruthy()
 
     await fireEvent.click(container.querySelector('dialog'))
     expect(container.querySelector('.request-cart[open]')).toBeFalsy()
+  })
+
+  test('it opens the cart when it hears the OPEN_CART event', async () => {
+    const customStore = {
+      modules: {
+        cart: {
+          state: {
+            items: [],
+            isVisible: false
+          },
+          actions: cartActions,
+          mutations: cartMutations
+        }
+      }
+    }
+    const mergedStore = createStore({ ...store, ...customStore })
+    const { container } = render(RequestCart, {
+      global: {
+        plugins: [mergedStore],
+        components: {
+          'lux-input-button': LuxInputButton,
+          'lux-input-text': LuxInputText
+        }
+      },
+      props: {
+        configuration: {},
+        globalFormParams: {
+          SystemID: 'Pulfa'
+        }
+      }
+    })
+    expect(container.querySelector('.request-cart[open]')).toBeFalsy()
+
+    document.dispatchEvent(new Event('OPEN_CART'))
+    await flushPromises()
+    expect(container.querySelector('.request-cart[open]')).toBeTruthy()
   })
 })
