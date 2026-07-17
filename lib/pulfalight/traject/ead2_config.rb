@@ -327,7 +327,7 @@ SEARCHABLE_NOTES_FIELDS.map do |selector|
   end
 end
 
-to_field "bioghist_ssm", extract_xpath("/ead/archdesc/bioghist", to_text: false) do |_record, accumulator|
+to_field "bioghist_ssm", extract_xpath("/ead/archdesc/bioghist[not(@audience='internal')]", to_text: false) do |_record, accumulator|
   build_bioghist(accumulator)
 end
 
