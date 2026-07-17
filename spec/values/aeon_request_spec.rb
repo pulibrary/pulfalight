@@ -223,20 +223,20 @@ RSpec.describe AeonRequest do
         expect(request.form_attributes[:"ItemInfo1_#{request_id}"].length).to eq 75
       end
     end
-    context "when an access note has apostrophes and commas" do 
+    context "when an access note has different encoded and unencoded apostrophes and commas" do
       let(:fixture_path) do
-        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1491.processed.EAD.xml")
+        Rails.root.join("spec", "fixtures", "aspace", "corner_cases", "C0033.badcharacters.EAD.xml")
       end
-      it "strips them out" do 
+      it "strips them out" do
         result = indexer.map_record(record)
         component = find_component(component_id: "C0033_c001", record: result)
         document = SolrDocument.new(component)
 
         request = document.aeon_request
         request_id = request.form_attributes[:Request]
-        expect(request.form_attributes[:"ItemInfo1_#{request_id}"]).to eq "Livingston's Battalion: Accessrestrict with hardcoded apostrophe"
-      end 
-    end 
+        expect(request.form_attributes[:"ItemInfo1_#{request_id}"]).to start_with "Livingstons Battalion Livingstons Battalion Livingstons Battalion"
+      end
+    end
 
     context "when there's one oversize folder and no box" do
       let(:fixture_path) do
