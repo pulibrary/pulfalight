@@ -1,7 +1,7 @@
 <template>
 
   <transition name="slide">
-    <dialog ref="dialog" class="request-cart" @close="syncVisibilityAfterNativeClose" @click.self="closeDialog">
+    <dialog ref="dialog" class="request-cart" @click.self="closeDialog">
   
     <div class="panel">
       <table :class="['lux-data-table', 'fixed-header']">
@@ -204,51 +204,25 @@ export default {
   computed: {
     requests() {
       return this.$store.state.cart.items
-    },
-    isVisible: {
-      get() {
-        return this.$store.state.cart.isVisible
-      },
-      set() {
-        this.$store.commit("TOGGLE_VISIBILITY")
-      }
-    }
-  },
-  watch: {
-    isVisible(newIsVisible, oldIsVisible) {
-      const dialog = this.$refs.dialog
-      if (newIsVisible) {
-        if (!dialog.open) {
-          dialog.showModal()
-        }
-        this.$nextTick(() => {
-          this.$refs.closeCart?.$el?.focus?.()
-        })
-      } else if (dialog.open) {
-        dialog.close()
-      }
     }
   },
   methods: {
-    closeDialog(event) {
-      event.currentTarget.close()
+    closeDialog() {
+      this.$refs.dialog?.close()
     },
-    openDialog(event) {
+    openDialog() {
       this.$nextTick(() => {
         const dialog = this.$refs.dialog
-        if (!dialog.open) {
-            dialog.showModal()
+        if (dialog) {
+          if (!dialog.open) {
+              dialog.showModal()
 
-          this.$nextTick(() => {
-            this.$refs.closeCart?.$el?.focus?.()
-          })
+            this.$nextTick(() => {
+              this.$refs.closeCart?.$el?.focus?.()
+            })
+          }
         }
       })
-    },
-    syncVisibilityAfterNativeClose() {
-      if (this.$store.state.cart.isVisible && !this.$refs.dialog.open) {
-        this.$store.commit("TOGGLE_VISIBILITY")
-      }
     },
     displayContainers(containers) {
       let displayString = containers.map(function(container) {
@@ -301,9 +275,10 @@ export default {
       })
     }
   },
-  created() {
+  mounted() {
     document.addEventListener('TOGGLE_CART', () => {this.toggle()})
     document.addEventListener('OPEN_CART', () => {this.openDialog()})
+    document.addEventListener('CLOSE_CART', () => {this.closeDialog()})
   }
 }
 </script>

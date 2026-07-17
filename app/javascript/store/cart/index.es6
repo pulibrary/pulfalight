@@ -1,6 +1,5 @@
 export const cartState = {
-  items: [],
-  isVisible: false
+  items: []
 }
 
 
@@ -15,8 +14,8 @@ export const cartActions = {
   },
   removeItemFromCart(context, item) {
     context.commit("REMOVE_ITEM_FROM_CART", item)
-    if(context.state.isVisible === true && context.state.items.length === 0)
-      context.commit("TOGGLE_VISIBILITY")
+    if(context.state.items.length === 0)
+      document.dispatchEvent(new Event('CLOSE_CART'))
   }
 }
 
