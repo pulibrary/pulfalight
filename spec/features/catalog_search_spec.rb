@@ -186,4 +186,13 @@ describe "catalog searches", type: :feature, js: true do
       expect(page).to have_link "Joan Phipson"
     end
   end
+
+  context "when keyword searching", js: false do
+    it "finds text from bioghist" do
+      visit "/catalog?search_field=all_fields&q=east+orange"
+      within first("h3") do
+        expect(page).to have_content "Willard Thorp and Margaret Farrand Thorp Papers"
+      end
+    end
+  end
 end
