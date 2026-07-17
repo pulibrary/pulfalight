@@ -1033,7 +1033,7 @@ describe "EAD 2 traject indexing", type: :feature do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0140.processed.EAD.xml")
       end
 
-      it "does not not index them" do
+      it "does not index them" do
         record = find_component(result, "C0140_c03353")
         expect(record["bioghist_ssm"]).to be_nil
       end
