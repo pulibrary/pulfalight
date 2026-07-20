@@ -220,6 +220,6 @@ class AeonRequest
   end
 
   def sanitize_label(box)
-    box['label'].to_s.delete(',').gsub('&#44;', '')
+    box["label"].to_s.delete(",").gsub("&#44;", "")
   end
 end
