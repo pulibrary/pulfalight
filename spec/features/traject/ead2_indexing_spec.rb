@@ -152,7 +152,7 @@ describe "EAD 2 traject indexing", type: :feature do
       expect(json.keys).not_to include("This is stored in multiple locations.")
       expect(json["Firestone Library (scahsvm)"]).to include("Boxes 1; 32; 319")
       expect(json["Firestone Library (scamss)"]).to include("Boxes 12; 83; 330; B-001491")
-      expect(json["ReCAP (scarcpxm)"]).to include("Box 232")
+      expect(json["ReCAP - Remote Storage (scarcpxm)"]).to include("Box 232")
     end
 
     it "constructs component and series level summary storage notes" do
@@ -215,7 +215,7 @@ describe "EAD 2 traject indexing", type: :feature do
 
       it "displays an item count instead" do
         component = find_component(result, "AC297_c2")
-        expect(component["summary_storage_note_ssm"]).to eq ["{\"ReCAP (rcpph)\":[\"2187 individual items\"]}"]
+        expect(component["summary_storage_note_ssm"]).to eq ["{\"ReCAP - Remote Storage (rcpph)\":[\"2187 individual items\"]}"]
       end
     end
   end
