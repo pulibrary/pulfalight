@@ -15,6 +15,7 @@ correct type of field.
 
 * [#146](https://github.com/pulibrary/pulfalight/issues/146), [#560](https://github.com/pulibrary/pulfalight/issues/560), [#982](https://github.com/pulibrary/pulfalight/issues/982) Any collection title that contains the search terms should have prioritized ranking, and if the collection title starts with the search terms, it should have highest ranking.
   * For example, a search for `John Foster Dulles` should put the John Foster Dulles Collection at the top
+* [#1341](https://github.com/pulibrary/pulfalight/issues/1341) When there are query parameters, boost a collection only when the query matches its title
 * [#557](https://github.com/pulibrary/pulfalight/issues/557) A keyword search for a name should only return results that match the name completely
   * For example, a search for `Frederick Vinton` should have a small result set, only returning records containing both words
 * [#558](https://github.com/pulibrary/pulfalight/issues/558) A keyword search for a quoted phrase should return results where the words in that phrase are in a different order
