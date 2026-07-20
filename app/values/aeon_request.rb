@@ -127,7 +127,7 @@ class AeonRequest
 
   # Group all box components in the same EAD together.
   def grouping_identifier(box)
-    "#{ead_id}-#{box['label'].to_s.tr(' ', '-')}"
+    "#{ead_id}-#{box['label'].to_s.tr(' ', '-').tr(',', '')}"
   end
 
   def ead_id
@@ -162,9 +162,9 @@ class AeonRequest
     Rails.application.routes.url_helpers.solr_document_url(id: solr_document.id)
   end
 
-  def folder(box)
+  def folder(component)
     folders = container_information.select do |container|
-      container["parent"] == box["id"] && container["type"] == "folder"
+      container["parent"] == component["id"] && container["type"] == "folder"
     end
     return if folders.blank? && non_box_containers.blank?
     return non_box_containers.join(", ") if folders.blank?
