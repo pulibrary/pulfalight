@@ -107,7 +107,7 @@ class AeonRequest
   end
 
   def item_volume(box)
-    [box["label"]&.upcase_first, item_number_label].compact.join(" ").delete(",").gsub("&#44;", "")
+    [sanitize_label(box)&.upcase_first, item_number_label].compact.join(" ")
   end
 
   def item_number_label
@@ -127,7 +127,7 @@ class AeonRequest
 
   # Group all box components in the same EAD together.
   def grouping_identifier(box)
-    "#{ead_id}-#{box['label'].to_s.tr(' ', '-').delete(',').gsub('&#44;', '')}"
+    "#{ead_id}-#{sanitize_label(box).tr(' ', '-')}"
   end
 
   def ead_id
@@ -206,7 +206,7 @@ class AeonRequest
   end
 
   def request_id(box)
-    "#{static_request_id}#{box['label'].to_s.tr(' ', '-').delete(',').gsub('&#44;', '')}"
+    "#{static_request_id}#{sanitize_label(box).tr(' ', '-')}"
   end
 
   def static_request_id
@@ -217,5 +217,9 @@ class AeonRequest
 
   def strip_disallowed_punctuation(str)
     str.gsub(/[,']/, "")
+  end
+
+  def sanitize_label(box)
+    box['label'].to_s.delete(',').gsub('&#44;', '')
   end
 end
