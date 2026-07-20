@@ -241,15 +241,10 @@ export default {
     },
     toggle() {
       const dialog = this.$refs.dialog
-      if (dialog) {
-        if (!dialog.open) {
-            dialog.showModal()
-          this.$nextTick(() => {
-            this.$refs.closeCart?.$el?.focus?.()
-          })
-        } else {
-          dialog.close()
-        }
+      if (dialog && !dialog.open) {
+        dialog.showModal()
+      } else {
+        dialog?.close()
       }
     },
     clearForm() {
