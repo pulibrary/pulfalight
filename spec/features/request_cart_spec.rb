@@ -8,6 +8,8 @@ describe "the catalog view request cart", type: :feature, js: true do
       visit "/catalog/MC148_c00002"
 
       find(".add-to-cart-block").click
+      expect(page).to have_selector(".request-cart")
+      expect(page.evaluate_script("document.activeElement.classList.contains('denied-button')")).to eq true
       within(".request-cart") do
         expect(page).to have_selector "button.denied-button"
         expect(page).to have_selector "#item-MC148_c00002"
