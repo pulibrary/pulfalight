@@ -107,7 +107,7 @@ class AeonRequest
   end
 
   def item_volume(box)
-    [box["label"]&.upcase_first, item_number_label].compact.join(" ").gsub(",","")
+    [box["label"]&.upcase_first, item_number_label].compact.join(" ").gsub(",","").gsub('&#44;','')
   end
 
   def item_number_label
@@ -127,7 +127,7 @@ class AeonRequest
 
   # Group all box components in the same EAD together.
   def grouping_identifier(box)
-    "#{ead_id}-#{box['label'].to_s.tr(' ', '-').gsub(",","")}"
+    "#{ead_id}-#{box['label'].to_s.tr(' ', '-').gsub(",","").gsub('&#44;','')}"
   end
 
   def ead_id
