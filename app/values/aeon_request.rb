@@ -206,7 +206,7 @@ class AeonRequest
   end
 
   def request_id(box)
-    "#{static_request_id}#{box['label'].to_s.tr(' ', '-')}"
+    "#{static_request_id}#{box['label'].to_s.tr(' ', '-').gsub(',','')}"
   end
 
   def static_request_id
