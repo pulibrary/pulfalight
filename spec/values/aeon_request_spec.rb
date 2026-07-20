@@ -252,6 +252,7 @@ RSpec.describe AeonRequest do
 
         request = document.aeon_request
         request_id = request.form_attributes[:Request]
+        expect(request_id.include?(',') && request_id.include?('&#44;')).to be false
         expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Box Series II Box 2"
         expect(request.form_attributes[:"GroupingField_#{request_id}"]).to eq "C1588-box-Series-II-Box-2"
 
@@ -261,6 +262,7 @@ RSpec.describe AeonRequest do
 
         request = document.aeon_request
         request_id = request.form_attributes[:Request]
+        expect(request_id.include?(',') && request_id.include?('&#44;')).to be false
         expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Box Series II Box 2"
         expect(request.form_attributes[:"GroupingField_#{request_id}"]).to eq "C1588-box-Series-II-Box-2"
       end
