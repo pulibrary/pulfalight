@@ -17,13 +17,21 @@
           <span class="media-body" aria-hidden="true"><%= blacklight_icon :folder, classes: 'al-folder-icon' %></span>
           <span class="col" ><%= parents_to_links(document) %></span>
         <% end %>
-    </div>
-    <% # Start PUL Customizations %>
-    <%= content_tag('div', class: 'al-document-abstract-or-scope') do %>
-      <%= content_tag('div', 'data-arclight-truncate' => true) do %>
-        <%= document.abstract_or_scope %>
-      <% end %>
-    <% end if document.abstract_or_scope %>
+      </div>
+      <% # Start PUL Customizations %>
+      <div class="row">
+        <%= content_tag('div', class: 'al-document-highlight col') do %>
+          <%= document.highlights.join('<br/>').html_safe %>
+          <% end if document.highlights %>
+      </div>
+
+      <div class="row">
+        <%= content_tag('div', class: 'al-document-abstract-or-scope') do %>
+          <%= content_tag('div', 'data-arclight-truncate' => true) do %>
+            <%= document.abstract_or_scope %>
+          <% end %>
+          <% end if document.abstract_or_scope %>
+      </div>
     <% # End PUL Customizations %>
   </div>
 </article>

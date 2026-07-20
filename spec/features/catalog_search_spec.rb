@@ -211,4 +211,26 @@ describe "catalog searches", type: :feature, js: true do
       end
     end
   end
+
+  describe "hit highlighting" do
+    context "in the grouped results" do
+      it "shows highlighted terms" do
+        visit "/catalog?q=photograph&group=true"
+
+        within first("article") do
+          expect(page).to have_selector(".al-document-highlight em", text: "Photographs")
+        end
+      end
+    end
+
+    context "in 'all results'" do
+      it "shows highlighted terms" do
+        visit "/catalog?q=photograph&group=false"
+
+        within first("article") do
+          expect(page).to have_selector(".al-document-highlight em", text: "Photographs")
+        end
+      end
+    end
+  end
 end
