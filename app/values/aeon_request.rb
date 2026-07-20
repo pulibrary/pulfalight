@@ -127,7 +127,7 @@ class AeonRequest
 
   # Group all box components in the same EAD together.
   def grouping_identifier(box)
-    "#{ead_id}-#{box['label'].to_s.tr(' ', '-')}"
+    "#{ead_id}-#{box['label'].to_s.tr(' ', '-').gsub(",","")}"
   end
 
   def ead_id
