@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     toggleCartView(event) {
-      this.$store.commit("TOGGLE_VISIBILITY")
+      document.dispatchEvent(new Event('TOGGLE_CART'))
     }
   }
 }

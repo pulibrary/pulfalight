@@ -1,7 +1,7 @@
 export const cartState = {
-  items: [],
-  isVisible: false
+  items: []
 }
+
 
 export const cartActions = {
   addItemToCart(context, newItem) {
@@ -10,21 +10,16 @@ export const cartActions = {
       context.commit("PUSH_ITEM_TO_CART", newItem)
     }
 
-    if(context.state.isVisible === false)
-      context.commit("TOGGLE_VISIBILITY")
+    document.dispatchEvent(new Event('OPEN_CART'))
   },
   removeItemFromCart(context, item) {
     context.commit("REMOVE_ITEM_FROM_CART", item)
-    if(context.state.isVisible === true && context.state.items.length === 0)
-      context.commit("TOGGLE_VISIBILITY")
+    if(context.state.items.length === 0)
+      document.dispatchEvent(new Event('CLOSE_CART'))
   }
 }
 
 export const cartMutations = {
-  TOGGLE_VISIBILITY(state) {
-    state.isVisible = !state.isVisible
-  },
-
   SET_CART(state, items) {
     state.items = items
   },
