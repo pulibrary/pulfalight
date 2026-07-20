@@ -692,7 +692,7 @@ to_field "topics_ssim", extract_xpath('./controlaccess/subject[@source="local"]'
 # For find-more tab
 to_field "genreform_ssim", extract_xpath("./controlaccess/genreform")
 
-to_field "bioghist_ssm", extract_xpath("./bioghist", to_text: false) do |_record, accumulator|
+to_field "bioghist_ssm", extract_xpath("./bioghist[not(@audience='internal')]", to_text: false) do |_record, accumulator|
   build_bioghist(accumulator)
 end
 
