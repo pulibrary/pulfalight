@@ -27,21 +27,21 @@ mudd:
   label: 'Mudd Manuscript Library'
   url: 'https://library.princeton.edu/special-collections/visit-us'
 rcppa:
-  label: 'ReCAP'
+  label: 'ReCAP - Remote Storage'
 rcppf:
-  label: 'ReCAP'
+  label: 'ReCAP - Remote Storage'
 rcpph:
-  label: 'ReCAP'
+  label: 'ReCAP - Remote Storage'
 rcpxc:
-  label: 'ReCAP'
+  label: 'ReCAP - Remote Storage'
 rcpxg:
-  label: 'ReCAP'
+  label: 'ReCAP - Remote Storage'
 rcpxm:
-  label: 'ReCAP'
+  label: 'ReCAP - Remote Storage'
 rcpxr:
-  label: 'ReCAP'
+  label: 'ReCAP - Remote Storage'
 selectors:
-  label: 'ReCAP'
+  label: 'ReCAP - Remote Storage'
 flm:
   <<: *firestone
 st:

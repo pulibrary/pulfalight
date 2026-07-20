@@ -15,13 +15,13 @@ describe Pulfalight::NormalizedBoxLocations do
   let(:human_readable_box_locations) do
     { "Firestone Library (hsvm)" => ["Boxes 1-11; 13-17; 221; 323", "Volumes 42-45"],
       "Firestone Library (mss)" => ["Boxes 12; 20-21; 292-293; P-000145"],
-      "ReCAP (rcpxm)" => ["Boxes 105; 114; 255; 266"] }
+      "ReCAP - Remote Storage (rcpxm)" => ["Boxes 105; 114; 255; 266"] }
   end
 
   # Per conversation with Christa Cleeton, include translated location name and code
   # so that end users and staff can both get the info they need.
   it "translates the location codes" do
-    expect(normalized_box_locations.locations).to contain_exactly("Firestone Library (hsvm)", "Firestone Library (mss)", "ReCAP (rcpxm)")
+    expect(normalized_box_locations.locations).to contain_exactly("Firestone Library (hsvm)", "Firestone Library (mss)", "ReCAP - Remote Storage (rcpxm)")
   end
 
   it "generates a human readable summary of the box locations" do
@@ -65,7 +65,7 @@ describe Pulfalight::NormalizedBoxLocations do
       { "rcpxm" => { "box" => ["4", "10", "10", "10", "10", "10", "10", "10", "10", "10", "10", "4", "10", "10", "10", "11", "11", "11", "4", "4", "11", "4", "11", "11", "11", "11", "11", "11", "11", "11", "11", "4", "11", "11", "4", "11", "11", "11", "11", "11", "11", "11", "11", "11", "11", "4", "11", "11", "11", "11", "11", "4", "4", "4", "4", "11", "11", "11", "4", "11", "11", "11", "12", "12", "11", "11", "12", "12", "12", "12", "12", "12", "4", "12", "12", "12", "12", "12", "12", "12", "12", "12", "12", "12", "12", "12", "12", "12", "12", "12", "12", "4", "12", "12", "12", "12", "12", "12", "4", "4", "4", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "4", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "13", "5", "5", "5", "5", "5", "5", "5", "5", "5", "13", "13", "13", "5", "5", "5", "5", "5", "5", "5", "5", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "7", "8", "8", "13", "8", "8", "8", "8", "9", "8", "8", "8"] }, "location_under_review" => { "item" => ["32101047385792", "32101086138714"] } }
     end
     it "doesn't hang forever" do
-      expect(normalized_box_locations.to_h).to eq({ "ReCAP (rcpxm)" => ["Boxes 4-13"], "location_under_review" => ["Items 32101047385792; 32101086138714"] })
+      expect(normalized_box_locations.to_h).to eq({ "ReCAP - Remote Storage (rcpxm)" => ["Boxes 4-13"], "location_under_review" => ["Items 32101047385792; 32101086138714"] })
     end
   end
 end
