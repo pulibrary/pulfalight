@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 https://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/3f462546n">MC183</eadid><filedesc><titlestmt><titleproper>Eugene W. Sloan Papers, 1941-1945: Preliminary Finding Aid <num>MC183</num></titleproper></titlestmt><publicationstmt><publisher>Public Policy Papers</publisher><p><date>2007</date></p><address><addressline>Seeley G. Mudd Manuscript Library</addressline><addressline>65 Olden Street</addressline><addressline>Princeton, New Jersey 08540</addressline><addressline>mudd@princeton.edu</addressline><addressline>URL: <extptr xlink:href="http://www.princeton.edu/mudd" xlink:show="new" xlink:title="http://www.princeton.edu/mudd" xlink:type="simple"/></addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2026-07-22 15:43:43 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T16:12:47.228-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-08-23T16:28:35.067-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-02-08T12:41:47.151-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2022-11-11 08:46:35 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-11 10:10:07 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-16 12:32:51 -0500</date><item>Updated physloc code</item></change><change><date>2023-12-05 19:10:36 -0500</date><item>Updated use restriction</item></change><change><date>2024-08-12 21:13:41 -0400</date><item>Updated links</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Public Policy Papers</corpname>
+    </repository>
+    <unittitle>Eugene W. Sloan papers</unittitle>
+    <origination label="Creator">
+      <persname role="cre" rules="rda" source="local">Sloan, Eugene Williams (1893)</persname>
+    </origination>
+    <unitid>MC183</unitid>
+    <unitid type="aspace_uri">/repositories/3/resources/1687</unitid>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">13 boxes</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1941/1945" type="inclusive">1941-1945</unitdate>
+    <abstract id="aspace_febea35231603571a08dae3151d175e0">Eugene W. Sloan served as Assistant Secretary to the Treasury (beginning in 1935) and was the creator and first administrator of the United States Savings Bond program. Consists of fourteen scrapbooks compiled by Sloan. Two scrapbooks, which Sloan compiled while Executive Director of the War Savings Staff.</abstract>
+    <physloc id="aspace_d1e7cbe161d5538757292202c23f532c">scamudd</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+    </langmaterial>
+  </did>
+  <phystech id="aspace_e012cdb3919efb46a4edd55c66ee87da">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>For preservation reasons, original analog
+and digital media may not be read or played back in the
+reading room. Users may visually inspect physical media
+but may not remove it from its enclosure. All analog
+audiovisual media must be digitized to preservation-quality
+standards prior to use. Audiovisual digitization requests
+are processed by an approved third-party vendor. Please note,
+the transfer time required can be as little as several weeks
+to as long as several months and there may be financial costs
+associated with the process.
+Requests should be directed through the
+<extref xlink:href="https://library.princeton.edu/special-collections/ask-us" xlink:type="simple">Ask Us Form</extref>.</p>  </phystech>
+  <scopecontent id="aspace_d256db44158dcb717246148e2767ead3">
+    <head>Scope and Contents</head>
+<p>Consists of fourteen scrapbooks compiled by Sloan. Two scrapbooks, which Sloan compiled while Executive Director of the War Savings Staff, contain photographs, clippings, correspondence, and other mementos detailing his professional and personal life, including his World War I military service (including photographs) as well as his tenure at the Department of the Treasury in the Franklin Roosevelt administration. Letters of thanks from James Forrestal and Henry Morganthau to Sloan are included. Twelve other scrapbooks document the Treasury War Bond Program and Savings Bond Program and contain newspaper clippings, pamphlets, posters, etc., on defense bonds and stamps and war savings bonds and stamps.</p>  </scopecontent>
+  <accessrestrict id="aspace_6669d77f5c81f99bc36a19429d212964">
+    <head>Conditions Governing Access</head>
+<p>The collection is open for research.</p>  </accessrestrict>
+  <userestrict id="aspace_9340844166f12c89fb9c8c1fee308bc4">
+    <head>Conditions Governing Use</head>
+<p>Single copies may be made for research purposes. To cite or publish quotations that fall within Fair Use, as defined under <extref xlink:href="http://copyright.princeton.edu/basics/fair-use" xlink:type="simple">U. S. Copyright Law</extref>, no permission is required. For instances beyond Fair Use, it is the responsibility of the researcher to determine whether any permissions related to copyright, privacy, publicity, or any other rights are necessary for their intended use of the Library's materials, and to obtain all required permissions from any existing rights holders, if they have not already done so. Princeton University Library's Special Collections does not charge any permission or use fees for the publication of images of materials from our collections, nor does it require researchers to obtain its permission for said use. The department does request that its collections be properly cited and images credited. More detailed information can be found on the <extref xlink:href="https://library.princeton.edu/about/policies/special-collections-copyright-credit-and-citation-guidelines" xlink:type="simple">Copyright, Credit and Citations Guidelines</extref> page on our website. If you have any questions, please feel free to contact us through the <extref xlink:href="https://library.princeton.edu/services/special-collections/ask-special-collections" xlink:type="simple">Ask Us! form</extref>.</p>  </userestrict>
+  <acqinfo id="aspace_e42c2fc2236cfc8877c1aedf72556c64">
+    <head>Immediate Source of Acquisition</head>
+<p>Available information about this collection indicates that the original acquisition of 12 scrapbooks arrived at Princeton in 1946. Two more scrapbooks were the gift of Mrs. Eugene Sloan in 1989.</p>  </acqinfo>
+  <appraisal id="aspace_94aa7520d5684e85ac88553dcb762659">
+    <head>Appraisal</head>
+<p>No information about appraisal is available for this collection.</p>  </appraisal>
+  <prefercite id="aspace_1eb50c562ea0e32f784ed63d9dab0f8c">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); Collection Title, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_f0603fddc203015db379a378c3a5fd8c">
+    <head>Processing Information</head>
+<p>A collection-level description and finding aid were created for this collection by Dan Santamaria on March 4, 2008.</p>  </processinfo>
+  <bioghist id="aspace_320d7df086fc88790336f86b7e29cdb7">
+    <note label="personal-name">Sloan, Eugene Williams (1893)</note>
+    <head>Biographical / Historical</head>
+<p>Eugene W. Sloan served as Assistant Secretary to the Treasury (beginning in 1935) and was the creator and first administrator of the United States Savings Bond program. In 1941 Sloan became Executive Director of the War Savings Staff. He was appointed Deputy Commissioner of the Public Debt in 1943 and served in that capacity through World War II.</p>  </bioghist>
+  <controlaccess>
+    <subject source="lcsh">Savings bonds -- United States -- History -- 20th century</subject>
+    <subject source="lcsh">World War, 1939-1945 -- photographs</subject>
+    <subject source="lcsh">World War, 1939-1945 -- Economic aspects.</subject>
+    <genreform source="aat">Photographs, Original.</genreform>
+    <genreform source="aat">Scrapbooks.</genreform>
+    <corpname authfilenumber="https://viaf.org/viaf/130168302" source="viaf">United States</corpname>
+  </controlaccess>
+  <dsc><c id="aspace_MC183_c1" level="file"><did><unittitle>Volume 1</unittitle><unitid type="aspace_uri">/repositories/3/archival_objects/376411</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent></physdesc><unitdate calendar="gregorian" datechar="creation" era="ce">dates not examined</unitdate><container altrender="scamudd" encodinganalog="Mudd OS depth" id="aspace_fc03ec96194852d1fd3534811293a46b" label="Mixed Materials [32101103114037]" type="box">1</container></did></c></dsc>
+</archdesc>
+</ead>

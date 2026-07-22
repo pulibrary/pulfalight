@@ -194,6 +194,14 @@ describe "catalog searches", type: :feature, js: true do
         expect(page).to have_content "Willard Thorp and Margaret Farrand Thorp Papers"
       end
     end
+
+    it "does not return unrelated names when searching terms like eugenics", js: false do
+      visit "/catalog?search_field=all_fields&q=eugenics"
+      within first("h3") do
+        expect(page).to have_content "American Eugenics Society"
+        expect(page).not_to have_content "Eugene W. Sloan papers"
+      end
+    end
   end
 
   describe "search page title" do
