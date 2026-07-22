@@ -98,7 +98,7 @@ class AeonRequest
       "CallNumber_#{request_id(box)}": solr_document.eadid,
       "ItemNumber_#{request_id(box)}": box["barcode"],
       "ItemVolume_#{request_id(box)}": item_volume(box),
-      "ItemInfo1_#{request_id(box)}": CGI.escapeHTML(access_restrictions),
+      "ItemInfo1_#{request_id(box)}": CGI.escapeHTML(strip_disallowed_punctuation(access_restrictions)),
       "ItemInfo2_#{request_id(box)}": solr_document.extent,
       "ItemInfo3_#{request_id(box)}": folder(box),
       "ItemInfo4_#{request_id(box)}": box_locator(box),
@@ -107,7 +107,7 @@ class AeonRequest
   end
 
   def item_volume(box)
-    [box["label"]&.upcase_first, item_number_label].compact.join(" ")
+    [sanitize_label(box)&.upcase_first, item_number_label].compact.join(" ")
   end
 
   def item_number_label
@@ -127,7 +127,7 @@ class AeonRequest
 
   # Group all box components in the same EAD together.
   def grouping_identifier(box)
-    "#{ead_id}-#{box['label'].to_s.tr(' ', '-')}"
+    "#{ead_id}-#{sanitize_label(box).tr(' ', '-')}"
   end
 
   def ead_id
@@ -162,9 +162,9 @@ class AeonRequest
     Rails.application.routes.url_helpers.solr_document_url(id: solr_document.id)
   end
 
-  def folder(box)
+  def folder(component)
     folders = container_information.select do |container|
-      container["parent"] == box["id"] && container["type"] == "folder"
+      container["parent"] == component["id"] && container["type"] == "folder"
     end
     return if folders.blank? && non_box_containers.blank?
     return non_box_containers.join(", ") if folders.blank?
@@ -206,10 +206,20 @@ class AeonRequest
   end
 
   def request_id(box)
-    "#{static_request_id}#{box['label'].to_s.tr(' ', '-')}"
+    "#{static_request_id}#{sanitize_label(box).tr(' ', '-')}"
   end
 
   def static_request_id
     @static_request_id ||= SecureRandom.hex(14).to_i(16).to_s
+  end
+
+  private
+
+  def strip_disallowed_punctuation(str)
+    str.gsub(/[,']/, "")
+  end
+
+  def sanitize_label(box)
+    box["label"].to_s.delete(",").gsub("&#44;", "")
   end
 end

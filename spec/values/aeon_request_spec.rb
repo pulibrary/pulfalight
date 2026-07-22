@@ -224,6 +224,50 @@ RSpec.describe AeonRequest do
       end
     end
 
+    context "when an accessnote has different encoded and unencoded apostrophes" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "corner_cases", "C0033.badcharacters.EAD.xml")
+      end
+      it "strips them out" do
+        result = indexer.map_record(record)
+        component = find_component(component_id: "C0033_c001", record: result)
+        document = SolrDocument.new(component)
+
+        request = document.aeon_request
+        request_id = request.form_attributes[:Request]
+        expect(request.form_attributes[:"ItemInfo1_#{request_id}"]).to start_with "Livingstons Battalion Livingstons Battalion Livingstons Battalion"
+      end
+    end
+
+    context "when a container has different encoded and unencoded commas" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "corner_cases", "C1588.badcharacters.EAD.xml")
+      end
+      it "strips them out" do
+        result = indexer.map_record(record)
+
+        # escaped comma
+        component = find_component(component_id: "C1588_c3", record: result)
+        document = SolrDocument.new(component)
+
+        request = document.aeon_request
+        request_id = request.form_attributes[:Request]
+        expect(request_id.include?(",") || request_id.include?("&#44;")).to be false
+        expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Box Series II Box 2"
+        expect(request.form_attributes[:"GroupingField_#{request_id}"]).to eq "C1588-box-Series-II-Box-2"
+
+        # actual comma
+        component = find_component(component_id: "C1588_c4", record: result)
+        document = SolrDocument.new(component)
+
+        request = document.aeon_request
+        request_id = request.form_attributes[:Request]
+        expect(request_id.include?(",") || request_id.include?("&#44;")).to be false
+        expect(request.form_attributes[:"ItemVolume_#{request_id}"]).to eq "Box Series II Box 2"
+        expect(request.form_attributes[:"GroupingField_#{request_id}"]).to eq "C1588-box-Series-II-Box-2"
+      end
+    end
+
     context "when there's one oversize folder and no box" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "univarchives", "AC053.processed.EAD.xml")
