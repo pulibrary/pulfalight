@@ -101,7 +101,8 @@
          parent_identifier_match
          prefercite_teim
          text_en
-         parent_unittitles_teim
+         <!-- Down-weight parent_ fields. See pulfalight#1722 -->
+         parent_unittitles_teim^0.5
          text
        </str>
        <str name="pf">
