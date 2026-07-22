@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 https://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/jq085k72z">WC054</eadid><filedesc><titlestmt><titleproper>Photographs of North American Indians, 1840s-circa 1879: Finding Aid <num>WC054</num></titleproper><author>Valerie Addonizio</author></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2012</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2026-07-22 13:53:03 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T14:33:28.205-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2012-10-10T15:02:38.596-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2022-11-11 09:03:56 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-11 10:25:29 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-16 12:48:40 -0500</date><item>Updated physloc code</item></change><change><date>2023-12-05 19:42:59 -0500</date><item>Updated use restriction</item></change><change><date>2024-08-12 21:26:08 -0400</date><item>Updated links</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Manuscripts Division </corpname>
+    </repository>
+    <unittitle>"Photographs of North American Indians" Albums</unittitle>
+    <origination label="Creator">
+      <corpname authfilenumber="https://viaf.org/viaf/167950525" role="cre" source="viaf">Geological and Geographical Survey of the Territories U.S.</corpname>
+    </origination>
+    <unitid>WC054</unitid>
+    <unitid type="aspace_uri">/repositories/5/resources/2596</unitid>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">10 boxes</extent>
+    </physdesc>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">13.0 linear feet</extent>
+    </physdesc>
+    <unitdate certainty="approximate" datechar="creation" normal="1840/1879" type="inclusive">circa 1840-1879</unitdate>
+    <abstract id="aspace_2cc267a26cd0772ff07ac920b285d921">Consists of two disbound photograph albums containing 1,025 mounted albumen photographs of various Indigenous peoples of North America, including portraits of delegates to Washington, D.C.; expedition photographs; and early Western studio portraits by American photographers. Most of the photographs in the albums are described in the Numerical Index of William Henry Jackson's Descriptive Catalogue of the Photographs of North American Indians (1877), which is pasted to the albums.</abstract>
+    <physloc id="aspace_d70af0f36f46670cb0c9847d9d506dcf">scamss</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+    </langmaterial>
+  </did>
+  <phystech id="aspace_91a6c6e494d158e6988a3a60601d66b9">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>For preservation reasons, original analog
+and digital media may not be read or played back in the
+reading room. Users may visually inspect physical media
+but may not remove it from its enclosure. All analog
+audiovisual media must be digitized to preservation-quality
+standards prior to use. Audiovisual digitization requests
+are processed by an approved third-party vendor. Please note,
+the transfer time required can be as little as several weeks
+to as long as several months and there may be financial costs
+associated with the process.
+Requests should be directed through the
+<extref xlink:href="https://library.princeton.edu/special-collections/ask-us" xlink:type="simple">Ask Us Form</extref>.</p>  </phystech>
+  <scopecontent id="aspace_b7865b06bcc334f2e7ed0917adf184c9">
+    <head>Scope and Contents</head>
+<p>Consists of two disbound albums containing 1,025 mounted albumen photographs of various Indigenous peoples of North America, including portraits of delegates to Washington, D.C.; expedition photographs; and early Western studio portraits. Also included are photographs of ruins in the American Southwest and Mexico, of Southwestern Indian pottery and implements, and of models of Southwestern ruins. </p><p>Most of the photographs in the albums are described in the Numerical Index of William Henry Jackson's Descriptive Catalogue of the Photographs of North American Indians (1877), which is pasted on leaves at the beginning of each volume.</p><p> Item-level descriptions that end with the initials PRF were dated or otherwise reviewed by Paula R. Fleming, author of The Shindler Catalogue (Smithsonian 2003) and a photograph specialist familiar with the original negatives.</p><p> Complete list of known photographers: C. M. (Charles Milton) Bell, Mathew B. Brady, Charles William Carter, Savage &amp; Ottinger, W. G. (William Gunnison) Chamberlain, Désiré Charnay, Thomas M. (Thomas Martin) Easterly, Edric L. Eaton, John H. Fitzgibbon, T. M. Galey, Alexander Gardner, John K. Hillers, J. D. Hutton, J. Gurney &amp; Son, Jackson Brothers (Omaha, Neb.), William Henry Jackson, James E. McClees Studio, N. Brown &amp; Son, Savage &amp; Ottinger, A. Zeno (Antonio Zeno) Shindler, C. S. Stobie, Ulke Brothers, Orloff R. Westmann, Joel E. (Joel Emmons) Whitney.</p>  </scopecontent>
+  <arrangement id="aspace_533255aca8f90bbce177e4f499b20f42">
+    <head>Arrangement</head>
+<p>This collection is arranged by volume and leaf number into ten boxes. Volume 1 (leaves i-iv, 1-99) is arranged in boxes 1-5, Volume 2 (leaves i-iv, 1-91) in boxes 6-10.</p>  </arrangement>
+  <accessrestrict id="aspace_fde564271a7085f23f6b2a1c26365186" rights-restriction="Review">
+    <head>Conditions Governing Access</head>
+<p>While the majority of this collection is open for research, some material has been identified as culturally sensitive and is restricted pending further assessment. Culturally sensitive items are noted in the finding aid.</p>  </accessrestrict>
+  <userestrict id="aspace_e00efeb67399a026b3949c22294e03d0">
+    <head>Conditions Governing Use</head>
+<p>Single copies may be made for research purposes. To cite or publish quotations that fall within Fair Use, as defined under <extref xlink:href="http://copyright.princeton.edu/basics/fair-use" xlink:type="simple">U. S. Copyright Law</extref>, no permission is required. For instances beyond Fair Use, it is the responsibility of the researcher to determine whether any permissions related to copyright, privacy, publicity, or any other rights are necessary for their intended use of the Library's materials, and to obtain all required permissions from any existing rights holders, if they have not already done so. Princeton University Library's Special Collections does not charge any permission or use fees for the publication of images of materials from our collections, nor does it require researchers to obtain its permission for said use. The department does request that its collections be properly cited and images credited. More detailed information can be found on the <extref xlink:href="https://library.princeton.edu/about/policies/special-collections-copyright-credit-and-citation-guidelines" xlink:type="simple">Copyright, Credit and Citations Guidelines</extref> page on our website. If you have any questions, please feel free to contact us through the <extref xlink:href="https://library.princeton.edu/services/special-collections/ask-special-collections" xlink:type="simple">Ask Us! form</extref>.</p>  </userestrict>
+  <acqinfo id="aspace_46383ceb4443a8dfd91cb7898ef07eeb">
+    <head>Immediate Source of Acquisition</head>
+<p>Gift of Prof. William Libbey, Class of 1877, Department of Geology, circa 1895-1897. Accession numbers AM 125286 and AM 125287.</p>  </acqinfo>
+  <appraisal id="aspace_9028ec5215f744f35275db424df80979">
+    <head>Appraisal</head>
+<p>No appraisal information is available.</p>  </appraisal>
+  <prefercite id="aspace_6ad31e3d24e5a09f9b6ac56c427173aa">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); Photographs of North American Indians, Box and Leaf Number; Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_395f6bd60361dfe26a7d9de75fb7622b">
+    <head>Processing Information</head>
+<p>This collection was identified, researched, and described by Heather Shannon in 2005, with further research and description by Valerie Addonizio in 2009. Finding aid written by Valerie Addonizio in 2012. Researcher Paula R. Fleming also provided date and attribution information on specific items.</p><p>The existence of harmful language was noted in the collection-level description note by Faith Charlton in 2023 as an initial step per reparative description-related work.</p><p>As part of reparative description efforts in 2024, archivists removed the word "sq---" from item titles and replaced it with "wife" or "woman" based on available context. Former item titles, which had been derived from the 1877 Index of the Descriptive Catalogue of Photographs of North American Indians, remain evident in Scope and Contents notes. </p><p>As part of reparative description efforts in 2025 and in alignment with the Protocols for Native American Archival Materials, archivists removed digital images of human remains. </p>  </processinfo>
+  <scopecontent id="aspace_3446e09061cc6dd915576e6ea60652aa">
+    <head>Content Warning</head>
+<p>Racist, colonialist, and sexist language were used to describe many of the items in this collection. In most cases, descriptions were creator-supplied. In other cases, in which photographs lacked identifying information, descriptions were created by an archivist. However, the collection is a candidate for ongoing reparative description work. We hope that researchers will engage in a dialogue with staff about issues in the collection and changes that could help.</p>  </scopecontent>
+  <bibliography id="aspace_bec04b7f7ac00c7c0b7c4de4e7a9dddf">
+    <head>Bibliography</head>
+<p>Descriptive and historical notes of the Bureau of American Ethnology Collection of Glass Negatives at the National Anthropological Archives, accessed online at <extref xlink:href="http://www.nmnh.si.edu/naa/guide/_b3.htm" xlink:type="simple">http://www.nmnh.si.edu/naa/guide/_b3.htm</extref> in 2010 and 2012. Descriptive and historical notes of Manuscript 4420 in the Bureau of American Ethnology-United States National Museum Collection of Indian Photographs, accessed online at <extref xlink:href="http://www.nmnh.si.edu/naa/guide/appx_g.htm" xlink:type="simple">http://www.nmnh.si.edu/naa/guide/appx_g.htm</extref> in 2010 and 2012. Fleming, Paula R. Native American Photography at the Smithsonian: The Shindler Catalogue. Washington, D.C: Smithsonian Books, 2003. Jackson, William H., and F. V. Hayden. Descriptive Catalogue of the Photographs of the United States Geological Survey of the Territories for the Years 1869 to 1875, Inclusive, Miscellaneous Publications, Number 5. Washington: G.P.O., 1875. Jackson, William H. Descriptive Catalogue of the Photographs of North American Indians, United States Geological Survey of the Territories, Miscellaneous Publications, Number 9. Washington: G.P.O., 1877.</p>  </bibliography>
+  <controlaccess>
+    <subject source="lcsh">Indians of Mexico -- photographs</subject>
+    <subject source="lcsh">Indians of North America -- photographs</subject>
+    <genreform source="aat">Albumen prints.</genreform>
+    <genreform source="aat">Ethnographic photographs.</genreform>
+    <genreform source="aat">Portrait photographs.</genreform>
+    <subject source="lcsh">Indians, Treatment of -- North America -- 19th century</subject>
+    <corpname authfilenumber="https://viaf.org/viaf/75382838" role="pht" source="viaf">Carter, C. W.</corpname>
+    <persname authfilenumber="https://viaf.org/viaf/75345723" role="pht" source="viaf">Chamberlain, W. G. (William Gunnison)</persname>
+    <persname role="pht" rules="rda" source="lcnaf">Charnay, Désiré (1828-1915)</persname>
+    <persname authfilenumber="https://viaf.org/viaf/13114715" role="pht" source="viaf">Easterly, Thomas M. (Thomas Martin) (1809-1882)</persname>
+    <persname authfilenumber="https://viaf.org/viaf/132938081" role="pht" source="viaf">Eaton, E. L. (Edric L.) (approximately 1836-)</persname>
+    <persname authfilenumber="https://viaf.org/viaf/57416946" role="pht" source="viaf">Gardner, Alexander (1821-1882)</persname>
+    <persname authfilenumber="https://viaf.org/viaf/11396287" role="pht" source="viaf">Jackson, William Henry (1843-1942)</persname>
+    <persname role="pht" rules="lcnaf" source="local">Shindler, A. Zeno (Antonio Zeno)</persname>
+    <persname role="pht" rules="dacs" source="local">Westmann, Orloff R.</persname>
+    <persname authfilenumber="https://viaf.org/viaf/39316639" role="pht" source="viaf">Whitney, Joel E. (Joel Emmons) (1822-1886)</persname>
+  </controlaccess>
+  <bioghist audience="internal">
+    <note label="personal-name">Jackson, William Henry (1843-1942)</note>
+    <head>Biographical / Historical</head>
+<p>American photographer, artist and explorer, William Henry Jackson (1843-1942) is known for his iconic Indian portraits and landscape photographs of the American West. After working for the Union Pacific Railroad and the USGS (U.S. Geological Survey) throughout the 1870s, Jackson moved to Denver in 1879 and opened a commercial studio. There he continued to photograph the West, taking on many side projects photographing for hotels and railroad companies like the Mexican Central, New York Central, and the Baltimore &amp; Ohio.</p>  </bioghist>
+  <dsc><c id="aspace_WC054_c00210" level="file"><did><unittitle>Bald Eagle, Brule Dakota</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/812159</unitid><origination label="Creator"><persname authfilenumber="https://viaf.org/viaf/57416946" role="cre" source="viaf">Gardner, Alexander (1821-1882)</persname></origination><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 item</extent></physdesc><unitdate datechar="creation" normal="1872/1872" type="inclusive">1872</unitdate><container altrender="scamss" encodinganalog="Elephant size box" id="aspace_f09447e0926f0f596f6a85fc54668273" label="Mixed Materials [32101036921847]" type="box">2</container><container id="aspace_32fb3f5fff2704eba62a37139b0d70c3" parent="aspace_f09447e0926f0f596f6a85fc54668273" type="Item">Volume Album 1, leaf 35, photograph f</container><dao xlink:actuate="onRequest" xlink:href="https://figgy.princeton.edu/concern/scanned_resources/07297b40-1be7-4cb0-a221-aa11b53c5037/manifest" xlink:role="https://iiif.io/api/presentation/2.1/" xlink:show="new" xlink:title="View digital content" xlink:type="simple"><daodesc><p>View digital content</p></daodesc></dao></did><scopecontent id="aspace_067a64251240097e4a94913e681dc263"><head>Scope and Contents</head><p>Title from index of the DCPNAI, negative no. 355. Portrait of Wanmble-Shda or A-Nu-Ka-San-Vua-Be-Luh (Bald Eagle or Weasel Eagle or Plucked Eagle). Possibly printed by Jackson.</p></scopecontent><controlaccess><subject source="lcsh">Dakota Indians</subject></controlaccess></c><c id="aspace_WC054_c00211" level="file"><did><unittitle>Bald Eagle, Brule Dakota</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/812160</unitid><origination label="Creator"><persname authfilenumber="https://viaf.org/viaf/57416946" role="cre" source="viaf">Gardner, Alexander (1821-1882)</persname></origination><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 item</extent></physdesc><unitdate datechar="creation" normal="1872/1872" type="inclusive">1872</unitdate><container altrender="scamss" encodinganalog="Elephant size box" id="aspace_92abf92f7e90aad1d31805c4bee8813d" label="Mixed Materials [32101036921847]" type="box">2</container><container id="aspace_e2feb8c01be83eddbc1bc5fa327f0671" parent="aspace_92abf92f7e90aad1d31805c4bee8813d" type="Item">Volume Album 1, leaf 36, photograph a</container><dao xlink:actuate="onRequest" xlink:href="https://figgy.princeton.edu/concern/scanned_resources/78d89066-48ff-48dc-8f04-06944be8a135/manifest" xlink:role="https://iiif.io/api/presentation/2.1/" xlink:show="new" xlink:title="View digital content" xlink:type="simple"><daodesc><p>View digital content</p></daodesc></dao></did><scopecontent id="aspace_f46c0fff4b139e14070dcafeab85a870"><head>Scope and Contents</head><p>Title from index of the DCPNAI, negative no. 356. Portrait of Wanmble-Shda or A-Nu-Ka-San-Vua-Be-Luh (Bald Eagle or Weasel Eagle or Plucked Eagle). Possibly printed by Jackson.</p></scopecontent><controlaccess><subject source="lcsh">Dakota Indians</subject></controlaccess></c></dsc>
+</archdesc>
+</ead>

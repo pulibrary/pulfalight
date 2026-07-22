@@ -103,6 +103,9 @@
          text_en
          <!-- Down-weight parent_ fields. See pulfalight#1722 -->
          parent_unittitles_teim^0.5
+         collection_title_compound
+         creator_compound
+         names_compound
          text
        </str>
        <str name="pf">

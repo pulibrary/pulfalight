@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 https://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/th83kz33s">MC180</eadid><filedesc><titlestmt><titleproper>Political Cartoon Collection, 1889-1944: Inventory <num>MC180</num></titleproper></titlestmt><publicationstmt><publisher>Public Policy Papers</publisher><p><date>2001</date></p><address><addressline>Seeley G. Mudd Manuscript Library</addressline><addressline>65 Olden Street</addressline><addressline>Princeton, New Jersey 08540</addressline><addressline>mudd@princeton.edu</addressline><addressline>URL: <extptr xlink:href="http://www.princeton.edu/mudd" xlink:show="new" xlink:title="http://www.princeton.edu/mudd" xlink:type="simple"/></addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2026-07-22 13:53:23 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T16:28:39.895-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2012-07-03T14:57:50.149-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2013-01-02T14:30:02.562-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2018-11-20T12:29:16.579-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2019-12-06T09:05:16.234-05:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2022-11-18 14:31:31 -0500</date><item>Updated physloc code</item></change><change><date>2023-12-05 19:10:31 -0500</date><item>Updated use restriction</item></change><change><date>2024-08-12 21:13:37 -0400</date><item>Updated links</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Public Policy Papers</corpname>
+    </repository>
+    <unittitle>Political Cartoon Collection</unittitle>
+    <origination label="Creator">
+      <corpname authfilenumber="https://viaf.org/viaf/168350386" role="col" source="viaf">Princeton University. Library. Department of Rare Books and Special Collections</corpname>
+    </origination>
+    <origination label="Creator">
+      <corpname role="cre" source="local">Princeton University.‏ ‎Library.‏ Public Policy Papers</corpname>
+    </origination>
+    <unitid>MC180</unitid>
+    <unitid type="aspace_uri">/repositories/3/resources/1683</unitid>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">30 boxes</extent>
+    </physdesc>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">2 items</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1889/1944" type="inclusive">1889-1944</unitdate>
+    <abstract id="aspace_dcbae70ed5ec3be1370c3f5505c76fd3">This artificial collection consists of one thousand original drawings, including a significant number by Charles Lewis Bartholomew, Otho Cushing, Homer C. Davenport, John Tinney McCutcheon, and Frank Arthur Nankivell.</abstract>
+    <physloc id="aspace_329d6b638f594c0b9235b635d59c60c1">scarcpph</physloc>
+    <physloc id="aspace_a28f43cebea690d68a72f92f07519c84">FOR DIGITIZED CONTENT: Cartoons in this collection have been digitized and may be viewed or downloaded through this finding aid. To view each one, navigate to the individual item within this finding aid.</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+    </langmaterial>
+  </did>
+  <phystech id="aspace_9cb05723448e05f25d6f6c8ba5a1f95f">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>For preservation reasons, original analog
+and digital media may not be read or played back in the
+reading room. Users may visually inspect physical media
+but may not remove it from its enclosure. All analog
+audiovisual media must be digitized to preservation-quality
+standards prior to use. Audiovisual digitization requests
+are processed by an approved third-party vendor. Please note,
+the transfer time required can be as little as several weeks
+to as long as several months and there may be financial costs
+associated with the process.
+Requests should be directed through the
+<extref xlink:href="https://library.princeton.edu/special-collections/ask-us" xlink:type="simple">Ask Us Form</extref>.</p>  </phystech>
+  <scopecontent id="aspace_ccf688869ed469c4eafdd27c07c1f24f">
+    <head>Scope and Contents</head>
+<p>This artificial collection consists of one thousand original drawings, including a significant number by Charles Lewis Bartholomew, Otho Cushing, Homer C. Davenport, John Tinney McCutcheon, and Frank Arthur Nankivell. Other artists that are well represented include Louis Glackens, Harold Imbrie, Udo J. Keppler, Norman Ritchie, and Fred O. Seibel.</p>  </scopecontent>
+  <arrangement id="aspace_3adb3dd039f9748d4f4f5f43dccc6bd4">
+    <head>Arrangement</head>
+<p>Arranged alphabetically by cartoonist.</p>  </arrangement>
+  <accessrestrict id="aspace_d4e58eac14b0e7d1a617e2d43158a337">
+    <head>Conditions Governing Access</head>
+<p>Collection is open for research use.</p>  </accessrestrict>
+  <userestrict id="aspace_f2fb94d5a8f22bc80659043ffa13b3d3">
+    <head>Conditions Governing Use</head>
+<p>Single copies may be made for research purposes. To cite or publish quotations that fall within Fair Use, as defined under <extref xlink:href="http://copyright.princeton.edu/basics/fair-use" xlink:type="simple">U. S. Copyright Law</extref>, no permission is required. For instances beyond Fair Use, it is the responsibility of the researcher to determine whether any permissions related to copyright, privacy, publicity, or any other rights are necessary for their intended use of the Library's materials, and to obtain all required permissions from any existing rights holders, if they have not already done so. Princeton University Library's Special Collections does not charge any permission or use fees for the publication of images of materials from our collections, nor does it require researchers to obtain its permission for said use. The department does request that its collections be properly cited and images credited. More detailed information can be found on the <extref xlink:href="https://library.princeton.edu/about/policies/special-collections-copyright-credit-and-citation-guidelines" xlink:type="simple">Copyright, Credit and Citations Guidelines</extref> page on our website. If you have any questions, please feel free to contact us through the <extref xlink:href="https://library.princeton.edu/services/special-collections/ask-special-collections" xlink:type="simple">Ask Us! form</extref>.</p>  </userestrict>
+  <acqinfo id="aspace_1cfce426273d61a9d87e707f6aa883fe">
+    <head>Immediate Source of Acquisition</head>
+<p>Material in this collection is assembled from a number of different accessions throughout the years. Nineteen Derso and Kelen cartoons were added in summer 2012, accession number ML.2012.027. A 1931 Otto Cushing cartoon was added in summer 2014, accession number ML.2013.031. A World War II era comic strip produced by the Congress of Industrial Organizations (CIO) was added in 2016, accession number ML.1000.007.</p>  </acqinfo>
+  <appraisal id="aspace_0df6556f196878db8f73e581151f4147">
+    <head>Appraisal</head>
+<p>This is an artificial collection. No materials have been separated.</p>  </appraisal>
+  <altformavail id="aspace_0e2ee840f8e507bc367d4e52a3d7cf41">
+    <head>Existence and Location of Copies</head>
+<p>FOR DIGITIZED CONTENT: Cartoons in this collection have been digitized and may be viewed or downloaded through this finding aid. To view each one, navigate to the individual item within this finding aid.</p>  </altformavail>
+  <relatedmaterial id="aspace_93ef0a1cc6be727458a6238253b17a40">
+    <head>Related Materials</head>
+<p>Additional cartoons by many of these artists are located in the <extref xlink:href="http://rbsc.princeton.edu/divisions/graphic-arts-collection" xlink:type="simple">Graphic Arts Collection</extref> at the Firestone Library, Princeton University. These cartoons can be located by searching the <extref xlink:href="http://lib-dbserver.princeton.edu/RBVisuals/index.htm" xlink:type="simple">Visuals Database</extref>.</p>  </relatedmaterial>
+  <prefercite id="aspace_05313b5a87d820da41d4e16a0e45e370">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); Political Cartoon Collection, Box and Folder Number; Public Policy Papers, Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_6c205cf02f383a97ee7204ab1a71a618">
+    <head>Processing Information</head>
+<p>This is an unprocessed collection. Contents list updated by Adriane Hanson with the assistance of Jeremy Russell in 2010. Derso and Kelen cartoons in June 2012 accession were added to existing cartoons in Box 13 in 2012. A 1931 Otto Cushing cartoon was added to Box 10 in 2014. A World War II era comic strip produced by the Congress of Industrial Organizations (CIO) was added to Box 29 in 2016.</p>  </processinfo>
+  <controlaccess>
+    <subject source="lcsh">Political satire, American.</subject>
+    <geogname source="lcnaf">United States -- Politics and government. -- Caricatures and cartoons</geogname>
+    <subject source="lcsh">Caricatures and cartoons -- United States</subject>
+    <genreform source="aat">Cartoons (humorous images)</genreform>
+    <genreform source="aat">Cartoons (working drawings)</genreform>
+    <genreform source="aat">Drawings.</genreform>
+    <genreform source="aat">Editorial cartoons -- United States</genreform>
+    <genreform source="aat">Political cartoons -- United States</genreform>
+    <persname authfilenumber="https://viaf.org/viaf/58317423" source="viaf">Bartholomew, Charles Lewis (1869-1949)</persname>
+    <persname authfilenumber="https://viaf.org/viaf/70631813" source="viaf">Cushing, Otho (1871-1942)</persname>
+    <persname authfilenumber="https://viaf.org/viaf/40944664" source="viaf">Davenport, Homer (1867-1912)</persname>
+  </controlaccess>
+  <dsc><c id="aspace_MC180_c00163" level="file"><did><unittitle>Costello, Jerry</unittitle><unitid type="aspace_uri">/repositories/3/archival_objects/365926</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent></physdesc><unitdate datechar="creation" normal="1940-01-01/1940-12-31" type="inclusive">1940</unitdate></did><c id="aspace_MC180_c00171" level="item"><did><unittitle>"Unleash It!"</unittitle><unitid type="aspace_uri">/repositories/3/archival_objects/366191</unitid><origination label="Creator"><persname rules="rda" source="lcnaf">Costello, Jerry (1897-1971)</persname></origination><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent><dimensions>14.5 x 11.25</dimensions></physdesc><unitdate calendar="gregorian" datechar="creation" era="ce">undated</unitdate><container altrender="scarcpph" encodinganalog="NBox" id="aspace_2f5d5affcaa0243d17a9731989e508ac" label="Mixed Materials [32101076545050]" type="box">4</container><dao xlink:actuate="onRequest" xlink:href="https://figgy.princeton.edu/concern/scanned_resources/289643cb-0412-477a-b5d7-9ccd720590d6/manifest" xlink:role="https://iiif.io/api/presentation/2.1/" xlink:show="new" xlink:title="View digital content" xlink:type="simple"><daodesc><p>View digital content</p></daodesc></dao></did><scopecontent id="aspace_270bd68bf18010626f8dcd1c12451bc4"><head>Scope and Contents</head><p>A bald eagle, labeled "America's Full Air Might" struggles to fly while each foot is tied to the ground by "half-way measures."</p></scopecontent></c></c><c id="aspace_MC180_c00187" level="file"><did><unittitle>Cushing, Otho (American, 1871-1942),</unittitle><unitid type="aspace_uri">/repositories/3/archival_objects/365929</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">7 boxes</extent></physdesc><unitdate datechar="creation" normal="1910-03-15/1931-12-31" type="inclusive">1910 March 15-1931</unitdate></did><c id="aspace_MC180_c00189" level="item"><did><unittitle>"Peace"</unittitle><unitid type="aspace_uri">/repositories/3/archival_objects/366206</unitid><origination label="Creator"><persname authfilenumber="https://viaf.org/viaf/70631813" source="viaf">Cushing, Otho (1871-1942)</persname></origination><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent><dimensions>16 x 18.25</dimensions></physdesc><unitdate calendar="gregorian" datechar="creation" era="ce">undated</unitdate><container altrender="scarcpph" encodinganalog="NBox" id="aspace_e2ec8a7e3740cbe609ccb83c4b5b8d04" label="Mixed Materials [32101076545068]" type="box">5</container><dao xlink:actuate="onRequest" xlink:href="https://figgy.princeton.edu/concern/scanned_resources/821c7368-b959-4bd5-af0f-234628d11917/manifest" xlink:role="https://iiif.io/api/presentation/2.1/" xlink:show="new" xlink:title="View digital content" xlink:type="simple"><daodesc><p>View digital content</p></daodesc></dao></did><scopecontent id="aspace_5bfc8ef86b816cbddff3444c21493d43"><head>Scope and Contents</head><p>Peace. A dove offers an olive branch to a bald eagle.</p></scopecontent><bioghist id="aspace_91df142f62c46ea0f174cc82479e1d31"><note label="personal-name">Cushing, Otho (1871-1942)</note><head>biographical statement</head></bioghist></c></c><c id="aspace_MC180_c01052" level="file"><did><unittitle>Villeneuve, N.C.</unittitle><unitid type="aspace_uri">/repositories/3/archival_objects/366028</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent></physdesc><unitdate calendar="gregorian" datechar="creation" era="ce">dates not examined</unitdate></did><c id="aspace_MC180_c01062" level="item"><did><unittitle>"Get Him!"</unittitle><unitid type="aspace_uri">/repositories/3/archival_objects/366981</unitid><origination label="Creator"><persname rules="dacs" source="local">Villeneuve, N.C.</persname></origination><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 box</extent><dimensions>16.75 x 18.75</dimensions></physdesc><unitdate calendar="gregorian" datechar="creation" era="ce">undated</unitdate><container altrender="scarcpph" encodinganalog="NBox" id="aspace_7214556b5f652e2be01563533debd9dc" label="Mixed Materials [32101076544236]" type="box">28</container><dao xlink:actuate="onRequest" xlink:href="https://figgy.princeton.edu/concern/scanned_resources/e233668c-f401-4b4a-a066-b1285eda65bb/manifest" xlink:role="https://iiif.io/api/presentation/2.1/" xlink:show="new" xlink:title="View digital content" xlink:type="simple"><daodesc><p>View digital content</p></daodesc></dao></did><scopecontent id="aspace_5ad229fc20c69f621f38aa8c74eebae8"><head>Scope and Contents</head><p>A bald eagle, representing the U.S.A., attacks a shark representing submarine terrorism during World War I.</p></scopecontent></c></c></dsc>
+</archdesc>
+</ead>

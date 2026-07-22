@@ -67,7 +67,13 @@ class AspaceFixtureGenerator
     "MC104",
     "AC198.06",
     "MC184",
-    "MC183"
+    "MC183",
+    "AC198.06",
+    "C0100",
+    "WC054",
+    "MC180",
+    "WC034",
+    "ENG004"
   ].freeze
 
   # List components per EAD which are used in tests to make processing those
@@ -162,7 +168,11 @@ class AspaceFixtureGenerator
     "MC104" => ["aspace_MC104_3c3251"],
     "AC198.06" => ["aspace_AC198.06_c1"],
     "MC184" => ["aspace_MC184_c0012"],
-    "MC183" => ["aspace_MC183_c1"]
+    "MC183" => ["aspace_MC183_c1"],
+    "C0100" => ["aspace_C0100_c000596"],
+    "WC054" => ["aspace_WC054_c00210", "aspace_WC054_c00211"],
+    "MC180" => ["aspace_MC180_c01062", "aspace_MC180_c00171", "aspace_MC180_c00189"],
+    "ENG004" => ["aspace_ENG004_c0048"]
   }.freeze
 
   attr_reader :ead_ids, :component_map, :fixture_dir

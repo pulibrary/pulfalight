@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 https://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/3r074t99j">ENG004</eadid><filedesc><titlestmt><titleproper>Department of Civil Engineering. Engineering-Economics Series Reports1978-1987: Finding Aid <num>ENG004</num></titleproper><author>Engineering Library Staff</author></titlestmt><publicationstmt><publisher>Lewis Science and Engineering Library</publisher><p><date>2007</date></p><address><addressline>Fine Hall</addressline><addressline>B Floor</addressline><addressline>Princeton, NJ 08540</addressline><addressline>englib@princeton.edu</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2026-07-24 12:58:11 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T16:52:38.965-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2023-11-29 13:12:54 -0500</date><item>Updated accessrestrict</item></change><change><date>2023-12-05 19:53:45 -0500</date><item>Updated use restriction</item></change><change><date>2024-08-12 21:45:40 -0400</date><item>Updated links</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Lewis Science and Engineering Library</corpname>
+    </repository>
+    <unittitle>Engineering Economics Series Reports</unittitle>
+    <origination label="Creator">
+      <corpname authfilenumber="http://viaf.org/viaf/142219424" role="col" source="viaf">Princeton University. Department of Civil and Environmental Engineering</corpname>
+    </origination>
+    <unitid>ENG004</unitid>
+    <unitid type="aspace_uri">/repositories/9/resources/1504</unitid>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">150 Volumes</extent>
+    </physdesc>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">1.0 linear feet</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1978/1987" type="inclusive">1978-1987</unitdate>
+    <abstract id="aspace_0b8a054f780c2bcec7bdee8a1d22fa63">Consists of technical and research reports created by the faculty and staff of the Department of Civil Engineering from 1978 to 1987. These reports are issued as part of the Economic Series.</abstract>
+    <physloc id="aspace_080e8517d011f26ed09f7de86e13e1be">st</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+    </langmaterial>
+  </did>
+  <odd id="aspace_d373a732343a25664e0f5224bcff0f95">
+    <head>General</head>
+<p>(ST) TA177.4.E534</p>  </odd>
+  <scopecontent id="aspace_2014773c8954094e83230e4aa1e599a1">
+    <head>Scope and Contents</head>
+<p>Consists of technical reports from the Department of Civil Engineering.</p>  </scopecontent>
+  <accessrestrict id="aspace_f31a7277822c102886542ebadef6fd37" rights-restriction="Open">
+    <head>Conditions Governing Access</head>
+<p>The School of Engineering and Applied Science technical reports are in the circulating collection of the Lewis Science and Engineering Library on the B floor of the Fine Hall Wing. Email englib@princeton.edu for questions or digitization of materials upon request.</p>  </accessrestrict>
+  <userestrict id="aspace_da8a9d98821e5ae66a76744abeebd2a7">
+    <head>Conditions Governing Use</head>
+<p>Single copies may be made for research purposes. To cite or publish quotations that fall within Fair Use, as defined under <extref xlink:href="http://copyright.princeton.edu/basics/fair-use" xlink:type="simple">U. S. Copyright Law</extref>, no permission is required. For instances beyond Fair Use, it is the responsibility of the researcher to determine whether any permissions related to copyright, privacy, publicity, or any other rights are necessary for their intended use of the Library's materials, and to obtain all required permissions from any existing rights holders, if they have not already done so. Princeton University Library's Special Collections does not charge any permission or use fees for the publication of images of materials from our collections, nor does it require researchers to obtain its permission for said use. The department does request that its collections be properly cited and images credited. More detailed information can be found on the <extref xlink:href="https://library.princeton.edu/about/policies/special-collections-copyright-credit-and-citation-guidelines" xlink:type="simple">Copyright, Credit and Citations Guidelines</extref> page on our website. If you have any questions, please feel free to contact us through the <extref xlink:href="https://library.princeton.edu/services/special-collections/ask-special-collections" xlink:type="simple">Ask Us! form</extref>.</p>  </userestrict>
+  <prefercite id="aspace_00d78615a34b1fa3afaf4d5933db79b3">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); Department of Civil Engineering Technical Reports, Engineering Library, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_5d8b2e15d4e5ebeb18bd214a2c4f0f41">
+    <head>Processing Information</head>
+<p>Finding aid written by Engineering Library Staff in 2011</p>  </processinfo>
+  <controlaccess>
+    <subject source="lcsh">Engineering economy.</subject>
+    <subject source="lcsh">Mathematical optimization.</subject>
+  </controlaccess>
+  <dsc><c id="aspace_ENG004_c0048" level="item"><did><unittitle>A Network Planning Model for the U.S. AIR Traffic System</unittitle><unitid type="aspace_uri">/repositories/9/archival_objects/259079</unitid><origination label="Creator"><persname role="aut" rules="viaf" source="local">Mulvey, J.M.</persname></origination><origination label="Creator"><persname role="asn" rules="viaf" source="local">Mulvey, J.M.</persname></origination><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 item</extent></physdesc><unitdate datechar="creation" normal="1983/1983" type="inclusive">1983</unitdate><container altrender="st" encodinganalog="NBox" id="aspace_18554ae4dd632c56d763c4b8ce6dbbed" label="Mixed Materials [ENG004_n48]" type="Item">Report No. EES-83-8</container></did></c></dsc>
+</archdesc>
+</ead>

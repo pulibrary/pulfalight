@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 https://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/v692t6224">C0100</eadid><filedesc><titlestmt><titleproper>Archives of Henry Holt and Company, 1859-1981 (bulk 1890-1943): Finding Aid <num>C0100</num></titleproper></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2002</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2026-07-24 12:08:24 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-05-02T13:34:05.212-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2013-07-24T12:20:29.477-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2022-11-11 09:23:18 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-11 10:43:14 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-16 13:11:26 -0500</date><item>Updated physloc code</item></change><change><date>2023-12-05 20:10:50 -0500</date><item>Updated use restriction</item></change><change><date>2024-08-12 21:40:55 -0400</date><item>Updated links</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Manuscripts Division </corpname>
+    </repository>
+    <unittitle>Archives of Henry Holt and Company</unittitle>
+    <origination label="Creator">
+      <corpname authfilenumber="https://viaf.org/126775354" role="cre" source="viaf">Henry Holt and Company.</corpname>
+    </origination>
+    <unitid>C0100</unitid>
+    <unitid type="aspace_uri">/repositories/5/resources/3940</unitid>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">191 boxes</extent>
+    </physdesc>
+    <physdesc altrender="part">
+      <extent altrender="materialtype spaceoccupied">435 Volumes</extent>
+    </physdesc>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">133 linear feet</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1859/1981" type="inclusive">1859-1981</unitdate>
+    <unitdate datechar="creation" normal="1890/1943" type="bulk">1890-1943</unitdate>
+    <abstract id="aspace_67bf5cd10f9315e8f4a86b293dc5e4ea">Henry Holt was a prominent publisher in the nineteenth and twentieth centuries. The collection consists of correspondence and manuscripts of authors published by the company, various bookkeeping records, and a collection of photographs, publicity materials, and clippings about Robert Frost.</abstract>
+    <physloc id="aspace_36c3c734a8d539b9256ba037a1369130">scamss</physloc>
+    <physloc id="aspace_dc22f4f1fd2be1eb7afd80e52b9b9ee4">scarcpxm</physloc>
+    <physloc id="aspace_e55ef440baa7e2222b95d0ebc1145bd9">This collection is stored partially onsite (all letterbooks, Boxes 1-159A, 190-200, B-001221) at Firestone Library and partially offsite (Boxes 160-161, 165-166, 177-189) at the ReCAP facility.</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+    </langmaterial>
+  </did>
+  <phystech id="aspace_da7fb870375bcc58289074d486f508f7">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>For preservation reasons, original analog
+and digital media may not be read or played back in the
+reading room. Users may visually inspect physical media
+but may not remove it from its enclosure. All analog
+audiovisual media must be digitized to preservation-quality
+standards prior to use. Audiovisual digitization requests
+are processed by an approved third-party vendor. Please note,
+the transfer time required can be as little as several weeks
+to as long as several months and there may be financial costs
+associated with the process.
+Requests should be directed through the
+<extref xlink:href="https://library.princeton.edu/special-collections/ask-us" xlink:type="simple">Ask Us Form</extref>.</p>  </phystech>
+  <scopecontent id="aspace_31674112132fecd7ff81fd9d9103408e">
+    <head>Scope and Contents</head>
+<p>Consists of correspondence and manuscripts of authors published by the firm, letterbooks, financial records, inventory records, copyright records, advertising records, trade catalogs, stockholder records, and a series consisting of photographs, publicity materials, and clippings relating to Robert Frost. Authors represented include Robert Frost, Henry Adams, William James, Carl Sandburg, John Dewey, Albert Schweitzer, Hamlin Garland, and H. L. Mencken.</p>  </scopecontent>
+  <arrangement id="aspace_507b0fe86d1472b39efdb508f2efd005">
+    <head>Arrangement</head>
+<p>The collection is arranged into 11 series. Box numbers 163-164, 167-176 not used.</p>  </arrangement>
+  <accessrestrict id="aspace_5720fc44197e840f228d400ba75f4275">
+    <head>Conditions Governing Access</head>
+<p>Collection is open for research use.</p>  </accessrestrict>
+  <userestrict id="aspace_ef55ffab77ac80a25e3b7f68f424b22c">
+    <head>Conditions Governing Use</head>
+<p>Single copies may be made for research purposes. To cite or publish quotations that fall within Fair Use, as defined under <extref xlink:href="http://copyright.princeton.edu/basics/fair-use" xlink:type="simple">U. S. Copyright Law</extref>, no permission is required. For instances beyond Fair Use, it is the responsibility of the researcher to determine whether any permissions related to copyright, privacy, publicity, or any other rights are necessary for their intended use of the Library's materials, and to obtain all required permissions from any existing rights holders, if they have not already done so. Princeton University Library's Special Collections does not charge any permission or use fees for the publication of images of materials from our collections, nor does it require researchers to obtain its permission for said use. The department does request that its collections be properly cited and images credited. More detailed information can be found on the <extref xlink:href="https://library.princeton.edu/about/policies/special-collections-copyright-credit-and-citation-guidelines" xlink:type="simple">Copyright, Credit and Citations Guidelines</extref> page on our website. If you have any questions, please feel free to contact us through the <extref xlink:href="https://library.princeton.edu/services/special-collections/ask-special-collections" xlink:type="simple">Ask Us! form</extref>.</p>  </userestrict>
+  <custodhist id="aspace_9868e8b6f9b748b2431d22532da9dac7">
+    <head>Custodial History</head>
+<p>Representatives of the University Club in New York City, from whom the Library received a small addition of publishing correspondence (AM 2019-13), believe they received this material from Henry Holt around the time that the bulk of the archives were acquired by Princeton.</p>  </custodhist>
+  <acqinfo id="aspace_5805f7aa94978ecd7240905fdd1a3d9b">
+    <head>Immediate Source of Acquisition</head>
+<p>Gift of Henry Holt and Company. The bulk of the archives were acquired in 1952 (AM 14560). Additional materials were later acquired from Henry Holt and Company via various representatives of the company, including Albert C. Edwards, Ross Sackett, Maureen McManus, William J. Tribe (AM 18508), Joanne L. Berg (AM 85-99), and others (AM 18808, AM 19842), primarily during the 1950s through the 1970s. A small addition of publishing correspondence was acquired via the University Club in New York City in 2018 (AM 2019-13).</p>  </acqinfo>
+  <appraisal id="aspace_ac7dc4e8c93d893553deb38c296cb342">
+    <head>Appraisal</head>
+<p>No appraisal information is available.</p>  </appraisal>
+  <prefercite id="aspace_00cda8ed8030d8a4463da89bfdd557ba">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); Archives of Henry Holt and Company, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_b3ce9c129a42e3d75129703e267f76b9">
+    <head>Processing Information</head>
+<p>Biography written by Alyxandra Cullen, '09.</p><p> New materials added by Kelly Bolding in September 2018.</p>  </processinfo>
+  <bioghist id="aspace_e8b37e671656cdd7ba898f194fa19ae4">
+    <note label="personal-name">Henry Holt and Company.</note>
+    <head>Biographical / Historical</head>
+<p>Henry Holt was born on January 3, 1840 in Baltimore, Maryland. He was educated at General Prosser's school in New Haven before attending Yale University. Although he graduated from Columbia University School of Law in 1864, Holt was fascinated by literature and decided to enter the publishing world. He started his first company, Leypoldt and Holt in 1866. In 1873 Leypoldt retired and the firm became Henry Holt and Company. The company's most popular series was the Leisure Hour series, launched in 1872. Later in life, Holt started to become more involved in his own writing, and published several works. He passed away in New York City on February 13, 1926.</p>  </bioghist>
+  <bibliography id="aspace_ba1990572534d15f7636f63b107176f1">
+    <head>Bibliography</head>
+<p>The following sources were consulted during preparation of biographical note: American National Biography.</p>  </bibliography>
+  <controlaccess>
+    <subject source="lcsh">American literature. -- 19th century</subject>
+    <subject source="lcsh">American literature -- 20th century.</subject>
+    <occupation source="lcsh">Authors and publishers -- United States -- 19th century</occupation>
+    <occupation source="lcsh">Authors and publishers -- United States -- 20th century</occupation>
+    <subject source="lcsh">Publishers and publishing -- New York (N.Y.). -- 19th century</subject>
+    <subject source="lcsh">Publishers and publishing -- New York (N.Y.) -- 20th century</subject>
+    <genreform source="aat">Business records</genreform>
+    <genreform source="aat">Business records</genreform>
+    <subject source="lcsh">Authors, American. -- 19th century</subject>
+    <occupation source="lcsh">Authors, American. -- 20th century</occupation>
+    <subject source="lcsh">Novelists, American. -- 19th century</subject>
+    <subject source="lcsh">Novelists, American. -- 20th century</subject>
+    <persname authfilenumber="https://viaf.org/viaf/32010055" source="viaf">Frost, Robert (1874-1963)</persname>
+  </controlaccess>
+  <bioghist audience="internal">
+    <note label="personal-name">Frost, Robert (1874-1963)</note>
+    <head>Biographical / Historical</head>
+<p>Robert Frost was a widely-recognized 20th-century American poets who wrote primarily wrote about the character, people, and landscape of New England. Frost taught and lectured at several universities, including Amherst, Harvard, and the University of Michigan. Among Frost's volumes of poetry are New Hampshire (1923), West-Running Brook (1928), Collected Poems (1930), A Further Range (1936), and A Witness Tree (1942). Frost won the Pulitzer Prize four times, and, in 1961, at the inauguration of John F. Kennedy, he became the first poet to read a poem ("The Gift Outright") at a presidential inauguration.</p>  </bioghist>
+  <dsc><c id="aspace_C0100_c000299" level="series"><did><unittitle>Series 2: Correspondence</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/1003559</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">145 boxes</extent></physdesc><unitdate datechar="creation" normal="1820/1947" type="inclusive">1820-1947</unitdate></did><scopecontent id="aspace_38340b64fad3e98d67c55fe5a19976e2"><head>Scope and Contents</head><p>Consists of extensive correspondence with individuals such as Frank Abbott and Samuel Adams, as well as others.</p></scopecontent><arrangement id="aspace_74629bbf3ba19101cc40c7321e5cdade"><head>Arrangement</head><p>Arranged alphabetically by correspondent.</p></arrangement><c id="aspace_C0100_c000596" level="file"><did><unittitle>Bald Eagle Film Production</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/1004154</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate calendar="gregorian" datechar="creation" era="ce">dates not examined</unitdate><container altrender="scamss" encodinganalog="NBox" id="aspace_494f10e522dcffb80e431ec15abddbc7" label="Mixed Materials [32101037587605]" type="box">5</container><container id="aspace_8940f80ac053ca28a349f0af308c7690" parent="aspace_494f10e522dcffb80e431ec15abddbc7" type="folder">15</container></did></c></c></dsc>
+</archdesc>
+</ead>
