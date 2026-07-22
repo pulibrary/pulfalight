@@ -61,9 +61,13 @@ class SummaryStorageNotePresenter
   # Ranges for fully numerical containers are computed at indexing time in normalized_box_locations.rb
   def collapse_abid_ranges(notes)
     notes.map do |note|
-      abid_matcher = note.match(/^(?<type>[\w]+? )(?:(?:[A-Z]-)\d{1,6}; )+/)
+      abid_matcher = note.match(/^(?<type>[\w]+? )(?:\d{1}-\d{1}; )?(?:(?:[A-Z]-?)\d{1,6}; )+/)
       if abid_matcher
-        boxes = note.scan(/(?:[A-Z]-)\d{1,6}/).sort
+        boxes = note.scan(/(?:[A-Z]-?)\d{1,6}/).sort_by do |s|
+          s.split(/(\d+)/).map do |chunk|
+            chunk =~ /\d+/ ? chunk.to_i : chunk
+          end
+        end
         note = "#{abid_matcher[:type]}#{boxes_to_range(boxes)}"
       end
       note
