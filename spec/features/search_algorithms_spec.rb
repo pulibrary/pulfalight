@@ -10,7 +10,7 @@ describe "Selecting search algorithms for results", type: :feature, js: false do
 
     it "renders a select widget used to select the ordering algorithm" do
       visit "/catalog?search_field=all_fields&q=diary&per_page=1"
-      expect(page).to have_text("Phillips Family Papers, circa 1880-1973 (mostly 1900-1940)")
+      expect(page).to have_text("Diary, 1886 March 1- September 24")
 
       click_button("Rank by default")
       within("#online_content.dropdown-help-text") do

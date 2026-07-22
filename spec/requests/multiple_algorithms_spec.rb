@@ -12,7 +12,7 @@ describe "multiple algorithms", type: :request do
         get "/catalog.json?q=diary&search_field=all_fields"
         json = JSON.parse(response.body)
 
-        expect(json["data"][0]["id"]).to eq "C1387"
+        expect(json["data"][0]["id"]).to eq "C1588_c5"
       end
     end
 
