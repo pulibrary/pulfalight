@@ -37,7 +37,7 @@
       </div><!-- /.col-md-12 -->
     </div><!-- /.row.content-navigation -->
 
-    <div class="row content-container">
+    <div id="toc-container" class="row content-container">
       <div class="col-md-4">
         <div class="toc-header">
           <div class="toc-header-text">
@@ -53,6 +53,16 @@
               <span class="toggle-icon"></span>
             </a>
           </div>
+        </div>
+        <div class="toc-online-toggle al-online-material-icon">
+          <%= blacklight_icon(:online) %>
+          <label for="tocOnlineToggle" class="online-toggle-label">
+            <span> Only show material containing online material </span>
+           <div class="toggle">
+              <input type="checkbox" id="tocOnlineToggle">
+              <span class="toc-slider"></span>
+          </div>
+          </label>
         </div>
         <div id="toc" data-turbolinks-permanent class="collapse show"></div>
         <div id="toc-data" data-selected="<%= document.id %>"></div>
