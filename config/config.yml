@@ -13,6 +13,8 @@ defaults: &defaults
     queue_id: <%= ENV['SUGGEST_A_CORRECTION_QUEUE'] %>
   ask_a_question_form:
     queue_id: <%= ENV['ASK_A_QUESTION_QUEUE'] %>
+  engineering_ask_suggest_forms:
+    queue_id: <%= ENV['ENGINEERING_LIBRARY_QUEUE'] %>
   libanswers:
     client_id: <%= ENV['LIBANSWERS_CLIENT_ID'] || 'ABC' %>
     client_secret: <%= ENV['LIBANSWERS_CLIENT_SECRET'] || '12345' %>
@@ -34,6 +36,8 @@ test:
     queue_id: 3456
   ask_a_question_form: 
     queue_id: 4567
+  engineering_ask_suggest_forms:
+    queue_id: 8910
 
 production:
   <<: *defaults
