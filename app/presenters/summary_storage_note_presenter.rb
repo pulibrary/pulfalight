@@ -61,9 +61,22 @@ class SummaryStorageNotePresenter
   # Ranges for fully numerical containers are computed at indexing time in normalized_box_locations.rb
   def collapse_abid_ranges(notes)
     notes.map do |note|
-      abid_matcher = note.match(/^(?<type>[\w]+? )(?:\d{1}-\d{1}; )?(?:(?:[A-Z]-?)\d{1,6}; )+/)
+      # multi-line syntax ignores literal spaces so use \s
+      note_matcher = /
+        ^(?<type>[\w]+?\s)                # types like boxes
+        (?:(?:\d{1,3}-\d{1,3};\s)?|       # match when there is a numeric box range like 12-24
+        (?:\d{1,3};\s)?)*                 # match when there is a non-range numeric box like 2
+        (?:(?:(?:[A-Z]-?)\d{1,6};\s)|     # abid like P-042356 or M1
+        (?:\w+\s\w+\s\d{1,4};\s))+        # abid like oversize folder 215
+      /x
+      abid_matcher = note.match(note_matcher)
+      box_matcher = /
+        (?:[A-Z]-?)\d{1,6}|                   # abid like P-042356 or M1
+        [A-Za-z]+\s[A-Za-z]+\s\d{1,4}|        # abid like oversize folder 215
+        [A-Za-z]+\s[A-Za-z]+(?:\s[A-Za-z]+)?  # catch phrases like Folder not located or Not located
+      /x
       if abid_matcher
-        boxes = note.scan(/(?:[A-Z]-?)\d{1,6}/).sort_by do |s|
+        boxes = note.scan(box_matcher).sort_by do |s|
           s.split(/(\d+)/).map do |chunk|
             chunk =~ /\d+/ ? chunk.to_i : chunk
           end
