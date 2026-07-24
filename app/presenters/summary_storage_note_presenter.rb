@@ -68,13 +68,12 @@ class SummaryStorageNotePresenter
         boxes = sort_partition(partition)
         if partition[0].include?("oversize folder")
           boxes = boxes.map { |box| box.split(" ").last }
-          note = "Oversize folder #{boxes_to_range(boxes)}"
+          "Oversize folder #{boxes_to_range(boxes)}"
         elsif partition.none? { |box| box.match?(/\d/) }
-          note = partition.sort.join("; ")
+          partition.sort.join("; ")
         else
-          note = "#{type} #{boxes_to_range(boxes)}"
+          "#{type} #{boxes_to_range(boxes)}"
         end
-        note
       end.compact
     end.flatten
   end
