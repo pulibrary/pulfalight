@@ -345,6 +345,22 @@ to_field "containers_ssim" do |record, accumulator, context|
   end
 end
 
+# Process box and folder values into a key used to for sorting. Components
+# without a box and folder are given a blank value and sorted last.
+to_field "box_folder_sort_si" do |record, accumulator, context|
+  if context.output_hash["level_ssm"] == ["Text"]
+    # Text records have no container information; inherit the parent's value
+    parent = settings[:parent]
+    accumulator.replace(parent.output_hash["box_folder_sort_si"] || [])
+  else
+    box_key = record.xpath("./did/container[@type='box']")
+                    .map { |node| Pulfalight::ContainerSortKey.build(node.text) }.compact_blank.min
+    folder_key = record.xpath("./did/container[@type='folder']")
+                       .map { |node| Pulfalight::ContainerSortKey.build(node.text) }.compact_blank.min
+    accumulator << "#{box_key} #{folder_key}".strip if box_key.present? || folder_key.present?
+  end
+end
+
 to_field "barcodes_ssim" do |record, accumulator, context|
   record.xpath("./did/container[@label]").each do |node|
     label = node.attr("label")

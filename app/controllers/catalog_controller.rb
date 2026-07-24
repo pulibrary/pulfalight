@@ -276,6 +276,8 @@ class CatalogController < ApplicationController
     config.add_sort_field "creator_sort desc", label: "creator (Z-A)"
     config.add_sort_field "title_sort asc", label: "title (A-Z)"
     config.add_sort_field "title_sort desc", label: "title (Z-A)"
+    config.add_sort_field "box_folder_sort_si asc", label: "box & folder number (ascending)", if: :collection_facet_selected?
+    config.add_sort_field "box_folder_sort_si desc", label: "box & folder number (descending)", if: :collection_facet_selected?
 
     # If there are more than this many search results, no spelling ("did you
     # mean") suggestion is offered.
@@ -524,5 +526,9 @@ class CatalogController < ApplicationController
 
   def build_document_tree
     SolrDocumentTree.new(root: @document)
+  end
+
+  def collection_facet_selected?
+    params.dig(:f, :collection_sim).present?
   end
 end
