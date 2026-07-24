@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 https://www.loc.gov/ead/ead.xsd"><eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511"><eadid url="http://arks.princeton.edu/ark:/88435/xk81jk43w">WC034</eadid><filedesc><titlestmt><titleproper>J. Paul Baldeagle Papers, 1915-1970: Finding Aid <num>WC034</num></titleproper></titlestmt><publicationstmt><publisher>Manuscripts Division </publisher><p><date>2008</date></p><address><addressline>Firestone Library</addressline><addressline>One Washington Road</addressline><addressline>Princeton, New Jersey 08544</addressline></address></publicationstmt></filedesc><profiledesc><creation>This finding aid was produced using ArchivesSpace on <date>2026-07-24 14:27:50 -0400</date>.</creation><langusage>Description is written in: <language langcode="eng" scriptcode="Latn">English, Latin script</language>.</langusage><descrules>Finding aid content adheres to that prescribed by Describing Archives: A Content Standard.</descrules></profiledesc><revisiondesc><change><date>2012-06-26T14:51:35.01-04:00</date><item>Run through PULFA 2.0 normalization routines.</item></change><change><date>2022-11-11 09:03:51 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-11 10:25:25 -0500</date><item>Updated physloc code</item></change><change><date>2022-11-16 12:48:34 -0500</date><item>Updated physloc code</item></change><change><date>2023-12-05 19:42:54 -0500</date><item>Updated use restriction</item></change><change><date>2024-08-12 21:26:05 -0400</date><item>Updated links</item></change></revisiondesc></eadheader><archdesc level="collection">
+  <did>
+    <repository>
+      <corpname>Manuscripts Division </corpname>
+    </repository>
+    <unittitle>J. Paul Baldeagle Papers</unittitle>
+    <origination label="Creator">
+      <persname role="cre" rules="rda" source="lcnaf">Baldeagle, J. Paul (Joseph Paul) (1897-1970)</persname>
+    </origination>
+    <unitid>WC034</unitid>
+    <unitid type="aspace_uri">/repositories/5/resources/2591</unitid>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">1 box</extent>
+    </physdesc>
+    <physdesc altrender="whole">
+      <extent altrender="materialtype spaceoccupied">0.2 linear feet</extent>
+    </physdesc>
+    <unitdate datechar="creation" normal="1915/1970" type="inclusive">1915-1970</unitdate>
+    <abstract id="aspace_173b5e561e1a616e2619ef782ab7f58c">Consists of a small group of papers of J. Paul Baldeagle (Princeton University Class of 1923), a South Dakota-born Sioux, who was a schoolteacher for 35 years at William MacFarland High School in Bordentown, New Jersey, as well as a Native American rights activist.</abstract>
+    <physloc id="aspace_2b93bff88fa0d0190b386ba83fd6de6b">scamss</physloc>
+    <langmaterial>
+      <language langcode="eng">English</language>
+    </langmaterial>
+  </did>
+  <phystech id="aspace_e23cb49531d58c74c5ddd82dd662b1f5">
+    <head>Physical Characteristics and Technical Requirements</head>
+<p>For preservation reasons, original analog
+and digital media may not be read or played back in the
+reading room. Users may visually inspect physical media
+but may not remove it from its enclosure. All analog
+audiovisual media must be digitized to preservation-quality
+standards prior to use. Audiovisual digitization requests
+are processed by an approved third-party vendor. Please note,
+the transfer time required can be as little as several weeks
+to as long as several months and there may be financial costs
+associated with the process.
+Requests should be directed through the
+<extref xlink:href='https://library.princeton.edu/special-collections/ask-us' xlink:type='simple'>Ask Us Form</extref>.</p>  </phystech>
+  <scopecontent id="aspace_34be6dcbfd703bb1656fbcde5397c90e">
+    <head>Scope and Contents</head>
+<p>The collection consists of a small group of papers of J. Paul Baldeagle (Princeton University Class of 1923), a South Dakota-born Sioux, who was a schoolteacher for 35 years at William MacFarland High School in Bordentown, New Jersey, as well as a Native American rights activist. His papers include correspondence regarding speaking events and honors, land sales, and family matters; letters from elementary school children at the Riverside School in Princeton following class visits; writings, including poems and essays about Sioux cultural traditions and religion; photographs of Baldeagle, his students, family members, and friends; printed material, such as invitations and programs; and newspaper clippings about Baldeagle, including articles about his activism and obituaries.</p>  </scopecontent>
+  <accessrestrict id="aspace_0f29a44e24a47ee29c56f9e403ed14be">
+    <head>Conditions Governing Access</head>
+<p>The collection is open for research.</p>  </accessrestrict>
+  <userestrict id="aspace_cc81f71d395fade438231b212ca8adc4">
+    <head>Conditions Governing Use</head>
+<p>Single copies may be made for research purposes. To cite or publish quotations that fall within Fair Use, as defined under <extref xlink:href='http://copyright.princeton.edu/basics/fair-use' xlink:type='simple'>U. S. Copyright Law</extref>, no permission is required. For instances beyond Fair Use, it is the responsibility of the researcher to determine whether any permissions related to copyright, privacy, publicity, or any other rights are necessary for their intended use of the Library's materials, and to obtain all required permissions from any existing rights holders, if they have not already done so. Princeton University Library's Special Collections does not charge any permission or use fees for the publication of images of materials from our collections, nor does it require researchers to obtain its permission for said use. The department does request that its collections be properly cited and images credited. More detailed information can be found on the <extref xlink:href='https://library.princeton.edu/about/policies/special-collections-copyright-credit-and-citation-guidelines' xlink:type='simple'>Copyright, Credit and Citations Guidelines</extref> page on our website. If you have any questions, please feel free to contact us through the <extref xlink:href='https://library.princeton.edu/services/special-collections/ask-special-collections' xlink:type='simple'>Ask Us! form</extref>.</p>  </userestrict>
+  <acqinfo id="aspace_9da7f48c6d09c4f6dde78058353dacaf">
+    <head>Immediate Source of Acquisition</head>
+<p>Gift of Cecile Wright Baldeagle in <date type="acquisition" normal="1974/1974">1974</date> (AM 21482).</p>  </acqinfo>
+  <appraisal id="aspace_de1b2294033c3fd30334b460ca25de6c">
+    <head>Appraisal</head>
+<p>No appraisal information is available.</p>  </appraisal>
+  <prefercite id="aspace_d45b3a99bd471fe0f1309fa8f91067e8">
+    <head>Preferred Citation</head>
+<p>Identification of specific item; Date (if known); J. Paul Baldeagle Papers, Box and Folder Number; Special Collections, Princeton University Library.</p>  </prefercite>
+  <processinfo id="aspace_8553000727f34e94f1efd28afdc34f79">
+    <head>Processing Information</head>
+<p>Folder inventory added by Nicholas Williams '2015 in 2012.</p><p> Description updated by Kelly Bolding in December 2018.</p>  </processinfo>
+  <bioghist id="aspace_2bb16c7ed0dae67edebf743906276792">
+    <note label="personal-name">Baldeagle, J. Paul (Joseph Paul) (1897-1970)</note>
+    <head>Biographical / Historical</head>
+<p>J. Paul (Joseph Paul) Baldeagle was a South Dakota-born Sioux and grew up on the Pine Ridge Indian Reservation. He was a direct descendant of Chief No-Flesh, who defeated General George Custer. Baldeagle attended the Carlisle Indian School, and later, Princeton University, graduating in the Class of 1923. Baldeagle was a schoolteacher (1924-1960) and head of the English Department (1934-1959) at William MacFarland High School in Bordentown, New Jersey. After retiring from teaching, he worked at Princeton University's Firestone Library. Throughout his life, he was an activist on behalf of the rights of Native American people. Baldeagle bequeathed his extensive collection of Native American artifacts to the New Jersey State Museum in Trenton.</p>  </bioghist>
+  <controlaccess>
+    <subject source="lcsh">Dakota Indians. -- 20th century</subject>
+    <subject source="lcsh">High school teachers -- New Jersey -- Bordentown. -- 20th century</subject>
+    <subject source="lcsh">Political activists -- United States -- History -- 20th century -- Sources</subject>
+    <genreform source="aat">Clippings. -- 20th century</genreform>
+    <genreform source="aat">Correspondence -- 20th century</genreform>
+    <genreform source="lcsh">Memorabilia. -- 20th century</genreform>
+    <genreform source="lcsh">photographs -- 20th century</genreform>
+    <corpname rules="rda" source="lcnaf">William MacFarland High School</corpname>
+    <persname rules="rda" source="lcnaf">Baldeagle, J. Paul (Joseph Paul) (1897-1970)</persname>
+  </controlaccess>
+  <bioghist audience="internal">
+    <note label="personal-name">Baldeagle, J. Paul (Joseph Paul) (1897-1970)</note>
+    <head>Biographical / Historical</head>
+<p>J. Paul (Joseph Paul) Baldeagle was a South Dakota-born Sioux and grew up on the Pine Ridge Indian Reservation. He was a direct descendant of Chief No-Flesh, who defeated General George Custer. Baldeagle attended the Carlisle Indian School, and later, Princeton University, graduating in the Class of 1923. Baldeagle was a schoolteacher (1924-1960) and head of the English Department (1934-1959) at William MacFarland High School in Bordentown, New Jersey. After retiring from teaching, he worked at Princeton University's Firestone Library. Throughout his life, he was an activist on behalf of the rights of Native American people. Baldeagle bequeathed his extensive collection of Native American artifacts to the New Jersey State Museum in Trenton.</p>  </bioghist>
+  <dsc><c id="aspace_WC034_c01" level="file"><did><unittitle>Correspondence</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/811793</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate datechar="creation" normal="1920/1969" type="inclusive">1920-1969</unitdate><container altrender="scamss" encodinganalog="NBox" id="aspace_009068c5d3ca67e2a90786be34f5f745" label="Mixed Materials [32101037528799]" type="box">1</container><container id="aspace_5489aca34f3671f58aa19937bb64ea5e" parent="aspace_009068c5d3ca67e2a90786be34f5f745" type="folder">1</container></did></c><c id="aspace_WC034_c02" level="file"><did><unittitle>Letters from School Children</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/811794</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate datechar="creation" normal="1966/1969" type="inclusive">1966-1969</unitdate><container altrender="scamss" encodinganalog="NBox" id="aspace_c9e32d286b7062a8a0158cf79ec3aa4d" label="Mixed Materials [32101037528799]" type="box">1</container><container id="aspace_deeef4bdf7aeb1eec90ca35e6ec61ffc" parent="aspace_c9e32d286b7062a8a0158cf79ec3aa4d" type="folder">2</container></did></c><c id="aspace_WC034_c03" level="file"><did><unittitle>Writings</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/811795</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate certainty="approximate" datechar="creation" normal="1920/1969" type="inclusive">circa 1920-1969</unitdate><container altrender="scamss" encodinganalog="NBox" id="aspace_b4ac714191665bd9a1bd2aa71b90d408" label="Mixed Materials [32101037528799]" type="box">1</container><container id="aspace_54675375360396e9b27c9651237fc8bf" parent="aspace_b4ac714191665bd9a1bd2aa71b90d408" type="folder">3</container></did></c><c id="aspace_WC034_c04" level="file"><did><unittitle>Photographs</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/811796</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate datechar="creation" normal="1915/1950" type="inclusive">1915-1950</unitdate><container altrender="scamss" encodinganalog="NBox" id="aspace_ec08cd2eb5061d867ef5ada159cbbe71" label="Mixed Materials [32101037528799]" type="box">1</container><container id="aspace_c4eec99f0cdbb9daf77a27544415a80b" parent="aspace_ec08cd2eb5061d867ef5ada159cbbe71" type="folder">4</container></did><scopecontent id="aspace_5a45c8f8cc7effdfec746164e4510d52"><head>Scope and Contents</head><p>Consists of ten photographs and photographic postcards depicting Baldeagle (including his Princeton senior portrait), members of his family and community, and students he coached. Includes photographs taken in New Jersey and South Dakota, and many of the photographs have detailed annotations.</p></scopecontent></c><c id="aspace_WC034_c05" level="file"><did><unittitle>Printed Material and Clippings</unittitle><unitid type="aspace_uri">/repositories/5/archival_objects/811797</unitid><physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">1 folder</extent></physdesc><unitdate datechar="creation" normal="1924/1970" type="inclusive">1924-1970</unitdate><container altrender="scamss" encodinganalog="NBox" id="aspace_6c275f31c17e70214034746ce7e140a7" label="Mixed Materials [32101037528799]" type="box">1</container><container id="aspace_d381574d86eead27b781f81d00599e64" parent="aspace_6c275f31c17e70214034746ce7e140a7" type="folder">5</container></did></c></dsc>
+</archdesc>
+</ead>

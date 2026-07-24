@@ -448,7 +448,12 @@
    <!-- spellcheck fields -->
    <!-- default spell check;  should match fields for default request handler -->
    <!-- it won't work with a copy of a copy field -->
-   <copyField source="*_t" dest="spell"/>
+   <copyField source="title_teim" dest="spell"/>
+   <copyField source="creator_tesim" dest="spell"/>
+   <copyField source="name_tsim" dest="spell"/>
+   <copyField source="place_tsim" dest="spell"/>
+   <copyField source="subject_tsim" dest="spell"/>
+   <copyField source="collection_notes_ssm" dest="spell"/>
 
    <!-- for suggestions -->
    <copyField source="normalized_title_ssm" dest="suggest"/>

@@ -191,10 +191,11 @@
 
        <str name="spellcheck">true</str>
        <str name="spellcheck.dictionary">default</str>
+       <str name="spellcheck.dictionary">wordbreak</str>
        <str name="spellcheck.onlyMorePopular">true</str>
        <str name="spellcheck.extendedResults">true</str>
        <str name="spellcheck.collate">false</str>
-       <str name="spellcheck.count">5</str>
+       <str name="spellcheck.count">3</str>
      </lst>
     <arr name="last-components">
       <str>spellcheck</str>
@@ -231,7 +232,7 @@
      -->
   <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
 
-    <str name="queryAnalyzerFieldType">textSpell</str>
+    <str name="queryAnalyzerFieldType">text_general</str>
 
     <!-- Multiple "Spell Checkers" can be declared and used by this
          component
@@ -245,6 +246,14 @@
       <str name="field">spell</str>
       <str name="spellcheckIndexDir">./spell</str>
       <str name="buildOnOptimize">true</str>
+    </lst>
+    <lst name="spellchecker">
+      <str name="classname">solr.WordBreakSolrSpellChecker</str>
+      <str name="field">spell</str>
+      <str name="combineWords">true</str>
+      <str name="breakWords">true</str>
+      <str name="breakSuggestionTieBreaker">max_freq</str>
+      <str name="name">wordbreak</str>
     </lst>
     <lst name="spellchecker">
       <str name="name">author</str>
@@ -267,45 +276,6 @@
       <str name="accuracy">0.7</str>
       <str name="buildOnOptimize">true</str>
     </lst>
-
-    <!-- a spellchecker that uses a different distance measure -->
-    <!--
-       <lst name="spellchecker">
-         <str name="name">jarowinkler</str>
-         <str name="field">spell</str>
-         <str name="distanceMeasure">
-           org.apache.lucene.search.spell.JaroWinklerDistance
-         </str>
-         <str name="spellcheckIndexDir">spellcheckerJaro</str>
-       </lst>
-     -->
-
-    <!-- a spellchecker that use an alternate comparator
-
-         comparatorClass be one of:
-          1. score (default)
-          2. freq (Frequency first, then score)
-          3. A fully qualified class name
-      -->
-    <!--
-       <lst name="spellchecker">
-         <str name="name">freq</str>
-         <str name="field">lowerfilt</str>
-         <str name="spellcheckIndexDir">spellcheckerFreq</str>
-         <str name="comparatorClass">freq</str>
-         <str name="buildOnCommit">true</str>
-      -->
-
-    <!-- A spellchecker that reads the list of words from a file -->
-    <!--
-       <lst name="spellchecker">
-         <str name="classname">solr.FileBasedSpellChecker</str>
-         <str name="name">file</str>
-         <str name="sourceLocation">spellings.txt</str>
-         <str name="characterEncoding">UTF-8</str>
-         <str name="spellcheckIndexDir">spellcheckerFile</str>
-       </lst>
-      -->
   </searchComponent>
 
   <searchComponent name="suggest" class="solr.SuggestComponent">

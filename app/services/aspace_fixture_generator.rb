@@ -67,7 +67,8 @@ class AspaceFixtureGenerator
     "MC104",
     "AC198.06",
     "MC184",
-    "MC183"
+    "MC183",
+    "WC034"
   ].freeze
 
   # List components per EAD which are used in tests to make processing those
