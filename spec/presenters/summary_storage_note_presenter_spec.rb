@@ -119,7 +119,7 @@ RSpec.describe SummaryStorageNotePresenter do
           )
         end
       end
-      context 'when the storage note has a lot of consecutive box numbers of the form A00' do
+      context "when the storage note has a lot of consecutive box numbers of the form A00" do
         let(:values) do
           {
             "summary_storage_note_ssm": [
@@ -127,8 +127,8 @@ RSpec.describe SummaryStorageNotePresenter do
             ]
           }
         end
-        
-        it 'collapses box numbers with the form A00' do
+
+        it "collapses box numbers with the form A00" do
           expect(ssnote.render).to eq(
             ["<dl class=\"storage-notes\">",
              "<dt>Firestone Library (scamss)</dt>",
@@ -146,14 +146,14 @@ RSpec.describe SummaryStorageNotePresenter do
             ]
           }
         end
-        
+
         it "collapses box numbers with the form 'oversize folder 216'" do
           expect(ssnote.render).to eq(
             ["<dl class=\"storage-notes\">",
              "<dt>Mudd Manuscript Library (scamudd)</dt>",
              "<dd>Folders 11; 14; 23-24; 27-29; 32-33; 38-41; 43-44; 46; 48; 53; 56; 61-62; 68; 86-87; 104-106; 186</dd>",
              "<dd>Oversize folder 1 to 10; 12 to 13; 15 to 22; 25 to 26; 30 to 31; 34 to 37; 42; 45; 47; 49 to 52; 54 to 55; 57 to 60; 63 to 67; 69 to 85; 88 to 103; 107 to 185; 187 to 192; 210; 213 to 241</dd>",
-             "<dd>Folders Folder not located; Not located</dd>",
+             "<dd>Folder not located; Not located</dd>",
              "</dl>"].join
           )
         end

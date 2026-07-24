@@ -60,29 +60,17 @@ class SummaryStorageNotePresenter
   # This method computes ranges for abid'd boxes, e.g. "P-042356 to P-042359"
   # Ranges for fully numerical containers are computed at indexing time in normalized_box_locations.rb
   def collapse_abid_ranges(notes)
-    collected_notes = []
-    type = ''
-    notes.map do |note|
-      remaining = note.split(/; |;/)
-      type, first_box = remaining[0].split(' ', 2)
-      remaining[0] = first_box
-      numeric, remaining = remaining.partition { |box| box.match?(/\A[\d-]+\z/) }
-      alphanumeric, remaining = remaining.partition { |box| box.match?(/[A-Z]-?\d{1,6}/) }
-      oversize, remaining = remaining.partition { |box| box.downcase.include?('oversize folder') }
-      collected_notes.push([numeric, alphanumeric, oversize, remaining, type])
-    end
-
-    collected_notes.map do |notes_field|
+    partition_notes(notes).map do |notes_field|
       type = notes_field.pop
       notes_field.map do |partition|
         next if partition.empty?
-        
+
         boxes = sort_partition(partition)
-        if partition[0].include?('oversize folder')
-          boxes = boxes.map { |box| box.split(' ').last }
+        if partition[0].include?("oversize folder")
+          boxes = boxes.map { |box| box.split(" ").last }
           note = "Oversize folder #{boxes_to_range(boxes)}"
         elsif partition.none? { |box| box.match?(/\d/) }
-          note = partition.join('; ')
+          note = partition.join("; ")
         else
           note = "#{type} #{boxes_to_range(boxes)}"
         end
@@ -91,10 +79,24 @@ class SummaryStorageNotePresenter
     end.flatten
   end
 
+  def partition_notes(notes)
+    collected_notes = []
+    notes.map do |note|
+      remaining = note.split(/; |;/)
+      type, first_box = remaining[0].split(" ", 2)
+      remaining[0] = first_box
+      numeric, remaining = remaining.partition { |box| box.match?(/\A[\d-]+\z/) }
+      alphanumeric, remaining = remaining.partition { |box| box.match?(/[A-Z]-?\d{1,6}/) }
+      oversize, remaining = remaining.partition { |box| box.downcase.include?("oversize folder") }
+      collected_notes.push([numeric, alphanumeric, oversize, remaining, type])
+    end
+    collected_notes
+  end
+
   def sort_partition(partition)
     partition.sort_by do |s|
       s.split(/(\d+)/).map do |chunk|
-        chunk =~ /\d+/ ? chunk.to_i : chunk
+        /\d+/.match?(chunk) ? chunk.to_i : chunk
       end
     end
   end
