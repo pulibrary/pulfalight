@@ -70,7 +70,7 @@ class SummaryStorageNotePresenter
           boxes = boxes.map { |box| box.split(" ").last }
           note = "Oversize folder #{boxes_to_range(boxes)}"
         elsif partition.none? { |box| box.match?(/\d/) }
-          note = partition.join("; ")
+          note = partition.sort.join("; ")
         else
           note = "#{type} #{boxes_to_range(boxes)}"
         end
@@ -80,7 +80,6 @@ class SummaryStorageNotePresenter
   end
 
   def partition_notes(notes)
-    collected_notes = []
     notes.map do |note|
       remaining = note.split(/; |;/)
       type, first_box = remaining[0].split(" ", 2)
@@ -88,9 +87,8 @@ class SummaryStorageNotePresenter
       numeric, remaining = remaining.partition { |box| box.match?(/\A[\d-]+\z/) }
       alphanumeric, remaining = remaining.partition { |box| box.match?(/[A-Z]-?\d{1,6}/) }
       oversize, remaining = remaining.partition { |box| box.downcase.include?("oversize folder") }
-      collected_notes.push([numeric, alphanumeric, oversize, remaining, type])
+      [numeric, alphanumeric, oversize, remaining, type]
     end
-    collected_notes
   end
 
   def sort_partition(partition)
