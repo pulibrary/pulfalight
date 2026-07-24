@@ -60,13 +60,41 @@ class SummaryStorageNotePresenter
   # This method computes ranges for abid'd boxes, e.g. "P-042356 to P-042359"
   # Ranges for fully numerical containers are computed at indexing time in normalized_box_locations.rb
   def collapse_abid_ranges(notes)
+    partition_notes(notes).map do |notes_field|
+      type = notes_field.pop
+      notes_field.map do |partition|
+        next if partition.empty?
+
+        boxes = sort_partition(partition)
+        if partition[0].include?("oversize folder")
+          boxes = boxes.map { |box| box.split(" ").last }
+          "Oversize folder #{boxes_to_range(boxes)}"
+        elsif partition.none? { |box| box.match?(/\d/) }
+          partition.sort.join("; ")
+        else
+          "#{type} #{boxes_to_range(boxes)}"
+        end
+      end.compact
+    end.flatten
+  end
+
+  def partition_notes(notes)
     notes.map do |note|
-      abid_matcher = note.match(/^(?<type>[\w]+? )(?:(?:[A-Z]-)\d{1,6}; )+/)
-      if abid_matcher
-        boxes = note.scan(/(?:[A-Z]-)\d{1,6}/).sort
-        note = "#{abid_matcher[:type]}#{boxes_to_range(boxes)}"
+      remaining = note.split(/; |;/)
+      type, first_box = remaining[0].split(" ", 2)
+      remaining[0] = first_box
+      numeric, remaining = remaining.partition { |box| box.match?(/\A[\d-]+\z/) }
+      alphanumeric, remaining = remaining.partition { |box| box.match?(/[A-Z]-?\d{1,6}/) }
+      oversize, remaining = remaining.partition { |box| box.downcase.include?("oversize folder") }
+      [numeric, alphanumeric, oversize, remaining, type]
+    end
+  end
+
+  def sort_partition(partition)
+    partition.sort_by do |s|
+      s.split(/(\d+)/).map do |chunk|
+        /\d+/.match?(chunk) ? chunk.to_i : chunk
       end
-      note
     end
   end
 
@@ -85,6 +113,6 @@ class SummaryStorageNotePresenter
 
   def boxes_to_range(boxes)
     output, boxes = consecutive_chunk(output ||= [], boxes) while boxes != []
-    output.join(", ")
+    output.join("; ")
   end
 end
