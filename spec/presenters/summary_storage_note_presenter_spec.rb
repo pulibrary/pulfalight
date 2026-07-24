@@ -136,6 +136,24 @@ RSpec.describe SummaryStorageNotePresenter do
           )
         end
       end
+      context "when the storage note has a lot of consecutive box numbers of the form 'oversize folder 216'" do
+        let(:values) do
+          {
+            "summary_storage_note_ssm": [
+              '{"Mudd Manuscript Library (scamudd)":["Folders 11; 14; 23-24; 27-29; 32-33; 38-41; 43-44; 46; 48; 53; 56; 61-62; 68; 86-87; 104-106; 186; oversize folder 213; oversize folder 214; oversize folder 215; oversize folder 216; oversize folder 217; oversize folder 218; oversize folder 219; oversize folder 220; oversize folder 221; oversize folder 222; oversize folder 223; oversize folder 224; oversize folder 225; oversize folder 226; oversize folder 227; oversize folder 228 ; oversize folder 234; oversize folder 235; oversize folder 229; oversize folder 230; oversize folder 231; oversize folder 232; oversize folder 236; oversize folder 237; oversize folder 238; oversize folder 239; oversize folder 240; oversize folder 241; oversize folder 233; Oversize folder 1; Not located; Oversize folder 2; Oversize folder 3; Oversize folder 4; Oversize folder 5; Oversize folder 6; Oversize folder 7; Oversize folder 8; Oversize folder 9; Oversize folder 10; Oversize folder 12; Oversize folder 13; Oversize folder 15; Oversize folder 16; Oversize folder 17; Oversize folder 18; Oversize folder 19; Oversize folder 20; Oversize folder 21; Oversize folder 26; Oversize folder 25; Oversize folder 22; Oversize folder 30; Oversize folder 31; Oversize folder 35; Oversize folder 34; Oversize folder 36; Oversize folder 37; Oversize folder 42; Oversize folder 45; Oversize folder 47; Oversize folder 49; Oversize folder 50; Oversize folder 51; Oversize folder 52; Oversize folder 54; Oversize folder 55; Oversize folder 57; Oversize folder 58; Oversize folder 59; Oversize folder 60; Oversize folder 64; Oversize folder 63; Oversize folder 65; Oversize folder 66; Oversize folder 67; Oversize folder 69; Oversize folder 70; Oversize folder 71; Oversize folder 72; Oversize folder 73; Oversize folder 74; Oversize folder 77; Oversize folder 78; Oversize folder 79; Oversize folder 81; Oversize folder 80; Oversize folder 82; Oversize folder 83; Oversize folder 84; Oversize folder 85; Oversize folder 88; Oversize folder 76; Oversize folder 75; Oversize folder 89; Oversize folder 90; Oversize folder 91; Oversize folder 92; Oversize folder 93; Oversize folder 94; Oversize folder 95; Oversize folder 96; Oversize folder 97; Oversize folder 98; Oversize folder 99; Oversize folder 100; Oversize folder 101; Oversize folder 185; Oversize folder 102; Oversize folder 103; Oversize folder 107; Oversize folder 108; Oversize folder 109; Oversize folder 110; Oversize folder 111; Oversize folder 112; Oversize folder 113; Oversize folder 114; Oversize folder 115; Oversize folder 116; Oversize folder 117; Oversize folder 118; Oversize folder 119; Oversize folder 120; Oversize folder 121; Oversize folder 122; Oversize folder 123; Oversize folder 124; Oversize folder 125; Oversize folder 126; Oversize folder 127; Oversize folder 128; Oversize folder 129; Oversize folder 130; Oversize folder 131; Oversize folder 132; Oversize folder 133; Oversize folder 134; Oversize folder 136; Oversize folder 135; Oversize folder 137; Oversize folder 142; Oversize folder 138; Oversize folder 139; Oversize folder 140; Oversize folder 141; Oversize folder 143; Oversize folder 144; Oversize folder 145; Oversize folder 146; Oversize folder 147; Oversize folder 148; Oversize folder 149; Oversize folder 150; Oversize folder 151; Oversize folder 152; Oversize folder 153; Oversize folder 154; Oversize folder 155; Oversize folder 156; Oversize folder 157; Oversize folder 158; Oversize folder 159; Oversize folder 160; Oversize folder 161; Oversize folder 162; Oversize folder 163; Oversize folder 165; Oversize folder 164; Oversize folder 166; Folder not located; Oversize folder 167; Oversize folder 168; Oversize folder 169; Oversize folder 170; Oversize folder 171; Oversize folder 172; Oversize folder 173; Oversize folder 174; Oversize folder 175; Oversize folder 176; Oversize folder 177; Oversize folder 178; Oversize folder 179; Oversize folder 180; Oversize folder 181; Oversize folder 182; Oversize folder 183; Oversize folder 184; Oversize folder 187; Oversize folder 188; Oversize folder 189; Oversize folder 190; Oversize folder 191; Oversize folder 192; Oversize folder 210"]}'
+            ]
+          }
+        end
+        
+        it "collapses box numbers with the form 'oversize folder 216'" do
+          expect(ssnote.render).to eq(
+            ["<dl class=\"storage-notes\">",
+             "<dt>Mudd Manuscript Library (scamudd)</dt>",
+             "<dd>Boxes H1 to H3, L1 to L37, M1 to M74</dd>",
+             "</dl>"].join
+          )
+        end
+      end
     end
   end
 end
