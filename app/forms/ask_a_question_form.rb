@@ -47,10 +47,6 @@ class AskAQuestionForm
     @submitted == true
   end
 
-  # def use_email?
-  #   ["eng", "engineering library"].include? location_code
-  # end
-
   def serialize_params
     as_json.except("validation_context", "context_for_validation", "errors")
   end

@@ -25,10 +25,6 @@ class SuggestACorrectionForm
     @submitted == true
   end
 
-  # def use_email?
-  #   ["engineering library"].include? location_code
-  # end
-
   def email_subject
     "Finding Aids Suggest a Correction Form"
   end
