@@ -718,13 +718,13 @@ to_field "names_structured_ssm" do |record, accumulator, context|
   end
   internal_bioghists = Hash[internal_bioghists]
   names = context.output_hash["names_ssim"] || []
-  structured_names = names.map do |name|
-    {
+  names.each do |name|
+    structured_name = {
       label: name,
       bioghist: internal_bioghists[name]
-    }
+    }.to_json
+    accumulator << structured_name
   end
-  accumulator << structured_names.to_json
 end
 
 to_field "components" do |record, accumulator, context|

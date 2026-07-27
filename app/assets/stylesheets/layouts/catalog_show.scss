@@ -231,4 +231,14 @@
       }
     }
   }
+  dd.blacklight-names_structured_ssm {
+    display: flex;
+    flex-direction: column;
+    span {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      column-rule: 2px solid black;
+    }
+  }
 }

@@ -23,6 +23,7 @@ export default class {
     this.setup_form_modal()
     this.setup_media_queries()
     this.setup_cart_sync()
+    this.setup_name_modal()
   }
 
   setup_lib_cal_hours() {
@@ -77,6 +78,18 @@ export default class {
         $(`${selector} .form-wrapper form`).hide()
         $(`${selector} .form-wrapper .is-valid`).removeClass("is-valid")
       })
+    })
+  }
+
+  // Content of the modal should come from the name links.
+  setup_name_modal() {
+    $("#nameModal").on("show.bs.modal", function (event) {
+      var link = $(event.relatedTarget)
+      var label = link.data("label")
+      var content = link.data("content")
+      var modal = $(this)
+      modal.find(".modal-title").text(label)
+      modal.find(".modal-body").text(content)
     })
   }
 

@@ -151,7 +151,26 @@ module PulfalightHelper
     end
   end
 
+  def structured_names_helper(content)
+    content[:value].map do |value|
+      value = JSON.parse(value)
+      tag.span do
+        link_to_name_facet({ value: [value["label"]] }) + + bioghist_tag(value)
+      end
+    end.join("").html_safe
+  end
+
   private
+
+  def bioghist_tag(value)
+    if value["bioghist"].present?
+      tag.a href: "#", data: { toggle: "modal", target: "#nameModal", label: value["label"], content: value["bioghist"] } do
+        "(Who is this?)"
+      end
+    else
+      ""
+    end
+  end
 
   # Builds the leading library location breadcrumb. e.g. "Firestone Library".
   def library_location_breadcrumb(document)

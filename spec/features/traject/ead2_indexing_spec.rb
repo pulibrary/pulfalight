@@ -845,9 +845,9 @@ describe "EAD 2 traject indexing", type: :feature do
 
     it "maps names to bioghist notes" do
       component = find_component(result, "C0140_c03353")
-      json = JSON.parse(component["names_structured_ssm"][0])
-      assert json[2]["label"] == "Matappeas"
-      assert json[2]["bioghist"] == "Matappeas was a Lenape sachem of Toponemus."
+      json = JSON.parse(component["names_structured_ssm"][2])
+      assert json["label"] == "Matappeas"
+      assert json["bioghist"] == "Matappeas was a Lenape sachem of Toponemus."
     end
   end
 
