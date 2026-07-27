@@ -136,6 +136,7 @@ RSpec.describe SummaryStorageNotePresenter do
           )
         end
       end
+
       context "when the storage note has a lot of consecutive box numbers of the form 'oversize folder 216'" do
         let(:values) do
           {
@@ -150,8 +151,28 @@ RSpec.describe SummaryStorageNotePresenter do
             ["<dl class=\"storage-notes\">",
              "<dt>Mudd Manuscript Library (scamudd)</dt>",
              "<dd>Folders 11; 14; 23-24; 27-29; 32-33; 38-41; 43-44; 46; 48; 53; 56; 61-62; 68; 86-87; 104-106; 186</dd>",
-             "<dd>Oversize folder 1-10; 12-13; 15-22; 25-26; 30-31; 34-37; 42; 45; 47; 49-52; 54-55; 57-60; 63-67; 69-85; 88-103; 107-185; 187-192; 210; 213-241</dd>",
+             "<dd>Oversize folders 1-10; 12-13; 15-22; 25-26; 30-31; 34-37; 42; 45; 47; 49-52; 54-55; 57-60; 63-67; 69-85; 88-103; 107-185; 187-192; 210; 213-241</dd>",
              "<dd>Folder not located; Not located</dd>",
+             "</dl>"].join
+          )
+        end
+      end
+
+      context "when the storage note has only an uppercase Oversize" do
+        let(:values) do
+          {
+            "summary_storage_note_ssm": [
+              '{"Mudd Manuscript Library (scamudd)":["Folders 11; Oversize folder 1"]}'
+            ]
+          }
+        end
+
+        it "collapses box numbers with the form 'oversize folder 216'" do
+          expect(ssnote.render).to eq(
+            ["<dl class=\"storage-notes\">",
+             "<dt>Mudd Manuscript Library (scamudd)</dt>",
+             "<dd>Folders 11</dd>",
+             "<dd>Oversize folders 1</dd>",
              "</dl>"].join
           )
         end

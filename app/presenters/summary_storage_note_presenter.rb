@@ -66,9 +66,9 @@ class SummaryStorageNotePresenter
         next if partition.empty?
 
         boxes = sort_partition(partition)
-        if partition[0].include?("oversize folder")
+        if partition[0].downcase.include?("oversize folder")
           boxes = boxes.map { |box| box.split(" ").last }
-          "Oversize folder #{boxes_to_range(boxes)}"
+          "Oversize folders #{boxes_to_range(boxes)}"
         elsif partition.none? { |box| box.match?(/\d/) }
           partition.sort.join("; ")
         else
