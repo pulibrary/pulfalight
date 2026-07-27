@@ -50,7 +50,7 @@
             <th width="275rem">Title</th>
             <th width="150rem">Call Number</th>
             <th width="150rem">Containers</th>
-            <th class="action-header">&nbsp;</th>
+            <td class="action-header">&nbsp;</td>
           </tr>
         </thead>
 
@@ -571,12 +571,12 @@ table {
   @media screen and (max-width: 640px) {
     th {
       display: none;
+    }
 
-      &.action-header {
-        display: table-cell;
-        min-width: 100%;
-        width:100%;
-      }
+    .action-header {
+      display: table-cell;
+      min-width: 100%;
+      width:100%;
     }
 
     th:first-child {
