@@ -712,6 +712,21 @@ to_field "bioghist_ssm", extract_xpath("./bioghist[not(@audience='internal')]", 
   build_bioghist(accumulator)
 end
 
+to_field "names_structured_ssm" do |record, accumulator, context|
+  internal_bioghists = record.xpath("./bioghist[@audience='internal']").map do |bioghist|
+    [bioghist.xpath("./note[@label='personal-name']").text, bioghist.xpath("./p").text]
+  end
+  internal_bioghists = Hash[internal_bioghists]
+  names = context.output_hash["names_ssim"] || []
+  structured_names = names.map do |name|
+    {
+      label: name,
+      bioghist: internal_bioghists[name]
+    }
+  end
+  accumulator << structured_names.to_json
+end
+
 to_field "components" do |record, accumulator, context|
   child_components = record.xpath("./*[is_component(.)]", NokogiriXpathExtensions.new)
   child_components.each do |child_component|

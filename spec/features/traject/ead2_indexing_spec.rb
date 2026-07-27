@@ -838,6 +838,19 @@ describe "EAD 2 traject indexing", type: :feature do
     end
   end
 
+  describe "#names_structured_ssm" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0140.processed.EAD.xml")
+    end
+
+    it "maps names to bioghist notes" do
+      component = find_component(result, "C0140_c03353")
+      json = JSON.parse(component["names_structured_ssm"][0])
+      assert json[2]["label"] == "Matappeas"
+      assert json[2]["bioghist"] == "Matappeas was a Lenape sachem of Toponemus."
+    end
+  end
+
   describe "creator_ssim" do
     let(:fixture_path) do
       Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C1165.processed.EAD.xml")
