@@ -2,7 +2,7 @@
 # Overridden from Blacklight to add a drop down that allows the user to choose to search w/i the collection or all collections
 %>
 
-<%= form_tag @url, method: :get, class: 'search-query-form pr-0', role: 'search' do %>
+<%= form_tag @url, method: :get, class: 'search-query-form pr-0' do %>
   <%= render_hash_as_hidden_fields(@params) %>
   <div class="d-md-flex">
     <% if within_collection_context? %>
