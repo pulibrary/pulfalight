@@ -44,6 +44,7 @@ class LibanswersFormSubmission
 
   def queue_id
     form_lookup = form.class.to_s.underscore.to_sym
+    form_lookup = form.class.to_s.prepend("Engineering").underscore.to_sym if form.location_code == "engineering library"
     Rails.application.config_for(:config)[form_lookup][:queue_id]
   end
 
