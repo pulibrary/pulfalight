@@ -86,7 +86,7 @@ class SummaryStorageNotePresenter
       numeric, remaining = remaining.partition { |box| box.match?(/\A[\d-]+\z/) }
       alphanumeric, remaining = remaining.partition { |box| box.match?(/[A-Z]-?\d{1,6}/) }
       oversize, remaining = remaining.partition { |box| box.downcase.include?("oversize folder") }
-      [numeric, alphanumeric, oversize, remaining, type]
+      [numeric + alphanumeric, oversize, remaining, type]
     end
   end
 
@@ -108,7 +108,7 @@ class SummaryStorageNotePresenter
     first = boxes.first
     boxes.shift while boxes.length > 1 && consecutive?(boxes[0], boxes[1])
     return [output.push(boxes.shift), boxes] if first == boxes.first
-    [output.push("#{first} to #{boxes.shift}"), boxes]
+    [output.push("#{first}-#{boxes.shift}"), boxes]
   end
 
   def boxes_to_range(boxes)

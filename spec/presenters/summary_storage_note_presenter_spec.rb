@@ -25,8 +25,7 @@ RSpec.describe SummaryStorageNotePresenter do
            "<dt>Firestone Library (scahsvm)</dt>",
            "<dd>Boxes 1-11; 13-19</dd>",
            "<dt>Firestone Library (scamss)</dt>",
-           "<dd>Boxes 12; 83; 330</dd>",
-           "<dd>Boxes B-001491</dd>",
+           "<dd>Boxes 12; 83; 330; B-001491</dd>",
            "</dl>",
            "<span class=\"storage-notes-appendix\">",
            "<div class=\"header\">Note</div>",
@@ -113,8 +112,8 @@ RSpec.describe SummaryStorageNotePresenter do
           expect(ssnote.render).to eq(
             ["<dl class=\"storage-notes\">",
              "<dt>Firestone Library (mss)</dt>",
-             "<dd>Boxes B-001494 to B-001544; P-000146</dd>",
-             "<dd>Volumes M-003456 to M-003458</dd>",
+             "<dd>Boxes B-001494-B-001544; P-000146</dd>",
+             "<dd>Volumes M-003456-M-003458</dd>",
              "</dl>"].join
           )
         end
@@ -132,8 +131,7 @@ RSpec.describe SummaryStorageNotePresenter do
           expect(ssnote.render).to eq(
             ["<dl class=\"storage-notes\">",
              "<dt>Firestone Library (scamss)</dt>",
-             "<dd>Boxes 1-2</dd>",
-             "<dd>Boxes H1 to H3; L1 to L37; M1 to M74</dd>",
+             "<dd>Boxes 1-2; H1-H3; L1-L37; M1-M74</dd>",
              "</dl>"].join
           )
         end
@@ -152,7 +150,7 @@ RSpec.describe SummaryStorageNotePresenter do
             ["<dl class=\"storage-notes\">",
              "<dt>Mudd Manuscript Library (scamudd)</dt>",
              "<dd>Folders 11; 14; 23-24; 27-29; 32-33; 38-41; 43-44; 46; 48; 53; 56; 61-62; 68; 86-87; 104-106; 186</dd>",
-             "<dd>Oversize folder 1 to 10; 12 to 13; 15 to 22; 25 to 26; 30 to 31; 34 to 37; 42; 45; 47; 49 to 52; 54 to 55; 57 to 60; 63 to 67; 69 to 85; 88 to 103; 107 to 185; 187 to 192; 210; 213 to 241</dd>",
+             "<dd>Oversize folder 1-10; 12-13; 15-22; 25-26; 30-31; 34-37; 42; 45; 47; 49-52; 54-55; 57-60; 63-67; 69-85; 88-103; 107-185; 187-192; 210; 213-241</dd>",
              "<dd>Folder not located; Not located</dd>",
              "</dl>"].join
           )
