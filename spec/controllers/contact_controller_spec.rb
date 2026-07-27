@@ -16,6 +16,7 @@ RSpec.describe ContactController do
     end
 
     it "doesn't require an email address" do
+      stub_libanswers_api
       post :suggest, params: {
         suggest_a_correction_form: {
           "name" => "Bill Nye",

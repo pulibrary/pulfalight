@@ -68,6 +68,7 @@ RSpec.describe SuggestACorrectionForm do
     end
 
     context "when the location code is engineering" do
+      with_queue_adapter(:test)
       it "senqueues a libanswers job" do
         form = described_class.new(valid_attributes_engineering)
 
