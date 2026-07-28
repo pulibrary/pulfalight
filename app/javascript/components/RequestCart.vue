@@ -2,37 +2,37 @@
 
   <transition name="slide">
     <dialog ref="dialog" class="request-cart" @click.self="closeDialog">
-  
+
     <div class="panel">
+      <div class="cart-header">
+        <lux-input-button
+          v-on:click="closeDialog()"
+          width="26px"
+          type="button"
+          variation="text"
+          class="denied-button"
+          aria-label="Close cart"
+          >
+
+          <div class="lux-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em"
+              height="1em"
+              viewBox="0 0 16 16"
+              aria-hidden="true"
+              focusable="false"
+              fill="#6e757c"
+              >
+              <x-circle-icon></x-circle-icon>
+            </svg>
+          </div>
+        </lux-input-button>
+      </div>
+
       <table :class="['lux-data-table', 'fixed-header']">
 
         <caption>
-
-          <lux-input-button
-            v-on:click="closeDialog()"
-            width="26px"
-            type="button"
-            variation="text"
-            class="denied-button"
-            ref="closeCart"
-            aria-labelledby="closeCart"
-            >
-
-            <div class="lux-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1em"
-                height="1em"
-                viewBox="0 0 16 16"
-                aria-labelledby="closeCart"
-                role="img"
-                fill="#6e757c"
-                >
-                <title id="closeCart" lang="en">close cart</title>
-                <x-circle-icon></x-circle-icon>
-              </svg>
-            </div>
-          </lux-input-button>
 
           <div class="caption-title">
             <span>Request Cart</span>
@@ -514,6 +514,8 @@ export default {
   margin-top: 0px;
   display: block;
   height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
   caption {
     caption-side: inherit;
     margin-bottom: 0px;
@@ -535,6 +537,11 @@ export default {
   overflow: hidden;
   height: calc(100% - 120px);
   margin-bottom: 0px;
+  display: flex;
+  flex-direction: column;
+}
+.cart-header {
+  flex: 0 0 auto;
 }
 .cart-actions {
   background: style.$color-rich-black;

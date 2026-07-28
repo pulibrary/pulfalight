@@ -30,7 +30,8 @@ describe "the catalog view request cart", type: :feature, js: true do
         expect(page).to have_selector "button[type='submit']", text: /No Items in Your Cart/
 
         # Check that it can be closed
-        expect(page).to have_selector "button.denied-button"
+        expect(page).to have_selector ".panel > .cart-header > button.denied-button"
+        expect(page).not_to have_selector "table button.denied-button"
       end
     end
   end
