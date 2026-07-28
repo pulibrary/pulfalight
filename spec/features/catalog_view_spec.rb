@@ -591,7 +591,7 @@ describe "viewing catalog records", type: :feature, js: true do
       visit "/catalog/C0140_c03353"
 
       expect(page).to have_link "Matappeas"
-      click_link "(Who is this?)"
+      click_link "(Historical Information)"
       expect(page).to have_content("Matappeas was a Lenape sachem of Toponemus.")
     end
   end

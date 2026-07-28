@@ -29,6 +29,7 @@
         <% end %>
       <% end %>
     </div>
+    <%= content_for :modals %>
   <% end %>
 
   <dl class="al-metadata-section breadcrumb-item breadcrumb-item-<%= parents.length + 3 %>">
@@ -39,11 +40,10 @@
         <% if generic_should_render_field?(metadata, document, field) %>
             <%= render partial: "catalog/field", locals: { document: document, field: field, field_name: field_name, metadata: metadata, doc_presenter: doc_presenter } %>
             <% if field_name == "names_structured_ssm" %>
-              <%= render partial: "catalog/name_partial", locals: { document: document, field: field, field_name: field_name, metadata: metadata, doc_presenter: doc_presenter } %>
             <% end %>
         <% end %>
       <% end %>
     <% end %>
   </dl>
-  <%= content_for :modals %>
+  <%= render partial: "catalog/name_modal" %>
 <% end %>
