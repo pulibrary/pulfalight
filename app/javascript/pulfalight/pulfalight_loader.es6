@@ -81,7 +81,7 @@ export default class {
     })
   }
 
-  // Content of the modal should come from the name links.
+  // Use Dialogs for the name popup modals, rather than Bootstrap.
   setup_name_modal() {
     const linkTriggers = document.querySelectorAll("[data-toggle='dialog-modal']")
     linkTriggers.forEach(element => {
@@ -102,14 +102,6 @@ export default class {
         event.target.closest("dialog").close()
       });
     })
-    // $("#nameModal").on("show.bs.modal", function (event) {
-    //   var link = $(event.relatedTarget)
-    //   var label = link.data("label")
-    //   var content = link.data("content")
-    //   var modal = $(this)
-    //   modal.find(".modal-title").text(label)
-    //   modal.find(".modal-body").text(content)
-    // })
   }
 
   // when another tab adds an item to the cart, replace the state of every open
