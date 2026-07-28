@@ -24,7 +24,7 @@ RSpec.describe ContactController do
           "box_number" => "1",
           "message" => "This record needs more science.",
           "context" => "http://example.com/example",
-          "location_code" => "engineering library"
+          "location_code" => "eng"
         }
       }
 

@@ -18,7 +18,7 @@ RSpec.describe SuggestACorrectionForm do
       "email" => "test@test.org",
       "box_number" => "1",
       "message" => "Your EAD components are amazing, you should say so.",
-      "location_code" => "engineering library",
+      "location_code" => "eng",
       "context" => "http://example.com/catalog/1"
     }
   end
@@ -77,7 +77,7 @@ RSpec.describe SuggestACorrectionForm do
         expect(form.email).to eq ""
         expect(form.box_number).to eq ""
         expect(form.message).to eq ""
-        expect(form.location_code).to eq "engineering library"
+        expect(form.location_code).to eq "eng"
         expect(form.context).to eq "http://example.com/catalog/1"
         expect(form).to be_submitted
 
@@ -87,7 +87,7 @@ RSpec.describe SuggestACorrectionForm do
             "email" => "test@test.org",
             "box_number" => "1",
             "message" => "Your EAD components are amazing, you should say so.",
-            "location_code" => "engineering library",
+            "location_code" => "eng",
             "context" => "http://example.com/catalog/1"
           },
           form_class: described_class

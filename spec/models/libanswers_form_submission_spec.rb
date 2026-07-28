@@ -80,7 +80,7 @@ RSpec.describe LibanswersFormSubmission do
           name: "Test",
           email: "test@test.org",
           box_number: "1",
-          location_code: "engineering library",
+          location_code: "eng",
           context: "http://example.com/catalog/1",
           user_agent: "Ruby"
         )
