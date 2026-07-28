@@ -164,12 +164,13 @@ module PulfalightHelper
 
   def bioghist_tag(value)
     if value["bioghist"].present?
-      tag.span(aria: {hidden: true}) do
+      tag.span(aria: { hidden: true }) do
         "|"
       end.concat(
-      tag.a(class: "name-trigger", href: "#", data: { toggle: "modal", target: "#nameModal", label: value["label"], content: value["bioghist"] }) do
+      tag.button(type: "button", class: "name-trigger btn-link", data: { toggle: "dialog-modal", target: "nameModal", label: value["label"], content: value["bioghist"] }) do
         "(Historical Information)"
-      end)
+      end
+    )
     else
       ""
     end

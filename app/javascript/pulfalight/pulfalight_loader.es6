@@ -83,14 +83,33 @@ export default class {
 
   // Content of the modal should come from the name links.
   setup_name_modal() {
-    $("#nameModal").on("show.bs.modal", function (event) {
-      var link = $(event.relatedTarget)
-      var label = link.data("label")
-      var content = link.data("content")
-      var modal = $(this)
-      modal.find(".modal-title").text(label)
-      modal.find(".modal-body").text(content)
+    const linkTriggers = document.querySelectorAll("[data-toggle='dialog-modal']")
+    linkTriggers.forEach(element => {
+      element.addEventListener('click', (event) => {
+        event.preventDefault()
+        const dialog = document.getElementById(event.target.dataset.target)
+        const title = event.target.dataset.label
+        const content = event.target.dataset.content
+        dialog.getElementsByClassName("modal-title")[0].textContent = title
+        dialog.getElementsByClassName("modal-body")[0].textContent = content
+        dialog.showModal()
+      });
+    });
+    const closeTriggers = document.querySelectorAll("[data-dismiss='dialog-modal']");
+    closeTriggers.forEach(element => {
+      element.addEventListener('click', (event) => {
+        event.preventDefault()
+        event.target.closest("dialog").close()
+      });
     })
+    // $("#nameModal").on("show.bs.modal", function (event) {
+    //   var link = $(event.relatedTarget)
+    //   var label = link.data("label")
+    //   var content = link.data("content")
+    //   var modal = $(this)
+    //   modal.find(".modal-title").text(label)
+    //   modal.find(".modal-body").text(content)
+    // })
   }
 
   // when another tab adds an item to the cart, replace the state of every open

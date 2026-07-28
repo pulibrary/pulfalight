@@ -231,6 +231,20 @@
       }
     }
   }
+  dialog#nameModal {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    margin: auto;
+    inset: 0;
+    position: fixed;
+    .modal-header {
+      align-items: baseline;
+    }
+    .modal-title {
+      font-size: 1.5rem;
+    }
+  }
   dd.blacklight-names_structured_ssm {
     display: flex;
     flex-direction: column;
@@ -239,8 +253,11 @@
       flex-direction: row;
       gap: 5px;
       align-items: baseline;
-      a.name-trigger {
+      .name-trigger {
         font-size: 92%;
+        background-color: transparent;
+        border: 0;
+        padding: 0;
       }
     }
   }
