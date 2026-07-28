@@ -153,7 +153,6 @@ module PulfalightHelper
 
   def structured_names_helper(content)
     content[:value].map do |value|
-      value = JSON.parse(value)
       tag.span do
         link_to_name_facet({ value: [value["label"]] }) + bioghist_tag(value)
       end
