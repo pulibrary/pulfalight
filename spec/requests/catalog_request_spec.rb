@@ -25,7 +25,7 @@ describe "controller requests", type: :request do
     it "renders component-level names" do
       get "/catalog/C0140_c29843-01832"
 
-      expect(response.body).to include "Gallatin, Albert, 1761-1849"
+      expect(response.body).to include "Gallatin, Albert (1761-1849)"
     end
     it "renders component-level notes" do
       get "/catalog/C1619_c24"
@@ -40,13 +40,13 @@ describe "controller requests", type: :request do
     it "renders all the appropriate component metadata" do
       get "/catalog/C0140_c03411"
 
-      expect(response.body).to have_selector "dd.blacklight-creator_ssm", text: "Chandler, John Lincoln, 1820–1888"
+      expect(response.body).to have_selector "dd.blacklight-creator_ssm", text: "Chandler, John Lincoln (1820-1888)"
       expect(response.body).to have_selector "dd.blacklight-collection_creator_ssm", text: "Princeton University. Library. Special Collections"
       expect(response.body).to include("1866 March 7")
       expect(response.body).to include("AM 2021-10")
       # Ensure that acqinfo isn't coming from the collection.
       expect(response.body).not_to have_selector ".overview dd.blacklight-acqinfo_ssm", text: /resulted from miscellaneous/
-      expect(response.body).to have_selector "#component-summary a", text: "Tennessee--History--19th century--Sources."
+      expect(response.body).to have_selector "#component-summary a", text: "Tennessee -- History -- 19th century -- Sources"
       # Ensure the collection subjects aren't on the component page.
       expect(response.body).not_to have_selector "#component-summary a", text: "Poets."
     end

@@ -854,7 +854,7 @@ describe "EAD 2 traject indexing", type: :feature do
     end
     it "indexes names" do
       component = find_component(result, "C0140_c29843-01832")
-      expect(component["names_ssim"]).to eq ["United States. Navy. Mediterranean Squadron", "Gallatin, Albert, 1761-1849"]
+      expect(component["names_ssim"]).to eq ["United States. Navy. Mediterranean Squadron", "Gallatin, Albert (1761-1849)"]
     end
   end
 
@@ -1024,7 +1024,7 @@ describe "EAD 2 traject indexing", type: :feature do
         values = record["bioghist_ssm"]
 
         expect(values.first).to include("Pierre Samuel Du Pont de Nemours (1739-1817)")
-        expect(values.first).to include("<p class=\"personal-name\">Du Pont de Nemours</p>")
+        expect(values.first).to include("<p class=\"personal-name\">Du Pont de Nemours, Pierre Samuel (1739-1817)</p>")
       end
     end
 
