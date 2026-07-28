@@ -64,7 +64,7 @@ In a rails console run the index job with a specific EAD, e.g.:
 AspaceIndexJob.perform_later(resource_descriptions_uri: "repositories/4/resource_descriptions/2203", repository_id: "univarchives")
 ```
 
-Note the uri must use a collection-level resource id (you may need to look this up in Aspace), and have the correct corresponding repository_id (check against config/repositories.yml)
+Note the uri must use a collection-level resource id (you may need to look this up in Aspace or check the /raw path for the component you're reindexing), and have the correct corresponding repository_id (check against config/repositories.yml)
 
 #### Full/Partial Reindex into a Development Environment
 
