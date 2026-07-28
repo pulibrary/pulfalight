@@ -712,6 +712,9 @@ to_field "bioghist_ssm", extract_xpath("./bioghist[not(@audience='internal')]", 
   build_bioghist(accumulator)
 end
 
+# Every name, if it has a bioghist, has an internal bioghist attached to the
+# component. Pull them, then create JSON structures that we can deserialize into
+# the item page.
 to_field "names_structured_ssm" do |record, accumulator, context|
   internal_bioghists = record.xpath("./bioghist[@audience='internal']").map do |bioghist|
     [bioghist.xpath("./note[@label='personal-name']").text, bioghist.xpath("./p").text]
