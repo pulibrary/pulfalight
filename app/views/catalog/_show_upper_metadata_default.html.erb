@@ -39,8 +39,6 @@
       <% generic_document_fields(metadata).each do |field_name, field| %>
         <% if generic_should_render_field?(metadata, document, field) %>
             <%= render partial: "catalog/field", locals: { document: document, field: field, field_name: field_name, metadata: metadata, doc_presenter: doc_presenter } %>
-            <% if field_name == "names_structured_ssm" %>
-            <% end %>
         <% end %>
       <% end %>
     <% end %>
