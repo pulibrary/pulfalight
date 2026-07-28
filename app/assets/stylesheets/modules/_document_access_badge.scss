@@ -1,3 +1,5 @@
+@import "variables/colors";
+
 .online-direct-content {
   & svg {
     pointer-events: none;
@@ -60,11 +62,13 @@
   }
 
   &.review {
-    color: #8B640E;
-    background-color: #FCECBD;
-    border-color: #8B640E;
+    color: $brown-rust;
+    background-color: $yellow-pale;
+    border-color: $orange-warning;
+    border-radius: 0.4rem;
+    border-width: 0.2rem;
     & a {
-      color: #8B640E;
+        color: $brown-rust;
     }
   }
 
@@ -72,6 +76,8 @@
     color: #786333;
     background-color: #fdf1f1;
     border-color: #f19b99;
+    border-radius: 0.4rem;
+    border-width: 0.2rem;
   }
 
   img {
