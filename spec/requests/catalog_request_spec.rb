@@ -46,7 +46,7 @@ describe "controller requests", type: :request do
       expect(response.body).to include("AM 2021-10")
       # Ensure that acqinfo isn't coming from the collection.
       expect(response.body).not_to have_selector ".overview dd.blacklight-acqinfo_ssm", text: /resulted from miscellaneous/
-      expect(response.body).to have_selector "#component-summary a", text: "Tennessee--History--19th century--Sources"
+      expect(response.body).to have_selector "#component-summary a", text: "Tennessee -- History -- 19th century -- Sources"
       # Ensure the collection subjects aren't on the component page.
       expect(response.body).not_to have_selector "#component-summary a", text: "Poets."
     end
