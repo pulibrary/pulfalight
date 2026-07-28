@@ -1,3 +1,5 @@
+@import "variables/colors";
+
 .access-restrict-warning h3 {
     font-size: 1.25rem;
 }
@@ -18,8 +20,9 @@
 }
 
 .access-review-warning {
-    background-color: #FCECBD;
+    color: $brown-rust;
+    background-color: $yellow-pale;
     border: none;
-    border-left: 1rem solid #8B640E;
+    border-left: 1rem solid $orange-warning;
     margin-top: 1.5rem;
 }
