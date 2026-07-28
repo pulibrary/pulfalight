@@ -439,4 +439,10 @@ class SolrDocument
       id: id
     }
   end
+
+  def structured_names
+    fetch("names_structured_ssm", []).map do |structured_name|
+      JSON.parse(structured_name)
+    end
+  end
 end

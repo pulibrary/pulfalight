@@ -79,6 +79,7 @@ Rails/I18nLocaleTexts:
 Rails/OutputSafety:
   Exclude:
     - 'config/initializers/repository_contact_info_patch.rb'
+    - 'app/helpers/pulfalight_helper.rb'
 Rails/SkipsModelValidations:
   Exclude:
     - 'app/services/aspace/indexer.rb'

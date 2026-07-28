@@ -23,6 +23,7 @@ export default class {
     this.setup_form_modal()
     this.setup_media_queries()
     this.setup_cart_sync()
+    this.setup_name_modal()
   }
 
   setup_lib_cal_hours() {
@@ -77,6 +78,29 @@ export default class {
         $(`${selector} .form-wrapper form`).hide()
         $(`${selector} .form-wrapper .is-valid`).removeClass("is-valid")
       })
+    })
+  }
+
+  // Use Dialogs for the name popup modals, rather than Bootstrap.
+  setup_name_modal() {
+    const linkTriggers = document.querySelectorAll("[data-toggle='dialog-modal']")
+    linkTriggers.forEach(element => {
+      element.addEventListener('click', (event) => {
+        event.preventDefault()
+        const dialog = document.getElementById(event.target.dataset.target)
+        const title = event.target.dataset.label
+        const content = event.target.dataset.content
+        dialog.getElementsByClassName("modal-title")[0].textContent = title
+        dialog.getElementsByClassName("modal-body")[0].textContent = content
+        dialog.showModal()
+      });
+    });
+    const closeTriggers = document.querySelectorAll("[data-dismiss='dialog-modal']");
+    closeTriggers.forEach(element => {
+      element.addEventListener('click', (event) => {
+        event.preventDefault()
+        event.target.closest("dialog").close()
+      });
     })
   }
 

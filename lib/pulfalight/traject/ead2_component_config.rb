@@ -712,6 +712,24 @@ to_field "bioghist_ssm", extract_xpath("./bioghist[not(@audience='internal')]", 
   build_bioghist(accumulator)
 end
 
+# Every name, if it has a bioghist, has an internal bioghist attached to the
+# component. Pull them, then create JSON structures that we can deserialize into
+# the item page.
+to_field "names_structured_ssm" do |record, accumulator, context|
+  internal_bioghists = record.xpath("./bioghist[@audience='internal']").map do |bioghist|
+    [bioghist.xpath("./note[@label='personal-name']").text, bioghist.xpath("./p").text]
+  end
+  internal_bioghists = Hash[internal_bioghists]
+  names = context.output_hash["names_ssim"] || []
+  names.each do |name|
+    structured_name = {
+      label: name,
+      bioghist: internal_bioghists[name]
+    }.to_json
+    accumulator << structured_name
+  end
+end
+
 to_field "components" do |record, accumulator, context|
   child_components = record.xpath("./*[is_component(.)]", NokogiriXpathExtensions.new)
   child_components.each do |child_component|

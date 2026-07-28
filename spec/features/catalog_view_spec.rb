@@ -585,4 +585,14 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).not_to have_selector "dd.blacklight-subject_terms_ssim a", text: "Indians of North America"
     end
   end
+
+  describe "record that has bioghist notes for persnames", js: true do
+    it "displays more information in a modal" do
+      visit "/catalog/C0140_c03353"
+
+      expect(page).to have_link "Matappeas"
+      click_button "(Historical Information)"
+      expect(page).to have_content("Matappeas was a Lenape sachem of Toponemus.")
+    end
+  end
 end

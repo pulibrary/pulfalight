@@ -392,11 +392,7 @@ class CatalogController < ApplicationController
       last_word_connector: "<br/>"
     }
 
-    config.add_component_field "names_ssim", label: "Names", separator_options: {
-      words_connector: "<br/>",
-      two_words_connector: "<br/>",
-      last_word_connector: "<br/>"
-    }, helper_method: :link_to_name_facet
+    config.add_component_field "names_structured_ssm", label: "Names", helper_method: :structured_names_helper, accessor: :structured_names
 
     config.add_component_field "places_ssim", label: "Places", link_to_facet: true, separator_options: {
       words_connector: "<br/>",
