@@ -28,17 +28,10 @@ class AskAQuestionForm
 
   def submit
     unless spam?
-      if use_email?
-        ContactMailer.with(
-          form_params: serialize_params,
-          form_class: self.class
-        ).contact.deliver_later
-      else
-        LibanswersTicketJob.perform_later(
-          form_params: serialize_params,
-          form_class: self.class
-        )
-      end
+      LibanswersTicketJob.perform_later(
+        form_params: serialize_params,
+        form_class: self.class
+      )
     end
     set_form_submitted
   end
@@ -52,10 +45,6 @@ class AskAQuestionForm
 
   def submitted?
     @submitted == true
-  end
-
-  def use_email?
-    ["eng", "engineering library"].include? location_code
   end
 
   def serialize_params

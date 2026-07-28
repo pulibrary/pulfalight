@@ -12,6 +12,16 @@ RSpec.describe SuggestACorrectionForm do
       "context" => "http://example.com/catalog/1"
     }
   end
+  let(:valid_attributes_engineering) do
+    {
+      "name" => "Test",
+      "email" => "test@test.org",
+      "box_number" => "1",
+      "message" => "Your EAD components are amazing, you should say so.",
+      "location_code" => "eng",
+      "context" => "http://example.com/catalog/1"
+    }
+  end
 
   describe "initialization" do
     it "takes a name, email, box/container number, and message" do
@@ -58,27 +68,30 @@ RSpec.describe SuggestACorrectionForm do
     end
 
     context "when the location code is engineering" do
-      it "sends an email" do
-        form = described_class.new(valid_attributes.merge({ "location_code" => "engineering library" }))
+      with_queue_adapter(:test)
+      it "senqueues a libanswers job" do
+        form = described_class.new(valid_attributes_engineering)
 
         form.submit
         expect(form.name).to eq ""
         expect(form.email).to eq ""
         expect(form.box_number).to eq ""
         expect(form.message).to eq ""
-        expect(form.location_code).to eq "engineering library"
+        expect(form.location_code).to eq "eng"
         expect(form.context).to eq "http://example.com/catalog/1"
         expect(form).to be_submitted
 
-        expect(ActionMailer::Base.deliveries.length).to eq 1
-        delivery = ActionMailer::Base.deliveries.first
-        expect(delivery.subject).to eq "Finding Aids Suggest a Correction Form"
-        expect(delivery.to).to eq ["wdressel@princeton.edu"]
-        expect(delivery.from).to eq ["no-reply@princeton.edu"]
-        expect(delivery.body).to include "Test"
-        expect(delivery.body).to include "Email: test@test.org"
-        expect(delivery.body).to include "Your EAD components are amazing, you should say so."
-        expect(delivery.body).to include "http://example.com/catalog/1"
+        expect(LibanswersTicketJob).to have_been_enqueued.with(
+          form_params: {
+            "name" => "Test",
+            "email" => "test@test.org",
+            "box_number" => "1",
+            "message" => "Your EAD components are amazing, you should say so.",
+            "location_code" => "eng",
+            "context" => "http://example.com/catalog/1"
+          },
+          form_class: described_class
+        )
       end
     end
   end

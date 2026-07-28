@@ -13,7 +13,7 @@ RSpec.describe LibanswersFormSubmission do
       )
     end
 
-    context "with the SuggestACorrectionForm" do
+    context "with the SuggestACorrectionForm that is not engineering" do
       let(:form) do
         SuggestACorrectionForm.new(
           message: "Your EAD components are amazing, you should say so.",
@@ -60,6 +60,66 @@ RSpec.describe LibanswersFormSubmission do
             "pname" => "Test",
             "pquestion" => "Finding Aids Suggest a Correction Form",
             "quid" => "3456",
+            "ua" => "Ruby"
+          },
+          headers: {
+            "Accept" => "*/*",
+            "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+            "Authorization" => "Bearer abcdef1234567890abcdef1234567890abcdef12",
+            "Content-Type" => "application/x-www-form-urlencoded",
+            "User-Agent" => "Ruby"
+          }
+        )
+      end
+    end
+
+    context "with the SuggestACorrectionForm that is engineering" do
+      let(:form) do
+        SuggestACorrectionForm.new(
+          message: "Your EAD components are amazing, you should say so.",
+          name: "Test",
+          email: "test@test.org",
+          box_number: "1",
+          location_code: "eng",
+          context: "http://example.com/catalog/1",
+          user_agent: "Ruby"
+        )
+      end
+
+      it "uses the libanswers api" do
+        stub_libanswers_api
+
+        submission.send_to_libanswers
+
+        expect(WebMock).to have_requested(
+          :post,
+          "https://faq.library.princeton.edu/api/1.1/oauth/token"
+        ).with(
+          body:
+          "client_id=ABC&"\
+          "client_secret=12345&"\
+          "grant_type=client_credentials",
+          headers: {
+            "Accept" => "*/*",
+            "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+            "Content-Type" => "application/x-www-form-urlencoded",
+            "Host" => "faq.library.princeton.edu",
+            "User-Agent" => "Ruby"
+          }
+        )
+
+        expect(WebMock).to have_requested(
+          :post,
+          "https://faq.library.princeton.edu/api/1.1/ticket/create"
+        )
+          .with(
+          body:
+          {
+            "pdetails" => "Your EAD components are amazing, you should say so.\n\nSent from http://example.com/catalog/1 via LibAnswers API",
+            "pemail" => "test@test.org",
+            "pname" => "Test",
+            "pquestion" => "Finding Aids Suggest a Correction Form",
+            "quid" => "8910",
             "ua" => "Ruby"
           },
           headers: {
