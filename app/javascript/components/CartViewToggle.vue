@@ -43,7 +43,7 @@ export default {
 #count {
   font-size: 12px;
   font-family: style.$font-family-text;
-  background: #ff0000;
+  background: style.$color-red;
   color: #fff;
   padding: 0 5px;
   vertical-align: super;
