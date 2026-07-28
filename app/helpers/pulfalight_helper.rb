@@ -155,7 +155,7 @@ module PulfalightHelper
     content[:value].map do |value|
       value = JSON.parse(value)
       tag.span do
-        link_to_name_facet({ value: [value["label"]] }) + + bioghist_tag(value)
+        link_to_name_facet({ value: [value["label"]] }) + bioghist_tag(value)
       end
     end.join("").html_safe
   end
@@ -164,9 +164,12 @@ module PulfalightHelper
 
   def bioghist_tag(value)
     if value["bioghist"].present?
-      tag.a href: "#", data: { toggle: "modal", target: "#nameModal", label: value["label"], content: value["bioghist"] } do
-        "(Who is this?)"
-      end
+      tag.span(aria: {hidden: true}) do
+        "|"
+      end.concat(
+      tag.a(class: "name-trigger", href: "#", data: { toggle: "modal", target: "#nameModal", label: value["label"], content: value["bioghist"] }) do
+        "(Historical Information)"
+      end)
     else
       ""
     end

@@ -237,8 +237,11 @@
     span {
       display: flex;
       flex-direction: row;
-      gap: 10px;
-      column-rule: 2px solid black;
+      gap: 5px;
+      align-items: baseline;
+      a.name-trigger {
+        font-size: 92%;
+      }
     }
   }
 }
