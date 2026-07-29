@@ -446,6 +446,9 @@ GEM
       addressable (~> 2.8)
       nokogiri (~> 1.12)
       omniauth (~> 2.1)
+    omniauth-rails_csrf_protection (2.0.1)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     omniauth_openid_connect (0.8.0)
       omniauth (>= 1.9, < 3)
       openid_connect (~> 2.2)
@@ -1013,6 +1016,7 @@ DEPENDENCIES
   msgpack
   omniauth (= 2.1.2)
   omniauth-cas (= 3.0.0)
+  omniauth-rails_csrf_protection
   omniauth_openid_connect
   open3
   openssl
