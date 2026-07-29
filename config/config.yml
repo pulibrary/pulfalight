@@ -31,6 +31,7 @@ test:
   archivespace_password: "secretpassword"
   unpublished_auth_token: "123456"
   figgy_auth_token: "123456"
+  skip_figgy_lookup: <%= ENV["SKIP_FIGGY_LOOKUP"] || false %>
   libanswers:
     client_id: ABC
     client_secret: '12345'
