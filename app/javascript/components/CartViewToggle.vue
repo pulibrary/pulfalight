@@ -11,7 +11,10 @@
         <cart-icon></cart-icon>
       </lux-icon-base>
     </lux-input-button>
-    <span class="badge" id="count"> {{ items.length }} </span>
+    <span class="badge" id="count">
+      <span aria-hidden="true">{{ items.length }}</span>
+      <span class="sr-only">{{ cartSummary }}</span>
+    </span>
   </div>
 </template>
 
@@ -28,6 +31,11 @@ export default {
       get() {
         return this.$store.state.cart.items
       }
+    },
+    cartSummary() {
+      const count = this.items.length
+      const suffix = count === 1 ? "" : "s"
+      return `${count} item${suffix} in request cart`
     }
   },
   methods: {
