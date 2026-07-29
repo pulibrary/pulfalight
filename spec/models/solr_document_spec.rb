@@ -192,4 +192,38 @@ RSpec.describe Arclight::SolrDocument do
       expect(request).to be_an AeonRequest
     end
   end
+
+  describe "#structured_names" do
+    let(:fixture_path) { Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0140.processed.EAD.xml") }
+    context "when there's a names_structured_ssm" do
+      it "returns the correct data structure" do
+        result = indexer.map_record(record)
+        component = find_component(component_id: "C0140_c03353", record: result)
+        doc = SolrDocument.new(component)
+
+        expect(doc.structured_names[2]).to eq(
+          {
+            "label" => "Matappeas",
+            "bioghist" => "Matappeas was a Lenape sachem of Toponemus."
+          }
+        )
+      end
+    end
+    context "when there's no names_structured_ssm, but there's a names_ssim" do
+      it "creates a structure that will render" do
+        result = indexer.map_record(record)
+        component = find_component(component_id: "C0140_c03353", record: result)
+        component["names_ssim"] = ["Test", "Test Two"]
+        component.delete("names_structured_ssm")
+        doc = SolrDocument.new(component)
+
+        expect(doc.structured_names[0]).to eq(
+          {
+            "label" => "Test",
+            "bioghist" => nil
+          }
+        )
+      end
+    end
+  end
 end

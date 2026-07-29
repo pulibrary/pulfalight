@@ -381,7 +381,24 @@ class SolrDocument
     repository
   end
 
+  def structured_names
+    fetch("names_structured_ssm", fallback_names).map do |structured_name|
+      JSON.parse(structured_name)
+    end
+  end
+
   private
+
+  # I don't love that we have to serialize to JSON here, but it's temporary and
+  # makes this one method to delete.
+  def fallback_names
+    fetch("names_ssim", []).map do |name|
+      {
+        label: name,
+        bioghist: nil
+      }.to_json
+    end
+  end
 
   def pulfalight_attributes
     {
@@ -438,11 +455,5 @@ class SolrDocument
     {
       id: id
     }
-  end
-
-  def structured_names
-    fetch("names_structured_ssm", []).map do |structured_name|
-      JSON.parse(structured_name)
-    end
   end
 end
