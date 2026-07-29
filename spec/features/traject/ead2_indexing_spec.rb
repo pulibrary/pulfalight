@@ -4,6 +4,7 @@
 
 require "rails_helper"
 require Rails.root.join("lib", "pulfalight", "missing_repository_error")
+require Rails.root.join("lib", "pulfalight", "figgy_report_service")
 
 describe "EAD 2 traject indexing", type: :feature do
   subject(:result) do
@@ -1243,6 +1244,35 @@ describe "EAD 2 traject indexing", type: :feature do
       record = find_component(result, "C0958_c06413-76702")
 
       expect(record["language_ssm"]).to eq ["Greek, Modern", "English"]
+    end
+  end
+
+  describe "#is_portion_bs" do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0140.processed.EAD.xml")
+    end
+
+    it "sets partial digitization flag to true on relevant components" do
+      allow(FiggyReportService).to receive(:fetch_figgy_lookup).and_call_original
+      stub_figgy_report(id: "C0140")
+
+      # the figgy fixture has been edited to make this one a partial digitization
+      record = find_component(result, "C0140_c83445-31032")
+      expect(FiggyReportService).to have_received(:fetch_figgy_lookup).once
+      expect(record["is_portion_bs"]).to eq [true]
+
+      record = find_component(result, "C0140_c80184-00264")
+      expect(record["is_portion_bs"]).to eq [false]
+
+      record = find_component(result, "C0140_c89292-98183")
+      expect(record["is_portion_bs"]).to eq nil
+    end
+
+    it "errors if something is wrong with Figgy" do
+      allow(FiggyReportService).to receive(:fetch_figgy_lookup).and_call_original
+      stub_figgy_report(id: "C0140", status: 500)
+
+      expect { find_component(result, "C0140_c83445-31032") }.to raise_error(FiggyReportService::FiggyError)
     end
   end
 end

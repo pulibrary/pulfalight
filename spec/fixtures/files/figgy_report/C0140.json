@@ -1,0 +1,41 @@
+{
+  "C0140_c83445-31032": [
+    {
+      "ark": "http://arks.princeton.edu/ark:/88435/gh93h8096",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_resources/fa62604d-1f14-429c-afb2-a687d836975f/manifest",
+      "is_portion": true,
+      "portion_note": "Part",
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      }
+    }
+  ],
+  "C0140_c80184-00264": [
+    {
+      "ark": "http://arks.princeton.edu/ark:/88435/dcx920g916h",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_resources/5bbe63f4-3c20-4000-b92e-ba40852be64d/manifest",
+      "is_portion": false,
+      "portion_note": "Part",
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      }
+    }
+  ],
+  "C0140_c03353": [
+    {
+      "ark": "http://arks.princeton.edu/ark:/88435/70795j14c",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_resources/d52cb8e3-b182-44cb-9a59-399811a7c572/manifest",
+      "is_portion": false,
+      "portion_note": null,
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      }
+    }
+  ]
+}

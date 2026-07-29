@@ -17,6 +17,12 @@ module Stubbing
       )
   end
 
+  # override the default empty response set up in rails_helper
+  def stub_figgy_report(id:, status: 200)
+    stub_request(:get, "https://figgy.princeton.edu/reports/pulfalight_records?auth_token=123456&collection=#{id}")
+      .to_return(status: status, body: file_fixture("figgy_report/#{id}.json"))
+  end
+
   def stub_libanswers_oauth
     stub_request(:post, "https://faq.library.princeton.edu/api/1.1/oauth/token")
       .with(body: "client_id=ABC&client_secret=12345&grant_type=client_credentials")
