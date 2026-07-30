@@ -261,9 +261,9 @@ Devise.setup do |config|
   # config.omniauth :cas, host: "fed.princeton.edu", url: "https://fed.princeton.edu/cas"
   config.omniauth :openid_connect, {
     name: :openid_connect,
-    scope: [:openid, :email],
+    scope: [:openid, :profile],
     response_type: :code,
-    # uid_field: "preferred_username",
+    uid_field: "preferred_username",
     issuer: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/v2.0",
     client_auth_method: "query",
     client_options: {
@@ -275,7 +275,7 @@ Devise.setup do |config|
       end_session_endpoint: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/oauth2/v2.0/logout",
       identifier: ENV["ENTRA_CLIENT_ID"],
       secret: ENV["ENTRA_CLIENT_SECRET"],
-      redirect_uri: ENV["ENTRA_REDIRECT_URI"] || "http://localhost:3000/users/auth/openid_connect/callback",
+      redirect_uri: ENV["ENTRA_REDIRECT_URI"] || "http://localhost:3000/users/auth/openid_connect/callback"
     }
   }
 
