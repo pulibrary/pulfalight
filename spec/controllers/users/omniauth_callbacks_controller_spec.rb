@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe Users::OmniauthCallbacksController do
   let(:user) do
     User.new(
-      provider: "cas",
+      provider: "openid_connect",
       uid: "user@princeton.edu"
     )
   end
@@ -15,9 +15,9 @@ RSpec.describe Users::OmniauthCallbacksController do
   end
 
   describe "logging in" do
-    it "valid CAS login redirects to account page" do
+    it "valid OIDC login redirects to account page" do
       allow(User).to receive(:from_omniauth).and_return(user)
-      get(:cas)
+      get(:openid_connect)
       expect(response).to redirect_to("http://test.host/")
     end
   end

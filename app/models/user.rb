@@ -4,11 +4,11 @@ class User < ApplicationRecord
   include Blacklight::User
 
   def self.from_omniauth(access_token)
-    binding.pry
-    User.where(provider: access_token.provider, uid: access_token.uid).first_or_create do |user|
-      user.uid = access_token.uid
-      user.provider = access_token.provider
-      user.email = "#{access_token.uid}@princeton.edu"
+    uid = access_token.uid.split("@").first
+    User.where(uid: uid).first_or_create.tap do |updated_user|
+      updated_user.provider = access_token.provider
+      updated_user.email = access_token.uid
+      updated_user.save
     end
   end
 
