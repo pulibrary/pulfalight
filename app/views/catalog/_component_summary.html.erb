@@ -17,9 +17,7 @@
       <%= render partial: "restricted_badge", locals: { document: document, with_link: false } %>
       <% if document.is_portion? %>
         <div class="document-extent-digitized portion">
-          <span class="media-body" aria-hidden="true">
-            <%= image_tag(asset_path('icon-partial.svg')) %>
-          </span> Partially Digitized
+          <%= blacklight_icon :"icon-partial" %> Partially Digitized
         </div>
       <% end %>
     </div>
