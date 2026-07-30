@@ -4,5 +4,6 @@ en:
     header_links:
       account_page: 'Your Account'
     search:
+      page_heading: 'Finding Aids Search Results'
       search_algorithm:
         label_html: 'Rank by %{algorithm}'
