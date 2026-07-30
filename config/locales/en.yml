@@ -30,8 +30,17 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
   arclight:
     views:
-      show:
-        access: 'Access & Use'
+      index:
+        all_group_results: View all %{count} results for your search.
+        group_results_count:
+          one: The most relevant item in this collection.
+          other: "The %{count} most relevant items in this collection."
+          zero: 0 results
+        number_of_components:
+          one: component
+          other: components
+        top_group_results:
+          one: The most relevant item in this collection.
+          other: The %{count} most relevant items in this collection.
