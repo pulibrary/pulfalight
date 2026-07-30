@@ -1,4 +1,5 @@
-require 'rails_helper'
+# frozen_string_literal: true
+require "rails_helper"
 
 RSpec.describe "login workflow", type: :feature do
   before do
@@ -14,23 +15,23 @@ RSpec.describe "login workflow", type: :feature do
   context "when logging in after being denied" do
     before do
       OmniAuth.config.mock_auth[:openid_connect] = OmniAuth::AuthHash.new({
-        "provider" => :openid_connect,
-        "uid" => "admin123@princeton.edu",
-        "info" => {},
-        "credentials" => {
-          "id_token" => "secret",
-          "token" => "secret",
-          "refresh_token" => nil,
-          "expires_in" => 4489,
-          "scope" => "email openid profile"
-        },
-        "extra" => {
-          "raw_info" => {
-            "sub" => "",
-            "preferred_username" => "test@princeton.edu"
-          }
-        }
-      })
+                                                                            "provider" => :openid_connect,
+                                                                            "uid" => "admin123@princeton.edu",
+                                                                            "info" => {},
+                                                                            "credentials" => {
+                                                                              "id_token" => "secret",
+                                                                              "token" => "secret",
+                                                                              "refresh_token" => nil,
+                                                                              "expires_in" => 4489,
+                                                                              "scope" => "email openid profile"
+                                                                            },
+                                                                            "extra" => {
+                                                                              "raw_info" => {
+                                                                                "sub" => "",
+                                                                                "preferred_username" => "test@princeton.edu"
+                                                                              }
+                                                                            }
+                                                                          })
     end
     it "returns the user to that path" do
       visit "/sidekiq"
