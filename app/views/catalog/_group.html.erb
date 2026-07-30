@@ -1,0 +1,25 @@
+<% # container for all groups in index view -%>
+<div class='al-grouped-results'>
+  <% @response.groups.each do |g| %>
+    <% parent_document = g.docs.first.parent_document %>
+    <%= render_document_partial(parent_document, :group_header) %>
+    <div class="grouped-documents">
+      <div class="al-grouped-more">
+        <% if g.total > 3 %>
+          <strong>
+            <%= t('arclight.views.index.top_group_results', count: 3) %>
+          </strong> 
+          <%= link_to(
+            t('arclight.views.index.all_group_results', count: g.total),
+            search_catalog_path(search_within_collection(parent_document.collection_name, search_without_group)))
+          %>
+        <% else %>
+          <strong>
+          <%= t('arclight.views.index.group_results_count', count: g.total) %>
+          </strong>  
+        <% end %>
+      </div>
+      <%= render_grouped_documents(g.docs) %>
+    </div>
+  <% end %>
+</div>
