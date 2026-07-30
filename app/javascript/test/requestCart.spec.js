@@ -199,6 +199,37 @@ describe('RequestCart.vue', () => {
     await fireEvent.keyDown(cart, { key: 'Escape' })
     expect(container.querySelector('.request-cart[open]')).toBe(null)
   })
+  test('an empty cart renders a message instead of an empty table', async () => {
+    const customStore = {
+      modules: {
+        cart: {
+          state: {
+            items: [],
+            isVisible: true
+          },
+          actions: cartActions,
+          mutations: cartMutations
+        }
+      }
+    }
+    const mergedStore = createStore({ ...store, ...customStore })
+    const { container } = render(RequestCart, {
+      global: {
+        plugins: [mergedStore],
+        components: {
+          'lux-input-button': LuxInputButton,
+          'lux-input-text': LuxInputText
+        }
+      },
+      props: {
+        configuration: {},
+        globalFormParams: { SystemID: 'Pulfa' }
+      }
+    })
+
+    expect(container.querySelector('table')).toBe(null)
+    expect(container.querySelector('.cart-empty').textContent).toContain('Your request cart is empty')
+  })
   test('click outside of the cart closes the cart', async () => {
     const customStore = {
       modules: {
