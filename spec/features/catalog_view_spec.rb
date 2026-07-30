@@ -259,6 +259,25 @@ describe "viewing catalog records", type: :feature, js: true do
       expect(page).to have_selector "#readingroom"
     end
   end
+
+  context "when a component is partially digitized", js: false do
+    let(:fixture_path) do
+      Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0140.processed.EAD.xml")
+    end
+    before do
+      # index the item so it uses the webmocked fixture
+      stub_figgy_report(id: "C0140")
+      IndexJob.perform_now(file_paths: [fixture_path], repository_id: "mss")
+      Blacklight.default_index.connection.commit
+      visit "/catalog/C0140_c83445-31032"
+    end
+
+    it "has a partially digitized badge" do
+      expect(page).to have_selector(".document-extent-digitized")
+      # expect(page.find("div.document-attributes").find(".document-extent-digitized").text).to eq "Partially Digitized"
+    end
+  end
+
   context "when a component has a digital object with a link" do
     before do
       visit "/catalog/MC148_c07608"

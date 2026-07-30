@@ -37,5 +37,18 @@
         "definition": "Open to the world. Anyone can view."
       }
     }
+  ],
+  "C0140_c64107-85808": [
+    {
+      "ark": "http://arks.princeton.edu/ark:/88435/dc9s161m984",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_resources/722335aa-e0f1-46ca-be8c-edcafb1d0eef/manifest",
+      "is_portion": "1",
+      "portion_note": "Four pages out of larger scrapbook",
+      "visibility": {
+        "value": "restricted",
+        "label": "private",
+        "definition": "Only privileged users of this application can view."
+      }
+    }
   ]
 }
