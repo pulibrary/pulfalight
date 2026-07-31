@@ -7,3 +7,5 @@ en:
       page_heading: 'Finding Aids Search Results'
       search_algorithm:
         label_html: 'Rank by %{algorithm}'
+    skip_links:
+      facets: Skip to search filters

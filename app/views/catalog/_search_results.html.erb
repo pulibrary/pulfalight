@@ -17,6 +17,10 @@
 <%= render 'search_header' %>
 
 <h2 class="sr-only"><%= t('blacklight.search.search_results') %></h2>
+<div id="skip-link">
+  <%= link_to t('blacklight.skip_links.facets'), '#facets', class: 'element-invisible element-focusable rounded-bottom py-2 px-3', data: { turbolinks: 'false' } %>
+  <%= content_for(:skip_links) %>
+</div>
 
 <%- if @response.empty? %>
   <%= render "zero_results" %>
