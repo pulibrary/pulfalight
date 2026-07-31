@@ -1,10 +1,9 @@
 <script src="https://api2.libanswers.com/1.0/widgets/850"></script>
 <div class="lux feedback-container">
-  <lux-heading level="h2" size="h3">Ask a Question</lux-heading>
+  <h1>Ask a Question</h1>
   <div class="row">
-
     <div id="generalFeedback" class="form-wrapper col">
-
+      <h2 class="sr-only">Send us a question</h2>
       <div class="form-wrapper">
         <%= render partial: "catalog/ask_a_question_form", locals: {
           form: AskAQuestionForm.new(location_code: "general",
@@ -13,9 +12,7 @@
       </div>
     </div>
     <div id="questionFAQ" class="col">
-      <h6>
-        Quick Answers
-      </h6>
+      <h2>Quick Answers</h2>
       <p>Has your question already been answered?</p>
       <div id="s-la-widget-850"></div>
       <div class="faq-set" style="padding-top: 10px;">
