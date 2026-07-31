@@ -4,7 +4,7 @@ class User < ApplicationRecord
   include Blacklight::User
 
   def self.from_omniauth(access_token)
-    uid = access_token.uid.split("@").first
+    uid = access_token.uid.split("@princeton.edu").first
     User.where(uid: uid).first_or_create.tap do |updated_user|
       updated_user.provider = access_token.provider
       updated_user.email = access_token.uid
