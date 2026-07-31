@@ -28,6 +28,16 @@ RSpec.describe User do
       user = User.find(user.id)
       expect(user.provider).to eq "openid_connect"
     end
+
+    it "appropriately handles guest accounts" do
+      user = FactoryBot.create(:user, uid: "tpend", email: "tpend@princeton.edu", provider: "cas")
+      token = double("token", provider: "openid_connect", uid: "tpend@gmail.com")
+
+      new_user = described_class.from_omniauth(token)
+
+      expect(new_user.id).not_to eq user.id
+      expect(new_user.uid).to eq "tpend@gmail.com"
+    end
   end
 
   describe "#admin?" do
