@@ -28,22 +28,25 @@
             </svg>
           </div>
         </lux-input-button>
+
+        <div class="caption-title">
+          <span>Request Cart</span>
+          <lux-icon-base width="30" height="30" icon-name="Cart">
+            <lux-icon-cart></lux-icon-cart>
+          </lux-icon-base>
+        </div>
+        <div class="caption-note">
+          Add items from multiple pages and request them all at once.
+        </div>
       </div>
 
-      <table :class="['lux-data-table', 'fixed-header']">
+      <p v-if="requests.length === 0" class="cart-empty">
+        Your request cart is empty.
+      </p>
 
-        <caption>
+      <table v-else :class="['lux-data-table', 'fixed-header']">
 
-          <div class="caption-title">
-            <span>Request Cart</span>
-            <lux-icon-base width="30" height="30" icon-name="Cart">
-              <lux-icon-cart></lux-icon-cart>
-            </lux-icon-base>
-          </div>
-          <div class="caption-note">
-            Add items from multiple pages and request them all at once.
-          </div>
-        </caption>
+        <caption class="sr-only">Items in your request cart</caption>
 
         <thead>
           <tr>
@@ -279,6 +282,43 @@ export default {
    background: transparent;
 }
 
+.cart-header {
+  text-align: left;
+  font-size: 36px;
+  font-size: 2vw;
+  font-weight: 700;
+  font-family: franklin-gothic-urw, Helvetica, Arial, sans-serif;
+  line-height: 1;
+
+  .caption-note {
+    font-size: 16px;
+    margin-bottom: 12px;
+    font-weight: 350;
+  }
+}
+@media (max-width: 63.3em) {
+  .cart-header {
+    font-size: 1.266em;
+  }
+}
+@media (min-width: 88.85em) {
+  .cart-header {
+    font-size: 1.777em;
+  }
+}
+
+.cart-empty {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  padding-top: 0.5rem;
+  font-size: 16px;
+  font-weight: 350;
+  font-family: franklin-gothic-urw, Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+  color: #41464e;
+}
+
 .lux-data-table {
   table-layout: fixed;
   width: 100%;
@@ -287,24 +327,6 @@ export default {
   border-left: none;
   border-right: none;
   border-bottom: none;
-  caption {
-    margin-bottom: 24px;
-    display: table-caption;
-    text-align: left;
-    font-size: 36px;
-    font-size: 2vw;
-    font-weight: 700;
-    font-family: franklin-gothic-urw, Helvetica, Arial, sans-serif;
-    line-height: 1;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .caption-note {
-    font-size: 16px;
-    margin-bottom: 12px;
-    font-weight: 350;
-  }
   tbody {
     background-color: #fff;
     width: 100%;
@@ -321,18 +343,6 @@ export default {
     }
   }
 }
-@media (max-width: 63.3em) {
-  .lux-data-table caption {
-    font-size: 1.266em;
-  }
-}
-@media (min-width: 88.85em) {
-  .lux-data-table caption {
-    font-size: 1.777em;
-  }
-}
-
-
 .lux-data-table {
     width: 100%;
     table-layout: fixed;
@@ -516,12 +526,6 @@ export default {
   height: 100%;
   flex: 1 1 auto;
   min-height: 0;
-  caption {
-    caption-side: inherit;
-    margin-bottom: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
 }
 .panel {
   @include style.reset;
