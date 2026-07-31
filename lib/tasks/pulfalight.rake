@@ -15,7 +15,10 @@ namespace :servers do
   task start: :environment do
     system("lando start")
     system("rake servers:initialize")
-    system("rake servers:initialize RAILS_ENV=test")
+
+    # keep figgy lookup from erroring in the test environment without webmock
+    # during index
+    system("rake servers:initialize RAILS_ENV=test SKIP_FIGGY_LOOKUP=true")
   end
 
   desc "Stop lando solr and postgres servers."

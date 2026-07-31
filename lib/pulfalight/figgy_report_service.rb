@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+class FiggyReportService
+  class FiggyError < StandardError; end
+
+  def self.fetch_figgy_lookup(collection_id)
+    # the test index seeds in test mode, but isn't running WebMock
+    return {} if Pulfalight.config["skip_figgy_lookup"]
+    auth_token = Pulfalight.config["figgy_auth_token"]
+    return {} unless auth_token
+
+    connection = Faraday.new(
+      url: Pulfalight.config["figgy_url"],
+      headers: { "Content-Type" => "application/json" }
+    )
+    response = connection.get("/reports/pulfalight_records?collection=#{collection_id}&auth_token=#{auth_token}")
+
+    raise FiggyError, "#{response.status} on #{collection_id} with token #{auth_token[0, 4]}" unless response.success?
+
+    JSON.parse(response.body)
+  end
+end

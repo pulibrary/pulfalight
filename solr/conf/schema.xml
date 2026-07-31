@@ -310,6 +310,7 @@
    <dynamicField name="*_isim"  type="pint"      stored="true"  indexed="true"  multiValued="true"  />
    <dynamicField name="*_ii"    type="pint"      stored="false" indexed="true"  multiValued="false" />
    <dynamicField name="*_identifier_match" type="identifier_match" stored="true" indexed="true" multiValued="true" />
+   <dynamicField name="*_bs"    type="boolean"      stored="true" indexed="false"  multiValued="false" />
 
  </fields>
 

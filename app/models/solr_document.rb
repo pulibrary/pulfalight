@@ -313,6 +313,10 @@ class SolrDocument
     fetch("access_ssi", nil) == "review"
   end
 
+  def is_portion?
+    fetch("is_portion_bs", nil) == true
+  end
+
   def render_panopto?
     panopto_digital_object.present?
   end

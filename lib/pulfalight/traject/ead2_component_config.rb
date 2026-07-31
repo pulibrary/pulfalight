@@ -712,6 +712,12 @@ to_field "bioghist_ssm", extract_xpath("./bioghist[not(@audience='internal')]", 
   build_bioghist(accumulator)
 end
 
+to_field "is_portion_bs" do |_record, accumulator, context|
+  is_portion = settings["figgy_lookup"][context.output_hash["id"].first]&.first&.fetch("is_portion", nil)
+
+  accumulator << is_portion
+end
+
 # Every name, if it has a bioghist, has an internal bioghist attached to the
 # component. Pull them, then create JSON structures that we can deserialize into
 # the item page.
@@ -737,6 +743,7 @@ to_field "components" do |record, accumulator, context|
       provide :parent, context
       provide :root, context.settings[:root]
       provide :repository, context.settings[:repository]
+      provide :figgy_lookup, context.settings[:figgy_lookup]
     end
     component_indexer.settings[:parent] = context
     output = component_indexer.map_record(child_component)

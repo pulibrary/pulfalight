@@ -20,6 +20,7 @@ require_relative "../normalized_date"
 require_relative "../normalized_box_locations"
 require_relative "../year_range"
 require_relative "../missing_repository_error"
+require_relative "../figgy_report_service"
 require Rails.root.join("lib", "pulfalight", "traject", "ead2_indexing")
 require Rails.root.join("app", "values", "pulfalight", "location_code")
 require Rails.root.join("app", "values", "pulfalight", "physical_location_code")
@@ -486,12 +487,14 @@ to_field "components" do |record, accumulator, context|
           else
             "./c[@level != 'otherlevel']"
           end
+  figgy_lookup = FiggyReportService.fetch_figgy_lookup(context.output_hash["id"].first)
   child_components = record.xpath(xpath, Pulfalight::Ead2Indexing::NokogiriXpathExtensions.new)
   child_components.each do |child_component|
     component_indexer.settings do
       provide :parent, context
       provide :root, context
       provide :repository, context.settings[:repository]
+      provide :figgy_lookup, figgy_lookup
     end
     output = component_indexer.map_record(child_component)
     accumulator << output

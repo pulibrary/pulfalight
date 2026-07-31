@@ -37,4 +37,10 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
   config.include ActiveSupport::Testing::TimeHelpers
+
+  # default stub an empty figgy reports response
+  config.before(:each) do
+    stub_request(:any, /figgy.princeton.edu\/reports\/pulfalight_records/)
+      .and_return(status: 200, body: {}.to_json)
+  end
 end

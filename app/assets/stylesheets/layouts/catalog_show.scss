@@ -1,7 +1,6 @@
 @import 'modules/breadcrumbs';
-@import 'modules/collection_badge';
+@import 'modules/badges';
 @import 'modules/document_access_badge';
-@import 'modules/document_extent_badge';
 @import 'modules/print_button';
 @import 'modules/request_cart';
 @import 'modules/view_content_button';
@@ -14,7 +13,11 @@
   }
 
   .document-access {
-    @include document-access-badge;
+    @include document-access-elements;
+  }
+
+  .document-extent-digitized {
+    @include document-extent-digitized-badge;
   }
 
   .online-banner {

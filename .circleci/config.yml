@@ -143,7 +143,7 @@ jobs:
       - run: bundle exec rake db:create
       - run: bundle exec rake db:migrate
       - run: bundle exec rake db:migrate RAILS_ENV=test
-      - run: bundle exec rake pulfalight:seed
+      - run: bundle exec rake pulfalight:seed SKIP_FIGGY_LOOKUP=true
       # Test
       - run:
           name: Run Rspec
