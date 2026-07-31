@@ -71,6 +71,15 @@
   margin-top: 20px;
   padding: 15px 10px;
 
+  // "Contents and Arrangement" became an h2 for accessibility,
+  // but we want it to match the the previous styling.
+  h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0;
+  }
+
   .toc-toggle {
     font-size: 1rem;
 
