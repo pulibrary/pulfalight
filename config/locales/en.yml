@@ -32,6 +32,12 @@
 en:
   arclight:
     views:
+      show:
+        access: Access & Use
+        overview: Collection Overview
+        description: Collection Description & Creator Information
+        history: Collection History
+        related: Find Related Materials
       index:
         all_group_results: View all %{count} results for your search.
         group_results_count:
