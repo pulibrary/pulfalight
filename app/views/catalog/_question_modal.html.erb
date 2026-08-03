@@ -4,7 +4,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="questionModalTitle">Ask a Question</h5>
+          <h2 class="modal-title" id="questionModalTitle">Ask a Question</h2>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -15,9 +15,9 @@
               <%= render partial: "ask_a_question_form", locals: { form: AskAQuestionForm.new(location_code: @document.fetch("repository_code_ssm", []).first, context: request.original_url, title: @document.collection.first) } %>
             </div>
             <div id="questionFAQ">
-              <h6>
+              <h3>
                 Quick Answers
-              </h6>
+              </h3>
               <p>Has your question already been answered?</p>
               <div id="s-la-widget-850"></div>
               <div class="faq-set" style="padding-top: 10px;">
