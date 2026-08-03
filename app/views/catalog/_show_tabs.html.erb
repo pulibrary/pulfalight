@@ -1,12 +1,12 @@
 <ul class="lux-tabs-container" role="tablist" aria-label="Collection Notes">
   <li id="summary-tab" class="lux-tabs-item" role='tab'>
     <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>'>
-    Collection Overview
+      <%= t 'arclight.views.show.overview' %>
     </a>
   </li>
   <li id="description-tab" class="lux-tabs-item" role='tab'>
     <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>#description'>
-    Collection Description & Creator Information
+      <%= t 'arclight.views.show.description' %>
     </a>
   </li>
   <li id="access-tab" class="lux-tabs-item" role='tab'>
@@ -16,12 +16,12 @@
   </li>
   <li id="collection-history-tab" class="lux-tabs-item" role='tab'>
     <a class='nav-link ' href='<%= solr_document_path(document.http_safe_ead) %>#collection-history'>
-      Collection History
+      <%= t 'arclight.views.show.history' %>
     </a>
   </li>
   <li id="find-more-tab" class="lux-tabs-item" role='tab'>
     <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>#find-more'>
-      Find Related Materials
+      <%= t 'arclight.views.show.related' %>
     </a>
   </li>
 </ul>
