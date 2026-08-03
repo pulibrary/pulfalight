@@ -1,10 +1,10 @@
-<dl>
-  <dt><h4>Abstract</h4></dt>
+<div class="collection-abstract">
+  <h3>Abstract</h3>
   <% metadata = :abstract_field %>
   <% doc_presenter = document_presenter(document).with_field_group(metadata) %>
   <% generic_document_fields(metadata).each do |field_name, field| %>
     <% if generic_should_render_field?(metadata, document, field) %>
-      <dd class="blacklight-<%= field_name.parameterize %>"><%= doc_presenter.field_value field %></dd>
+      <div class="blacklight-<%= field_name.parameterize %>"><%= doc_presenter.field_value field %></div>
     <% end %>
   <% end %>
-</dl>
+</div>
