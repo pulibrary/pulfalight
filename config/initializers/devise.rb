@@ -2,7 +2,7 @@
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
-OmniAuth.config.allowed_request_methods = [:get]
+OmniAuth.config.allowed_request_methods = [:post]
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
@@ -258,7 +258,26 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :cas, host: "fed.princeton.edu", url: "https://fed.princeton.edu/cas"
+  # config.omniauth :cas, host: "fed.princeton.edu", url: "https://fed.princeton.edu/cas"
+  config.omniauth :openid_connect, {
+    name: :openid_connect,
+    scope: [:openid, :profile],
+    response_type: :code,
+    uid_field: "preferred_username",
+    issuer: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/v2.0",
+    client_auth_method: "query",
+    client_options: {
+      host: "login.microsoftonline.com",
+      authorization_endpoint: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/oauth2/v2.0/authorize",
+      token_endpoint: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/oauth2/v2.0/token",
+      userinfo_endpoint: "https://graph.microsoft.com/oidc/userinfo",
+      jwks_uri: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/discovery/v2.0/keys",
+      end_session_endpoint: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/oauth2/v2.0/logout",
+      identifier: ENV["ENTRA_CLIENT_ID"],
+      secret: ENV["ENTRA_CLIENT_SECRET"],
+      redirect_uri: ENV["ENTRA_REDIRECT_URI"] || "http://localhost:3000/users/auth/openid_connect/callback"
+    }
+  }
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
