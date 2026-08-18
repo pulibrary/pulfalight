@@ -352,8 +352,8 @@ export default {
 .lux-data-table tbody{
   display:block;
   width: 100%;
-  overflow: auto;
-  height: calc(100% - 162px);
+  height: calc(100% - 60px);
+  overflow: scroll;
 }
 
 .lux-data-table tr {
