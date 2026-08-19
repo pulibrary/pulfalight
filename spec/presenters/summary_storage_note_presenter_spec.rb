@@ -179,5 +179,24 @@ RSpec.describe SummaryStorageNotePresenter do
         )
       end
     end
+
+    context "when there's a list item with no label" do
+      let(:values) do
+        {
+          "summary_storage_note_ssm": [
+            '{"Mudd Manuscript Library (scamudd)":["100A"]}'
+          ]
+        }
+      end
+
+      it "calls it an item" do
+        expect(ssnote.render).to eq(
+          ["<dl class=\"storage-notes\">",
+           "<dt>Mudd Manuscript Library (scamudd)</dt>",
+           "<dd>Item 100A</dd>",
+           "</dl>"].join
+        )
+      end
+    end
   end
 end

@@ -82,6 +82,13 @@ class SummaryStorageNotePresenter
     notes.map do |note|
       remaining = note.split(/; |;/)
       type, first_box = remaining[0].split(" ", 2)
+      # if first_box is nil, that means there wasn't a space in the note. It is
+      # probably missing a label or has some other data problem; do our best to
+      # handle it
+      if first_box.nil?
+        first_box = type
+        type = "Item"
+      end
       remaining[0] = first_box
       numeric, remaining = remaining.partition { |box| box.match?(/\A[\d-]+\z/) }
       alphanumeric, remaining = remaining.partition { |box| box.match?(/[A-Z]-?\d{1,6}/) }
