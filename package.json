@@ -4,7 +4,7 @@
   "dependencies": {
     "core-js": "^3.36.1",
     "jquery": "^3.5.1",
-    "lux-design-system": "7.7.4",
+    "lux-design-system": "7.8.0",
     "postcss-import": "^16.1.0",
     "sass": "^1.74.1",
     "serialize-javascript": "^7.0.5",
@@ -25,6 +25,9 @@
     "vite": "^6.4.3",
     "vite-plugin-ruby": "^5.1.0",
     "vitest": "^4.1.0"
+  },
+  "resolutions": {
+    "vite": "^6.4.3"
   },
   "scripts": {
     "test": "vitest run",

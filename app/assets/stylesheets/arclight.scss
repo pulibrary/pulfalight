@@ -35,6 +35,11 @@ a.responsiveTruncatorToggle {
   }
 }
 
+// Link needs more contrast from surrounding text (WCAG 1.4.1).
+.al-grouped-more a {
+  text-decoration: underline;
+}
+
 .al-grouped-results .grouped-documents .document {
   border-bottom: 1px solid #dee2e6;
   margin-top: 1rem;
