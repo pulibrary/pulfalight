@@ -23,8 +23,8 @@ gem "jbuilder", "~> 2.5"
 gem "jquery-rails"
 gem "lograge"
 gem "msgpack"
-gem "omniauth", "2.1.2"
-gem "omniauth-cas", "3.0.0"
+gem "omniauth", "2.1.4"
+gem "omniauth-cas", "3.0.2"
 gem "open3"
 gem "opentelemetry-exporter-otlp"
 gem "opentelemetry-instrumentation-all"
@@ -43,7 +43,7 @@ gem "sass-rails", "~> 5.0"
 gem "sidekiq", "~> 6.5"
 gem "simple_form"
 gem "terser"
-gem "twitter-typeahead-rails", "0.11.1.pre.corejavascript"
+gem "twitter-typeahead-rails", "0.11.1"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "vite_rails"
 gem "whenever", require: false
@@ -74,8 +74,8 @@ group :development do
 end
 
 group :test do
-  gem "axe-core-api", "4.0.0"
-  gem "axe-core-rspec", "4.0.0"
+  gem "axe-core-api", "4.13.0"
+  gem "axe-core-rspec", "4.13.0"
   gem "capybara", ">= 3.18"
   gem "openssl" # fix cert error with webmock
   gem "rspec_junit_formatter"
