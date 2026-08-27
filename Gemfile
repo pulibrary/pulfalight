@@ -1,6 +1,5 @@
 # frozen_string_literal: true
-source "https://gem.coop"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+source "https://rubygems.org", cooldown: 14
 
 gem "archivesspace-client"
 gem "arclight", github: "pulibrary/arclight", branch: "v0.5.0-rails-8"
