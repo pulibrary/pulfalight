@@ -1,27 +1,29 @@
-<ul class="lux-tabs-container" role="tablist" aria-label="Collection Notes">
-  <li id="summary-tab" class="lux-tabs-item" role='tab'>
-    <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>'>
-      <%= t 'arclight.views.show.overview' %>
-    </a>
-  </li>
-  <li id="description-tab" class="lux-tabs-item" role='tab'>
-    <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>#description'>
-      <%= t 'arclight.views.show.description' %>
-    </a>
-  </li>
-  <li id="access-tab" class="lux-tabs-item" role='tab'>
-    <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>#access'>
-      <%= t 'arclight.views.show.access' %>
-    </a>
-  </li>
-  <li id="collection-history-tab" class="lux-tabs-item" role='tab'>
-    <a class='nav-link ' href='<%= solr_document_path(document.http_safe_ead) %>#collection-history'>
-      <%= t 'arclight.views.show.history' %>
-    </a>
-  </li>
-  <li id="find-more-tab" class="lux-tabs-item" role='tab'>
-    <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>#find-more'>
-      <%= t 'arclight.views.show.related' %>
-    </a>
-  </li>
-</ul>
+<nav aria-label="Collection Notes">
+  <ul class="lux-tabs-container">
+    <li id="summary-tab" class="lux-tabs-item">
+      <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>'>
+        <%= t 'arclight.views.show.overview' %>
+      </a>
+    </li>
+    <li id="description-tab" class="lux-tabs-item">
+      <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>#description'>
+        <%= t 'arclight.views.show.description' %>
+      </a>
+    </li>
+    <li id="access-tab" class="lux-tabs-item">
+      <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>#access'>
+        <%= t 'arclight.views.show.access' %>
+      </a>
+    </li>
+    <li id="collection-history-tab" class="lux-tabs-item">
+      <a class='nav-link ' href='<%= solr_document_path(document.http_safe_ead) %>#collection-history'>
+        <%= t 'arclight.views.show.history' %>
+      </a>
+    </li>
+    <li id="find-more-tab" class="lux-tabs-item">
+      <a class='nav-link' href='<%= solr_document_path(document.http_safe_ead) %>#find-more'>
+        <%= t 'arclight.views.show.related' %>
+      </a>
+    </li>
+  </ul>
+</nav>
