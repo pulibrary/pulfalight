@@ -22,13 +22,13 @@
     "happy-dom": "^20.10.6",
     "http-proxy-to-socks": "^1.1.5",
     "standard": "^17.1.0",
-    "vite": "^6.4.3",
+    "vite": "^8.0.0",
     "vite-plugin-ruby": "^5.2.0",
     "vitest": "^4.1.0",
     "vue-eslint-parser": "^10.4.1"
   },
   "resolutions": {
-    "vite": "^6.4.3"
+    "vite": "^8.0.0"
   },
   "scripts": {
     "test": "vitest run",
