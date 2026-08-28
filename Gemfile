@@ -9,7 +9,7 @@ gem "blacklight_range_limit", "~> 7.1"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "bootstrap", "~> 4.6"
 gem "change_the_subject"
-gem "connection_pool", "< 3"
+gem "connection_pool", "< 4"
 gem "datadog", require: "datadog/auto_instrument"
 gem "devise", ">= 4.7.1"
 gem "devise-guests", "~> 0.6"

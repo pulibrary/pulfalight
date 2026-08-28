@@ -925,7 +925,7 @@ DEPENDENCIES
   capistrano-rails-console
   capybara (>= 3.18)
   change_the_subject
-  connection_pool (< 3)
+  connection_pool (< 4)
   database_cleaner
   datadog
   debug (~> 1.8)
