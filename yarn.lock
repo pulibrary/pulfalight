@@ -2621,10 +2621,10 @@ lru-cache@^10.2.0:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.4.3.tgz#410fc8a17b70e598013df257c2446b7f3383f119"
   integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
 
-lux-design-system@7.8.0:
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-7.8.0.tgz#8b6d2f98ae728ee84c0d0d42fa563f59ccd9a13a"
-  integrity sha512-I9i/gDa4NW83/crlLRTZQkxM9qtGp5hn7uxXXgc9mF+hbRMIIK2CkzLbn4PXtG3YHl8Vw3/ZQd3qPwkqEiEh+A==
+lux-design-system@7.9.0:
+  version "7.9.0"
+  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-7.9.0.tgz#cbd5f282e31d694b968626732a60e57e869b4c8f"
+  integrity sha512-czNjpIy14tAp+u3V+dCcFkPn4zkSW34fxHU/BENwKkDwcNzPwIKxdW8nPUJ+mIV8AZplPLYdHaSm+fAFB6Ba4w==
   dependencies:
     core-js "^3.8.3"
     register-service-worker "^1.7.2"
@@ -3750,7 +3750,7 @@ version-guard@^1.1.1:
   resolved "https://registry.yarnpkg.com/version-guard/-/version-guard-1.1.3.tgz#5a39b9d195f94cb10d469553aa9951e1917da5d2"
   integrity sha512-JwPr6erhX53EWH/HCSzfy1tTFrtPXUe927wdM1jqBBeYp1OM+qPHjWbsvv6pIBduqdgxxS+ScfG7S28pzyr2DQ==
 
-vite-plugin-ruby@^5.1.0:
+vite-plugin-ruby@^5.2.0:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/vite-plugin-ruby/-/vite-plugin-ruby-5.2.3.tgz#f95fbf8d56366c7f01c13e37a35b93841459fb1b"
   integrity sha512-WwUa91eE1A5veI2UiU2WVtTKmmvha8zoCccSi3rT978W43QT+SXzAHYuJ8cirPq58E1ct4okmOCWpsyEbUl6Tw==

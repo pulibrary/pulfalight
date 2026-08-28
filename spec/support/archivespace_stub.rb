@@ -10,7 +10,7 @@ module AspaceStubbing
   end
 
   def stub_aspace_repositories
-    stub_request(:get, "https://aspace.test.org/staff/api/repositories?page=1")
+    stub_request(:get, "https://aspace.test.org/staff/api/repositories?page=1&page_size=#{Aspace::Client.config.page_size}")
       .to_return(status: 200, body: File.open(Rails.root.join("spec", "fixtures", "aspace", "repositories.json")), headers: { "Content-Type": "application/json" })
   end
 
