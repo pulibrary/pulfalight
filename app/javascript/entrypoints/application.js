@@ -1,5 +1,4 @@
 import 'core-js/stable'
-import 'regenerator-runtime/runtime'
 import PulfalightLoader from '@/pulfalight/pulfalight_loader.es6'
 
 document.addEventListener('DOMContentLoaded', () => {
