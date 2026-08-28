@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   ].freeze
 
   RESCUE_WITH_500 = [
-    ArchivesSpace::ConnectionError
+    ArchivesSpace::AuthenticationError
   ].freeze
 
   rescue_from(*RESCUE_WITH_404) do |e|

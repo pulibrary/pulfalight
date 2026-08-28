@@ -24,18 +24,17 @@ module Aspace
 
     def ead_urls(modified_since: nil)
       login
-      output = repositories.each_with_object({}) do |repository, acc|
-        config.base_repo = repository["uri"][1..-1]
+      repositories.each_with_object({}) do |repo, acc|
+        repo_uri = repo["uri"][1..-1]
         query = { all_ids: true }
         query[:modified_since] = modified_since if modified_since
-        resource_ids = get("resources", query: query).parsed
-        urls = resource_ids.map do |resource_id|
-          "#{config.base_repo}/resource_descriptions/#{resource_id}"
+        resource_ids = repository(repo["uri"].split("/").last) do
+          get("resources", query: query).parsed
         end
-        acc[repository["repo_code"]] = urls
+        acc[repo["repo_code"]] = resource_ids.map do |resource_id|
+          "#{repo_uri}/resource_descriptions/#{resource_id}"
+        end
       end
-      config.base_repo = ""
-      output
     end
 
     # returns nil if not found

@@ -46,11 +46,11 @@ RSpec.describe PartnerExportsController do
       it "logs an error and returns a 500" do
         client = instance_double(Aspace::Client)
         allow(Aspace::Client).to receive(:new).and_return(client)
-        allow(client).to receive(:get_xml).and_raise(ArchivesSpace::ConnectionError.new("can't connect"))
+        allow(client).to receive(:get_xml).and_raise(ArchivesSpace::AuthenticationError.new("can't connect"))
         allow(Rails.logger).to receive(:warn)
 
         expect { get("/pacscl/production/AC500_c23929-57796.xml") }.not_to raise_error
-        expect(Rails.logger).to have_received(:warn).with("ArchivesSpace::ConnectionError: can't connect")
+        expect(Rails.logger).to have_received(:warn).with("ArchivesSpace::AuthenticationError: can't connect")
         expect(response.status).to eq 500
       end
     end

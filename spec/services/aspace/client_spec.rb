@@ -21,7 +21,7 @@ RSpec.describe Aspace::Client do
 
     it "does not reveal password in error message on failed connection" do
       stub_request(:post, "https://aspace.test.org/staff/api/users/test/login?password=secretpassword").to_return(status: 200, body: {}.to_json, headers: { "Content-Type": "application/json" })
-      expect { described_class.new.login }.to raise_error(ArchivesSpace::ConnectionError, /^((?!secretpassword).)*$/)
+      expect { described_class.new.login }.to raise_error(ArchivesSpace::AuthenticationError, /^((?!secretpassword).)*$/)
     end
   end
 

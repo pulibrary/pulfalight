@@ -29,7 +29,7 @@ RSpec.describe AspaceFixtureGenerator do
       expect(content.search("//c").length).to eq 2
       expect(content.search("//c").map { |x| x["id"] }).to eq ["aspace_C1588_c1", "aspace_C1588_c2"]
 
-      allow(Aspace::Client).to receive(:new).and_raise(ArchivesSpace::ConnectionError)
+      allow(Aspace::Client).to receive(:new).and_raise(ArchivesSpace::AuthenticationError)
       # Running it again works without hitting client.
       fixture_generator = described_class.new(
         client: nil,
