@@ -5,7 +5,7 @@ gem "archivesspace-client"
 gem "arclight", github: "pulibrary/arclight", branch: "v0.5.0-rails-8"
 gem "blacklight", "~> 7.42"
 gem "blacklight_dynamic_sitemap"
-gem "blacklight_range_limit", "~> 7.1"
+gem "blacklight_range_limit", "~> 9.0"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "bootstrap", "~> 4.6"
 gem "change_the_subject"
