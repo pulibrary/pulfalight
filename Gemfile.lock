@@ -99,8 +99,6 @@ GEM
       json (~> 2.0)
       nokogiri (~> 1.10)
     ast (2.4.3)
-    autoprefixer-rails (10.4.21.0)
-      execjs (~> 2)
     axe-core-api (4.13.0)
       dumb_delegator
     axe-core-rspec (4.13.0)
@@ -137,9 +135,8 @@ GEM
       blacklight (~> 7.0)
     bootsnap (1.21.1)
       msgpack (~> 1.2)
-    bootstrap (4.6.2.1)
-      autoprefixer-rails (>= 9.1.0)
-      popper_js (>= 1.16.1, < 2)
+    bootstrap (5.3.8)
+      popper_js (>= 2.11.8, < 3)
     builder (3.3.0)
     byebug (12.0.0)
     capistrano (3.20.0)
@@ -224,7 +221,8 @@ GEM
       activemodel
     erb (6.0.1)
     erubi (1.13.1)
-    execjs (2.10.0)
+    execjs (2.10.2)
+      json (>= 2)
     factory_bot (6.5.6)
       activesupport (>= 6.1.0)
     factory_bot_rails (6.5.1)
@@ -608,7 +606,7 @@ GEM
     pg (1.6.3-aarch64-linux-musl)
     pg (1.6.3-x86_64-linux)
     pg (1.6.3-x86_64-linux-musl)
-    popper_js (1.16.1)
+    popper_js (2.11.8)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -916,7 +914,7 @@ DEPENDENCIES
   blacklight_dynamic_sitemap
   blacklight_range_limit (~> 7.1)
   bootsnap (>= 1.1.0)
-  bootstrap (~> 4.6)
+  bootstrap (~> 5.0)
   byebug
   capistrano (~> 3.10)
   capistrano-passenger

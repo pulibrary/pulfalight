@@ -7,7 +7,7 @@ gem "blacklight", "~> 7.42"
 gem "blacklight_dynamic_sitemap"
 gem "blacklight_range_limit", "~> 7.1"
 gem "bootsnap", ">= 1.1.0", require: false
-gem "bootstrap", "~> 4.6"
+gem "bootstrap", "~> 5.0"
 gem "change_the_subject"
 gem "connection_pool", "< 3"
 gem "datadog", require: "datadog/auto_instrument"
