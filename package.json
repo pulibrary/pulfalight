@@ -16,7 +16,7 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/vue": "^8.0.3",
-    "@vitejs/plugin-vue": "^5.0.4",
+    "@vitejs/plugin-vue": "^6.0.0",
     "eslint-plugin-vue": "^9.24.1",
     "flush-promises": "^1.0.2",
     "happy-dom": "^20.10.6",
