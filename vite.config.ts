@@ -15,6 +15,11 @@ export default defineConfig({
       '@/': './app/javascript'
     }
   },
+  css: {
+    lightningcss: {
+      errorRecovery: true
+    }
+  },
   resolve: {
     alias: {
       vue: 'vue/dist/vue.esm-bundler'
