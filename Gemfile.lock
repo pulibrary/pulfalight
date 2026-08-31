@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/pulibrary/arclight.git
-  revision: fe2faac31ffb2bdae02fe6eeb9ae241cd3d0d47b
-  branch: v0.5.0-rails-8
+  revision: bfb48aaab4477c1e0ebcca8ce7cf9056368ca7d8
+  tag: v0.5.0-rails-8
   specs:
     arclight (0.5.0)
       blacklight (~> 7.2)

@@ -2,7 +2,7 @@
 source "https://rubygems.org", cooldown: 14
 
 gem "archivesspace-client"
-gem "arclight", github: "pulibrary/arclight", branch: "v0.5.0-rails-8"
+gem "arclight", github: "pulibrary/arclight", tag: "v0.5.0-rails-8"
 gem "blacklight", "~> 7.42"
 gem "blacklight_dynamic_sitemap"
 gem "blacklight_range_limit", "~> 7.1"
