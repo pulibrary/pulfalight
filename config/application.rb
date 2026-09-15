@@ -4,6 +4,7 @@ require_relative "../lib/pulfalight/middleware/no_file_uploads"
 
 require "rails/all"
 require_relative "lando_env"
+require_relative "log_filter"
 
 # Our current version of Blacklight depends on view_component which requires
 # active_support/configurable. That causes a Rails deprecation warning. Load
@@ -52,6 +53,10 @@ module Pulfalight
     config.authorization = netids.split if netids
 
     config.middleware.insert_before Rack::MethodOverride, Pulfalight::Middleware::NoFileUploads
+
+    config.rails_semantic_logger.appenders do |appenders|
+      appenders.add(file_name: "log/#{Rails.env}.log", formatter: :json, filter: LogFilter)
+    end
   end
 
   Rails.application.routes.default_url_options = {
