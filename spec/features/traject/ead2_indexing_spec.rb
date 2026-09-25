@@ -1069,6 +1069,17 @@ describe "EAD 2 traject indexing", type: :feature do
       end
     end
 
+    context "when given a component with occupations" do
+      let(:fixture_path) do
+        Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "C0140.processed.EAD.xml")
+      end
+      it "indexes them" do
+        record = find_component(result, "C0140_c32730-75408")
+
+        expect(record["subject_terms_ssim"]).to include("Diplomats -- United States -- Correspondence")
+      end
+    end
+
     context "when given a collection with archaic subject terms" do
       let(:fixture_path) do
         Rails.root.join("spec", "fixtures", "aspace", "generated", "mss", "WC064.processed.EAD.xml")
