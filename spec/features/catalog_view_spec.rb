@@ -605,6 +605,14 @@ describe "viewing catalog records", type: :feature, js: true do
     end
   end
 
+  describe "component with an occupation" do
+    it "displays it as a subject term" do
+      visit "/catalog/C0140_c32730-75408"
+
+      expect(page).to have_selector "dd.blacklight-subject_terms_ssim a", text: "Diplomats -- United States -- Correspondence"
+    end
+  end
+
   describe "record that has bioghist notes for persnames", js: true do
     it "displays more information in a modal" do
       visit "/catalog/C0140_c03353"

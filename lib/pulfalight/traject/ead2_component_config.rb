@@ -687,7 +687,8 @@ end
 # For find-more tab
 to_field "subject_terms_ssim" do |record, accumulator|
   values = record.xpath('./controlaccess/subject[not(@source="local")]').map(&:text)
-  values = values.map(&:strip)
+  occupations = record.xpath("./controlaccess/occupation").map(&:text)
+  values = (values + occupations).map(&:strip)
   values = ChangeTheSubject.fix(subject_terms: values, separators: [" -- ", "--"]).sort
   accumulator.concat(values)
 end
