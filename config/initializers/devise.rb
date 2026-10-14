@@ -276,7 +276,7 @@ Devise.setup do |config|
       jwks_uri: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/discovery/v2.0/keys",
       end_session_endpoint: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/oauth2/v2.0/logout",
       identifier: Pulfalight.config["entra_client_id"],
-      redirect_uri: ENV["ENTRA_REDIRECT_URI"] || "http://localhost:3000/users/auth/openid_connect/callback"
+      redirect_uri: Pulfalight.config["entra_redirect_uri"] || "http://localhost:3000/users/auth/openid_connect/callback"
     }
   }
 

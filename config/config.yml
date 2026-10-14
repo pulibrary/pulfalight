@@ -46,9 +46,12 @@ test:
     queue_id: 8910
 production:
   <<: *defaults
+  entra_redirect_uri: "https://findingaids.princeton.edu/users/auth/openid_connect/callback"
 
 staging:
   <<: *defaults
+  entra_redirect_uri: "https://findingaids-staging.princeton.edu/users/auth/openid_connect/callback"
 
 qa:
   <<: *defaults
+  entra_redirect_uri: "https://findingaids-qa.princeton.edu/users/auth/openid_connect/callback"
