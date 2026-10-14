@@ -265,6 +265,7 @@ Devise.setup do |config|
     response_type: :code,
     uid_field: "preferred_username",
     issuer: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/v2.0",
+    pkce: true,
     client_auth_method: "query",
     client_options: {
       host: "login.microsoftonline.com",
@@ -273,8 +274,7 @@ Devise.setup do |config|
       userinfo_endpoint: "https://graph.microsoft.com/oidc/userinfo",
       jwks_uri: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/discovery/v2.0/keys",
       end_session_endpoint: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/oauth2/v2.0/logout",
-      identifier: ENV["ENTRA_CLIENT_ID"],
-      secret: ENV["ENTRA_CLIENT_SECRET"],
+      identifier: "eccd3472-a72c-4779-9c62-5d9ba258a679",
       redirect_uri: ENV["ENTRA_REDIRECT_URI"] || "http://localhost:3000/users/auth/openid_connect/callback"
     }
   }
