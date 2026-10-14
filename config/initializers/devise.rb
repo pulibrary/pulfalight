@@ -2,6 +2,7 @@
 
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
+require_relative "pulfalight_config"
 OmniAuth.config.allowed_request_methods = [:post]
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
@@ -274,7 +275,7 @@ Devise.setup do |config|
       userinfo_endpoint: "https://graph.microsoft.com/oidc/userinfo",
       jwks_uri: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/discovery/v2.0/keys",
       end_session_endpoint: "https://login.microsoftonline.com/2ff60116-7431-425d-b5af-077d7791bda4/oauth2/v2.0/logout",
-      identifier: "eccd3472-a72c-4779-9c62-5d9ba258a679",
+      identifier: Pulfalight.config["entra_client_id"],
       redirect_uri: ENV["ENTRA_REDIRECT_URI"] || "http://localhost:3000/users/auth/openid_connect/callback"
     }
   }

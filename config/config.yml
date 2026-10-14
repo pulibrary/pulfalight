@@ -1,4 +1,5 @@
 defaults: &defaults
+  entra_client_id: "eccd3472-a72c-4779-9c62-5d9ba258a679"
   external_universal_viewer_url: "https://figgy.princeton.edu/viewer"
   archivespace_url: <%= ENV["ASPACE_URL"] || "https://aspace.princeton.edu/staff/api" %>
   archivespace_user: <%= ENV["ASPACE_USER"] %>
