@@ -5,6 +5,7 @@ task setup_keys: :environment do
   File.open(".env", "w") do |f|
     f.puts "ASPACE_USER=#{content['username']}"
     f.puts "ASPACE_PASSWORD=#{content['password']}"
+    f.puts "ENTRA_CLIENT_ID=#{entra_content['username']}"
   end
   puts "Generated .env file"
 end

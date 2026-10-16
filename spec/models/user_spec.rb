@@ -11,24 +11,32 @@ RSpec.describe User do
   end
 
   describe ".from_omniauth" do
-    let(:retrieved_user) { instance_double(described_class) }
-    # This models User::ActiveRecord_Relation
-    let(:relation) { double }
-
-    before do
-      allow(relation).to receive(:first_or_create).and_yield(retrieved_user)
-      allow(described_class).to receive(:where).and_return(relation)
-      allow(retrieved_user).to receive(:uid=)
-      allow(retrieved_user).to receive(:provider=)
-      allow(retrieved_user).to receive(:email=)
+    it "creates a user" do
+      token = double("token", provider: "openid_connect", uid: "test@princeton.edu")
+      user = described_class.from_omniauth(token)
+      expect(user.uid).to eq "test"
+      expect(user.provider).to eq "openid_connect"
+      expect(user.email).to eq "test@princeton.edu"
     end
 
-    it "creates a user" do
-      token = double("token", provider: "cas", uid: "test")
+    it "updates an old CAS user" do
+      user = FactoryBot.create(:user, provider: "cas")
+      token = double("token", provider: "openid_connect", uid: user.email)
+
       described_class.from_omniauth(token)
-      expect(retrieved_user).to have_received(:uid=)
-      expect(retrieved_user).to have_received(:provider=)
-      expect(retrieved_user).to have_received(:email=)
+
+      user = User.find(user.id)
+      expect(user.provider).to eq "openid_connect"
+    end
+
+    it "appropriately handles guest accounts" do
+      user = FactoryBot.create(:user, uid: "tpend", email: "tpend@princeton.edu", provider: "cas")
+      token = double("token", provider: "openid_connect", uid: "tpend@gmail.com")
+
+      new_user = described_class.from_omniauth(token)
+
+      expect(new_user.id).not_to eq user.id
+      expect(new_user.uid).to eq "tpend@gmail.com"
     end
   end
 

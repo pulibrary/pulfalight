@@ -4,16 +4,17 @@ class User < ApplicationRecord
   include Blacklight::User
 
   def self.from_omniauth(access_token)
-    User.where(provider: access_token.provider, uid: access_token.uid).first_or_create do |user|
-      user.uid = access_token.uid
-      user.provider = access_token.provider
-      user.email = "#{access_token.uid}@princeton.edu"
+    uid = access_token.uid.split("@princeton.edu").first
+    User.where(uid: uid).first_or_create.tap do |updated_user|
+      updated_user.provider = access_token.provider
+      updated_user.email = access_token.uid
+      updated_user.save
     end
   end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :omniauthable, omniauth_providers: [:cas]
+  devise :omniauthable, omniauth_providers: [:openid_connect]
 
   # Method added by Blacklight; Blacklight uses #to_s on your
   # user class to get a user-displayable login/identifier for
