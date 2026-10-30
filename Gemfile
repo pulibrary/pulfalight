@@ -75,8 +75,8 @@ group :development do
 end
 
 group :test do
-  gem "axe-core-api", "4.13.0"
-  gem "axe-core-rspec", "4.13.0"
+  gem "axe-core-api", "4.14.0"
+  gem "axe-core-rspec", "4.14.0"
   gem "capybara", ">= 3.18"
   gem "openssl" # fix cert error with webmock
   gem "rspec_junit_formatter"
