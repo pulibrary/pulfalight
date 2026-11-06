@@ -137,8 +137,8 @@ GEM
       rails
     blacklight_range_limit (7.9.1)
       blacklight (~> 7.0)
-    bootsnap (1.21.1)
-      msgpack (~> 1.2)
+    bootsnap (1.26.1)
+      msgpack (~> 1.5)
     bootstrap (4.6.2.1)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.16.1, < 2)
@@ -383,7 +383,7 @@ GEM
     minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
-    msgpack (1.8.4)
+    msgpack (1.8.7)
     multi_json (1.19.1)
     multi_xml (0.9.1)
       bigdecimal (>= 3.1, < 5)
@@ -900,7 +900,7 @@ GEM
     vite_rails (3.11.1)
       railties (>= 5.1, < 9)
       vite_ruby (~> 3.0, >= 3.2.2)
-    vite_ruby (3.10.4)
+    vite_ruby (3.11.1)
       dry-cli (>= 0.7, < 2)
       logger (~> 1.6)
       mutex_m
