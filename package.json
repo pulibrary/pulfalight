@@ -7,7 +7,7 @@
     "lux-design-system": "7.9.0",
     "postcss-import": "^17.0.0",
     "sass": "^1.74.1",
-    "serialize-javascript": "^7.0.5",
+    "serialize-javascript": "^7.1.2",
     "vue": "^3.4.21",
     "vue-loader": "^17.4.2",
     "vuex": "^4.1.0",
