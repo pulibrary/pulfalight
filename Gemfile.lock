@@ -281,7 +281,7 @@ GEM
     googleapis-common-protos-types (1.22.0)
       google-protobuf (~> 4.26)
     hashdiff (1.2.1)
-    hashie (5.1.0)
+    hashie (5.2.0)
       logger
     health-monitor-rails (12.9.0)
       railties (>= 6.1)
@@ -420,11 +420,11 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.4-x86_64-linux-musl)
       racc (~> 1.4)
-    omniauth (2.1.4)
-      hashie (>= 3.4.6)
+    omniauth (2.2.0)
+      hashie (>= 3.5.2)
       logger
-      rack (>= 2.2.3)
-      rack-protection
+      rack (>= 2.2.8)
+      rack-protection (>= 2.2.0)
     omniauth-cas (3.0.2)
       addressable (~> 2.8)
       nokogiri (~> 1.12)
@@ -652,7 +652,7 @@ GEM
     puma (8.0.2)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.2.7)
+    rack (3.2.8)
     rack-oauth2 (2.3.0)
       activesupport
       attr_required
@@ -985,7 +985,7 @@ DEPENDENCIES
   jquery-rails
   listen
   msgpack
-  omniauth (= 2.1.4)
+  omniauth (= 2.2.0)
   omniauth-cas (= 3.0.2)
   omniauth-rails_csrf_protection
   omniauth_openid_connect
@@ -1026,4 +1026,4 @@ DEPENDENCIES
   whenever
 
 BUNDLED WITH
-   2.6.9
+   4.0.19
