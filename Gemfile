@@ -21,7 +21,7 @@ gem "honeybadger"
 gem "jbuilder", "~> 2.5"
 gem "jquery-rails"
 gem "msgpack"
-gem "omniauth", "2.2.0"
+gem "omniauth", "2.3.1"
 gem "omniauth-cas", "3.0.2"
 gem "omniauth_openid_connect"
 gem "omniauth-rails_csrf_protection"
@@ -75,8 +75,8 @@ group :development do
 end
 
 group :test do
-  gem "axe-core-api", "4.13.0"
-  gem "axe-core-rspec", "4.13.0"
+  gem "axe-core-api", "4.14.0"
+  gem "axe-core-rspec", "4.14.0"
   gem "capybara", ">= 3.18"
   gem "openssl" # fix cert error with webmock
   gem "rspec_junit_formatter"
