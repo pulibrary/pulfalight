@@ -68,7 +68,7 @@ class TableOfContentsBuilder
   def text(component)
     title = component["normalized_title_ssm"].first
     return "<div class='content'><span class='text'>#{title}</span></div>" unless component["has_online_content_ssim"]&.first == "true"
-    "<div class='content'>#{OnlineContentBadge.new(SolrDocument.new(component), icon_only: true).render}<span class='text'>#{title}</span></div>"
+    "<div class='content'>#{OnlineContentBadge.new(SolrDocument.new(component), icon_only: true).render} <span class='text'>#{title}</span></div>"
   end
 
   def field_list
