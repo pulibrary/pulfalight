@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-source "https://rubygems.org", cooldown: 14
+source "https://rubygems.org", cooldown: 4
 
 gem "archivesspace-client"
 gem "arclight", github: "pulibrary/arclight", tag: "v0.5.0-rails-8"
@@ -45,13 +45,13 @@ gem "sidekiq", "~> 8.0"
 gem "simple_form"
 gem "terser"
 gem "twitter-typeahead-rails", "0.11.1"
-gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "tzinfo-data"
 gem "vite_rails"
 gem "whenever", require: false
 
 group :development, :test do
   gem "benchmark-ips"
-  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem "byebug"
   gem "debug", require: "debug/prelude"
   gem "rails-controller-testing"
   gem "rspec-rails"

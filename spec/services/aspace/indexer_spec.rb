@@ -53,6 +53,11 @@ RSpec.describe Aspace::Indexer do
       stub_aspace_repositories
       stub_aspace_resource_ids(repository_id: "13", resource_ids: ["1"])
     end
+    after do
+      connection = Blacklight.default_index.connection
+      connection.delete_by_query("ead_ssi:C1588test*")
+      connection.commit
+    end
     it "reindexes everything by using the XML Cache" do
       resource_ead_stub = stub_aspace_ead(resource_descriptions_uri: "repositories/13/resource_descriptions/1", ead: "mss/C1588.xml")
       allow(AspaceIndexJob).to receive(:perform_later).and_call_original
