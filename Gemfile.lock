@@ -752,7 +752,7 @@ GEM
       connection_pool
     redis-namespace (1.11.0)
       redis (>= 4)
-    regexp_parser (2.13.2)
+    regexp_parser (2.13.3)
     reline (0.7.0)
       io-console (~> 0.5)
     responders (3.2.1)
