@@ -1025,7 +1025,7 @@ convert-source-map@^2.0.0:
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-2.0.0.tgz#4b560f649fc4e918dd0ab75cf4961e8bc882d82a"
   integrity sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==
 
-core-js@^3.36.1, core-js@^3.8.3:
+core-js@^3.36.1, core-js@^3.51.0:
   version "3.51.0"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.51.0.tgz#9a7b197159ab83173b50efbe0c4846bec94b3abb"
   integrity sha512-7bDKx/5jm5MxzsXxc93g6Z2+4ZsuT/MddrfRmTDJNAkWsYWHU8EVNEsBiIEWnMAMCHMmRfUEjkuo3jeNBOIHRw==
@@ -2468,14 +2468,14 @@ lru-cache@^11.0.0:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-11.5.3.tgz#a7767b4034e35269562d2b9da2b185b5df70c421"
   integrity sha512-U4N8FgzmWxc8k1VH8Kr6lQg18U7Fjvby6wXHVRX/ZZ7IwWbRMgrRbP0Wrb5q5NVinryp4SQampHKdvtecItxUg==
 
-lux-design-system@7.15.2:
-  version "7.15.2"
-  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-7.15.2.tgz#ed2227a3ee98cac5711535d48668e0db4070346c"
-  integrity sha512-ih/cgFOyHGn2t9BdsH2XOCT8WSoXArDE2xKFQ55CUj/aV5gL7IZNmBFbwjbx0JSOZnZLFnnnrf48qlCV3vSZRA==
+lux-design-system@7.16.0:
+  version "7.16.0"
+  resolved "https://registry.yarnpkg.com/lux-design-system/-/lux-design-system-7.16.0.tgz#6765e57e2d334f36b2f619c0a5fdd9bd4b69ed83"
+  integrity sha512-xhtUvb+PryAKNZ1Vp9HFJJEkNEaakxJUR19BHyNIyhXmEIw5xEiC3HkZ8r09Q532eUYP4zjyJZWGyij2MLdCxg==
   dependencies:
-    core-js "^3.8.3"
+    core-js "^3.51.0"
     register-service-worker "^1.7.2"
-    tar "^7.5.21"
+    tar "^7.5.23"
     v-calendar "^3.1.2"
     vue-draggable-plus "^0.3.5"
     vue3-cookies "^1.0.6"
@@ -3355,10 +3355,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-tar@^7.5.21:
-  version "7.5.23"
-  resolved "https://registry.yarnpkg.com/tar/-/tar-7.5.23.tgz#5ff22a2b3bb122b4c412b81cb54102a80d153e80"
-  integrity sha512-lkukzdoGngZHJZXxW4S/E4Fp9ghTDlyZXrQGRNoJ/LXvDKcXUTq2sg5yQe74po7Voea6n/IN09+wE/QvJMiifA==
+tar@^7.5.23:
+  version "7.5.24"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-7.5.24.tgz#fc6e4eba45b5ac893f63457f090484df3639b8dc"
+  integrity sha512-to/OxuCk5DeVONcjjODT7aeoRq5NIPPlfPc0tNML+wLlnf6u5BcJz97Uukv3pT3jzorkFhUevylkAiBr+ZmV2w==
   dependencies:
     "@isaacs/fs-minipass" "^4.0.0"
     chownr "^3.0.0"
